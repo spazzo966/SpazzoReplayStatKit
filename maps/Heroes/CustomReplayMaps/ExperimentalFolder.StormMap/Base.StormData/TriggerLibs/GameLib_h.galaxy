@@ -903,6 +903,8 @@ struct libGame_gs_HeroSpecificScoreValues {
     fixed lv_talentThirteen;
     fixed lv_talentSixteen;
     fixed lv_talentTwenty;
+    fixed lv_supportEleven;
+    fixed lv_supportTwelve;
     fixed lv_scoreOne;
     fixed lv_scoreTwo;
     fixed lv_scoreThree;
@@ -1148,6 +1150,7 @@ unit[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredUnit2;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredTimeStop;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredDamageMitigated;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredDamageMitigatedTimestamp;
+bool libGame_gv_isCustomReplayLogic;
 // string[libCore_gv_bALMaxPlayers + 1] libGame_gv_StoredScoreString;
 
 // Function Declarations

@@ -1013,8 +1013,6 @@ bool libHAUR_gt_HeroAurielResurrectCreateSpirit_Func (bool testConds, bool runAc
 
     // Automatic Variable Declarations
     string autoDD7969E0_val;
-    const int autoC00E5C25_ae = libCore_gv_bALMaxPlayers;
-    const int autoC00E5C25_ai = 1;
     const int auto6C97AF6C_ae = libCore_gv_bALMaxPlayers;
     const int auto6C97AF6C_ai = 1;
     const int auto24B82E18_ae = libCore_gv_bALMaxPlayers;
@@ -1040,21 +1038,7 @@ bool libHAUR_gt_HeroAurielResurrectCreateSpirit_Func (bool testConds, bool runAc
     }
 
     autoDD7969E0_val = UnitGetType(lv_deadHero);
-    if (autoDD7969E0_val == "HeroAuriel") {
-        lv_iPlayer = 1;
-        for ( ; ( (autoC00E5C25_ai >= 0 && lv_iPlayer <= autoC00E5C25_ae) || (autoC00E5C25_ai < 0 && lv_iPlayer >= autoC00E5C25_ae) ) ; lv_iPlayer += autoC00E5C25_ai ) {
-            if (((UnitGetType(libGame_gv_players[lv_iPlayer].lv_heroUnit) == "HeroAuriel") && (UnitBehaviorCount(libGame_gv_players[lv_iPlayer].lv_heroUnit, "Ultimate1Unlocked") > 0) && (libGame_gf_TeamNumberOfPlayer(lv_deadPlayer) == libGame_gf_TeamNumberOfPlayer(lv_iPlayer)) && (lv_iPlayer != lv_deadPlayer))) {
-                CatalogFieldValueSet(c_gameCatalogUnit, "AurielResurrectSpirit", "Name", lv_deadPlayer, CatalogFieldValueGet(c_gameCatalogUnit, UnitGetType(libGame_gv_players[lv_deadPlayer].lv_heroUnit), "Name", lv_deadPlayer));
-                UnitCreate(1, "AurielResurrectSpirit", 0, lv_deadPlayer, UnitGetPosition(lv_deadHero), 270.0, lv_deadHero);
-                libHAUR_gv_heroAurielResurrectSpirit[lv_deadPlayer] = UnitLastCreated();
-                UnitBehaviorAdd(libHAUR_gv_heroAurielResurrectSpirit[lv_deadPlayer], "AurielResurrectRezzable", libHAUR_gv_heroAurielResurrectSpirit[lv_deadPlayer], 1);
-                UnitBehaviorSetDuration(libHAUR_gv_heroAurielResurrectSpirit[lv_deadPlayer], "AurielResurrectRezzable", (TimerGetDuration(libGame_gv_players[lv_deadPlayer].lv_respawnTimer) - libHAUR_gv_heroAurielResurrectTargetUnresurrectableTime));
-                libHAUR_gf_HeroAurielResurrectRevealSpirittoAurielandDeadPlayer(lv_deadPlayer, lv_deadHero);
-            }
-
-        }
-    }
-    else if (autoDD7969E0_val == "HeroBaleog") {
+    if (autoDD7969E0_val == "HeroBaleog") {
         if ((libGDHL_gv_lostVikingsPlayer[lv_deadPlayer].lv_checkpointReachedDeathTimerActive == false)) {
             CatalogFieldValueSet(c_gameCatalogUnit, "AurielResurrectSpirit", "Name", lv_deadPlayer, CatalogFieldValueGet(c_gameCatalogUnit, UnitGetType(libGame_gv_players[lv_deadPlayer].lv_heroUnit), "Name", lv_deadPlayer));
             UnitCreate(1, "AurielResurrectSpirit", 0, lv_deadPlayer, UnitGetPosition(lv_deadHero), 270.0, lv_deadHero);
@@ -1271,6 +1255,9 @@ bool libHAUR_gt_HeroAurielResurrectCreateSpirit_Func (bool testConds, bool runAc
     else if (autoDD7969E0_val == "RexxarMisha") {
         return true;
     }
+    else if (autoDD7969E0_val == "HeroDeathwing") {
+        return true;
+    }
     else if (autoDD7969E0_val == "BaleogsGravestone") {
         return true;
     }
@@ -1445,7 +1432,16 @@ bool libHAUR_gt_HeroAurielResurrectRevivePlayer_Func (bool testConds, bool runAc
         return true;
     }
 
-    lv_targetHero = libGame_gv_players[lv_targetPlayer].lv_heroUnit;
+    if ((EventPlayerEffectUsed() == "AurielResurrectInitialDummy")) {
+        lv_targetHero = libGame_gv_players[lv_targetPlayer].lv_heroUnit;
+    }
+    else {
+        lv_targetHero = libGame_gv_players[lv_aurielPlayer].lv_heroUnit;
+        lv_target = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+        lv_targetPosition = UnitGetPosition(libHAUR_gv_heroAurielResurrectSpirit[lv_aurielPlayer]);
+        UnitCreateEffectUnit(lv_target, "AurielResurrectApplyActivelyResurrecting", libHAUR_gv_heroAurielResurrectSpirit[lv_aurielPlayer]);
+        UnitCreateEffectUnit(lv_target, "AurielResurrectApplySelfMarkerBehavior", libHAUR_gv_heroAurielResurrectSpirit[lv_aurielPlayer]);
+    }
     if ((UnitHasBehavior2(lv_targetHero, "LeoricUndying") == true)) {
         UnitCreateEffectUnit(lv_targetHero, "LeoricUndyingApplySuppressHealing5Seconds", lv_targetHero);
     }
@@ -1587,6 +1583,7 @@ void libHAUR_gt_HeroAurielResurrectRevivePlayer_Init () {
     libHAUR_gt_HeroAurielResurrectRevivePlayer = TriggerCreate("libHAUR_gt_HeroAurielResurrectRevivePlayer_Func");
     TriggerEnable(libHAUR_gt_HeroAurielResurrectRevivePlayer, false);
     TriggerAddEventPlayerEffectUsed(libHAUR_gt_HeroAurielResurrectRevivePlayer, c_playerAny, "AurielResurrectInitialDummy");
+    TriggerAddEventPlayerEffectUsed(libHAUR_gt_HeroAurielResurrectRevivePlayer, c_playerAny, "AurielResurrectSelfDummy");
 }
 
 //--------------------------------------------------------------------------------------------------

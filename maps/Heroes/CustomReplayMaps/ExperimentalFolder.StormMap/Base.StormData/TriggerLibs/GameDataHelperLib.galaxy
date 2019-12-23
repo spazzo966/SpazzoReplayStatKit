@@ -22917,38 +22917,29 @@ bool libGDHL_gt_HeroSylvanasPossessionRewire_Func (bool testConds, bool runActio
 
     lv_bribedUnit = EventUnit();
     lv_greedUnit = UnitBehaviorEffectUnit(lv_bribedUnit, EventUnitBehavior(), c_effectUnitCaster, 0);
-    if ((libGame_gv_oldXPCheat == true)) {
-        lv_xPGrantedFromUnit = UnitGetPropertyFixed(lv_bribedUnit, c_unitPropKillXP, c_unitPropCurrent);
-        libGame_gf_AwardXPForNPCKill(lv_bribedUnit, UnitGetOwner(lv_greedUnit), c_unitAttributeMinion, UnitGetOwner(lv_greedUnit), lv_xPGrantedFromUnit);
-    }
-    else {
-        if ((UnitGetOwner(EventUnit()) == libCore_gv_cOMPUTER_TeamOrder)) {
-            PlayerCreateEffectPoint(libCore_gv_cOMPUTER_TeamChaos, "HeroGenericGenerateExperienceGlobeCreateUnit", UnitGetPosition(EventUnit()));
-        }
-        else {
-            if ((UnitGetOwner(EventUnit()) == libCore_gv_cOMPUTER_TeamChaos)) {
-                PlayerCreateEffectPoint(libCore_gv_cOMPUTER_TeamOrder, "HeroGenericGenerateExperienceGlobeCreateUnit", UnitGetPosition(EventUnit()));
-            }
-            else {
-                TriggerDebugOutput(1, StringExternal("Param/Value/lib_GDHL_0DC61962"), true);
-            }
-        }
-    }
-    libGame_gf_SendEventHeroMindControlsNPC(lv_bribedUnit, UnitGetOwner(lv_bribedUnit));
     if ((UnitGetOwner(lv_bribedUnit) == libCore_gv_cOMPUTER_TeamOrder)) {
         lv_regenGlobeOwner = libCore_gv_cOMPUTER_TeamChaos;
     }
     else {
         lv_regenGlobeOwner = libCore_gv_cOMPUTER_TeamOrder;
     }
+    if ((libGame_gv_oldXPCheat == true)) {
+        lv_xPGrantedFromUnit = UnitGetPropertyFixed(lv_bribedUnit, c_unitPropKillXP, c_unitPropCurrent);
+        libGame_gf_AwardXPForNPCKill(lv_bribedUnit, UnitGetOwner(lv_greedUnit), c_unitAttributeMinion, UnitGetOwner(lv_greedUnit), lv_xPGrantedFromUnit);
+    }
+    else {
+        if ((UnitGetType(lv_bribedUnit) == "WizardMinion")) {
+            libNtve_gf_CreateUnitsWithDefaultFacing(1, "RegenGlobe", c_unitCreateIgnorePlacement, lv_regenGlobeOwner, UnitGetPosition(lv_bribedUnit), null);
+        }
+        else {
+            UnitCreateEffectUnit(lv_bribedUnit, "ExperienceGlobeDummyImpactSetLastHit", lv_greedUnit);
+        }
+    }
+    libGame_gf_SendEventHeroMindControlsNPC(lv_bribedUnit, UnitGetOwner(lv_bribedUnit));
     UnitSetOwner(lv_bribedUnit, lv_regenGlobeOwner, true);
     UnitStatusBarClearOverride(lv_bribedUnit);
     Wait(0.25, c_timeGame);
     UnitStatusBarOverride(lv_bribedUnit, c_unitStatusGroupAll);
-    if ((UnitGetType(lv_bribedUnit) == "WizardMinion")) {
-        libNtve_gf_CreateUnitsWithDefaultFacing(1, "RegenGlobe", c_unitCreateIgnorePlacement, lv_regenGlobeOwner, UnitGetPosition(lv_bribedUnit), null);
-    }
-
     UnitIssueOrder(lv_bribedUnit, Order(libAIAI_gv_aIStopAbil), c_orderQueueReplace);
     libGame_gf_CalculateSpawnedMinionGoalPoints(UnitGetOwner(lv_bribedUnit), UnitGetPosition(lv_bribedUnit));
     libAIAI_gf_MinionAIStartMinionAI(-1, lv_bribedUnit, libGame_gv_spawnedMinionLane, libGame_gv_spawnedMinionFirstWaypointIndex, false, true, false, libGame_gf_EnemyTeam(libGame_gf_TeamNumberOfPlayer(UnitGetOwner(lv_greedUnit))), false);

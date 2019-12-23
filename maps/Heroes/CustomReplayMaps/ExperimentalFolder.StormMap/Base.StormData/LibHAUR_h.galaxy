@@ -8,10 +8,10 @@ const fixed libHAUR_gv_heroAurielBestowHopeEmpathicLinkStoredPercentage = 0.25;
 const fixed libHAUR_gv_heroAurielRayofHeavenGlimmerofHopeStoredPercentage = 0.75;
 const fixed libHAUR_gv_heroAurielRayofHeavenSearingLightFractionOfEnergyConvertedToDamage = 0.3;
 const fixed libHAUR_gv_heroAurielResurrectShowRezPanelDuration = 2.0;
-const fixed libHAUR_gv_heroAurielResurrectTargetUnresurrectableTime = 5.6;
-const int libHAUR_gv_heroAurielResurrectVitalScale = 50;
+const fixed libHAUR_gv_heroAurielResurrectTargetUnresurrectableTime = 3.6;
+const int libHAUR_gv_heroAurielResurrectVitalScale = 100;
 const int libHAUR_gv_heroAurielResurrectEnergyPercentage = 100;
-const fixed libHAUR_gv_heroAurielResurrectResurrectTime = 5.0;
+const fixed libHAUR_gv_heroAurielResurrectResurrectTime = 3.0;
 
 // Structures
 struct libHAUR_gs_AurielUI {

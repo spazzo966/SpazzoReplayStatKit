@@ -619,7 +619,6 @@ bool libHGen_gt_HeroGenjiSwiftStrike_Func (bool testConds, bool runActions) {
     if (!runActions) {
         return true;
     }
-    libGame_gv_HeroSpecificStoredValue1[lv_genjiPlayer] = 0.0;
     libGame_gv_HeroSpecificStoredValue1[lv_genjiPlayer] = UnitGetTokenCount(lv_genjiUnit, "GenjiSwiftStrikeSteadyBladeTokenCounter");
     while ((lv_interpolationFraction > 0.0)) {
         if ((PointPathingPassable(lv_interpolationPoint) == true)) {
