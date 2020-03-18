@@ -3940,6 +3940,7 @@ void libGDHL_gf_HeroTyraelIncrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroTyraelSanctificationFacing, true);
         TriggerEnable(libGDHL_gt_HeroTyraelSanctificationTimerStart, true);
         TriggerEnable(libGDHL_gt_HeroTyraelArchangelsWrathSuppressCollision, true);
+        TriggerEnable(libGDHL_gt_HeroTyraelArchangelsWrathDeathTimerModification, true);
         TriggerEnable(libGDHL_gt_HeroTyraelSanctificationFullscreenOverlayOn, true);
         TriggerEnable(libGDHL_gt_HeroTyraelSanctificationFullscreenOverlayOff, true);
     }
@@ -3958,6 +3959,7 @@ void libGDHL_gf_HeroTyraelDecrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroTyraelSanctificationFacing, false);
         TriggerEnable(libGDHL_gt_HeroTyraelSanctificationTimerStart, false);
         TriggerEnable(libGDHL_gt_HeroTyraelArchangelsWrathSuppressCollision, false);
+        TriggerEnable(libGDHL_gt_HeroTyraelArchangelsWrathDeathTimerModification, false);
         TriggerEnable(libGDHL_gt_HeroTyraelSanctificationFullscreenOverlayOn, false);
         TriggerEnable(libGDHL_gt_HeroTyraelSanctificationFullscreenOverlayOff, false);
     }
@@ -4307,279 +4309,6 @@ void libGDHL_gf_HeroZeratulDecrementHeroCountFunction () {
 
 // Triggers
 //--------------------------------------------------------------------------------------------------
-// Trigger: GPU2020 - Set Event Phase
-//--------------------------------------------------------------------------------------------------
-bool libGDHL_gt_GPU2020SetEventPhase_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    string lv_conversion;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_conversion = StringWord(EventChatMessage(false), 2);
-
-    // Conditions
-    if (testConds) {
-        if (!((GameCheatsEnabled(c_gameCheatCategoryDevelopment) == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    if (((lv_conversion == "1") || (lv_conversion == "2") || (lv_conversion == "3") || (lv_conversion == "4") || (lv_conversion == "5"))) {
-        TextExpressionSetToken("Param/Expression/lib_GDHL_184DCB97", "A", StringToText(lv_conversion));
-        TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/lib_GDHL_184DCB97"), true);
-        libGDHL_gv_gPU2020EventPhase = StringToInt(lv_conversion);
-    }
-    else {
-        TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/lib_GDHL_A393C02C"), true);
-        libGDHL_gv_gPU2020EventPhase = 1;
-    }
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libGDHL_gt_GPU2020SetEventPhase_Init () {
-    libGDHL_gt_GPU2020SetEventPhase = TriggerCreate("libGDHL_gt_GPU2020SetEventPhase_Func");
-    TriggerAddEventChatMessage(libGDHL_gt_GPU2020SetEventPhase, c_playerAny, "-event", false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: GPU2020 - Force Event
-//--------------------------------------------------------------------------------------------------
-bool libGDHL_gt_GPU2020ForceEvent_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((GameCheatsEnabled(c_gameCheatCategoryDevelopment) == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TextExpressionSetToken("Param/Expression/lib_GDHL_5F85BE02", "A", IntToText(libGDHL_gv_gPU2020EventPhase));
-    TriggerDebugOutput(1, TextExpressionAssemble("Param/Expression/lib_GDHL_5F85BE02"), true);
-    libGDHL_gf_GPU2020RunEvent(false);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libGDHL_gt_GPU2020ForceEvent_Init () {
-    libGDHL_gt_GPU2020ForceEvent = TriggerCreate("libGDHL_gt_GPU2020ForceEvent_Func");
-    TriggerAddEventChatMessage(libGDHL_gt_GPU2020ForceEvent, c_playerAny, "-goevent", true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: GPU2020 - Force .01 Rando
-//--------------------------------------------------------------------------------------------------
-bool libGDHL_gt_GPU2020Force01Rando_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((GameCheatsEnabled(c_gameCheatCategoryDevelopment) == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    TriggerDebugOutput(1, StringExternal("Param/Value/lib_GDHL_E7BBD5E8"), true);
-    libGDHL_gv_gPU2020Force01Rando = true;
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libGDHL_gt_GPU2020Force01Rando_Init () {
-    libGDHL_gt_GPU2020Force01Rando = TriggerCreate("libGDHL_gt_GPU2020Force01Rando_Func");
-    TriggerAddEventChatMessage(libGDHL_gt_GPU2020Force01Rando, c_playerAny, "-forcerando", true);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: GPU2020 - Timer Ends
-//--------------------------------------------------------------------------------------------------
-bool libGDHL_gt_GPU2020TimerEnds_Func (bool testConds, bool runActions) {
-    // Automatic Variable Declarations
-    // Conditions
-    if (testConds) {
-        if (!((libGDHL_gv_gPU2020EventEnabled == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    libGDHL_gf_GPU2020RunEvent(true);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libGDHL_gt_GPU2020TimerEnds_Init () {
-    libGDHL_gt_GPU2020TimerEnds = TriggerCreate("libGDHL_gt_GPU2020TimerEnds_Func");
-    TriggerAddEventTimer(libGDHL_gt_GPU2020TimerEnds, libGDHL_gv_gPU2020GateTimer);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: GPU2020 - Event Shake 1
-//--------------------------------------------------------------------------------------------------
-bool libGDHL_gt_GPU2020EventShake1_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_player;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_player = EventPlayerEffectUsedUnitOwner(c_effectPlayerCaster);
-
-    // Conditions
-    if (testConds) {
-        if (!((lv_player > 0))) {
-            return false;
-        }
-
-        if (!((lv_player <= libCore_gv_bALMaxPlayers))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    CameraShake(lv_player, "GPU2020Event1", "GPU2020Event4", 0.1, 0.1, 1.5);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libGDHL_gt_GPU2020EventShake1_Init () {
-    libGDHL_gt_GPU2020EventShake1 = TriggerCreate("libGDHL_gt_GPU2020EventShake1_Func");
-    TriggerAddEventPlayerEffectUsed(libGDHL_gt_GPU2020EventShake1, c_playerAny, "GPU2020EventCameraShake1DummySet");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: GPU2020 - Event Shake 2
-//--------------------------------------------------------------------------------------------------
-bool libGDHL_gt_GPU2020EventShake2_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_player;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_player = EventPlayerEffectUsedUnitOwner(c_effectPlayerCaster);
-
-    // Conditions
-    if (testConds) {
-        if (!((lv_player > 0))) {
-            return false;
-        }
-
-        if (!((lv_player <= libCore_gv_bALMaxPlayers))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    CameraShake(lv_player, "GPU2020Event2", "GPU2020Event4", 0.1, 0.1, 1.25);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libGDHL_gt_GPU2020EventShake2_Init () {
-    libGDHL_gt_GPU2020EventShake2 = TriggerCreate("libGDHL_gt_GPU2020EventShake2_Func");
-    TriggerAddEventPlayerEffectUsed(libGDHL_gt_GPU2020EventShake2, c_playerAny, "GPU2020EventCameraShake2DummySet");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: GPU2020 - Event Shake 3
-//--------------------------------------------------------------------------------------------------
-bool libGDHL_gt_GPU2020EventShake3_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_player;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_player = EventPlayerEffectUsedUnitOwner(c_effectPlayerCaster);
-
-    // Conditions
-    if (testConds) {
-        if (!((lv_player > 0))) {
-            return false;
-        }
-
-        if (!((lv_player <= libCore_gv_bALMaxPlayers))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    CameraShake(lv_player, "GPU2020Event3", "GPU2020Event4", 0.1, 0.1, 0.75);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libGDHL_gt_GPU2020EventShake3_Init () {
-    libGDHL_gt_GPU2020EventShake3 = TriggerCreate("libGDHL_gt_GPU2020EventShake3_Func");
-    TriggerAddEventPlayerEffectUsed(libGDHL_gt_GPU2020EventShake3, c_playerAny, "GPU2020EventCameraShake3DummySet");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: GPU2020 - Event Shake 4
-//--------------------------------------------------------------------------------------------------
-bool libGDHL_gt_GPU2020EventShake4_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_player;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_player = EventPlayerEffectUsedUnitOwner(c_effectPlayerCaster);
-
-    // Conditions
-    if (testConds) {
-        if (!((lv_player > 0))) {
-            return false;
-        }
-
-        if (!((lv_player <= libCore_gv_bALMaxPlayers))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    CameraShake(lv_player, "GPU2020Event4", "GPU2020Event4", 0.1, 0.1, 0.5);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libGDHL_gt_GPU2020EventShake4_Init () {
-    libGDHL_gt_GPU2020EventShake4 = TriggerCreate("libGDHL_gt_GPU2020EventShake4_Func");
-    TriggerAddEventPlayerEffectUsed(libGDHL_gt_GPU2020EventShake4, c_playerAny, "GPU2020EventCameraShake4DummySet");
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: #Include Game Data Helper
 //--------------------------------------------------------------------------------------------------
 bool libGDHL_gt_IncludeGameDataHelper_Func (bool testConds, bool runActions) {
@@ -4621,16 +4350,7 @@ bool libGDHL_gt_SummonedUnitAPApplication_Func (bool testConds, bool runActions)
         return true;
     }
 
-    // if ((((UnitTypeTestAttribute(UnitGetType(EventUnitCreatedUnit()), c_unitAttributeSummoned) == true) || (UnitGetType(EventUnitCreatedUnit()) == "NovaHoloCloneCloaked")))) {
-        libGDHL_gf_SiegeUpdateAbilityPowerOnSummonedUnits(EventUnitCreatedUnit());
-    // }
-	// This desyncs sometimes. Need more testing.
-	// else {
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText(UnitGetType(EventUnit())) + StringToText(" Created: ") + StringToText(UnitGetType(EventUnitCreatedUnit()))));
-	// }
-	// EARMARK
-
-    // libGDHL_gf_SiegeUpdateAbilityPowerOnSummonedUnits(EventUnitCreatedUnit());
+    libGDHL_gf_SiegeUpdateAbilityPowerOnSummonedUnits(EventUnitCreatedUnit());
     return true;
 }
 
@@ -24516,6 +24236,50 @@ void libGDHL_gt_HeroTyraelArchangelsWrathSuppressCollision_Init () {
     TriggerEnable(libGDHL_gt_HeroTyraelArchangelsWrathSuppressCollision, false);
     TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroTyraelArchangelsWrathSuppressCollision, null, "TyraelArchangelsWrathDeathActiveBuff", c_unitBehaviorChangeActivate);
 }
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero - Tyrael - Archangel's Wrath Death Timer Modification
+//--------------------------------------------------------------------------------------------------
+bool libGDHL_gt_HeroTyraelArchangelsWrathDeathTimerModification_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    unit lv_tyrael;
+    int lv_tyraelOwner;
+    fixed lv_timerMod;
+    fixed lv_baseTimerValue;
+    fixed lv_existingTimer;
+    fixed lv_newTimer;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_tyrael = EventUnit();
+    lv_tyraelOwner = UnitGetOwner(lv_tyrael);
+    lv_timerMod = 0.1;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_baseTimerValue = libCore_gf_HeroDeathTime(lv_tyraelOwner, UnitLevel(lv_tyrael));
+    lv_existingTimer = TimerGetRemaining(libGame_gv_players[lv_tyraelOwner].lv_respawnTimer);
+    lv_newTimer = lv_existingTimer;
+    if ((lv_baseTimerValue > 1)) {
+        lv_newTimer -= (lv_baseTimerValue * lv_timerMod);
+        if ((lv_newTimer > 2.0)) {
+            libGame_gf_HeroDeathUpdateRespawnTimer(lv_tyraelOwner, lv_newTimer);
+        }
+
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libGDHL_gt_HeroTyraelArchangelsWrathDeathTimerModification_Init () {
+    libGDHL_gt_HeroTyraelArchangelsWrathDeathTimerModification = TriggerCreate("libGDHL_gt_HeroTyraelArchangelsWrathDeathTimerModification_Func");
+    TriggerEnable(libGDHL_gt_HeroTyraelArchangelsWrathDeathTimerModification, false);
+    TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroTyraelArchangelsWrathDeathTimerModification, null, "ArchangelsWrathDeathTimeStack", c_unitBehaviorChangeIncrease);
+}
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Hero - Tyrael - Sanctification Fullscreen Overlay On
@@ -26854,14 +26618,6 @@ void libGDHL_gt_TalentBribeCampRespawnTimerModification_Init () {
 }
 
 void libGDHL_InitTriggers () {
-    libGDHL_gt_GPU2020SetEventPhase_Init();
-    libGDHL_gt_GPU2020ForceEvent_Init();
-    libGDHL_gt_GPU2020Force01Rando_Init();
-    libGDHL_gt_GPU2020TimerEnds_Init();
-    libGDHL_gt_GPU2020EventShake1_Init();
-    libGDHL_gt_GPU2020EventShake2_Init();
-    libGDHL_gt_GPU2020EventShake3_Init();
-    libGDHL_gt_GPU2020EventShake4_Init();
     libGDHL_gt_IncludeGameDataHelper_Init();
     libGDHL_gt_SummonedUnitAPApplication_Init();
     libGDHL_gt_HeroGenericCameraShakeLightTarget_Init();
@@ -27278,6 +27034,7 @@ void libGDHL_InitTriggers () {
     libGDHL_gt_HeroTyraelSanctificationFacing_Init();
     libGDHL_gt_HeroTyraelSanctificationTimerStart_Init();
     libGDHL_gt_HeroTyraelArchangelsWrathSuppressCollision_Init();
+    libGDHL_gt_HeroTyraelArchangelsWrathDeathTimerModification_Init();
     libGDHL_gt_HeroTyraelSanctificationFullscreenOverlayOn_Init();
     libGDHL_gt_HeroTyraelSanctificationFullscreenOverlayOff_Init();
     libGDHL_gt_HeroTyrandeElunesChosenSetTarget_Init();

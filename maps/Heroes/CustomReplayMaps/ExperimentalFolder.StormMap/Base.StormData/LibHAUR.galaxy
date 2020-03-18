@@ -2153,9 +2153,6 @@ bool libHAUR_gt_HeroAurielResurrectSpiritTimerController_Func (bool testConds, b
                     }
                     else {
                         if ((TimerGetRemaining(libGame_gv_players[lv_deadPlayer].lv_respawnTimer) > libHAUR_gv_heroAurielResurrectTargetUnresurrectableTime)) {
-                            TextTagCreate(FixedToText(TimerGetRemaining(libGame_gv_players[lv_deadPlayer].lv_respawnTimer), 0), 36, UnitGetPosition(libHAUR_gv_heroAurielResurrectSpirit[lv_deadPlayer]), 4.0, true, false, PlayerGroupSingle(lv_aurielPlayer));
-                            libHAUR_gv_heroAurielResurrectAurielSpiritTimerTextTag[lv_deadPlayer][0] = TextTagLastCreated();
-                            libHAUR_gv_heroAurielResurrectDeadPlayerSpiritTimerTextTag[lv_deadPlayer][0] = libHAUR_gf_HeroAurielResurrectCreateDeadPlayerSpiritTimer(lv_aurielPlayer, lv_deadPlayer, 0);
                         }
 
                     }
