@@ -184,7 +184,6 @@ void libGDHL_InitVariables () {
     for (init_i = 0; init_i <= libCore_gv_bALMaxPlayers; init_i += 1) {
         libGDHL_gv_novaTripleTapMissileGroup[init_i] = UnitGroupEmpty();
     }
-    libGDHL_gv_heroRehgarAncestralHealingFarseersBlessingHealScale = CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "RehgarAncestralHealingFarseersBlessingCreateHealer", "RechargeVitalRate", 0);
     libGDHL_gv_rexxarUI.lv_mainPanel = c_invalidDialogControlId;
     libGDHL_gv_rexxarUI.lv_rexxarMishaUnitStatus = c_invalidDialogControlId;
     libGDHL_gv_rexxarUI.lv_rexxarMishaHealth = c_invalidDialogControlId;
@@ -195,7 +194,6 @@ void libGDHL_InitVariables () {
         libGDHL_gv_mishaDeathTimer[init_i] = TimerCreate();
     }
     libGDHL_gv_heroSgtHammerUseEffectForBFGTargetCalculation = true;
-    libGDHL_gv_heroTassadarKhaydarinResonanceShieldScale = CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "TassadarPlasmaShieldKhaydarinResonanceDummyShieldScale", "XP", 0);
     libGDHL_gv_thrallUI.lv_mainPanel = c_invalidDialogControlId;
     for (init_i1 = 0; init_i1 <= libGDHL_gv_thrallTraitMaxStacks; init_i1 += 1) {
         libGDHL_gv_thrallUI.lv_counterImage[init_i1] = c_invalidDialogControlId;
@@ -665,6 +663,7 @@ void libGDHL_gf_HeroArtanisIncrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroArtanisSpearofAdunPurifierBeamRedirectTarget2ElectricBoogaloo, true);
         TriggerEnable(libGDHL_gt_HeroArtanisSpearofAdunPurifierBeamUnitCreated, true);
         TriggerEnable(libGDHL_gt_HeroArtanisBladeDashPhasePrismCast, true);
+        TriggerEnable(libGDHL_gt_HeroArtanisProtectorofAiurHeroTakedownProc, true);
     }
 
 }
@@ -683,6 +682,7 @@ void libGDHL_gf_HeroArtanisDecrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroArtanisSpearofAdunPurifierBeamRedirectTarget2ElectricBoogaloo, false);
         TriggerEnable(libGDHL_gt_HeroArtanisSpearofAdunPurifierBeamUnitCreated, false);
         TriggerEnable(libGDHL_gt_HeroArtanisBladeDashPhasePrismCast, false);
+        TriggerEnable(libGDHL_gt_HeroArtanisProtectorofAiurHeroTakedownProc, false);
     }
 
 }
@@ -736,10 +736,6 @@ bool auto_libGDHL_gf_HeroArtanisSpearofAdunPurifierBeamAI_TriggerFunc (bool test
         else {
             if ((lv_purifierBeamState == libGDHL_ge_SpearofAdunPurifierBeamState_Active)) {
                 if ((UnitIsAlive(libGDHL_gv_heroArtanisSpearofAdunPurifierBeamTarget[lp_owner]) == true) && (UnitHasBehavior2(libGDHL_gv_heroArtanisSpearofAdunPurifierBeamTarget[lp_owner], "Dead") == false) && (UnitHasBehaviorWithCategoryFlag(libGDHL_gv_heroArtanisSpearofAdunPurifierBeamTarget[lp_owner], c_behaviorCategorySpecialDeathState) == false)) {
-                    if ((UnitHasBehavior2(libGDHL_gv_heroArtanisSpearofAdunPurifierBeamTarget[lp_owner], "TassadarDimensionalShift") == true)) {
-                        lv_purifierBeamState = libGDHL_ge_SpearofAdunPurifierBeamState_Idle;
-                    }
-
                     if ((libGDHL_gv_heroArtanisSpearofAdunPurifierBeamPointOverride[lp_owner] == true)) {
                         if ((DistanceBetweenPoints(UnitGetPosition(lp_purifierBeam), libGDHL_gv_heroArtanisSpearofAdunPurifierBeamLastKnownPoint[lp_owner]) <= 6.0)) {
                             UnitIssueOrder(lp_purifierBeam, OrderTargetingPoint(AbilityCommand("move", 0), UnitGetPosition(libGDHL_gv_heroArtanisSpearofAdunPurifierBeamTarget[lp_owner])), c_orderQueueReplace);
@@ -767,7 +763,7 @@ bool auto_libGDHL_gf_HeroArtanisSpearofAdunPurifierBeamAI_TriggerFunc (bool test
             }
             else {
                 if ((lv_purifierBeamState == libGDHL_ge_SpearofAdunPurifierBeamState_Idle)) {
-                    if ((UnitHasBehavior2(libGDHL_gv_heroArtanisSpearofAdunPurifierBeamTarget[lp_owner], "TassadarDimensionalShift") == false) && (UnitIsAlive(libGDHL_gv_heroArtanisSpearofAdunPurifierBeamTarget[lp_owner]) == true) && (UnitHasBehavior2(libGDHL_gv_heroArtanisSpearofAdunPurifierBeamTarget[lp_owner], "Dead") == false)) {
+                    if ((UnitIsAlive(libGDHL_gv_heroArtanisSpearofAdunPurifierBeamTarget[lp_owner]) == true) && (UnitHasBehavior2(libGDHL_gv_heroArtanisSpearofAdunPurifierBeamTarget[lp_owner], "Dead") == false)) {
                         lv_purifierBeamState = libGDHL_ge_SpearofAdunPurifierBeamState_Active;
                     }
                     else {
@@ -2947,7 +2943,6 @@ void libGDHL_gf_HeroRehgarIncrementHeroCountFunction () {
     // Implementation
     libGDHL_gv_heroRehgarTriggerRegistrationVariable += 1;
     if ((libGDHL_gv_heroRehgarTriggerRegistrationVariable == 1)) {
-        TriggerEnable(libGDHL_gt_HeroRehgarAncestralHealingFarseersBlessingActivate, true);
         TriggerEnable(libGDHL_gt_HeroRehgarGhostWolfAfterPortToTown, true);
         TriggerEnable(libGDHL_gt_HeroRehgarGhostWolfMountingSpecialCase, true);
         TriggerEnable(libGDHL_gt_HeroRehgarTotemicProjectionTalentSaveTotem, true);
@@ -2968,7 +2963,6 @@ void libGDHL_gf_HeroRehgarDecrementHeroCountFunction () {
     }
 
     if ((libGDHL_gv_heroRehgarTriggerRegistrationVariable == 0)) {
-        TriggerEnable(libGDHL_gt_HeroRehgarAncestralHealingFarseersBlessingActivate, false);
         TriggerEnable(libGDHL_gt_HeroRehgarGhostWolfAfterPortToTown, false);
         TriggerEnable(libGDHL_gt_HeroRehgarGhostWolfMountingSpecialCase, false);
         TriggerEnable(libGDHL_gt_HeroRehgarTotemicProjectionTalentSaveTotem, false);
@@ -3722,9 +3716,9 @@ void libGDHL_gf_HeroTassadarIncrementHeroCountFunction () {
     // Implementation
     libGDHL_gv_heroTassadarTriggerRegistrationVariable += 1;
     if ((libGDHL_gv_heroTassadarTriggerRegistrationVariable == 1)) {
-        TriggerEnable(libGDHL_gt_HeroTassadarMentalAcuityProc, true);
         TriggerEnable(libGDHL_gt_HeroTassadarUpdateDistortionBeamPeriod, true);
         TriggerEnable(libGDHL_gt_HeroTassadarForceWallForcedDestruction, true);
+        TriggerEnable(libGDHL_gt_HeroTassadarShockRayVision, true);
     }
 
 }
@@ -3738,9 +3732,9 @@ void libGDHL_gf_HeroTassadarDecrementHeroCountFunction () {
     }
 
     if ((libGDHL_gv_heroTassadarTriggerRegistrationVariable == 0)) {
-        TriggerEnable(libGDHL_gt_HeroTassadarMentalAcuityProc, false);
         TriggerEnable(libGDHL_gt_HeroTassadarUpdateDistortionBeamPeriod, false);
         TriggerEnable(libGDHL_gt_HeroTassadarForceWallForcedDestruction, false);
+        TriggerEnable(libGDHL_gt_HeroTassadarShockRayVision, false);
     }
 
 }
@@ -6492,6 +6486,50 @@ void libGDHL_gt_HeroAbathurSymbioteMinimapIcon_Init () {
     libGDHL_gt_HeroAbathurSymbioteMinimapIcon = TriggerCreate("libGDHL_gt_HeroAbathurSymbioteMinimapIcon_Func");
     TriggerEnable(libGDHL_gt_HeroAbathurSymbioteMinimapIcon, false);
     TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroAbathurSymbioteMinimapIcon, c_playerAny, "SymbioteApplyHostBehavior");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero - Artanis - Protector of Aiur - Hero Takedown Proc
+//--------------------------------------------------------------------------------------------------
+bool libGDHL_gt_HeroArtanisProtectorofAiurHeroTakedownProc_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_artanisPlayer;
+    unit lv_artanisUnit;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_artanisPlayer = libGame_gf_HeroParticipatedInTakedownKillingPlayer();
+    lv_artanisUnit = libGame_gv_players[lv_artanisPlayer].lv_heroUnit;
+
+    // Conditions
+    if (testConds) {
+        if (!((lv_artanisPlayer >= 1))) {
+            return false;
+        }
+
+        if (!((lv_artanisPlayer <= libCore_gv_bALMaxPlayers))) {
+            return false;
+        }
+
+        if (!((PlayerHasTalent(lv_artanisPlayer, "ArtanisProtectorOfAiur") == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitCreateEffectUnit(lv_artanisUnit, "ArtanisProtectorOfAiurAddTakedownsTokenCount", lv_artanisUnit);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libGDHL_gt_HeroArtanisProtectorofAiurHeroTakedownProc_Init () {
+    libGDHL_gt_HeroArtanisProtectorofAiurHeroTakedownProc = TriggerCreate("libGDHL_gt_HeroArtanisProtectorofAiurHeroTakedownProc_Func");
+    TriggerEnable(libGDHL_gt_HeroArtanisProtectorofAiurHeroTakedownProc, false);
+    libGame_gf_HeroParticipatedInTakedown(libGDHL_gt_HeroArtanisProtectorofAiurHeroTakedownProc);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9644,6 +9682,7 @@ bool libGDHL_gt_HeroDemonHunterVaultDamageBuff_Func (bool testConds, bool runAct
     lv_player = UnitGetOwner(lv_unit);
     lv_stacks = UnitBehaviorCount(lv_unit, "NewHatredStack");
     lv_stackMod = 0.06;
+    // lv_stackMod = CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "DemonHunterWeaponDamage", "MultiplicativeModifierArray[" + "Vault" + "].Modifier", lv_player);
 
     // Actions
     if (!runActions) {
@@ -9651,11 +9690,13 @@ bool libGDHL_gt_HeroDemonHunterVaultDamageBuff_Func (bool testConds, bool runAct
     }
 
     if ((PlayerHasTalent(lv_player, "DemonHunterDeathDealer") == true)) {
-        lv_stackMod = 0.14;
+		lv_stackMod = 0.14;
+        // lv_stackMod = CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "DemonHunterWeaponDamage", "MultiplicativeModifierArray[" + "DeathDealer" + "].Modifier", lv_player);
     }
 
     lv_finalMod = (lv_base + (lv_stackMod * lv_stacks));
     CatalogFieldValueSetFixed(c_gameCatalogBehavior, "DemonHunterVaultDamageBoost", "Modification.UnifiedDamageDealtFraction[" + IntToString(c_unitDamageTypeBasic) + "]", lv_player, lv_finalMod);
+    // CatalogFieldValueSetFixed(c_gameCatalogBehavior, "DemonHunterVaultDamageBoost", "Modification.DamageDealtFraction[" + IntToString(c_unitDamageTypeBasic) + "]", lv_player, lv_finalMod);
     return true;
 }
 
@@ -11278,6 +11319,7 @@ bool libGDHL_gt_HeroJainaChilledDamageResponse_Func (bool testConds, bool runAct
 
     }
 
+//  Jaina Ice Barrier
     if ((PlayerHasTalent(lv_owner, "JainaFrostbiteIceBarrier") == true)) {
         if ((UnitHasBehavior2(libGame_gv_players[lv_owner].lv_heroUnit, "JainaFrostbiteIceBarrierShield") == true)) {
             lv_currentShields = UnitBehaviorDamageModifyRemaining(libGame_gv_players[lv_owner].lv_heroUnit, "JainaFrostbiteIceBarrierShield");
@@ -15402,6 +15444,7 @@ bool libGDHL_gt_HeroLostVikingsLongboatRaidExpiration_Func (bool testConds, bool
 
             UnitCreateEffectUnit(lv_erik, "LostVikingsLongboatRaidTeleport", lv_erik);
             UnitCreateEffectUnit(lv_erik, "LongboatRaidModifyCooldown", lv_erik);
+            UnitBehaviorAdd(lv_erik, "TLVLongboatRaidExitAbilityDisabler", lv_erik, 1);
             UnitBehaviorRemove(lv_erik, "LongboatRaidHideVikings", 1);
             UnitSelect(lv_erik, UnitGetOwner(EventPlayerEffectUsedUnit(c_effectUnitCaster)), true);
             UnitGroupRemove(libGDHL_gv_lostVikingsPlayer[UnitGetOwner(EventPlayerEffectUsedUnit(c_effectUnitCaster))].lv_longboatCrew, auto0A18325D_var);
@@ -15419,6 +15462,7 @@ bool libGDHL_gt_HeroLostVikingsLongboatRaidExpiration_Func (bool testConds, bool
             }
 
             UnitCreateEffectUnit(lv_baleog, "LostVikingsLongboatRaidTeleport", lv_baleog);
+            UnitBehaviorAdd(lv_baleog, "TLVLongboatRaidExitAbilityDisabler", lv_baleog, 1);
             UnitBehaviorRemove(lv_baleog, "LongboatRaidHideVikings", 1);
             UnitSelect(lv_baleog, UnitGetOwner(EventPlayerEffectUsedUnit(c_effectUnitCaster)), true);
             UnitGroupRemove(libGDHL_gv_lostVikingsPlayer[UnitGetOwner(EventPlayerEffectUsedUnit(c_effectUnitCaster))].lv_longboatCrew, auto0A18325D_var);
@@ -15432,6 +15476,7 @@ bool libGDHL_gt_HeroLostVikingsLongboatRaidExpiration_Func (bool testConds, bool
             }
 
             UnitCreateEffectUnit(lv_olaf, "LostVikingsLongboatRaidTeleport", lv_olaf);
+            UnitBehaviorAdd(lv_olaf, "TLVLongboatRaidExitAbilityDisabler", lv_olaf, 1);
             UnitBehaviorRemove(lv_olaf, "LongboatRaidHideVikings", 1);
             UnitSelect(lv_olaf, UnitGetOwner(EventPlayerEffectUsedUnit(c_effectUnitCaster)), true);
             UnitGroupRemove(libGDHL_gv_lostVikingsPlayer[UnitGetOwner(EventPlayerEffectUsedUnit(c_effectUnitCaster))].lv_longboatCrew, auto0A18325D_var);
@@ -17299,6 +17344,9 @@ bool libGDHL_gt_HeroMuradinHaymakerGrandSlamTalentProc_Func (bool testConds, boo
         if (!((UnitHasBehavior2(lv_killedUnit, "MuradinHaymakerGrandSlamTalentDeathMarker") == true))) {
             return false;
         }
+        // if (!((PlayerHasTalent(lv_killingPlayer, "MuradinMasteryHaymakerGrandSlam") == true))) {
+            // return false;
+        // }
     }
 
     // Actions
@@ -17308,6 +17356,7 @@ bool libGDHL_gt_HeroMuradinHaymakerGrandSlamTalentProc_Func (bool testConds, boo
 
     lv_unit = UnitBehaviorEffectUnit(lv_killedUnit, "MuradinHaymakerGrandSlamTalentDeathMarker", c_effectUnitCaster, 0);
     UnitCreateEffectUnit(lv_unit, "MuradinHaymakerGrandSlamTalentModifyChargeCount", lv_unit);
+    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Performed Muradin Haymaker Refund for player ") + IntToText(lv_killingPlayer) + StringToText(" Refunding the charge for ") + IntToText(UnitGetOwner(lv_unit)) + StringToText(" from killing ") + IntToText(UnitGetOwner(lv_killedUnit))));
     return true;
 }
 
@@ -18512,7 +18561,7 @@ bool libGDHL_gt_HeroNovaHoloCloneDamageDuplication_Func (bool testConds, bool ru
 
     // Automatic Variable Declarations
     // Variable Initialization
-    lv_damage = (EventUnitDamageAbsorbed() + EventUnitDamageAmount());
+    lv_damage = (EventUnitDamageBehaviorShield() + EventUnitDamageAmount());
     lv_image = EventUnit();
     lv_imageOwner = UnitGetOwner(lv_image);
     lv_caster = EventUnitDamageSourceUnit();
@@ -19103,45 +19152,6 @@ void libGDHL_gt_HeroRehgarTotemicProjectionResetOnRewindUse_Init () {
     libGDHL_gt_HeroRehgarTotemicProjectionResetOnRewindUse = TriggerCreate("libGDHL_gt_HeroRehgarTotemicProjectionResetOnRewindUse_Func");
     TriggerEnable(libGDHL_gt_HeroRehgarTotemicProjectionResetOnRewindUse, false);
     TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroRehgarTotemicProjectionResetOnRewindUse, c_playerAny, "TalentRewindSet");
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Hero - Rehgar - Ancestral Healing - Farseer's Blessing - Activate
-//--------------------------------------------------------------------------------------------------
-bool libGDHL_gt_HeroRehgarAncestralHealingFarseersBlessingActivate_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_targetUnit;
-    unit lv_casterUnit;
-    int lv_casterPlayer;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_targetUnit = EventPlayerEffectUsedUnit(c_effectUnitTarget);
-    lv_casterUnit = EventPlayerEffectUsedUnit(c_effectUnitCaster);
-    lv_casterPlayer = UnitGetOwner(lv_casterUnit);
-
-    // Conditions
-    if (testConds) {
-        if (!((PlayerHasTalent(lv_casterPlayer, "RehgarAncestralHealingFarseersBlessing") == true))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    CatalogFieldValueSetFixed(c_gameCatalogEffect, "RehgarAncestralHealingFarseersBlessingCreateHealer", "RechargeVitalRate", UnitGetOwner(lv_casterUnit), (EventPlayerEffectUsedAmountFixed(c_effectAmountHealed, true) * libGDHL_gv_heroRehgarAncestralHealingFarseersBlessingHealScale));
-    UnitCreateEffectUnit(lv_casterUnit, "RehgarAncestralHealingFarseersBlessingSearch", lv_targetUnit);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libGDHL_gt_HeroRehgarAncestralHealingFarseersBlessingActivate_Init () {
-    libGDHL_gt_HeroRehgarAncestralHealingFarseersBlessingActivate = TriggerCreate("libGDHL_gt_HeroRehgarAncestralHealingFarseersBlessingActivate_Func");
-    TriggerEnable(libGDHL_gt_HeroRehgarAncestralHealingFarseersBlessingActivate, false);
-    TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroRehgarAncestralHealingFarseersBlessingActivate, c_playerAny, "RehgarAncestralHealingCreateHealer");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -20236,7 +20246,10 @@ bool libGDHL_gt_HeroRexxarMishaDies_Func (bool testConds, bool runActions) {
     if ((UnitGetType(libGame_gv_players[EventPlayer()].lv_heroUnit) != "HeroAbathur")) {
         lv_rexxarUnit = libGame_gv_players[lv_rexxarPlayer].lv_heroUnit;
 // xp track earmark
-        libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_rexxarPlayer, lv_killingPlayer, "DeathXP", EventUnit(), "");
+        // libGame_gv_HeroSpecificStoredValue1[lv_rexxarPlayer] = libCore_gf_DataXPXPForHero(lv_killingPlayer, EventUnit());
+		// libGame_gv_HeroSpecificStoredUnit1[lv_rexxarPlayer] = EventUnit();
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("XP Value from ") + StringToText(UnitGetType(EventUnit())) + StringToText(" ") + FixedToText(libCore_gf_DataXPXPForHero(lv_killingPlayer, EventUnit()), 2)));
+        // libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_rexxarPlayer, lv_killingPlayer, "DeathXP", EventUnit(), "");
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("XP Value from ") + StringToText(UnitGetType(EventUnit())) + StringToText(" ") + FixedToText(libCore_gf_DataXPXPForHero(lv_killingPlayer, EventUnit()), 2)));
         lv_killingGroup = libGame_gf_HeroDeathGetKillingGroupFromKillingTeamGroupAndDeadUnit(lv_killingTeamGroup, libNtve_gf_KillingPlayer(), EventUnit());
         libGame_gf_HeroDeathAwardXP(lv_killingPlayer, EventUnit(), lv_killingTeamGroup, lv_killingGroup, true);
@@ -22982,46 +22995,6 @@ void libGDHL_gt_HeroSylvanasPossessionCatapultMinionModifyChargeCount_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Hero - Tassadar - Mental Acuity - Proc
-//--------------------------------------------------------------------------------------------------
-bool libGDHL_gt_HeroTassadarMentalAcuityProc_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_player;
-    unit lv_tassadar;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_player = libGame_gf_HeroParticipatedInTakedownKillingPlayer();
-    lv_tassadar = libGame_gv_players[lv_player].lv_heroUnit;
-
-    // Conditions
-    if (testConds) {
-        if (!((PlayerHasTalent(lv_player, "TassadarMasteryMentalAcuity") == true))) {
-            return false;
-        }
-
-        if (!((libGame_gv_players[lv_player].lv_isDead == false))) {
-            return false;
-        }
-    }
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UnitCreateEffectUnit(lv_tassadar, "TassadarOracleMentalAcuityTalentModifyTokenCount", lv_tassadar);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libGDHL_gt_HeroTassadarMentalAcuityProc_Init () {
-    libGDHL_gt_HeroTassadarMentalAcuityProc = TriggerCreate("libGDHL_gt_HeroTassadarMentalAcuityProc_Func");
-    TriggerEnable(libGDHL_gt_HeroTassadarMentalAcuityProc, false);
-    libGame_gf_HeroParticipatedInTakedown(libGDHL_gt_HeroTassadarMentalAcuityProc);
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Hero - Tassadar - Update Distortion Beam Period
 //--------------------------------------------------------------------------------------------------
 bool libGDHL_gt_HeroTassadarUpdateDistortionBeamPeriod_Func (bool testConds, bool runActions) {
@@ -23060,7 +23033,6 @@ void libGDHL_gt_HeroTassadarUpdateDistortionBeamPeriod_Init () {
     TriggerAddEventUnitBehaviorChangeFromCategory(libGDHL_gt_HeroTassadarUpdateDistortionBeamPeriod, null, c_behaviorCategoryBuffAutoattackDPS, c_unitBehaviorChangeDeactivate);
     TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroTassadarUpdateDistortionBeamPeriod, null, "TassadarArchon", c_unitBehaviorChangeDeactivate);
     TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroTassadarUpdateDistortionBeamPeriod, null, "ArchonTwilightArchon", c_unitBehaviorChangeDeactivate);
-    TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroTassadarUpdateDistortionBeamPeriod, null, "TassadarDimensionalShift", c_unitBehaviorChangeDeactivate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -23097,6 +23069,47 @@ void libGDHL_gt_HeroTassadarForceWallForcedDestruction_Init () {
     libGDHL_gt_HeroTassadarForceWallForcedDestruction = TriggerCreate("libGDHL_gt_HeroTassadarForceWallForcedDestruction_Func");
     TriggerEnable(libGDHL_gt_HeroTassadarForceWallForcedDestruction, false);
     TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroTassadarForceWallForcedDestruction, c_playerAny, "DestroyPathingBlockerDummy");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero - Tassadar - Shock Ray - Vision
+//--------------------------------------------------------------------------------------------------
+bool libGDHL_gt_HeroTassadarShockRayVision_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_tass;
+    point lv_effectPoint;
+    int lv_tassTeam;
+    int lv_enemyTeam;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_tass = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    lv_effectPoint = EventPlayerEffectUsedPoint(c_effectLocationSourcePoint);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_tassTeam = libGame_gf_TeamNumberOfPlayer(UnitGetOwner(lv_tass));
+    if ((lv_tassTeam == 1)) {
+        lv_enemyTeam = libCore_gv_cOMPUTER_TeamChaos;
+    }
+    else {
+        lv_enemyTeam = libCore_gv_cOMPUTER_TeamOrder;
+    }
+    if ((VisIsVisibleForPlayer(lv_enemyTeam, lv_effectPoint) == true)) {
+        VisRevealArea(lv_enemyTeam, RegionCircle(UnitGetPosition(lv_tass), 0.5), 0.3125, false);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libGDHL_gt_HeroTassadarShockRayVision_Init () {
+    libGDHL_gt_HeroTassadarShockRayVision = TriggerCreate("libGDHL_gt_HeroTassadarShockRayVision_Func");
+    TriggerEnable(libGDHL_gt_HeroTassadarShockRayVision, false);
+    TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroTassadarShockRayVision, c_playerAny, "TassadarShockRaySearch");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -26893,6 +26906,7 @@ void libGDHL_InitTriggers () {
     libGDHL_gt_HeroAbathurMonstrosityAddSymbioteStacks_Init();
     libGDHL_gt_HeroAbathurSymbiotedMonstrositySymbioted_Init();
     libGDHL_gt_HeroAbathurSymbioteMinimapIcon_Init();
+    libGDHL_gt_HeroArtanisProtectorofAiurHeroTakedownProc_Init();
     libGDHL_gt_HeroArtanisBladeDashPhasePrismCast_Init();
     libGDHL_gt_HeroArtanisTwinBladesZealotChargeTargeting_Init();
     libGDHL_gt_HeroArtanisSpearofAdunPurifierBeamSetTarget_Init();
@@ -27153,7 +27167,6 @@ void libGDHL_InitTriggers () {
     libGDHL_gt_HeroRehgarTotemicProjectionTalentSaveTotem_Init();
     libGDHL_gt_HeroRehgarTotemicProjectionTalentMoveTotem_Init();
     libGDHL_gt_HeroRehgarTotemicProjectionResetOnRewindUse_Init();
-    libGDHL_gt_HeroRehgarAncestralHealingFarseersBlessingActivate_Init();
     libGDHL_gt_HeroRehgarGhostWolfAfterPortToTown_Init();
     libGDHL_gt_HeroRehgarGhostWolfMountingSpecialCase_Init();
     libGDHL_gt_RexxarUIInitialize_Init();
@@ -27226,9 +27239,9 @@ void libGDHL_InitTriggers () {
     libGDHL_gt_HeroSylvanasWitheringFireHeroKillAddCharge_Init();
     libGDHL_gt_HeroSylvanasPossessionRewire_Init();
     libGDHL_gt_HeroSylvanasPossessionCatapultMinionModifyChargeCount_Init();
-    libGDHL_gt_HeroTassadarMentalAcuityProc_Init();
     libGDHL_gt_HeroTassadarUpdateDistortionBeamPeriod_Init();
     libGDHL_gt_HeroTassadarForceWallForcedDestruction_Init();
+    libGDHL_gt_HeroTassadarShockRayVision_Init();
     libGDHL_gt_ThrallUIInitialize_Init();
     libGDHL_gt_ThrallShowFrostwolfResilienceUI_Init();
     libGDHL_gt_ThrallGetsStackOfFrostwolfResilience_Init();

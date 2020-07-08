@@ -777,6 +777,7 @@ bool libHDVA_gt_HeroDVaPilotEjectedMoveCommandForwarding_Func (bool testConds, b
         return true;
     }
 
+    libUIUI_gf_FullscreenOverlayStopandClearCutsceneQueueForPlayer(lv_dVaPlayer);
     UnitOrderCopy(lv_dVaMech, lv_dVaPilot, 32);
     return true;
 }
@@ -826,7 +827,7 @@ bool libHDVA_gt_HeroDVaMechDiesviaFatalDamage_Func (bool testConds, bool runActi
     }
 
  
-    libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_targetPlayer, lv_killingPlayer, "DVaMechDestroyedByFatal", lv_unit, "");
+    // libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_targetPlayer, lv_killingPlayer, "DVaMechDestroyedByFatal", lv_unit, "");
 // xp track earmark
     // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("XP Value from ") + StringToText(UnitGetType(lv_unit)) + StringToText(" ") + FixedToText(libCore_gf_DataXPXPForHero(lv_killingPlayer, lv_unit), 2)));
     lv_enemyPlayerGroup = libGame_gf_EnemyPlayerGroupOfPlayer(lv_targetPlayer);
@@ -1050,27 +1051,28 @@ bool libHDVA_gt_DVaDamageTakenSelfDestructCharge_Func (bool testConds, bool runA
 	    libGame_gv_HeroSpecificStoredValue7[lv_dVaPlayer] += ((lv_damageTakenPercent * ((libHDVA_gv_dVaBringItOnChargeRateModifier + 1.0))) - lv_damageTakenPercent);
         lv_damageTakenPercent *= (libHDVA_gv_dVaBringItOnChargeRateModifier + 1.0);
     }
-	if (((UnitGetOwner(EventUnitDamageSourceUnit()) == 1) || (UnitGetOwner(EventUnitDamageSourceUnit()) == 6)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
+	// libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot
+	if (((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 1) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 6)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
         libGame_gv_HeroSpecificStoredValue1[lv_dVaPlayer] += lv_damageTakenPercent;
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Took ") + FixedToText(lv_incomingDamageAmount, 2) + StringToText(" damage from player ") + IntToText(UnitGetOwner(EventUnitDamageSourceUnit())) + StringToText(" putting total to: ") + FixedToText(libGame_gv_HeroSpecificStoredValue1[lv_dVaPlayer] ,3))); 
 	}
-	else if (((UnitGetOwner(EventUnitDamageSourceUnit()) == 2) || (UnitGetOwner(EventUnitDamageSourceUnit()) == 7)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
+	else if (((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 2) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 7)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
         libGame_gv_HeroSpecificStoredValue2[lv_dVaPlayer] += lv_damageTakenPercent;
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Took ") + FixedToText(lv_incomingDamageAmount, 2) + StringToText(" damage from player ") + IntToText(UnitGetOwner(EventUnitDamageSourceUnit())) + StringToText(" putting total to: ") + FixedToText(libGame_gv_HeroSpecificStoredValue2[lv_dVaPlayer] ,3))); 
 	}
-	else if (((UnitGetOwner(EventUnitDamageSourceUnit()) == 3) || (UnitGetOwner(EventUnitDamageSourceUnit()) == 8)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
+	else if (((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 3) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 8)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
         libGame_gv_HeroSpecificStoredValue3[lv_dVaPlayer] += lv_damageTakenPercent;
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Took ") + FixedToText(lv_incomingDamageAmount, 2) + StringToText(" damage from player ") + IntToText(UnitGetOwner(EventUnitDamageSourceUnit())) + StringToText(" putting total to: ") + FixedToText(libGame_gv_HeroSpecificStoredValue3[lv_dVaPlayer] ,3))); 
 	}
-	else if (((UnitGetOwner(EventUnitDamageSourceUnit()) == 4) || (UnitGetOwner(EventUnitDamageSourceUnit()) == 9)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
+	else if (((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 4) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 9)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
         libGame_gv_HeroSpecificStoredValue4[lv_dVaPlayer] += lv_damageTakenPercent;
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Took ") + FixedToText(lv_incomingDamageAmount, 2) + StringToText(" damage from player ") + IntToText(UnitGetOwner(EventUnitDamageSourceUnit())) + StringToText(" putting total to: ") + FixedToText(libGame_gv_HeroSpecificStoredValue4[lv_dVaPlayer] ,3))); 
 	}
-	else if (((UnitGetOwner(EventUnitDamageSourceUnit()) == 5) || (UnitGetOwner(EventUnitDamageSourceUnit()) == 10)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
+	else if (((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 5) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 10)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
         libGame_gv_HeroSpecificStoredValue5[lv_dVaPlayer] += lv_damageTakenPercent;
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Took ") + FixedToText(lv_incomingDamageAmount, 2) + StringToText(" damage from player ") + IntToText(UnitGetOwner(EventUnitDamageSourceUnit())) + StringToText(" putting total to: ") + FixedToText(libGame_gv_HeroSpecificStoredValue5[lv_dVaPlayer] ,3))); 
 	}
-	else {
+	else if ((UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
         libGame_gv_HeroSpecificStoredValue6[lv_dVaPlayer] += lv_damageTakenPercent;
 	}
     // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Total Needed: ") + FixedToText(libHDVA_gv_dVASelfDestructHealthpercentageneededtogenerate1charge, 2))); 
@@ -1133,6 +1135,10 @@ bool libHDVA_gt_DVaCallMech_Func (bool testConds, bool runActions) {
         UnitBehaviorAdd(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], "CapturePointAllowed", libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], 1);
         Wait(CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "DVaMechCallMechStartingUpStun", "Duration", lv_dVaPlayer), c_timeGame);
         UnitBehaviorRemove(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], "CapturePointAllowed", c_unitBehaviorCountAll);
+        if ((UnitHasBehavior2(lv_dVaPilotUnit, "IsHumanPlayer") == true)) {
+            UnitBehaviorAdd(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], "IsHumanPlayer", libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], 1);
+        }
+
     }
 
     return true;
@@ -1177,6 +1183,10 @@ bool libHDVA_gt_DVaCallMechMEKAfall_Func (bool testConds, bool runActions) {
     UnitGroupAdd(libGame_gv_players[lv_dVaPlayer].lv_heroUnitGroup, lv_dVaPilotUnit);
     UnitBehaviorRemove(lv_dVaPilotUnit, "Mounted", 1);
     UnitSetPropertyFixed(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], c_unitPropEnergy, (UnitGetPropertyFixed(lv_dVaMechUnit, c_unitPropEnergyMax, c_unitPropCurrent) - PlayerGetChargeUsed(lv_dVaPlayer, "Abil/DVaMechSelfDestruct")));
+        if ((UnitHasBehavior2(lv_dVaPilotUnit, "IsHumanPlayer") == true)) {
+            UnitBehaviorAdd(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], "IsHumanPlayer", libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], 1);
+        }
+
     return true;
 }
 

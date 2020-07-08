@@ -74,6 +74,10 @@ const int libGame_ge_HeroDeathRespawnOptions_NormalRespawn = 0;
 const int libGame_ge_HeroDeathRespawnOptions_NoRespawn = 1;
 const int libGame_ge_HeroDeathKillStingerQueueType_Ally = 0;
 const int libGame_ge_HeroDeathKillStingerQueueType_Enemy = 1;
+const int libGame_ge_LaneNamePresets_Top = 0;
+const int libGame_ge_LaneNamePresets_Middle = 1;
+const int libGame_ge_LaneNamePresets_Bottom = 2;
+const int libGame_ge_LaneNamePresets_Extra = 3;
 const int libGame_ge_AllLanes_AllLanes = 0;
 const int libGame_ge_OnFireScoreValues_Kills = 0;
 const int libGame_ge_OnFireScoreValues_Assists = 1;
@@ -651,6 +655,7 @@ struct libGame_gs_HeroDeathKillStingerQueue {
 
 struct libGame_gs_LaneData {
     text lv_laneName;
+    int lv_laneNamePreset;
     int lv_waypointCount;
     point[61] lv_waypoints;
     int lv_heroMaxOrderWaypointIndex;
@@ -917,6 +922,18 @@ struct libGame_gs_HeroSpecificScoreValues {
     fixed lv_scoreTen;
     fixed lv_scoreEleven;
     fixed lv_scoreTwelve;
+    int lv_accuracyOne;
+    int lv_accuracyTwo;
+    int lv_accuracyThree;
+    int lv_accuracyFour;
+    int lv_accuracyFive;
+    int lv_accuracySix;
+    int lv_accuracySeven;
+    int lv_accuracyEight;
+    int lv_accuracyNine;
+    int lv_accuracyTen;
+    int lv_accuracyEleven;
+    int lv_accuracyTwelve;
     fixed lv_scoreHealingToOne;
     fixed lv_scoreHealingToTwo;
     fixed lv_scoreHealingToThree;
@@ -1150,7 +1167,10 @@ unit[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredUnit2;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredTimeStop;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredDamageMitigated;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredDamageMitigatedTimestamp;
+bool libGame_gv_heroSpecificDebug;
+string libGame_gv_heroSpecificDebugString;
 bool libGame_gv_isCustomReplayLogic;
+bool libGame_gv_trackingHeroCooldowns;
 // string[libCore_gv_bALMaxPlayers + 1] libGame_gv_StoredScoreString;
 
 // Function Declarations
@@ -1811,6 +1831,40 @@ void libGame_gf_VehiclesReturnPlayerFromVehicleAtPoint (int lp_player, point lp_
 void libGame_gf_WatchTowersChangeWatchTowerOwnership (int lp_watchTower, int lp_newOwner);
 int libGame_gf_WatchTowersGetWatchTowerIndexForUnit (unit lp_unit);
 void libGame_gf_InitializeHealthPackGenerators ();
+<<<<<<< Updated upstream
+=======
+// Stuff we've added
+void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageValue, fixed lp_maximumDamageValue, fixed lp_leechValue, unit lp_targetUnit, unit lp_casterUnit, int lp_casterPlayer);
+void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed lp_damageValue, fixed lp_leechValueSelf, fixed lp_calculatedActualLeechFraction, fixed lp_healTakenModifier, unit lp_casterUnit, unit lp_targetUnit, int lp_casterPlayer);
+int libGame_gv_FetchOutsiderUnpresentLeechCaster (string lp_expectedHero, string lp_expectedTalent, int lp_casterPlayer);
+fixed libGame_gv_FetchOutsiderUnpresentLeechFraction (string lp_expectedHero, string lp_expectedTalent, int lp_casterPlayer);
+fixed libGame_gv_GetLeechFractionFromCasterBehaviors (string lp_damageEffect, unit lp_targetUnit, unit lp_casterUnit, int lp_casterPlayer);
+fixed libGame_gv_LeechFractionSpecialCase (string lp_damageEffect, fixed lp_damageValue, fixed lp_leechValue, fixed lp_calculatedLeechFraction, unit lp_casterUnit, int lp_casterPlayer);
+fixed libGame_gv_LeechFractionSpecialCaseHeatOfBattle (string lp_damageEffect, fixed lp_damageValue, fixed lp_knownLeechFraction, fixed lp_calculatedLeechFraction, fixed lp_healTakenModifier, unit lp_casterUnit, int lp_casterPlayer);
+fixed libGame_gv_GetHealTakenAsFixed (unit lp_contextUnit);
+fixed libGame_gv_DamageCalculateDifferentEntryOrAccumulator (string lp_damageEffect, fixed lp_damageValue, fixed lp_damageAttempted, unit lp_casterUnit, unit lp_targetUnit, string lp_inputData);
+fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageValue, fixed lp_damageAttempted, unit lp_casterUnit, unit lp_targetUnit, string lp_inputData);
+fixed libGame_gv_GetDamageDealtBasicAsFixed (unit lp_contextUnit);
+void libGame_gf_TallyDamageToPlayer (int lp_damageValue, int lp_targetPlayer, int lp_casterPlayer);
+void libGame_gf_TallyHealingToPlayer (int lp_healValue, int lp_targetPlayer, int lp_casterPlayer);
+void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string lp_behavior, unit lp_internalUnit, unit lp_externalUnit, int lp_casterPlayer);
+void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_healEffect, unit lp_casterUnit, unit lp_targetUnit, int lp_casterPlayer);
+void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_damageValue, fixed lp_damageAttempted, unit lp_targetUnit, unit lp_casterUnit, int lp_casterPlayer, int lp_targetPlayer);
+void libGame_gf_HeroSpecificStatTrackerOther (fixed lp_scoreValue, int lp_casterPlayer, int lp_targetPlayer, string lp_inputData, unit lp_extraDataUnit, string lp_extraDataString);
+void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterPlayer, string lp_scoreString);
+void libGame_gf_TallyHealingToPlayerEarthenShieldSpecialCase (fixed lp_healValue, int lp_targetPlayer);
+fixed libGame_gv_GetHealDealtAsFixed (unit lp_contextUnit);
+void libGame_gf_TallyDamagePreventedDamageDealtFraction(unit lp_casterUnit, unit lp_targetUnit, string lp_damageEffect);
+fixed libGame_gv_DamageDealtFractionBasic(unit lp_contextUnit, string lp_damageEffect);
+fixed libGame_gv_DamageDealtFractionAbility(unit lp_contextUnit, string lp_damageEffect);
+void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue, unit lp_targetUnit, unit lp_casterUnit, int lp_targetPlayer, int lp_casterPlayer);
+void libGame_gf_exportStatsForPlayer (int lp_player);
+string libGame_gf_statsForPlayerHeroSpecificString (int lp_player);
+void libGame_gf_trackHeroCooldowns ();
+fixed libGame_gf_FetchAbilityCooldownTime (unit lp_unit, string lp_ability, int lp_player);
+void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, fixed lp_cooldownNewValue, fixed lp_cooldownOldValue, fixed lp_interruptCost);
+// end of stuff we've added
+>>>>>>> Stashed changes
 
 // Trigger Declarations
 trigger libGame_gt_IncludeGame;
@@ -1903,6 +1957,7 @@ trigger libGame_gt_HeroDeathSpecialDeathStateDiesTyraelUther;
 trigger libGame_gt_HeroDeathGallDies;
 trigger libGame_gt_InitializeCodeLaneSystem;
 trigger libGame_gt_PlayerLeavesGame;
+trigger libGame_gt_PlayerLeavesGameIsHumanPlayer;
 trigger libGame_gt_PlayerRejoinsGame;
 trigger libGame_gt_TeamAbandonedTheGameTimerExpires;
 trigger libGame_gt_PlayerLeftAnnouncementTimerExpires;

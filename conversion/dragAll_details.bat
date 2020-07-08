@@ -32,7 +32,7 @@ if %ERRORLEVEL%==0 (
 ) 
 if %isfound%==false (
     echo looking for warhead, hanamura not found
-	findstr /c:"Map Warhead Junction" "%mpqdirectory%\replay.tracker.events"
+	findstr /c:"WarheadJunctionNukeCollected" "%mpqdirectory%\replay.tracker.events"
 )
 if %ERRORLEVEL%==0 (
     echo string found warhead
@@ -154,6 +154,26 @@ if %ERRORLEVEL%==0 (
     echo string found blackhearts
     set isfound=true
 	set battleground=BlackheartsBay
+	GOTO found
+) 
+if %isfound%==false (
+    echo looking for lostcavern, blackhearts not found
+	findstr /c:"MapLostCavern" "%mpqdirectory%\replay.tracker.events"
+)
+if %ERRORLEVEL%==0 (
+    echo string found lostcavern
+    set isfound=true
+	set battleground=LostCavern
+	GOTO found
+) 
+if %isfound%==false (
+    echo looking for hauntedmines, lostcavern not found
+	findstr /c:"MapHauntedMines" "%mpqdirectory%\replay.tracker.events"
+)
+if %ERRORLEVEL%==0 (
+    echo string found hauntedmines
+    set isfound=true
+	set battleground=HauntedMines
 	GOTO found
 ) 
 

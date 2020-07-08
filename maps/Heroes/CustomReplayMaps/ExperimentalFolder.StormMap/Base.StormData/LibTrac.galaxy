@@ -72,6 +72,7 @@ void libTrac_gf_HeroTracerIncrementHeroCountFunction () {
         TriggerEnable(libTrac_gt_HeroTracerMeleeSetFacing, true);
         TriggerEnable(libTrac_gt_HeroTracerUpdateRecallPointsonRevive, true);
         TriggerEnable(libTrac_gt_HeroTracerClearTargetViaEffect, true);
+        TriggerEnable(libTrac_gt_HeroTracerLeechingRoundsTokenSync, true);
     }
 
 }
@@ -109,6 +110,7 @@ void libTrac_gf_HeroTracerDecrementHeroCountFunction () {
         TriggerEnable(libTrac_gt_HeroTracerCustomKillVO, false);
         TriggerEnable(libTrac_gt_HeroTracerUpdateRecallPointsonRevive, false);
         TriggerEnable(libTrac_gt_HeroTracerClearTargetViaEffect, false);
+        TriggerEnable(libTrac_gt_HeroTracerLeechingRoundsTokenSync, false);
     }
 
 }
@@ -126,8 +128,8 @@ int libTrac_gf_HeroTracerRecallDetermineIndex (int lp_player) {
     // Variable Initialization
 
     // Implementation
-    if ((PlayerHasTalent(lp_player, "TracerSlipstreamRecall") == true)) {
-        lv_index = libTrac_gv_tracerRecallTrackCountMax;
+    if ((PlayerHasTalent(lp_player, "TracerTelefrag") == true)) {
+        lv_index = (libTrac_gv_tracerRecallTrackCountMax - 0);
         for ( ; ( (autoC7744398_ai >= 0 && lv_index <= autoC7744398_ae) || (autoC7744398_ai < 0 && lv_index >= autoC7744398_ae) ) ; lv_index += autoC7744398_ai ) {
             if (((libTrac_gv_tracerRecallRecordVariable[lp_player][lv_index].lv_position != null) && (PointPathingPassable(libTrac_gv_tracerRecallRecordVariable[lp_player][lv_index].lv_position) == true))) {
                 return lv_index;
@@ -136,7 +138,7 @@ int libTrac_gf_HeroTracerRecallDetermineIndex (int lp_player) {
         }
     }
     else {
-        lv_index = (libTrac_gv_tracerRecallTrackCountMax - 4);
+        lv_index = (libTrac_gv_tracerRecallTrackCountMax - 0);
         for ( ; ( (autoB60BB15E_ai >= 0 && lv_index <= autoB60BB15E_ae) || (autoB60BB15E_ai < 0 && lv_index >= autoB60BB15E_ae) ) ; lv_index += autoB60BB15E_ai ) {
             if (((libTrac_gv_tracerRecallRecordVariable[lp_player][lv_index].lv_position != null) && (PointPathingPassable(libTrac_gv_tracerRecallRecordVariable[lp_player][lv_index].lv_position) == true))) {
                 return lv_index;
@@ -532,6 +534,37 @@ void libTrac_gt_HeroTracerSpatialEchoProc_Init () {
     libTrac_gt_HeroTracerSpatialEchoProc = TriggerCreate("libTrac_gt_HeroTracerSpatialEchoProc_Func");
     TriggerEnable(libTrac_gt_HeroTracerSpatialEchoProc, false);
     libGame_gf_HeroParticipatedInTakedown(libTrac_gt_HeroTracerSpatialEchoProc);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero - Tracer - Leeching Rounds Token Sync
+//--------------------------------------------------------------------------------------------------
+bool libTrac_gt_HeroTracerLeechingRoundsTokenSync_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_unit;
+    fixed lv_chargesUsed;
+    fixed lv_mod;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unit = EventUnit();
+    lv_chargesUsed = UnitGetChargeUsed(lv_unit, "Abil/TracerBlink");
+    lv_mod = (CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "TracerLeechingRoundsTalentTokenCounter", "Max", 0) - lv_chargesUsed);
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitSetTokenCount(lv_unit, "TracerLeechingRoundsTalentToken", lv_mod, lv_unit);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libTrac_gt_HeroTracerLeechingRoundsTokenSync_Init () {
+    libTrac_gt_HeroTracerLeechingRoundsTokenSync = TriggerCreate("libTrac_gt_HeroTracerLeechingRoundsTokenSync_Func");
+    TriggerEnable(libTrac_gt_HeroTracerLeechingRoundsTokenSync, false);
+    TriggerAddEventUnitBehaviorChange(libTrac_gt_HeroTracerLeechingRoundsTokenSync, null, "TracerLeechingRoundsTalentTokenCounter", c_unitBehaviorChangeCreate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1120,9 +1153,8 @@ bool libTrac_gt_HeroTracerRecallCast_Func (bool testConds, bool runActions) {
         UnitCreateEffectPoint(lv_tracer, "TracerRecallTeleportSet", libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_position);
         UnitCreateEffectPoint(lv_tracer, "TracerRecallVisualDummyFXCreateUnit", libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_position);
         UnitCreateEffectPoint(lv_tracer, "TracerRecallLaunchModelMissile", lv_castPoint);
-        if ((PlayerHasTalent(lv_player, "TracerTotalRecallRecall") == true) && ((libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health + 0.0) > UnitGetPropertyFixed(lv_tracer, c_unitPropLife, c_unitPropCurrent))) {
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Tracer Total Recall Healed: ") + FixedToText((libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health - UnitGetPropertyFixed(lv_tracer, c_unitPropLife, c_unitPropCurrent)), 3)));
-            libGame_gf_HeroSpecificStatTrackerOther((libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health - UnitGetPropertyFixed(lv_tracer, c_unitPropLife, c_unitPropCurrent)), lv_player, lv_player, "TracerTotalRecallHeal", null, "");
+        if (((libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health + 0.2) > UnitGetPropertyFixed(lv_tracer, c_unitPropLife, c_unitPropCurrent)) && (PlayerHasTalent(lv_player, "TracerTotalRecallRecall") == true)) {
+            libGame_gf_HeroSpecificStatTrackerOther((libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health - UnitGetPropertyFixed(lv_tracer, c_unitPropLife, c_unitPropCurrent)), lv_player, lv_player, "TracerTotalRecallHeal", null, "TRAC");
             UnitSetPropertyFixed(lv_tracer, c_unitPropLife, libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health);
         }
 
@@ -1351,6 +1383,7 @@ void libTrac_InitTriggers () {
     libTrac_gt_HeroTracerReloadRestoreAmmoOnHearthMount_Init();
     libTrac_gt_HeroTracerUntouchableProc_Init();
     libTrac_gt_HeroTracerSpatialEchoProc_Init();
+    libTrac_gt_HeroTracerLeechingRoundsTokenSync_Init();
     libTrac_gt_HeroTracerPulseBombSetFacing_Init();
     libTrac_gt_HeroTracerFocusFireCleanup_Init();
     libTrac_gt_HeroTracerFocusFireSetTarget_Init();
