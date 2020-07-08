@@ -321,14 +321,11 @@ bool libHMDV_gt_HeroAIAIMedivhRegisterPortalCast_Func (bool testConds, bool runA
         return true;
     }
 
-<<<<<<< Updated upstream
-=======
 
     // if ((UnitGetType(libGame_gv_players[lv_player].lv_heroUnit) != "HeroAbathur")) {
         // libGame_gf_HeroSpecificStatTrackerOther(0.5, lv_player, lv_player, "MedivhPortalCasts", null, "");
     // }
 
->>>>>>> Stashed changes
     lv_portals = libHMDV_gf_HeroAIMedivhFindPortalPair(lv_player);
     if ((UnitGroupCount(lv_portals, c_unitCountAlive) != 2)) {
         return true;
@@ -710,10 +707,7 @@ bool libHMDV_gt_HeroMedivhForceofWillBehaviorResponses_Func (bool testConds, boo
 		if ((libGame_gv_HeroSpecificStoredValue3[UnitGetOwner(lv_caster)] != GameGetMissionTime()) && (UnitGetType(libGame_gv_players[UnitGetOwner(lv_caster)].lv_heroUnit) != "HeroAbathur")) {
             libGame_gv_HeroSpecificStoredValue3[UnitGetOwner(lv_caster)] = GameGetMissionTime();
             libGame_gv_HeroSpecificStoredUnit1[UnitGetOwner(lv_caster)] = lv_shieldedUnit;
-<<<<<<< Updated upstream
-=======
 			// libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitGetOwner(lv_caster), UnitGetOwner(lv_caster), "MedivhForceofWillCasts", null, "");
->>>>>>> Stashed changes
 		}
     }
     else if ((EventUnitBehaviorChange() == c_unitBehaviorChangeDecrease)) {
@@ -739,6 +733,7 @@ bool libHMDV_gt_HeroMedivhForceofWillBehaviorResponses_Func (bool testConds, boo
 
             if ((PlayerHasTalent(lv_medivhPlayer, "MedivhForceofMagic") == true) && (lv_damageTaken >= CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "MedivhForceOfWillForceofMagicTalentDummyTokenThreshold", "Value", lv_medivhPlayer))) {
                 UnitCreateEffectUnitWithSource(libGame_gv_players[lv_medivhPlayer].lv_heroUnit, "MedivhForceOfWillApplyForceofMagicTalentStack", libGame_gv_players[lv_medivhPlayer].lv_heroUnit, c_gameCatalogAbil, "MedivhForceOfWill");
+                libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_medivhPlayer, lv_medivhPlayer, "MedivhForceOfMagic", null, "");
             }
 
         }
