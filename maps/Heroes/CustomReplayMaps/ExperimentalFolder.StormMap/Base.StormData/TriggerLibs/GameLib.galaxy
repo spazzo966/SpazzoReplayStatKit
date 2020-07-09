@@ -13788,7 +13788,7 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
 		    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Discarded Leech Tracker: ") + StringToText(lp_damageEffect)));
 		}
 	}
-	else {
+	else if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
 		UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Leech Tracker Failed: ") + StringToText(lp_damageEffect) + StringToText(" Attacker: ") + StringToText(UnitGetType(lp_casterUnit)) + StringToText(" Defender: ") + StringToText(UnitGetType(lp_targetUnit)) + StringToText(" Amount: ") + FixedToText(lp_leechValueSelf, 3) + StringToText(" CasterHero: ") + StringToText(UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit)))); 
 	}
 	if ((lv_secondaryScoreString != "Discard")) {
@@ -14565,7 +14565,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
 					UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Discarded Absorbed Tracker(Attacker Hero) Checker: ") + StringToText(lp_behavior)));
 			}
 		}
-		else {
+		else if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
 	    	UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Absorbed Tracked Failed(Attacker): ") + StringToText(lp_behavior) + StringToText(" Attacker: ") + StringToText(UnitGetType(lp_internalUnit)) + StringToText(" Defender: ") + StringToText(UnitGetType(lp_externalUnit)) + StringToText(" Amount: ") + FixedToText(lp_preventedValue, 3) + StringToText(" BehaviorHero: ") + StringToText(UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit)))); 
 		}
 		if ((lv_secondaryScoreString != "Discard")) {
@@ -15399,7 +15399,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
 					UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Discarded Absorbed Tracker(Defender Hero) Checker: ") + StringToText(lp_behavior)));
 			}
 		}
-		else {
+		else if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
 	    	UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Absorbed Tracked Failed(Defender Hero): ") + StringToText(lp_behavior) + StringToText(" Defender: ") + StringToText(UnitGetType(lp_internalUnit)) + StringToText(" Attacker: ") + StringToText(UnitGetType(lp_externalUnit)) + StringToText(" Amount: ") + FixedToText(lp_preventedValue, 3) + StringToText(" BehaviorHero: ") + StringToText(UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit)))); 
 		}
 		if ((lv_secondaryScoreString != "Discard")) {
@@ -15466,7 +15466,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
 		else if ((UnitHasBehavior2(lp_internalUnit, "DVaMechFatalDamageDisabledTimeout") == true )) {}
 		else if ((UnitHasBehavior2(lp_internalUnit, "NovaHoloDecoyTimedLife") == true )) {}
 		else if ((UnitHasBehavior2(lp_internalUnit, "SamuroMirrorImageIsImage") == true )) {}
-		else {
+		else if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
 	    	UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Absorbed Tracked Failed(No Hero Target): ") + StringToText(lp_behavior) + StringToText(" Internal: ") + StringToText(UnitGetType(lp_internalUnit)) + StringToText(" External: ") + StringToText(UnitGetType(lp_externalUnit)) + StringToText(" Amount: ") + FixedToText(lp_preventedValue, 3) + StringToText(" BehaviorHero: ") + StringToText(UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit)))); 
         }
 		if ((lv_secondaryScoreString != "Discard")) {
@@ -17240,7 +17240,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
 		else if ((lv_primaryScoreString == "HallofStormsHealing")) {
 			libGame_gf_TallyHeroSpecificStatShared(lv_primaryScoreOverride, lv_primaryPlayerOverride, lv_primaryScoreString);
 		}
-		else {
+		else if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
 			UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Hero Specific Heal Failed(Hero Target): ") + StringToText(lp_healEffect) + StringToText(" From: ") + StringToText(UnitGetType(lp_casterUnit)) + StringToText(" to: ") + StringToText(UnitGetType(lp_targetUnit)) + StringToText(" Origin Hero: ") + StringToText(UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit)) + StringToText(" Amount: ") + FixedToText(lp_healedValue, 2)));
 		}
 		if ((lv_secondaryScoreString != "Discard")) {
@@ -17318,7 +17318,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
 					UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Discarded Heal(non-hero) Checker: ") + StringToText(lp_healEffect)));
 			}
 		}
-		else {
+		else if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     		UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Hero Specific Heal Failed(non-Hero Target): ") + StringToText(lp_healEffect) + StringToText(" From: ") + StringToText(UnitGetType(lp_casterUnit)) + StringToText(" to: ") + StringToText(UnitGetType(lp_targetUnit)) + StringToText(" Origin Hero: ") + StringToText(UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit)) + StringToText(" Caster Player: ") + IntToText(lp_casterPlayer) + StringToText(" Amount: ") + FixedToText(lp_healedValue, 2)));
 		}
 		if ((lv_secondaryScoreString != "Discard")) {
@@ -17841,7 +17841,7 @@ void libGame_gf_HeroSpecificStatTrackerOther (fixed lp_scoreValue, int lp_caster
 	else if ((lv_scoreString != "Unknown")) {
 		libGame_gf_TallyHeroSpecificStatShared(lv_scoreValue, lv_contextPlayer, lv_scoreString);
 	}
-	else {
+	else if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
 		UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Hero Specific Other Tracker Failed: ") + StringToText(lp_inputData) + StringToText(" From: ") + IntToText(lp_casterPlayer) + StringToText(" to: ") + IntToText(lp_targetPlayer) + StringToText(" For: ") + FixedToText(lp_scoreValue, 1)));
 	}
 	if ((lv_secondaryScoreString != "Discard")) {
@@ -28227,7 +28227,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
 			UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Discarded Damage Specific Check for ") + StringToText(lp_damageEffect)));
 		}
 	}
-    else {
+	else if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Damage Specific Tracker failed: ") + StringToText(lp_damageEffect) + StringToText(" against: ") + StringToText(UnitGetType(lp_targetUnit)) + StringToText(" from Caster: ") + StringToText(UnitGetType(lp_casterUnit)) + StringToText(" from Hero: ") + StringToText(UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit)) + StringToText(" for: ") + FixedToText(lp_damageValue, 1)));
     }
 	if ((lv_secondaryScoreString != "Discard")) {
@@ -33527,7 +33527,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
 			UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Discarded CD Check for ") + StringToText(lp_abilityName)));
 		}
 	}
-    else {
+	else if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Cooldown Tracker failed: ") + StringToText(lp_abilityName) + StringToText(" by: ") + StringToText(lv_heroUnitType) + StringToText(" from player: ") + IntToText(lv_casterPlayerOverride) + StringToText(" with a cooldown value of: ") + FixedToText(lp_cooldownNewValue, 3) + StringToText(" vs ") + FixedToText(lp_cooldownOldValue, 3)));
     }
 	if ((lv_secondaryScoreString != "Discard")) {
