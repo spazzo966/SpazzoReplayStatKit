@@ -13616,7 +13616,7 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
 			// libGame_gf_TallyHeroSpecificStatShared(lp_leechValueSelf, lp_casterPlayer, "TalentFour");
 		}
 		if ((lp_damageEffect == "OrpheaBondOfAnguishDamage")) {
-		    lv_primaryScoreString = "TalentTwenty";
+		    lv_primaryScoreString = "SupportTwelve";
 			// libGame_gf_TallyHeroSpecificStatShared(lp_leechValueSelf, lp_casterPlayer, "TalentTwenty");
 		}
 	}
@@ -14557,6 +14557,9 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
                 lv_primaryScoreString = "TalentSeven";
             }
 		}
+		if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur")) {
+			lv_primaryScoreString = "TalentTen";
+		}
 		if ((lv_primaryScoreString == "BaselineOne") || (lv_primaryScoreString == "BaselineTwo") || (lv_primaryScoreString == "BaselineThree") || (lv_primaryScoreString == "TalentOne") || (lv_primaryScoreString == "TalentFour") || (lv_primaryScoreString == "TalentSeven") || (lv_primaryScoreString == "TalentTen") || (lv_primaryScoreString == "TalentThirteen") || (lv_primaryScoreString == "TalentSixteen") || (lv_primaryScoreString == "TalentTwenty") || (lv_primaryScoreString == "SupportEleven") || (lv_primaryScoreString == "SupportTwelve")) {
 	    	libGame_gf_TallyHeroSpecificStatShared(lv_primaryScoreOverride, lv_primaryPlayerOverride, lv_primaryScoreString);
 		}
@@ -14591,6 +14594,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
     		if ((lp_behavior == "DVaMechFatalDamageResponse"))  {
 			    if ((libGame_gv_HeroSpecificStoredUnit1[lp_casterPlayer] != lp_internalUnit)) {
 					lv_primaryScoreString = "TalentTen";
+					lv_primaryScoreOverride = 1.0;
 					lv_secondaryScoreString = "TalentSeven";
 					lv_secondaryScoreOverride = libCore_gf_DataXPXPForHero(lv_externalPlayer, lp_internalUnit);
 					lv_tertiaryScoreString = "DeathXP";
@@ -15464,6 +15468,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
 		}
 		else if ((UnitHasBehavior2(lp_internalUnit, "UltimateEvolutionBuff") == true)) {}
 		else if ((UnitHasBehavior2(lp_internalUnit, "DVaMechFatalDamageDisabledTimeout") == true )) {}
+		else if ((UnitHasBehavior2(lp_internalUnit, "DVaMechSelfDestructMechDetonationCountdown") == true )) {}
 		else if ((UnitHasBehavior2(lp_internalUnit, "NovaHoloDecoyTimedLife") == true )) {}
 		else if ((UnitHasBehavior2(lp_internalUnit, "SamuroMirrorImageIsImage") == true )) {}
 		else if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
@@ -16305,7 +16310,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
 		}
 		if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroCho")) {
 			if ((lp_healEffect == "ChoSurgingFistSurgingDashTalentCreateHealer"))  {
-				lv_primaryScoreString = "TalentThirteen";
+				lv_primaryScoreString = "BaselineTwo";
 			}
 			if ((lp_healEffect == "ChoConsumingBlazeCasterHeal"))  {
 				lv_primaryScoreString = "BaselineOne";
@@ -17126,7 +17131,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
 				lv_primaryScoreString = "TalentThirteen";
 			}
 			if ((lp_healEffect == "OrpheaInvasiveMiasmaHeal"))  {
-				lv_primaryScoreString = "TalentSixteen";
+				lv_primaryScoreString = "SupportEleven";
 			}
 		}
 	    if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroRagnaros")) {
@@ -17753,9 +17758,15 @@ void libGame_gf_HeroSpecificStatTrackerOther (fixed lp_scoreValue, int lp_caster
 				lv_scoreString = "Discard";
 				// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Charge not increased(Not 1-10 player): ") + IntToText(lp_targetPlayer)));
 			}
-			if ((PlayerHasTalent(lp_casterPlayer, "DVaSelfDestructBringItOn")) && (libGame_gv_HeroSpecificStoredValue7[lp_casterPlayer] > lp_scoreValue)) {
-				lv_secondaryScoreString = "TalentThirteen";
-				lv_secondaryScoreValue = 1.0;
+			if ((libGame_gv_HeroSpecificStoredValue7[lp_casterPlayer] > lp_scoreValue)) {
+			    if (PlayerHasTalent(lp_casterPlayer, "DVaSelfDestructBringItOn")) {
+					lv_secondaryScoreString = "TalentThirteen";
+					lv_secondaryScoreValue = 1.0;
+				}
+				else {
+					lv_secondaryScoreString = "SupportTwelve";
+					lv_secondaryScoreValue = 1.0;
+				}
 				libGame_gv_HeroSpecificStoredValue7[lp_casterPlayer] -= lp_scoreValue;
 			}
 		}
@@ -20492,53 +20503,74 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
                 lv_primaryScoreString = "ScoreOne";
 			}
 			else {
-                lv_primaryScoreString = "ScoreTwo";
+                lv_primaryScoreString = "BaselineThree";
 			}
         }
         if ((lp_damageEffect == "ChoSurgingFistImpactedDamage"))  {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreThree";
+                lv_primaryScoreString = "ScoreTwo";
 			}
 			else {
-                lv_primaryScoreString = "ScoreFour";
+                lv_primaryScoreString = "TalentOne";
 			}
         }
         if ((lp_damageEffect == "ChoConsumingBlazeDamage"))  {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreFive";
+                lv_primaryScoreString = "ScoreThree";
 			}
 			else {
-                lv_primaryScoreString = "ScoreSix";
+                lv_primaryScoreString = "TalentFour";
 			}
         }
         if ((lp_damageEffect == "ChoRuneBombDamage"))  {
-            lv_primaryScoreString = "ScoreSeven";
+            if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+                lv_primaryScoreString = "ScoreFour";
+			}
+			else {
+                lv_primaryScoreString = "TalentSeven";
+			}
         }
         if ((lp_damageEffect == "ChoSurgingFistUppercutTalentDamage"))  {
-            lv_primaryScoreString = "ScoreEight";
+            lv_primaryScoreString = "ScoreFive";
         }
         if ((lp_damageEffect == "ChoUpheavalDamage"))  {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreNine";
+                lv_primaryScoreString = "ScoreSix";
 			}
 			else {
-                lv_primaryScoreString = "ScoreTen";
+                lv_primaryScoreString = "TalentTen";
 			}
         }
         if ((lp_damageEffect == "ChoGallTwilightHammerDamage"))  {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreNine";
+                lv_primaryScoreString = "ScoreSix";
 			}
 			else {
-                lv_primaryScoreString = "ScoreTen";
+                lv_primaryScoreString = "TalentTen";
 			}
         }
         if ((lp_damageEffect == "ChoMoltenBlockImpactDamage"))  {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreEleven";
+                lv_primaryScoreString = "ScoreSeven";
 			}
 			else {
-                lv_primaryScoreString = "ScoreTwelve";
+                lv_primaryScoreString = "TalentThirteen";
+			}
+        }
+        if ((lp_damageEffect == "ChoFuelForTheFlameExplosionDamage"))  {
+            if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+                lv_primaryScoreString = "ScoreEight";
+			}
+			else {
+                lv_primaryScoreString = "TalentSixteen";
+			}
+        }
+        if ((lp_damageEffect == "ChoFuelForTheFlameDamage"))  {
+            if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+                lv_primaryScoreString = "ScoreEight";
+			}
+			else {
+                lv_primaryScoreString = "TalentSixteen";
 			}
         }
         if ((lp_damageEffect == "ChoRuneBombInitialMissileSuicide"))  {
@@ -20549,95 +20581,167 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         if ((lp_damageEffect == "GallShadowflameDamage"))  {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
                 lv_primaryScoreString = "ScoreOne";
+				if ((PlayerHasTalent(lv_casterPlayer, "GallPsychoticBreak") == true)) {
+				   lv_tertiaryScoreString = "ScoreEight";
+				   lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GallPsychoticPassive");
+				}
 			}
 			else {
-                lv_primaryScoreString = "ScoreTwo";
+                lv_primaryScoreString = "BaselineOne";
 			}
 			if ((UnitHasBehavior2(lp_casterUnit, "GallPsychoticBreakDyingBehavior") == true)) {
-			    lv_secondaryScoreString = "ScoreTwelve";
+				if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+					lv_secondaryScoreString = "ScoreNine";
+				}
+				else {
+					lv_secondaryScoreString = "TalentTen";
+				}
 			}
         }
         if ((lp_damageEffect == "GallDreadOrbImpactDamage01"))  {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreThree";
+                lv_primaryScoreString = "ScoreTwo";
+				if ((PlayerHasTalent(lv_casterPlayer, "GallPsychoticBreak") == true)) {
+				   lv_tertiaryScoreString = "ScoreEight";
+				   lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GallPsychoticPassive");
+				}
 			}
 			else {
-                lv_primaryScoreString = "ScoreFour";
+                lv_primaryScoreString = "BaselineTwo";
 			}
 			if ((UnitHasBehavior2(lp_casterUnit, "GallPsychoticBreakDyingBehavior") == true)) {
-			    lv_secondaryScoreString = "ScoreTwelve";
+				if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+					lv_secondaryScoreString = "ScoreNine";
+				}
+				else {
+					lv_secondaryScoreString = "TalentTen";
+				}
 			}
         }
         if ((lp_damageEffect == "GallDreadOrbImpactDamage02"))  {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
                 lv_primaryScoreString = "ScoreThree";
+				if ((PlayerHasTalent(lv_casterPlayer, "GallPsychoticBreak") == true)) {
+				   lv_tertiaryScoreString = "ScoreEight";
+				   lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GallPsychoticPassive");
+				}
 			}
 			else {
-                lv_primaryScoreString = "ScoreFour";
+                lv_primaryScoreString = "BaselineThree";
 			}
 			if ((UnitHasBehavior2(lp_casterUnit, "GallPsychoticBreakDyingBehavior") == true)) {
-			    lv_secondaryScoreString = "ScoreTwelve";
+				if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+					lv_secondaryScoreString = "ScoreNine";
+				}
+				else {
+					lv_secondaryScoreString = "TalentTen";
+				}
 			}
         }
         if ((lp_damageEffect == "GallDreadOrbImpactDamage03"))  {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreThree";
+                lv_primaryScoreString = "ScoreFour";
+				if ((PlayerHasTalent(lv_casterPlayer, "GallPsychoticBreak") == true)) {
+				   lv_tertiaryScoreString = "ScoreEight";
+				   lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GallPsychoticPassive");
+				}
 			}
 			else {
-                lv_primaryScoreString = "ScoreFour";
+                lv_primaryScoreString = "TalentOne";
 			}
 			if ((UnitHasBehavior2(lp_casterUnit, "GallPsychoticBreakDyingBehavior") == true)) {
-			    lv_secondaryScoreString = "ScoreTwelve";
+				if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+					lv_secondaryScoreString = "ScoreNine";
+				}
+				else {
+					lv_secondaryScoreString = "TalentTen";
+				}
 			}
         }
         if ((lp_damageEffect == "GallRunicBlastImpactDamage"))  {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
                 lv_primaryScoreString = "ScoreFive";
+				if ((PlayerHasTalent(lv_casterPlayer, "GallPsychoticBreak") == true)) {
+				   lv_tertiaryScoreString = "ScoreEight";
+				   lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GallPsychoticPassive");
+				}
 			}
 			else {
-                lv_primaryScoreString = "ScoreSix";
+                lv_primaryScoreString = "TalentFour";
 			}
 			if ((UnitHasBehavior2(lp_casterUnit, "GallPsychoticBreakDyingBehavior") == true)) {
-			    lv_secondaryScoreString = "ScoreTwelve";
+				if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+					lv_secondaryScoreString = "ScoreNine";
+				}
+				else {
+					lv_secondaryScoreString = "TalentTen";
+				}
 			}
         }
         if ((lp_damageEffect == "GallRunicBlastRunicPersistenceTalentDamage"))  {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreSeven";
+                lv_primaryScoreString = "ScoreSix";
+				if ((PlayerHasTalent(lv_casterPlayer, "GallPsychoticBreak") == true)) {
+				   lv_tertiaryScoreString = "ScoreEight";
+				   lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GallPsychoticPassive");
+				}
 			}
 			else {
-                lv_primaryScoreString = "ScoreEight";
+                lv_primaryScoreString = "TalentSeven";
 			}
 			if ((UnitHasBehavior2(lp_casterUnit, "GallPsychoticBreakDyingBehavior") == true)) {
-			    lv_secondaryScoreString = "ScoreTwelve";
+				if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+					lv_secondaryScoreString = "ScoreNine";
+				}
+				else {
+					lv_secondaryScoreString = "TalentTen";
+				}
 			}
         }
         if ((lp_damageEffect == "GallTwistingNetherDamage"))  {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreNine";
+                lv_primaryScoreString = "ScoreSeven";
+				if ((PlayerHasTalent(lv_casterPlayer, "GallPsychoticBreak") == true)) {
+				   lv_tertiaryScoreString = "ScoreEight";
+				   lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GallPsychoticPassive");
+				}
 			}
 			else {
-                lv_primaryScoreString = "ScoreTen";
+                lv_primaryScoreString = "TalentTen";
 			}
 			if ((UnitHasBehavior2(lp_casterUnit, "GallPsychoticBreakDyingBehavior") == true)) {
-			    lv_secondaryScoreString = "ScoreTwelve";
+				if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+					lv_secondaryScoreString = "ScoreNine";
+				}
+				else {
+					lv_secondaryScoreString = "TalentTen";
+				}
 			}
         }
         if ((lp_damageEffect == "GallShadowboltVolleyDamage"))  {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreNine";
+                lv_primaryScoreString = "ScoreSeven";
+				if ((PlayerHasTalent(lv_casterPlayer, "GallPsychoticBreak") == true)) {
+				   lv_tertiaryScoreString = "ScoreEight";
+				   lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GallPsychoticPassive");
+				}
 			}
 			else {
-                lv_primaryScoreString = "ScoreTen";
+                lv_primaryScoreString = "TalentTen";
 			}
 			if ((UnitHasBehavior2(lp_casterUnit, "GallPsychoticBreakDyingBehavior") == true)) {
-			    lv_secondaryScoreString = "ScoreTwelve";
+				if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+					lv_secondaryScoreString = "ScoreNine";
+				}
+				else {
+					lv_secondaryScoreString = "TalentTen";
+				}
 			}
         }
         if ((lp_damageEffect == "GallShadowflameSearingShadowsTalentDamage"))  {
-            lv_primaryScoreString = "ScoreEleven";
+            lv_primaryScoreString = "ScoreEight";
 			if ((UnitHasBehavior2(lp_casterUnit, "GallPsychoticBreakDyingBehavior") == true)) {
-			    lv_secondaryScoreString = "ScoreTwelve";
+				lv_secondaryScoreString = "ScoreNine";
 			}
 			
         }
@@ -26816,7 +26920,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
 		}
         if ((lp_damageEffect == "TassadarArchonWeaponDamage") || (lp_damageEffect == "TassadarArchonTwilightArchonTalentDamage")) {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreEight";
+                lv_primaryScoreString = "ScoreSeven";
 				lv_secondaryScoreString = "ScoreOne";
 			}
 			else {
@@ -26826,7 +26930,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         }
         if ((lp_damageEffect == "TassadarArchonSplashDamage") || (lp_damageEffect == "TassadarArchonTwilightArchonTalentSplashDamage")) {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreNine";
+                lv_primaryScoreString = "ScoreEight";
 				lv_secondaryScoreString = "ScoreOne";
 			}
 			else {
@@ -28815,7 +28919,7 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
 void libGame_gf_exportStatsForPlayer (int lp_player) {
 	string lv_scoreString;
 	
-	lv_scoreString = "Version 0.05 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " +  PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
+	lv_scoreString = "Version 0.06 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " +  PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
     lv_scoreString += " ,[ HSPrimary: ";
 	lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwelve, 1);
     lv_scoreString += " ],[ HSSecondary: ";
@@ -29187,7 +29291,7 @@ string libGame_gf_statsForPlayerHeroSpecificString (int lp_player) {
 		}
 		else if ((PlayerHasTalent(lp_player, "FalstadWingman"))) {
             lv_exportString += "[ Wingman Progress: ";
-            lv_exportString += FixedToString(UnitGetTokenCount(lv_heroUnit, "FalstadWingmanDamageTokenCounter"), 0);
+            lv_exportString += FixedToString(UnitGetTokenCount(lv_heroUnit, "FalstadWingmanDamageToken"), 0);
             lv_exportString += " ]";
 		}
 		else if ((PlayerHasTalent(lp_player, "GenericTalentSeasonedMarksman"))) {
@@ -29959,6 +30063,15 @@ void libGame_gf_trackHeroCooldowns () {
 				// }
 				if ((lv_abilityChargeCount[lv_playerIterator][lv_abilityIterator]) < 0.0) {
 					lv_abilityChargeCount[lv_playerIterator][lv_abilityIterator] = 0.0;
+				}
+				// God damn caboose using behavior ability and then getting dynamically removed forcing me accomdate it
+				if ((lv_abilityName[lv_playerIterator][lv_abilityIterator] == "ToyTrainFollowAbility") && (UnitHasBehavior2(lv_contextUnit, "ToyTrainFollowAbility") == false)) {
+					UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Removed Toy Train Follow Ability from ") + IntToText(lv_playerIterator) + StringToText(" , replaced with: ") + StringToText(lv_abilityName[lv_playerIterator][(lv_abilityIterator + 1)]) + StringToText(", which has a cooldown of ") + FixedToText(lv_abilityChargeCount[lv_playerIterator][(lv_abilityIterator + 1)], 4)));
+					lv_totalAbilitiesFound[lv_playerIterator] -= 1;
+					lv_heroAbilCount[lv_playerIterator] -= 1;
+					lv_abilityName[lv_playerIterator][lv_abilityIterator] = lv_abilityName[lv_playerIterator][(lv_abilityIterator + 1)];
+					lv_lastAbilityIndex[lv_playerIterator] -= 1;
+					lv_abilityChargeCount[lv_playerIterator][lv_abilityIterator] = lv_abilityChargeCount[lv_playerIterator][(lv_abilityIterator + 1)];
 				}
 			}
 			if ((lv_totalAbilitiesFound[lv_playerIterator] < lv_totalAbiltiesFoundRefresher[lv_playerIterator])) {
@@ -31074,6 +31187,9 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
 			else {
 				lv_scoreString = "AccuracySeven";
 			}
+	    }
+		if ((lp_abilityName == "FalstadWingman")) {
+			lv_scoreString = "Discard";
 	    }
 	}
     else if ((lv_heroUnitType == "HeroFenix")) {
@@ -34475,6 +34591,17 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
         lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "AmazonHeroWeaponDamage", "MultiplicativeModifierArray[" + "TitansRevenge" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
     }
 	
+    if ((lp_inputData == "GallPsychoticPassive")) {
+	    if ((lp_damageEffect == "GallRunicBlastImpactDamage")) {
+		    lv_flatDamageModifier = (UnitGetTokenCount(lp_casterUnit, ("GallRunicBlastBombsAwayTalentTokenCounter")) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "GallBombsAwayTalentDamageAccumulator", "Scale", lv_casterPlayer));
+		}
+		else {
+		    lv_flatDamageModifier = 0.0;
+		}
+		
+        lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_damageEffect, "MultiplicativeModifierArray[" + "PsychoticBreak" + "].Modifier", lv_casterPlayer))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
+    }
+	
     if ((lp_inputData == "OrpheaDetermination")) {
 	    if ((lp_damageEffect == "OrpheaWeaponDamage")) {
 		    lv_flatDamageModifier = 0.0;
@@ -34483,7 +34610,7 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
 		    lv_flatDamageModifier = (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] * (CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "OrpheaWeaponOverflowingChaosDamage", "Amount", lv_casterPlayer) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "OrpheaOverflowingChaosDamageAccumulator", "Scale", lv_casterPlayer)));
 		}
 		
-        lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "OrpheaWeaponDamage", "MultiplicativeModifierArray[" + "OrpheaDetermination" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
+        lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "OrpheaWeaponDamage", "MultiplicativeModifierArray[" + "OrpheaDetermination" + "].Modifier", lv_casterPlayer))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
     }
 	
 	
@@ -35790,7 +35917,7 @@ bool libGame_gt_CapturePointLogic_Func (bool testConds, bool runActions) {
         for (;; autoC5905908_u -= 1) {
             lv_itUnit = UnitGroupUnitFromEnd(autoC5905908_g, autoC5905908_u);
             if (lv_itUnit == null) { break; }
-            if (((UnitFilterMatch(lv_itUnit, UnitGetOwner(lv_itUnit), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterBenign - 32)))) == true) || (UnitHasBehavior2(lv_itUnit, "CapturePointAllowed") == true)) && ((UnitBehaviorCount(lv_itUnit, "UltimateEvolutionBuff") == 1) || (UnitBehaviorCount(lv_itUnit, "CapturePointAllowed") == 1) || (UnitTestState(lv_itUnit, c_unitStateHallucination) == false))) {
+            if (((UnitFilterMatch(lv_itUnit, UnitGetOwner(lv_itUnit), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterBenign - 32)))) == true) || (UnitHasBehavior2(lv_itUnit, "CapturePointAllowed") == true)) && (((UnitBehaviorCount(lv_itUnit, "UltimateEvolutionBuff") == 1) && (UnitBehaviorCount(lv_itUnit, "CapturePointAllowed") == 1)) || ((UnitTestState(lv_itUnit, c_unitStateHallucination) == false)))) {
                 UnitBehaviorAdd(lv_itUnit, "HeroGenericHeroOnCapturePoint", lv_itUnit, 1);
                 if ((libGame_gv_players[UnitGetOwner(lv_itUnit)].lv_faction == libGame_ge_Faction_Order)) {
                     lv_orderTeamHeroes += 1;

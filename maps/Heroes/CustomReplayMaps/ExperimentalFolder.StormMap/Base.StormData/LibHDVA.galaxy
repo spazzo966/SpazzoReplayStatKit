@@ -1051,6 +1051,9 @@ bool libHDVA_gt_DVaDamageTakenSelfDestructCharge_Func (bool testConds, bool runA
 	    libGame_gv_HeroSpecificStoredValue7[lv_dVaPlayer] += ((lv_damageTakenPercent * ((libHDVA_gv_dVaBringItOnChargeRateModifier + 1.0))) - lv_damageTakenPercent);
         lv_damageTakenPercent *= (libHDVA_gv_dVaBringItOnChargeRateModifier + 1.0);
     }
+    if ((PlayerHasTalent(lv_dVaPlayer, "DVaDefenseMatrixDivertingPower") == true) || (PlayerHasTalent(lv_dVaPlayer, "DVaDefenseMatrixGetThroughThis") == true) || (PlayerHasTalent(lv_dVaPlayer, "DVaDefenseMatrixFusionGenerator") == true)) {
+	    libGame_gv_HeroSpecificStoredValue7[lv_dVaPlayer] += ((lv_damageTakenPercent * ((libHDVA_gv_dVaBringItOnChargeRateModifier + 1.0))) - lv_damageTakenPercent);
+	}
 	// libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot
 	if (((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 1) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 6)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
         libGame_gv_HeroSpecificStoredValue1[lv_dVaPlayer] += lv_damageTakenPercent;
