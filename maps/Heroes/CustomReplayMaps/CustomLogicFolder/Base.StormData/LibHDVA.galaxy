@@ -36,7 +36,7 @@ void libHDVA_InitVariables () {
     libHDVA_gv_dVaUI.lv_mainPanel = c_invalidDialogControlId;
     libHDVA_gv_dVaUI.lv_defenseMatrixLabel = c_invalidDialogControlId;
     libHDVA_gv_dVaUI.lv_defenseMatrixOffAnimation = c_invalidDialogControlId;
-    libHDVA_gv_dVaCallMechExpensivePlatingHealthModifier = (CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "DVaMechExpensivePlatingCarry", "Modification.VitalMaxFractionArray[" + IntToString(0) + "]", c_playerAny) + 1.0);
+    libHDVA_gv_dVaCallMechFullMetalHealthModifier = (CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "DVaFullMetalCarry", "Modification.VitalMaxFractionArray[" + IntToString(0) + "]", c_playerAny) + 1.0);
     libHDVA_gv_dVaCallMechSummonedMechTargetPointOffset_C = 1.5;
 }
 
@@ -48,10 +48,8 @@ void libHDVA_gf_HeroDVaIncrementHeroCountFunction () {
     if ((libHDVA_gv_heroDVaTriggerRegistrationCount == 1)) {
         TriggerEnable(libHDVA_gt_HeroDVaActorSoundSwaps, true);
         TriggerEnable(libHDVA_gt_DVaCallMech, true);
-        TriggerEnable(libHDVA_gt_DVaCallMechMEKAfall, true);
         TriggerEnable(libHDVA_gt_DVaCallMechMEKAfallCompleted, true);
         TriggerEnable(libHDVA_gt_DVaCallMechInterrupted, true);
-        TriggerEnable(libHDVA_gt_DVaCallMechMEKAfallCompletedMapMechanicTransfer, true);
         TriggerEnable(libHDVA_gt_DVaCargoUnloadedSelectionControl, true);
         TriggerEnable(libHDVA_gt_HeroDVaHeroWeaponTargeting, true);
         TriggerEnable(libHDVA_gt_HeroDVaTargetAcquired, true);
@@ -64,7 +62,6 @@ void libHDVA_gf_HeroDVaIncrementHeroCountFunction () {
         TriggerEnable(libHDVA_gt_DVaAbathurCreatesaDVaClone, true);
         TriggerEnable(libHDVA_gt_DVaAbathurClonedMechEnds, true);
         TriggerEnable(libHDVA_gt_HeroDVaPilotEjectedMoveCommandForwarding, true);
-        TriggerEnable(libHDVA_gt_DVaGGWPHeroTakedown, true);
         TriggerEnable(libHDVA_gt_HeroDVaRemoveweapontargetfromData, true);
         TriggerEnable(libHDVA_gt_DVaPilotUpdateEnergyTriggerconditions, true);
         TriggerEnable(libHDVA_gt_DVaPilotUpdateEnergyMechSelfDestructing, true);
@@ -72,6 +69,10 @@ void libHDVA_gf_HeroDVaIncrementHeroCountFunction () {
         TriggerEnable(libHDVA_gt_DVaDefenseMatrixTrackerReportandReset, true);
         TriggerEnable(libHDVA_gt_HeroDVaHeroWeaponForceAcquireTargetTaunt, true);
         TriggerEnable(libHDVA_gt_DVaBoostersEnemyHallofStorms, true);
+        TriggerEnable(libHDVA_gt_DVaAblativeArmorHealingConversion, true);
+        TriggerEnable(libHDVA_gt_HeroDVaMicroMissilesActive, true);
+        TriggerEnable(libHDVA_gt_HeroDVaFusionGeneratorFCTFinal, true);
+        TriggerEnable(libHDVA_gt_HeroDVaFusionGeneratorFCTIncrement, true);
     }
 
 }
@@ -87,10 +88,8 @@ void libHDVA_gf_HeroDVaDecrementHeroCountFunction () {
     if ((libHDVA_gv_heroDVaTriggerRegistrationCount == 0)) {
         TriggerEnable(libHDVA_gt_HeroDVaActorSoundSwaps, false);
         TriggerEnable(libHDVA_gt_DVaCallMech, false);
-        TriggerEnable(libHDVA_gt_DVaCallMechMEKAfall, false);
         TriggerEnable(libHDVA_gt_DVaCallMechInterrupted, false);
         TriggerEnable(libHDVA_gt_DVaCallMechMEKAfallCompleted, false);
-        TriggerEnable(libHDVA_gt_DVaCallMechMEKAfallCompletedMapMechanicTransfer, false);
         TriggerEnable(libHDVA_gt_DVaCargoUnloadedSelectionControl, false);
         TriggerEnable(libHDVA_gt_HeroDVaHeroWeaponTargeting, false);
         TriggerEnable(libHDVA_gt_HeroDVaTargetAcquired, false);
@@ -103,7 +102,6 @@ void libHDVA_gf_HeroDVaDecrementHeroCountFunction () {
         TriggerEnable(libHDVA_gt_DVaAbathurCreatesaDVaClone, false);
         TriggerEnable(libHDVA_gt_DVaAbathurClonedMechEnds, false);
         TriggerEnable(libHDVA_gt_HeroDVaPilotEjectedMoveCommandForwarding, false);
-        TriggerEnable(libHDVA_gt_DVaGGWPHeroTakedown, false);
         TriggerEnable(libHDVA_gt_HeroDVaRemoveweapontargetfromData, false);
         TriggerEnable(libHDVA_gt_DVaPilotUpdateEnergyTriggerconditions, false);
         TriggerEnable(libHDVA_gt_DVaPilotUpdateEnergyMechSelfDestructing, false);
@@ -111,6 +109,10 @@ void libHDVA_gf_HeroDVaDecrementHeroCountFunction () {
         TriggerEnable(libHDVA_gt_DVaDefenseMatrixTrackerReportandReset, false);
         TriggerEnable(libHDVA_gt_HeroDVaHeroWeaponForceAcquireTargetTaunt, false);
         TriggerEnable(libHDVA_gt_DVaBoostersEnemyHallofStorms, false);
+        TriggerEnable(libHDVA_gt_DVaAblativeArmorHealingConversion, false);
+        TriggerEnable(libHDVA_gt_HeroDVaMicroMissilesActive, false);
+        TriggerEnable(libHDVA_gt_HeroDVaFusionGeneratorFCTFinal, false);
+        TriggerEnable(libHDVA_gt_HeroDVaFusionGeneratorFCTIncrement, false);
     }
 
 }
@@ -382,8 +384,8 @@ void libHDVA_gf_DVaPilotUpdateEnergy (int lp_dVaPlayer) {
     else {
         lv_durationMax = libHDVA_gv_dVaCallMechDefaultMaxCooldown;
         lv_durationRemain = PlayerGetCooldown(lp_dVaPlayer, "Abil/DVaPilotCallMech");
-        if ((PlayerHasTalent(lp_dVaPlayer, "DVaMechExpensivePlating") == true)) {
-            lv_calculatedEnergyAmount = ((1.0 - (lv_durationRemain / (lv_durationMax + libHDVA_gv_dVaCallMechExpensivePlatingCooldownChange))) * 100.0);
+        if ((PlayerHasTalent(lp_dVaPlayer, "DVaFullMetal") == true)) {
+            lv_calculatedEnergyAmount = ((1.0 - (lv_durationRemain / (lv_durationMax + libHDVA_gv_dVaCallMechFullMetalCooldownChange))) * 100.0);
         }
         else {
             lv_calculatedEnergyAmount = ((1.0 - (lv_durationRemain / lv_durationMax)) * 100.0);
@@ -606,8 +608,12 @@ bool libHDVA_gt_DVaMoonwellRedistribution_Func (bool testConds, bool runActions)
     }
 
     lv_pilot = UnitCargo(lv_mech, 1);
-    UnitBehaviorAdd(lv_pilot, "HealingFountainCooldown", lv_moonwell, 1);
+    UnitBehaviorAdd(lv_pilot, "HealingFountainCooldown", lv_mech, 1);
     UnitCreateEffectUnit(lv_pilot, "FountainApplySet", lv_pilot);
+    if ((EventPlayerEffectUsed() == "MoonwellDrinkStartingSet") && (PlayerGetCooldown(UnitGetOwner(lv_mech), "Abil/DVaLiquidCoolingAbility") < 50.0)) {
+        UnitCreateEffectUnit(lv_mech, "DVaLiquidCoolingModifyCooldown", lv_mech);
+    }
+
     return true;
 }
 
@@ -616,6 +622,7 @@ void libHDVA_gt_DVaMoonwellRedistribution_Init () {
     libHDVA_gt_DVaMoonwellRedistribution = TriggerCreate("libHDVA_gt_DVaMoonwellRedistribution_Func");
     TriggerEnable(libHDVA_gt_DVaMoonwellRedistribution, false);
     TriggerAddEventPlayerEffectUsed(libHDVA_gt_DVaMoonwellRedistribution, c_playerAny, "MoonwellDrinkStartingSet");
+    TriggerAddEventPlayerEffectUsed(libHDVA_gt_DVaMoonwellRedistribution, c_playerAny, "DVaLiquidCoolingCastSet");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -856,6 +863,56 @@ void libHDVA_gt_HeroDVaMechDiesviaFatalDamage_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Hero - D.Va - Micro Missiles Active
+//--------------------------------------------------------------------------------------------------
+bool libHDVA_gt_HeroDVaMicroMissilesActive_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_i;
+    unit lv_dVa;
+    fixed lv_angle;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_i = 3;
+    lv_dVa = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    lv_angle = AngleBetweenPoints(UnitGetPosition(lv_dVa), EventPlayerEffectUsedPoint(c_effectLocationTargetPoint));
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(0.3125, c_timeGame);
+    while ((UnitBehaviorCount(lv_dVa, "DVaMicroMissilesCasterBuff") == 1)) {
+        if ((lv_i >= 3)) {
+            UnitCreateEffectPoint(lv_dVa, "DVaMicroMissilesLeftLaunchPersistent", PointWithOffsetPolar(UnitGetPosition(lv_dVa), 13.0, lv_angle));
+            UnitCreateEffectPoint(lv_dVa, "DVaMicroMissilesRightLaunchPersistent", PointWithOffsetPolar(UnitGetPosition(lv_dVa), 13.0, lv_angle));
+            lv_i = 0;
+            lv_i += 1;
+        }
+        else {
+            lv_i += 1;
+        }
+        if ((UnitHasBehaviorWithCategoryFlag(lv_dVa, c_behaviorCategoryTimeStop) == true)) {
+            while (!((UnitHasBehaviorWithCategoryFlag(lv_dVa, c_behaviorCategoryTimeStop) == false))) {
+                Wait(0.0625, c_timeGame);
+            }
+        }
+        else {
+            Wait(0.0625, c_timeGame);
+        }
+    }
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libHDVA_gt_HeroDVaMicroMissilesActive_Init () {
+    libHDVA_gt_HeroDVaMicroMissilesActive = TriggerCreate("libHDVA_gt_HeroDVaMicroMissilesActive_Func");
+    TriggerEnable(libHDVA_gt_HeroDVaMicroMissilesActive, false);
+    TriggerAddEventPlayerEffectUsed(libHDVA_gt_HeroDVaMicroMissilesActive, c_playerAny, "DVaMicroMissilesCastSet");
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: D.Va - Boosters - Enemy Hall of Storms
 //--------------------------------------------------------------------------------------------------
 bool libHDVA_gt_DVaBoostersEnemyHallofStorms_Func (bool testConds, bool runActions) {
@@ -979,6 +1036,11 @@ bool libHDVA_gt_DVaDefenseMatrixTrackerReportandReset_Func (bool testConds, bool
     }
 
     if ((EventUnitBehaviorChange() == c_unitBehaviorChangeIncrease)) {
+        if ((libHDVA_gv_dVaDefenseMatrixTrackedValue[lv_dVaPlayer] > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_HDVA_B9A3D392", "A", FixedToText(libHDVA_gv_dVaDefenseMatrixTrackedValue[lv_dVaPlayer], 0));
+            FloatingCombatElementCreateTextAtUnit(PlayerGroupSingle(lv_dVaPlayer), "FloatingCombatElements/FloatingCombatAmountReadable", "", lv_dVaUnit, TextExpressionAssemble("Param/Expression/lib_HDVA_B9A3D392"), libNtve_gv_FloatingCombatTextAutoRandomSeed);
+        }
+	
     }
     else {
         libHDVA_gv_dVaDefenseMatrixTrackedValue[lv_dVaPlayer] = 0.0;
@@ -1034,58 +1096,41 @@ bool libHDVA_gt_DVaDamageTakenSelfDestructCharge_Func (bool testConds, bool runA
 
     lv_incomingDamageAmount = (EventUnitDamageAmount() + EventUnitDamageBehaviorShield());
     if ((UnitHasBehavior2(EventUnitDamageSourceUnit(), "DVaMechDefenseMatrixDebuff") == true)) {
-        lv_incomingDamageAmount /= 0.25;
+        if ((CatalogFieldValueGet(c_gameCatalogEffect, EventUnitDamageEffect(), "Aliases[" + IntToString(0) + "]", c_playerAny) == "PercentDamage")) {
+        }
+        else {
+			lv_incomingDamageAmount /= 0.5;
+		}
     }
 
-    if (((PlayerHasTalent(lv_dVaPlayer, "DVaMechAblativeArmor") == true) && (EventUnitDamageAmount() <= StringToFixed(CatalogFieldValueGet(c_gameCatalogBehavior, "DVaMechAblativeArmorDamageResponseCarry", "DamageResponse.Maximum", lv_dVaPlayer))))) {
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Ablative increased incoming damage value from ") + FixedToText(lv_incomingDamageAmount, 2) + StringToText(" to ") + FixedToText((lv_incomingDamageAmount * 2.0), 2))); 
-        lv_incomingDamageAmount /= 0.5;
-    }
-
-    if ((PlayerHasTalent(lv_dVaPlayer, "DVaMechExpensivePlating") == true)) {
-        lv_maxMechHealth = (lv_maxMechHealth / libHDVA_gv_dVaCallMechExpensivePlatingHealthModifier);
+    if ((PlayerHasTalent(lv_dVaPlayer, "DVaFullMetal") == true)) {
+        lv_maxMechHealth = (lv_maxMechHealth / libHDVA_gv_dVaCallMechFullMetalHealthModifier);
     }
 
     lv_damageTakenPercent = ((lv_incomingDamageAmount / lv_maxMechHealth) * 100.0);
-    if ((PlayerHasTalent(lv_dVaPlayer, "DVaSelfDestructBringItOn") == true)) {
-	    libGame_gv_HeroSpecificStoredValue7[lv_dVaPlayer] += ((lv_damageTakenPercent * ((libHDVA_gv_dVaBringItOnChargeRateModifier + 1.0))) - lv_damageTakenPercent);
-        lv_damageTakenPercent *= (libHDVA_gv_dVaBringItOnChargeRateModifier + 1.0);
-    }
-    if ((PlayerHasTalent(lv_dVaPlayer, "DVaDefenseMatrixDivertingPower") == true) || (PlayerHasTalent(lv_dVaPlayer, "DVaDefenseMatrixGetThroughThis") == true) || (PlayerHasTalent(lv_dVaPlayer, "DVaDefenseMatrixFusionGenerator") == true)) {
-	    libGame_gv_HeroSpecificStoredValue7[lv_dVaPlayer] += ((lv_damageTakenPercent * ((libHDVA_gv_dVaBringItOnChargeRateModifier + 1.0))) - lv_damageTakenPercent);
-	}
-	// libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot
-	if (((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 1) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 6)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
-        libGame_gv_HeroSpecificStoredValue1[lv_dVaPlayer] += lv_damageTakenPercent;
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Took ") + FixedToText(lv_incomingDamageAmount, 2) + StringToText(" damage from player ") + IntToText(UnitGetOwner(EventUnitDamageSourceUnit())) + StringToText(" putting total to: ") + FixedToText(libGame_gv_HeroSpecificStoredValue1[lv_dVaPlayer] ,3))); 
-	}
-	else if (((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 2) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 7)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
-        libGame_gv_HeroSpecificStoredValue2[lv_dVaPlayer] += lv_damageTakenPercent;
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Took ") + FixedToText(lv_incomingDamageAmount, 2) + StringToText(" damage from player ") + IntToText(UnitGetOwner(EventUnitDamageSourceUnit())) + StringToText(" putting total to: ") + FixedToText(libGame_gv_HeroSpecificStoredValue2[lv_dVaPlayer] ,3))); 
-	}
-	else if (((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 3) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 8)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
-        libGame_gv_HeroSpecificStoredValue3[lv_dVaPlayer] += lv_damageTakenPercent;
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Took ") + FixedToText(lv_incomingDamageAmount, 2) + StringToText(" damage from player ") + IntToText(UnitGetOwner(EventUnitDamageSourceUnit())) + StringToText(" putting total to: ") + FixedToText(libGame_gv_HeroSpecificStoredValue3[lv_dVaPlayer] ,3))); 
-	}
-	else if (((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 4) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 9)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
-        libGame_gv_HeroSpecificStoredValue4[lv_dVaPlayer] += lv_damageTakenPercent;
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Took ") + FixedToText(lv_incomingDamageAmount, 2) + StringToText(" damage from player ") + IntToText(UnitGetOwner(EventUnitDamageSourceUnit())) + StringToText(" putting total to: ") + FixedToText(libGame_gv_HeroSpecificStoredValue4[lv_dVaPlayer] ,3))); 
-	}
-	else if (((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 5) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 10)) && (UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
-        libGame_gv_HeroSpecificStoredValue5[lv_dVaPlayer] += lv_damageTakenPercent;
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Took ") + FixedToText(lv_incomingDamageAmount, 2) + StringToText(" damage from player ") + IntToText(UnitGetOwner(EventUnitDamageSourceUnit())) + StringToText(" putting total to: ") + FixedToText(libGame_gv_HeroSpecificStoredValue5[lv_dVaPlayer] ,3))); 
-	}
-	else if ((UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur")) {
+	if ((UnitGetType(libGame_gv_players[lv_dVaPlayer].lv_heroUnit) != "HeroAbathur") && ((UnitGetOwner(EventUnitDamageSourceUnit()) <= libCore_gv_bALMaxPlayers) && (UnitGetOwner(EventUnitDamageSourceUnit()) > 0))) {
+		if ((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 1) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 6)) {
+			libGame_gv_HeroSpecificStoredValue1[lv_dVaPlayer] += lv_damageTakenPercent;
+		}
+		else if ((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 2) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 7)) {
+			libGame_gv_HeroSpecificStoredValue2[lv_dVaPlayer] += lv_damageTakenPercent;
+		}
+		else if ((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 3) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 8)) {
+			libGame_gv_HeroSpecificStoredValue3[lv_dVaPlayer] += lv_damageTakenPercent;
+		}
+		else if ((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 4) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 9)) {
+			libGame_gv_HeroSpecificStoredValue4[lv_dVaPlayer] += lv_damageTakenPercent;
+		}
+		else if ((libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 5) || (libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_rosterSlot == 10)) {
+			libGame_gv_HeroSpecificStoredValue5[lv_dVaPlayer] += lv_damageTakenPercent;
+		}
         libGame_gv_HeroSpecificStoredValue6[lv_dVaPlayer] += lv_damageTakenPercent;
 	}
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Total Needed: ") + FixedToText(libHDVA_gv_dVASelfDestructHealthpercentageneededtogenerate1charge, 2))); 
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Charge Amount: ") + FixedToText(PlayerGetChargeUsed(lv_dVaPlayer, "Abil/DVaMechSelfDestruct"), 2)));
 	
     lv_damageTakenPercent += libHDVA_gv_dVaDefensiveChargeRemainder[lv_dVaPlayer];
     while ((lv_damageTakenPercent > libHDVA_gv_dVASelfDestructHealthpercentageneededtogenerate1charge)) {
         libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_dVaPlayer, lv_dVaPlayer, "DVaSelfDestructChargeGainedDamageTaken", null, "");
         libGame_gf_HeroSpecificStatTrackerOther(libHDVA_gv_dVASelfDestructHealthpercentageneededtogenerate1charge, lv_dVaPlayer, UnitGetOwner(EventUnitDamageSourceUnit()), "DVaSelfDestructDamageTakenTally", null, "");
-        // libGame_gf_TallyHeroSpecificStatShared(FixedToInt(1), lv_dVaPlayer, "TalentOne");
         PlayerAddChargeUsed(lv_dVaPlayer, "Abil/DVaMechSelfDestruct", -1.0);
         lv_damageTakenPercent -= libHDVA_gv_dVASelfDestructHealthpercentageneededtogenerate1charge;
     }
@@ -1137,6 +1182,11 @@ bool libHDVA_gt_DVaCallMech_Func (bool testConds, bool runActions) {
         UnitCreateEffectUnit(lv_dVaPilotUnit, "DVaMechCallMechApplyStun", libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer]);
         UnitBehaviorAdd(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], "CapturePointAllowed", libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], 1);
         Wait(CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "DVaMechCallMechStartingUpStun", "Duration", lv_dVaPlayer), c_timeGame);
+        if ((UnitHasBehavior2(lv_dVaPilotUnit, "HealingFountainCooldown") == true)) {
+            libNtve_gf_PlayerRemoveCooldown(lv_dVaPlayer, "Abil/DVaLiquidCoolingAbility");
+            PlayerAddCooldown(lv_dVaPlayer, "Abil/DVaLiquidCoolingAbility", UnitBehaviorDuration(lv_dVaPilotUnit, "HealingFountainCooldown"));
+        }
+		
         UnitBehaviorRemove(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], "CapturePointAllowed", c_unitBehaviorCountAll);
         if ((UnitHasBehavior2(lv_dVaPilotUnit, "IsHumanPlayer") == true)) {
             UnitBehaviorAdd(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], "IsHumanPlayer", libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], 1);
@@ -1152,52 +1202,6 @@ void libHDVA_gt_DVaCallMech_Init () {
     libHDVA_gt_DVaCallMech = TriggerCreate("libHDVA_gt_DVaCallMech_Func");
     TriggerEnable(libHDVA_gt_DVaCallMech, false);
     TriggerAddEventUnitAbility(libHDVA_gt_DVaCallMech, null, AbilityCommand("DVaPilotCallMech", 0), c_abilEffectStagePrep, false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: D.Va - Call Mech - MEKAfall
-//--------------------------------------------------------------------------------------------------
-bool libHDVA_gt_DVaCallMechMEKAfall_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_playerPartyFrameDialog;
-    int lv_teamPartyFrameDialog;
-    int lv_owningFaction;
-    int lv_playerRoster;
-    unit lv_dVaMechUnit;
-    unit lv_dVaPilotUnit;
-    int lv_dVaPlayer;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_playerPartyFrameDialog = c_invalidDialogControlId;
-    lv_teamPartyFrameDialog = c_invalidDialogControlId;
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    lv_dVaPilotUnit = EventUnit();
-    lv_dVaPlayer = UnitGetOwner(lv_dVaPilotUnit);
-    UnitCreate(1, "HeroDVaMech", c_unitCreateIgnorePlacement, lv_dVaPlayer, EventUnitTargetPoint(), UnitGetFacing(lv_dVaPilotUnit), null);
-    libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer] = UnitLastCreated();
-    UnitCreateEffectUnit(lv_dVaPilotUnit, "DVaMechSpawnSet", libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer]);
-    UnitGroupAdd(libGame_gv_players[lv_dVaPlayer].lv_heroUnitGroup, libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer]);
-    UnitGroupAdd(libGame_gv_players[lv_dVaPlayer].lv_heroUnitGroup, lv_dVaPilotUnit);
-    UnitBehaviorRemove(lv_dVaPilotUnit, "Mounted", 1);
-    UnitSetPropertyFixed(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], c_unitPropEnergy, (UnitGetPropertyFixed(lv_dVaMechUnit, c_unitPropEnergyMax, c_unitPropCurrent) - PlayerGetChargeUsed(lv_dVaPlayer, "Abil/DVaMechSelfDestruct")));
-        if ((UnitHasBehavior2(lv_dVaPilotUnit, "IsHumanPlayer") == true)) {
-            UnitBehaviorAdd(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], "IsHumanPlayer", libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], 1);
-        }
-
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libHDVA_gt_DVaCallMechMEKAfall_Init () {
-    libHDVA_gt_DVaCallMechMEKAfall = TriggerCreate("libHDVA_gt_DVaCallMechMEKAfall_Func");
-    TriggerEnable(libHDVA_gt_DVaCallMechMEKAfall, false);
-    TriggerAddEventUnitAbility(libHDVA_gt_DVaCallMechMEKAfall, null, AbilityCommand("DVaPilotCallMechMEKAfall", 0), c_abilEffectStageCast, false);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1250,11 +1254,7 @@ bool libHDVA_gt_DVaCallMechMEKAfallCompleted_Func (bool testConds, bool runActio
     lv_dVaPilotUnit = EventUnit();
     lv_dVaPlayer = UnitGetOwner(lv_dVaPilotUnit);
     UnitPutInTransport(lv_dVaPilotUnit, libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer]);
-    if ((PlayerHasTalent(lv_dVaPlayer, "DVaPilotCallMechMEKAfall") == true)) {
-    }
-    else {
-        UnitCreateEffectUnit(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], "DVaTransferMapMechanicStacksLoadSet", lv_dVaPilotUnit);
-    }
+    UnitCreateEffectUnit(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], "DVaTransferMapMechanicStacksLoadSet", lv_dVaPilotUnit);
     UnitBehaviorRemove(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], "DVaMechForwardedTimeStop", 1);
     UnitSelect(lv_dVaPilotUnit, lv_dVaPlayer, false);
     UnitBehaviorRemove(lv_dVaPilotUnit, "AbathurSymbioteHostBehavior", 1);
@@ -1267,11 +1267,6 @@ bool libHDVA_gt_DVaCallMechMEKAfallCompleted_Func (bool testConds, bool runActio
     libGame_gf_SendEventHeroUnitSwappedForPlayer(lv_dVaPilotUnit, libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], lv_dVaPlayer);
     libGame_gf_SendEventCheckUnitForAbilityRedirect(lv_dVaPilotUnit, libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], false, UnitGetPosition(lv_dVaPilotUnit));
     libUIUI_gf_InitPathingLines(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], lv_dVaPlayer);
-    if ((PlayerHasTalent(lv_dVaPlayer, "DVaPilotCallMechMEKAfall") == true)) {
-        UnitBehaviorAdd(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], "VideoDebug", libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], 1);
-        UnitBehaviorAdd(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], "DVaMechCallMechStartingUpStunMEKAfall", libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], 1);
-    }
-
     libNtve_gf_MakeUnitUncommandable(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], false);
     libAIAI_gv_aIHeroes[lv_dVaPlayer].lv_currentHeroUnit = libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer];
     CatalogFieldValueSet(c_gameCatalogAbil, "Mount", "CastIntroTime[" + IntToString(0) + "]", lv_dVaPlayer, CatalogFieldValueGet(c_gameCatalogAbil, "Mount", "CastIntroTime[" + IntToString(0) + "]", 0));
@@ -1290,38 +1285,6 @@ void libHDVA_gt_DVaCallMechMEKAfallCompleted_Init () {
     libHDVA_gt_DVaCallMechMEKAfallCompleted = TriggerCreate("libHDVA_gt_DVaCallMechMEKAfallCompleted_Func");
     TriggerEnable(libHDVA_gt_DVaCallMechMEKAfallCompleted, false);
     TriggerAddEventUnitAbility(libHDVA_gt_DVaCallMechMEKAfallCompleted, null, AbilityCommand("DVaPilotCallMech", 0), c_abilEffectStageFinish, false);
-    TriggerAddEventUnitAbility(libHDVA_gt_DVaCallMechMEKAfallCompleted, null, AbilityCommand("DVaPilotCallMechMEKAfall", 0), c_abilEffectStageFinish, false);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: D.Va - Call Mech/MEKAfall - Completed Map Mechanic Transfer
-//--------------------------------------------------------------------------------------------------
-bool libHDVA_gt_DVaCallMechMEKAfallCompletedMapMechanicTransfer_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_dVaPlayer;
-    unit lv_dVaPilotUnit;
-    unit lv_dVaMechUnit;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_dVaPlayer = EventPlayer();
-    lv_dVaPilotUnit = libGame_gv_players[lv_dVaPlayer].lv_heroUnit;
-    lv_dVaMechUnit = UnitTransport(lv_dVaPilotUnit);
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UnitCreateEffectUnit(lv_dVaMechUnit, "DVaTransferMapMechanicStacksLoadSet", lv_dVaPilotUnit);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libHDVA_gt_DVaCallMechMEKAfallCompletedMapMechanicTransfer_Init () {
-    libHDVA_gt_DVaCallMechMEKAfallCompletedMapMechanicTransfer = TriggerCreate("libHDVA_gt_DVaCallMechMEKAfallCompletedMapMechanicTransfer_Func");
-    TriggerEnable(libHDVA_gt_DVaCallMechMEKAfallCompletedMapMechanicTransfer, false);
-    TriggerAddEventPlayerEffectUsed(libHDVA_gt_DVaCallMechMEKAfallCompletedMapMechanicTransfer, c_playerAny, "DVaCallMechMEKAfallSearchSet");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1344,7 +1307,6 @@ void libHDVA_gt_DVaPilotUpdateEnergyTriggerconditions_Init () {
     TriggerEnable(libHDVA_gt_DVaPilotUpdateEnergyTriggerconditions, false);
     TriggerAddEventPlayerEffectUsed(libHDVA_gt_DVaPilotUpdateEnergyTriggerconditions, c_playerAny, "DVaPilotCallMechSetCooldown");
     TriggerAddEventPlayerEffectUsed(libHDVA_gt_DVaPilotUpdateEnergyTriggerconditions, c_playerAny, "DVaPilotWeaponCallMechCooldownReduction");
-    TriggerAddEventPlayerEffectUsed(libHDVA_gt_DVaPilotUpdateEnergyTriggerconditions, c_playerAny, "DVaPilotNanoweaveSuitWeaponCallMechCooldownReduction");
     TriggerAddEventPlayerEffectUsed(libHDVA_gt_DVaPilotUpdateEnergyTriggerconditions, c_playerAny, "DVaPilotBigShotModifyCallMechCooldown");
 }
 
@@ -1688,25 +1650,32 @@ void libHDVA_gt_HeroDVaRemoveweapontargetfromData_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: D.Va - GG, WP - Hero Takedown
+// Trigger: D.Va - Liquid Cooling Cooldown Sync
 //--------------------------------------------------------------------------------------------------
-bool libHDVA_gt_DVaGGWPHeroTakedown_Func (bool testConds, bool runActions) {
+bool libHDVA_gt_DVaLiquidCoolingCooldownSync_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libHDVA_gt_DVaLiquidCoolingCooldownSync_Init () {
+    libHDVA_gt_DVaLiquidCoolingCooldownSync = TriggerCreate("libHDVA_gt_DVaLiquidCoolingCooldownSync_Func");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero - D.Va - Fusion Generator FCT Increment
+//--------------------------------------------------------------------------------------------------
+bool libHDVA_gt_HeroDVaFusionGeneratorFCTIncrement_Func (bool testConds, bool runActions) {
     // Variable Declarations
-    int lv_killingPlayer;
-    unit lv_dVaUnit;
+    int lv_player;
 
     // Automatic Variable Declarations
     // Variable Initialization
-    lv_killingPlayer = libGame_gf_HeroParticipatedInTakedownKillingPlayer();
-    lv_dVaUnit = libGame_gv_players[libGame_gf_HeroParticipatedInTakedownKillingPlayer()].lv_heroUnit;
+    lv_player = UnitGetOwner(EventPlayerEffectUsedUnit(c_effectUnitCaster));
 
     // Conditions
     if (testConds) {
-        if (!((PlayerHasTalent(lv_killingPlayer, "DVaPilotGGWP") == true))) {
-            return false;
-        }
-
-        if (!((libNtve_gf_UnitIsInsideTransport(lv_dVaUnit) == false))) {
+        if (!((libHDVA_gv_heroDVaFusionGeneratorFCTNumbers[lv_player] < CatalogFieldValueGetAsInt(c_gameCatalogBehavior, "DVaDefenseMatrixFusionGeneratorCounterToken", "Max", 0)))) {
             return false;
         }
     }
@@ -1716,16 +1685,108 @@ bool libHDVA_gt_DVaGGWPHeroTakedown_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    UnitCreateEffectUnit(lv_dVaUnit, "DVaPilotGGWPResetCallMechCooldown", lv_dVaUnit);
-    libHDVA_gf_DVaPilotUpdateEnergy(lv_killingPlayer);
+    libHDVA_gv_heroDVaFusionGeneratorFCTNumbers[lv_player] += 1;
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libHDVA_gt_DVaGGWPHeroTakedown_Init () {
-    libHDVA_gt_DVaGGWPHeroTakedown = TriggerCreate("libHDVA_gt_DVaGGWPHeroTakedown_Func");
-    TriggerEnable(libHDVA_gt_DVaGGWPHeroTakedown, false);
-    libGame_gf_HeroParticipatedInTakedown(libHDVA_gt_DVaGGWPHeroTakedown);
+void libHDVA_gt_HeroDVaFusionGeneratorFCTIncrement_Init () {
+    libHDVA_gt_HeroDVaFusionGeneratorFCTIncrement = TriggerCreate("libHDVA_gt_HeroDVaFusionGeneratorFCTIncrement_Func");
+    TriggerEnable(libHDVA_gt_HeroDVaFusionGeneratorFCTIncrement, false);
+    TriggerAddEventPlayerEffectUsed(libHDVA_gt_HeroDVaFusionGeneratorFCTIncrement, c_playerAny, "DVaMechDefenseMatrixFusionGeneratorIncrementCounterToken");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero - D.Va - Fusion Generator FCT Final
+//--------------------------------------------------------------------------------------------------
+bool libHDVA_gt_HeroDVaFusionGeneratorFCTFinal_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = UnitGetOwner(EventPlayerEffectUsedUnit(c_effectUnitCaster));
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    Wait(0.1875, c_timeGame);
+    TextExpressionSetToken("Param/Expression/lib_HDVA_4C7FAA27", "A", FixedToText(libHDVA_gv_heroDVaFusionGeneratorFCTNumbers[lv_player], 0));
+    FloatingCombatElementCreateTextAtUnit(PlayerGroupSingle(lv_player), "FloatingCombatElements/FloatingCombatAmountReadable", "", EventPlayerEffectUsedUnit(c_effectUnitCaster), TextExpressionAssemble("Param/Expression/lib_HDVA_4C7FAA27"), libNtve_gv_FloatingCombatTextAutoRandomSeed);
+    libHDVA_gv_heroDVaFusionGeneratorFCTNumbers[lv_player] = 0;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libHDVA_gt_HeroDVaFusionGeneratorFCTFinal_Init () {
+    libHDVA_gt_HeroDVaFusionGeneratorFCTFinal = TriggerCreate("libHDVA_gt_HeroDVaFusionGeneratorFCTFinal_Func");
+    TriggerEnable(libHDVA_gt_HeroDVaFusionGeneratorFCTFinal, false);
+    TriggerAddEventPlayerEffectUsed(libHDVA_gt_HeroDVaFusionGeneratorFCTFinal, c_playerAny, "DVaMechDefenseMatrixFusionGeneratorRemoveCounterToken");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: D.Va - Ablative Armor Healing Conversion
+//--------------------------------------------------------------------------------------------------
+bool libHDVA_gt_DVaAblativeArmorHealingConversion_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_dVaMech;
+    int lv_dVaPlayer;
+    fixed lv_incomingDamage;
+    fixed lv_damageMod;
+    fixed lv_tokenCount;
+    int lv_duration;
+    int lv_durationIterator;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_dVaMech = EventUnit();
+    lv_dVaPlayer = UnitGetOwner(lv_dVaMech);
+    lv_incomingDamage = EventUnitDamageAttemptedVitals();
+    lv_damageMod = CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "DVaAblativeArmorDamageModDummy", "DamageResponse.ModifyFraction", 0);
+    lv_tokenCount = (lv_incomingDamage * lv_damageMod);
+    lv_duration = FixedToInt(CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "DVaAblativeArmorHealingBuff", "Duration", 0));
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitBehaviorCount(lv_dVaMech, "DVaMechSelfDestructMechDetonationCountdown") == 0))) {
+            return false;
+        }
+
+        if (!((PlayerHasTalent(lv_dVaPlayer, "DVaMechAblativeArmor") == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_durationIterator = lv_duration;
+    libGame_gf_ModifyTokenCount(FixedToInt(lv_tokenCount), "DVaAblativeArmorTokenCounter", lv_dVaMech);
+    UnitCreateEffectUnit(lv_dVaMech, "DVaAblativeArmorHealingBuffSwitch", lv_dVaMech);
+    Wait(1.0, c_timeGame);
+    while ((UnitIsAlive(lv_dVaMech) == true) && (UnitBehaviorCount(lv_dVaMech, "DVaMechSelfDestructMechDetonationCountdown") == 0) && (lv_durationIterator > 0)) {
+        if ((UnitHasBehaviorWithCategoryFlag(lv_dVaMech, c_behaviorCategoryTimeStop) == true)) {
+            while (!((UnitHasBehaviorWithCategoryFlag(lv_dVaMech, c_behaviorCategoryTimeStop) == false))) {
+                Wait(0.0625, c_timeGame);
+            }
+        }
+
+        lv_durationIterator -= 1;
+        Wait(1.0, c_timeGame);
+    }
+    libGame_gf_ModifyTokenCount(FixedToInt((-1.0 * FixedToInt(lv_tokenCount))), "DVaAblativeArmorTokenCounter", lv_dVaMech);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libHDVA_gt_DVaAblativeArmorHealingConversion_Init () {
+    libHDVA_gt_DVaAblativeArmorHealingConversion = TriggerCreate("libHDVA_gt_DVaAblativeArmorHealingConversion_Func");
+    TriggerEnable(libHDVA_gt_DVaAblativeArmorHealingConversion, false);
+    TriggerAddDamageEvent(libHDVA_gt_DVaAblativeArmorHealingConversion, null, "HeroDVaMech", c_unitDamageTypeAbility, c_unitDamageNonFatal, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1766,10 +1827,10 @@ void libHDVA_gt_DVaTalentBehaviorAcquiredWhileCargoForwarding_Init () {
     TriggerAddEventUnitBehaviorChange(libHDVA_gt_DVaTalentBehaviorAcquiredWhileCargoForwarding, null, "Ultimate1Unlocked", c_unitBehaviorChangeCreate);
     TriggerAddEventUnitBehaviorChange(libHDVA_gt_DVaTalentBehaviorAcquiredWhileCargoForwarding, null, "Ultimate2Unlocked", c_unitBehaviorChangeCreate);
     TriggerAddEventUnitBehaviorChange(libHDVA_gt_DVaTalentBehaviorAcquiredWhileCargoForwarding, null, "DVaMechProMovesDamageResponseCarry", c_unitBehaviorChangeCreate);
-    TriggerAddEventUnitBehaviorChange(libHDVA_gt_DVaTalentBehaviorAcquiredWhileCargoForwarding, null, "DVaBoostersCrashCourseQuestToken", c_unitBehaviorChangeCreate);
     TriggerAddEventUnitBehaviorChange(libHDVA_gt_DVaTalentBehaviorAcquiredWhileCargoForwarding, null, "DVaMechEmergencyShieldingFatalResponseCarry", c_unitBehaviorChangeCreate);
     TriggerAddEventUnitBehaviorChange(libHDVA_gt_DVaTalentBehaviorAcquiredWhileCargoForwarding, null, "DVaMechAblativeArmorDamageResponseCarry", c_unitBehaviorChangeCreate);
-    TriggerAddEventUnitBehaviorChange(libHDVA_gt_DVaTalentBehaviorAcquiredWhileCargoForwarding, null, "DVaMechExpensivePlatingCarry", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libHDVA_gt_DVaTalentBehaviorAcquiredWhileCargoForwarding, null, "DVaFullMetalCarry", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libHDVA_gt_DVaTalentBehaviorAcquiredWhileCargoForwarding, null, "DVaLiquidCoolingAbility", c_unitBehaviorChangeCreate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1926,15 +1987,14 @@ void libHDVA_InitTriggers () {
     libHDVA_gt_DVaAbathurClonedMechEnds_Init();
     libHDVA_gt_HeroDVaPilotEjectedMoveCommandForwarding_Init();
     libHDVA_gt_HeroDVaMechDiesviaFatalDamage_Init();
+    libHDVA_gt_HeroDVaMicroMissilesActive_Init();
     libHDVA_gt_DVaBoostersEnemyHallofStorms_Init();
     libHDVA_gt_DVaDefenseMatrixTracker_Init();
     libHDVA_gt_DVaDefenseMatrixTrackerReportandReset_Init();
     libHDVA_gt_DVaDamageTakenSelfDestructCharge_Init();
     libHDVA_gt_DVaCallMech_Init();
-    libHDVA_gt_DVaCallMechMEKAfall_Init();
     libHDVA_gt_DVaCallMechInterrupted_Init();
     libHDVA_gt_DVaCallMechMEKAfallCompleted_Init();
-    libHDVA_gt_DVaCallMechMEKAfallCompletedMapMechanicTransfer_Init();
     libHDVA_gt_DVaPilotUpdateEnergyTriggerconditions_Init();
     libHDVA_gt_DVaPilotUpdateEnergyMechSelfDestructing_Init();
     libHDVA_gt_HeroDVaHeroWeaponForceAcquireTargetTaunt_Init();
@@ -1943,7 +2003,10 @@ void libHDVA_InitTriggers () {
     libHDVA_gt_HeroDVaHoldFireControllerHoldFireApply_Init();
     libHDVA_gt_HeroDVaHoldFireControllerHoldFireRemove_Init();
     libHDVA_gt_HeroDVaRemoveweapontargetfromData_Init();
-    libHDVA_gt_DVaGGWPHeroTakedown_Init();
+    libHDVA_gt_DVaLiquidCoolingCooldownSync_Init();
+    libHDVA_gt_HeroDVaFusionGeneratorFCTIncrement_Init();
+    libHDVA_gt_HeroDVaFusionGeneratorFCTFinal_Init();
+    libHDVA_gt_DVaAblativeArmorHealingConversion_Init();
     libHDVA_gt_DVaTalentBehaviorAcquiredWhileCargoForwarding_Init();
     libHDVA_gt_HeroDVaActorSoundSwaps_Init();
     libHDVA_gt_DEBUGRefreshCooldownscdr_Init();

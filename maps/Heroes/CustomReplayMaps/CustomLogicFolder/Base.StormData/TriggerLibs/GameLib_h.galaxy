@@ -1698,8 +1698,6 @@ bool libGame_gf_MountEnabled (unit lp_hero);
 void libGame_gf_TurnOnOffTownDestructionRemovesCoreInvulnerable (bool lp_onOff);
 void libGame_gf_AwardXPForNPCKill (unit lp_killedUnit, int lp_killedUnitPlayer, int lp_killedUnitClassification, int lp_killingPlayer, fixed lp_killedUnitXPAward);
 void libGame_gf_BuildingDiesCameraShake (fixed lp_delay, string lp_intensity, playergroup lp_playerGroup);
-void libGame_gf_GazloweSalvageProc (int lp_killingPlayer, unit lp_minion);
-void libGame_gf_GazloweReduceReuseRecycleProc (int lp_killingPlayer, unit lp_minion);
 void libGame_gf_BribeProc (int lp_killingPlayer, unit lp_minion);
 void libGame_gf_DiabloBlackSoulstoneProc (int lp_killingPlayer, unit lp_minion);
 void libGame_gf_GenericSeasonedMarksmanProc (int lp_killingPlayer, unit lp_minion);

@@ -808,15 +808,17 @@ bool libHAUR_gt_HeroAurielRayofHeavenAbilityUsed_Func (bool testConds, bool runA
         UnitSetPropertyFixed(lv_auriel, c_unitPropEnergy, 0.0);
     }
     lv_aurielBaseEnergyCap = (UnitGetPropertyFixed(lv_auriel, c_unitPropEnergyMax, c_unitPropCurrent) - (libHAUR_gv_heroAurielRayofHeavenReservoirofHopeHealingPerStack * UnitGetTokenCount(lv_auriel, CatalogFieldValueGet(c_gameCatalogBehavior, "AurielRayOfHeavenReservoirOfHopeQuestToken", "TokenId", c_playerAny))));
-    libGame_gv_HeroSpecificStoredValue1[lv_aurielPlayer] = lv_aurielCurrentEnergy_Raw;
-    libGame_gv_HeroSpecificStoredValue2[lv_aurielPlayer] = lv_aurielBaseEnergyCap;
-    libGame_gv_HeroSpecificStoredValue3[lv_aurielPlayer] = 0;
-    if ((lv_aurielCurrentEnergy_Raw > lv_aurielBaseEnergyCap)) {
-	    libGame_gv_HeroSpecificStoredValue3[lv_aurielPlayer] = (lv_aurielCurrentEnergy_Raw - lv_aurielBaseEnergyCap);
-        // if ((UnitGroupCount(UnitGroupAlliance(lv_aurielPlayer, c_unitAllianceAlly, RegionCircle(EventUnitTargetPoint(), 3.5), libCore_gv_filtersHeroic, libCore_gv_bALMaxPlayersOnATeam), c_unitCountAlive) >= 1)) {
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Reservoir of Hope Bonus: ") + FixedToText((UnitGroupCount(UnitGroupAlliance(lv_aurielPlayer, c_unitAllianceAlly, RegionCircle(EventUnitTargetPoint(), 3.5), libCore_gv_filtersHeroic, libCore_gv_bALMaxPlayersOnATeam), c_unitCountAlive) * (lv_aurielCurrentEnergy_Raw - lv_aurielBaseEnergyCap)), 1)));
-            // libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", lv_aurielPlayer, c_unitAllianceAlly, RegionCircle(EventUnitTargetPoint(), 3.5), libCore_gv_filtersHeroicAllyandnotImmuneToFriendlyAbilitiesorBenign, 0);
-        // }
+    if (UnitGetType(libGame_gv_players[lv_aurielPlayer].lv_heroUnit) == "HeroAuriel") {
+		libGame_gv_HeroSpecificStoredValue1[lv_aurielPlayer] = lv_aurielCurrentEnergy_Raw;
+		libGame_gv_HeroSpecificStoredValue2[lv_aurielPlayer] = lv_aurielBaseEnergyCap;
+		libGame_gv_HeroSpecificStoredValue3[lv_aurielPlayer] = 0;
+		if ((lv_aurielCurrentEnergy_Raw > lv_aurielBaseEnergyCap)) {
+			libGame_gv_HeroSpecificStoredValue3[lv_aurielPlayer] = (lv_aurielCurrentEnergy_Raw - lv_aurielBaseEnergyCap);
+			// if ((UnitGroupCount(UnitGroupAlliance(lv_aurielPlayer, c_unitAllianceAlly, RegionCircle(EventUnitTargetPoint(), 3.5), libCore_gv_filtersHeroic, libCore_gv_bALMaxPlayersOnATeam), c_unitCountAlive) >= 1)) {
+				// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Reservoir of Hope Bonus: ") + FixedToText((UnitGroupCount(UnitGroupAlliance(lv_aurielPlayer, c_unitAllianceAlly, RegionCircle(EventUnitTargetPoint(), 3.5), libCore_gv_filtersHeroic, libCore_gv_bALMaxPlayersOnATeam), c_unitCountAlive) * (lv_aurielCurrentEnergy_Raw - lv_aurielBaseEnergyCap)), 1)));
+				// libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", lv_aurielPlayer, c_unitAllianceAlly, RegionCircle(EventUnitTargetPoint(), 3.5), libCore_gv_filtersHeroicAllyandnotImmuneToFriendlyAbilitiesorBenign, 0);
+			// }
+		}
 	}
     CatalogFieldValueSetFixed(c_gameCatalogEffect, "AurielRayOfHeavenCreateHealer", "RechargeVitalRate", lv_aurielPlayer, lv_aurielCurrentEnergy_Raw);
     if ((PlayerHasTalent(lv_aurielPlayer, "AurielSearingLightRayOfHeavenTalent") == true)) {

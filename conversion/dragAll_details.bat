@@ -19,7 +19,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=CursedHollow
 	GOTO found
-) 
+)
 if %isfound%==false (
     echo looking for hanamura, cursed not found
 	findstr /c:"MapHanamura" "%mpqdirectory%\replay.tracker.events"
@@ -29,7 +29,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=HanamuraTemple
 	GOTO found
-) 
+)
 if %isfound%==false (
     echo looking for warhead, hanamura not found
 	findstr /c:"WarheadJunctionNukeCollected" "%mpqdirectory%\replay.tracker.events"
@@ -39,7 +39,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=WarheadJunction
 	GOTO found
-) 
+)
 if %isfound%==false (
     echo looking for battlefield, warhead not found
 	findstr /c:"Immortal Fight Duration" "%mpqdirectory%\replay.tracker.events"
@@ -49,7 +49,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=BattlefieldofEternity
 	GOTO found
-) 
+)
 if %isfound%==false (
     echo looking for alterac, battlefield not found
 	findstr /c:"MapAlteracPass" "%mpqdirectory%\replay.tracker.events"
@@ -59,7 +59,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=AlteracPass
 	GOTO found
-) 
+)
 if %isfound%==false (
     echo looking for dragonshire, alterac not found
 	findstr /c:"MapDragonShire" "%mpqdirectory%\replay.tracker.events"
@@ -69,7 +69,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=DragonShire
 	GOTO found
-) 
+)
 if %isfound%==false (
     echo looking for towers, dragonshire not found
 	findstr /c:"MapTowersOfDoom" "%mpqdirectory%\replay.tracker.events"
@@ -79,8 +79,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=TowersofDoom
 	GOTO found
-) 
-
+)
 if %isfound%==false (
     echo looking for volskaya, towers not found
 	findstr /c:"MapVolskaya" "%mpqdirectory%\replay.tracker.events"
@@ -90,8 +89,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=VolskayaFoundry
 	GOTO found
-) 
-
+)
 if %isfound%==false (
     echo looking for braxis, volskaya not found
 	findstr /c:"BraxisHoldout" "%mpqdirectory%\replay.tracker.events"
@@ -101,8 +99,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=BraxisHoldout
 	GOTO found
-) 
-
+)
 if %isfound%==false (
     echo looking for shrines, braxis not found
 	findstr /c:"MapShrines" "%mpqdirectory%\replay.tracker.events"
@@ -112,8 +109,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=InfernalShrines
 	GOTO found
-) 
-
+)
 if %isfound%==false (
     echo looking for tomb, shrines not found
 	findstr /c:"MapCrypts" "%mpqdirectory%\replay.tracker.events"
@@ -123,8 +119,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=TomboftheSpiderQueen
 	GOTO found
-) 
-
+)
 if %isfound%==false (
     echo looking for sky temple, tomb not found
 	findstr /c:"ControlPoints" "%mpqdirectory%\replay.tracker.events"
@@ -134,8 +129,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=SkyTemple
 	GOTO found
-) 
-
+)
 if %isfound%==false (
     echo looking for garden, sky temple not found
 	findstr /c:"MapHauntedWoods" "%mpqdirectory%\replay.tracker.events"
@@ -145,7 +139,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=GardenofTerror
 	GOTO found
-) 
+)
 if %isfound%==false (
     echo looking for blackhearts, garden not found
 	findstr /c:"MapBlackheartsBay" "%mpqdirectory%\replay.tracker.events"
@@ -155,7 +149,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=BlackheartsBay
 	GOTO found
-) 
+)
 if %isfound%==false (
     echo looking for lostcavern, blackhearts not found
 	findstr /c:"MapLostCavern" "%mpqdirectory%\replay.tracker.events"
@@ -165,7 +159,7 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=LostCavern
 	GOTO found
-) 
+)
 if %isfound%==false (
     echo looking for hauntedmines, lostcavern not found
 	findstr /c:"MapHauntedMines" "%mpqdirectory%\replay.tracker.events"
@@ -175,7 +169,28 @@ if %ERRORLEVEL%==0 (
     set isfound=true
 	set battleground=HauntedMines
 	GOTO found
-) 
+)
+if %isfound%==false (
+    echo looking for braxisoutpost, hauntedmines not found
+	findstr /c:"BraxisOutpost" "%mpqdirectory%\replay.tracker.events"
+)
+if %ERRORLEVEL%==0 (
+    echo string found braxisoutpost
+    set isfound=true
+	set battleground=BraxisOutpost
+	GOTO found
+)
+if %isfound%==false (
+    echo looking for silvercity, braxisoutpost not found
+	findstr /c:"MapSilverCity" "%mpqdirectory%\replay.tracker.events"
+)
+if %ERRORLEVEL%==0 (
+    echo string found silvercity
+    set isfound=true
+	set battleground=SilverCity
+	GOTO found
+)
+
 
 echo failed to discern battleground, please use the manual converter.
 

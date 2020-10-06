@@ -766,7 +766,7 @@ bool libTrac_gt_HeroTracerHeroWeaponApplyTargetingUnit_Func (bool testConds, boo
         UnitCreateEffectUnit(lv_tracerUnit, "TracerHeroWeaponApplyTargetingBehavior", lv_targetUnit);
         libTrac_gv_heroTracerCurrentAttackTarget[lv_tracerPlayer] = lv_targetUnit;
         UnitBehaviorAdd(lv_tracerUnit, "TracerHeroWeaponCasterTargetFinderDisabler", lv_tracerUnit, 1);
-		if ((libGame_gv_HeroSpecificStoredUnit1[lv_tracerPlayer] != lv_targetUnit)) {
+		if ((libGame_gv_HeroSpecificStoredUnit1[lv_tracerPlayer] != lv_targetUnit) && (UnitGetType(libGame_gv_players[lv_tracerPlayer].lv_heroUnit) == "HeroTracer")) {
             libGame_gv_HeroSpecificStoredUnit1[lv_tracerPlayer] = lv_targetUnit;
             // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Tracer Weapon Target Updated: ") + StringToText(UnitGetType(lv_targetUnit))));
 		}
@@ -859,7 +859,7 @@ bool libTrac_gt_HeroTracerTargetAcquired_Func (bool testConds, bool runActions) 
 
     UnitCreateEffectUnit(lv_tracer, "TracerHeroWeaponCasterTargetApplyDisablerBehavior", lv_tracer);
     libTrac_gv_heroTracerCurrentAttackTarget[lv_tracerPlayer] = lv_unit;
-    if ((libGame_gv_HeroSpecificStoredUnit1[lv_tracerPlayer] != lv_unit)) {
+    if ((libGame_gv_HeroSpecificStoredUnit1[lv_tracerPlayer] != lv_unit) && (UnitGetType(libGame_gv_players[lv_tracerPlayer].lv_heroUnit) == "HeroTracer")) {
         libGame_gv_HeroSpecificStoredUnit1[lv_tracerPlayer] = lv_unit;
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Tracer Weapon Target Updated: ") + StringToText(UnitGetType(lv_unit))));
     }

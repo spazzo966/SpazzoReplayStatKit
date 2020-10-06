@@ -4,10 +4,10 @@ include "TriggerLibs/HeroesLib"
 // Library: DVa
 //--------------------------------------------------------------------------------------------------
 // Constants
-const fixed libHDVA_gv_dVASelfDestructHealthpercentageneededtogenerate1charge = 3.33;
+const fixed libHDVA_gv_dVASelfDestructHealthpercentageneededtogenerate1charge = 4.0;
 const fixed libHDVA_gv_dVaBringItOnChargeRateModifier = 0.3;
 const fixed libHDVA_gv_dVaCallMechDefaultMaxCooldown = 45.0;
-const fixed libHDVA_gv_dVaCallMechExpensivePlatingCooldownChange = 15.0;
+const fixed libHDVA_gv_dVaCallMechFullMetalCooldownChange = 0.0;
 
 // Structures
 struct libHDVA_gs_DVaUI {
@@ -22,11 +22,12 @@ int libHDVA_gv_heroDVaTriggerRegistrationCount;
 libHDVA_gs_DVaUI libHDVA_gv_dVaUI;
 fixed[libCore_gv_bALMaxPlayers + 1] libHDVA_gv_dVaDefenseMatrixTrackedValue;
 fixed[libCore_gv_bALMaxPlayers + 1] libHDVA_gv_dVaDefensiveChargeRemainder;
-fixed libHDVA_gv_dVaCallMechExpensivePlatingHealthModifier;
+fixed libHDVA_gv_dVaCallMechFullMetalHealthModifier;
 unit[libCore_gv_bALMaxPlayers + 1] libHDVA_gv_dVaCallMechMechBeingSummoned;
 fixed libHDVA_gv_dVaCallMechSummonedMechTargetPointOffset_C;
 unit[libCore_gv_bALMaxPlayers + 1] libHDVA_gv_heroDVaCurrentAttackTarget;
 point[libCore_gv_bALMaxPlayers + 1] libHDVA_gv_heroDVaAttackTargetPoint;
+int[libCore_gv_bALMaxPlayers + 1] libHDVA_gv_heroDVaFusionGeneratorFCTNumbers;
 
 // Function Declarations
 void libHDVA_gf_HeroDVaIncrementHeroCountFunction ();
@@ -49,15 +50,14 @@ trigger libHDVA_gt_DVaAbathurCreatesaDVaClone;
 trigger libHDVA_gt_DVaAbathurClonedMechEnds;
 trigger libHDVA_gt_HeroDVaPilotEjectedMoveCommandForwarding;
 trigger libHDVA_gt_HeroDVaMechDiesviaFatalDamage;
+trigger libHDVA_gt_HeroDVaMicroMissilesActive;
 trigger libHDVA_gt_DVaBoostersEnemyHallofStorms;
 trigger libHDVA_gt_DVaDefenseMatrixTracker;
 trigger libHDVA_gt_DVaDefenseMatrixTrackerReportandReset;
 trigger libHDVA_gt_DVaDamageTakenSelfDestructCharge;
 trigger libHDVA_gt_DVaCallMech;
-trigger libHDVA_gt_DVaCallMechMEKAfall;
 trigger libHDVA_gt_DVaCallMechInterrupted;
 trigger libHDVA_gt_DVaCallMechMEKAfallCompleted;
-trigger libHDVA_gt_DVaCallMechMEKAfallCompletedMapMechanicTransfer;
 trigger libHDVA_gt_DVaPilotUpdateEnergyTriggerconditions;
 trigger libHDVA_gt_DVaPilotUpdateEnergyMechSelfDestructing;
 trigger libHDVA_gt_HeroDVaHeroWeaponForceAcquireTargetTaunt;
@@ -66,7 +66,10 @@ trigger libHDVA_gt_HeroDVaTargetAcquired;
 trigger libHDVA_gt_HeroDVaHoldFireControllerHoldFireApply;
 trigger libHDVA_gt_HeroDVaHoldFireControllerHoldFireRemove;
 trigger libHDVA_gt_HeroDVaRemoveweapontargetfromData;
-trigger libHDVA_gt_DVaGGWPHeroTakedown;
+trigger libHDVA_gt_DVaLiquidCoolingCooldownSync;
+trigger libHDVA_gt_HeroDVaFusionGeneratorFCTIncrement;
+trigger libHDVA_gt_HeroDVaFusionGeneratorFCTFinal;
+trigger libHDVA_gt_DVaAblativeArmorHealingConversion;
 trigger libHDVA_gt_DVaTalentBehaviorAcquiredWhileCargoForwarding;
 trigger libHDVA_gt_HeroDVaActorSoundSwaps;
 trigger libHDVA_gt_DEBUGRefreshCooldownscdr;
