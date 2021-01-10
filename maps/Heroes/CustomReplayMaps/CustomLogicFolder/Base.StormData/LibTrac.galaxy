@@ -48,7 +48,6 @@ void libTrac_gf_HeroTracerIncrementHeroCountFunction () {
     // Implementation
     libTrac_gv_heroTracerTriggerRegistrationVariable += 1;
     if ((libTrac_gv_heroTracerTriggerRegistrationVariable == 1)) {
-        TriggerEnable(libTrac_gt_HeroTracerSpawned, true);
         TriggerEnable(libTrac_gt_HeroTracerPulseBombStuckOverlayOn, true);
         TriggerEnable(libTrac_gt_HeroTracerPulseBombStuckOverlayOff, true);
         TriggerEnable(libTrac_gt_HeroTracerCustomKillVO, true);
@@ -106,7 +105,6 @@ void libTrac_gf_HeroTracerDecrementHeroCountFunction () {
         TriggerEnable(libTrac_gt_HeroTracerRecallDebugMode, false);
         TriggerEnable(libTrac_gt_HeroTracerUltimateEvolutionRecall, false);
         TriggerEnable(libTrac_gt_HeroTracerMeleeSetFacing, false);
-        TriggerEnable(libTrac_gt_HeroTracerSpawned, false);
         TriggerEnable(libTrac_gt_HeroTracerCustomKillVO, false);
         TriggerEnable(libTrac_gt_HeroTracerUpdateRecallPointsonRevive, false);
         TriggerEnable(libTrac_gt_HeroTracerClearTargetViaEffect, false);
@@ -225,13 +223,16 @@ bool libTrac_gt_HeroTracerSpawned_Func (bool testConds, bool runActions) {
     }
 
     libGame_gv_players[lv_player].lv_vOHeroHasCustomKillVO = true;
+    if ((libGame_gv_players[lv_player].lv_mountData.lv_mountModel == "MountTracerBikeOWC20")) {
+        libNtve_gf_SendActorMessageToUnit(libGame_gv_players[lv_player].lv_heroUnit, "StatusSet TracerBikeTurnAnim 1");
+    }
+
     return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void libTrac_gt_HeroTracerSpawned_Init () {
     libTrac_gt_HeroTracerSpawned = TriggerCreate("libTrac_gt_HeroTracerSpawned_Func");
-    TriggerEnable(libTrac_gt_HeroTracerSpawned, false);
     libGame_gf_HeroSpawn(libTrac_gt_HeroTracerSpawned);
 }
 

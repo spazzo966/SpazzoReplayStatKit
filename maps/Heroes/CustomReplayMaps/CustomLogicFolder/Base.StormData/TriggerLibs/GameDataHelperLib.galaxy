@@ -5018,6 +5018,7 @@ bool libGDHL_gt_HeroAbathurSymbiote_Func (bool testConds, bool runActions) {
                 }
 
             }
+			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("(GDHL) Abathur Symbiote Cast on: ") + StringToText(UnitGetType(lv_symbioteHost))));
 			libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_abathurPlayer, lv_symbioteHostPlayer, "AbathurSymbioteUptime", lv_symbioteHost, "");
             Wait(0.0625, c_timeGame);
         }
@@ -8968,7 +8969,7 @@ bool libGDHL_gt_HeroChenStaggerGiftOfTheOxTalentDamageModification_Func (bool te
         return true;
     }
 
-    libGDHL_gv_heroChenStaggerDamageModification[lv_player] = 0.6;
+    libGDHL_gv_heroChenStaggerDamageModification[lv_player] = 0.5;
     return true;
 }
 
@@ -19904,6 +19905,7 @@ bool libGDHL_gt_HeroRexxarMishaDies_Func (bool testConds, bool runActions) {
     libGDHL_gv_heroRexxarMishaLastKnownTargetLocation[lv_rexxarPlayer] = null;
     UnitBehaviorAdd(lv_misha, "Dead", lv_misha, 1);
     libGDHL_gf_HeroRexxarMishaFocusOff(lv_rexxarPlayer);
+    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("(GHDL)XP Value from ") + StringToText(UnitGetType(EventUnit())) + StringToText(" ") + FixedToText(libCore_gf_DataXPXPForHero(lv_killingPlayer, EventUnit()), 2)));
     if ((UnitGetType(libGame_gv_players[EventPlayer()].lv_heroUnit) != "HeroAbathur")) {
         lv_rexxarUnit = libGame_gv_players[lv_rexxarPlayer].lv_heroUnit;
 // xp track earmark
@@ -20069,10 +20071,6 @@ bool libGDHL_gt_HeroRexxarMishaTeleport_Func (bool testConds, bool runActions) {
 
     // Conditions
     if (testConds) {
-        if (!(((EventPlayerEffectUsed() == "HearthstoneTeleport") || (libCore_gv_mAPMapStringID == "TowersOfDoom")))) {
-            return false;
-        }
-
         if (!((UnitGetType(libGame_gv_players[lv_player].lv_heroUnit) == "HeroRexxar"))) {
             return false;
         }
@@ -21929,6 +21927,9 @@ bool libGDHL_gt_HeroStitchesGorgeActivate_Func (bool testConds, bool runActions)
         else if ((PlayerSkin(lv_stitchesPlayer) == "StitchesToys18Var5")) {
             libUIUI_gf_FullscreenOverlayAddItemForPlayer(UnitGetOwner(lv_eatenUnit), libUIUI_ge_FullscreenOverlayPriorities_Stasis, "Cutscenes\\GameUI_GorgeToys18Var5Overlay.StormCutscene", EventUnitBehavior());
         }
+        else if (((PlayerSkin(lv_stitchesPlayer) == "StitchesOWC20") || (PlayerSkin(lv_stitchesPlayer) == "StitchesOWC20Var1") || (PlayerSkin(lv_stitchesPlayer) == "StitchesOWC20Var2"))) {
+            libUIUI_gf_FullscreenOverlayAddItemForPlayer(UnitGetOwner(lv_eatenUnit), libUIUI_ge_FullscreenOverlayPriorities_Stasis, "Cutscenes\\GameUI_GorgeOverlayOWC20.StormCutscene", EventUnitBehavior());
+        }
         else if ((PlayerSkin(lv_stitchesPlayer) != "StitchesToys18Var1") && (PlayerSkin(lv_stitchesPlayer) != "StitchesToys18") && (PlayerSkin(lv_stitchesPlayer) != "StitchesToys18Var2") && (PlayerSkin(lv_stitchesPlayer) != "StitchesToys18Var3") && (PlayerSkin(lv_stitchesPlayer) != "StitchesToys18Var4") && (PlayerSkin(lv_stitchesPlayer) != "StitchesToys18Var5")) {
             libUIUI_gf_FullscreenOverlayAddItemForPlayer(UnitGetOwner(lv_eatenUnit), libUIUI_ge_FullscreenOverlayPriorities_Stasis, "Cutscenes\\GameUI_GorgeOverlay.StormCutscene", EventUnitBehavior());
         }
@@ -21985,6 +21986,7 @@ bool libGDHL_gt_HeroStitchesGorgeOff_Func (bool testConds, bool runActions) {
         libUIUI_gf_FullscreenOverlayRemoveItemFromQueueForPlayer(UnitGetOwner(EventUnit()), "Cutscenes\\GameUI_GorgeToys18Var3Overlay.StormCutscene", EventUnitBehavior());
         libUIUI_gf_FullscreenOverlayRemoveItemFromQueueForPlayer(UnitGetOwner(EventUnit()), "Cutscenes\\GameUI_GorgeToys18Var4Overlay.StormCutscene", EventUnitBehavior());
         libUIUI_gf_FullscreenOverlayRemoveItemFromQueueForPlayer(UnitGetOwner(EventUnit()), "Cutscenes\\GameUI_GorgeToys18Var5Overlay.StormCutscene", EventUnitBehavior());
+        libUIUI_gf_FullscreenOverlayRemoveItemFromQueueForPlayer(UnitGetOwner(EventUnit()), "Cutscenes\\GameUI_GorgeOverlayOWC20.StormCutscene", EventUnitBehavior());
     }
 
     if ((UnitGetType(EventUnit()) != "HeroFalstad") && (UnitGetType(EventUnit()) != "HeroFaerieDragon")) {
