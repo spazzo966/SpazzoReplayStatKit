@@ -23038,6 +23038,7 @@ void libGDHL_gt_HeroThrallAncestralWrathChargeCountProc_Init () {
 bool libGDHL_gt_HeroThrallEarthquakeEarthenShieldMasteryShieldApplication_Func (bool testConds, bool runActions) {
     // Variable Declarations
     unit lv_unit;
+    unit lv_thrall;
     fixed lv_maxHealth;
     fixed lv_shieldHealthMod;
     fixed lv_totalShield;
@@ -23045,6 +23046,7 @@ bool libGDHL_gt_HeroThrallEarthquakeEarthenShieldMasteryShieldApplication_Func (
     // Automatic Variable Declarations
     // Variable Initialization
     lv_unit = EventPlayerEffectUsedUnit(c_effectUnitTarget);
+    lv_thrall = EventPlayerEffectUsedUnit(c_effectUnitCaster);
     lv_shieldHealthMod = 0.15;
 
     // Actions
@@ -23054,8 +23056,8 @@ bool libGDHL_gt_HeroThrallEarthquakeEarthenShieldMasteryShieldApplication_Func (
 
     lv_maxHealth = UnitGetPropertyFixed(lv_unit, c_unitPropLifeMax, c_unitPropCurrent);
     lv_totalShield = (lv_maxHealth * lv_shieldHealthMod);
-    CatalogFieldValueSetFixed(c_gameCatalogBehavior, "ThrallEarthenShield", "DamageResponse.ModifyLimit", UnitGetOwner(lv_unit), lv_totalShield);
-    UnitCreateEffectUnit(EventPlayerEffectUsedUnit(c_effectUnitCaster), "ThrallEarthquakeApplyEarthenShieldsMasteryBuff", lv_unit);
+    CatalogFieldValueSetFixed(c_gameCatalogBehavior, "ThrallEarthenShield", "DamageResponse.ModifyLimit", UnitGetOwner(lv_thrall), lv_totalShield);
+    UnitCreateEffectUnit(lv_thrall, "ThrallEarthquakeApplyEarthenShieldsMasteryBuff", lv_unit);
     return true;
 }
 

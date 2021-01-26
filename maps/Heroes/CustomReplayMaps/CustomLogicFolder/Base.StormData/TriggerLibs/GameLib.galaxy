@@ -13613,7 +13613,7 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
 	}
 	if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMephisto")) {
 		if ((lp_damageEffect == "MephistoSkullMissileDamage")) {
-		    lv_primaryScoreString = "TalentThirteen";
+		    lv_primaryScoreString = "TalentTen";
 			// libGame_gf_TallyHeroSpecificStatShared(lp_leechValueSelf, lp_casterPlayer, "TalentThirteen");
 		}
 	}
@@ -14627,7 +14627,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
 					}
 				}
 				else {
-					lv_primaryScoreString = "Discard";
+					lv_primaryScoreString = "TalentSeven";
 				}
             }
             if ((lp_behavior == "MeiOWSnowBlindBlind") && (UnitTypeTestAttribute(UnitGetType(lp_externalUnit), c_unitAttributeHeroic) == false)) {
@@ -15360,7 +15360,12 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
 		}
 		if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroDeathwing") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "DeathwingDragonflightUnit")) {
 			if ((lp_behavior == "DeathwingElementiumPlatingShield"))  {
-				lv_primaryScoreString = "TalentTwenty";
+                if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
+                    lv_primaryScoreString = "TalentTwenty";
+                }
+                else {
+                    lv_primaryScoreString = "SupportEleven";
+                }
 			}
 			if ((lp_behavior == "DeathwingDraconicMight"))  {
 				lv_primaryScoreString = "TalentSeven";
@@ -15489,10 +15494,10 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
 			if ((lp_behavior == "MephistoLightningNovaStaticBarrierShield"))  {
 				// lv_primaryScoreString = "TalentFour";
                 if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
-                    lv_primaryScoreString = "TalentThirteen";
+                    lv_primaryScoreString = "TalentTen";
                 }
                 else {
-                    lv_primaryScoreString = "TalentTen";
+                    lv_primaryScoreString = "TalentThirteen";
                 }
 			}
 		}
@@ -16184,23 +16189,21 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
 			}
       if ((lp_healEffect == "BrightwingPhaseShiftCreateHealer"))  {
           lv_primaryScoreString = "BaselineThree";
-          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Heal Amount: ") + FixedToText(lp_healedValue, 2)));
-          if ((PlayerHasTalent(lp_casterPlayer, "BrightwingPixieDustSafetyDust") == true) && (UnitHasBehavior2(lp_targetUnit, "BrightwingPixieDustSpellArmorBehavior") == true)) {
-              if (lp_healedValue > (((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_healEffect, "RechargeVitalFraction", lp_casterPlayer)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit))) {
-                  lv_secondaryScoreOverride = (lp_healedValue - (((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_healEffect, "RechargeVitalFraction", lp_casterPlayer)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit)));
-				  lv_quaternaryScoreOverride = 1.0;
-					if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
-						lv_secondaryScoreString = "TalentTwenty";
-						lv_quaternaryScoreString = "AccuracyTwelve";
-					}
-					else {
-						lv_secondaryScoreString = "SupportEleven";
-						lv_quaternaryScoreString = "AccuracyThirteen";
-					}
-                  lv_tempBool = true;
-                  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Safety Dust Bonus: ") + FixedToText(lv_secondaryScoreOverride, 2)));
-              }
-          }
+          // if ((PlayerHasTalent(lp_casterPlayer, "BrightwingPixieDustSafetyDust") == true) && (UnitHasBehavior2(lp_targetUnit, "BrightwingPixieDustSpellArmorBehavior") == true)) {
+              // if (lp_healedValue > (((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_healEffect, "RechargeVitalFraction", lp_casterPlayer)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit))) {
+                  // lv_secondaryScoreOverride = (lp_healedValue - (((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_healEffect, "RechargeVitalFraction", lp_casterPlayer)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit)));
+				  // lv_quaternaryScoreOverride = 1.0;
+					// if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
+						// lv_secondaryScoreString = "TalentTwenty";
+						// lv_quaternaryScoreString = "AccuracyTwelve";
+					// }
+					// else {
+						// lv_secondaryScoreString = "SupportEleven";
+						// lv_quaternaryScoreString = "AccuracyThirteen";
+					// }
+                  // lv_tempBool = true;
+              // }
+          // }
           if ((PlayerHasTalent(lp_casterPlayer, "BrightwingPhaseShiftHyperShift") == true)) {
               if (lv_tempBool == false) {
                   if (lp_healedValue > (((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_healEffect, "RechargeVitalFraction", 0)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit))) {
@@ -16876,6 +16879,9 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
 			}
 		}
 		if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMephisto")) {
+			if ((lp_healEffect == "MephistoSkullMissileHatefulMendingManaRestoration"))  {
+				lv_primaryScoreString = "TalentThirteen";
+			}
 			if ((lp_healEffect == "MephistoLightningNovaFuriousSparkManaRestoration"))  {
 				lv_primaryScoreString = "TalentSeven";
 			}
@@ -16885,6 +16891,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
 			if ((lp_healEffect == "MephistoLordOfHatredHysteriaManaRestoration"))  {
 				lv_primaryScoreString = "TalentTwenty";
 			}
+			
 		}
 		if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMedivh") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMedivhRaven")) {
 			if ((lp_healEffect == "MedivhForceOfWillReabsorptionHeal"))  {
@@ -17359,6 +17366,9 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
                     lv_secondaryScoreString = "DamageToTen";
 				}
 			}
+			if ((lp_healEffect == "LucioHighFiveSelfHealCreateHealer"))  {
+			  lv_primaryScoreString = "TalentTwenty";
+			}
 			if ((lp_healEffect == "LucioCrossfadeHealingBoostHeal"))  {
     		    if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
                   lv_primaryScoreString = "BaselineOne";
@@ -17472,16 +17482,16 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
 		}
 		if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroRexxar")) {
 			if ((lp_healEffect == "RexxarSpiritSwoopTakingFlightRefundMana"))  {
-				lv_primaryScoreString = "TalentSeven";
+				lv_primaryScoreString = "SupportSixteen";
 			}
 			if ((lp_healEffect == "RexxarHungryBearMishaCreateHealer"))  {
-				lv_primaryScoreString = "TalentFour";
+				lv_primaryScoreString = "SupportFourteen";
 			}
 			if ((lp_healEffect == "RexxarMishaBasicAttackRexxarHealingCreateHealer"))  {
-				lv_primaryScoreString = "TalentTwenty";
+				lv_primaryScoreString = "ScoreFourteen";
 			}
 			if ((lp_healEffect == "RexxarMendPetCreateHealer"))  {
-				lv_primaryScoreString = "BaselineOne";
+				lv_primaryScoreString = "SupportThirteen";
 			}
 		}
 		if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroTracer")) {
@@ -17518,7 +17528,10 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
 			}
 			if ((lp_healEffect == "RagnarosEmpowerSulfurasHandofRagnarosRestoreMana"))  {
 				lv_primaryScoreString = "TalentSeven";
-			}		
+			}
+			if ((lp_healEffect == "RagnarosLivingMeteorMoltenPowerTalentProcModifyUnit"))  {
+				lv_primaryScoreString = "TalentSeven";
+			}
     	}
 	    if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZagara")) {
 			if ((lp_healEffect == "ZagaraHunterKillerHydraliskTransfusionCreateHealer"))  {
@@ -17600,14 +17613,18 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
 				lv_primaryScoreString = "BaselineThree";
 			}
 			if ((lp_healEffect == "MeiOWHeatTransferProcHeal"))  {
-				lv_primaryScoreString = "TalentSeven";
-			}
-			if ((lp_healEffect == "MeiOWIcingColdFrontTalentModifyUnit"))  {
 				lv_primaryScoreString = "TalentTen";
 			}
-			if ((lp_healEffect == "MeiOWBackupBatteryPeriodicHealer"))  {
+			if ((lp_healEffect == "MeiSnowBlindHeavyPackManaRestoration"))  {
+				lv_primaryScoreString = "TalentTen";
+			}
+			if ((lp_healEffect == "MeiOWIcingColdFrontTalentModifyUnit"))  {
 				lv_primaryScoreString = "TalentThirteen";
 			}
+			if ((lp_healEffect == "MeiOWBackupBatteryPeriodicHealer"))  {
+				lv_primaryScoreString = "TalentSixteen";
+			}
+			
 		}
 		if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroHogger")) {
 			if ((lp_healEffect == "HoggerHeroWeaponGnollFrenzyModifyRage"))  {
@@ -18476,44 +18493,122 @@ void libGame_gf_HeroSpecificStatTrackerOther (fixed lp_scoreValue, int lp_caster
 
 	if ((lp_inputData == "PhysArmorPositive")) {
         lv_scoreString = "PhysArmorPositive";
+        if (UnitGetType(lp_extraDataUnit) == "RexxarMisha") {
+          lv_scoreString = "BaselineOne";
+          if (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur") {
+            lv_scoreString = "Discard";
+          }
+        }
 	}
 	if ((lp_inputData == "PhysArmorNegative")) {
         lv_scoreString = "PhysArmorNegative";
+        if (UnitGetType(lp_extraDataUnit) == "RexxarMisha") {
+          lv_scoreString = "BaselineTwo";
+          if (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur") {
+            lv_scoreString = "Discard";
+          }
+        }
 	}
 	if ((lp_inputData == "PhysArmorFallback")) {
         lv_scoreString = "PhysArmorFallback";
+        if (UnitGetType(lp_extraDataUnit) == "RexxarMisha") {
+          lv_scoreString = "BaselineThree";
+          if (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur") {
+            lv_scoreString = "Discard";
+          }
+        }
 	}
 	if ((lp_inputData == "SpellArmorPositive")) {
         lv_scoreString = "SpellArmorPositive";
+        if (UnitGetType(lp_extraDataUnit) == "RexxarMisha") {
+          lv_scoreString = "TalentOne";
+          if (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur") {
+            lv_scoreString = "Discard";
+          }
+        }
 	}
 	if ((lp_inputData == "SpellArmorNegative")) {
         lv_scoreString = "SpellArmorNegative";
+        if (UnitGetType(lp_extraDataUnit) == "RexxarMisha") {
+          lv_scoreString = "TalentFour";
+          if (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur") {
+            lv_scoreString = "Discard";
+          }
+        }
 	}
 	if ((lp_inputData == "SpellArmorFallback")) {
         lv_scoreString = "SpellArmorFallback";
+        if (UnitGetType(lp_extraDataUnit) == "RexxarMisha") {
+          lv_scoreString = "TalentSeven";
+          if (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur") {
+            lv_scoreString = "Discard";
+          }
+        }
 	}
-	if ((lp_inputData == "HealTaken")) {
-        lv_scoreString = "HealTaken";
-	}
+  if ((lp_inputData == "HealTaken")) {
+    lv_scoreString = "HealTaken";
+      if ((UnitGetType(lp_extraDataUnit) == "RexxarMisha")) {
+        if ((lp_casterPlayer != StringToInt(lp_extraDataString))) {
+          lv_scoreString = "TalentTen";
+        }
+        else {
+          lv_scoreString = "Discard";
+        }
+        if (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur") {
+          lv_scoreString = "Discard";
+        }
+    }
+  }
 	if ((lp_inputData == "ShieldsDamaged")) {
         lv_scoreString = "ShieldsDamaged";
+	    	// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Shields prevented ") + FixedToText(lv_scoreValue, 3) + StringToText(" to ") + StringToText(UnitGetType(lp_extraDataUnit)) + StringToText(" for ") + StringToText(UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit))));
+    if (UnitGetType(lp_extraDataUnit) == "RexxarMisha") {
+          lv_scoreString = "TalentThirteen";
+          if (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur") {
+            lv_scoreString = "Discard";
+          }
+        }
 	}
 	if ((lp_inputData == "BlindsPrevented")) {
         lv_scoreString = "BlindsPrevented";
+        if (UnitGetType(lp_extraDataUnit) == "RexxarMisha") {
+          lv_scoreString = "TalentSixteen";
+          if (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur") {
+            lv_scoreString = "Discard";
+          }
+        }
 	}
 	if ((lp_inputData == "LeechTaken")) {
         lv_scoreString = "LeechTaken";
+        if (UnitGetType(lp_extraDataUnit) == "RexxarMisha") {
+          lv_scoreString = "TalentTwenty";
+          if (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur") {
+            lv_scoreString = "Discard";
+          }
+        }
 	}
 	if ((lp_inputData == "PhysDmgTaken")) {
         lv_scoreString = "PhysDmgTaken";
+        if (UnitGetType(lp_extraDataUnit) == "RexxarMisha") {
+          lv_scoreString = "SupportEleven";
+          if (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur") {
+            lv_scoreString = "Discard";
+          }
+        }
 	}
 	if ((lp_inputData == "SpellDmgTaken")) {
         lv_scoreString = "SpellDmgTaken";
+        if (UnitGetType(lp_extraDataUnit) == "RexxarMisha") {
+          lv_scoreString = "SupportTwelve";
+          if (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur") {
+            lv_scoreString = "Discard";
+          }
+        }
   }
   if ((lp_inputData == "MishaDeath")) {
-    lv_scoreString = "SupportFifteen";
+    lv_scoreString = "ScoreFifteen";
     lv_scoreValue = libCore_gf_DataXPXPForHero(lp_targetPlayer, lp_extraDataUnit);
-    lv_secondaryScoreString = "SupportSixteen";
+    lv_secondaryScoreString = "ScoreSixteen";
     lv_secondaryScoreValue = 1.0;
 	// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Misha's Death was worth: ") + FixedToText(lv_scoreValue, 2) + StringToText(" xp")));
   }
@@ -18631,6 +18726,17 @@ void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterP
 		libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportSixteen += lp_scoreValue;
 		lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportSixteen;
 		libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(lv_scoreValue)), libCore_gv_playerGroupFromPlayer[libCore_gv_oBSERVER_ObserverUIPlayer]);
+		// libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(1)), libCore_gv_playerGroupFromPlayer[1]);
+		// libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(2)), libCore_gv_playerGroupFromPlayer[2]);
+		// libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(3)), libCore_gv_playerGroupFromPlayer[3]);
+		// libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(4)), libCore_gv_playerGroupFromPlayer[4]);
+		// libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(5)), libCore_gv_playerGroupFromPlayer[5]);
+		// libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(6)), libCore_gv_playerGroupFromPlayer[6]);
+		// libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(7)), libCore_gv_playerGroupFromPlayer[7]);
+		// libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(8)), libCore_gv_playerGroupFromPlayer[8]);
+		// libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(9)), libCore_gv_playerGroupFromPlayer[9]);
+		// libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(10)), libCore_gv_playerGroupFromPlayer[10]);
+		// libGame_gf_GetPlayerNumberFromRosterSlot(1) = player 1(obs view)
 	}
     else if ((lp_scoreString == "ScoreOne")) {
 	    lv_scoreToIncrease = "TeamWinsMale";
@@ -18912,6 +19018,11 @@ void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterP
 		libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreArmorFallback += lp_scoreValue;
 		lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreArmorFallback;
 	}
+	else if ((lp_scoreString == "PhysicalDamage") || (lp_scoreString == "SpellDamageToNonHeroes")) {
+		lv_scoreToIncrease = "PhysicalDamage";
+		libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scorePhysicalDamage += lp_scoreValue;
+		lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scorePhysicalDamage;
+	}
     else if ((lp_scoreString == "HealingFountainHealing")) {
 	    lv_scoreToIncrease = "TeamWinsStarCraft";
 		libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreFountainHealing += lp_scoreValue;
@@ -18927,30 +19038,25 @@ void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterP
 		libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreBaseHealing += lp_scoreValue;
 		lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreBaseHealing;
 	}
-    else if ((lp_scoreString == "PhysicalDamage") || (lp_scoreString == "SpellDamageToNonHeroes")) {
-	    lv_scoreToIncrease = "PhysicalDamage";
-		libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scorePhysicalDamage += lp_scoreValue;
-		lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scorePhysicalDamage;
-	}
-    else if ((lp_scoreString == "SpellDamage") || (lp_scoreString == "TimeSpentUninjured")) {
-	    lv_scoreToIncrease = "SpellDamage";
-		libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreSpellDamage += lp_scoreValue;
-		lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreSpellDamage;
-	}
-    else if ((lp_scoreString == "DeathXP")) {
-	    lv_scoreToIncrease = "EndOfMatchAwardHighestKillStreakBoolean";
+	else if ((lp_scoreString == "DeathXP")) {
+		lv_scoreToIncrease = "EndOfMatchAwardHighestKillStreakBoolean";
 		libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDeathXP += lp_scoreValue;
 		lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDeathXP;
 	}
-    else if ((lp_scoreString == "GlobeXP")) {
-	    lv_scoreToIncrease = "EndOfMatchAwardMostSeedsCollectedBoolean";
+	else if ((lp_scoreString == "GlobeXP")) {
+		lv_scoreToIncrease = "EndOfMatchAwardMostSeedsCollectedBoolean";
 		libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreGlobeXP += lp_scoreValue;
 		lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreGlobeXP;
 	}
-    else if ((lp_scoreString == "MinionLastHitXP")) {
-	    lv_scoreToIncrease = "TeamMercCampCaptures";
+	else if ((lp_scoreString == "MinionLastHitXP")) {
+		lv_scoreToIncrease = "TeamMercCampCaptures";
 		libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreLastHitXP += lp_scoreValue;
 		lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreLastHitXP;
+	}
+	else if ((lp_scoreString == "SpellDamage") || (lp_scoreString == "TimeSpentUninjured")) {
+		lv_scoreToIncrease = "SpellDamage";
+		libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreSpellDamage += lp_scoreValue;
+		lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreSpellDamage;
 	}
     else if ((lp_scoreString == "ScoreVisible")) {
 	    lv_scoreToIncrease = "TeamTownKills";
@@ -19034,10 +19140,10 @@ void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterP
 		    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Score Value(") + StringToText(lv_scoreToIncrease) + StringToText(")") + IntToText(PlayerScoreValueGetAsInt(lp_casterPlayer, lv_scoreToIncrease))));
 		}
 	}
-	if ((PlayerScoreValueGetAsInt(lp_casterPlayer, lv_scoreToIncrease) != FixedToInt(lv_scoreValue)) && (lv_scorevalueIsInteger == false)) {
+	if ((PlayerScoreValueGetAsInt(lp_casterPlayer, lv_scoreToIncrease) != FixedToInt(lv_scoreValue)) && (lv_scorevalueIsInteger == false) && !((lv_scoreToIncrease == "EndOfMatchAwardBooleanValue") || (lv_scoreToIncrease == "BaseScoreValue") || (lv_scoreToIncrease == "StatScoreValue"))) {
 		UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("BAD SCORE! ") + StringToText(lv_scoreToIncrease) + StringToText(" Player: ") + IntToText(lp_casterPlayer) + StringToText(" Roster: ") + IntToText(libGame_gv_players[lp_casterPlayer].lv_rosterSlot) + StringToText(" Value: ") + IntToText(FixedToInt(lv_scoreValue))));
 	}
-	if ((PlayerScoreValueGetAsInt(lp_casterPlayer, lv_scoreToIncrease) != lv_integerScoreValue) && (lv_scorevalueIsInteger == true)) {
+	if ((PlayerScoreValueGetAsInt(lp_casterPlayer, lv_scoreToIncrease) != lv_integerScoreValue) && (lv_scorevalueIsInteger == true) && !((lv_scoreToIncrease == "EndOfMatchAwardBooleanValue") || (lv_scoreToIncrease != "BaseScoreValue") || (lv_scoreToIncrease == "StatScoreValue"))) {
 		UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("BAD SCORE! ") + StringToText(lv_scoreToIncrease) + StringToText(" Player: ") + IntToText(lp_casterPlayer) + StringToText(" Roster: ") + IntToText(libGame_gv_players[lp_casterPlayer].lv_rosterSlot) + StringToText(" Value: ") + IntToText(lv_integerScoreValue)));
 	}
 }
@@ -19775,27 +19881,44 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_primaryScoreString = "Discard";
         if ((libGame_gf_TeamNumberOfPlayer(lv_casterPlayer) == libGame_gv_teamOrderIndex_C)) {
             libGame_gf_TeamDamageTracker(lp_damageEffect, lp_damageValue, lp_targetUnit, lp_casterUnit, lv_targetPlayer, libCore_gv_cOMPUTER_TeamOrder);
+			libGame_gf_MercCampAddToScoreForTeamPlayer(lp_damageEffect, lp_casterUnit, lv_casterPlayer, libCore_gv_cOMPUTER_TeamOrder, lp_targetUnit, libCore_gv_mAPMapStringID, lp_damageValue);
         }
         if ((libGame_gf_TeamNumberOfPlayer(lv_casterPlayer) == libGame_gv_teamChaosIndex_C)) {
             libGame_gf_TeamDamageTracker(lp_damageEffect, lp_damageValue, lp_targetUnit, lp_casterUnit, lv_targetPlayer, libCore_gv_cOMPUTER_TeamChaos);
+			libGame_gf_MercCampAddToScoreForTeamPlayer(lp_damageEffect, lp_casterUnit, lv_casterPlayer, libCore_gv_cOMPUTER_TeamChaos, lp_targetUnit, libCore_gv_mAPMapStringID, lp_damageValue);
         }
     }
     if ((lp_damageEffect == "VehicleDragonKnightAttackDamage")) {
         lv_primaryScoreString = "Discard";
         if ((libGame_gf_TeamNumberOfPlayer(lv_casterPlayer) == libGame_gv_teamOrderIndex_C)) {
             libGame_gf_TeamDamageTracker(lp_damageEffect, lp_damageValue, lp_targetUnit, lp_casterUnit, lv_targetPlayer, libCore_gv_cOMPUTER_TeamOrder);
+			libGame_gf_MercCampAddToScoreForTeamPlayer(lp_damageEffect, lp_casterUnit, lv_casterPlayer, libCore_gv_cOMPUTER_TeamOrder, lp_targetUnit, libCore_gv_mAPMapStringID, lp_damageValue);
         }
         if ((libGame_gf_TeamNumberOfPlayer(lv_casterPlayer) == libGame_gv_teamChaosIndex_C)) {
             libGame_gf_TeamDamageTracker(lp_damageEffect, lp_damageValue, lp_targetUnit, lp_casterUnit, lv_targetPlayer, libCore_gv_cOMPUTER_TeamChaos);
+			libGame_gf_MercCampAddToScoreForTeamPlayer(lp_damageEffect, lp_casterUnit, lv_casterPlayer, libCore_gv_cOMPUTER_TeamChaos, lp_targetUnit, libCore_gv_mAPMapStringID, lp_damageValue);
         }
     }
     if ((lp_damageEffect == "VehicleDragonKnightBullRushDamage")) {
         lv_primaryScoreString = "Discard";
         if ((libGame_gf_TeamNumberOfPlayer(lv_casterPlayer) == libGame_gv_teamOrderIndex_C)) {
             libGame_gf_TeamDamageTracker(lp_damageEffect, lp_damageValue, lp_targetUnit, lp_casterUnit, lv_targetPlayer, libCore_gv_cOMPUTER_TeamOrder);
+			libGame_gf_MercCampAddToScoreForTeamPlayer(lp_damageEffect, lp_casterUnit, lv_casterPlayer, libCore_gv_cOMPUTER_TeamOrder, lp_targetUnit, libCore_gv_mAPMapStringID, lp_damageValue);
         }
         if ((libGame_gf_TeamNumberOfPlayer(lv_casterPlayer) == libGame_gv_teamChaosIndex_C)) {
             libGame_gf_TeamDamageTracker(lp_damageEffect, lp_damageValue, lp_targetUnit, lp_casterUnit, lv_targetPlayer, libCore_gv_cOMPUTER_TeamChaos);
+			libGame_gf_MercCampAddToScoreForTeamPlayer(lp_damageEffect, lp_casterUnit, lv_casterPlayer, libCore_gv_cOMPUTER_TeamChaos, lp_targetUnit, libCore_gv_mAPMapStringID, lp_damageValue);
+        }
+    }
+    if ((lp_damageEffect == "VehicleDragonDragonFireBreathNapalmDamage"))  {
+        lv_primaryScoreString = "Discard";
+        if ((libGame_gf_TeamNumberOfPlayer(lv_casterPlayer) == libGame_gv_teamOrderIndex_C)) {
+            libGame_gf_TeamDamageTracker(lp_damageEffect, lp_damageValue, lp_targetUnit, lp_casterUnit, lv_targetPlayer, libCore_gv_cOMPUTER_TeamOrder);
+			libGame_gf_MercCampAddToScoreForTeamPlayer(lp_damageEffect, lp_casterUnit, lv_casterPlayer, libCore_gv_cOMPUTER_TeamOrder, lp_targetUnit, libCore_gv_mAPMapStringID, lp_damageValue);
+        }
+        if ((libGame_gf_TeamNumberOfPlayer(lv_casterPlayer) == libGame_gv_teamChaosIndex_C)) {
+            libGame_gf_TeamDamageTracker(lp_damageEffect, lp_damageValue, lp_targetUnit, lp_casterUnit, lv_targetPlayer, libCore_gv_cOMPUTER_TeamChaos);
+			libGame_gf_MercCampAddToScoreForTeamPlayer(lp_damageEffect, lp_casterUnit, lv_casterPlayer, libCore_gv_cOMPUTER_TeamChaos, lp_targetUnit, libCore_gv_mAPMapStringID, lp_damageValue);
         }
     }
     if ((lp_damageEffect == "VolskayaVehicleSkyLaserKillSpawnedUnit")) {
@@ -19898,15 +20021,6 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         }
     }
     if ((lp_damageEffect == "NukeOuterImpactDamage"))  {
-        lv_primaryScoreString = "Discard";
-        if ((libGame_gf_TeamNumberOfPlayer(lv_casterPlayer) == libGame_gv_teamOrderIndex_C)) {
-            libGame_gf_TeamDamageTracker(lp_damageEffect, lp_damageValue, lp_targetUnit, lp_casterUnit, lv_targetPlayer, libCore_gv_cOMPUTER_TeamOrder);
-        }
-        if ((libGame_gf_TeamNumberOfPlayer(lv_casterPlayer) == libGame_gv_teamChaosIndex_C)) {
-            libGame_gf_TeamDamageTracker(lp_damageEffect, lp_damageValue, lp_targetUnit, lp_casterUnit, lv_targetPlayer, libCore_gv_cOMPUTER_TeamChaos);
-        }
-    }
-    if ((lp_damageEffect == "VehicleDragonDragonFireBreathNapalmDamage"))  {
         lv_primaryScoreString = "Discard";
         if ((libGame_gf_TeamNumberOfPlayer(lv_casterPlayer) == libGame_gv_teamOrderIndex_C)) {
             libGame_gf_TeamDamageTracker(lp_damageEffect, lp_damageValue, lp_targetUnit, lp_casterUnit, lv_targetPlayer, libCore_gv_cOMPUTER_TeamOrder);
@@ -24931,7 +25045,12 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
 			lv_primaryScoreString = "TalentSixteen";
         }
 		if ((lp_damageEffect == "DeathwingConflagrationExplosionDamage")) {
-			lv_primaryScoreString = "TalentTwenty";
+            if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+                lv_primaryScoreString = "TalentTwenty";
+			}
+			else {
+                lv_primaryScoreString = "SupportEleven";
+			}
         }
     }
     if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroChromie")) {
@@ -26001,35 +26120,35 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroKaelthas")) {
         if ((lp_damageEffect == "KaelthasWeaponDamage")) {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+                lv_primaryScoreString = "Discard";
+			}
+			else {
+                lv_primaryScoreString = "Discard";
+			}
+        }
+		if ((lp_damageEffect == "KaelthasFlamestrikeDamage")) {
+            if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
                 lv_primaryScoreString = "ScoreOne";
 			}
 			else {
                 lv_primaryScoreString = "BaselineOne";
 			}
-        }
-		if ((lp_damageEffect == "KaelthasFlamestrikeDamage")) {
+		}
+		if ((lp_damageEffect == "KaelthasLivingBombDoTDamage")) {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
                 lv_primaryScoreString = "ScoreTwo";
 			}
 			else {
                 lv_primaryScoreString = "BaselineTwo";
 			}
-		}
-		if ((lp_damageEffect == "KaelthasLivingBombDoTDamage")) {
-            if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreThree";
-			}
-			else {
-                lv_primaryScoreString = "BaselineThree";
-			}
 			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Living Bomb Effect: ") + StringToText(lp_damageEffect) + StringToText(" Unit: ") + StringToText(UnitGetType(lp_targetUnit))));
 		}
 		if ((lp_damageEffect == "KaelthasLivingBombImpactDamage")) {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreThree";
+                lv_primaryScoreString = "ScoreTwo";
 			}
 			else {
-                lv_primaryScoreString = "BaselineThree";
+                lv_primaryScoreString = "BaselineTwo";
 			}
 			// if ((UnitHasBehavior2(lp_casterUnit, "KaelthasLivingBombTarget") == true)) {
 			    // if ((libGame_gv_HeroSpecificStoredUnit1[lv_casterPlayer] != lp_targetUnit())) {
@@ -26047,25 +26166,31 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
 		}		
 		if ((lp_damageEffect == "KaelthasLivingBombExplosionDamage")) {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreFour";
+                lv_primaryScoreString = "ScoreThree";
 			}
 			else {
-                lv_primaryScoreString = "TalentOne";
+                lv_primaryScoreString = "BaselineThree";
 			}
 			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Living Bomb Effect: ") + StringToText(lp_damageEffect) + StringToText(" Unit: ") + StringToText(UnitGetType(lp_targetUnit))));
 		}
 		if ((lp_damageEffect == "KaelthasFlamestrikeBurnedFleshTalentDamage")) {
-			lv_primaryScoreString = "ScoreFive";
+			lv_primaryScoreString = "ScoreFour";
+			lv_secondaryScoreString = "AccuracySix";
+			lv_secondaryScoreOverride = 1.0;
 		}
 		if ((lp_damageEffect == "KaelthasSunfireEnchantmentDamage")) {
 			lv_primaryScoreString = "ScoreFive";
+			if ((UnitHasBehavior2(lp_casterUnit, "KaelthasVerdantSpheresSunfireEnchantmentAbilityPowerBuff") == true) && (UnitBehaviorDuration(lp_casterUnit, "KaelthasVerdantSpheresSunfireEnchantmentAbilityPowerBuff") >= 9.9375)) {
+				lv_secondaryScoreString = "AccuracySeven";
+				lv_secondaryScoreOverride = 1.0;
+			}
 		}
 		if ((lp_damageEffect == "KaelthasPhoenixMissileDamage")) {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
                 lv_primaryScoreString = "ScoreSix";
 			}
 			else {
-                lv_primaryScoreString = "TalentFour";
+                lv_primaryScoreString = "TalentOne";
 			}
 		}
 		if ((lp_damageEffect == "KaelthasPhoenixWeaponDamage")) {
@@ -26073,7 +26198,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
                 lv_primaryScoreString = "ScoreSix";
 			}
 			else {
-                lv_primaryScoreString = "TalentFour";
+                lv_primaryScoreString = "TalentOne";
 			}
 		}
 		if ((lp_damageEffect == "KaelthasPyroblastDamage")) {
@@ -26081,12 +26206,12 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
                 lv_primaryScoreString = "ScoreSix";
 			}
 			else {
-                lv_primaryScoreString = "TalentFour";
+                lv_primaryScoreString = "TalentOne";
 			}
 		}
 		if ((lp_damageEffect == "KaelthasPyroblastSplashDamage")) {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreSix";
+                lv_primaryScoreString = "ScoreSeven";
 			}
 			else {
                 lv_primaryScoreString = "TalentFour";
@@ -26242,6 +26367,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
 				lv_secondaryScoreString = "AccuracyEleven";
 			}
 		}
+		// KerriganPrimalGraspPsionicPulseExplosion behavior
 		if ((lp_damageEffect == "KerriganWeaponFuryOfTheSwarmDamage")) {
 			lv_primaryScoreString = "ScoreEight";
 		}
@@ -27956,7 +28082,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         }
         if ((lp_damageEffect == "StukovWeightedPustuleDamage")) {
             lv_primaryScoreString = "ScoreFour";
-            if ((UnitHasBehavior2(lp_targetUnit, "StukovWeightedPustuleDoT") == true) && (PlayerHasTalent(lp_casterPlayer, "StukovWeightedPustuleReactiveBallistospores") == true) && (PlayerGetCooldown(lp_casterPlayer, "Abil/StukovWeightedPustuleReactiveBallistospores") > 14.9875)) {
+            if ((UnitHasBehavior2(lp_targetUnit, "StukovWeightedPustuleDoT") == true) && (PlayerHasTalent(lp_casterPlayer, "StukovWeightedPustuleReactiveBallistospores") == true) && (PlayerGetCooldown(lp_casterPlayer, "Abil/StukovWeightedPustuleReactiveBallistospores") > 24.9875)) {
                 lv_secondaryScoreString = "ScoreEight";
             }
         }
@@ -27988,20 +28114,20 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
             }
         }
         if ((lp_damageEffect == "StukovMassiveShoveDamage")) {
-            lv_primaryScoreString = "ScoreEight";
+            lv_primaryScoreString = "ScoreNine";
         }
         if ((lp_damageEffect == "StukovFlailingSwipeDamage")) {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_primaryScoreString = "ScoreEight";
+                lv_primaryScoreString = "ScoreNine";
                 lv_secondaryScoreString = "AccuracyFourteen";
                 lv_secondaryScoreOverride = 1.0;
             }
             else {
-                lv_primaryScoreString = "ScoreNine";
+                lv_primaryScoreString = "ScoreTen";
             }
         }
         if ((lp_damageEffect == "StukovBioKillswitchPoppinPustulesSplashDamage")) {
-            lv_primaryScoreString = "ScoreTen";
+            lv_primaryScoreString = "ScoreEleven";
             lv_secondaryScoreString = "AccuracyNine";
             lv_secondaryScoreOverride = 1.0;
             if (libGame_gv_HeroSpecificStoredValue1[lp_casterPlayer] != GameGetMissionTime()) {
@@ -28011,7 +28137,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
             libGame_gv_HeroSpecificStoredValue1[lp_casterPlayer] = GameGetMissionTime();
         }
         if ((lp_damageEffect == "StukovBioKillSwitchBioExplosionSwitchDamage")) {
-            lv_primaryScoreString = "ScoreEleven";
+            lv_primaryScoreString = "ScoreThirteen";
             lv_secondaryScoreString = "AccuracyTwelve";
             lv_secondaryScoreOverride = 1.0;
         }
@@ -28792,9 +28918,17 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
 		if ((lp_damageEffect == "NecromancerCursedStrikesDamage")) {
             if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
                 lv_primaryScoreString = "ScoreFour";
+                if ((PlayerHasTalent(lv_casterPlayer, "NecromancerTalentGrimScythe"))) {
+                    lv_secondaryScoreString = "TalentSeven";
+                    lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "NecromancerGrimscythe");
+                }
 			}
 			else {
                 lv_primaryScoreString = "ScoreFive";
+                if ((PlayerHasTalent(lv_casterPlayer, "NecromancerTalentGrimScythe"))) {
+                    lv_secondaryScoreString = "TalentTen";
+                    lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "NecromancerGrimscythe");
+                }
 			}
 		}
 		if ((lp_damageEffect == "NecromancerBonePrisonDamage")) {
@@ -29158,7 +29292,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
             // libGame_gv_HeroSpecificStoredUnit1[lv_casterPlayer] = UnitGroupUnit(libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition("ZuljinBerserkerWeaponAttackMissile", "", "", lv_targetPlayer, c_unitAllianceEnemy, RegionCircle(UnitGetPosition(lp_targetUnit), 2.0), UnitFilter((1 << c_targetFilterMissile), 0, 0, 0), 1), 1);
             // libGame_gv_HeroSpecificStoredUnit2[lv_casterPlayer] = UnitGroupUnit(libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition("ZuljinWeaponAttackMissile", "", "", lv_targetPlayer, c_unitAllianceEnemy, RegionCircle(UnitGetPosition(lp_targetUnit), 2.0), UnitFilter((1 << c_targetFilterMissile), 0, 0, 0), 1), 1);
             // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Target Unit 1: ") + StringToText(UnitGetType(libGame_gv_HeroSpecificStoredUnit1[lv_casterPlayer])) + StringToText(" Target Unit 2: ") + StringToText(UnitGetType(libGame_gv_HeroSpecificStoredUnit2[lv_casterPlayer]))));
-            if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && (UnitHasBehaviorWithCategoryFlag(lp_casterUnit, c_behaviorCategoryDebuffBlind) == false) && (UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategoryEvasion) == false) && (lp_damageValue > 0.1)) {
+            if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && (UnitHasBehaviorWithCategoryFlag(lp_casterUnit, c_behaviorCategoryDebuffBlind) == false) && (UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategoryEvasion) == false) && (lp_damageValue != 0.0)) {
                 lv_secondaryScoreOverride = 1.0;
 			    if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 1)) {
                     lv_secondaryScoreString = "HealingToOne";
@@ -29190,10 +29324,10 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
 			    if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 10)) {
                     lv_secondaryScoreString = "HealingToTen";
 				}
-				if ((UnitHasBehavior2(lp_targetUnit, "GenericVehicleBehaviorEmpty") == true) || (UnitHasBehavior2(lp_targetUnit, "GenericVehicleBehaviorOccupied") == true)) {
-                    lv_tertiaryScoreString = "BaselineTwo";
-					lv_tertiaryScoreOverride = 1.0;
-				}
+				// if ((UnitHasBehavior2(lp_targetUnit, "GenericVehicleBehaviorEmpty") == true) || (UnitHasBehavior2(lp_targetUnit, "GenericVehicleBehaviorOccupied") == true)) {
+                    // lv_tertiaryScoreString = "BaselineTwo";
+					// lv_tertiaryScoreOverride = 1.0;
+				// }
 				// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Layout Total: ") + FixedToText((UnitGetTokenCount(lp_casterUnit, "ZuljinYouWantAxeQuestMainToken") * 5.0) + UnitGetTokenCount(lp_casterUnit, "ZuljinYouWantAxeQuestMiniProgressToken"), 0)));
 				// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Galaxy Total: ") + IntToText((PlayerScoreValueGetAsInt(lv_casterPlayer, "VengeancesPerformed") + PlayerScoreValueGetAsInt(lv_casterPlayer, "OutnumberedDeaths") + PlayerScoreValueGetAsInt(lv_casterPlayer, "TeamLevel") + PlayerScoreValueGetAsInt(lv_casterPlayer, "StarcraftDailyEventCompleted") + PlayerScoreValueGetAsInt(lv_casterPlayer, "StarcraftPiecesCollected") + 1))));
 				// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Time: ") + FixedToText(GameGetMissionTime(), 2)));
@@ -29250,7 +29384,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
                     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Zul'jin Missile Owner not found(Two Units)"));
 				}
             }
-            if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && (UnitHasBehaviorWithCategoryFlag(lp_casterUnit, c_behaviorCategoryDebuffBlind) == false) && (UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategoryEvasion) == false) && (lp_damageValue > 0.1)) {
+            if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && (UnitHasBehaviorWithCategoryFlag(lp_casterUnit, c_behaviorCategoryDebuffBlind) == false) && (UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategoryEvasion) == false) && (lp_damageValue != 0.0)) {
                 lv_secondaryScoreOverride = 1.0;
 			    if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 1)) {
                     lv_secondaryScoreString = "HealingToOne";
@@ -29282,10 +29416,10 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
 			    if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 10)) {
                     lv_secondaryScoreString = "HealingToTen";
 				}
-				if ((UnitHasBehavior2(lp_targetUnit, "GenericVehicleBehaviorEmpty") == true) || (UnitHasBehavior2(lp_targetUnit, "GenericVehicleBehaviorOccupied") == true)) {
-                    lv_tertiaryScoreString = "BaselineTwo";
-					lv_tertiaryScoreOverride = 1.0;
-				}
+				// if ((UnitHasBehavior2(lp_targetUnit, "GenericVehicleBehaviorEmpty") == true) || (UnitHasBehavior2(lp_targetUnit, "GenericVehicleBehaviorOccupied") == true)) {
+                    // lv_tertiaryScoreString = "BaselineTwo";
+					// lv_tertiaryScoreOverride = 1.0;
+				// }
 			}
         }
 		if ((lp_damageEffect == "ZuljinGrievousThrowDamage")) {
@@ -29360,10 +29494,10 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
 			    if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 10)) {
                     lv_secondaryScoreString = "HealingToTen";
 				}
-				if ((UnitHasBehavior2(lp_targetUnit, "GenericVehicleBehaviorEmpty") == true) || (UnitHasBehavior2(lp_targetUnit, "GenericVehicleBehaviorOccupied") == true)) {
-                    lv_tertiaryScoreString = "BaselineTwo";
-					lv_tertiaryScoreOverride = 5.0;
-				}
+				// if ((UnitHasBehavior2(lp_targetUnit, "GenericVehicleBehaviorEmpty") == true) || (UnitHasBehavior2(lp_targetUnit, "GenericVehicleBehaviorOccupied") == true)) {
+                    // lv_tertiaryScoreString = "BaselineTwo";
+					// lv_tertiaryScoreOverride = 5.0;
+				// }
 			}
 		}
 		if ((lp_damageEffect == "ZuljinGuillotineBuzzsawDamage")) {
@@ -29381,6 +29515,9 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
 			else {
                 lv_primaryScoreString = "ScoreTwelve";
 			}
+		}
+		if ((lp_damageEffect == "ZuljinHeroWeaponNoMercyTalentPercentDamage")) {
+			lv_primaryScoreString = "ScoreNine";
 		}
 		if ((lp_damageEffect == "ZuljinGrievousThrowMissileSuicide")) {
 			lv_primaryScoreString = "Discard";
@@ -30043,10 +30180,10 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
         lv_assignedScore = "CoreDamage";
     }
     if ((lp_damageEffect == "AlteracBossChargeDamage")) {
-        lv_assignedScore = "CoreDamage";
+        lv_assignedScore = "CallForHelp";
     }
     if ((lp_damageEffect == "AlteracBossWhirlwindDamage")) {
-        lv_assignedScore = "CoreDamage";
+        lv_assignedScore = "CallForHelp";
     }
     if ((lp_damageEffect == "BaseProtectionTowerAttackDamage")) {
         lv_assignedScore = "CoreDamage";
@@ -30117,90 +30254,344 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
 	
     if ((lp_damageEffect == "MercSiegeTrooperLanerWeaponDamage")) {
         lv_assignedScore = "SiegeMercDamage";
-		lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "MercLanerSiegeGiantDamage")) {
         lv_assignedScore = "SiegeMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "TerranHellbatWeaponDamage")) {
         lv_assignedScore = "SiegeMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "MercLanerGoblinSapperDamage")) {
         lv_assignedScore = "SiegeMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "MercLanerGoblinSapperStructureSuicideDamage")) {
         lv_assignedScore = "SiegeMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
+    }
+    if ((lp_damageEffect == "MercLanerGoblinSapperCoreMortarDamage")) {
+        lv_assignedScore = "SiegeMercDamage";
+		if (lp_casterPlayer == libCore_gv_cOMPUTER_TeamOrder) {
+			lv_mercCampCaptureOwner = libGame_gf_GetPlayerNumberFromRosterSlot(1);
+		}
+		else if (lp_casterPlayer == libCore_gv_cOMPUTER_TeamChaos) {
+			lv_mercCampCaptureOwner = libGame_gf_GetPlayerNumberFromRosterSlot(6);
+		}
+		// if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			// lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			// UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			// UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		// }
+		// else {
+			// lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		// }
     }
     if ((lp_damageEffect == "MercLanerGoblinSapperNonStructureSuicideDamage")) {
         lv_assignedScore = "SiegeMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
 	
     if ((lp_damageEffect == "MercSummonerLanerMinionWeaponDamage")) {
         lv_assignedScore = "KnightMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
+		// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(UnitGetType(lp_casterUnit)) + StringToText(" Owner: ") + IntToText(lv_mercCampCaptureOwner) + StringToText(" Summoner Unit Owner: ") + IntToText(libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(UnitGroupUnit(UnitGroup("MercSummonerLaner", UnitGetOwner(lp_casterUnit), RegionCircle(UnitGetPosition(lp_casterUnit), 8.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0), 1))].lv_capturingPlayer)));
     }
     if ((lp_damageEffect == "MercSummonerLanerWeaponDamage")) {
         lv_assignedScore = "KnightMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "MercLanerRangedMageWeaponDamage")) {
         lv_assignedScore = "KnightMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "MercLanerMeleeKnightDamage")) {
         lv_assignedScore = "KnightMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "HenchmanDefenderWeapon")) {
         lv_assignedScore = "KnightMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "TerranGoliathGroundWeaponDamage")) {
         lv_assignedScore = "KnightMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "TerranRavenSeekerMissileInnerDamage")) {
         lv_assignedScore = "KnightMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "TerranRavenSeekerMissileMiddleDamage")) {
         lv_assignedScore = "KnightMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "TerranRavenSeekerMissileOuterDamage")) {
         lv_assignedScore = "KnightMercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
 	
     if ((lp_damageEffect == "BindingRootsImpactDamage")) {
         lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "BindingRootsPeriodicDamage")) {
         lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "GraveGolemMegaStunDamage")) {
         lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "OgreKingLanerWeaponDamage")) {
         lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "MercLanerSwordsmanImpact")) {
         lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "MercenarySwordsmanStrike_Damage")) {
         lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "MountainGiantSnowballInitialImpactDamage")) {
         lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "TerranArchangelLanerRangedDamage")) {
         lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "TerranArchangelDefenderBulletstormVisualMissileRightDamage")) {
         lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "TerranArchangelDefenderBulletstormVisualMissileLeftDamage")) {
         lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "TerranArchangelDefenderMortarDamage")) {
         lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
     if ((lp_damageEffect == "TerranArchangelDefenderBulletstormImpactDamage")) {
         lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
+	
+    if ((lp_damageEffect == "SlimeBossLanerWeaponDamage")) {
+        lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
+    }
+	
     if ((lp_damageEffect == "TempleChampionTornadoDamage")) {
         lv_assignedScore = "BossMercCamp";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer;
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
 	
     if ((lp_damageEffect == "GardenTerrorWeaponAttackDamage")) {
@@ -30226,6 +30617,10 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
 	
     if ((lp_damageEffect == "MapEventCannonDamage")) {
         lv_assignedScore = "ObjectiveDamage";
+		if (UnitGetType(lp_casterUnit) == "MercWinterCrestHorsemanEntrance") {
+			lv_mercCampCaptureOwner = libMapM_gv_jungleCreepCamps[4].lv_capturingPlayer;
+		}
+		// UnitFromId(245)
     }
 	
     if ((lp_damageEffect == "DragonFireBreathDamage")) {
@@ -30310,6 +30705,18 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
 	
     if ((lp_damageEffect == "LuxoriaTempleStage1WeaponDamage")) {
         lv_assignedScore = "ObjectiveDamage";
+		// UnitFromId(21) = Mid
+		// UnitFromId(25) = Bot
+		// UnitFromId(397) = Top
+            // if (autoD49C0A03_val == Point(124.0, 184.0)) {
+                // lv_nameOfTarget = StringExternal("Param/Value/lib_UIUI_3E1DF626");
+            // }
+            // else if (autoD49C0A03_val == Point(124.0, 127.0)) {
+                // lv_nameOfTarget = StringExternal("Param/Value/lib_UIUI_5799501A");
+            // }
+            // else if (autoD49C0A03_val == Point(124.0, 42.0)) {
+                // lv_nameOfTarget = StringExternal("Param/Value/lib_UIUI_696AB2FD");
+            // }
     }
     if ((lp_damageEffect == "LuxoriaTempleStage2WeaponDamage")) {
         lv_assignedScore = "ObjectiveDamage";
@@ -30320,7 +30727,15 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
     }
 	
     if ((lp_damageEffect == "OverwatchTurretWeaponDamagePlayer"))  {
-        lv_assignedScore = "ObjectiveDamage";
+        lv_assignedScore = "MercDamage";
+		if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+			lv_mercCampCaptureOwner = UnitGetOwner(lp_casterUnit);
+			UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			UnitGroupAdd(libGame_gv_ownedMercenaries[lv_mercCampCaptureOwner], lp_casterUnit);
+		}
+		else {
+			lv_mercCampCaptureOwner = libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer);
+		}
     }
 	
     if ((lp_damageEffect == "VolskayaVehicleSkyLaserKillSpawnedUnit")) {
@@ -30448,7 +30863,100 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
 		// Deaths
     }
 	
-
+	
+	if (lv_mercCampCaptureOwner != lp_casterPlayer) {
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Merc Tracker Info: Effect: ") + StringToText(lp_damageEffect) + StringToText(" against: ") + StringToText(UnitGetType(lp_targetUnit)) + StringToText(" from: ") + StringToText(lv_assignedScore) + StringToText(" for: ") + FixedToText(lv_scoreOverride, 1) + StringToText(" captured by: ") + StringToText(UnitGetType(libGame_gv_players[lv_mercCampCaptureOwner].lv_heroUnit)) + StringToText("(") + IntToText(libGame_gv_players[lv_mercCampCaptureOwner].lv_rosterSlot) + StringToText(")")));
+		if (!((lv_mercCampCaptureOwner >= 1) && (lv_mercCampCaptureOwner <= libCore_gv_bALMaxPlayers))) {
+			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Owner according to libMapM: ") + IntToText(libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lp_casterUnit)].lv_capturingPlayer)));
+			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Owner according to UnitGetMercCampOwner: ") + IntToText(libGame_gf_UnitGetMercCampOwner(lp_casterUnit, lp_casterPlayer))));
+			// if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+				// UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+			// }
+			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Parsed Unit Count: ") + IntToText(UnitGroupCount(libGame_gv_parsedMercenaries, c_unitCountAll))));
+			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Has been parsed: ") + libNtve_gf_ConvertBooleanToText(UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit))));
+			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Unit Type: ") + StringToText(UnitGetType(lp_casterUnit))));
+			// if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit) == false)) {
+				// UnitGroupAdd(libGame_gv_parsedMercenaries, lp_casterUnit);
+				// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Parsed"));
+			// }
+			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Parsed Unit Count(T2): ") + IntToText(UnitGroupCount(libGame_gv_parsedMercenaries, c_unitCountAll))));
+			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Has been parsed(T2): ") + libNtve_gf_ConvertBooleanToText(UnitGroupHasUnit(libGame_gv_parsedMercenaries, lp_casterUnit))));
+		}
+		else {
+		libGame_gf_MercCampAddToScoreForTeamPlayer(lp_damageEffect, lp_casterUnit, lv_mercCampCaptureOwner, lp_casterPlayer, lp_targetUnit, libCore_gv_mAPMapStringID, lv_scoreOverride);
+			// if (lv_assignedScore == "MercDamage") {
+				// if ((lv_mercCampCaptureOwner == 1) || (lv_mercCampCaptureOwner == 6)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 2) || (lv_mercCampCaptureOwner == 7)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 3) || (lv_mercCampCaptureOwner == 8)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 4) || (lv_mercCampCaptureOwner == 9)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 5) || (lv_mercCampCaptureOwner == 10)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+			// }
+			// else if (lv_assignedScore == "BossMercCamp") {
+				// if ((lv_mercCampCaptureOwner == 1) || (lv_mercCampCaptureOwner == 6)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 2) || (lv_mercCampCaptureOwner == 7)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 3) || (lv_mercCampCaptureOwner == 8)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 4) || (lv_mercCampCaptureOwner == 9)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 5) || (lv_mercCampCaptureOwner == 10)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+			// }
+			// else if (lv_assignedScore == "KnightMercDamage") {
+				// if ((lv_mercCampCaptureOwner == 1) || (lv_mercCampCaptureOwner == 6)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 2) || (lv_mercCampCaptureOwner == 7)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 3) || (lv_mercCampCaptureOwner == 8)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 4) || (lv_mercCampCaptureOwner == 9)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 5) || (lv_mercCampCaptureOwner == 10)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+			// }
+			// else if (lv_assignedScore == "SiegeMercDamage") {
+				// if ((lv_mercCampCaptureOwner == 1) || (lv_mercCampCaptureOwner == 6)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 2) || (lv_mercCampCaptureOwner == 7)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 3) || (lv_mercCampCaptureOwner == 8)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 4) || (lv_mercCampCaptureOwner == 9)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+				// else if ((lv_mercCampCaptureOwner == 5) || (lv_mercCampCaptureOwner == 10)) {
+					// PlayerScoreValueSetFromInt(lp_casterPlayer, "asdf", (PlayerScoreValueGetAsInt(lp_casterPlayer, "asdf") + FixedToInt(lv_scoreOverride)));
+				// }
+			// }
+			// else {
+				// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Merc Tracker Info: Effect: ") + StringToText(lp_damageEffect) + StringToText(" against: ") + StringToText(UnitGetType(lp_targetUnit)) + StringToText(" from: ") + StringToText(UnitGetType(lp_casterUnit)) + StringToText(" for: ") + FixedToText(lv_scoreOverride, 1) + StringToText(" captured by: ") + StringToText(UnitGetType(libGame_gv_players[lv_mercCampCaptureOwner].lv_heroUnit)) + StringToText("(") + IntToText(libGame_gv_players[lv_mercCampCaptureOwner].lv_rosterSlot) + StringToText(")")));
+			// }
+		}
+	}
     if ((lv_assignedScore == "Unassigned")) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Team Tracker Info: Effect: ") + StringToText(lp_damageEffect) + StringToText(" against: ") + StringToText(UnitGetType(lp_targetUnit)) + StringToText(" from: ") + StringToText(UnitGetType(lp_casterUnit)) + StringToText(" for: ") + FixedToText(lv_scoreOverride, 1)));
     }
@@ -30458,60 +30966,1460 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
 	else if ((lv_assignedScore == "MercDamage") || (lv_assignedScore == "BossMercCamp") || (lv_assignedScore == "KnightMercDamage") || (lv_assignedScore == "SiegeMercDamage")) { 
         PlayerScoreValueSetFromInt(lp_casterPlayer, "PlaysFemale", (PlayerScoreValueGetAsInt(lp_casterPlayer, "PlaysFemale") + FixedToInt(lv_scoreOverride)));
 	}
-	else if ((lv_assignedScore == "ObjectiveDamage")) {
+	else if ((lv_assignedScore == "FortTowerDamage") || (lv_assignedScore == "KeepTowerDamage")) {
         PlayerScoreValueSetFromInt(lp_casterPlayer, "KilledTreasureGoblin", (PlayerScoreValueGetAsInt(lp_casterPlayer, "KilledTreasureGoblin") + FixedToInt(lv_scoreOverride)));
 	}
+	else if ((lv_assignedScore == "FortDamage") || (lv_assignedScore == "KeepDamage")) {
+        PlayerScoreValueSetFromInt(lp_casterPlayer, "WinsFemale", (PlayerScoreValueGetAsInt(lp_casterPlayer, "WinsFemale") + FixedToInt(lv_scoreOverride)));
+	}
+	else if (lv_assignedScore == "CallForHelp") {
+        PlayerScoreValueSetFromInt(lp_casterPlayer, "EndOfMatchAward0DeathsBoolean", (PlayerScoreValueGetAsInt(lp_casterPlayer, "EndOfMatchAward0DeathsBoolean") + FixedToInt(lv_scoreOverride)));
+	}
+	else if ((lv_assignedScore == "ObjectiveDamage")) {
+        PlayerScoreValueSetFromInt(lp_casterPlayer, "RavenTeamNumberOfTimesCursedTheEnemy", (PlayerScoreValueGetAsInt(lp_casterPlayer, "RavenTeamNumberOfTimesCursedTheEnemy") + FixedToInt(lv_scoreOverride)));
+	}
 
+}
+
+int libGame_gf_UnitGetMercCampOwner (unit lp_unit, int lp_teamPlayer) {
+    int lv_itPlayer;
+	int lv_team;
+	int lv_player;
+    playergroup lv_playersOnTeam;
+	
+	if (lp_teamPlayer == libCore_gv_cOMPUTER_TeamChaos) {
+		lv_team = 2;
+	}
+	else {
+		lv_team = 1;
+	}
+	lv_player = 0;
+	
+    lv_playersOnTeam = libGame_gf_PlayersOnTeamHeroes(lv_team, false);
+    lv_itPlayer = -1;
+    while (true) {
+        	lv_itPlayer = PlayerGroupNextPlayer(lv_playersOnTeam, lv_itPlayer);
+        	if (lv_itPlayer<0) { break; }
+        	if ((UnitGroupHasUnit(libGame_gv_ownedMercenaries[lv_itPlayer], lp_unit) == true)) {
+            lv_player = lv_itPlayer;
+            break;
+        }
+
+    }
+    return lv_player;
+	
+}
+
+void libGame_gf_MercCampAddToScoreForTeamPlayer (string lp_damageEffect, unit lp_mercUnit, int lp_mercUnitOwner, int lp_teamPlayer, unit lp_targetUnit, string lp_battleground, fixed lp_scoreValue) {
+	string lv_score;
+	int lv_playerRosterSlot;
+	
+	lv_score = "";
+	lv_playerRosterSlot = libGame_gv_players[lp_mercUnitOwner].lv_rosterSlot;
+	
+	// WinsSupport										DragonTeamNumberOfDragonCaptures
+	// PlaysWarCraft									MinesTeamSkullsCollected
+	// WinsWarcraft										LessThan4Deaths
+	// PlaysStarCraft									LessThan3TownStructuresLost
+	// WinsStarCraft									LunarNewYearSuccesfulArtifactTurnIns
+	
+	// PlaysDiablo										PachimariMania
+	// WinsDiablo										GenericHeroTalentStackCounter
+	// PlaysOverwatch									PlaysNexus
+	// WinsMale											PlaysOverwatchOrNexus
+	// EndOfMatchAwardMostVengeancesPerformedBoolean	RegenGlobes
+	
+	// EndOfMatchAwardMostDaredevilEscapesBoolean		EndOfMatchAwardMostEscapesBoolean
+	// ExperienceFromTownsDestroyed						EndOfMatchAwardMostXPContributionBoolean
+	// ExperienceFromTakedowns							EndOfMatchAwardMostHeroDamageDoneBoolean
+	// TeamWinsMale										EndOfMatchAwardMostKillsBoolean
+	// EndOfMatchAwardClutchHealerBoolean				EndOfMatchAwardHatTrickBoolean
+	
+
+	if (lp_battleground == "AlteracPass") {
+		if ((lp_damageEffect == "TerranHellbatWeaponDamage")) {
+			if ((UnitGetType(lp_targetUnit) == "WizardMinion") || (UnitGetType(lp_targetUnit) == "FootmanMinion") || (UnitGetType(lp_targetUnit) == "RangedMinion")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "WinsSupport";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "PlaysWarCraft";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "WinsWarcraft";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysStarCraft";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "WinsStarCraft";
+				}
+			}
+			else if (UnitGetType(lp_targetUnit) == "TerranHellbat") {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "DragonTeamNumberOfDragonCaptures";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "MinesTeamSkullsCollected";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "LessThan4Deaths";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "LessThan3TownStructuresLost";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "LunarNewYearSuccesfulArtifactTurnIns";
+				}
+			}
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PlaysDiablo";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "WinsDiablo";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysOverwatch";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "WinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardMostVengeancesPerformedBoolean";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PachimariMania";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "GenericHeroTalentStackCounter";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysNexus";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysOverwatchOrNexus";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "RegenGlobes";
+				}
+			}
+		}
+		else if ((lp_damageEffect == "MountainGiantSnowballInitialImpactDamage") || (lp_damageEffect == "BindingRootsImpactDamage") || (lp_damageEffect == "BindingRootsPeriodicDamage") || (lp_damageEffect == "GraveGolemMegaStunDamage") || (lp_damageEffect == "OgreKingLanerWeaponDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostDaredevilEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "ExperienceFromTownsDestroyed";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "ExperienceFromTakedowns";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "TeamWinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardClutchHealerBoolean";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "EndOfMatchAwardMostXPContributionBoolean";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "EndOfMatchAwardMostHeroDamageDoneBoolean";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "EndOfMatchAwardMostKillsBoolean";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardHatTrickBoolean";
+				}
+			}
+		}
+	}
+	else if (lp_battleground == "Volskaya") {
+		if ((lp_damageEffect == "MercSiegeTrooperLanerWeaponDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "WinsSupport";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "PlaysWarCraft";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "WinsWarcraft";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysStarCraft";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "WinsStarCraft";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "DragonTeamNumberOfDragonCaptures";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "MinesTeamSkullsCollected";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "LessThan4Deaths";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "LessThan3TownStructuresLost";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "LunarNewYearSuccesfulArtifactTurnIns";
+				}
+			}
+		}
+		else if (lp_damageEffect == "OverwatchTurretWeaponDamagePlayer") {
+            if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PlaysDiablo";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "WinsDiablo";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysOverwatch";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "WinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardMostVengeancesPerformedBoolean";
+				}
+			}
+            else {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PachimariMania";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "GenericHeroTalentStackCounter";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysNexus";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysOverwatchOrNexus";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "RegenGlobes";
+				}
+            }
+		}
+		else if (lp_damageEffect == "BioticEmitterCreateHealerLife") {
+			if (lv_playerRosterSlot == UnitGetOwner(lp_targetUnit)) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostDaredevilEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "ExperienceFromTownsDestroyed";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "ExperienceFromTakedowns";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "TeamWinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardClutchHealerBoolean";
+				}
+			}
+			else {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "EndOfMatchAwardMostXPContributionBoolean";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "EndOfMatchAwardMostHeroDamageDoneBoolean";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "EndOfMatchAwardMostKillsBoolean";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardHatTrickBoolean";
+				}
+			}
+		}
+	}
+	else if (lp_battleground == "Hanamura") {
+		if (lp_damageEffect == "OverwatchTurretWeaponDamagePlayer") {
+            if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "WinsSupport";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "PlaysWarCraft";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "WinsWarcraft";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysStarCraft";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "WinsStarCraft";
+				}
+			}
+            else if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeStructure) == true)) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "DragonTeamNumberOfDragonCaptures";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "MinesTeamSkullsCollected";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "LessThan4Deaths";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "LessThan3TownStructuresLost";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "LunarNewYearSuccesfulArtifactTurnIns";
+				}
+			}
+            else {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PlaysDiablo";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "WinsDiablo";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysOverwatch";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "WinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardMostVengeancesPerformedBoolean";
+				}
+            }
+		}
+		if ((lp_damageEffect == "MercLanerSwordsmanImpact") || (lp_damageEffect == "MercenarySwordsmanStrike_Damage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PachimariMania";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "GenericHeroTalentStackCounter";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysNexus";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysOverwatchOrNexus";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "RegenGlobes";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostDaredevilEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "ExperienceFromTownsDestroyed";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "ExperienceFromTakedowns";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "TeamWinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardClutchHealerBoolean";
+				}
+			}
+			else {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "EndOfMatchAwardMostXPContributionBoolean";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "EndOfMatchAwardMostHeroDamageDoneBoolean";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "EndOfMatchAwardMostKillsBoolean";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardHatTrickBoolean";
+				}
+			}
+		}
+	}
+	else if (lp_battleground == "Warhead Junction") {
+		if ((lp_damageEffect == "TerranHellbatWeaponDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "WinsSupport";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "PlaysWarCraft";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "WinsWarcraft";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysStarCraft";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "WinsStarCraft";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "DragonTeamNumberOfDragonCaptures";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "MinesTeamSkullsCollected";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "LessThan4Deaths";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "LessThan3TownStructuresLost";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "LunarNewYearSuccesfulArtifactTurnIns";
+				}
+			}
+		}
+		else if ((lp_damageEffect == "TerranRavenSeekerMissileOuterDamage") || (lp_damageEffect == "TerranRavenSeekerMissileMiddleDamage") || (lp_damageEffect == "TerranGoliathGroundWeaponDamage") || (lp_damageEffect == "TerranRavenSeekerMissileInnerDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PlaysDiablo";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "WinsDiablo";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysOverwatch";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "WinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardMostVengeancesPerformedBoolean";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PachimariMania";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "GenericHeroTalentStackCounter";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysNexus";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysOverwatchOrNexus";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "RegenGlobes";
+				}
+			}
+		}
+		else if ((lp_damageEffect == "SlimeBossLanerWeaponDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostDaredevilEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "ExperienceFromTownsDestroyed";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "ExperienceFromTakedowns";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "TeamWinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardClutchHealerBoolean";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "EndOfMatchAwardMostXPContributionBoolean";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "EndOfMatchAwardMostHeroDamageDoneBoolean";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "EndOfMatchAwardMostKillsBoolean";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardHatTrickBoolean";
+				}
+			}
+		}
+	}
+	else if (lp_battleground == "BraxisHoldout") {
+		if ((lp_damageEffect == "TerranHellbatWeaponDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "WinsSupport";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "PlaysWarCraft";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "WinsWarcraft";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysStarCraft";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "WinsStarCraft";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "DragonTeamNumberOfDragonCaptures";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "MinesTeamSkullsCollected";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "LessThan4Deaths";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "LessThan3TownStructuresLost";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "LunarNewYearSuccesfulArtifactTurnIns";
+				}
+			}
+		}
+		else if ((lp_damageEffect == "TerranRavenSeekerMissileOuterDamage") || (lp_damageEffect == "TerranRavenSeekerMissileMiddleDamage") || (lp_damageEffect == "TerranGoliathGroundWeaponDamage") || (lp_damageEffect == "TerranRavenSeekerMissileInnerDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PlaysDiablo";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "WinsDiablo";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysOverwatch";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "WinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardMostVengeancesPerformedBoolean";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PachimariMania";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "GenericHeroTalentStackCounter";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysNexus";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysOverwatchOrNexus";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "RegenGlobes";
+				}
+			}
+		}
+		else if ((lp_damageEffect == "TerranArchangelLanerRangedDamage") || (lp_damageEffect == "TerranArchangelDefenderBulletstormVisualMissileRightDamage") || (lp_damageEffect == "TerranArchangelDefenderBulletstormVisualMissileLeftDamage") || (lp_damageEffect == "TerranArchangelDefenderMortarDamage") || (lp_damageEffect == "TerranArchangelDefenderBulletstormImpactDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostDaredevilEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "ExperienceFromTownsDestroyed";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "ExperienceFromTakedowns";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "TeamWinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardClutchHealerBoolean";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "EndOfMatchAwardMostXPContributionBoolean";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "EndOfMatchAwardMostHeroDamageDoneBoolean";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "EndOfMatchAwardMostKillsBoolean";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardHatTrickBoolean";
+				}
+			}
+		}
+	}
+	else if (lp_battleground == "TowersOfDoom") {
+		if ((lp_damageEffect == "MercLanerGoblinSapperDamage") || (lp_damageEffect == "MercLanerGoblinSapperNonStructureSuicideDamage")) {
+			if ((UnitGetType(lp_targetUnit) == "WizardMinion") || (UnitGetType(lp_targetUnit) == "FootmanMinion") || (UnitGetType(lp_targetUnit) == "RangedMinion")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "WinsSupport";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "PlaysWarCraft";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "WinsWarcraft";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysStarCraft";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "WinsStarCraft";
+				}
+			}
+			else if (UnitGetType(lp_targetUnit) == "MercGoblinSapperLaner") {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "DragonTeamNumberOfDragonCaptures";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "MinesTeamSkullsCollected";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "LessThan4Deaths";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "LessThan3TownStructuresLost";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "LunarNewYearSuccesfulArtifactTurnIns";
+				}
+			}
+		}
+		else if (lp_damageEffect == "MercLanerGoblinSapperStructureSuicideDamage") {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PlaysDiablo";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "WinsDiablo";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysOverwatch";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "WinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardMostVengeancesPerformedBoolean";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PachimariMania";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "GenericHeroTalentStackCounter";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysNexus";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysOverwatchOrNexus";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "RegenGlobes";
+				}
+			}
+		}
+		else if (lp_damageEffect == "MercLanerGoblinSapperCoreMortarDamage") {
+			if (lp_teamPlayer == 11) {
+				lv_score = "EndOfMatchAwardMostDaredevilEscapesBoolean";
+			}
+			else if (lp_teamPlayer == 12) {
+				lv_score = "EndOfMatchAwardMostDaredevilEscapesBoolean";
+			}
+		}
+		else if (lp_damageEffect == "MapEventCannonDamage") {
+			if (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "EndOfMatchAwardMostXPContributionBoolean";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "EndOfMatchAwardMostHeroDamageDoneBoolean";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "EndOfMatchAwardMostKillsBoolean";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardHatTrickBoolean";
+				}
+			}
+		}
+	}
+	else if ((lp_battleground == "Shrines") || (lp_battleground == "BattlefieldOfEternity")) {
+		if ((lp_damageEffect == "MercSiegeTrooperLanerWeaponDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "WinsSupport";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "PlaysWarCraft";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "WinsWarcraft";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysStarCraft";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "WinsStarCraft";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "DragonTeamNumberOfDragonCaptures";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "MinesTeamSkullsCollected";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "LessThan4Deaths";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "LessThan3TownStructuresLost";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "LunarNewYearSuccesfulArtifactTurnIns";
+				}
+			}
+		}
+		else if ((lp_damageEffect == "MercSummonerLanerWeaponDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PlaysDiablo";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "WinsDiablo";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysOverwatch";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "WinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardMostVengeancesPerformedBoolean";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PachimariMania";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "GenericHeroTalentStackCounter";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysNexus";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysOverwatchOrNexus";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "RegenGlobes";
+				}
+			}
+		}
+		else if ((lp_damageEffect == "MercSummonerLanerMinionWeaponDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostDaredevilEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "ExperienceFromTownsDestroyed";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "ExperienceFromTakedowns";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "TeamWinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardClutchHealerBoolean";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "EndOfMatchAwardMostXPContributionBoolean";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "EndOfMatchAwardMostHeroDamageDoneBoolean";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "EndOfMatchAwardMostKillsBoolean";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardHatTrickBoolean";
+				}
+			}
+		}
+	}
+	else if ((lp_battleground == "Crypts") || (lp_battleground == "ControlPoints") || (lp_battleground == "CursedHollow") || (lp_battleground == "BlackheartsBay")) {
+		if ((lp_damageEffect == "MercLanerSiegeGiantDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "WinsSupport";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "PlaysWarCraft";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "WinsWarcraft";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysStarCraft";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "WinsStarCraft";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "DragonTeamNumberOfDragonCaptures";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "MinesTeamSkullsCollected";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "LessThan4Deaths";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "LessThan3TownStructuresLost";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "LunarNewYearSuccesfulArtifactTurnIns";
+				}
+			}
+		}
+		else if ((lp_damageEffect == "MercLanerMeleeKnightDamage") || (lp_damageEffect == "MercLanerRangedMageWeaponDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PlaysDiablo";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "WinsDiablo";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysOverwatch";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "WinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardMostVengeancesPerformedBoolean";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PachimariMania";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "GenericHeroTalentStackCounter";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysNexus";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysOverwatchOrNexus";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "RegenGlobes";
+				}
+			}
+		}
+		else if ((lp_damageEffect == "TempleChampionTornadoDamage") || (lp_damageEffect == "BindingRootsImpactDamage") || (lp_damageEffect == "BindingRootsPeriodicDamage") || (lp_damageEffect == "GraveGolemMegaStunDamage") || (lp_damageEffect == "OgreKingLanerWeaponDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostDaredevilEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "ExperienceFromTownsDestroyed";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "ExperienceFromTakedowns";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "TeamWinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardClutchHealerBoolean";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "EndOfMatchAwardMostXPContributionBoolean";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "EndOfMatchAwardMostHeroDamageDoneBoolean";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "EndOfMatchAwardMostKillsBoolean";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardHatTrickBoolean";
+				}
+			}
+		}
+	}
+	else if (lp_battleground == "HauntedWoods") {
+		if ((lp_damageEffect == "MercLanerSiegeGiantDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "WinsSupport";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "PlaysWarCraft";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "WinsWarcraft";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysStarCraft";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "WinsStarCraft";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "DragonTeamNumberOfDragonCaptures";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "MinesTeamSkullsCollected";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "LessThan4Deaths";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "LessThan3TownStructuresLost";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "LunarNewYearSuccesfulArtifactTurnIns";
+				}
+			}
+			else {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PlaysDiablo";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "WinsDiablo";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysOverwatch";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "WinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardMostVengeancesPerformedBoolean";
+				}
+			}
+		}
+		else if ((lp_damageEffect == "MercLanerMeleeKnightDamage") || (lp_damageEffect == "MercLanerRangedMageWeaponDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PachimariMania";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "GenericHeroTalentStackCounter";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysNexus";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysOverwatchOrNexus";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "RegenGlobes";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostDaredevilEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "ExperienceFromTownsDestroyed";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "ExperienceFromTakedowns";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "TeamWinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardClutchHealerBoolean";
+				}
+			}
+			else {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "EndOfMatchAwardMostXPContributionBoolean";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "EndOfMatchAwardMostHeroDamageDoneBoolean";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "EndOfMatchAwardMostKillsBoolean";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardHatTrickBoolean";
+				}
+			}
+		}
+	}
+	else if (lp_battleground == "DragonShire") {
+		if ((lp_damageEffect == "MercLanerSiegeGiantDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "WinsSupport";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "PlaysWarCraft";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "WinsWarcraft";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysStarCraft";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "WinsStarCraft";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "DragonTeamNumberOfDragonCaptures";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "MinesTeamSkullsCollected";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "LessThan4Deaths";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "LessThan3TownStructuresLost";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "LunarNewYearSuccesfulArtifactTurnIns";
+				}
+			}
+		}
+		else if ((lp_damageEffect == "MercLanerMeleeKnightDamage") || (lp_damageEffect == "MercLanerRangedMageWeaponDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PlaysDiablo";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "WinsDiablo";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysOverwatch";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "WinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardMostVengeancesPerformedBoolean";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "PachimariMania";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "GenericHeroTalentStackCounter";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "PlaysNexus";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "PlaysOverwatchOrNexus";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "RegenGlobes";
+				}
+			}
+		}
+		else if ((lp_damageEffect == "DragonFireBreathDamage") || (lp_damageEffect == "VehicleDragonKnightAttackDamage") || (lp_damageEffect == "VehicleDragonKnightBullRushDamage") || (lp_damageEffect == "VehicleDragonDragonFireBreathNapalmDamage")) {
+			if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostDaredevilEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "ExperienceFromTownsDestroyed";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "ExperienceFromTakedowns";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "TeamWinsMale";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardClutchHealerBoolean";
+				}
+			}
+			else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+				if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+					lv_score = "EndOfMatchAwardMostEscapesBoolean";
+				}
+				else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+					lv_score = "EndOfMatchAwardMostXPContributionBoolean";
+				}
+				else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+					lv_score = "EndOfMatchAwardMostHeroDamageDoneBoolean";
+				}
+				else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+					lv_score = "EndOfMatchAwardMostKillsBoolean";
+				}
+				else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+					lv_score = "EndOfMatchAwardHatTrickBoolean";
+				}
+			}
+		}
+	}
+	// else {
+	// }
+	
+	// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Merc DMG Tracker: Effect: ") + StringToText(lp_damageEffect) + StringToText(" against: ") + StringToText(UnitGetType(lp_targetUnit)) + StringToText(" from: ") + StringToText(UnitGetType(lp_mercUnit)) + StringToText(" owned by ") + StringToText(UnitGetType(libGame_gv_players[lv_playerRosterSlot].lv_heroUnit)) + StringToText("(") + IntToText(lv_playerRosterSlot) + StringToText(") ") + StringToText(" for: ") + FixedToText(lp_scoreValue, 1) + StringToText("Player,Score,Battleground:") + IntToText(lp_teamPlayer) + StringToText(",") + StringToText(lv_score) + StringToText(",") + StringToText(lp_battleground)));
+    PlayerScoreValueSetFromInt(lp_teamPlayer, lv_score, (PlayerScoreValueGetAsInt(lp_teamPlayer, lv_score) + FixedToInt(lp_scoreValue)));
+
+// ControlPoints = Sky Temple
+// Crypts = Tomb
+// HauntedWoods = Garden
+
+}
+
+bool libGame_gf_UnitIsGateUnit (unit lp_gateUnit) {
+
+	if ((UnitHasBehavior2(lp_gateUnit, "TownGateBehavior") == true)) {
+		return true;
+	}
+	else {
+		if (UnitGetType(lp_gateUnit) == "TownGateL1Horizontal") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL1Vertical") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL1BLUR") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL1BRUL") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL2Horizontal") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL2HorizontalTopVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL2HorizontalBotVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL2Vertical") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL2VerticalLeftVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL2VerticalRightVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL2BLUR") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL2BLURTLVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL2BLURBRVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL2BRUL") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL2BRULBLVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL2BRULTRVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL215BLUR") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL215BLURBRVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL215BLURTLVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL215BRUL") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL215BRULBLVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL215BRULTRVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL3Horizontal") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL3HorizontalBotVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL3HorizontalTopVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL3Vertical") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL3VerticalLeftVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL3VerticalRightVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL3BLUR") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL3BLURTLVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL3BLURBRVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL3BRUL") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL3BRULBLVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL3BRULTRVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL315BRUL") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL315BRULBLVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL315BRULTRVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL315BRULGarden") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL315BLUR") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL315BLURBRVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL315BLURTLVisionBlocked") {
+			return true;
+		}
+		else if (UnitGetType(lp_gateUnit) == "TownGateL315BLURGarden") {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+}
+
+void libGame_gf_MercSummonerLanerManage (int lp_teamPlayer, point lp_point) {
+	unit lv_summoner;
+	unitgroup lv_summonerGroup;
+	unitgroup lv_tempUnitGroup;
+	point lv_summonerKnownPos;
+	unit lv_hound1;
+	unit lv_hound2;
+	int lv_campOwner;
+	bool lv_iterating;
+	int lv_randomInt;
+	
+    lv_summoner = UnitGroupUnit(libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition("MercSummonerLaner", "", "", lp_teamPlayer, c_unitAllianceAlly, RegionCircle(lp_point, 5.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 1), 1);
+	lv_summonerGroup = UnitGroupEmpty();
+	lv_tempUnitGroup = UnitGroupEmpty();
+	lv_summonerKnownPos = UnitGetPosition(lv_summoner);
+	lv_hound1 = null;
+	lv_hound2 = null;
+	lv_campOwner = libMapM_gv_jungleCreepCamps[libMapM_gf_JungleGetMercCampForUnit(lv_summoner)].lv_capturingPlayer;
+	lv_iterating = false;
+	lv_randomInt = FixedToInt(GameGetMissionTime());
+	// why the fuck does using RandomInt cause desyncs?
+
+	if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lv_summoner) == false)) {
+		UnitGroupAdd(libGame_gv_parsedMercenaries, lv_summoner);
+		UnitGroupAdd(libGame_gv_ownedMercenaries[lv_campOwner], lv_summoner);
+		// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Summoner Found, tracking hounds") + StringToText(" Trigger: ") + IntToText(lv_randomInt)));
+		while (UnitIsAlive(lv_summoner) == true) {
+			lv_iterating = true;
+			lv_summonerKnownPos = UnitGetPosition(lv_summoner);
+			lv_tempUnitGroup = libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition("MercSummonerLanerMinion", "", "", lp_teamPlayer, c_unitAllianceAlly, RegionCircle(lv_summonerKnownPos, 10.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 2);
+			if ((lv_hound1 == null) || (UnitIsAlive(lv_hound1) == false)) {
+				lv_hound1 = UnitGroupUnit(lv_tempUnitGroup, 1);
+				if (lv_hound1 == lv_hound2) {
+					lv_hound1 = UnitGroupUnit(lv_tempUnitGroup, 2);
+				}
+			}
+			if ((UnitGroupHasUnit(lv_summonerGroup, lv_hound1) == false) && (UnitGetType(lv_hound1) == "MercSummonerLanerMinion")) {
+				UnitGroupAdd(lv_summonerGroup, lv_hound1);
+				if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lv_hound1) == false)) {
+					UnitGroupAdd(libGame_gv_parsedMercenaries, lv_hound1);
+					UnitGroupAdd(libGame_gv_ownedMercenaries[lv_campOwner], lv_hound1);
+					// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Hound1: ") + StringToText(UnitGetType(lv_hound1)) + StringToText(" Owner: ") + IntToText(UnitGetOwner(lv_hound1)) + StringToText(" Time: ") + FixedToText(GameGetMissionTime(), 5) + StringToText(" Trigger: ") + IntToText(lv_randomInt)));
+				}
+			}
+			if ((lv_hound2 == null) || (UnitIsAlive(lv_hound2) == false)) {
+				lv_hound2 = UnitGroupUnit(lv_tempUnitGroup, 1);
+				if (lv_hound2 == lv_hound1) {
+					lv_hound2 = UnitGroupUnit(lv_tempUnitGroup, 2);
+				}
+			}
+			if ((UnitGroupHasUnit(lv_summonerGroup, lv_hound2) == false) && (UnitGetType(lv_hound2) == "MercSummonerLanerMinion")) {
+				UnitGroupAdd(lv_summonerGroup, lv_hound2);
+				if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lv_hound2) == false)) {
+					UnitGroupAdd(libGame_gv_parsedMercenaries, lv_hound2);
+					UnitGroupAdd(libGame_gv_ownedMercenaries[lv_campOwner], lv_hound2);
+					// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Hound2: ") + StringToText(UnitGetType(lv_hound2)) + StringToText(" Owner: ") + IntToText(UnitGetOwner(lv_hound2)) + StringToText(" Time: ") + FixedToText(GameGetMissionTime(), 5) + StringToText(" Trigger: ") + IntToText(lv_randomInt)));
+				}
+			}
+			Wait(0.25, c_timeGame);
+		}
+	}
+	if ((lv_iterating == true) && (UnitGroupCount(lv_summonerGroup, c_unitCountAlive) != 2)) {
+		Wait(0.5625, c_timeGame);
+		lv_tempUnitGroup = libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition("MercSummonerLanerMinion", "", "", lp_teamPlayer, c_unitAllianceAlly, RegionCircle(lv_summonerKnownPos, 10.0), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 2);
+		if ((lv_hound1 == null) || (UnitIsAlive(lv_hound1) == false)) {
+			lv_hound1 = UnitGroupUnit(lv_tempUnitGroup, 1);
+			if (lv_hound1 == lv_hound2) {
+				lv_hound1 = UnitGroupUnit(lv_tempUnitGroup, 2);
+			}
+		}
+		if ((UnitGroupHasUnit(lv_summonerGroup, lv_hound1) == false) && (UnitGetType(lv_hound1) == "MercSummonerLanerMinion")) {
+			UnitGroupAdd(lv_summonerGroup, lv_hound1);
+			if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lv_hound1) == false)) {
+				UnitGroupAdd(libGame_gv_parsedMercenaries, lv_hound1);
+				UnitGroupAdd(libGame_gv_ownedMercenaries[lv_campOwner], lv_hound1);
+				// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Hound1: ") + StringToText(UnitGetType(lv_hound1)) + StringToText(" Owner: ") + IntToText(UnitGetOwner(lv_hound1)) + StringToText(" Time: ") + FixedToText(GameGetMissionTime(), 5) + StringToText(" Trigger: ") + IntToText(lv_randomInt)));
+			}
+		}
+		if ((lv_hound2 == null) || (UnitIsAlive(lv_hound2) == false)) {
+			lv_hound2 = UnitGroupUnit(lv_tempUnitGroup, 1);
+			if (lv_hound2 == lv_hound1) {
+				lv_hound2 = UnitGroupUnit(lv_tempUnitGroup, 2);
+			}
+		}
+		if ((UnitGroupHasUnit(lv_summonerGroup, lv_hound2) == false) && (UnitGetType(lv_hound2) == "MercSummonerLanerMinion")) {
+			UnitGroupAdd(lv_summonerGroup, lv_hound2);
+			if ((UnitGroupHasUnit(libGame_gv_parsedMercenaries, lv_hound2) == false)) {
+				UnitGroupAdd(libGame_gv_parsedMercenaries, lv_hound2);
+				UnitGroupAdd(libGame_gv_ownedMercenaries[lv_campOwner], lv_hound2);
+				// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Hound2: ") + StringToText(UnitGetType(lv_hound2)) + StringToText(" Owner: ") + IntToText(UnitGetOwner(lv_hound2)) + StringToText(" Time: ") + FixedToText(GameGetMissionTime(), 5) + StringToText(" Trigger: ") + IntToText(lv_randomInt)));
+			}
+		}
+	}
 }
 
 void libGame_gf_exportStatsForPlayer (int lp_player) {
 	string lv_scoreString;
 	
-	lv_scoreString = "Version 0.08 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " +  PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
-    lv_scoreString += " ,[ HSPrimary: ";
-	lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwelve, 1);
-    lv_scoreString += " ],[ HSSecondary: ";
-	lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[6].lv_supportSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportTwelve, 1);
-    lv_scoreString += " ,[ HSTertiary: ";
-	lv_scoreString += IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyOne) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyTwo) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyThree) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyFour) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyFive) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracySix) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracySeven) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyEight) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyNine) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyTen) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyEleven) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyTwelve);
-    lv_scoreString += " ],[ HealingToEach: ";
-	lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToTen, 1);
-    lv_scoreString += " ],[ DamageToEach: ";
-	lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToTen, 1);
-    lv_scoreString += " ],[ GenericHero: "; 
-    lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreArmorPositive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreArmorNegative, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreArmorFallback, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFountainHealing, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreGlobeHealing, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreBaseHealing, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scorePhysicalDamage, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSpellDamage, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDeathXP, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreGlobeXP, 1);
-    lv_scoreString += " ]";
+  lv_scoreString = "Version 0.08 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " +  PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
+  lv_scoreString += " ,[ HSPrimary: ";
+  lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwelve, 1);
+  lv_scoreString += " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThirteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFourteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFifteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSixteen, 1);
+  lv_scoreString += " ],[ HSSecondary: ";
+  lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[6].lv_supportSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportTwelve, 1);
+  lv_scoreString += " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportThirteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportFourteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportFifteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_supportSixteen, 1);
+  lv_scoreString += " ,[ HSTertiary: ";
+  lv_scoreString += IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyOne) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyTwo) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyThree) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyFour) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyFive) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracySix) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracySeven) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyEight) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyNine) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyTen) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyEleven) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyTwelve);
+  lv_scoreString += " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyThirteen) + " , " + IntToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_accuracyFourteen);
+  lv_scoreString += " ],[ HealingToEach: ";
+  lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealingToTen, 1);
+  lv_scoreString += " ],[ DamageToEach: ";
+  lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDamageToTen, 1);
+  lv_scoreString += " ],[ GenericHero: "; 
+  lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreArmorPositive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreArmorNegative, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreArmorFallback, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scorePhysicalDamage, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFountainHealing, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreGlobeHealing, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreBaseHealing, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreDeathXP, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreGlobeXP, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreLastHitXP, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSpellDamage, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreVisible, 1);
+  lv_scoreString += " ],[ GenericHero2: "; 
+  lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scorePhysArmorPositive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scorePhysArmorNegative, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scorePhysArmorFallback, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSpellArmorPositive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSpellArmorNegative, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSpellArmorFallback, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreHealTaken, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreShieldsDamaged, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreBlindsPrevented, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreLeechTaken, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scorePhysTaken, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSpellTaken, 1);
+  lv_scoreString += " ]";
 	
-    // StringExternal("UI/Spazzo/Intro")
-	// "UI/Spazzo/" + lv_heroString + "BaselineOne";
-	// "UI/Spazzo/Jaina/BaselineOne";
-	// "UI/SpazzoDamage/Jaina/ScoreOne";
+  // StringExternal("UI/Spazzo/Intro")
+  // "UI/Spazzo/" + lv_heroString + "BaselineOne";
+  // "UI/Spazzo/Jaina/BaselineOne";
+  // "UI/SpazzoDamage/Jaina/ScoreOne";
 	
-    if ((lp_player == 1)) {
+    if (libGame_gv_players[lp_player].lv_rosterSlot == 1) {
 	    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\ExportContainerFrame\\PlayerOneClipboardButton");
 	}
-	else if ((lp_player == 2)) {
+	else if (libGame_gv_players[lp_player].lv_rosterSlot == 2) {
 	    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\ExportContainerFrame\\PlayerTwoClipboardButton");
 	}
-	else if ((lp_player == 3)) {
+	else if (libGame_gv_players[lp_player].lv_rosterSlot == 3) {
 	    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\ExportContainerFrame\\PlayerThreeClipboardButton");
 	}
-	else if ((lp_player == 4)) {
+	else if (libGame_gv_players[lp_player].lv_rosterSlot == 4) {
 	    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\ExportContainerFrame\\PlayerFourClipboardButton");
 	}
-	else if ((lp_player == 5)) {
+	else if (libGame_gv_players[lp_player].lv_rosterSlot == 5) {
 	    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\ExportContainerFrame\\PlayerFiveClipboardButton");
 	}
-	else if ((lp_player == 6)) {
+	else if (libGame_gv_players[lp_player].lv_rosterSlot == 6) {
 	    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\ExportContainerFrame\\PlayerSixClipboardButton");
 	}
-	else if ((lp_player == 7)) {
+	else if (libGame_gv_players[lp_player].lv_rosterSlot == 7) {
 	    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\ExportContainerFrame\\PlayerSevenClipboardButton");
 	}
-	else if ((lp_player == 8)) {
+	else if (libGame_gv_players[lp_player].lv_rosterSlot == 8) {
 	    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\ExportContainerFrame\\PlayerEightClipboardButton");
 	}
-	else if ((lp_player == 9)) {
+	else if (libGame_gv_players[lp_player].lv_rosterSlot == 9) {
 	    DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\ExportContainerFrame\\PlayerNineClipboardButton");
 	}
 	else {
@@ -31516,13 +33424,13 @@ void libGame_gf_trackHeroCooldowns () {
     libGame_gv_trackingHeroCooldowns = true;
 	while ((libGame_gv_gameStarted == false) && (libCore_gv_sYSGameMode != libCore_ge_GameModes_TryMe)) {
 		if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
-			UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Game has yet to start, checking for gates open in 1 second"));
+			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Game has yet to start, checking for gates open in 1 second"));
 		}
         Wait(1.0, c_timeGame);
 	}
 	
 	if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
-		UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Began Tracking Heroic Cooldowns"));
+		UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Began Tracking Hero Cooldowns"));
 	}
     autoAAAAAF_ae = libCore_gv_bALMaxPlayers;
     lv_playerIterator = 1;
@@ -31537,7 +33445,7 @@ void libGame_gf_trackHeroCooldowns () {
                 lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = UnitAbilityGet(libGame_gv_players[lv_playerIterator].lv_heroUnit, lv_abilityIterator);
                 lv_lastAbilityIndex[lv_playerIterator] = lv_abilityIterator;
 				if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
-					UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(UnitAbilityGet(libGame_gv_players[lv_playerIterator].lv_heroUnit, lv_abilityIterator)) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
+					// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(UnitAbilityGet(libGame_gv_players[lv_playerIterator].lv_heroUnit, lv_abilityIterator)) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
 				}
 				if ((CatalogFieldValueGetAsFixed(c_gameCatalogAbil, UnitAbilityGet(libGame_gv_players[lv_playerIterator].lv_heroUnit, lv_abilityIterator), "Cost[0].Cooldown.TimeStart", lv_playerIterator) != 0)) {
 				    lv_abilityChargeCount[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = libGame_gf_FetchAbilityCooldownTime(libGame_gv_players[lv_playerIterator].lv_heroUnit, UnitAbilityGet(libGame_gv_players[lv_playerIterator].lv_heroUnit, lv_abilityIterator), lv_playerIterator, false);
@@ -31600,6 +33508,13 @@ void libGame_gf_trackHeroCooldowns () {
             lv_heroAbilCount[lv_playerIterator] += 1;
 			lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "HoggerMeatDetector";
 		}
+		if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroZuljin")) {
+			// lv_heroAbilCount[lv_playerIterator] += 1;
+			// lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "ZuljinYouWantAxeDetector";
+			lv_heroAbilCount[lv_playerIterator] += 1;
+			lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "ZuljinYouWantAxeProgressDetector";
+			lv_abilityChargeCount[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = libGame_gf_FetchAbilityCooldownTime(libGame_gv_players[lv_playerIterator].lv_heroUnit, "ZuljinYouWantAxeProgressDetector", lv_playerIterator, false);
+		}
 		lv_heroAbilCount[lv_playerIterator] += 1;
 		lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "MedivhPortalDetector";
 		lv_heroAbilCount[lv_playerIterator] += 1;
@@ -31649,7 +33564,7 @@ void libGame_gf_trackHeroCooldowns () {
 				}
 				// God damn caboose using behavior ability and then getting dynamically removed forcing me accomdate it
 				if ((lv_abilityName[lv_playerIterator][lv_abilityIterator] == "ToyTrainFollowAbility") && (UnitHasBehavior2(lv_contextUnit, "ToyTrainFollowAbility") == false)) {
-					UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Removed Toy Train Follow Ability from ") + IntToText(lv_playerIterator) + StringToText(" , replaced with: ") + StringToText(lv_abilityName[lv_playerIterator][(lv_abilityIterator + 1)]) + StringToText(", which has a cooldown of ") + FixedToText(lv_abilityChargeCount[lv_playerIterator][(lv_abilityIterator + 1)], 4)));
+					// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Removed Toy Train Follow Ability from ") + IntToText(lv_playerIterator) + StringToText(" , replaced with: ") + StringToText(lv_abilityName[lv_playerIterator][(lv_abilityIterator + 1)]) + StringToText(", which has a cooldown of ") + FixedToText(lv_abilityChargeCount[lv_playerIterator][(lv_abilityIterator + 1)], 4)));
 					lv_totalAbilitiesFound[lv_playerIterator] -= 1;
 					lv_heroAbilCount[lv_playerIterator] -= 1;
 					lv_abilityName[lv_playerIterator][lv_abilityIterator] = lv_abilityName[lv_playerIterator][(lv_abilityIterator + 1)];
@@ -31672,7 +33587,7 @@ void libGame_gf_trackHeroCooldowns () {
 					lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = UnitAbilityGet(libGame_gv_players[lv_playerIterator].lv_heroUnit, lv_abilityIterator);
 					lv_lastAbilityIndex[lv_playerIterator] = lv_abilityIterator;
 					if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
-						UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(UnitAbilityGet(libGame_gv_players[lv_playerIterator].lv_heroUnit, lv_abilityIterator)) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
+						// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(UnitAbilityGet(libGame_gv_players[lv_playerIterator].lv_heroUnit, lv_abilityIterator)) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
 					}
 					if ((UnitAbilityGet(libGame_gv_players[lv_playerIterator].lv_heroUnit, lv_abilityIterator) == "GenjiDeflectDragonClaw")) {
 						lv_abilityChargeCount[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = libGame_gf_FetchAbilityCooldownTime(libGame_gv_players[lv_playerIterator].lv_heroUnit, UnitAbilityGet(libGame_gv_players[lv_playerIterator].lv_heroUnit, lv_abilityIterator), lv_playerIterator, true);
@@ -31942,7 +33857,17 @@ fixed libGame_gf_FetchAbilityCooldownTime (unit lp_unit, string lp_ability, int 
 	    lv_method = "InjuredDetector";
   }
   
-	
+  if ((lp_ability == "ZuljinYouWantAxeDetector")) {
+	// lv_cooldownTime = UnitWeaponPeriodRemaining(lp_unit, 1);
+	lv_cooldownTime = UnitGroupCount(libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition("ZuljinBerserkerWeaponAttackMissile", "ZuljinWeaponAttackMissile", "", lp_player, c_unitAllianceAlly, RegionCircle(UnitGetPosition(lp_unit), 8.0), UnitFilter((1 << c_targetFilterMissile), 0, 0, 0), 1), c_unitCountAlive);
+	lv_method = "AxeThrown";
+  }
+
+  if ((lp_ability == "ZuljinYouWantAxeProgressDetector")) {
+	lv_cooldownTime = ((UnitGetTokenCount(lp_unit, "ZuljinYouWantAxeQuestMainToken") * 5.0) + UnitGetTokenCount(lp_unit, "ZuljinYouWantAxeQuestMiniProgressToken"));
+	lv_method = "AxeQuest";
+  }
+  
     if ((lp_ability == libGame_gv_heroSpecificDebugString) && (libGame_gv_heroSpecificDebug == true) && (lp_ability != "") && (lp_displayDebug == true)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Fetched Player ") + IntToText(lp_player) + StringToText("'s CD for ") + StringToText(lp_ability) + StringToText(" on unit ") + StringToText(UnitGetType(lp_unit)) + StringToText(": ") + FixedToText(lv_cooldownTime, 4) + StringToText(" method: ") + StringToText(lv_method)));
     }
@@ -31954,8 +33879,10 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
 	string lv_heroUnitType;
 	string lv_scoreString;
 	string lv_secondaryScoreString;
+	string lv_tertiaryScoreString;
 	fixed lv_scoreValueOverride;
 	fixed lv_secondaryScoreValueOverride;
+	fixed lv_tertiaryScoreValueOverride;
 	int lv_iterator;
 	unit lv_tempUnit;
 	string lv_tempString;
@@ -31965,6 +33892,8 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
 	lv_scoreValueOverride = 1.0;
 	lv_secondaryScoreString = "Discard";
 	lv_secondaryScoreValueOverride = 1.0;
+	lv_tertiaryScoreString = "Discard";
+	lv_tertiaryScoreValueOverride = 1.0;
 	lv_iterator = 0;
 	lv_tempUnit = null;
 	lv_tempString = "";
@@ -32850,7 +34779,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
 			lv_scoreString = "AccuracyThree";
 	    }
 		if ((lp_abilityName == "RockstarDummy")) {
-			lv_scoreString = "";
+			lv_scoreString = "Discard";
 	    }
 		if ((lp_abilityName == "L90ETCStageDive") || (lp_abilityName == "L90ETCMoshPit")) {
 			if ((lp_cooldownNewValue < (lp_interruptCost + 0.5))) {
@@ -33331,12 +35260,11 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
 			lv_scoreString = "AccuracyFive";
 	    }
 		if ((lp_abilityName == "KaelthasPhoenix") || (lp_abilityName == "KaelthasPyroblast")) {
-			lv_scoreString = "AccuracySix";
+			lv_scoreString = "AccuracyEight";
 			if ((lp_cooldownNewValue < (lp_interruptCost + 0.5)) && (lp_abilityName == "KaelthasPyroblast")) {
 		        lv_scoreString = "Discard";
 			}
 	    }
-    // KaelthasPhoenixRetarget
 	}
     else if ((lv_heroUnitType == "HeroKelThuzad")) {
 		if ((lp_abilityName == "KelThuzadDeathAndDecay")) {
@@ -33591,6 +35519,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
 		}
 	    if ((lp_abilityName == "LucioBoombox")) {
 		    lv_scoreString = "AccuracyFive";
+			libGame_gv_HeroSpecificStoredUnit1[lv_casterPlayerOverride] = UnitGroupUnit(libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition("LucioBoombox", "", "", lv_casterPlayerOverride, c_unitAllianceAlly, RegionCircle(UnitGetPosition(lp_casterUnit), 8.0), libCore_gv_filtersSummoned, 1), 1);
 		}
 	    if ((lp_abilityName == "LucioHighFive") || (lp_abilityName == "LucioSoundBarrier")) {
 		    lv_scoreString = "AccuracySix";
@@ -34614,6 +36543,40 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
 	    if ((lp_abilityName == "ZuljinEnsnare")) {
 		    lv_scoreString = "AccuracySeven";
 		}
+	    if ((lp_abilityName == "ZuljinYouWantAxeDetector")) {
+		    lv_scoreString = "Discard";
+			lv_tempUnit = UnitGroupUnit(libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition("ZuljinBerserkerWeaponAttackMissile", "", "", UnitGetOwner(lp_casterUnit), c_unitAllianceAlly, RegionCircle(UnitGetPosition(lp_casterUnit), 7.0), UnitFilter((1 << c_targetFilterMissile), 0, 0, 0), 1), 1);
+			if (lv_tempUnit == null) {
+				lv_tempUnit = UnitGroupUnit(libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition("ZuljinWeaponAttackMissile", "", "", UnitGetOwner(lp_casterUnit), c_unitAllianceAlly, RegionCircle(UnitGetPosition(lp_casterUnit), 7.0), UnitFilter((1 << c_targetFilterMissile), 0, 0, 0), 1), 1);
+			}
+			if (lv_tempUnit == null) {
+				UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Unknown Zul'jin Missile Type at: ") + FixedToText(GameGetMissionTime(), 4)));
+			}
+			else {
+				UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Axe is thrown by: ") + StringToText(UnitGetType(lp_casterUnit))));
+				UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Axe order target unit: ") + StringToText(UnitGetType(OrderGetTargetUnit(UnitOrder(lv_tempUnit, 0))))));
+				UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Axe order target point: ") + libCore_gf_ConvertPointToText(OrderGetTargetPoint(UnitOrder(lv_tempUnit, 0)))));
+				UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Axe goal point: ") + libCore_gf_ConvertPointToText(UnitGetGoalPosition(lv_tempUnit))));
+			}
+		}
+	    if ((lp_abilityName == "ZuljinYouWantAxeProgressDetector")) {
+			lv_scoreString = "BaselineTwo";
+			lv_scoreValueOverride = (lp_cooldownNewValue - lp_cooldownOldValue);
+			if (lp_cooldownNewValue != (lp_cooldownOldValue + 1)) {
+				if ((lp_cooldownNewValue == (lp_cooldownOldValue + 2)) || (lp_cooldownNewValue == (lp_cooldownOldValue + 7))) {
+					lv_secondaryScoreString = "TalentOne";
+					lv_secondaryScoreValueOverride = 1;
+					if (lp_cooldownNewValue == (lp_cooldownOldValue + 7)) {
+						lv_tertiaryScoreString = "TalentSixteen";
+						lv_tertiaryScoreValueOverride = 1;
+					}
+				}
+				if (lp_cooldownNewValue == (lp_cooldownOldValue + 5)) {
+					lv_tertiaryScoreString = "TalentSixteen";
+					lv_tertiaryScoreValueOverride = 1;
+				}
+			}
+		}
 	}
     else if ((lv_heroUnitType == "HeroNexusHunter")) {
 	    if ((lp_abilityName == "NexusHunterCarnage")) {
@@ -35423,7 +37386,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
 		libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "UninjuredDetector", null, "CDR");
 
   }
-    if (((lv_scoreString == "AccuracyOne") || (lv_scoreString == "AccuracyTwo") || (lv_scoreString == "AccuracyThree") || (lv_scoreString == "AccuracyFour") || (lv_scoreString == "AccuracyFive") || (lv_scoreString == "AccuracySix") || (lv_scoreString == "AccuracySeven") || (lv_scoreString == "AccuracyEight") || (lv_scoreString == "AccuracyNine") || (lv_scoreString == "AccuracyTen") || (lv_scoreString == "AccuracyEleven") || (lv_scoreString == "AccuracyTwelve"))) {
+    if ((lv_scoreString != "Discard") && (lv_scoreString != "")) {
         libGame_gf_TallyHeroSpecificStatShared(lv_scoreValueOverride, lv_casterPlayerOverride, lv_scoreString);
     }
     else if ((lv_scoreString == "Discard")) {
@@ -35436,6 +37399,9 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     }
 	if ((lv_secondaryScoreString != "Discard")) {
         libGame_gf_TallyHeroSpecificStatShared(lv_secondaryScoreValueOverride, lv_casterPlayerOverride, lv_secondaryScoreString);
+	}
+	if ((lv_tertiaryScoreString != "Discard")) {
+        libGame_gf_TallyHeroSpecificStatShared(lv_tertiaryScoreValueOverride, lv_casterPlayerOverride, lv_tertiaryScoreString);
 	}
 }
 
@@ -35465,8 +37431,11 @@ void libGame_gv_initializeOBSUI () {
     libGame_gv_initializedOBSUI = true;
 	
 	if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
-		UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Layout Frames"));
+		// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Layout Frames"));
+		UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.09 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
 	}
+	libGame_gv_parsedMercenaries = UnitGroupEmpty();
+	
     lv_playerIterator = 1;
     for ( ; lv_playerIterator <= libCore_gv_bALMaxPlayers ; lv_playerIterator += 1 ) {
 		lv_playerSlot = libGame_gv_players[lv_playerIterator].lv_rosterSlot;
@@ -35476,8 +37445,8 @@ void libGame_gv_initializeOBSUI () {
 		libGame_gv_SupportSixteenLabel[lv_playerSlot] = DialogControlLastCreated();
 		DialogControlHookupStandard(c_triggerControlTypeLabel, ("UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\HeroSpecificDamageContainerFrame\\Player" + IntToString(lv_playerSlot) + "ContainerFrame\\PlayerScoreContainerFrameScoreFifteen\\ScoreValueLabel"));
 		libGame_gv_DamageFifteenLabel[lv_playerSlot] = DialogControlLastCreated();
+		libGame_gv_ownedMercenaries[lv_playerIterator] = UnitGroupEmpty();
     }
-
 
 }
 
@@ -41230,7 +43199,7 @@ bool libGame_gt_HeroDeathUpdateStatsAwardXPMakeAnnouccementsCORE_Func (bool test
 
 // xp track earmark
     libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_deadPlayer, lv_killingPlayer, "DeathXP", lv_deadHero, "");
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("XP Value from ") + StringToText(UnitGetType(lv_deadHero)) + StringToText(" ") + FixedToText(libCore_gf_DataXPXPForHero(lv_killingPlayer, lv_deadHero), 2)));
+    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("XP Value from(GameLib Hero Killed) ") + StringToText(UnitGetType(lv_deadHero)) + StringToText(" ") + FixedToText(libCore_gf_DataXPXPForHero(lv_killingPlayer, lv_deadHero), 2)));
     libGame_gf_HeroDeathAwardXP(lv_killingPlayer, lv_deadHero, lv_awardGroup, lv_killingGroup, true);
     libGame_gf_HeroDeathUpdatePlayerStats(lv_deadHero, lv_killingPlayer, lv_killingTeamGroup, lv_killingGroup);
     libGame_gf_HeroDeathDeadTeamAnnouncements(lv_deadHero, lv_deadPlayerTeamGroup, lv_killingFaction);
@@ -41435,6 +43404,9 @@ bool libGame_gt_HeroDeathStitchesPatchworkCreationTalentParticipatedInTakedown_F
     if ((EventUnitHealEffect() != "") && (EventUnitHealEffect() != "MULERepairHealth")) {
     	libGame_gf_HeroSpecificStatTrackerHealed(EventUnitHealAmount(), EventUnitHealEffect(), EventUnitHealLaunchUnit(), EventUnit(), EventUnitHealLaunchPlayer());
     }
+	if (EventUnitHealEffect() == "BioticEmitterCreateHealerLife") {
+		libGame_gf_MercCampAddToScoreForTeamPlayer(EventUnitHealEffect(), EventUnitHealLaunchUnit(), EventUnitHealLaunchPlayer(), libGame_gf_ComputerPlayerInTeam(libGame_gf_TeamNumberOfPlayer(EventUnitHealLaunchPlayer())), EventUnit(), libCore_gv_mAPMapStringID, EventUnitHealAmount());
+	}
     if ((EventUnitHealEffect() == "BossOutOfCombatHeal")) {
         PlayerScoreValueSetFromInt(UnitGetOwner(EventUnit()), "Healing", (PlayerScoreValueGetAsInt(UnitGetOwner(EventUnit()), "Healing") + (FixedToInt(EventUnitHealAmount()))));
     }
@@ -41468,7 +43440,7 @@ bool libGame_gt_HeroDeathStitchesPatchworkCreationTalentParticipatedInTakedown_F
 					if (libGame_gf_TeamNumberOfPlayer(UnitGetOwner(EventUnitHealLaunchUnit())) == libGame_gf_TeamNumberOfPlayer(UnitGetOwner(EventUnit()))) {
 						libGame_gf_HeroSpecificStatTrackerOther(EventUnitHealAmount(), UnitGetOwner(EventUnitHealLaunchUnit()), UnitGetOwner(EventUnit()), "HealingToPlayerTrack", null, "");
 					}
-					libGame_gf_HeroSpecificStatTrackerOther(EventUnitHealAmount(), UnitGetOwner(EventUnit()), UnitGetOwner(EventUnit()), "HealTaken", null, "");
+					libGame_gf_HeroSpecificStatTrackerOther(EventUnitHealAmount(), UnitGetOwner(EventUnit()), UnitGetOwner(EventUnit()), "HealTaken", EventUnit(), IntToString(UnitGetOwner(EventUnitHealLaunchUnit())));
 				}
 				// if ((EventUnitHealEffect() == "AlexstraszaGiftOfLifeCreateHealer")) {
 				    // This is only very approximate, and is wrong if the target unit is put to full health, the target unit has a healtaken modifier, alexstrasza has a healdealt modifier, or if Lifeblossom was active. It'll do, though.
@@ -44454,12 +46426,12 @@ bool libGame_gt_OnFireDisableMessaging_Func (bool testConds, bool runActions) {
 		libGame_gf_HeroSpecificStatTrackerAbsorbed(EventUnitDamageAbsorbed(), EventUnitBehavior(), EventUnit(), EventUnitDamageSourceUnit(), UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0), EventUnitDamageEffect());
 	// }
 	if ((CatalogFieldValueGet(c_gameCatalogBehavior, EventUnitBehavior(), "DamageResponse.Location", UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0)) == "Attacker")) {
-		if ((((EventUnitBehavior() == "DVaMechDefenseMatrixDebuff") || (UnitBehaviorHasCategoryFlag(EventUnitBehavior(), c_behaviorCategoryDebuffBlind) == true)) && (UnitTypeTestAttribute(UnitGetType(EventUnitDamageSourceUnit()), c_unitAttributeHeroic) == true) && (UnitTestState(EventUnitDamageSourceUnit(), c_unitStateHallucination) == false))) {
+		if ((((EventUnitBehavior() == "DVaMechDefenseMatrixDebuff") || (UnitBehaviorHasCategoryFlag(EventUnitBehavior(), c_behaviorCategoryDebuffBlind) == true)) && (UnitTypeTestAttribute(UnitGetType(EventUnitDamageSourceUnit()), c_unitAttributeHeroic) == true) && (UnitTestState(EventUnitDamageSourceUnit(), c_unitStateHallucination) == false) && (UnitHasBehavior2(EventUnitDamageSourceUnit(), "GenericVehicleBehaviorEmpty") == false))) {
 			// libGame_gf_TallyHealingToPlayer(FixedToInt(EventUnitDamageAbsorbed()), UnitGetOwner(EventUnitDamageSourceUnit()), UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0));
 			if (libGame_gf_TeamNumberOfPlayer(UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0)) == libGame_gf_TeamNumberOfPlayer(UnitGetOwner(EventUnitDamageSourceUnit()))) {
 				libGame_gf_HeroSpecificStatTrackerOther(EventUnitDamageAbsorbed(), UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0), UnitGetOwner(EventUnitDamageSourceUnit()), "HealingToPlayerTrack", null, "");
 			}
-			libGame_gf_HeroSpecificStatTrackerOther(EventUnitDamageAbsorbed(), UnitGetOwner(EventUnit()), UnitGetOwner(EventUnit()), "BlindsPrevented", null, "");
+			libGame_gf_HeroSpecificStatTrackerOther(EventUnitDamageAbsorbed(), UnitGetOwner(EventUnit()), UnitGetOwner(EventUnit()), "BlindsPrevented", EventUnit(), "");
 		}
 		else {
 			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (IntToText(UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0)) + StringToText(" ") + StringToText("prevented") + StringToText(" ") + FixedToText(EventUnitDamageAbsorbed(), 2) + StringToText(" ") + StringToText("damage") +  StringToText(" ") + StringToText("against") +  StringToText(" ") +  StringToText(UnitGetType(EventUnitDamageSourceUnit())) + StringToText(" ") + StringToText("from") + StringToText(" ") +  StringToText(UnitGetType(EventUnit())) + StringToText(" ") + StringToText("with") + StringToText(" ") + StringToText(EventUnitBehavior())));
@@ -44476,7 +46448,7 @@ bool libGame_gt_OnFireDisableMessaging_Func (bool testConds, bool runActions) {
 			if (libGame_gf_TeamNumberOfPlayer(UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0)) == libGame_gf_TeamNumberOfPlayer(UnitGetOwner(EventUnit()))) {
 				libGame_gf_HeroSpecificStatTrackerOther(EventUnitDamageAbsorbed(), UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0), UnitGetOwner(EventUnit()), "HealingToPlayerTrack", null, "");
 			}
-			libGame_gf_HeroSpecificStatTrackerOther(EventUnitDamageAbsorbed(), UnitGetOwner(EventUnit()), UnitGetOwner(EventUnit()), "ShieldsDamaged", null, "");
+			libGame_gf_HeroSpecificStatTrackerOther(EventUnitDamageAbsorbed(), UnitGetOwner(EventUnit()), UnitGetOwner(EventUnit()), "ShieldsDamaged", EventUnit(), "");
 		}
 		else if ((EventUnitBehavior() == "KnightTowerDamageReductionBuff")|| (EventUnitBehavior() == "WitchDoctorGargantuanTimedLife") || (EventUnitBehavior() == "ScoutingDroneClampDamage") || (EventUnitBehavior() == "DryadWispClampDamage") || (EventUnitBehavior() == "JungleCreepSoftLeashingNoHeal") || (EventUnitBehavior() == "TownCannonTowerNoDeath")) {
 		}
@@ -44487,9 +46459,12 @@ bool libGame_gt_OnFireDisableMessaging_Func (bool testConds, bool runActions) {
 		}
 	}
 	else if (((EventUnitBehavior() == "MaievVaultOfTheWardensAirborneStasis") || (EventUnitBehavior() == "NexusHunterRevolvingSweepCasterBehavior") || (EventUnitBehavior() == "NexusHunterRevolvingSweepSecondaryCaster") || (EventUnitBehavior() == "ZuljinTazdingoUnkillable") || ((EventUnitBehavior() == "DVaMechAblativeArmorDamageResponseCarry") && (UnitTestState(EventUnit(), c_unitStateHallucination) == false)) || (EventUnitBehavior() == "DVaMechEmergencyShieldingFatalResponseCarry") || (EventUnitBehavior() == "ArthasAntiMagicShellCaster") || (EventUnitBehavior() == "AnduinLightBombShield") || (EventUnitBehavior() == "ImperiusAngelicArmamentsShieldBehavior") || (EventUnitBehavior() == "LucioSummerAnthemUnkillableBehavior") || (EventUnitBehavior() == "ChenStormEmpoweredShieldBuff") || (EventUnitBehavior() == "ChenStormShieldBuff") || (EventUnitBehavior() == "StitchesGorgeInitialTargetBehavior") || (EventUnitBehavior() == "StitchesGorgeTarget") || (EventUnitBehavior() == "GenjiDeflectMissileLauncher") || (EventUnitBehavior() == "LucioSoundwaveGoodVibrationsShield") || (EventUnitBehavior() == "LucioSoundBarrierBossaNovaShield") || (EventUnitBehavior() == "LucioSoundBarrierShield"))) {
-		// libGame_gf_TallyHealingToPlayer(FixedToInt(EventUnitDamageAbsorbed()), UnitGetOwner(EventUnit()), UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0));
-		if (libGame_gf_TeamNumberOfPlayer(UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0)) == libGame_gf_TeamNumberOfPlayer(UnitGetOwner(EventUnit()))) {
-			libGame_gf_HeroSpecificStatTrackerOther(EventUnitDamageAbsorbed(), UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0), UnitGetOwner(EventUnit()), "HealingToPlayerTrack", null, "");
+		if ((UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeHeroic) == true) && (UnitTestState(EventUnit(), c_unitStateHallucination) == false)) {
+			// libGame_gf_TallyHealingToPlayer(FixedToInt(EventUnitDamageAbsorbed()), UnitGetOwner(EventUnit()), UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0));
+			if (libGame_gf_TeamNumberOfPlayer(UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0)) == libGame_gf_TeamNumberOfPlayer(UnitGetOwner(EventUnit()))) {
+				libGame_gf_HeroSpecificStatTrackerOther(EventUnitDamageAbsorbed(), UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0), UnitGetOwner(EventUnit()), "HealingToPlayerTrack", null, "");
+			}
+			libGame_gf_HeroSpecificStatTrackerOther(EventUnitDamageAbsorbed(), UnitGetOwner(EventUnit()), UnitGetOwner(EventUnit()), "ShieldsDamaged", EventUnit(), "");
 		}
 		// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (IntToText(UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0)) + StringToText(" ") + StringToText("prevented") + StringToText(" ") + FixedToText(EventUnitDamageAbsorbed(), 2) + StringToText(" ") + StringToText("damage") +  StringToText(" ") + StringToText("against") +  StringToText(" ") +  StringToText(UnitGetType(EventUnit())) + StringToText(" ") + StringToText("with") + StringToText(" ") + StringToText(EventUnitBehavior())));
 	}
@@ -44883,6 +46858,14 @@ bool libGame_gt_HeroDamageTracking_Func (bool testConds, bool runActions) {
 	// Bookmark Team Damage Track
 	if ((lv_eventUnitDamageSourcePlayer == 11) || (lv_eventUnitDamageSourcePlayer == 12)) {
 		libGame_gf_TeamDamageTracker(EventUnitDamageEffect(), (EventUnitDamageAmount() + EventUnitDamageBehaviorShield()), EventUnit(), EventUnitDamageSourceUnit(), lv_eventPlayer, lv_eventUnitDamageSourcePlayer);
+		// if (UnitGetType(EventUnitDamageSourceUnit()) == "MercSummonerLanerMinionDummy") {
+			// libGame_gf_MercSummonerLanerManage(EventUnitDamageSourceUnit(), EventUnit(), UnitGetOwner(EventUnit()), EventUnitDamageSourcePoint());
+			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("This was a Triumph"));
+		// }
+	}
+	if ((EventUnitDamageEffect() == "MapEventCannonDamage") && (!((lv_eventUnitDamageSourcePlayer == 11) || (lv_eventUnitDamageSourcePlayer == 12)))) {
+		// libGame_gf_TeamDamageTracker(EventUnitDamageEffect(), (EventUnitDamageAmount() + EventUnitDamageBehaviorShield()), EventUnit(), EventUnitDamageSourceUnit(), lv_eventPlayer, lv_eventUnitDamageSourcePlayer);
+		libGame_gf_TeamDamageTracker(EventUnitDamageEffect(), (EventUnitDamageAmount() + EventUnitDamageBehaviorShield()), EventUnit(), EventUnitDamageSourceUnit(), lv_eventUnitDamageSourcePlayer, libGame_gf_ComputerPlayerInTeam(libGame_gf_EnemyTeamNumberOfPlayer(lv_eventUnitDamageSourcePlayer))); 
 	}
 	
 	// Bookmark Physical and Spell Damage Track
@@ -44900,7 +46883,7 @@ bool libGame_gt_HeroDamageTracking_Func (bool testConds, bool runActions) {
 
         }
 				if ((UnitTypeTestAttribute(lv_triggeringUnitType, c_unitAttributeHeroic) == true) && (UnitTestState(EventUnit(), c_unitStateHallucination) == false) && (UnitHasBehavior(EventUnit(), "GenericVehicleBehaviorEmpty") == false) && (UnitHasBehavior(EventUnit(), "GenericVehicleBehaviorOccupied") == false)) {
-					libGame_gf_HeroSpecificStatTrackerOther((EventUnitDamageAmount() + EventUnitDamageBehaviorShield()), UnitGetOwner(EventUnit()), UnitGetOwner(EventUnit()), "SpellDmgTaken", null, "");
+					libGame_gf_HeroSpecificStatTrackerOther((EventUnitDamageAmount() + EventUnitDamageBehaviorShield()), UnitGetOwner(EventUnit()), UnitGetOwner(EventUnit()), "SpellDmgTaken", EventUnit(), "");
 				}
 			}
 			else {
@@ -44913,7 +46896,7 @@ bool libGame_gt_HeroDamageTracking_Func (bool testConds, bool runActions) {
 
         }
 				if ((UnitTypeTestAttribute(lv_triggeringUnitType, c_unitAttributeHeroic) == true) && (UnitTestState(EventUnit(), c_unitStateHallucination) == false) && (UnitHasBehavior(EventUnit(), "GenericVehicleBehaviorEmpty") == false) && (UnitHasBehavior(EventUnit(), "GenericVehicleBehaviorOccupied") == false)) {
-					libGame_gf_HeroSpecificStatTrackerOther((EventUnitDamageAmount() + EventUnitDamageBehaviorShield()), UnitGetOwner(EventUnit()), UnitGetOwner(EventUnit()), "PhysDmgTaken", null, "");
+					libGame_gf_HeroSpecificStatTrackerOther((EventUnitDamageAmount() + EventUnitDamageBehaviorShield()), UnitGetOwner(EventUnit()), UnitGetOwner(EventUnit()), "PhysDmgTaken", EventUnit(), "");
 				}
 			}
 		}
@@ -44927,6 +46910,12 @@ bool libGame_gt_HeroDamageTracking_Func (bool testConds, bool runActions) {
 		}
 	}
 
+	if (UnitGetType(EventUnitDamageSourceUnit()) == "MercSummonerLanerMinionDummy") {
+		libGame_gf_MercSummonerLanerManage(UnitGetOwner(EventUnit()), EventUnitDamageSourcePoint());
+		return true;
+		// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("This was a Failure"));
+	}
+	
 	if ((libGame_gv_HeroSpecificStoredDamageMitigated[UnitGetOwner(EventUnit())] > 0.0) && (UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeHeroic) == true) && (UnitTestState(EventUnit(), c_unitStateHallucination) == false) && (UnitGetOwner(EventUnit()) >= 1) && (UnitGetOwner(EventUnit()) <= libCore_gv_bALMaxPlayers) && (UnitHasBehavior2(EventUnit(), "GenericVehicleBehaviorEmpty") == false) && (UnitHasBehavior2(EventUnit(), "GenericVehicleBehaviorOccupied") == false)) { 
 		if ((CatalogFieldValueGet(c_gameCatalogEffect, EventUnitDamageEffect(), "Kind", UnitGetOwner(EventUnitDamageSourceUnit())) == "Ability")) {
 			if ((UnitGetArmorValue(EventUnit(), c_unitDamageTypeHero, c_unitDamageTypeAbility) >= 0.0) && (UnitGetArmorValue(EventUnit(), c_unitDamageTypeMerc, c_unitDamageTypeAbility) >= 0.0) && (UnitGetArmorValue(EventUnit(), c_unitDamageTypeMonster, c_unitDamageTypeAbility) >= 0.0)
@@ -46272,7 +48261,7 @@ bool libGame_gt_TownMidLateGamePowerTransitionOn_Func (bool testConds, bool runA
 			if (libGame_gv_initializedOBSUI == false) {
 				libGame_gv_initializeOBSUI();
 			}
-		    if (libGame_gv_trackingHeroCooldowns == false) {
+		    if ((libGame_gv_trackingHeroCooldowns == false) && (libGame_gv_gameOver == false)) {
 				libGame_gf_trackHeroCooldowns();
 			}
         // }
