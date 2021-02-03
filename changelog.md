@@ -1,3 +1,31 @@
+v0.10
+
+Statistics:
+	Version up, no changes.
+	
+UI:
+	The vanilla Top Bar has been replaced with an opt-out Top Bar that more neatly incorporates the ability cooldowns, while also reducing the amount of space used by it.
+	The vanilla Top Bar no longer displays Core Health prior to the Core being damaged(A bug I introduced)
+	Fixed an issue where Olaf's Charge cooldown could not be disabled
+	
+Note that this replacement Top Bar is currently a work in progress - it features almost all features from the original top bar, with these exceptions:
+	Player portraits cannot be clicked to quickly shift the camera to that unit
+	Core health does not feature a damage over time preview
+	Reliable talent tooltips(for some reason 13, 16 and 20 display tooltips, but the rest don't)
+	Fancy textures.
+	
+Here are some of the planned features for the new top bar:
+	Show how many map mechanics are held - Spider Gems, Doubloons, Biotic Emitter, so on
+	Show vehicle cooldowns - Dragon Knight, Triglav Protector & Gunner, Bunker.
+	Baseline & Talent quest display
+	Options to remove & adjust features, such as the distance between player portraits
+	
+And here are some of the features new to it from the old top bar:
+	Track D.Va's Mech Health
+	Track Abathur's Symbiote Cooldowns
+	Track Abathur's Ultimat Evolution Cooldowns & Health
+	
+
 v0.09
 
 Statistics: 

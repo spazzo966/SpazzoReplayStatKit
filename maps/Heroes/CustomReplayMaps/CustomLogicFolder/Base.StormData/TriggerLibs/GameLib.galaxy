@@ -32370,7 +32370,7 @@ void libGame_gf_MercSummonerLanerManage (int lp_teamPlayer, point lp_point) {
 void libGame_gf_exportStatsForPlayer (int lp_player) {
 	string lv_scoreString;
 	
-  lv_scoreString = "Version 0.08 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " +  PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
+  lv_scoreString = "Version 0.10 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " +  PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
   lv_scoreString += " ,[ HSPrimary: ";
   lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwelve, 1);
   lv_scoreString += " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThirteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFourteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFifteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSixteen, 1);
@@ -37432,7 +37432,8 @@ void libGame_gv_initializeOBSUI () {
 	
 	if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
 		// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Layout Frames"));
-		UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.09 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+		UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.10 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+		// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Order core tag: ") + IntToText(UnitGetTag(libGame_gv_teams[1].lv_core)) + StringToText(" Chaos core tag: ") + IntToText(UnitGetTag(libGame_gv_teams[2].lv_core)));
 	}
 	libGame_gv_parsedMercenaries = UnitGroupEmpty();
 	
