@@ -1,3 +1,31 @@
+v0.11
+
+Statistics
+	no changes
+	
+UI:
+	Top Bar Talent Tooltips are now usable
+	Top Bar now features quests & quest like progress tracking. Presently there is no toggle to disable tracking quest-like but not quest bonuses, but this is planned.
+	Top Bar Abilities now feature Tooltips(modified from ordinary tooltips in some cases to expand information)
+	Top Bar Abilities expanded in size to resolve text truncation issues
+	Top Bar now features coloured energy bars for heroes that use a non-standard resource
+	Top Bar now features Healing Fountain cooldown. Presently there is no toggle to disable this, but it is planned.
+	Top Bar Death Timer is now team-coloured and has been shifted slightly
+	Fixed an issue where talent cooldowns would not remain visible through vehicles & similar situations
+	Adjusted D.Va's Mech portrait
+	Fixed an issue where Abathur's portrait would use an improper image
+	Fixed an issue where Gazlowe's portrait would use an improper image
+	Added a backing image to the top bar, coloured for each side
+	Added a backing image to Hero portraits
+	Changed the image used for team takedowns
+	Changed the image used for team forts remaining
+	Core health will now feature shields & damage over time, and slightly increased in height
+	Removed several instances of unclipped frames, which should improve performance
+	Temporarily disabled the vanilla bottom panel due to incorrect anchoring
+	Export & Options frame is now split into two menus that share all features, except the Export frame forces all score tables to be visible(but offscreen), which will reduce performance compared to the options  menu
+
+	
+
 v0.10
 
 Statistics:
