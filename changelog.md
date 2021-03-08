@@ -1,3 +1,56 @@
+v0.12
+
+Statistics
+ * Added support for version 2.53.2.84249
+ * Fixed an issue where the Primary Hero Specific Score 15 would not match the intended value after rewinding. Support 15 and 16 still have this issue
+ * Falstad's Damage prevented with his Barrel Roll Shields will no longer be separated into two separate scores after taking Updraft
+ * Tracer's Jumper Shields is now separated into damage prevented by Heroes and damage prevented by non-Heroes
+ * Fixed some issue with Tracer's scores not increasing the correct value
+ * Varian's Lion's Fang and Charge now tracks the number of Heroes hit in his tertiary tab
+ * Valla's Hungering Arrow, Multishot and Caltrops now track the number of Heroes hit in her tertairy tab
+ * Tyrande's Sentinel and Lunar Flare now track the number of Heroes hit in her tertairy tab
+ * Fixed several issues with tracking Abathur's cooldowns in his tertiary tab
+
+UI
+ * Added support for new talents & abilities in 2.53.2.84249
+ * Top Bar optimised to reduce potential performance impact
+ * Top Bar talent height & width increased to increase readability, new borders & quest progress images
+ * Top Bar Healing Fountain tooltip removed
+ * Top Bar improved handling of alternative talent layout for Varian
+ * Top Bar will now display vehicles & other units that the player selects in place of their Hero, as well as displaying their cooldown. When this occurs, the Hero health will be displayed in the ability bar as a percentage text
+ * Top Bar now features objectives carried, such as Hanamura's Turret or Tomb of the Spider Queen's Gems
+ * Top Bar non-quest tracking now displays a different coloured border & text in the talent to highlight that it is not part of a quest
+ * Relocated the Top Bar Core Health to be more smoothly attached to the Top Bar
+ * Slight rearrangement of the middle of the Top Bar
+ * Added several new shortcuts
+ * Alt+P: Disable showing non-quests in Top Bar
+ * Alt+O: Disable tooltips in the Top Bar
+ * Alt+I: Disable Hero Attachments(floating cooldowns beside hero Healthplates)
+ * ALT+U: Move the Hero Health Label Display Setting Up(the percentage of health at which Hero Health will display as a number in their Healthplate)
+ * ALT+Y: Move the Hero Health Label Display Setting Down(the percentage of health at which Hero Health will display as a number in their Healthplate)
+ * Alt+T: Disable talents in the Top Bar
+ * Alt+R: Disable Basic Abilities in the Top bar
+ * Alt+K: Disable Structure Health in Healthplates
+ * Control+L: Enable WIP Wider Top Bar to separate Heroes more. Improvements will be made to this in the future
+ * Most of these shortcuts also feature a brief display to remind the current setting just below the middle of the Top Bar
+ * New Feature: Bottom Panel
+ * Control+1: Open Talents Tab in Bottom Panel
+ * Control+2: Open Kills, Deaths, Assists & Experience Contribution in Bottom Panel
+ * Control+3: Hero Damage, Siege Damage, Minion Damage & Structure Damage in Bottom Panel
+ * Control+4: Healing, Self Healing, Damage Taken, Damage to Neutral Enemies(Monsters and Mercenaries) in Bottom Panel
+ * Control+5: Experience Breakdown in Bottom Panel
+ * Control+6: APM, Average APM, Time Spent Dead, Time CC'd Enemy Heroes in Bottom Panel
+ * Control+9: Toggle Mirrored Talents Tab in Bottom Panel
+ * Control+0: Toggle Mirrored Stats in Bottom Panel
+ * Known Issue - If the talents tab is made visible while viewing from a players perspective, the location of the talents may have the talents inverted, while the hero portraits are not
+ * Updated the changelog shortcut in the UI Options Menu
+ * CCL Stat Export now features a shortcut that can be used while in the UI Options Menu: Alt+C
+ * Slight improvements have been made to the Health Label Display Slider in the UI Options Menu
+ * Added a second optios menu which can be opened from the UI Options menu, settings more relate to the Top Bar and Bottom Panel
+ * Gazlowe's Scrap Attachment is now disabled by default
+ * Xul's Bone Armor Cooldown is now featured in his talent cooldowns instead of his Basic Ability cooldowns.
+ * Vehicles now feature the Health Label as Heroes do
+
 v0.11
 
 Statistics

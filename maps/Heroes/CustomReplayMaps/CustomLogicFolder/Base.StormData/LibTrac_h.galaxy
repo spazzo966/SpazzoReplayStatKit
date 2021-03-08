@@ -46,7 +46,6 @@ trigger libTrac_gt_HeroTracerCustomKillVO;
 trigger libTrac_gt_HeroTracerReloadRestoreAmmoOnHearthMount;
 trigger libTrac_gt_HeroTracerUntouchableProc;
 trigger libTrac_gt_HeroTracerSpatialEchoProc;
-trigger libTrac_gt_HeroTracerLeechingRoundsTokenSync;
 trigger libTrac_gt_HeroTracerPulseBombSetFacing;
 trigger libTrac_gt_HeroTracerFocusFireCleanup;
 trigger libTrac_gt_HeroTracerFocusFireSetTarget;

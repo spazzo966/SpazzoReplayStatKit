@@ -71,7 +71,6 @@ void libTrac_gf_HeroTracerIncrementHeroCountFunction () {
         TriggerEnable(libTrac_gt_HeroTracerMeleeSetFacing, true);
         TriggerEnable(libTrac_gt_HeroTracerUpdateRecallPointsonRevive, true);
         TriggerEnable(libTrac_gt_HeroTracerClearTargetViaEffect, true);
-        TriggerEnable(libTrac_gt_HeroTracerLeechingRoundsTokenSync, true);
     }
 
 }
@@ -108,7 +107,6 @@ void libTrac_gf_HeroTracerDecrementHeroCountFunction () {
         TriggerEnable(libTrac_gt_HeroTracerCustomKillVO, false);
         TriggerEnable(libTrac_gt_HeroTracerUpdateRecallPointsonRevive, false);
         TriggerEnable(libTrac_gt_HeroTracerClearTargetViaEffect, false);
-        TriggerEnable(libTrac_gt_HeroTracerLeechingRoundsTokenSync, false);
     }
 
 }
@@ -535,37 +533,6 @@ void libTrac_gt_HeroTracerSpatialEchoProc_Init () {
     libTrac_gt_HeroTracerSpatialEchoProc = TriggerCreate("libTrac_gt_HeroTracerSpatialEchoProc_Func");
     TriggerEnable(libTrac_gt_HeroTracerSpatialEchoProc, false);
     libGame_gf_HeroParticipatedInTakedown(libTrac_gt_HeroTracerSpatialEchoProc);
-}
-
-//--------------------------------------------------------------------------------------------------
-// Trigger: Hero - Tracer - Leeching Rounds Token Sync
-//--------------------------------------------------------------------------------------------------
-bool libTrac_gt_HeroTracerLeechingRoundsTokenSync_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_unit;
-    fixed lv_chargesUsed;
-    fixed lv_mod;
-
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_unit = EventUnit();
-    lv_chargesUsed = UnitGetChargeUsed(lv_unit, "Abil/TracerBlink");
-    lv_mod = (CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "TracerLeechingRoundsTalentTokenCounter", "Max", 0) - lv_chargesUsed);
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    UnitSetTokenCount(lv_unit, "TracerLeechingRoundsTalentToken", lv_mod, lv_unit);
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libTrac_gt_HeroTracerLeechingRoundsTokenSync_Init () {
-    libTrac_gt_HeroTracerLeechingRoundsTokenSync = TriggerCreate("libTrac_gt_HeroTracerLeechingRoundsTokenSync_Func");
-    TriggerEnable(libTrac_gt_HeroTracerLeechingRoundsTokenSync, false);
-    TriggerAddEventUnitBehaviorChange(libTrac_gt_HeroTracerLeechingRoundsTokenSync, null, "TracerLeechingRoundsTalentTokenCounter", c_unitBehaviorChangeCreate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1384,7 +1351,6 @@ void libTrac_InitTriggers () {
     libTrac_gt_HeroTracerReloadRestoreAmmoOnHearthMount_Init();
     libTrac_gt_HeroTracerUntouchableProc_Init();
     libTrac_gt_HeroTracerSpatialEchoProc_Init();
-    libTrac_gt_HeroTracerLeechingRoundsTokenSync_Init();
     libTrac_gt_HeroTracerPulseBombSetFacing_Init();
     libTrac_gt_HeroTracerFocusFireCleanup_Init();
     libTrac_gt_HeroTracerFocusFireSetTarget_Init();
