@@ -5,7 +5,7 @@ To use the the custom replay statistics, you will need to place the maps folder 
 
 Then to convert replays to feature custsom replay statistics, drag and drop the .StormReplay file onto the dragAll_details.bat file or the desired map-specific.bat file, the new replay will be placed alongside the existing replay with _stats appended to the file name(before the .stormreplay extension), at which point it can be opened like a standard replay through the in-game interface.
 
-In order to use the Replay & Observer interface, place the highest version number of the .StormInterface folder in your Heroes of the Storm interfaces directory(to get to this, press windows key + r, and then enter "%userprofile%\documents\Heroes of the Storm\Interfaces" without quotation marks)
+In order to use the Replay & Observer interface, place the highest version number of the .StormInterface folder in your Heroes of the Storm interfaces directory(to get to this, press Windows key + R, and then enter "%userprofile%\documents\Heroes of the Storm\Interfaces" without quotation marks), and then it can be set as an Observer or Replay interface in the Observer and Replay tab of the game options.
 
 UI features:
 
