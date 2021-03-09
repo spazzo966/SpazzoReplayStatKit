@@ -33973,11 +33973,10 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
 	lv_iterator = 0;
 	lv_tempUnit = null;
 	lv_tempString = "";
-	
-	
-	// I hate the slug so much
-	if (libGame_gv_players[lv_casterPlayerOverride].lv_heroUnit == "HeroAbathur") {
-		lv_heroUnitType = UnitGetType(libGame_gv_players[lv_casterPlayerOverride].lv_heroUnit);
+
+
+	if ((UnitGetType(libGame_gv_players[UnitGetOwner(lp_casterUnit)].lv_heroUnit) == "HeroAbathur")) {
+		lv_heroUnitType = UnitGetType(libGame_gv_players[UnitGetOwner(lp_casterUnit)].lv_heroUnit);
 	}
 	
     if ((lv_heroUnitType == "HeroAbathur") || (lv_heroUnitType == "AbathurSymbiote")) {
