@@ -26,6 +26,8 @@ To open the settings for this UI, press the button in the middle of the replacem
 
 If watching a replay that has been converted to support custom game logic, then more tabs will display to show a wide number of statistics that update throughout the replay, ranging from how much damage armor has prevented to that players heroic unit to how much damage a specific ability has done to heroic targets.
 
+Export Settings - by pressing the Export Settings button, the current settings for the user interface will be saved to the Clipboard, and this can be pasted into a text file and dragged onto conversion\XportSettings\renameDraggedFile.bat to place it in that folder, and then if a .StormInterface file is dragged onto importCustomSettings.bat in that same folder, it will import the custom settings from the created CustomConfig.StormLayout file, and create a new interface you can change to with altered default settings. For more detailed instructions, open importCustomSettings.bat while there is no CustomConfig.StormLayout file present
+
 * **Shortcuts**
 
  * Alt+P: Disable showing non-quests in Top Bar
@@ -43,6 +45,7 @@ If watching a replay that has been converted to support custom game logic, then 
  * Control+4: Healing, Self Healing, Damage Taken, Damage to Neutral Enemies(Monsters and Mercenaries) in Bottom Panel
  * Control+5: Experience Breakdown in Bottom Panel
  * Control+6: APM, Average APM, Time Spent Dead, Time CC'd Enemy Heroes in Bottom Panel
+ * Control+8: Toggle Talent Cooldowns in the Bottom Panel
  * Control+9: Toggle Mirrored Talents Tab in Bottom Panel
  * Control+0: Toggle Mirrored Stats in Bottom Panel
 

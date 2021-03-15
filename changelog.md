@@ -1,4 +1,32 @@
-v0.12
+**v0.13**
+
+Statistics
+ * no changes
+ 
+UI
+ * Added a work-in-progress indicator for each Viking's Health Bar in the Top Panel - from top to bottom it is Olaf, Baleog and Erik. This is probably the most I can do in this regard without Blizzard making enhancements to The Lost Vikings implementation
+ * Fenix no longer features a Mana Bar in the Top Panel, and instead features a separate Shield Bar, as his standard health plate does.
+ * Toggling Talents through the hotkey will no longer toggle Vehicle Passenger Health, that is instead toggled through the Basic Ability toggle.
+ * Toggling Wider Top Bar through the hotkey will no longer assume the default value is enabled
+ * New hotkey: Control+8 to disable Talent Cooldowns in the Bottom Panel
+ * Hero Attachments have been expanded, and can now be selected to show desired abilities for Heroes that feature them - this will be an expanding list as future versions are release, but currently it contains Artanis, Gazlowe, Tracer, Muradin, Mephisto, The Lost Vikings(only featuring Olaf's charge), Sylvanas, Johanna, Cassia, Zeratul, Sonya, Alarak, D.Va's Mech, D.Va's Pilot(only featuring Big Shot), Anduin, Li-Ming, Valla, Stukov, Tassadar, Whitemane, Dehaka, Valeera, Lucio, Medivh and Deathwing
+ * The Options Menu has seen a minor rearrangement to allow for more options, which now includes a separate setting for the Notification popup when a Hero has been slain(previously this was incorporated into the kill log toggle), and a new option for handling the appearance of Attachments to Hero Healthplates
+ * The Additional Options Menu has had some issues with button placement resolved where some buttons would be placed behind others
+ * Dehaka's Brushstalker ability is now present in the Top Bar
+ * Falstad's Thunderstrikes is now present as a non-quest in the Top Bar
+ * Fixed a tooltip issue with the option to toggle the Wider Top Bar
+ * Fixed an issue where Quest Progress in the Top Bar would be visible prior to picking the talent if the game was rewound from a point where a quest was present
+ * Fixed an issue where Artanis would not display his Shield Overload Cooldown in the Top Bar while Twin Blades is active - Twin Blades is now properly replaced with an active indicator, instead of Shield Overload
+ * Fixed an issue with Johanna's Iron Skin tooltip in the Top Bar
+ * Fixed an issue with Genji's Deflect tooltip in the Top Bar
+ * Fixed an issue with Sylvanas's Black Arrows tooltip in the Top Bar
+ * **New Feature**
+ * You can now export your current settings to clipboard, which when used in conjunction with the .BAT files located in conversion\XportSettings can create an alternate version of the Interface with desired default settings.
+ * For further information on how to use this, simply open the importCustomSettings.bat file contained in the conversion\XportSettings folder.
+ * It is also possible to manually edit that config file, and an example with comments explaining what everything does exists in that conversion\XportSettings folder.
+ * If you notice any options do not properly get saved or behave improperly when changed from the existing defaults, please report it as an issue so it may be resolved. Only limited testing has been done with this feature.
+
+**v0.12**
 
 Statistics
  * Added support for version 2.53.2.84249
@@ -51,7 +79,7 @@ UI
  * Xul's Bone Armor Cooldown is now featured in his talent cooldowns instead of his Basic Ability cooldowns.
  * Vehicles now feature the Health Label as Heroes do
 
-v0.11
+**v0.11**
 
 Statistics
  * no changes
@@ -78,7 +106,7 @@ UI:
  * Export & Options frame is now split into two menus that share all features, except the Export frame forces all score tables to be visible(but offscreen), which will reduce performance compared to the options  menu
 
 
-v0.10
+**v0.10**
 
 Statistics:
  * Version up, no changes.
@@ -106,7 +134,7 @@ And here are some of the features new to it from the old top bar:
  * Track Abathur's Ultimat Evolution Cooldowns & Health
 
 
-v0.09
+**v0.09**
 
 Statistics: 
  * Added support for 2.53.1 patch
@@ -137,7 +165,7 @@ UI:
  * The UI will now only hitch performance on the first time it is opened
  * Several other minor adjustments
 
-v0.07
+**v0.07**
 
 Released!
 

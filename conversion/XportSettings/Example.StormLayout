@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+  <Constant name="HeroHealthLabelVisibility" val="true" /> <!-- When set to true, display Hero Health in their Healthplate as a number -->
+  <Constant name="HeroHealthLabelVisibilityFraction" val="40" /> <!-- What health percentage to begin displaying Hero Health in the Healthplate at. Valid values: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 -->
+  <Constant name="HeroNamePlateVisibility" val="false" /> <!-- When set to true, don't display Hero Healthplates  -->
+  <Constant name="HeroUnitNameVisibility" val="true" /> <!-- When set to false, display Hero Names instead of Player Names in Hero Healthplates  -->
+  <Constant name="CoreUnitNameVisibility" val="true" /> <!-- When set to true, don't display Core Healthplates  -->
+  <Constant name="CoreUnitHealthPlateVisibility" val="false" /> <!-- When set to true, display Core Health in their Healthplate as a number -->
+  <Constant name="TownUnitNameVisibility" val="true" /> <!-- When set to true, display Structure Health in their Healthplate as a number -->
+  <Constant name="KeepFortVisibilitySettingToggle" val="false" /> <!-- When set to false, don't display Structure Healthplates -->
+  <Constant name="TopBarCompleteVisibilityToggle" val="true" /> <!-- When set to true, disable the vanilla Top Bar -->
+  <Constant name="TopBarCustomVisibilityToggle" val="true" /> <!-- When set to true, enable the custom Top Bar -->
+  <Constant name="TopBarAbilityCooldownsVisibiity" val="true" /> <!-- When set to true, don't display ability coolowns in the vanilla Top Bar -->
+  <Constant name="KillLogVisiblityToggle" val="false" /> <!-- When set to false, don't display the kill & quest feed -->
+  <Constant name="NotificationVisibilityToggle" val="false" /> <!-- When set to false, don't display the kill notification in the middle of the screen -->
+  <Constant name="MercCampVisibilityToggle" val="false" /> <!-- When set to true, don't display the camp information around mercenary camps -->
+  <Constant name="MinionHealthPlateVisibilityToggle" val="false" /> <!-- When set to true, don't display Minion Healthplates -->
+  <Constant name="TopBarAbilityDebug" val="False" /> <!-- Just ignore this one aye -->
+  <Constant name="ReplayTimelineVisibilityToggle" val="false" /> <!-- When set to true, don't display the replay timeline -->
+  <Constant name="UnitStatusGlobalVisibilityToggle" val="false" /> <!-- When set to true, don't display any Healthplates -->
+  <Constant name="MinimapVisibilityToggle" val="false" /> <!-- When set to true, don't display the Minimap -->
+  <Constant name="HideAttachmentOnCD" val="false" /> <!-- When set to true, Hero Attachments using Abilities will not display while that ability is on cooldown -->
+  <Constant name="UIShortcutVisibilityToggle" val="true" /> <!-- When set to true, the button to open the options menu will not be displayed -->
+  <Constant name="TopBarShowNonQuests" val="true" /> <!-- When set to true, non-quests will be shown(in a different font & border) in the custom Top Bar -->
+  <Constant name="TopBarDisplayTooltips" val="true" /> <!-- When set to true, tooltips will be enabled in the custom Top Bar -->
+  <Constant name="TopBarShowTalents" val="false" /> <!-- When set to false, Talents other than the Heroic will not be displayed in the custom Top Bar -->
+  <Constant name="TopBarShowBaselineTalents" val="false" /> <!-- When set to false, baseline quest-like abilities will not be shown in the custom Top Bar -->
+  <Constant name="TopBarShowBasicAbilities" val="true" /> <!-- When set to false, Basic Abilities will not be shown in the custom Top Bar -->
+  <Constant name="TopBarShowVehiclePassengerHealth" val="true" /> <!-- When set to false, Health of passengers of Vehicles will not be shown in the custom Top Bar -->
+  <Constant name="TopBarUseWideBar" val="true" /> <!-- When set to true, use a wider version of the custom Top Bar -->
+  <Constant name="BottomPanelMirrorTalents" val="false" /> <!-- When set to false, do not mirror the Bottom Panel talents -->
+  <Constant name="BottomPanelMirrorStats" val="false" /> <!-- When set to false, do not mirror the Bottom Panel stats -->
+  <Constant name="BottomPanelShowActives" val="false" /> <!-- When set to false, do not display cooldowns in the Bottom Panel talents tab -->
+   <!-- General rule of thumb, 0=Disabled, 1=Q, 2=W, 3=E, 4=D -->
+  <Constant name="CrusaderCooldownDisplay" val="4" />
+  <Constant name="AmazonCooldownDisplay" val="0" />
+  <Constant name="ZeratulCooldownDisplay" val="0" />
+  <Constant name="SonyaCooldownDisplay" val="0" />
+  <Constant name="AlarakCooldownDisplay" val="0" />
+  <Constant name="AnduinCooldownDisplay" val="4" />
+  <Constant name="WizardCooldownDisplay" val="2" />
+  <Constant name="DemonHunterCooldownDisplay" val="4" />
+  <Constant name="ArtanisCooldownDisplay" val="4" />
+  <Constant name="SylvanasCooldownDisplay" val="5" /> <!-- 5=Black Arrow Duration -->
+  <Constant name="StukovCooldownDisplay" val="4" />
+  <Constant name="TassadarCooldownDisplay" val="4" /> <!-- 4=Resonance Beam Charge & Duration -->
+  <Constant name="WhitemaneCooldownDisplay" val="0" />
+  <Constant name="WhitemaneDesperationPreviewSetting" val="true" /> <!-- When set to true, display the preview for Whitemane's Desperate Plea in her Healthplate -->
+  <Constant name="TinkerCooldownDisplay" val="0" />
+  <Constant name="DVaMechCooldownDisplay" val="2" />
+  <Constant name="DVaPilotCooldownDisplay" val="1" />
+  <Constant name="LostVikingsCooldownDisplay" val="1" />
+  <Constant name="ValeeraCooldownDisplay" val="3" /> <!-- 3=Combo Points & Duration -->
+  <Constant name="DehakaCooldownDisplay" val="4" /> <!-- 6=Brushstalker CD & Essence -->
+  <Constant name="TracerCooldownDisplay" val="0" />
+  <Constant name="MuradinCooldownDisplay" val="0" />
+  <Constant name="MephistoCooldownDisplay" val="0" /> <!-- 4=Lighting Nova CD & Lightning Nova damage stacks -->
+  <Constant name="LucioCooldownDisplay" val="2" /> <!-- 2=Current Track & Amp it Up Duration -->
+  <Constant name="MedivhCooldownDisplay" val="3" />
+  <Constant name="MedivhPortalDurationVisibility" val="true" /> <!-- When set to true, display portal lifespan Healthplates -->
+  <Constant name="DeathwingCooldownDisplay" val="0" />
+  <Constant name="DeathwingChonkerSetting" val="false" /> <!-- When set to true, swap to a more minimal version of Deathwing's Armor Indicator -->
+</Desc>
