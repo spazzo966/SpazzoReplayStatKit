@@ -60,4 +60,17 @@
   <Constant name="MedivhPortalDurationVisibility" val="true" /> <!-- When set to true, display portal lifespan Healthplates -->
   <Constant name="DeathwingCooldownDisplay" val="0" />
   <Constant name="DeathwingChonkerSetting" val="false" /> <!-- When set to true, swap to a more minimal version of Deathwing's Armor Indicator -->
+  <Constant name="FalstadCooldownDisplay" val="4" />
+  <Constant name="BrightwingCooldownDisplay" val="5" />
+  <Constant name="MaievCooldownDisplay" val="0" />
+  <Constant name="NexusHunterCooldownDisplay" val="0" />
+  <Constant name="AnubarakCooldownDisplay" val="0" />
+  <Constant name="TychusCooldownDisplay" val="0" />
+  <Constant name="JainaCooldownDisplay" val="0" />
+  <Constant name="KerriganCooldownDisplay" val="0" />
+  <Constant name="HanzoCooldownDisplay" val="0" />
+  <Constant name="RehgarCooldownDisplay" val="0" />
+  <Constant name="DiabloCooldownDisplay" val="0" />
+  <Constant name="HoggerCooldownDisplay" val="0" />
+  <Constant name="VarianCooldownDisplay" val="0" />
 </Desc>

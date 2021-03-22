@@ -1,3 +1,25 @@
+**v0.14**
+
+Statistics
+ * Improved handling of Orphea's statistics to fix issues
+ 
+UI
+ * Top Bar health & energy now become transparent & desaturate while the hero is dead
+ * Top Bar Leoric now displays as a wide grey bar while in Undying Form
+ * Added Hero Attachment for Brightwing, Falstad, Maiev, Qhira, Anub'arak, Tychus, Jaina, Kerrigan, Hanzo, Rehgar, Diablo, Hogger and Varian
+ * Unified the Hero Attachment system(except for Deathwing and Medivh's Raven Form) for increased consistency, and for some fixes for alignment
+ * Sonya Attachment updated to feature Fury's Movespeed duration
+ * You can now see the version of the interface in the options menu
+ * Fixed an issue where Tassadar had a fifth slider value in his Attachment setting
+ * Fixed an issue with Cho's Surging Fist tooltip in the Top Bar
+ * Fixed an issue with Falstad's Boomerang in the Top Bar
+ * Fixed an issue with Tychus's Overkill in the Top Bar
+ * Fixed an issue with Tychus' Minigun in the Top Bar
+ * Fixed an issue with Hogger's Hogg Wild in the Top Bar
+ * Fixed an issue with Junkrat's Frag Launcher tooltip in the Top Bar
+ * Fixed an issue with Tychus's Minigun tooltip in the Top Bar
+ * Fixed an issue with Zul'jin's Berserker tooltip in the Top Bar
+
 **v0.13**
 
 Statistics
