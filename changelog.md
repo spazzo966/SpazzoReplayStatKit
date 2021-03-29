@@ -1,3 +1,16 @@
+**v0.15**
+
+Statistics
+ * no changes
+ 
+UI
+ * Top Bar XP texture replaced with one that more clearly displays progress
+ * Added an option to disable showing Healing Fountain cooldown in the Top Bar
+ * Added an option to disable showing Objective Held  in the Top Bar
+ * Adjusted the location of the replay timeline
+ * Added Hero Attachment for E.T.C., Samuro, Li Li, Auriel and Uther
+ * Fixed an issue where the Passenger health border would not display the correct colour in some situations
+
 **v0.14**
 
 Statistics
