@@ -1850,9 +1850,8 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
 void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_healEffect, unit lp_casterUnit, unit lp_targetUnit, int lp_casterPlayer);
 void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_damageValue, fixed lp_damageAttempted, unit lp_targetUnit, unit lp_casterUnit, int lp_casterPlayer, int lp_targetPlayer);
 void libGame_gf_HeroSpecificStatTrackerOther (fixed lp_scoreValue, int lp_casterPlayer, int lp_targetPlayer, string lp_inputData, unit lp_extraDataUnit, string lp_extraDataString);
-void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterPlayer, string lp_scoreString);
+void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterPlayer, string lp_scoreString, string lp_source);
 fixed libGame_gv_GetHealDealtAsFixed (unit lp_contextUnit);
-void libGame_gf_TallyDamagePreventedDamageDealtFraction(unit lp_casterUnit, unit lp_targetUnit, string lp_damageEffect);
 fixed libGame_gv_DamageDealtFractionBasic(unit lp_contextUnit, string lp_damageEffect);
 fixed libGame_gv_DamageDealtFractionAbility(unit lp_contextUnit, string lp_damageEffect);
 void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue, unit lp_targetUnit, unit lp_casterUnit, int lp_targetPlayer, int lp_casterPlayer);
@@ -1867,6 +1866,7 @@ int libGame_gf_UnitGetMercCampOwner (unit lp_unit, int lp_teamPlayer);
 bool libGame_gf_UnitIsGateUnit (unit lp_gateUnit);
 void libGame_gf_MercCampAddToScoreForTeamPlayer (string lp_damageEffect, unit lp_mercUnit, int lp_mercUnitOwner, int lp_teamPlayer, unit lp_targetUnit, string lp_battleground, fixed lp_scoreValue);
 void libGame_gf_MercSummonerLanerManage (int lp_teamPlayer, point lp_point);
+void libGame_gf_HeroSpecificStatTrackerHealModified (fixed lp_healedValue, string lp_healEffect, unit lp_casterUnit, unit lp_targetUnit, int lp_casterPlayer, fixed lp_healTaken);
 // end of stuff we've added
 
 // Trigger Declarations

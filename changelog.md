@@ -1,3 +1,53 @@
+**v0.16**
+
+Statistics
+ * Whitemane now features statistics for the number of Heroes hit with Searing Lash(separated by First Strike and Second Strike)
+ * Diablo now features statistics for the number of Heroes hit with Shadow Charge, number of Heroes stunned with Shadow Charge, number of Heroes hit with Fire Stomp(separated by outward and inward), number of Heroes flipped with Overpower, and number of Heroes hit with Apocalypse or Lightning Breath, as well as proper separation of damage dealt by Apocalypse, Hellgate and Dying Breath
+ * D.Va now features statistics for the amount of healing prevented to enemy Heroes with Aggression Matrix
+ * Alexstrasza has been given a redesign in the tracking of her Healing stats to no longer merge the healing by form, and instead have them all separated, as well as now featuring the amount of Lifeblossom Flowers collected
+ * Deckard now features statistics for the amount of healing prevented to enemy Heroes with Emerald
+ * Greymane now features statistics for the number of Heroes hit with Gilnean Cocktail's projectile, number of Heroes hit with Gilnean Cocktail's Explosion, number of Heroes attack with Darkflight, number of Heroes hit with Razor Swipe, and number of Heroes hit with Cursed Bullet
+ * Gul'dan now features statistics for the number of Heroes hit with Fel Flame, number of Heroes hit with Corruption, and number of Heroes hit with Horrify or Rain of Destruction
+ * Li-Ming now features statistics for the number of Heroes hit with Magic Missile(not including Mirrorball), number of Heroes hit with Arcane Orb, number of Heroes hit with Disintegrate or Wave of Force, and the number of Heroes hit with Mirrorball-origin Magic Missiles
+ * Raynor now features statistics for the amount of damage added by Exterminator, split into Minions, Captured Mercenaries, Neutral Mercenaries and Monsters(note that this means both neutral Monsters and Monsters owned by the enemy team)
+ * Stitches now features statistics for the amount of healing increased to himself with Patchwork Creation
+ * Tyrael has had his damage prevented to non-Heroes with Righteousness separated into damage from Heroic sources and damage from non-Heroic sources
+ * Tyrael now features statistics for the number of Heroes hit with El'druin's Might, number of Heroes hit by Smite, and number of Heroes hit by Archangel's Might
+ * Varian now features statistics for the amount of healing prevented to enemy Heroes with Mortal Strike, and the amount of healing granted to Heroes with Glory to the Alliance
+ * Varian now features statistics for the amount of healing added by Lionheart
+ * Fixed an issue with the amount of Bonus Healing attributed by Brightwing's Safety Dust
+ * Fixed an issue where Dehaka's Burrow Cast tracker would not increase if Burrow was cast without Dark Swarm active
+ * Fixed an issue where Dehaka's Essence Collection Cast tracker would increase twice when cast, instead of just once
+ * Fixed an issue where Hogger's Hoardapult Casts would be shared with number of Heroes stunned with Staggering Blow
+ * Fixed an issue where Hogger's No Control Casts would be shared with the number of Ez-Thro Dynamite instant detonations
+ * Added an error message when attempting to increase the score of an unused player slot(presently this should only occur when an Abathur Symbiote is cancelled while the experience globe missile in flight, as that destroys the experience globe, but does not properly attribute the collection)
+ * Fixed an issue where certain quests would not properly appear in the micro export system(This is the button display in the options menu below the hero attachment setting, it only fills out once one of the cores have been destroyed)
+ * Fixed an issue where Bonus Damage attributed from Physical Damage would not be reduced to 0 if the attacker is Blinded or the target is Evading
+
+UI
+ * The Top Bar has seen a significant visual redesign in the background of it, as well as Heroes now being more separated to improve readability
+ * The Bottom Panel's talents tab has seen a significant redesign to use my design of a quest-progress fetching. This means it will need to be manually updated for new quests, but can also more readily display non-standard quests, and allows me to correctly represent quests that are broken in Blizzard's system. This was already seen in the Top Bar talents tracker system.
+ * Fixed an issue where The Lost Vikings Health Bar Backing in the Top Bar was not the correct width(due to technical limitations, the health will still only display while that Viking is selected by the player, fixing this requires Blizzard to implement behavior unit tracking for the Vikings)
+ * Added an objective preview timer that display the time till Blizzard's 30 second preview timer for objectives will appear. This is located at the bottom of the Top Bar. If this timer display 1:09, then it will be 1 minute and 9 seconds till the objective displays the 30 second warning, meaning the next objective is 1 minute and 39 seconds away. This is not functional on Hanamura Temple or Sky Temple, and has some issues with Blackheart's Bay. I aim to resolve these issues in a future release. This can also be disabled in the Additional Settings submenu
+ * Added a new toggle in the Additional Settings submenu to display the total number of potential towns a team may own in the Top Bar(requested feature)
+ * Added a new toggle in the Additional Settings submenu to align abilities to the left instead of to the center in the Top Bar(requested feature)
+ * Added a new toggle in the Additional Settings submenu to allow the hero portrait & border around the hero portrait to be clicked on to select that hero unit in Top Bar. While this is enabled, tooltips will not display in the Top Bar, and the default setting is enabled
+ * Tooltips in the Top Bar are now by default disabled
+ * Toggling Top Bar Tooltips no longer also toggles the Bottom Panel tooltips, and the two are now two separate settings
+ * Fixed an issue where Uther would not properly display his Holy Light cooldown in the Hero Attachment system after taking Holy Shock
+ * Added Hero Attachments for Malfurion, Raynor, Malthael, Imperius, Kharazim, Genji, Alexstrasza, Nova, Azmodan, Xul, Greymane, Mei and Fenix
+ * Dehaka now display his Essence Collection charges in the Top Bar
+ * Kharazim now displays his Radiant Dash charges in the Top Bar
+ * Leoric now properly swaps his ability list in the Top Bar when he enters Undying
+ * Performance improvements to the quest display in the Top Bar and Bottom Panel
+ * Fixed an issue where Zul'jin would not display the correct progress goal for You Want Axe?
+ * Fixed an issue where The Butcher would not display the correct progress goal for his Meat collection quest
+ * Azmodan now display his Globe of Annihilation Quest in the Top Bar
+ * Fixed an issue where Maiev's Bonds of Justice quest tracker would not display the correct value in the Top Bar
+ * A Fishy Deal, Pixie Charm, Covert Mission and Your Pain, My Gain now display their progress or stack count in the Top Bar if displaying non-quest progress is enabled
+ * Fixed some improper term usage in various tooltips in the Top Bar
+ * Fixed an issue with a missing stat description for Gazlowe
+
 **v0.15**
 
 Statistics
