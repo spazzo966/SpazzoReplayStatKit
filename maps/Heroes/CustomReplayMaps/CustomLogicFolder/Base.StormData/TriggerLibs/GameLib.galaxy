@@ -27392,7 +27392,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
             if ((UnitHasBehavior2(lp_casterUnit, "RaynorInspireAttackSpeedSelf") == true)) {
               lv_secondaryScoreOverride += libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "RaynorExterminatorInspire");
             }
-            UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Exterminator Bonus to Minions: ") + FixedToText(lv_secondaryScoreOverride, 2)));
+            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Exterminator Bonus to Minions: ") + FixedToText(lv_secondaryScoreOverride, 2)));
           }
           if ((UnitGetOwner(lp_targetUnit) == libGame_gf_ComputerPlayerInTeam(libGame_gf_EnemyTeamNumberOfPlayer(lp_casterPlayer))) && (CatalogFieldValueGet(c_gameCatalogUnit, UnitGetType(lp_targetUnit), "UnitDamageType", lv_casterPlayer) == "Merc")) {
             lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "RaynorExterminator");
@@ -27400,7 +27400,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
             if ((UnitHasBehavior2(lp_casterUnit, "RaynorInspireAttackSpeedSelf") == true)) {
               lv_secondaryScoreOverride += libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "RaynorExterminatorInspire");
             }
-            UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Exterminator Bonus to Captured Mercs: ") + FixedToText(lv_secondaryScoreOverride, 2)));
+            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Exterminator Bonus to Captured Mercs: ") + FixedToText(lv_secondaryScoreOverride, 2)));
           }
           if ((UnitGetOwner(lp_targetUnit) != libGame_gf_ComputerPlayerInTeam(libGame_gf_EnemyTeamNumberOfPlayer(lp_casterPlayer))) && (CatalogFieldValueGet(c_gameCatalogUnit, UnitGetType(lp_targetUnit), "UnitDamageType", lv_casterPlayer) == "Merc")) {
             lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "RaynorExterminator");
@@ -27408,7 +27408,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
             if ((UnitHasBehavior2(lp_casterUnit, "RaynorInspireAttackSpeedSelf") == true)) {
               lv_secondaryScoreOverride += libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "RaynorExterminatorInspire");
             }
-            UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Exterminator Bonus to Neutral Mercs: ") + FixedToText(lv_secondaryScoreOverride, 2)));
+            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Exterminator Bonus to Neutral Mercs: ") + FixedToText(lv_secondaryScoreOverride, 2)));
           }
           if (CatalogFieldValueGet(c_gameCatalogUnit, UnitGetType(lp_targetUnit), "UnitDamageType", lv_casterPlayer) == "Monster") {
             lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "RaynorExterminator");
@@ -27416,7 +27416,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
             if ((UnitHasBehavior2(lp_casterUnit, "RaynorInspireAttackSpeedSelf") == true)) {
               lv_secondaryScoreOverride += libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "RaynorExterminatorInspire");
             }
-            UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Exterminator Bonus to Monsters: ") + FixedToText(lv_secondaryScoreOverride, 2)));
+            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Exterminator Bonus to Monsters: ") + FixedToText(lv_secondaryScoreOverride, 2)));
           }
         }
       }
