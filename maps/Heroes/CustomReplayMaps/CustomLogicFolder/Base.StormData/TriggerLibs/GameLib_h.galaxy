@@ -927,9 +927,9 @@ struct libGame_gs_HeroSpecificScoreValues {
     fixed lv_scoreEleven;
     fixed lv_scoreTwelve;
     fixed lv_scoreThirteen;
-	fixed lv_scoreFourteen;
-	fixed lv_scoreFifteen;
-	fixed lv_scoreSixteen;
+    fixed lv_scoreFourteen;
+    fixed lv_scoreFifteen;
+    fixed lv_scoreSixteen;
     int lv_accuracyOne;
     int lv_accuracyTwo;
     int lv_accuracyThree;
@@ -973,9 +973,9 @@ struct libGame_gs_HeroSpecificScoreValues {
     fixed lv_scorePhysicalDamage;
     fixed lv_scoreSpellDamage;
     fixed lv_scoreDeathXP;
-	fixed lv_scoreGlobeXP;
-	fixed lv_scoreLastHitXP;
-	fixed lv_scoreVisible;
+    fixed lv_scoreGlobeXP;
+    fixed lv_scoreLastHitXP;
+    fixed lv_scoreVisible;
     fixed lv_scorePhysArmorPositive;
     fixed lv_scorePhysArmorNegative;
     fixed lv_scorePhysArmorFallback;
@@ -985,9 +985,9 @@ struct libGame_gs_HeroSpecificScoreValues {
     fixed lv_scoreHealTaken;
     fixed lv_scoreShieldsDamaged;
     fixed lv_scoreBlindsPrevented;
-	fixed lv_scoreLeechTaken;
-	fixed lv_scorePhysTaken;
-	fixed lv_scoreSpellTaken;
+    fixed lv_scoreLeechTaken;
+    fixed lv_scorePhysTaken;
+    fixed lv_scoreSpellTaken;
 };
 
 // Variable Declarations
@@ -1188,7 +1188,11 @@ fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredValue6;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredValue7;
 unit[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredUnit1;
 unit[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredUnit2;
-fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredTimeStop;
+fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroQButtonTimestamp;
+fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroWButtonTimestamp;
+fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroEButtonTimestamp;
+fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroRButtonTimestamp;
+fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroDButtonTimestamp;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredDamageMitigated;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredDamageMitigatedTimestamp;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_TimeSpentInVision;
@@ -1733,7 +1737,6 @@ void libGame_gf_BribeProc (int lp_killingPlayer, unit lp_minion);
 void libGame_gf_DiabloBlackSoulstoneProc (int lp_killingPlayer, unit lp_minion);
 void libGame_gf_GenericSeasonedMarksmanProc (int lp_killingPlayer, unit lp_minion);
 void libGame_gf_LeoricMithrilMaceProc (int lp_killingPlayer, unit lp_minion);
-void libGame_gf_StitchesPatchworkCreationProc (int lp_killingPlayer, unit lp_minion);
 void libGame_gf_BrightwingHyperShiftProc (int lp_killingPlayer, unit lp_minion);
 void libGame_gf_BrightwingPixieCharmProc (int lp_killingPlayer, unit lp_minion);
 void libGame_gf_CreepDies (unit lp_creepUnit, int lp_killingPlayer, fixed lp_killXP);
@@ -1860,13 +1863,16 @@ string libGame_gf_statsForPlayerHeroSpecificString (int lp_player);
 void libGame_gf_trackHeroCooldowns ();
 fixed libGame_gf_FetchAbilityCooldownTime (unit lp_unit, string lp_ability, int lp_player, bool lp_displayDebug);
 void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, fixed lp_cooldownNewValue, fixed lp_cooldownOldValue, fixed lp_interruptCost);
+void libGame_gv_trackHeroCooldownsReduced (unit lp_casterUnit, string lp_abilityName, fixed lp_cooldownNewValue, fixed lp_cooldownOldValue, fixed lp_interruptCost);
 fixed libGame_gt_HeroInVisionDetector (unit lp_unit, int lp_player, int lp_unitOwner);
 void libGame_gv_initializeOBSUI ();
 int libGame_gf_UnitGetMercCampOwner (unit lp_unit, int lp_teamPlayer);
 bool libGame_gf_UnitIsGateUnit (unit lp_gateUnit);
 void libGame_gf_MercCampAddToScoreForTeamPlayer (string lp_damageEffect, unit lp_mercUnit, int lp_mercUnitOwner, int lp_teamPlayer, unit lp_targetUnit, string lp_battleground, fixed lp_scoreValue);
 void libGame_gf_MercSummonerLanerManage (int lp_teamPlayer, point lp_point);
-void libGame_gf_HeroSpecificStatTrackerHealModified (fixed lp_healedValue, string lp_healEffect, unit lp_casterUnit, unit lp_targetUnit, int lp_casterPlayer, fixed lp_healTaken);
+void libGame_gf_HeroSpecificStatTrackerHealModified (fixed lp_healedValue, string lp_healEffect, unit lp_casterUnit, unit lp_targetUnit, int lp_casterPlayer, fixed lp_healTaken, bool lp_isFabricated);
+unit libGame_gf_effectGetUnitFromHistory (unit lp_unit, string lp_sourceEffect, int lp_sourcePlayer, int lp_type);
+int libGame_gf_unitGroupCountRaynorInspire (unitgroup lp_generatedUnitGroup, string lp_damageTypeFilter);
 // end of stuff we've added
 
 // Trigger Declarations
@@ -1943,7 +1949,6 @@ trigger libGame_gt_HeroDeathUpdateStatsAwardXPMakeAnnouccementsCORE;
 trigger libGame_gt_HeroDeathDiabloParticipatedInTakedown;
 trigger libGame_gt_HeroDeathSeasonedMarksmanParticipatedInTakedown;
 trigger libGame_gt_HeroDeathWrathOfTheBoneKingParticipatedInTakedown;
-trigger libGame_gt_HeroDeathStitchesPatchworkCreationTalentParticipatedInTakedown;
 trigger libGame_gt_HeroDeathHeroDies;
 trigger libGame_gt_HeroDeathHeroDeathToastTimerExpires;
 trigger libGame_gt_HeroDeathHeroRespawnSoundCueTimerExpires;

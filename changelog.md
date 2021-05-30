@@ -1,3 +1,39 @@
+**v0.17**
+
+Statistics
+* Expanded Support for Stitches, Anduin, Valla, Johanna and Raynor to coincide with their reworks
+* Qhira now features numerous "Heroes Hit with X" statistics
+* Redesigned Diablo's Statistics to feature more "Damage to non-Heroes" entries, as well as some other adjustments
+* Redesigned Malfurion's Statistics to feature more diverse statistics, as well as statistics for Moonfire accuracy beyond "Heroes Hit"
+* Kharazim now features the number of times Sixth Sense has been activated
+* Mei now features the bonus damage from Black Ice
+* Probius now features the bonus damage from Rift Shock
+* Valeera now features the bonus damage from Assassination
+* Fixed several issues with Tychus's statistics
+* Fixed an issue where Abathur's statistics would update when he cloned Zarya as though he were a Zarya player
+* Fixed an issue where the bonus damage tracker for multiplicative talents would not properly be calculated if the caster was affected by Ana's Mind Numbing Agent or Debiliating Dart
+* Fixed an issue where the bonus damage tracker for talents would not be properly modified by Defense Matrix
+* Fixed several issues caused by a non-functional trigger element
+
+
+UI
+* Score displays that feature a timer now display as x:xx instead of as the number of seconds elapsed
+* Fixed an issue with Illidan's score tooltip text
+* Redesigned the system that handles Heroes with expanded stat support, fixing several issues in the meantime
+* Fixed an issue where the first objective timer for Dragon Shire would not display
+* Added Hero Attachments for Kel'Thuzad, Rexxar, Gul'dan, Chromie, Garrosh, Deckard Cain, Leoric and Stitches
+* D.Va's Hero Attachment can now feature Torpedo Dash and Concussive Pulse
+* You can now select units as an observer to see an array of their statistics. To display their damage to each target and more, there is a new option that is bound to Control+7. This also features a shrunken display of the abilities Heroes have access to, including their current charges and more. This can also be disabled in the main options menu
+* Added support for Loan talents in the Top Bar and Bottom Panel. When a Loan talent is at maximum power, it will not display any border around it, when you have lost 50% of the bonus, it'll display as a red-coloured quest at 50% full, and when fully lost, it'll be a fully red completed quest
+* Added support for new quests added in the recent patch in the Top bar
+* Updated the text style on the ability charge counter in the Top Bar to improve readability
+* Genji's Top Bar entry Shuriken now display the number of charges he has available to him
+* Fixed an issue where Dehaka's Top Bar entry did not have his Essence Collection charges in the correct ability slot
+* Updated Stitches Top Bar entry to support his new active Trait
+* Valla's Top Bar entry now display her Hatred in the Top Bar as a non-quest baseline trait. This can be disabled the same way that Orphea's Overwhelming Chaos and others can be disabled
+* Brightwing's Top Bar entry now displays her Soothing Mist passive heal as a non-quest baseline cooldown. This can be disabled the same as other non-quests can be disabled
+* Nazeebo's Top Bar entry now displays Thing of the Deep quest progress
+
 **v0.16**
 
 Statistics
