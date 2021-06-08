@@ -17209,6 +17209,8 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
         lv_secondaryScoreOverride = 1.0;
       }
       if ((lp_healEffect == "StukovHealingPathogenSuperstrainHealer")) {
+        lv_secondaryScoreOverride = 1.0;
+        lv_secondaryScoreString = "AccuracyEleven";
         if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
           lv_primaryScoreString = "TalentTen";
         }
@@ -23037,6 +23039,8 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
       else {
         lv_primaryScoreString = "ScoreSeven";
+        lv_secondaryScoreOverride = 1.0;
+        lv_secondaryScoreString = "AccuracyEight";
       }
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Multishot Damage Attempt 1:  ") + FixedToText(CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_damageEffect, "AmountArray[" + "Quest" + "].value", lv_casterPlayer), 0)));
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Multishot Damage Attempt 2:  ") + FixedToText(CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_damageEffect, "AmountArray[" + "Quest" + "].Value", lv_casterPlayer), 0)));
@@ -25442,14 +25446,14 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_secondaryScoreOverride = 1.0;
         if (PlayerHasTalent(lv_casterPlayer, "DiabloDevastatingCharge") == true) {
           lv_tertiaryScoreString = "ScoreNine";
-          lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DiabloDevastatingCharge");
+          lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DiabloDevastatingCharge");
         }
       }
       else {
         lv_primaryScoreString = "TalentTen";
         if (PlayerHasTalent(lv_casterPlayer, "DiabloDevastatingCharge") == true) {
           lv_tertiaryScoreString = "SupportTwelve";
-          lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DiabloDevastatingCharge");
+          lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DiabloDevastatingCharge");
         }
       }
     }
@@ -26133,20 +26137,21 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
     }
     if ((lp_damageEffect == "HanzoStormBowDamage")) {
-      lv_secondaryScoreOverride = 1.0;
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreTwo";
+        lv_secondaryScoreOverride = 1.0;
         lv_secondaryScoreString = "AccuracySeven";
       }
       else {
         lv_primaryScoreString = "BaselineTwo";
+        lv_secondaryScoreOverride = 1.0;
         lv_secondaryScoreString = "AccuracyEight";
       }
     }
     if ((lp_damageEffect == "HanzoScatterArrowRicochetDamage")) {
-      lv_secondaryScoreOverride = 1.0;
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreThree";
+        lv_secondaryScoreOverride = 1.0;
         lv_secondaryScoreString = "AccuracyNine";
         // lv_tempUnit = libGame_gf_effectGetUnitFromHistory(lp_targetUnit, "HanzoScatterArrowRicochetDamage", lv_casterPlayer, 1);
         // if (UnitGetType(lv_tempUnit) == "HanzoScatterArrowInitialMissile") {
@@ -26163,20 +26168,22 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
       else {
         lv_primaryScoreString = "BaselineThree";
-        lv_secondaryScoreString = "AccuracyEleven";
+        lv_secondaryScoreOverride = 1.0;
+        lv_secondaryScoreString = "AccuracyTen";
       }
       // Effect history go!
       // or not, fuck you misha, samuro, nova and vehicles!
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("source unit type: ") + StringToText(UnitGetType(libGame_gf_effectGetUnitFromHistory(lp_targetUnit, "HanzoScatterArrowRicochetDamage", lv_casterPlayer, 1)))));
     }
     if ((lp_damageEffect == "HanzoSonicArrowDamage")) {
-      lv_secondaryScoreOverride = 1.0;
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreFour";
+        lv_secondaryScoreOverride = 1.0;
         lv_secondaryScoreString = "AccuracyEleven";
       }
       else {
         lv_primaryScoreString = "TalentOne";
+        lv_secondaryScoreOverride = 1.0;
         lv_secondaryScoreString = "AccuracyTwelve";
       }
     }
@@ -29126,7 +29133,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
     if ((lp_damageEffect == "TychusMeltingPointDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreSeven";
+        lv_primaryScoreString = "ScoreSix";
       }
       else {
         lv_primaryScoreString = "TalentFour";
@@ -33101,7 +33108,7 @@ int libGame_gf_unitGroupCountRaynorInspire (unitgroup lp_generatedUnitGroup, str
 void libGame_gf_exportStatsForPlayer (int lp_player) {
   string lv_scoreString;
 
-  lv_scoreString = "Version 0.17 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
+  lv_scoreString = "Version 0.19 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
   lv_scoreString += " ,[ HSPrimary: ";
   lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwelve, 1);
   lv_scoreString += " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThirteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFourteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFifteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSixteen, 1);
@@ -34289,10 +34296,10 @@ void libGame_gf_trackHeroCooldowns () {
         lv_gameLooptoSubtract = 0.0000;
       }
 			for ( ; lv_abilityIterator <= autoAAAAFF_ae ; lv_abilityIterator += 1 ) {
-        if ((lv_abilityName[lv_playerIterator][lv_abilityIterator] == "AbathurSymbioteStab") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "AbathurSymbioteSpikeBurst") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "AbathurSymbioteCarapace")) {
+        if (((lv_abilityName[lv_playerIterator][lv_abilityIterator] == "AbathurSymbioteStab") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "AbathurSymbioteSpikeBurst") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "AbathurSymbioteCarapace")) && (UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroAbathur") && (libGDHL_gv_heroAbathurSymbioteUnit[lv_playerIterator] != null)) {
           lv_contextUnit = libGDHL_gv_heroAbathurSymbioteUnit[lv_playerIterator];
         }
-        else if (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "AbathurLocustNestSpawnDetector") {
+        else if ((lv_abilityName[lv_playerIterator][lv_abilityIterator] == "AbathurLocustNestSpawnDetector") && (UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroAbathur") && (libGame_gv_HeroSpecificStoredUnit1[lv_playerIterator] != null)) {
           lv_contextUnit = libGame_gv_HeroSpecificStoredUnit1[lv_playerIterator];
         }
         else if (((lv_abilityName[lv_playerIterator][lv_abilityIterator] == "RagnarosBigRagMoltenSwing") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "RagnarosBigRagMeteorShower") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "RagnarosBigRagExplosiveRune") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "RagnarosBigRagSulfurasSmash")) && (UnitGetType(libGame_gv_players[lv_playerIterator].lv_activeVehicle) == "RagnarosBigRag")) {
@@ -34316,7 +34323,7 @@ void libGame_gf_trackHeroCooldowns () {
         }
         if ((lv_abilityTempCharge > lv_abilityChargeCount[lv_playerIterator][lv_abilityIterator]) && (lv_abilityChargeCount[lv_playerIterator][lv_abilityIterator] >= 0.0000)) {
           libGame_gv_trackHeroCooldowns(lv_contextUnit, lv_abilityName[lv_playerIterator][lv_abilityIterator], lv_abilityTempCharge, lv_abilityChargeCount[lv_playerIterator][lv_abilityIterator], CatalogFieldValueGetAsFixed(c_gameCatalogAbil, lv_abilityName[lv_playerIterator][lv_abilityIterator], "InterruptCost.Cooldown.TimeUse", lv_playerIterator));
-          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Ability ") + StringToText(lv_abilityName[lv_playerIterator][lv_abilityIterator]) + StringToText(" Used By ") + IntToText(lv_playerIterator) + StringToText("(") + FixedToText(libGame_gf_FetchAbilityCooldownTime(lv_contextUnit, lv_abilityName[lv_playerIterator][lv_abilityIterator], lv_playerIterator), 4) + StringToText(" VS ") + FixedToText(lv_abilityChargeCount[lv_playerIterator][lv_abilityIterator], 4) + StringToText(")")));
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Ability ") + StringToText(lv_abilityName[lv_playerIterator][lv_abilityIterator]) + StringToText(" Used By ") + IntToText(lv_playerIterator) + StringToText("(") + FixedToText(lv_abilityTempCharge, 4) + StringToText(" VS ") + FixedToText(lv_abilityChargeCount[lv_playerIterator][lv_abilityIterator], 4) + StringToText(")")));
         }
         if (lv_abilityTempCharge < (lv_abilityChargeCount[lv_playerIterator][lv_abilityIterator] - lv_gameLooptoSubtract) && !((lv_abilityName[lv_playerIterator][lv_abilityIterator] == "AbathurLocustNestSpawnDetector") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "HeroVisionDetector") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "HeroInjuredDetector") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "GarroshIntoTheFrayDetector") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "MedivhPortalDetector") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "ZuljinYouWantAxeProgressDetector") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "MonkSixthSenseDetector") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "HoggerMeatDetector") || (lv_abilityName[lv_playerIterator][lv_abilityIterator] == "HoggerHoggWildBounceCounter"))) {
           libGame_gv_trackHeroCooldownsReduced(lv_contextUnit, lv_abilityName[lv_playerIterator][lv_abilityIterator], lv_abilityTempCharge, lv_abilityChargeCount[lv_playerIterator][lv_abilityIterator], ((lv_abilityChargeCount[lv_playerIterator][lv_abilityIterator] - lv_abilityTempCharge) - lv_gameLooptoSubtract));
@@ -34363,6 +34370,9 @@ void libGame_gf_trackHeroCooldowns () {
       }
     }
     Wait(0.0625, c_timeGame);
+  }
+  if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stopped Tracking Hero Cooldowns"));
   }
 }
 
@@ -38597,7 +38607,7 @@ void libGame_gv_initializeOBSUI () {
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Layout Frames"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.17 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.19 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
     // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Order core tag: ") + IntToText(UnitGetTag(libGame_gv_teams[1].lv_core)) + StringToText(" Chaos core tag: ") + IntToText(UnitGetTag(libGame_gv_teams[2].lv_core)));
     // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("player 1 unit tag: ") + IntToText(UnitGetTag(libGame_gv_players[1].lv_heroUnit)));
     // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("player 2 unit tag: ") + IntToText(UnitGetTag(libGame_gv_players[2].lv_heroUnit)));

@@ -1,3 +1,20 @@
+**v0.19**
+
+Statistics
+ * Fixed an issue where Stukov's Superstrain would not track the number of activations
+ * Fixed an issue where Valla's Multishot would not track the number of non-Heroes hit
+ * Fixed an issue where Diablo's Shadow Charge terrain impact hero-hit count would increased by Diablo's Bonus Damage from Devastating Charge
+ * Fixed an issue where Diablo's Devastating Charge bonus damage would be the terrain impact damage instead of it's bonus damage
+ * Fixed an issue where Hanzo's Scatter Arrow non-Hero hits would increase Sonic Arrow Hero hits
+ * Fixed an issue where Tychus's Melting Point damage to Heroes would increase his damage dealt by the heroic option
+ * Fixed an issue where the cooldown tracking system would stop functioning after an Abathur used his Symbiote ability(this occured for all Heroes, not just the Abathur)
+
+UI
+ * Fixed an issue where Malfurion's cooldown text in the Top Bar would show the cooldown for Cassia's Blinding Light for his Regrowth, Moonfire and Entangling Roots
+ * Fixed a typo in Junkrat's Concussion Mine Casts
+ * Maiev's Heroic Casts now properly lists Warden's Cage alongside Containment Disc
+ * Samuro's Mirror Image now more correctly displays in the Top Bar, this will be improved further in a later version
+
 **v0.18**
 
 Statistics
