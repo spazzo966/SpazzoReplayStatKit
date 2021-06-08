@@ -1,3 +1,36 @@
+**v0.18**
+
+Statistics
+ * No changes, version remains 0.17
+
+UI
+ * Fixed an issue with Valla's score text for her 14th tertiary slot
+ * Redesigned the background visuals for the Bottom Panel
+ * Bottom Panel Hero Portraits are now set to the correct scale
+ * NEW FEATURE: Timestamped statistics. Press ALT+1 to display the Timestamp tab, ALT+2 to start a new recording, and ALT+3 to pause or unpause the current recording.
+ * When you start a new recording, the statitsics displayed are reset back to 0
+ * When you pause the current recording, the statistics will cease updating
+ * When you unpause the current recording, the statistics will update to the amount gained between the recording started and the current game time
+ * Due to technical limitiations & performance concerns, the values displayed do not feature commas for values over 1,000, and there is no timer display for the time the recording started or the paused timer
+ * It is a relatively painless ordeal to add more statistics to other tabs, so if there is something you would like to added to these timestamped statistics, feel free to request it.
+ * Added Hero Attachments for Cho, Gall(these will both display beside Cho'Gall's healthplate, adjusting in height if both are set), Orphea, Tyrande, Illidan, Murky, Blaze, Thrall, Zarya, Sgt. Hammer, Tyrael, Chen, Lunara, The Butcher, Kael'thas, Nazeebo, Zul'jin and Mal'Ganis
+ * Raynor's Hero Attachment setting now features a toggle to display his Give Em' Some Pepper as it displays for the player playing Raynor
+ * Sylvanas's Might of the Banshee Queen now displays as a non-quest tracker in the Top Bar
+ * Maiev's Elune's Wrath now displays as a non-quest tracker in the Top Bar
+ * Maiev's Bladed Armor now displays as a non-quest tracker in the Top Bar
+ * Maiev's Vengeful Knives now displays as a non-quest tracker in the Top Bar
+ * Rexxar's Dire Beast now displays as a non-quest tracker in the Top Bar
+ * Quest progress in the Bottom Panel now features a more defined outline to assist with readability
+ * Fixed an issue with the shortcut text display for toggling the selected unit statistics
+ * Fixed an issue where the Map Mechanic button featured on Volskaya, Hanamura and Warhead Junction would not be correct size in the selected unit command panel
+ * Fixed an issue where Vehicles would feature the UI for Healing Fountain cooldown in the selected unit panel
+ * Fixed an issue where the Dragon Knight would feature an energy counter in the selected unit panel
+ * Fixed an issue where Misha's health display would not use the energy-less version in the selected unit panel
+ * Fixed an issue where Chen's Breath of Fire would not properly display in the Top Bar when available
+ * Fixed an issue where Cassia's Inner Light ability cooldown would not display in the Top Bar & Bottom Panel
+ * Fixed an issue where Rexxar's progress with Hunter Gatherer would not display in the Top Bar & Bottom Panel
+ * Fixed an issue with Fenix's Weapon State Hero Attachment not displaying the icon correctly
+
 **v0.17**
 
 Statistics
