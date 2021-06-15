@@ -1,0 +1,271 @@
+This file is a listing of scores used, if a score has in brackets NONFUNCTIONAL, that means it doesn't actually work, and we're actually setting the text value through triggers, so it doesn't work through rewinds & stuff
+
+scores:
+
+Players(1-10)
+
+WinsSupport - BaselineOne
+PlaysWarCraft - BaselineTwo
+WinsWarcraft - BaselineThree
+PlaysStarCraft - TalentOne
+WinsStarCraft - TalentFour
+PlaysDiablo - TalentSeven
+WinsDiablo - TalentTen
+PlaysOverwatch - TalentThirteen
+PlaysMale - TalentSixteen
+WinsMale - TalentTwenty
+EndOfMatchAwardMostVengeancesPerformedBoolean - SupportEleven 
+EndOfMatchAwardMostDaredevilEscapesBoolean - SupportTwelve
+ExperienceFromTownsDestroyed - SupportThirteen
+ExperienceFromTakedowns - SupportFourteen
+StatScoreValue(NONFUNCTIONAL) - SupportFifteen
+EndOfMatchAwardBooleanValue(NONFUNCTIONAL) - SupportSixteen
+
+TeamWinsMale - ScoreOne
+PlaysFemale - ScoreTwo
+WinsFemale - ScoreThre
+RavenTeamNumberOfTimesCursedTheEnemy - ScoreFour
+DragonTeamNumberOfDragonCaptures - ScoreFive
+MinesTeamSkullsCollected - ScoreSix
+LessThan4Deaths - ScoreSeven
+KilledTreasureGoblin - ScoreEight
+LessThan3TownStructuresLost - ScoreNine
+LunarNewYearSuccesfulArtifactTurnIns - ScoreTen
+PachimariMania - ScoreEleven
+GenericHeroTalentStackCounter - ScoreTwelve
+PlaysNexus - ScoreThirteen
+PlaysOverwatchOrNexus - ScoreFourteen
+Role - ScoreFifteen
+RegenGlobes - ScoreSixteen
+
+EndOfMatchAwardMostEscapesBoolean - AccuracyOne
+EndOfMatchAwardMostXPContributionBoolean - AccuracyTwo
+EndOfMatchAwardMostHeroDamageDoneBoolean - AccuracyThree
+EndOfMatchAwardMostKillsBoolean - AccuracyFour
+EndOfMatchAwardHatTrickBoolean - AccuracyFive
+EndOfMatchAwardClutchHealerBoolean - AccuracySix
+EndOfMatchAwardMostProtectionBoolean - AccuracySeven
+EndOfMatchAward0DeathsBoolean - AccuracyEight
+EndOfMatchAwardMostSiegeDamageDoneBoolean - AccuracyNine
+EndOfMatchAwardMostDamageTakenBoolean - AccuracyTen
+EndOfMatchAward0OutnumberedDeathsBoolean - AccuracyEleven
+EndOfMatchAwardMostHealingBoolean - AccuracyTwelve
+ExperienceFromMinionsAndCreeps - AccuracyThirteen
+JunkratTargetBombsCarried - AccuracyFourteen
+
+VengeancesPerformed - HealingToOne
+OutnumberedDeaths - HealingToTwo
+TeamLevel - HealingToThree
+StarcraftDailyEventCompleted - HealingToFour
+StarcraftPiecesCollected - HealingToFive
+PlaysWarrior - HealingToSix
+WinsWarrior - HealingToSeven
+PlaysAssassin - HealingToEight
+WinsAssassin - HealingToNine
+PlaysSupport - HealingToTen
+
+ClutchHealsPerformed - DamageToOne
+TimeStunningEnemyHeroes - DamageToTwo
+TimeRootingEnemyHeroes - DamageToThree
+ProtectionGivenToAllies - DamageToFour
+TimeSilencingEnemyHeroes - DamageToFive
+TeamfightDamageTaken - DamageToSix
+TeamfightHealingDone - DamageToSeven
+EscapesPerformed - DamageToEight
+TeamfightEscapesPerformed - DamageToNine
+TeamfightHeroDamage - DamageToTen
+
+LunarNewYearRoosterEventCompleted - Phys Damage to Heroes
+TouchByBlightPlague - Phys Damage to non-Heroes
+Multikill - Spell Damage to Heroes
+PhysicalDamage - Spell Damage to non-Heroes
+TeamWinsStarCraft - Healing from Fountian
+TeamWinsWarcraft - Healing from Globes
+TeamWinsDiablo - Healing from Nexus
+EndOfMatchAwardHighestKillStreakBoolean - XP Given to Enemy by Dying
+EndOfMatchAwardMostSeedsCollectedBoolean - XP from Globes
+TeamMercCampCaptures - XP from Lasthits
+SpellDamage - Time Uninjured
+TeamTownKills - Time Visible
+
+MercCampCaptures - Physical Damage prevented by Armor
+WatchTowerCaptures - Physical Damage increased by Armor
+TownKills - Physical Damage modified by Mixed Physical Armor
+MinionKills - Spell Damage prevented by Armor
+ExperienceFromRegenGlobes - Spell Damage increased by Armor
+Tier1Talent - Damage modified by Mixed Spell Armor
+Tier2Talent - Healing Taken
+Tier3Talent - Damage to Hero prevented by Shields
+Tier4Talent - Damage from Hero prevented by Blinds
+Tier5Talent - Healing from Leech
+Tier6Talent - Physical Damage Taken
+Tier7Talent - Spell Damage Taken
+
+Unused:
+
+BlackheartDoubloonsTurnedIn
+BlackheartDoubloonsCollected
+BlackheartDoubloonsDropped
+BlackheartTeamNumberOfTimesFiredTheCannon
+GameScore?
+DragonShrinesCaptured
+EndOfMatchAwardMostGemsTurnedInBoolean
+EndOfMatchAwardMostTimeInTempleBoolean
+EndOfMatchAwardMostDamageToMinionsBoolean
+EndOfMatchAwardMostInterruptedCageUnlocksBoolean
+EndOfMatchAwardMostDamageToPlantsBoolean
+EndOfMatchAwardMostSkullsCollectedBoolean
+EndOfMatchAwardMostTimePushingBoolean
+EndOfMatchAwardMostDamageDoneToZergBoolean
+EndOfMatchAwardMostImmortalDamageBoolean
+EndOfMatchAwardMostCoinsPaidBoolean
+EndOfMatchAwardMostCurseDamageDoneBoolean
+EndOfMatchAwardMostDragonShrinesCapturedBoolean
+EndOfMatchAwardMapSpecificBoolean
+EndOfMatchAwardMVPBoolean
+
+AI Teams(11, 12)
+
+Hero Damage - 
+Siege Damage - 
+Structure Damage - 
+Minion Damage - 
+Summon Damage - 
+Healing - 
+Physical Damage - 
+Spell Damage - 
+PlaysMale - Damage by Minions
+PlaysFemale - Damage by Mercenaries
+KilledTreasureGoblin - Damage by Towers
+WinsFemale - Damage by Towns
+EndOfMatchAward0DeathsBoolean - Call for Help Damage
+RavenTeamNumberOfTimesCursedTheEnemy - Objective Damage
+
+AzmodanBombardmentTalentAnnihilation - sub 5 min soak
+AzmodanMinionKillAnnihilation - sub 5 min potential
+AzmodanMasterOfDestructionTalentAnnihilation - 5-10 min soak
+AzmodanWrathTalentAnnihilation - 5-10 min potential
+AzmodanArtOfChaosTalentAnnihilation - 10-15 min soak
+AzmodanHeroHitAnnihilation - 10-15 min potential
+UtherHolyLightSilverTouch - 15-20 min soak
+TimeSpentDead - 15-20 min potential
+ZuljinYouWantAxeScoreValue - 20+ min soak
+Deaths - 20+ min potential
+
+WinsSupport - hero 1 merc 1
+PlaysWarCraft - hero 2 merc 1 
+WinsWarcraft - hero 3 merc 1
+PlaysStarCraft - hero 4 merc 1
+WinsStarCraft - hero 5 merc 1
+
+DragonTeamNumberOfDragonCaptures - hero 1 merc 2
+MinesTeamSkullsCollected - hero 2 merc 2
+LessThan4Deaths - hero 2 merc 2
+LessThan3TownStructuresLost - hero 2 merc 2
+LunarNewYearSuccesfulArtifactTurnIns - hero 2 merc 2
+
+PlaysDiablo - hero 1 merc 3
+WinsDiablo - hero 2 merc 3
+PlaysOverwatch - hero 3 merc 3
+WinsMale - hero 4 merc 3
+EndOfMatchAwardMostVengeancesPerformedBoolean - hero 5 merc 3
+
+GenericHeroTalentStackCounter - hero 1 merc 4
+PlaysNexus - hero 2 merc 4
+PlaysOverwatchOrNexus - hero 3 merc 4
+RegenGlobes - hero 4 merc 4
+PachimariMania - hero 5 merc 4
+
+EndOfMatchAwardMostDaredevilEscapesBoolean - hero 1 merc 5
+ExperienceFromTownsDestroyed - hero 2 merc 5
+ExperienceFromTakedowns - hero 3 merc 5
+TeamWinsMale - hero 4 merc 5
+EndOfMatchAwardClutchHealerBoolean - hero 5 merc 5
+
+EndOfMatchAwardMostXPContributionBoolean - hero 1 merc 6
+EndOfMatchAwardMostHeroDamageDoneBoolean - hero 2 merc 6
+EndOfMatchAwardMostKillsBoolean - hero 3 merc 6
+EndOfMatchAwardHatTrickBoolean - hero 4 merc 6
+EndOfMatchAwardMostEscapesBoolean - hero 5 merc 6
+
+Unused: 
+
+Role
+EndOfMatchAwardMostProtectionBoolean
+EndOfMatchAward0DeathsBoolean
+EndOfMatchAwardMostSiegeDamageDoneBoolean
+EndOfMatchAwardMostDamageTakenBoolean
+EndOfMatchAward0OutnumberedDeathsBoolean
+EndOfMatchAwardMostHealingBoolean
+ExperienceFromMinionsAndCreeps
+JunkratTargetBombsCarried
+VengeancesPerformed
+OutnumberedDeaths
+TeamLevel
+StarcraftDailyEventCompleted
+StarcraftPiecesCollected
+PlaysWarrior
+WinsWarrior
+PlaysAssassin
+WinsAssassin
+PlaysSupport
+ClutchHealsPerformed
+TimeStunningEnemyHeroes
+TimeRootingEnemyHeroes
+ProtectionGivenToAllies
+TimeSilencingEnemyHeroes
+TeamfightDamageTaken
+TeamfightHealingDone
+EscapesPerformed
+TeamfightEscapesPerformed
+TeamfightHeroDamage
+LunarNewYearRoosterEventCompleted
+TouchByBlightPlague
+Multikill
+TeamWinsStarCraft
+TeamWinsWarcraft
+TeamWinsDiablo
+EndOfMatchAwardHighestKillStreakBoolean
+EndOfMatchAwardMostSeedsCollectedBoolean
+TeamMercCampCaptures
+TeamTownKills
+MercCampCaptures
+WatchTowerCaptures
+WatchTowerCaptures
+TownKills
+MinionKills
+ExperienceFromRegenGlobes
+Tier1Talent
+Tier2Talent
+Tier3Talent
+Tier4Talent
+Tier5Talent
+Tier6Talent
+Tier7Talent
+Level
+CageUnlocksInterrupted
+RavenTributesCollected
+MapMechanics
+DehakaEssenceCollectionMuscularAugementationCount
+DehakaEssenceCollectionTissueRegenerationCount
+DehakaEssenceCollectionHealing
+BlackheartDoubloonsTurnedIn
+BlackheartDoubloonsCollected
+BlackheartDoubloonsDropped
+BlackheartTeamNumberOfTimesFiredTheCannon
+GameScore?
+DragonShrinesCaptured
+EndOfMatchAwardMostGemsTurnedInBoolean
+EndOfMatchAwardMostTimeInTempleBoolean
+EndOfMatchAwardMostDamageToMinionsBoolean
+EndOfMatchAwardMostInterruptedCageUnlocksBoolean
+EndOfMatchAwardMostDamageToPlantsBoolean
+EndOfMatchAwardMostSkullsCollectedBoolean
+EndOfMatchAwardMostTimePushingBoolean
+EndOfMatchAwardMostDamageDoneToZergBoolean
+EndOfMatchAwardMostImmortalDamageBoolean
+EndOfMatchAwardMostCoinsPaidBoolean
+EndOfMatchAwardMostCurseDamageDoneBoolean
+EndOfMatchAwardMostDragonShrinesCapturedBoolean
+EndOfMatchAwardMapSpecificBoolean
+EndOfMatchAwardMVPBoolean

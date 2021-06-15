@@ -16525,6 +16525,8 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       if ((lp_healEffect == "TranquilityHeal")) {
         if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
           lv_primaryScoreString = "TalentSeven";
+          lv_secondaryScoreString = "AccuracyTwelve";
+          lv_secondaryScoreOverride = 1.0;
         }
         else {
           lv_primaryScoreString = "TalentTen";
@@ -18728,16 +18730,16 @@ void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterP
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportFourteen;
   }
   else if ((lp_scoreString == "SupportFifteen")) {
-    lv_scoreToIncrease = "StatScoreValue";
+    lv_scoreToIncrease = "Level";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportFifteen += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportFifteen;
-    libNtve_gf_SetDialogItemText(libGame_gv_SupportFifteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(lv_scoreValue)), libCore_gv_playerGroupFromPlayer[libCore_gv_oBSERVER_ObserverUIPlayer]);
+    // libNtve_gf_SetDialogItemText(libGame_gv_SupportFifteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(lv_scoreValue)), libCore_gv_playerGroupFromPlayer[libCore_gv_oBSERVER_ObserverUIPlayer]);
   }
   else if ((lp_scoreString == "SupportSixteen")) {
-    lv_scoreToIncrease = "EndOfMatchAwardBooleanValue";
+    lv_scoreToIncrease = "CageUnlocksInterrupted";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportSixteen += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportSixteen;
-    libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(lv_scoreValue)), libCore_gv_playerGroupFromPlayer[libCore_gv_oBSERVER_ObserverUIPlayer]);
+    // libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(lv_scoreValue)), libCore_gv_playerGroupFromPlayer[libCore_gv_oBSERVER_ObserverUIPlayer]);
     // libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(1)), libCore_gv_playerGroupFromPlayer[1]);
     // libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(2)), libCore_gv_playerGroupFromPlayer[2]);
     // libNtve_gf_SetDialogItemText(libGame_gv_SupportSixteenLabel[libGame_gv_players[lp_casterPlayer].lv_rosterSlot], FormatNumber(FixedToInt(3)), libCore_gv_playerGroupFromPlayer[3]);
@@ -22896,6 +22898,8 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_tertiaryScoreOverride = libGame_gv_DamageCalculateDifferentEntryOrAccumulator(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DemonHunterVault");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
           lv_tertiaryScoreString = "ScoreEight";
+          lv_septenaryScoreOverride = 1.0;
+          lv_septenaryScoreString = "AccuracyNine";
         }
         else {
           lv_tertiaryScoreString = "ScoreNine";
@@ -22977,6 +22981,10 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] += 1.0;
+      }
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMapCreature) == true)) {
+        lv_senaryScoreOverride = 1.0;
+        lv_senaryScoreString = "AccuracySix";
       }
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Team Number of Target: ") + IntToText(libGame_gf_TeamNumberOfPlayer(lp_targetPlayer))));
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Enemy Team Number of Caster: ") + IntToText(libGame_gf_EnemyTeamNumberOfPlayer(lv_casterPlayer))));
@@ -33108,7 +33116,7 @@ int libGame_gf_unitGroupCountRaynorInspire (unitgroup lp_generatedUnitGroup, str
 void libGame_gf_exportStatsForPlayer (int lp_player) {
   string lv_scoreString;
 
-  lv_scoreString = "Version 0.19 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
+  lv_scoreString = "Version 0.20 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
   lv_scoreString += " ,[ HSPrimary: ";
   lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwelve, 1);
   lv_scoreString += " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThirteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFourteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFifteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSixteen, 1);
@@ -34631,11 +34639,21 @@ fixed libGame_gf_FetchAbilityCooldownTime (unit lp_unit, string lp_ability, int 
     lv_method = "VisionDetector";
   }
   if ((lp_ability == "HeroInjuredDetector")) {
-    if (UnitGetPropertyFixed(lp_unit, c_unitPropLife, c_unitPropCurrent) == UnitGetPropertyFixed(lp_unit, c_unitPropLifeMax, c_unitPropCurrent) && (UnitIsAlive(lp_unit) == true)) {
-      lv_cooldownTime = GameGetMissionTime();
+    if (UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) == "HeroLostVikingsController") {
+      if ((UnitGetPropertyFixed(libGDHL_gv_lostVikingsPlayer[lp_player].lv_olaf, c_unitPropLife, c_unitPropCurrent) == UnitGetPropertyFixed(libGDHL_gv_lostVikingsPlayer[lp_player].lv_olaf, c_unitPropLifeMax, c_unitPropCurrent) && (UnitIsAlive(libGDHL_gv_lostVikingsPlayer[lp_player].lv_olaf) == true)) && (UnitGetPropertyFixed(libGDHL_gv_lostVikingsPlayer[lp_player].lv_baleog, c_unitPropLife, c_unitPropCurrent) == UnitGetPropertyFixed(libGDHL_gv_lostVikingsPlayer[lp_player].lv_baleog, c_unitPropLifeMax, c_unitPropCurrent) && (UnitIsAlive(libGDHL_gv_lostVikingsPlayer[lp_player].lv_baleog) == true)) && (UnitGetPropertyFixed(libGDHL_gv_lostVikingsPlayer[lp_player].lv_erik, c_unitPropLife, c_unitPropCurrent) == UnitGetPropertyFixed(libGDHL_gv_lostVikingsPlayer[lp_player].lv_erik, c_unitPropLifeMax, c_unitPropCurrent) && (UnitIsAlive(libGDHL_gv_lostVikingsPlayer[lp_player].lv_erik) == true))) {
+        lv_cooldownTime = GameGetMissionTime();
+      }
+      else {
+        lv_cooldownTime = 0;
+      }
     }
     else {
-      lv_cooldownTime = 0;
+      if (UnitGetPropertyFixed(lp_unit, c_unitPropLife, c_unitPropCurrent) == UnitGetPropertyFixed(lp_unit, c_unitPropLifeMax, c_unitPropCurrent) && (UnitIsAlive(lp_unit) == true)) {
+        lv_cooldownTime = GameGetMissionTime();
+      }
+      else {
+        lv_cooldownTime = 0;
+      }
     }
     lv_method = "InjuredDetector";
   }
@@ -36088,6 +36106,9 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     if ((lp_abilityName == "CrusaderBlessedHammer")) {
       lv_scoreString = "AccuracyTen";
     }
+    if ((lp_abilityName == "CrusaderSteedCharge")) {
+      lv_scoreString = "BaselineTwo";
+    }
     if ((lp_abilityName == "CrusaderBlindedByTheLight") || (lp_abilityName == "CrusaderIndestructible")) {
       lv_scoreString = "AccuracyTwelve";
     }
@@ -37134,7 +37155,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
         lv_secondaryScoreString = "ScoreSixteen";
       }
       if ((PlayerHasTalent(lv_casterPlayerOverride, "DemonHunterVaultAcrobat") == true)) {
-        lv_tertiaryScoreString = "SupportTwelve";
+        lv_tertiaryScoreString = "SupportThirteen";
       }
       
     }
@@ -38584,11 +38605,22 @@ void libGame_gv_trackHeroCooldownsReduced (unit lp_casterUnit, string lp_ability
 fixed libGame_gt_HeroInVisionDetector (unit lp_unit, int lp_player, int lp_unitOwner) {
   fixed lv_timeToReturn;
 
-  if ((libNtve_gf_UnitIsVisibleToPlayer(lp_unit, lp_player) == true)) {
-    lv_timeToReturn = (GameGetMissionTime());
+  
+  if (UnitGetType(libGame_gv_players[lp_unitOwner].lv_heroUnit) == "HeroLostVikingsController") {
+    if ((libNtve_gf_UnitIsVisibleToPlayer(libGDHL_gv_lostVikingsPlayer[lp_unitOwner].lv_olaf, lp_player) == true) && (libNtve_gf_UnitIsVisibleToPlayer(libGDHL_gv_lostVikingsPlayer[lp_unitOwner].lv_baleog, lp_player) == true) && (libNtve_gf_UnitIsVisibleToPlayer(libGDHL_gv_lostVikingsPlayer[lp_unitOwner].lv_erik, lp_player) == true)) {
+        lv_timeToReturn = (GameGetMissionTime());
+    }
+    else {
+      lv_timeToReturn = (0.0);
+    }
   }
   else {
-    lv_timeToReturn = (0.0);
+    if ((libNtve_gf_UnitIsVisibleToPlayer(lp_unit, lp_player) == true)) {
+      lv_timeToReturn = (GameGetMissionTime());
+    }
+    else {
+      lv_timeToReturn = (0.0);
+    }
   }
 
   return lv_timeToReturn;
@@ -38597,7 +38629,7 @@ fixed libGame_gt_HeroInVisionDetector (unit lp_unit, int lp_player, int lp_unitO
 void libGame_gv_initializeOBSUI () {
   // Variable Declarations
   int lv_playerIterator;
-  int lv_playerSlot;
+  // int lv_playerSlot;
 
   // Automatic Variable Declarations
   // Variable Initialization
@@ -38606,8 +38638,8 @@ void libGame_gv_initializeOBSUI () {
   libGame_gv_initializedOBSUI = true;
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Layout Frames"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.19 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Mercenary Tracker"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.20 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
     // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Order core tag: ") + IntToText(UnitGetTag(libGame_gv_teams[1].lv_core)) + StringToText(" Chaos core tag: ") + IntToText(UnitGetTag(libGame_gv_teams[2].lv_core)));
     // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("player 1 unit tag: ") + IntToText(UnitGetTag(libGame_gv_players[1].lv_heroUnit)));
     // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("player 2 unit tag: ") + IntToText(UnitGetTag(libGame_gv_players[2].lv_heroUnit)));
@@ -38624,13 +38656,13 @@ void libGame_gv_initializeOBSUI () {
 
   lv_playerIterator = 1;
     for ( ; lv_playerIterator <= libCore_gv_bALMaxPlayers ; lv_playerIterator += 1 ) {
-    lv_playerSlot = libGame_gv_players[lv_playerIterator].lv_rosterSlot;
-    DialogControlHookupStandard(c_triggerControlTypeLabel, ("UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\HeroSpecificHealingContainerFrame\\Player" + IntToString(lv_playerSlot) + "ContainerFrame\\PlayerScoreContainerFrameSupportFifteen\\ScoreValueLabel"));
-    libGame_gv_SupportFifteenLabel[lv_playerSlot] = DialogControlLastCreated();
-    DialogControlHookupStandard(c_triggerControlTypeLabel, ("UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\HeroSpecificHealingContainerFrame\\Player" + IntToString(lv_playerSlot) + "ContainerFrame\\PlayerScoreContainerFrameSupportSixteen\\ScoreValueLabel"));
-    libGame_gv_SupportSixteenLabel[lv_playerSlot] = DialogControlLastCreated();
-    DialogControlHookupStandard(c_triggerControlTypeLabel, ("UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\HeroSpecificDamageContainerFrame\\Player" + IntToString(lv_playerSlot) + "ContainerFrame\\PlayerScoreContainerFrameScoreFifteen\\ScoreValueLabel"));
-    libGame_gv_DamageFifteenLabel[lv_playerSlot] = DialogControlLastCreated();
+    // lv_playerSlot = libGame_gv_players[lv_playerIterator].lv_rosterSlot;
+    // DialogControlHookupStandard(c_triggerControlTypeLabel, ("UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\HeroSpecificHealingContainerFrame\\Player" + IntToString(lv_playerSlot) + "ContainerFrame\\PlayerScoreContainerFrameSupportFifteen\\ScoreValueLabel"));
+    // libGame_gv_SupportFifteenLabel[lv_playerSlot] = DialogControlLastCreated();
+    // DialogControlHookupStandard(c_triggerControlTypeLabel, ("UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\HeroSpecificHealingContainerFrame\\Player" + IntToString(lv_playerSlot) + "ContainerFrame\\PlayerScoreContainerFrameSupportSixteen\\ScoreValueLabel"));
+    // libGame_gv_SupportSixteenLabel[lv_playerSlot] = DialogControlLastCreated();
+    // DialogControlHookupStandard(c_triggerControlTypeLabel, ("UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\HeroSpecificDamageContainerFrame\\Player" + IntToString(lv_playerSlot) + "ContainerFrame\\PlayerScoreContainerFrameScoreFifteen\\ScoreValueLabel"));
+    // libGame_gv_DamageFifteenLabel[lv_playerSlot] = DialogControlLastCreated();
     libGame_gv_ownedMercenaries[lv_playerIterator] = UnitGroupEmpty();
   }
 }

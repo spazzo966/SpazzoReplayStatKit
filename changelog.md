@@ -1,3 +1,32 @@
+**v0.20**
+
+Statistics
+ * Fixed an issue where the UI would not properly update for the hero-specific secondary 15th & 16th score when the replay is viewed from a player's perspective or when the game is rewound
+ * The Lost Vikings now displays Time all Vikings are Unhurt & Alive and Time all Vikings are in Vision, instead of those statistics for their controller unit
+ * Malfurion now features number of times each Allied hero has been healed by Tranquility
+ * Fixed an issue where Valla's number of Heroes hit with Vault Bonus Damage would not be updated
+ * Fixed an issue where Valla's number of Monsters hit with Hungering Arrow would not be updated
+ * Fixed an issue where Valla's number of Vault Casts after selecting Acrobat would increase the incorrect score entry
+ * Fixed an issue where Johanna's Steed Charge Casts would not be tracked
+
+UI
+ * Scores that feature timer displays now display 0:00 when at 0 seconds, instead of being blank
+ * The score entry for Blizzard's tracking of Time Spent Dead and Time CC'd Enemy Heroes now feature timer displays
+ * Samuro's Top Bar now updates the Hero Image if a Mirror Image is the selected unit, and while a Mirror Image is selected the health of Samuro will be display in the ability panel
+ * Samuro's Top Bar now displays the health & remaining duration of any active Mirror Images in the baseline slot 
+ * Abathur's Top Bar now features the Locust cooldown in the baseline slot so it wil remain visible while the Symbiote is active
+ * Alexstrasza's Top Bar will now properly display the cooldown of Cleansing Flame while Dragonqueen is active(This is a bug seen in all other UIs)
+ * Auriel's Top Bar will now properly display the cooldown of Resurrect while she is dead(This is a bug seen in all other UIs)
+ * Added Hero Attachments for Abathur, Ana, Arthas, Lt. Morales, Ragnaros, Probius, Yrel and Zagara
+ * You can now browse Hero Attachment settings for Heroes outside of the game through submenus. This is separated into A-L and M-Z
+ * Tychus's Hero Attachment now features a setting for Minigun Duration
+ * The Heroic and Storm talents now feature a unique border in the Bottom Panel
+ * Rearranged the unit stats for the selected unit panel to reduce space usage, additional information is visible in the tooltip for Basic Attack Damage and the two Armors
+ * Fixed an issue where the statistics for the score for the fifth mercenary slot for player 1 in the AI Stats tab would not update correctly
+ * Fixed an issue causing cooldowns located in the baseline slot in the Top Bar to not display correctly
+ * Fixed an issue causing display issues with Leoric's Wraith Walk Hero Attachment
+ * Fixed an issue where Hero Attachments for cooldowns would not properly desaturate while the ability is active
+
 **v0.19**
 
 Statistics
