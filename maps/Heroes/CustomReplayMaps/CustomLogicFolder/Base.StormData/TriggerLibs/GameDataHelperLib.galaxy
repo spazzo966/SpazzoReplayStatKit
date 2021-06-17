@@ -2698,6 +2698,8 @@ void libGDHL_gf_HeroMuradinIncrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroMuradinItsHammerTimeOnDeathProc, true);
         TriggerEnable(libGDHL_gt_HeroMuradinAvatarApplyHealthBuff, true);
         TriggerEnable(libGDHL_gt_HeroMuradinHaymakerGrandSlamTalentProc, true);
+        TriggerEnable(libGDHL_gt_HeroMuradinFreePiercingStormbolt, true);
+        TriggerEnable(libGDHL_gt_HeroMuradinResetFreePiercingStormbolt, true);
     }
 
 }
@@ -2715,6 +2717,8 @@ void libGDHL_gf_HeroMuradinDecrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroMuradinItsHammerTimeOnDeathProc, false);
         TriggerEnable(libGDHL_gt_HeroMuradinAvatarApplyHealthBuff, false);
         TriggerEnable(libGDHL_gt_HeroMuradinHaymakerGrandSlamTalentProc, false);
+        TriggerEnable(libGDHL_gt_HeroMuradinFreePiercingStormbolt, false);
+        TriggerEnable(libGDHL_gt_HeroMuradinResetFreePiercingStormbolt, false);
     }
 
 }
@@ -17163,7 +17167,7 @@ bool libGDHL_gt_HeroMuradinItsHammerTimeOnDeathProc_Func (bool testConds, bool r
             return false;
         }
 
-        if (!((UnitHasBehavior2(lv_killedUnit, "MuradinItsHammerTimeKillBonusBehavior") == true))) {
+        if (!((UnitHasBehavior2(lv_killedUnit, "MuradinStormBoltPerfectStormKillBonusBehavior") == true))) {
             return false;
         }
     }
@@ -17175,9 +17179,9 @@ bool libGDHL_gt_HeroMuradinItsHammerTimeOnDeathProc_Func (bool testConds, bool r
 
     lv_i = 0;
     for ( ; ( (auto534F8C5E_ai >= 0 && lv_i <= auto534F8C5E_ae) || (auto534F8C5E_ai < 0 && lv_i >= auto534F8C5E_ae) ) ; lv_i += auto534F8C5E_ai ) {
-        lv_unit[lv_i] = UnitBehaviorEffectUnit(lv_killedUnit, "MuradinItsHammerTimeKillBonusBehavior", c_effectUnitCaster, lv_i);
+        lv_unit[lv_i] = UnitBehaviorEffectUnit(lv_killedUnit, "MuradinStormBoltPerfectStormKillBonusBehavior", c_effectUnitCaster, lv_i);
         if ((UnitGetOwner(lv_unit[lv_i]) == lv_killingPlayer)) {
-            UnitCreateEffectUnit(lv_unit[lv_i], "MuradinStormboltItsHammerTimeHeroKillModifyTokenCount", lv_unit[lv_i]);
+            UnitCreateEffectUnit(lv_unit[lv_i], "MuradinStormboltPerfectStormHeroKillModifyTokenCount", lv_unit[lv_i]);
         }
 
     }
@@ -17189,6 +17193,112 @@ void libGDHL_gt_HeroMuradinItsHammerTimeOnDeathProc_Init () {
     libGDHL_gt_HeroMuradinItsHammerTimeOnDeathProc = TriggerCreate("libGDHL_gt_HeroMuradinItsHammerTimeOnDeathProc_Func");
     TriggerEnable(libGDHL_gt_HeroMuradinItsHammerTimeOnDeathProc, false);
     libGame_gf_HeroParticipatedInTakedown(libGDHL_gt_HeroMuradinItsHammerTimeOnDeathProc);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero - Muradin - Free Piercing Stormbolt
+//--------------------------------------------------------------------------------------------------
+bool libGDHL_gt_HeroMuradinFreePiercingStormbolt_Func (bool testConds, bool runActions) {
+  // Variable Declarations
+  int lv_player;
+  unit lv_unit;
+
+  // Automatic Variable Declarations
+  // Variable Initialization
+  lv_player = libGame_gf_HeroLevelUpPlayer();
+  lv_unit = libGame_gv_players[lv_player].lv_heroUnit;
+
+  // Conditions
+  if (testConds) {
+      if (!((lv_player >= 1))) {
+          return false;
+      }
+
+      if (!((lv_player <= libCore_gv_bALMaxPlayers))) {
+          return false;
+      }
+
+      if (!((libGame_gf_HeroLevelUpLevel() >= 10))) {
+          return false;
+      }
+
+      if (!((UnitGetType(lv_unit) == "HeroMuradin"))) {
+          return false;
+      }
+
+      if (!((PlayerHasTalent(lv_player, "MuradinStormBoltIt'sHammerTime") == false))) {
+          return false;
+      }
+  }
+
+  // Actions
+  if (!runActions) {
+      return true;
+  }
+
+  PlayerAddTalent(lv_player, "MuradinStormBoltIt'sHammerTime");
+  UnitCreateEffectUnit(lv_unit, "MuradinStormboltItsHammerTimeInstantComplete", lv_unit);
+  return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libGDHL_gt_HeroMuradinFreePiercingStormbolt_Init () {
+  libGDHL_gt_HeroMuradinFreePiercingStormbolt = TriggerCreate("libGDHL_gt_HeroMuradinFreePiercingStormbolt_Func");
+  libGame_gf_HeroLevelUp(libGDHL_gt_HeroMuradinFreePiercingStormbolt);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero - Muradin - Reset Free Piercing Stormbolt
+//--------------------------------------------------------------------------------------------------
+bool libGDHL_gt_HeroMuradinResetFreePiercingStormbolt_Func (bool testConds, bool runActions) {
+  // Variable Declarations
+  int lv_player;
+  unit lv_unit;
+
+  // Automatic Variable Declarations
+  // Variable Initialization
+  lv_player = UnitGetOwner(EventUnit());
+  lv_unit = libGame_gv_players[lv_player].lv_heroUnit;
+
+  // Conditions
+  if (testConds) {
+      if (!((lv_player >= 1))) {
+          return false;
+      }
+
+      if (!((lv_player <= libCore_gv_bALMaxPlayers))) {
+          return false;
+      }
+
+      if (!((UnitGetType(lv_unit) == "HeroMuradin"))) {
+          return false;
+      }
+
+      if (!((PlayerHasTalent(lv_player, "MuradinStormBoltIt'sHammerTime") == true))) {
+          return false;
+      }
+  }
+
+  // Actions
+  if (!runActions) {
+      return true;
+  }
+
+  PlayerRemoveTalent(lv_player, "MuradinStormBoltIt'sHammerTime");
+  UnitCreateEffectUnit(lv_unit, "MuradinStormboltItsHammerTimeInstantReset", lv_unit);
+  Wait(0.125, c_timeGame);
+  if ((UnitBehaviorCount(EventUnit(), "HeroDummyVeterancy") >= 10)) {
+      PlayerAddTalent(lv_player, "MuradinStormBoltIt'sHammerTime");
+      UnitCreateEffectUnit(lv_unit, "MuradinStormboltItsHammerTimeInstantComplete", lv_unit);
+  }
+
+  return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libGDHL_gt_HeroMuradinResetFreePiercingStormbolt_Init () {
+  libGDHL_gt_HeroMuradinResetFreePiercingStormbolt = TriggerCreate("libGDHL_gt_HeroMuradinResetFreePiercingStormbolt_Func");
+  TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroMuradinResetFreePiercingStormbolt, null, "MuradinItsHammerTimeQuestCompletionCarry", c_unitBehaviorChangeCreate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -22228,7 +22338,6 @@ bool libGDHL_gt_HeroStitchesResetFreeFishingHookTalent_Func (bool testConds, boo
     if ((UnitBehaviorCount(EventUnit(), "HeroDummyVeterancy") >= 13)) {
         PlayerAddTalent(lv_player, "StitchesFishingHook");
         UnitCreateEffectUnit(lv_unit, "StitchesHookLevel13ExtendedHookSet", lv_unit);
-        TriggerDebugOutput(1, IntToText(UnitBehaviorCount(EventUnit(), "HeroDummyVeterancy")), true);
     }
 
     return true;
@@ -26466,6 +26575,8 @@ void libGDHL_InitTriggers () {
     libGDHL_gt_HeroMuradinAvatarApplyHealthBuff_Init();
     libGDHL_gt_HeroMuradinHaymakerGrandSlamTalentProc_Init();
     libGDHL_gt_HeroMuradinItsHammerTimeOnDeathProc_Init();
+    libGDHL_gt_HeroMuradinFreePiercingStormbolt_Init();
+    libGDHL_gt_HeroMuradinResetFreePiercingStormbolt_Init();
     libGDHL_gt_MurkyUIInitialize_Init();
     libGDHL_gt_HeroMurkyMurkyEggDies_Init();
     libGDHL_gt_HeroMurkyMurkyDies_Init();

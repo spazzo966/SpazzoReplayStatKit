@@ -828,6 +828,8 @@ trigger libGDHL_gt_HeroMuradinHaymaker;
 trigger libGDHL_gt_HeroMuradinAvatarApplyHealthBuff;
 trigger libGDHL_gt_HeroMuradinHaymakerGrandSlamTalentProc;
 trigger libGDHL_gt_HeroMuradinItsHammerTimeOnDeathProc;
+trigger libGDHL_gt_HeroMuradinFreePiercingStormbolt;
+trigger libGDHL_gt_HeroMuradinResetFreePiercingStormbolt;
 trigger libGDHL_gt_MurkyUIInitialize;
 trigger libGDHL_gt_HeroMurkyMurkyEggDies;
 trigger libGDHL_gt_HeroMurkyMurkyDies;

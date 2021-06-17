@@ -1,3 +1,21 @@
+**v0.21**
+
+Statistics
+ * Blaze has seen a v2'ing of his statistics in the same fashion as the Heroes most recently reworked, pretty much everything is changed in some way or another
+ * Imperius now has damage prevented with Heavenly Host split into Heroic & non-Heroic sources
+ * Imperius now features the health & mana restored by Unrelenting Descent as tracked statistics
+ * Anduin has been updated to support Inner Focus returning to his kit, and tracks Bonus Healing to Allied Heroes, Bonus Healing to Self, Times Cast when Flash Heal was on cooldown, and Times Cast
+ * Orphea has been updated to support Growing Nightmare applying the passive damage bonus to the Dread Line damage
+ * Stukov has been updated to accomadate the talent adjustments
+ * Valla has been updated to support the Fire At Will alteration
+
+UI
+ * Fixed an issue where Anduin's score tooltips would not properly update when Evenhanded Blessings was selected
+ * Fixed an issue where Anduin's Lightwell cooldown would not display in the Top Bar
+ * Added support for Garrosh gaining Into the Fray as a baseline ability
+ * Removed Muradin's baseline quest tracking as it has been removed
+ * Blaze's Grill n Kill tracker has been updated to be located at level 13, in line with the talent shuffle
+
 **v0.20**
 
 Statistics
