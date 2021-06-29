@@ -846,9 +846,6 @@ bool libHDVA_gt_HeroDVaMechDiesviaFatalDamage_Func (bool testConds, bool runActi
     }
 
  
-    // libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_targetPlayer, lv_killingPlayer, "DVaMechDestroyedByFatal", lv_unit, "");
-// xp track earmark
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("XP Value from ") + StringToText(UnitGetType(lv_unit)) + StringToText(" ") + FixedToText(libCore_gf_DataXPXPForHero(lv_killingPlayer, lv_unit), 2)));
     lv_enemyPlayerGroup = libGame_gf_EnemyPlayerGroupOfPlayer(lv_targetPlayer);
     lv_killingGroup = libGame_gf_HeroDeathGetKillingGroupFromKillingTeamGroupAndDeadUnit(lv_enemyPlayerGroup, lv_killingPlayer, lv_unit);
     libGame_gf_HeroDeathAwardXP(lv_killingPlayer, lv_unit, lv_enemyPlayerGroup, lv_killingGroup, true);

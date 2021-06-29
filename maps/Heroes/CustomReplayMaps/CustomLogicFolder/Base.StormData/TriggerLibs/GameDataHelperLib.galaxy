@@ -12418,6 +12418,7 @@ bool libGDHL_gt_HeroLeoricWraithWalkCast_Func (bool testConds, bool runActions) 
         libGame_gv_players[lv_player].lv_cameraPlayerUnitGroupToFocusOn = libGame_gv_players[lv_player].lv_heroUnitGroup;
     }
     UnitSelect(lv_wraithWalkUnit, lv_player, true);
+    // UnitOrderCopy(libGame_gv_players[lv_player].lv_heroUnit, lv_wraithWalkUnit, 32);
     libGDHL_gv_hero_Leoric_WraithWalk_Unit[lv_player] = lv_wraithWalkUnit;
     UnitSetFacing(lv_wraithWalkUnit, UnitGetFacing(lv_controllerUnit), 0.0);
     if ((libAIAI_gf_HeroAIIsAIEnabledForPlayer(lv_player) == true)) {

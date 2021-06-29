@@ -1,7 +1,6 @@
 This file is a listing of scores used, if a score has in brackets NONFUNCTIONAL, that means it doesn't actually work, and we're actually setting the text value through triggers, so it doesn't work through rewinds & stuff
 
 scores:
-
 Players(1-10)
 
 WinsSupport - BaselineOne
@@ -18,8 +17,8 @@ EndOfMatchAwardMostVengeancesPerformedBoolean - SupportEleven
 EndOfMatchAwardMostDaredevilEscapesBoolean - SupportTwelve
 ExperienceFromTownsDestroyed - SupportThirteen
 ExperienceFromTakedowns - SupportFourteen
-StatScoreValue(NONFUNCTIONAL) - SupportFifteen
-EndOfMatchAwardBooleanValue(NONFUNCTIONAL) - SupportSixteen
+Level - SupportFifteen
+CageUnlocksInterrupted - SupportSixteen
 
 TeamWinsMale - ScoreOne
 PlaysFemale - ScoreTwo
@@ -83,8 +82,12 @@ TeamWinsStarCraft - Healing from Fountian
 TeamWinsWarcraft - Healing from Globes
 TeamWinsDiablo - Healing from Nexus
 EndOfMatchAwardHighestKillStreakBoolean - XP Given to Enemy by Dying
-EndOfMatchAwardMostSeedsCollectedBoolean - XP from Globes
+EndOfMatchAwardMostSeedsCollectedBoolean - XP from Large Globes
+EndOfMatchAwardMostInterruptedCageUnlocksBoolean - XP from Shrunken Globes
 TeamMercCampCaptures - XP from Lasthits
+EndOfMatchAwardMostGemsTurnedInBoolean - Experience Globes Collected
+EndOfMatchAwardMostTimeInTempleBoolean - Shrunken Experience Globes Collected
+EndOfMatchAwardMostDamageToMinionsBoolean - Minions Lasthit
 SpellDamage - Time Uninjured
 TeamTownKills - Time Visible
 
@@ -93,7 +96,11 @@ WatchTowerCaptures - Physical Damage increased by Armor
 TownKills - Physical Damage modified by Mixed Physical Armor
 MinionKills - Spell Damage prevented by Armor
 ExperienceFromRegenGlobes - Spell Damage increased by Armor
-Tier1Talent - Damage modified by Mixed Spell Armor
+Tier1Talent - Spell Damage modified by Mixed Spell Armor
+BlackheartDoubloonsTurnedIn - Physical Damage dealt increased by Damage Modifiers
+BlackheartDoubloonsCollected - Physical Damage dealt reduced by Damage Modifiers
+BlackheartDoubloonsDropped - Spell Damage dealt increased by Damage Modifiers
+BlackheartTeamNumberOfTimesFiredTheCannon - Spell Damage dealt reduced by Damage Modifiers
 Tier2Talent - Healing Taken
 Tier3Talent - Damage to Hero prevented by Shields
 Tier4Talent - Damage from Hero prevented by Blinds
@@ -102,17 +109,10 @@ Tier6Talent - Physical Damage Taken
 Tier7Talent - Spell Damage Taken
 
 Unused:
-
-BlackheartDoubloonsTurnedIn
-BlackheartDoubloonsCollected
-BlackheartDoubloonsDropped
-BlackheartTeamNumberOfTimesFiredTheCannon
 GameScore?
-DragonShrinesCaptured
-EndOfMatchAwardMostGemsTurnedInBoolean
-EndOfMatchAwardMostTimeInTempleBoolean
-EndOfMatchAwardMostDamageToMinionsBoolean
-EndOfMatchAwardMostInterruptedCageUnlocksBoolean
+BalanceProbe?
+UtherHolyLightSilverTouch? check with uther ingame and silver touch talent
+TimeOnPoint
 EndOfMatchAwardMostDamageToPlantsBoolean
 EndOfMatchAwardMostSkullsCollectedBoolean
 EndOfMatchAwardMostTimePushingBoolean
@@ -123,9 +123,20 @@ EndOfMatchAwardMostCurseDamageDoneBoolean
 EndOfMatchAwardMostDragonShrinesCapturedBoolean
 EndOfMatchAwardMapSpecificBoolean
 EndOfMatchAwardMVPBoolean
+EndOfMatchAwardMostTimeOnPointBoolean
+EndOfMatchAwardMostStunsBoolean
+EndOfMatchAwardMostRootsBoolean
+EndOfMatchAwardGivenToNonwinner
+EndOfMatchAwardMostSilencesBoolean
+EndOfMatchAwardMostMercCampsCapturedBoolean
+EndOfMatchAwardMostAltarDamageDone
+EndOfMatchAwardMostNukeDamageDoneBoolean
+EndOfMatchAwardMostTeamfightDamageTakenBoolean
+EndOfMatchAwardMostTeamfightHealingDoneBoolean
+EndOfMatchAwardMostTeamfightHeroDamageDoneBoolean
+
 
 AI Teams(11, 12)
-
 Hero Damage - 
 Siege Damage - 
 Structure Damage - 
@@ -190,9 +201,9 @@ EndOfMatchAwardMostEscapesBoolean - hero 5 merc 6
 
 Unused: 
 
+
 Role
 EndOfMatchAwardMostProtectionBoolean
-EndOfMatchAward0DeathsBoolean
 EndOfMatchAwardMostSiegeDamageDoneBoolean
 EndOfMatchAwardMostDamageTakenBoolean
 EndOfMatchAward0OutnumberedDeathsBoolean

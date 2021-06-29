@@ -112,7 +112,7 @@ if %ERRORLEVEL%==0 (
 )
 if %isfound%==false (
     echo looking for tomb, shrines not found
-	findstr /c:"MapCrypts" "%mpqdirectory%\replay.tracker.events"
+	findstr /c:"Crypts" "%mpqdirectory%\replay.tracker.events"
 )
 if %ERRORLEVEL%==0 (
     echo string found tomb

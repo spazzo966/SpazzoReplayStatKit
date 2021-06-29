@@ -1,3 +1,44 @@
+**v0.22**
+
+Statistics
+* Experience Globes Experience is now split into Experience from large Experience Globes and Shrunken Experience Globes
+* There is now new scores for number of Large Experience Globes collected, number of Shrunken Experience Globes collected, and the number of Minions last hit
+* There is now new scores for the damage modifier system used by Spell Power and Damage reduction, such as Alexstrasza's Pacify Talent or Uther's Well Met. This is a work-in-progress and will be improved upon as time goes on
+* Blaze Burn Notice now tracks the number of times an enemy Hero has been ignited or relit, instead of the number of times they've been damaged by Burn Notice
+* Tracer now features bonus damage from Locked and Loaded talent
+* Ana now features expanded statistics for her Smelling Salts talent
+* D.Va now features a score value for Mechs destroyed while Self-Destruct was fully charged, and her scores have been minorly reshuffled to fit this
+* Fixed an issue where Valla's bonus damage would not correctly track the additional damage from the quest milestone
+* Fixed an issue where Valla's Seething Hatred would not calculate correctly with Fire At Will
+* Fixed an issue where the bonus damage dealt by flat modifiers could become inaccurate in edge-case scenarios
+* Fixed an issue where Stitches Gorge Casts would not be correct if Hungry, Hungry Stitches was used
+* Fixed an issue where Genji's Dodge scores would not track correctly
+* Fixed an issue where Abathur's Ultimate Evolution Healing would increase when Abathur restored energy or shields through Ultimate Evolution
+* Fixed an issue where Tracer's Leeching Rounds talent would not track correctly and display errors when attacking non-heroic targets, and also rearranged the statistics for this
+
+UI
+* When a game has ended with custom statitics present, the UI will now display warnings to indicate that the statistics displayed may not be accurate, and advised to rewind to before this occurs
+* Added charge counters for Abathur's Toxic Nest and Abathur's Symbiote's Stab to the Top Bar
+* Added charge counters for Blaze's Oil Spill to the Top Bar
+* Added charge counters for Cassia's Lightning Fury to the Top Bar
+* Added charge counters for Junkrat's Frag Launcher to the Top Bar
+* Added charge counters for Kerrigan's Ravage to the Top Bar
+* Added charge counters for Nazeebo's Plague of Toads to the Top Bar
+* Added charge counters for Probius's Warp Rift to the Top Bar
+* Added charge counters for Tyrande's Light of Elune to the Top Bar
+* Added charge counters for Zagara's Banelings to the Top Bar
+* Added charge counters for Zarya's Particle Grenade to the Top Bar
+* Updated the tooltip text for the Top Bar for Blaze's Flame Stream to include the critical damage for hitting a target with both streams
+* The selected unit statistics now features Healing Taken reduction, and other statistics have seen a minor rearrangement to include this cleanly
+* Updated the handling for text styles for cooldowns in the Bottom Panel
+* Minor alignment improvements to the custom statistics scoreboard
+* Garrosh now features Into The Fray as a valid attachment option
+* Fixed the attachment for Molten Core being misaligned
+* Fixed an issue where the selected unit's name would not render above other panels
+* Fixed a text issue with Blaze's Flame Stream Doublestream Damage to non-Heroes
+* Fixed a text issue with Blaze's third secondary score statistic when the third talent at the approriate tier was chosen
+* Fixed a text issue with Johanna's twelfth secondary score statistic when a talent is chosen at the approriate tier
+
 **v0.21**
 
 Statistics
