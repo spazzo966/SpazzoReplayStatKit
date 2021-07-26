@@ -1,3 +1,39 @@
+**v0.23**
+
+Statistics
+* Expanded Support for Dehaka
+* Fixed numerous issues where something that was listed as Damage to Neutral Mercenaries would include Monsters as Neutral Mercenaries
+* Updates to support changes in the 2.54.2 Patch, as well as some other minor adjustments & fixes
+
+UI
+* Updated the overall visual style & minor layout adjustments of the Top Bar
+* Added new options to disable talent displaying in the Top Bar piecemeal - if you only want to see talents that grant an active, you can do that on a tier-by-tier basis, as well as disabling quests and buff tracking tier-by-tier
+* The Show Talents Hotkey(ALT+T) has been replaced with a "Minimal Mode" hotkey, which will change a number of settings to make the UI less crowded. This is intended for use in caster scenarios.
+* Added a new option to use an alternate talent layout in the Top Bar. This is recommended to be used when all non-heroic talents are set to not be visible, but compatability is maintained when those settings are not present
+* Energy now supports displaying energy-over-time effects in the Top Bar(Energy preview, same as Healing previews)
+* Tracer's Pulse Bomb Charge is now placed over hero the Heroic talent slot in the Top Bar, and the icon updates to the icon of her selected Heroic talent and the charge background becomes partially transparent
+* Deathwing's Cataclysm cooldown will no longer be displayed in the "Core Ability Slot" if Burn Beneath My Shadow(Cataclysm upgrade) is selected at level 10, as the cooldown is shown there.
+* Xul's Bone Armor has been readded to his Basic Ability cooldown listings in the Top Bar, and will no longer display the cooldown in the Bottom Panel
+* Medivh's Portal Mastery no longer adds the Portal Cooldown to the talent in the Top Bar, and will no longer display the cooldown in the Bottom Panel
+* Added Johanna's Steed Charge cooldown to the Top Bar & Bottom Panel
+* Added Lunara's Galloping Gait cooldown to the Top Bar & Bottom Panel
+* Heroic Talents that feature charges now feature them in the Top Bar & Bottom Panel
+* When you select a Storm Talent that adds charges to a Heroic talent option, charge counters are now added to the Heroic slot in the Top Bar & Bottom Panel
+* Artanis Reactive Parry is now displayed as buff is selected in the Top Bar
+* Dehaka's Paralyzing Enzymes Gambit Talent progress now displays in the Top Bar & Bottom Panel
+* Samuro's Mirror Image display in the Top Bar has been reworked to more closely match the overall visual presentation of baseline bonuses, and can now be disabled by disabling baseline buffs & stacks
+* The options menu has seen a redesign in button design & some button placement to accomadate the need for more space
+* Hero Health Labels as part of their Healthplates now uses a Pulldown menu to select the perctage of health to display the health label
+* Numerous Heroes have had their attachment settings redesigned to support display abilities granted by talents. More Heroes will be added to this "V2" over time, right now Artanis, Anduin, Li-Ming, Alarak, Deckard, Johanna, D.Va, Maiev, E.T.C., Alexstrasza, Garrosh, Ana, Auriel, Anub'arak, Chromie, Arthas, Azmodan, Blaze, Brightwing, Cassia, Zeratul, Sonya and Abathur have been updated
+* Fixed an issue where Illidan's Health Bar was not the correct size in the Top Bar
+* Fixed an issue where Fenix's Health Bar & Shields Bar did not behavior properly in the Top Bar
+* Fixed an issue where Cursed Hollow's Sandbox Battleground would not be supported properly when displaying total potential owned Forts in the Top Bar
+* Fixed an issue where Valla's Fire At Will quest progress would not display after she reached 20 stacks in the Top Bar & Bottom Panel
+* Fixed an issue where Blizzard's Target Info Panel would not display correctly after being dragged
+* Hopefully finally fixed an issue causing some ability cooldown text to be truncated when the value is too high at certain screen resolutions
+* Fixed a typo in one of Johanna's score listings
+* Updated ability tooltips in the Top Bar to match those seen in version 2.54.2
+
 **v0.22**
 
 Statistics

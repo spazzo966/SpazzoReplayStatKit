@@ -37,7 +37,7 @@ Export Settings - by pressing the Export Settings button, the current settings f
  * Alt+I: Disable Hero Attachments(floating cooldowns beside hero Healthplates)
  * ALT+U: Move the Hero Health Label Display Setting Up(the percentage of health at which Hero Health will display as a number in their Healthplate)
  * ALT+Y: Move the Hero Health Label Display Setting Down(the percentage of health at which Hero Health will display as a number in their Healthplate)
- * Alt+T: Disable talents in the Top Bar
+ * Alt+T: Minimal Mode: Disables showing non-heroic talents in the top bar, and changes a number of other settings to reduce visual clutter
  * Alt+R: Disable Basic Abilities in the Top bar
  * Alt+K: Disable Structure Health in Healthplates
  * Alt+1: Open Timestamped Statitsics in the Bottom Panel
