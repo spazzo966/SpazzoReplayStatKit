@@ -280,3 +280,146 @@ EndOfMatchAwardMostCurseDamageDoneBoolean
 EndOfMatchAwardMostDragonShrinesCapturedBoolean
 EndOfMatchAwardMapSpecificBoolean
 EndOfMatchAwardMVPBoolean
+
+Galaxy Var References:
+
+Ability Timestamps, used for "ability was last cast at this time", increases by 0.0625s while stopped to keep remain consistent.
+libGame_gv_HeroQButtonTimestamp
+libGame_gv_HeroWButtonTimestamp
+libGame_gv_HeroEButtonTimestamp
+libGame_gv_HeroRButtonTimestamp
+libGame_gv_HeroDButtonTimestamp
+
+Featured on: Anduin, Blaze, Artanis, Johanna, Valla, Stitches, Raynor
+
+Generic Global Variables, used for hero-specific tracking.
+
+libGame_gv_HeroSpecificStoredValue1
+
+Orphea: Growing Nightmare
+Anduin: Moral Compass, Surge of Light, Piercing Light(Level 4 Talent)
+Auriel: Hope, used for Reservoir
+Yrel: Vindication? Dumped plans?
+D.Va: Self Destruct Caused by Player 1,6
+Li-Ming: Arcane Orb, could be refactored
+Varian: High King's Quest Hero Hit Count, Overpower Tracking, Lion's Maw Tracking(Level 1 Talent)
+Qhira: The Thirst
+Johanna: Punish Hero Hit Tracked
+Valla: Hatred
+Samuro: Critical Strike
+Artanis: Final Cut
+Blaze: Unique Jet Propulsion Hits
+Dehaka: Isolation initial hit register(for contagion)
+Diablo: Apocalypse hit register(for Dying Breath\Apoc Blink)
+Hanzo: Dragon's Arrow Unique Hits
+Morales: Displacement Grenade Unique Hits
+Malfurion: Moonfire Unique Hits
+Maiev: Bonds of Justice
+Medivh: Mystic Assault
+Raynor: Line Em' Up
+Sonya: Shot of Fury(refactor!)
+Stukov: Poppin' Pustules
+Tracer: Melee w/ aoe Melee
+Abathur: Toxic Nest Hits
+Cho: Life Percentage
+Genji: Swift Strike for Steady Blade
+Zeratul: Might of the Nerazim cast register
+Hogger: Energy Percentage
+
+libGame_gv_HeroSpecificStoredValue2
+
+Orphea:
+Maiev: Pin Down?
+Anduin: Moral Compass, Surge of Light, Piercing Light(Level 4 Talent)
+Auriel: Hope, used for Reservoir
+D.Va: Self Destruct Caused by Player 2,7
+Qhira: The Thirst
+Valla: Hatred
+Diablo: Apocalypse hit register(for Dying Breath\Apoc Blink)
+Morales: Displacement Grenade Unique Hits
+Malfurion: Moonfire Unique Hits
+Medivh: Mystic Assault
+Cho: Life Percentage
+Hogger: Energy Percentage
+Li-Ming: Magic Missiles
+Tracer: Recall
+Blaze: Burn Notice
+
+libGame_gv_HeroSpecificStoredValue3
+
+Orphea: Overwhelming Chaos
+Maiev: Pin Down
+Auriel: Hope, used for Reservoir
+D.Va: Self Destruct Caused by Player 3,8
+Qhira: The Hunted
+Anduin: Inner Focus
+Li-Ming: Magic Missiles
+Johanna: Subdue, Hold your Ground(level 4 talent)
+Valla: Hungering Arrow Hits
+Tracer: Recall
+
+libGame_gv_HeroSpecificStoredValue4
+
+Orphea: Eldritch Conduit
+D.Va: Self Destruct Caused by Player 4,9
+Qhira: The Hunted
+Li-Ming: Talrasha's
+Johanna: Roar
+Valla: Multishot Hits
+Maiev: Pin Down
+Medivh: Master's Touch
+
+libGame_gv_HeroSpecificStoredValue5
+
+Orphea: Eldritch Conduit
+D.Va: Self Destruct Caused by Player 5,10
+Valla: Vault
+Li-Ming: Talrasha's
+Maiev: Cruel Chain
+
+libGame_gv_HeroSpecificStoredValue6
+
+Orphea: Mind Devourer
+Maiev: Ruthless Spirit
+Valla: Repeating Arrow Register
+
+libGame_gv_HeroSpecificStoredValue7
+
+Orphea: Eternal Feast Hit Register
+Valla: Repeating Arrow Register
+
+libGame_gv_HeroSpecificStoredValue8
+
+Orphea: Shadow Waltz Hit Register
+
+libGame_gv_HeroSpecificStoredValue9
+
+Orphea: Chomp Hit Register
+
+libGame_gv_HeroSpecificStoredValue10
+
+Orphea: Dread Explosion Hit Register
+
+libGame_gv_HeroSpecificStoredUnit1
+
+Orphea:
+Qhira: The Hunted
+Abathur: Toxic Nest Hits
+Li-Ming: Magic Missiles
+Blaze: Burn Notice
+D.Va: Mech Deaths
+Medivh: Force of Will
+Stitches: Gorge
+Anduin: Evenhanded Blessings
+Tracer: Weapon Target(useless?)
+Zul'jin Berserker(refactor)
+Lucio: Boombox
+Rexxar: Misha
+
+libGame_gv_HeroSpecificStoredUnit2
+
+Orphea:
+Li-Ming: Arcane Orb, could be refactored
+Zul'jin Berserker(refactor)
+Abathur: Locust Nest
+Qhira: Revolving Sweep

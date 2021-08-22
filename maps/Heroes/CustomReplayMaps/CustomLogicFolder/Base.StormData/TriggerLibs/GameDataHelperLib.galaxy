@@ -2934,8 +2934,8 @@ void libGDHL_gf_HeroNovaIncrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroNovaTripleTapMissiles, true);
         TriggerEnable(libGDHL_gt_HeroNovaTripleTapMissileCleanup, true);
         TriggerEnable(libGDHL_gt_HeroNovaHoloCloneSpawned, true);
-        TriggerEnable(libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldown, true);
         TriggerEnable(libGDHL_gt_HeroNovaHoloCloneDamageDuplication, true);
+        TriggerEnable(libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController, true);
     }
 
 }
@@ -2955,8 +2955,8 @@ void libGDHL_gf_HeroNovaDecrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroNovaTripleTapMissiles, false);
         TriggerEnable(libGDHL_gt_HeroNovaTripleTapMissileCleanup, false);
         TriggerEnable(libGDHL_gt_HeroNovaHoloCloneSpawned, false);
-        TriggerEnable(libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldown, false);
         TriggerEnable(libGDHL_gt_HeroNovaHoloCloneDamageDuplication, false);
+        TriggerEnable(libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController, false);
     }
 
 }
@@ -4011,6 +4011,7 @@ void libGDHL_gf_HeroWitchDoctorIncrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroWitchDoctorGargantuanCreated, true);
         TriggerEnable(libGDHL_gt_HeroWitchDoctorGargantuanStompUsed, true);
         TriggerEnable(libGDHL_gt_HeroWitchDoctorVileInfectionTaken, true);
+        TriggerEnable(libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc, true);
     }
 
 }
@@ -4032,6 +4033,7 @@ void libGDHL_gf_HeroWitchDoctorDecrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroWitchDoctorGargantuanCreated, false);
         TriggerEnable(libGDHL_gt_HeroWitchDoctorGargantuanStompUsed, false);
         TriggerEnable(libGDHL_gt_HeroWitchDoctorVileInfectionTaken, false);
+        TriggerEnable(libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc, false);
     }
 
 }
@@ -18613,37 +18615,37 @@ void libGDHL_gt_HeroNovaHoloCloneDamageDuplication_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Hero - Nova - Anti-Armor Shells Attack Cooldown
+// Trigger: Hero - Nova - Anti-Armor Shells Attack Cooldown Controller
 //--------------------------------------------------------------------------------------------------
-bool libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldown_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_unit;
+bool libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController_Func (bool testConds, bool runActions) {
+  // Variable Declarations
+  unit lv_nova;
 
-    // Automatic Variable Declarations
-    fixed auto5EA1B378_at;
+  // Automatic Variable Declarations
+  fixed auto4121A5FF_at;
 
-    // Variable Initialization
-    lv_unit = EventUnit();
+  // Variable Initialization
+  lv_nova = EventUnit();
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
+  // Actions
+  if (!runActions) {
+      return true;
+  }
 
-    auto5EA1B378_at = 0;
-    while (!((UnitWeaponPeriodRemaining(lv_unit, 2) == 0.0)) && auto5EA1B378_at <= 3.0) {
-        Wait(0.0625, c_timeGame);
-        auto5EA1B378_at = auto5EA1B378_at + 0.0625;
-    }
-    UnitBehaviorRemove(lv_unit, "NovaAntiArmorShellsWeaponSuppression", 1);
-    return true;
+  auto4121A5FF_at = 0;
+  while (!((UnitWeaponPeriodRemaining(lv_nova, 2) == 0.0)) && auto4121A5FF_at <= 3.0) {
+      Wait(0.0625, c_timeGame);
+      auto4121A5FF_at = auto4121A5FF_at + 0.0625;
+  }
+  UnitBehaviorRemove(lv_nova, "NovaAntiArmorShellsWeaponSuppression", 1);
+  return true;
 }
 
 //--------------------------------------------------------------------------------------------------
-void libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldown_Init () {
-    libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldown = TriggerCreate("libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldown_Func");
-    TriggerEnable(libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldown, false);
-    TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldown, null, "NovaAntiArmorShellsWeaponSuppression", c_unitBehaviorChangeActivate);
+void libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController_Init () {
+  libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController = TriggerCreate("libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController_Func");
+  TriggerEnable(libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController, false);
+  TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController, null, "NovaAntiArmorShellsWeaponSuppression", c_unitBehaviorChangeActivate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -24561,6 +24563,50 @@ void libGDHL_gt_HeroWitchDoctorPassiveTarget_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Hero - Witch Doctor - Blood Ritual - Hero Takedown Proc
+//--------------------------------------------------------------------------------------------------
+bool libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc_Func (bool testConds, bool runActions) {
+  // Variable Declarations
+  int lv_wDPlayer;
+  unit lv_wD;
+
+  // Automatic Variable Declarations
+  // Variable Initialization
+  lv_wDPlayer = libGame_gf_HeroParticipatedInTakedownKillingPlayer();
+  lv_wD = libGame_gv_players[lv_wDPlayer].lv_heroUnit;
+
+  // Conditions
+  if (testConds) {
+      if (!((lv_wDPlayer >= 1))) {
+          return false;
+      }
+
+      if (!((lv_wDPlayer <= libCore_gv_bALMaxPlayers))) {
+          return false;
+      }
+
+      if (!((PlayerHasTalent(lv_wDPlayer, "WitchDoctorBloodRitual") == true))) {
+          return false;
+      }
+  }
+
+  // Actions
+  if (!runActions) {
+      return true;
+  }
+
+  UnitCreateEffectUnit(lv_wD, "WitchDoctorVoodooRitualBloodRitualTalentTakedownProcPersistent", lv_wD);
+  return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc_Init () {
+  libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc = TriggerCreate("libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc_Func");
+  TriggerEnable(libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc, false);
+  libGame_gf_HeroParticipatedInTakedown(libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Hero - Witch Doctor- Gargantuan - Created
 //--------------------------------------------------------------------------------------------------
 bool libGDHL_gt_HeroWitchDoctorGargantuanCreated_Func (bool testConds, bool runActions) {
@@ -26739,7 +26785,7 @@ void libGDHL_InitTriggers () {
     libGDHL_gt_HeroNovaTripleTapMissileCleanup_Init();
     libGDHL_gt_HeroNovaHoloCloneSpawned_Init();
     libGDHL_gt_HeroNovaHoloCloneDamageDuplication_Init();
-    libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldown_Init();
+    libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController_Init();
     libGDHL_gt_HeroRaynorRaynorsBansheeFlyIn_Init();
     libGDHL_gt_HeroRaynorRaynorsBansheeFlyOut_Init();
     libGDHL_gt_HeroRaynorBansheesCommand_Init();
@@ -26865,6 +26911,7 @@ void libGDHL_InitTriggers () {
     libGDHL_gt_HeroWitchDoctorRavenousSpiritCast_Init();
     libGDHL_gt_HeroWitchDoctorRavenousSpiritExpires_Init();
     libGDHL_gt_HeroWitchDoctorPassiveTarget_Init();
+    libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc_Init();
     libGDHL_gt_HeroWitchDoctorGargantuanCreated_Init();
     libGDHL_gt_HeroWitchDoctorGargantuanStompUsed_Init();
     libGDHL_gt_HeroWitchDoctorVileInfectionTaken_Init();
