@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StyleFile>
+  <Style name="SpazzoDebug" template="HeaderExtendedTemplate" Height="12" vjustify="Middle" hjustify="Center" />
+  <Style name="Storm_TabButton_Label_Modified" template="HeaderExtendedTemplate" height="16" textcolor="d5cff9-aaa1ed" vjustify="Middle" hjustify="Center" glowcolor="030212" highlightglowcolor="030212" highlightcolor="ffffff-b6acff" styleflags="!Shadow|Glow" disabledcolor="6d64a9" disabledglowcolor="030212" />
+  <Style name="Spazzo_SliderValue" template="Storm_TabButton_Label_Modified" fontflags="Outline" styleflags="Shadow" outlinewidth="2" />
+  <Style name="Storm_TabButton_Label_Selected_Modified" template="HeaderExtendedTemplate" height="16" textcolor="ffffff-eeecff" vjustify="Middle" hjustify="Center" glowcolor="1200ff" highlightglowcolor="1200ff" highlightcolor="#ColorWhite" styleflags="!Shadow|Glow" disabledcolor="6d64a9" disabledglowcolor="030212" />
+  <Style name="Storm_VitalsLabel_Modified" template="Storm_VitalsLabel_R" height="12" vjustify="Middle" hjustify="Center" />
+  <Style name="Storm_VitalsLabel_ModifiedCore" template="Storm_VitalsLabel_Modified" height="16" />
+  <Style name="Storm_VitalsLabel_ModifiedTowns" template="Storm_VitalsLabel_Modified" height="12" />
+  <Style name="SpazzoVehicleHealthLabel" template="Storm_VitalsLabel_Modified" hjustify="Center" vjustify="Bottom" /> 
+  <Style name="SpazzoVehicleHealthLabelCompact" template="SpazzoVehicleHealthLabel" height="9" /> 
+  <Style name="Storm_AbilityTopBar_Modified" template="Storm_LeaderTalentHeader" height="19" />
+  <Style name="Storm_LeaderHeroNameModified" template="Storm_LeaderHeroName" height="16" />
+  <Style name="Storm_PersonalizedStats_HeaderModified" template="Storm_PersonalizedStats_Header" height="14" vjustify="Middle" hjustify="Center" />
+  <Style name="Spazzo_TalentDebug" template="HeaderExtendedTemplate" height="16" hjustify="Center" vjustify="Middle" textcolor="ffffff-eeecff" styleflags="!Shadow" />
+  <Style name="Storm_TabButton_Label_Modified_Smaller" template="HeaderExtendedTemplate" height="14" textcolor="d5cff9-aaa1ed" vjustify="Middle" hjustify="Center" glowcolor="030212" highlightglowcolor="030212" highlightcolor="ffffff-b6acff" styleflags="!Shadow|Glow" disabledcolor="6d64a9" disabledglowcolor="030212" />
+  <Style name="Storm_GenericHeroChargeLabel_Modified" template="Storm_GenericHeroChargeLabel" height="12" hjustify="Center" vjustify="Middle" />
+  <Style name="Spazzo_TopPanelGameTimer" template="PartyFrame_MatchTimer" height="24"/>
+  <Style name="Spazzo_TopPanelTeamLevel" template="ObsBar_TeamLevel" height="32"/>
+  <Style name="Spazzo_TopPanelDeathLabel" template="DeathTimerLabel" height="25" vjustify="Middle" hjustify="Center" />
+  <Style name="Spazzo_TopPanelDeathLabelCompact" template="Spazzo_TopPanelDeathLabel" height="22" />
+  <Style name="Spazzo_TopPanelVikingDeathLabel" template="Spazzo_TopPanelDeathLabel" height="14" hjustify="Left" />
+  <Style name="Spazzo_TopPanelAbilCooldownLabel" template="Storm_AbilityTopBar_Modified" height="12" />
+  <Style name="Spazzo_TopPanelAbilCooldownLabel_Heroic" template="Storm_AbilityTopBar_Modified" height="18" />
+  <Style name="Spazzo_TopPanelAbilCooldownLabel_Debug" template="Spazzo_TopPanelAbilCooldownLabel_Heroic" height="8" />
+  <Style name="Spazzo_TopPanelAbilCooldownLabel_Tiny" template="Storm_AbilityTopBar_Modified" height="11" />
+  <Style name="Spazzo_TopPanelTalentLabel" template="Storm_AbilityTopBar_Modified" height="12" vjustify="Middle" hjustify="Center" />
+  <Style name="Spazzo_TopPanelTalentLabelHeroic" template="Spazzo_TopPanelTalentLabel" height="20"/>
+  <Style name="Spazzo_TopPanelQuestLabel" template="Spazzo_TopPanelTalentLabel" height="9" textcolor="255,254,218,39" fontflags="Outline" vjustify="Bottom" styleflags="Shadow" outlinewidth="1" />
+  <Style name="Spazzo_TopPanelQuestLabel_NotQuest" template="Spazzo_TopPanelQuestLabel" textcolor="255,200,200,200" />
+  <Style name="Spazzo_TopPanelQuestLabel_Baseline" template="Spazzo_TopPanelQuestLabel" height="10"/>
+  <Style name="Spazzo_TopPanelQuestLabel_Baseline_NotQuest" template="Spazzo_TopPanelQuestLabel_Baseline" height="10" textcolor="255,230,230,230" />
+  <Style name="Spazzo_TopPanelQuestLabel_Baseline_Small" template="Spazzo_TopPanelQuestLabel_Baseline" height="8"/>
+  <Style name="Spazzo_TopPanelQuestLabel_Baseline_Extrasmall" template="Spazzo_TopPanelQuestLabel_Baseline_Small" height="7"/>
+  <Style name="Spazzo_TopPanelAbilCooldownLabel_TopAlign" template="Storm_AbilityTopBar_Modified" height="11" vjustify="Top" />
+  <Style name="Spazzo_TopPanelFancyCharge" template="Storm_HUD_Tracer_Pulse_Bomb_Charge" height="9" />
+  <Style name="Spazzo_TopPanelFancyChargePercent" template="Storm_HUD_Tracer_Pulse_Bomb_Charge_Percent" height="8" />
+  <Style name="Spazzo_HealingFountainLabel" template="Storm_HealingCooldownLabel" height="10" hjustify="Center" vjustify="Middle" />
+  <Style name="Spazzo_SamuroLabel" template="Spazzo_TopPanelFancyCharge" height="9" hjustify="Right" vjustify="Top" fontflags="Outline" styleflags="Shadow" outlinewidth="1"  />
+  <Style name="Spazzo_SamuroLabelBottom" template="Spazzo_SamuroLabel" vjustify="Bottom" />
+  <Style name="Spazzo_TopBarMapMechanics" template="Storm_MapMechanicStatusBarCannonball" height="13" hjustify="Center" />
+  <Style name="Spazzo_BottomPanelScoreLabel" template="HeaderExtendedTemplate" height="16" hjustify="Center" vjustify="Middle" textcolor="255,230,230,230" fontflags="Outline" styleflags="!Shadow|!Glow" outlinewidth="1" />
+  <Style name="Spazzo_BottomPanelQuestLabel" template="Storm_LeaderTalentQuestStack" height="12" />
+  <Style name="Spazzo_ShortcutNotifier" template="Spazzo_SliderValue" height="15" />
+  <Style name="Spazzo_ClipboardNotifier" template="Spazzo_ShortcutNotifier" vjustify="Bottom" />
+  <Style name="Spazzo_BottomPanelAbilCooldownLabel" template="Spazzo_TopPanelAbilCooldownLabel_Heroic" height="20" />
+  <Style name="Spazzo_BottomPanelAbilCooldownLabel_TopAlign" template="Spazzo_BottomPanelAbilCooldownLabel" vjustify="Top"/>
+  <Style name="Spazzo_BottomPanelLeftOffset" template="Spazzo_BottomPanelScoreLabel" height="18" hjustify="Right" />
+  <Style name="Spazzo_BottomPanelRightOffset" template="Spazzo_BottomPanelScoreLabel" height="18" hjustify="Left" />
+  <Style name="Spazzo_TopPanelAbilChargeLabel" template="Spazzo_TopPanelAbilCooldownLabel" height="10" vjustify="Top" hjustify="Left" fontflags="Outline" />
+  <Style name="Spazzo_TopPanelAbilChargeLabelTalent" template="Spazzo_TopPanelAbilChargeLabel" height="8"/>
+  <Style name="Spazzo_TopPanelAbilChargeLabelHeroic" template="Spazzo_TopPanelAbilChargeLabel" height="12"/>
+  <Style name="Spazzo_TopPanelAbilChargeLabelBaseline" template="Spazzo_TopPanelAbilChargeLabelHeroic" height="10"/>
+  <Style name="Spazzo_BottomPanelAbilCharge" template="Spazzo_TopPanelAbilChargeLabelHeroic" height="14"/>
+  <Style name="Spazzo_HeroAttachmentLabel" template="Storm_TabButton_Label_Modified" height="16" vjustify="Top" hjustify="Left" />
+  <Style name="Spazzo_HeroAttachmentLabelBottom" template="Storm_TabButton_Label_Modified" height="16" vjustify="Bottom" hjustify="Left" />
+  <Style name="Spazzo_ObjWarnTimer" template="PartyFrame_MatchTimer" height="22" vjustify="Top" hjustify="Center" />
+  <Style name="SpazzoBottomPanelQuestLabel" template="Spazzo_TopPanelQuestLabel_Baseline_NotQuest" height="12" vjustify="Middle" hjustify="Center" fontflags="Outline" outlinewidth="2" />
+  <Style name="SpazzoBottomLeftDynamicLabel" template="GameButtonCooldown_Inventory" height="14" />
+  <Style name="SpazzoBottomLeftStandardLabel" template="GameButtonCooldown" height="18" />
+  <Style name="SpazzoBottomLeftUnitLabel" template="Storm_UnitNameLabel" height="22" vjustify="Bottom"/>
+  <Style name="SpazzoBottomLeftTracerPulseBombCharge" template="Storm_HUD_Tracer_Pulse_Bomb_Charge" height="13" />
+  <Style name="SpazzoBottomLeftTracerPulseBombChargePercent" template="Storm_HUD_Tracer_Pulse_Bomb_Charge_Percent" height="10" />
+  <Style name="SpazzoBottomLeftChargesLabel" template="Storm_CommandButttonChargeLabel" height="11" />
+  <Style name="SpazzoBottomPanelRecordTimer" template="Spazzo_ObjWarnTimer" hjustify="Left" />
+  <Style name="SpazzoBottomPanelLockTimer" template="Spazzo_ObjWarnTimer" height="20" hjustify="Right" />
+  <Style name="SpazzoWarningText" template="Storm_TabButton_Label_Modified" textcolor="255,170,15,15"  />
+  <Style name="CustomPulldownLabel" template="StandardGlueButtonMini" height="14" hjustify="Left" />
+  <Style name="Spazzo_TopBarSettingsLabel" template="Spazzo_HeroAttachmentLabel" height="17" hjustify="Center" />
+  <Style name="ExpandoLabel" template="CustomPulldownLabel" height="14" hjustify="Right" />
+  <Style name="Spazzo_Obs_CompactL" template="ObsBar_Kills_L" height="10" />
+  <Style name="Spazzo_Obs_CompactR" template="ObsBar_Kills_R" height="10" />
+  <Style name="Spazzo_ObjWarnTimerCompact" template="Spazzo_ObjWarnTimer" height="16" />
+  <Style name="Spazzo_HeroRolloutLabelPlayerName" template="SpazzoBottomPanelLockTimer" height="30" hjustify="Left" vjustify="Top" />
+  <Style name="Spazzo_HeroRolloutLabelUnitName" template="Spazzo_HeroRolloutLabelPlayerName" height="21" vjustify="Bottom" />
+  <Style name="Spazzo_HeroRolloutLabelPlayerNameChaos" template="Spazzo_HeroRolloutLabelPlayerName" hjustify="Right" />
+  <Style name="Spazzo_HeroRolloutLabelUnitNameChaos" template="Spazzo_HeroRolloutLabelUnitName" hjustify="Right" />
+</StyleFile>

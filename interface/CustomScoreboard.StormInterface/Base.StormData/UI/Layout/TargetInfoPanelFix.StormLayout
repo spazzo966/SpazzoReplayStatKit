@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+  <Frame type="Frame" name="GameUI/UIContainer/FullscreenUpperContainer/TargetInfoFrame/TargetInfoPanel" file="GameUI">
+    <RenderPriority val="511"/>
+    <Frame type="Image" name="BackgroundFrame">
+      <RenderPriority val="250"/>
+    </Frame>
+    <Frame type="Image" name="TopBackground">
+      <RenderPriority val="255"/>
+    </Frame>
+    <Frame type="Frame" name="TargetPortraitFrame">
+      <RenderPriority val="260"/>
+      <Frame type="Image" name="TargetPortraitImage">
+        <RenderPriority val="260"/>
+      </Frame>
+    </Frame>
+    <Frame type="Image" name="BottomBorderImage">
+      <RenderPriority val="265"/>
+    </Frame>
+    <Frame type="Image" name="BorderFrame">
+      <RenderPriority val="270"/>
+    </Frame>
+    <Frame type="UnitTargetFrame" name="TargetHeroUnitFrame">
+      <RenderPriority val="275"/>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="HealthAndManaUnitStatusFrame">
+      <RenderPriority val="280"/>
+    </Frame>
+    <Frame type="Image" name="AdditionalInfoIcon">
+      <RenderPriority val="285"/>
+    </Frame>
+  </Frame>
+</Desc>

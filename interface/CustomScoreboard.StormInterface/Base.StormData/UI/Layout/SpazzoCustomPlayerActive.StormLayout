@@ -1,0 +1,2281 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+  <Constant name="SpazzoBottomLeftPortraitBottomOffset" val="-200" />
+  <Constant name="SpazzoBottomLeftPortraitWidth" val="231" />
+  <Constant name="SpazzoBottomLeftPortraitHeight" val="204" />
+  <Constant name="SpazzoBottomLeftHeroConsolePanelHeight" val="250" />
+  <Constant name="SpazzoBottomLeftHeroConsolePanelWidth" val="451" />
+  <Constant name="SpazzoBottomLeftBuffBackgroundImageHeight" val="200" />
+  <Constant name="SpazzoBottomLeftBuffBackgroundImageWidth" val="30" />
+  <!-- note: these aren't directly tied together, both just happen to be 10 -->
+  <Constant name="SpazzoBottomLeftPortraitFrameImageBottomOffset" val="-10" />
+  <Constant name="SpazzoBottomLeftPortraitFrameImageLeftOffset" val="10" />
+  <Constant name="SpazzoBottomLeftPortraitFrameImageImageHeight" val="207" />
+  <Constant name="SpazzoBottomLeftPortraitFrameImageImageWidth" val="185" />
+  <Constant name="SpazzoBottomLeftBackgroundTopOffset" val="80" />
+  <Constant name="SpazzoBottomLeftBackgroundLeftOffset" val="128" />
+  <Constant name="SpazzoBottomLeftBackgroundImageHeight" val="245" />
+  <Constant name="SpazzoBottomLeftBackgroundImageImageWidth" val="80" />
+  <Constant name="SpazzoBottomLeftHeroStatsTopOffset" val="9" />
+  <Constant name="SpazzoBottomLeftHeroStatsLeftOffset" val="30" />
+  <Constant name="SpazzoBottomLeftHeroStatsImageHeight" val="32" />
+  <Constant name="SpazzoBottomLeftHeroStatsImageWidth" val="197" />
+  <Constant name="SpazzoBottomLeftHeroStatsHealthBarTopOffset" val="0" />
+  <Constant name="SpazzoBottomLeftHeroStatsHealthBarLeftOffset" val="8" />
+  <Constant name="SpazzoBottomLeftHeroStatsHealthBarHeight" val="15" />
+  <Constant name="SpazzoBottomLeftHeroStatsHealthBarHeightNoEnergy" val="29" />
+  <Constant name="SpazzoBottomLeftHeroStatsHealthBarWidth" val="187" />
+  <Constant name="SpazzoBottomLeftHeroStatsHealthBarLabelBottomOffset" val="0" />
+  <Constant name="SpazzoBottomLeftHeroStatsHealthBarLabelRightffset" val="-15" />
+  <Constant name="SpazzoBottomLeftHeroStatsEnergyBarHeight" val="14" />
+  <Constant name="SpazzoBottomLeftHeroStatsEnergyBarWidth" val="185" />
+  <Constant name="SpazzoBottomLeftHeroStatsEnergyBarLabelBottomOffset" val="-4" />
+  <Constant name="SpazzoBottomLeftHeroStatsEnergyBarLabelRightffset" val="-15" />
+  <Constant name="SpazzoCommandButtonSpacing" val="33" />
+  <Constant name="SpazzoCommandButtonSpacingNeg" val="-33" />
+  <Constant name="SpazzoCommandButtonSize" val="84" />
+  <Constant name="SpazzoCommandButtonBorderSize" val="74" />
+  <Constant name="SpazzoCommandButtonChargeBackgroundSize" val="23" />
+  <Constant name="SpazzoCommandButtonChargeProgressSize" val="44" />
+  <Constant name="SpazzoCommandDynamicButtonSize" val="60" />
+  <Constant name="SpazzoCommandDynamicButtonBorderSize" val="68" />
+  <Constant name="SpazzoCommandDynamicButtonNormalImageSize" val="46" />
+  <Constant name="SpazzoCommandDynamicButtonBottomAnchor" val="28" />
+  <Constant name="SpazzoCommandDynamicButtonLeftAnchorInitial" val="-16" />
+  <Constant name="SpazzoCommandDynamicButtonLeftAnchor" val="-8" />
+  <Constant name="SpazzoCommandFButtonLeftAnchor" val="-5" />
+  <Frame type="Frame" name="GameUI/UIContainer/ConsoleUIContainer" file="GameUI">
+    <Frame type="Frame" name="PortraitPanelContainer">
+      <StateGroup name="HeroStatusControllerStateGroup">
+        <DefaultState val="UseDefaultHeroSelect" />
+        <State name="UseDefaultHeroSelect">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Blizzard"/>
+          <!-- <Action type="SetAnchor" frame="$this" side="Bottom" relative="$ConsolePortraitPanelContainer/PortraitPanel" pos="Mid" offset="8" />
+          <Action type="SetAnchor" frame="$this" side="Left" relative="$ConsolePortraitPanelContainer/PortraitPanel" pos="Max" offset="-56" /> -->
+          <!-- <Action type="SetProperty" frame="$this" Visible="{$parent/HeroConsolePanel/@Visible}" /> -->
+        </State>
+        <State name="UseCustomHeroSelect">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent/SelectedUnitContainerFrame/SelectedUnitFrame/PortraitFrameImage" pos="Max" offset="0" />
+          <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/SelectedUnitContainerFrame/SelectedUnitFrame/PortraitFrameImage" pos="Min" offset="0" />
+          <!-- <Action type="SetProperty" frame="$this" Visible="{$parent/SelectedUnitContainerFrame/SelectedUnitFrame/@Visible}" /> -->
+        </State>
+        <State name="UseDisabledHeroSelect">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Disabled"/>
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
+          <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
+          <Action type="SetProperty" frame="$this" Visible="False" />
+        </State>
+      </StateGroup>
+    </Frame>
+    <Frame type="Frame" name="HeroConsolePanel">
+      <Animation name="RepeatingHidden">
+        <Event event="ForceHide" action="Play"/>
+        <Event event="StopHide" action="Stop"/>
+        <Controller frame="$this" type="Visibility" end="PingPong">
+          <Key time="0" type="Bool" value="false"/>
+          <Key time="0.001" type="Bool" value="false"/>
+          <Key time="0.01" type="Bool" value="false"/>
+        </Controller>
+      </Animation>
+    </Frame>
+    <Frame type="Frame" name="HeroBuffDebuffPanel">
+      <Animation name="RepeatingHidden">
+        <Event event="ForceHide" action="Play"/>
+        <Event event="StopHide" action="Stop"/>
+        <Controller frame="$this" type="Visibility" end="PingPong">
+          <Key time="0" type="Bool" value="false"/>
+          <Key time="0.001" type="Bool" value="false"/>
+          <Key time="0.01" type="Bool" value="false"/>
+        </Controller>
+      </Animation>
+    </Frame>
+    <Frame type="HeroSpecificContainerPanel" name="HeroSpecificStatusContainer">
+      <!-- <Anchor side="Bottom" relative="$parent/SelectedUnitContainerFrame/SelectedUnitFrame/PortraitFrameImage" pos="Mid" offset="8" />
+      <Anchor side="Left" relative="$parent/SelectedUnitContainerFrame/SelectedUnitFrame/PortraitFrameImage" pos="Max" offset="-56" />
+      <Visible val="{$parent/SelectedUnitContainerFrame/SelectedUnitFrame/@Visible}" /> -->
+      <StateGroup name="HeroStatusControllerStateGroup">
+        <DefaultState val="UseDefaultHeroSelect" />
+        <State name="UseDefaultHeroSelect">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Blizzard"/>
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$ConsolePortraitPanelContainer/PortraitPanel" pos="Mid" offset="8" />
+          <Action type="SetAnchor" frame="$this" side="Left" relative="$ConsolePortraitPanelContainer/PortraitPanel" pos="Max" offset="-56" />
+          <Action type="SetProperty" frame="$this" Visible="{$parent/HeroConsolePanel/@Visible}" />
+        </State>
+        <State name="UseCustomHeroSelect">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent/SelectedUnitContainerFrame/SelectedUnitFrame/PortraitFrameImage" pos="Mid" offset="8" />
+          <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/SelectedUnitContainerFrame/SelectedUnitFrame/PortraitFrameImage" pos="Max" offset="-56" />
+          <Action type="SetProperty" frame="$this" Visible="{$parent/SelectedUnitContainerFrame/SelectedUnitFrame/@Visible}" />
+        </State>
+        <State name="UseDisabledHeroSelect">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Disabled"/>
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent" pos="Min" offset="9999" />
+          <Action type="SetAnchor" frame="$this" side="Left" relative="$parent" pos="Min" offset="9999" />
+          <Action type="SetProperty" frame="$this" Visible="False" />
+        </State>
+      </StateGroup>
+    </Frame>
+    <Frame type="Label" name="UnitNameLabel">
+      <Anchor side="Bottom" relative="$parent/SelectedUnitContainerFrame/SelectedUnitFrame/PortraitFrameImage" pos="Max" offset="0" />
+      <Anchor side="Left" relative="$parent/SelectedUnitContainerFrame/SelectedUnitFrame/PortraitFrameImage" pos="Mid" offset="0" />
+      <Anchor side="Right" relative="$parent/SelectedUnitContainerFrame/SelectedUnitFrame/PortraitFrameImage" pos="Mid" offset="0" />
+      <Style val="SpazzoBottomLeftUnitLabel" />
+      <Options val="ScaleToPreventTruncation"/>
+      <RenderPriority val="602"/>
+      <Text val="{$parent/SelectedUnitContainerFrame/SelectedUnitFrame/UnitStatusFrame0/UnitNameLabel/Label/@Text}"/>
+      <StateGroup name="HeroStatusControllerStateGroup">
+        <DefaultState val="UseDefaultHeroSelect" />
+        <State name="UseDefaultHeroSelect">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Blizzard"/>
+          <Action type="SetProperty" frame="$this" Visible="False" />
+        </State>
+        <State name="UseCustomHeroSelect">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+          <Action type="SetProperty" frame="$this" Visible="{$parent/SelectedUnitContainerFrame/SelectedUnitFrame/@Visible}" />
+        </State>
+        <State name="UseDisabledHeroSelect">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Disabled"/>
+          <Action type="SetProperty" frame="$this" Visible="False" />
+        </State>
+      </StateGroup>
+    </Frame>
+    <!-- <Frame type="Image" name="ImageBoundCheck">
+      <Anchor relative="$SpazzoSelectedUnitContainerFrame/SelectedUnitFrame/UnitStatusFrame0/UnitSpecificStatsContainerFrame" />
+      <Texture val="Assets\Textures\storm_ui_homescreenbackground_nexomania.dds"/>
+      <RenderPriority val="999" />
+      <Alpha val="60"/>
+      <Visible val="true"/>
+      <Unclipped val="True"/>
+    </Frame> -->
+    <Frame type="Frame" name="SelectedUnitContainerFrame">
+      <Anchor side="Top" relative="$parent" pos="Max" offset="-450"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$parent" pos="Min" offset="500"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+      <Handle val="SpazzoSelectedUnitContainerFrame"/>
+      <!-- <RenderPriority val="602"/> -->
+      <StateGroup name="FButtonStateGroup">
+        <DefaultState val="UseDefaultHeroSelect" />
+        <State name="UseDisabledHeroSelect">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Disabled"/>
+          <Action type="SetAnchor" frame="$GameUICommandPanel" side="Left" relative="$parent" pos="Max" offset="9999" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Height="0" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Width="0" />
+        </State>
+        <State name="UseDefaultHeroSelect">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Blizzard"/>
+        </State>
+        <State name="UseCustomHeroSelectCorrecter">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+          <When type="Property" frame="$GameUICommandPanel/CommandButton15" Height="120" operator="Equal" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel" side="Left" relative="$parent/CommandButton13" pos="Max" offset="#SpazzoCommandFButtonLeftAnchor" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/CooldownLabel" Style="SpazzoBottomLeftStandardLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Height="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Width="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame/HotkeyLabel" Visible="False" />
+        </State>
+        <State name="UseCustomHeroSelectVolskayaCorrecter">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+          <When type="Property" frame="$BattlegroundVariableHandle" StringValue="Volskaya" />
+          <When type="Property" frame="$GameUICommandPanel/CommandButton15" Height="#SpazzoCommandButtonSize" operator="NotEqual" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel" side="Left" relative="$parent/CommandButton13" pos="Max" offset="#SpazzoCommandFButtonLeftAnchor" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/CooldownLabel" Style="SpazzoBottomLeftStandardLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Height="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Width="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame/HotkeyLabel" Visible="False" />
+        </State>
+        <State name="UseCustomHeroSelectVolskaya">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+          <When type="Property" frame="$BattlegroundVariableHandle" StringValue="Volskaya" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel" side="Left" relative="$parent/CommandButton13" pos="Max" offset="#SpazzoCommandFButtonLeftAnchor" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/CooldownLabel" Style="SpazzoBottomLeftStandardLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Height="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Width="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame/HotkeyLabel" Visible="False" />
+        </State>
+        <State name="UseCustomHeroSelectHanamuraCorrecter">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+          <When type="Property" frame="$BattlegroundVariableHandle" StringValue="Hanamura" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel" side="Left" relative="$parent/CommandButton13" pos="Max" offset="#SpazzoCommandFButtonLeftAnchor" />
+          <When type="Property" frame="$GameUICommandPanel/CommandButton15" Height="#SpazzoCommandButtonSize" operator="NotEqual" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/CooldownLabel" Style="SpazzoBottomLeftStandardLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Height="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Width="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame/HotkeyLabel" Visible="False" />
+        </State>
+        <State name="UseCustomHeroSelectHanamura">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+          <When type="Property" frame="$BattlegroundVariableHandle" StringValue="Hanamura" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel" side="Left" relative="$parent/CommandButton13" pos="Max" offset="#SpazzoCommandFButtonLeftAnchor" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/CooldownLabel" Style="SpazzoBottomLeftStandardLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Height="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Width="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame/HotkeyLabel" Visible="False" />
+        </State>
+        <State name="UseCustomHeroSelectWarheadCorrecter">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+          <When type="Property" frame="$BattlegroundVariableHandle" StringValue="Warhead Junction" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel" side="Left" relative="$parent/CommandButton13" pos="Max" offset="#SpazzoCommandFButtonLeftAnchor" />
+          <When type="Property" frame="$GameUICommandPanel/CommandButton15" Height="#SpazzoCommandButtonSize" operator="NotEqual" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/CooldownLabel" Style="SpazzoBottomLeftStandardLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Height="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Width="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame/HotkeyLabel" Visible="False" />
+        </State>
+        <State name="UseCustomHeroSelectWarhead">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+          <When type="Property" frame="$BattlegroundVariableHandle" StringValue="Warhead Junction" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel" side="Left" relative="$parent/CommandButton13" pos="Max" offset="#SpazzoCommandFButtonLeftAnchor" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/CooldownLabel" Style="SpazzoBottomLeftStandardLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Height="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/GameButtonDefaultBorder" Width="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton15/HotkeyFrame/HotkeyLabel" Visible="False" />
+        </State>
+      </StateGroup>
+      <StateGroup name="MasterController">
+        <DefaultState val="UseDefaultHeroSelect" />
+        <State name="UseDefaultHeroSelect">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Blizzard"/>
+          <Action type="SetProperty" frame="$this" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/GameButtonDefaultBorder" Height="126" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/GameButtonDefaultBorder" Width="126" />
+        </State>
+        <!-- 0,1,2,3,5 = Q,W,E,R,D -->
+        <!-- 4,13 = Z,B -->
+        <!-- 15 = F -->
+        <State name="UseCustomHeroSelect">
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+          <Action type="SetProperty" frame="$parent/HeroConsolePanel" Height="0" />
+          <Action type="SetProperty" frame="$parent/HeroConsolePanel" Width="0" />
+          <Action type="SetProperty" frame="$parent/HeroConsolePanel" Visible="False" />
+          <Action type="SendEvent" frame="$parent/HeroConsolePanel" event="ForceHide" on="Enter" />
+          <Action type="SendEvent" frame="$parent/HeroConsolePanel" event="StopHide" on="Exit" />
+          <Action type="SetProperty" frame="$parent/HeroBuffDebuffPanel" Height="0" />
+          <Action type="SetProperty" frame="$parent/HeroBuffDebuffPanel" Width="0" />
+          <Action type="SetProperty" frame="$parent/HeroBuffDebuffPanel" Visible="False" />
+          <Action type="SendEvent" frame="$parent/HeroBuffDebuffPanel" event="ForceHide" on="Enter" />
+          <Action type="SendEvent" frame="$parent/HeroBuffDebuffPanel" event="StopHide" on="Exit" />
+          <Action type="SetProperty" frame="$this" Visible="True" />
+          <Action type="SetProperty" frame="$this" Enabled="True" />
+          <!-- <Action type="SendEvent" frame="$GameUICommandPanel" event="ForceDisplay" on="Enter" />
+          <Action type="SendEvent" frame="$GameUICommandPanel" event="StopForceDisplay" on="Exit" /> -->
+          <Action type="SetProperty" frame="$GameUICommandPanel/MiddleFill" Visible="False" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel" side="Bottom" relative="$SpazzoSelectedUnitContainerFrame/SelectedUnitFrame/UnitStatusFrame0/UnitSpecificStatsContainerFrame" pos="Min" offset="0" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel" side="Left" relative="$SpazzoSelectedUnitContainerFrame" pos="Min" offset="0" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel" side="Right" relative="$SpazzoSelectedUnitContainerFrame" pos="Max" offset="0" />
+          <!-- <Action type="SetAnchor" frame="$parent/HeroSpecificCommandCardPanel" side="Bottom" relative="$parent/SelectedUnitContainerFrame" pos="Max" offset="0" />
+          <Action type="SetAnchor" frame="$parent/HeroSpecificCommandCardPanel" side="Left" relative="$parent/SelectedUnitContainerFrame" pos="Min" offset="0" />
+          <Action type="SetAnchor" frame="$parent/HeroSpecificCommandCardPanel" side="Right" relative="$parent/SelectedUnitContainerFrame" pos="Max" offset="0" /> -->
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton00" side="Right" relative="$parent/CommandButton01" pos="Min" offset="#SpazzoCommandButtonSpacing" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/CooldownLabel" Style="SpazzoBottomLeftStandardLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/GameButtonDefaultBorder" Height="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/GameButtonDefaultBorder" Width="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/HotkeyFrame/HotkeyLabel" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/ActiveEffect/ActiveEffectImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/ActiveEffect/ActiveEffectImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/ActiveEffect/ActiveEffect2Image" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/ActiveEffect/ActiveEffect2Image" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/ChargeBackground" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/ChargeBackground" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/ChargeCompleteImage" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/ChargeCompleteImage" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/ChargeCooldown" Height="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/ChargeCooldown" Width="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/ChargeLabel" Style="SpazzoBottomLeftChargesLabel" />
+          <!-- TODO: Fix the attention affect being bugged because animations don't like dimensions that change. probably because it's set to not be relative height percent -->
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/AttentionEffect/AttentionEffectImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/AttentionEffect/AttentionEffectImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/AttentionEffect/AttentionEffect2Image" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/AttentionEffect/AttentionEffect2Image" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/AttentionEffect/InnerGlowImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00/AttentionEffect/InnerGlowImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton01" side="Right" relative="$parent/CommandButton02" pos="Min" offset="#SpazzoCommandButtonSpacing" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/CooldownLabel" Style="SpazzoBottomLeftStandardLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/GameButtonDefaultBorder" Height="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/GameButtonDefaultBorder" Width="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/HotkeyFrame/HotkeyLabel" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/ChargeBackground" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/ChargeBackground" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/ChargeCompleteImage" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/ChargeCompleteImage" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/ChargeCooldown" Height="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/ChargeCooldown" Width="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/ChargeLabel" Style="SpazzoBottomLeftChargesLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/ActiveEffect/ActiveEffectImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/ActiveEffect/ActiveEffectImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/ActiveEffect/ActiveEffect2Image" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/ActiveEffect/ActiveEffect2Image" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/AttentionEffect/AttentionEffectImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/AttentionEffect/AttentionEffectImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/AttentionEffect/AttentionEffect2Image" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/AttentionEffect/AttentionEffect2Image" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/AttentionEffect/InnerGlowImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01/AttentionEffect/InnerGlowImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/CooldownLabel" Style="SpazzoBottomLeftStandardLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/GameButtonDefaultBorder" Height="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/GameButtonDefaultBorder" Width="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/HotkeyFrame/HotkeyLabel" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/ChargeBackground" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/ChargeBackground" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/ChargeCompleteImage" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/ChargeCompleteImage" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/ChargeCooldown" Height="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/ChargeCooldown" Width="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/ChargeLabel" Style="SpazzoBottomLeftChargesLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/ActiveEffect/ActiveEffectImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/ActiveEffect/ActiveEffectImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/ActiveEffect/ActiveEffect2Image" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/ActiveEffect/ActiveEffect2Image" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/AttentionEffect/AttentionEffectImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/AttentionEffect/AttentionEffectImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/AttentionEffect/AttentionEffect2Image" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/AttentionEffect/AttentionEffect2Image" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/AttentionEffect/InnerGlowImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02/AttentionEffect/InnerGlowImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton03" side="Left" relative="$parent/CommandButton02" pos="Max" offset="#SpazzoCommandButtonSpacingNeg" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/CooldownLabel" Style="SpazzoBottomLeftStandardLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/GameButtonDefaultBorder" Height="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/GameButtonDefaultBorder" Width="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/HotkeyFrame/HotkeyLabel" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/ChargeBackground" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/ChargeBackground" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/ChargeCompleteImage" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/ChargeCompleteImage" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/ChargeCooldown" Height="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/ChargeCooldown" Width="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/ChargeLabel" Style="SpazzoBottomLeftChargesLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/ActiveEffect/ActiveEffectImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/ActiveEffect/ActiveEffectImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/ActiveEffect/ActiveEffect2Image" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/ActiveEffect/ActiveEffect2Image" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/AttentionEffect/AttentionEffectImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/AttentionEffect/AttentionEffectImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/AttentionEffect/AttentionEffect2Image" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/AttentionEffect/AttentionEffect2Image" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/AttentionEffect/InnerGlowImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03/AttentionEffect/InnerGlowImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton05" side="Left" relative="$parent/CommandButton03" pos="Max" offset="#SpazzoCommandButtonSpacingNeg" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/CooldownLabel" Style="SpazzoBottomLeftStandardLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/GameButtonDefaultBorder" Height="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/GameButtonDefaultBorder" Width="#SpazzoCommandButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/HotkeyFrame/HotkeyLabel" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/ChargeBackground" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/ChargeBackground" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/ChargeCompleteImage" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/ChargeCompleteImage" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/ChargeCooldown" Height="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/ChargeCooldown" Width="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/ChargeLabel" Style="SpazzoBottomLeftChargesLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/ActiveEffect/ActiveEffectImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/ActiveEffect/ActiveEffectImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/ActiveEffect/ActiveEffect2Image" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/ActiveEffect/ActiveEffect2Image" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/AttentionEffect/AttentionEffectImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/AttentionEffect/AttentionEffectImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/AttentionEffect/AttentionEffect2Image" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/AttentionEffect/AttentionEffect2Image" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/AttentionEffect/InnerGlowImage" Height="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/AttentionEffect/InnerGlowImage" Width="#SpazzoCommandButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton30" Height="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton30" Width="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/EmptyDynamicButton30" side="Bottom" relative="$parent/CommandButton00" pos="Min" offset="#SpazzoCommandDynamicButtonBottomAnchor" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/EmptyDynamicButton30" side="Left" relative="$parent/CommandButton00" pos="Min" offset="#SpazzoCommandDynamicButtonLeftAnchorInitial" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30" Height="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30" Width="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/CooldownLabel" Style="SpazzoBottomLeftDynamicLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/NormalImage" Height="#SpazzoCommandDynamicButtonNormalImageSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/NormalImage" Width="#SpazzoCommandDynamicButtonNormalImageSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/GameButtonDefaultBorder" Height="#SpazzoCommandDynamicButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/GameButtonDefaultBorder" Width="#SpazzoCommandDynamicButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/HotkeyFrame/HotkeyLabel" Visible="False" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton30/ChargeBackground" side="Bottom" relative="$parent" pos="Max" offset="-10" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton30/ChargeBackground" side="Right" relative="$parent" pos="Max" offset="-30" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/ChargeBackground" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/ChargeBackground" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/ChargeCompleteImage" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/ChargeCompleteImage" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/ChargeCooldown" Height="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/ChargeCooldown" Width="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30/ChargeLabel" Style="SpazzoBottomLeftChargesLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton31" Height="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton31" Width="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/EmptyDynamicButton31" side="Left" relative="$parent/EmptyDynamicButton30" pos="Max" offset="#SpazzoCommandDynamicButtonLeftAnchor" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31" Height="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31" Width="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/CooldownLabel" Style="SpazzoBottomLeftDynamicLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/NormalImage" Height="#SpazzoCommandDynamicButtonNormalImageSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/NormalImage" Width="#SpazzoCommandDynamicButtonNormalImageSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/GameButtonDefaultBorder" Height="#SpazzoCommandDynamicButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/GameButtonDefaultBorder" Width="#SpazzoCommandDynamicButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/HotkeyFrame/HotkeyLabel" Visible="False" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton31/ChargeBackground" side="Bottom" relative="$parent" pos="Max" offset="-10" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton31/ChargeBackground" side="Right" relative="$parent" pos="Max" offset="-30" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/ChargeBackground" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/ChargeBackground" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/ChargeCompleteImage" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/ChargeCompleteImage" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/ChargeCooldown" Height="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/ChargeCooldown" Width="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31/ChargeLabel" Style="SpazzoBottomLeftChargesLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton32" Height="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton32" Width="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/EmptyDynamicButton32" side="Left" relative="$parent/EmptyDynamicButton31" pos="Max" offset="#SpazzoCommandDynamicButtonLeftAnchor" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32" Height="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32" Width="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/CooldownLabel" Style="SpazzoBottomLeftDynamicLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/NormalImage" Height="#SpazzoCommandDynamicButtonNormalImageSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/NormalImage" Width="#SpazzoCommandDynamicButtonNormalImageSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/GameButtonDefaultBorder" Height="#SpazzoCommandDynamicButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/GameButtonDefaultBorder" Width="#SpazzoCommandDynamicButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/HotkeyFrame/HotkeyLabel" Visible="False" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton32/ChargeBackground" side="Bottom" relative="$parent" pos="Max" offset="-10" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton32/ChargeBackground" side="Right" relative="$parent" pos="Max" offset="-30" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/ChargeBackground" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/ChargeBackground" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/ChargeCompleteImage" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/ChargeCompleteImage" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/ChargeCooldown" Height="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/ChargeCooldown" Width="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32/ChargeLabel" Style="SpazzoBottomLeftChargesLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton33" Height="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton33" Width="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/EmptyDynamicButton33" side="Left" relative="$parent/EmptyDynamicButton32" pos="Max" offset="#SpazzoCommandDynamicButtonLeftAnchor" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33" Height="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33" Width="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/CooldownLabel" Style="SpazzoBottomLeftDynamicLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/NormalImage" Height="#SpazzoCommandDynamicButtonNormalImageSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/NormalImage" Width="#SpazzoCommandDynamicButtonNormalImageSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/GameButtonDefaultBorder" Height="#SpazzoCommandDynamicButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/GameButtonDefaultBorder" Width="#SpazzoCommandDynamicButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/HotkeyFrame/HotkeyLabel" Visible="False" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton33/ChargeBackground" side="Bottom" relative="$parent" pos="Max" offset="-10" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton33/ChargeBackground" side="Right" relative="$parent" pos="Max" offset="-30" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/ChargeBackground" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/ChargeBackground" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/ChargeCompleteImage" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/ChargeCompleteImage" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/ChargeCooldown" Height="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/ChargeCooldown" Width="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33/ChargeLabel" Style="SpazzoBottomLeftChargesLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton34" Height="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton34" Width="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/EmptyDynamicButton34" side="Left" relative="$parent/EmptyDynamicButton33" pos="Max" offset="#SpazzoCommandDynamicButtonLeftAnchor" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34" Height="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34" Width="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/CooldownLabel" Style="SpazzoBottomLeftDynamicLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/NormalImage" Height="#SpazzoCommandDynamicButtonNormalImageSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/NormalImage" Width="#SpazzoCommandDynamicButtonNormalImageSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/GameButtonDefaultBorder" Height="#SpazzoCommandDynamicButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/GameButtonDefaultBorder" Width="#SpazzoCommandDynamicButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/HotkeyFrame/HotkeyLabel" Visible="False" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton34/ChargeBackground" side="Bottom" relative="$parent" pos="Max" offset="-10" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton34/ChargeBackground" side="Right" relative="$parent" pos="Max" offset="-30" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/ChargeBackground" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/ChargeBackground" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/ChargeCompleteImage" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/ChargeCompleteImage" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/ChargeCooldown" Height="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/ChargeCooldown" Width="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34/ChargeLabel" Style="SpazzoBottomLeftChargesLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton35" Height="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton35" Width="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/EmptyDynamicButton35" side="Left" relative="$parent/EmptyDynamicButton34" pos="Max" offset="#SpazzoCommandDynamicButtonLeftAnchor" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35" Height="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35" Width="#SpazzoCommandDynamicButtonSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/CooldownLabel" Style="SpazzoBottomLeftDynamicLabel" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/NormalImage" Height="#SpazzoCommandDynamicButtonNormalImageSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/NormalImage" Width="#SpazzoCommandDynamicButtonNormalImageSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/GameButtonDefaultBorder" Height="#SpazzoCommandDynamicButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/GameButtonDefaultBorder" Width="#SpazzoCommandDynamicButtonBorderSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/HotkeyFrame" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/HotkeyFrame/HotkeyLabel" Visible="False" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton35/ChargeBackground" side="Bottom" relative="$parent" pos="Max" offset="-10" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/CommandButton35/ChargeBackground" side="Right" relative="$parent" pos="Max" offset="-30" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/ChargeBackground" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/ChargeBackground" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/ChargeCompleteImage" Height="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/ChargeCompleteImage" Width="#SpazzoCommandButtonChargeBackgroundSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/ChargeCooldown" Height="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/ChargeCooldown" Width="#SpazzoCommandButtonChargeProgressSize" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35/ChargeLabel" Style="SpazzoBottomLeftChargesLabel" />
+        </State>
+        <State name="UseDisabledHeroSelect">
+        <!-- 0,1,2,3,5 = Q,W,E,R,D -->
+        <!-- 4,13 = Z,B -->
+        <!-- 15 = F -->
+          <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Disabled"/>
+          <Action type="SetProperty" frame="$this" Visible="False" />
+          <Action type="SetProperty" frame="$parent/HeroConsolePanel" Height="0" />
+          <Action type="SetProperty" frame="$parent/HeroConsolePanel" Width="0" />
+          <Action type="SetProperty" frame="$parent/HeroConsolePanel" Visible="False" />
+          <Action type="SendEvent" frame="$parent/HeroConsolePanel" event="ForceHide" on="Enter" />
+          <Action type="SendEvent" frame="$parent/HeroConsolePanel" event="StopHide" on="Exit" />
+          <Action type="SetProperty" frame="$parent/HeroBuffDebuffPanel" Height="0" />
+          <Action type="SetProperty" frame="$parent/HeroBuffDebuffPanel" Width="0" />
+          <Action type="SetProperty" frame="$parent/HeroBuffDebuffPanel" Visible="False" />
+          <Action type="SendEvent" frame="$parent/HeroBuffDebuffPanel" event="ForceHide" on="Enter" />
+          <Action type="SendEvent" frame="$parent/HeroBuffDebuffPanel" event="StopHide" on="Exit" />
+          <Action type="SetProperty" frame="$this" Visible="False" />
+          <Action type="SetProperty" frame="$this" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUI_HeroTalentTreeSelectionToggleButton" Visible="False" />
+          <Action type="SetProperty" frame="$GameUI_HeroTalentTreeSelectionToggleButton/NormalImage" Visible="False" />
+          <Action type="SetProperty" frame="$GameUI_HeroTalentTreeSelectionToggleButton" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUI_HeroTalentTreeSelectionToggleButton" Height="0" />
+          <Action type="SetProperty" frame="$GameUI_HeroTalentTreeSelectionToggleButton" Width="0" />
+          <!-- <Action type="SendEvent" frame="$GameUI_HeroTalentTreeSelectionToggleButton" event="ForceHide" on="Enter" />
+          <Action type="SendEvent" frame="$GameUI_HeroTalentTreeSelectionToggleButton" event="StopHide" on="Exit" /> -->
+          <Action type="SetAnchor" frame="$GameUI_HeroTalentTreeSelectionToggleButton" side="Top" relative="$parent" pos="Min" offset="9999" />
+          <Action type="SetAnchor" frame="$GameUI_HeroTalentTreeSelectionToggleButton" side="Left" relative="$parent" pos="Min" offset="9999" />
+          <Action type="SetAnchor" frame="$GameUI_HeroTalentTreeSelectionToggleButton" side="Right" relative="$parent" pos="Min" offset="9999" />
+          <Action type="SetAnchor" frame="$GameUI_HeroTalentTreeSelectionToggleButton" side="Bottom" relative="$parent" pos="Min" offset="9999" />
+          <Action type="SetProperty" frame="$GameUI_HeroTalentTreeSelectionIndicator" Visible="False" />
+          <Action type="SetProperty" frame="$GameUI_HeroTalentTreeSelectionIndicator/TalentAlertPanelBG" Visible="False" />
+          <Action type="SetProperty" frame="$GameUI_HeroTalentTreeSelectionIndicator/TalentAlertPanelGlow" Visible="False" />
+          <Action type="SetProperty" frame="$GameUI_HeroTalentTreeSelectionIndicator/TalentAlertLabel" Visible="False" />
+          <Action type="SetProperty" frame="$GameUI_HeroTalentTreeSelectionIndicator" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUI_HeroTalentTreeSelectionIndicator" Height="0" />
+          <Action type="SetProperty" frame="$GameUI_HeroTalentTreeSelectionIndicator" Width="0" />
+          <!-- <Action type="SendEvent" frame="$GameUI_HeroTalentTreeSelectionIndicator" event="ForceHide" on="Enter" />
+          <Action type="SendEvent" frame="$GameUI_HeroTalentTreeSelectionIndicator" event="StopHide" on="Exit" /> -->
+          <Action type="SetAnchor" frame="$GameUI_HeroTalentTreeSelectionIndicator" side="Left" relative="$parent" pos="Min" offset="9999" />
+          <Action type="SetAnchor" frame="$GameUI_HeroTalentTreeSelectionIndicator" side="Right" relative="$parent" pos="Min" offset="9999" />
+          <Action type="SetAnchor" frame="$GameUI_HeroTalentTreeSelectionIndicator" side="Bottom" relative="$parent" pos="Min" offset="9999" />
+          <Action type="SendEvent" frame="$GameUICommandPanel" event="ForceHide" on="Enter" />
+          <Action type="SendEvent" frame="$GameUICommandPanel" event="StopHide" on="Exit" />
+          <Action type="SetProperty" frame="$GameUICommandPanel" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel" Height="0" />
+          <Action type="SetProperty" frame="$GameUICommandPanel" Width="0" />
+          <Action type="SendEvent" frame="$GameUICommandPanel" event="ForceHide" on="Enter" />
+          <Action type="SendEvent" frame="$GameUICommandPanel" event="StopHide" on="Exit" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel" side="Right" relative="$parent" pos="Min" offset="-9999" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel" side="Bottom" relative="$parent" pos="Min" offset="-9999" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/AnchorFrame" side="Top" relative="$INVALID" pos="Min" offset="0" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/AnchorFrame" side="Left" relative="$INVALID" pos="Min" offset="0" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/AnchorFrame" side="Right" relative="$INVALID" pos="Min" offset="0" />
+          <Action type="SetAnchor" frame="$GameUICommandPanel/AnchorFrame" side="Bottom" relative="$INVALID" pos="Min" offset="0" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/MiddleFill" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/GameButtonDefaultBorder" Height="0" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05/GameButtonDefaultBorder" Width="0" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton00" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton01" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton02" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton03" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton04" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton04" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton05" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton13" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton13" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton30" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton31" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton32" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton33" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton34" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/CommandButton35" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton30" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton30" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton31" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton31" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton32" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton32" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton33" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton33" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton34" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton34" Enabled="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton35" Visible="False" />
+          <Action type="SetProperty" frame="$GameUICommandPanel/EmptyDynamicButton35" Enabled="False" />
+        </State>
+      </StateGroup>
+      <StateGroup name="AnchorStateGroupController">
+        <DefaultState val="ReplayPanelNotVisible" />
+        <State name="ReplayPanelVisible">
+          <When type="Property" frame="$GameUI_ReplayPanel" Visible="True" />
+          <Action type="SetAnchor" frame="$this" side="Top" relative="$parent" pos="Max" offset="-591" />
+          <!-- <Action type="SetAnchor" frame="$this" side="Left" relative="$parent" pos="Min" offset="0" /> -->
+          <!-- <Action type="SetAnchor" frame="$this" side="Right" relative="$parent" pos="Min" offset="500" /> -->
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent" pos="Max" offset="-161" />
+        </State>
+        <State name="ReplayPanelNotVisible">
+          <When type="Property" frame="$GameUI_ReplayPanel" Visible="False" />
+          <Action type="SetAnchor" frame="$this" side="Top" relative="$parent" pos="Max" offset="-430" />
+          <!-- <Action type="SetAnchor" frame="$this" side="Left" relative="$parent" pos="Min" offset="0" /> -->
+          <!-- <Action type="SetAnchor" frame="$this" side="Right" relative="$parent" pos="Min" offset="500" /> -->
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent" pos="Max" offset="0" />
+        </State>
+      </StateGroup>
+      <Frame type="SelectionUnitStatusPanel" name="SelectedUnitFrame">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+        <AcceptsMouse val="False"/>
+        <AcceptsMouseTooltip val="False"/>
+        <Frame type="Image" name="BuffBackgroundImage">
+          <Anchor side="Bottom" relative="$parent/Background" pos="Max" offset="-9" />
+          <Anchor side="Left" relative="$parent/Background" pos="Min" offset="3" />
+          <Texture val="@UI/Storm_UI_Ingame_Buffpanel_bg" />
+          <TextureType val="Nineslice" />
+          <Width val="248" />
+          <Height val="35" />
+        </Frame>
+        <Frame type="Image" name="PortraitFrameImage">
+          <Anchor side="Bottom" relative="$GameUICommandPanel" pos="Mid" offset="-15" />
+          <Anchor side="Left" relative="$parent" pos="Min" offset="6" />
+          <Texture val="@UI/HUD_BG_PortraitFrame" />
+          <RenderType val="LDR" />
+          <Frame type="Image" name="PortraitFrameGlowImage">
+            <Anchor relative="$parent" />
+            <Visible val="true" />
+            <Alpha val="0" />
+            <BlendMode val="Add" />
+            <ColorAdjustMode val="Colorize" />
+            <LightAdjustColor val="FFFFFF" />
+            <DarkAdjustColor val="FFFFFF" />
+            <Texture val="@UI/Storm_UI_InGame_PortraitFrameLowGlow" />
+          </Frame>
+        </Frame>
+        <Frame type="Image" name="Background">
+          <Anchor side="Top" relative="$parent/PortraitFrameImage" pos="Min" offset="106" />
+          <Anchor side="Left" relative="$parent/PortraitFrameImage" pos="Min" offset="169" />
+          <!-- <Texture val="@UI/HUD_BG_ArtBarBottom" /> -->
+          <Texture val="_Assets\UI\hud_bg_artbarbottom_nofountain.dds" />
+          <Frame type="Image" name="ArtBarGlowImage">
+            <Anchor relative="$parent" />
+            <Visible val="true" />
+            <Alpha val="0" />
+            <BlendMode val="Add" />
+            <ColorAdjustMode val="Colorize" />
+            <LightAdjustColor val="FFFFFF" />
+            <DarkAdjustColor val="FFFFFF" />
+            <Texture val="@UI/Storm_UI_InGame_ArtBarLowGlow" />
+            <Handle val="ResourceBackPlate" />
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="UnitStatusFrame0">
+          <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+          <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+          <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+          <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+          <AcceptsMouse val="False"/>
+          <AcceptsMouseTooltip val="False"/>
+          <Animation name="ShowCommandPanel">
+            <Event action="Play" event="OnShown"/>
+            <Event action="Stop" event="OnHidden"/>
+            <Controller end="Loop" frame="$GameUICommandPanel" type="Visibility">
+              <Key time="0" type="Bool" value="true"/>
+              <Key time="0.01" type="Bool" value="true"/>
+            </Controller>
+          </Animation>
+          <Animation name="HideCommandPanel">
+            <Event action="Reset,Play" event="OnHidden"/>
+            <Controller end="Stop" frame="$GameUICommandPanel" type="Visibility">
+              <Key time="0" type="Bool" value="false"/>
+              <Key time="0.01" type="Bool" value="false"/>
+              <Key time="0.02" type="Bool" value="false"/>
+            </Controller>
+          </Animation>
+          <Animation name="DisplayPortrait">
+            <Event action="Play" event="OnShown"/>
+            <Event action="Stop" event="OnHidden"/>
+            <Controller end="Loop" frame="$ConsolePortraitPanelContainer/PortraitPanel" type="Visibility">
+              <Key time="0" type="Bool" value="true"/>
+              <Key time="0.01" type="Bool" value="true"/>
+            </Controller>
+          </Animation>
+          <Animation name="HidePortrait">
+            <Event action="Reset,Play" event="OnHidden"/>
+            <Controller end="Stop" frame="$ConsolePortraitPanelContainer/PortraitPanel" type="Visibility">
+              <Key time="0" type="Bool" value="false"/>
+              <Key time="0.01" type="Bool" value="false"/>
+              <Key time="0.02" type="Bool" value="false"/>
+            </Controller>
+          </Animation>
+          <Frame type="UnitStatusName" name="UnitNameLabel">
+            <Anchor side="Top" relative="$parent/$parent/PortraitFrameImage" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent/$parent/PortraitFrameImage" pos="Min" offset="0"/>
+            <Anchor side="Right" relative="$parent/$parent/PortraitFrameImage" pos="Max" offset="0"/>
+            <Anchor side="Bottom" relative="$parent/$parent/PortraitFrameImage" pos="Max" offset="0"/>
+            <UseNameTypeVisibilityRules val="False" />
+            <NameType val="Unit" />
+            <Frame type="Label" name="Label">
+              <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
+              <Anchor side="Left" relative="$parent" pos="Mid" offset="0" />
+              <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
+              <Style val="SpazzoBottomLeftUnitLabel" />
+              <Options val="ScaleToPreventTruncation"/>
+              <Visibile val="False"/>
+            </Frame>
+          </Frame>
+          <Frame type="Frame" name="UnitSpecificStatsContainerFrame">
+            <Anchor side="Top" relative="$parent" pos="Max" offset="-60"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="30"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="300"/>
+            <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+            <CollapseLayout val="True"/>
+            <Visible val="{$TopBarSettingsFrame/BottomLeftDisplayUnitStatistics/@Toggled}"/>
+            <Frame type="Frame" name="AttackDamageFrame">
+              <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+              <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+              <Anchor side="Right" relative="$parent" pos="Min" offset="300"/>
+              <Anchor side="Bottom" relative="$parent" pos="Min" offset="24"/>
+              <Frame type="Image" name="StatIcon">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+                <Texture val="@UI/Storm_UI_Attack_Damage_Icon" />
+                <AcceptsMouseTooltip val="true" />
+                <Tooltip val="{$parent/CombinedFormatFrameTooltip/@Text}" />
+              </Frame>
+              <Frame type="Label" name="LabelCombined">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Text val="{$parent/BaseDamageLabel/StatusLabel/@Text}"/>
+                <AcceptsMouseTooltip val="true" />
+                <Tooltip val="{$parent/CombinedFormatFrameTooltip/@Text}" />
+              </Frame>
+              <Frame type="UnitStatusDamageLabel" name="BaseDamageLabel">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="1" />
+                <Anchor side="Left" relative="$parent" pos="Max" offset="1" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="1" />
+                <ShowHeroicMultiplier val="False" />
+                <ShowMinionMultiplier val="False" />
+                <ShowStructureMultiplier val="False" />
+                <FractionDigits val="1" />
+                <RoundMode val="None" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="UnitStatusDamageLabel" name="HeroicDamageLabel">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="1" />
+                <Anchor side="Left" relative="$parent" pos="Max" offset="1" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="1" />
+                <ShowHeroicMultiplier val="True" />
+                <ShowMinionMultiplier val="False" />
+                <ShowStructureMultiplier val="False" />
+                <FractionDigits val="1" />
+                <RoundMode val="None" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="UnitStatusDamageLabel" name="MinionDamageLabel">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="1" />
+                <Anchor side="Left" relative="$parent" pos="Max" offset="1" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="1" />
+                <ShowHeroicMultiplier val="False" />
+                <ShowMinionMultiplier val="True" />
+                <ShowStructureMultiplier val="False" />
+                <FractionDigits val="1" />
+                <RoundMode val="None" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="UnitStatusDamageLabel" name="StructureDamageLabel">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="1" />
+                <Anchor side="Left" relative="$parent" pos="Max" offset="1" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="1" />
+                <ShowHeroicMultiplier val="False" />
+                <ShowMinionMultiplier val="False" />
+                <ShowStructureMultiplier val="True" />
+                <FractionDigits val="1" />
+                <RoundMode val="None" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="TextFormatFrame" name="CombinedFormatFrame">
+                <FormatText val="@UI/Spazzo/BottomLeft/AttackDamage" />
+                <Replacement index="0" val="{$parent/BaseDamageLabel/StatusLabel/@Text}" />
+                <ReplacedName index="0" val="basedamage" />
+                <Replacement index="1" val="{$parent/HeroicDamageLabel/StatusLabel/@Text}" />
+                <ReplacedName index="1" val="heroicdamage" />
+                <Replacement index="2" val="{$parent/MinionDamageLabel/StatusLabel/@Text}" />
+                <ReplacedName index="2" val="miniondamage" />
+                <Replacement index="3" val="{$parent/StructureDamageLabel/StatusLabel/@Text}" />
+                <ReplacedName index="3" val="structuredamage" />
+              </Frame>
+              <Frame type="TextFormatFrame" name="CombinedFormatFrameTooltip">
+                <FormatText val="@UI/Spazzo/BottomLeft/AttackDamageDescription" />
+                <Replacement index="0" val="{$parent/BaseDamageLabel/StatusLabel/@Text}" />
+                <ReplacedName index="0" val="basedamage" />
+                <Replacement index="1" val="{$parent/HeroicDamageLabel/StatusLabel/@Text}" />
+                <ReplacedName index="1" val="heroicdamage" />
+                <Replacement index="2" val="{$parent/MinionDamageLabel/StatusLabel/@Text}" />
+                <ReplacedName index="2" val="miniondamage" />
+                <Replacement index="3" val="{$parent/StructureDamageLabel/StatusLabel/@Text}" />
+                <ReplacedName index="3" val="structuredamage" />
+              </Frame>
+            </Frame>
+            <Frame type="Frame" name="AttackSpeedFrame">
+              <Anchor side="Top" relative="$parent/AttackDamageFrame" pos="Min" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/AttackDamageFrame" pos="Max" offset="0"/>
+              <Anchor side="Left" relative="$parent/AttackDamageFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Right" relative="$parent/AttackDamageFrame/LabelCombined" pos="Max" offset="200"/>
+              <Frame type="Image" name="StatIcon">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+                <Texture val="@UI/Storm_UI_Attack_Speed_Icon" />
+              </Frame>
+              <Frame type="Label" name="LabelCombined">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Text val="{$parent/AttackSpeedLabel/StatusLabel/@Text}"/>
+              </Frame>
+              <Frame type="UnitStatusAttackSpeedLabel" name="AttackSpeedLabel">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <RoundMode val="None" />
+                <FractionDigits val="2" />
+                <Height val="20" />
+                <Width val="60" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+            </Frame>
+            <Frame type="Frame" name="AttackRangeFrame">
+              <Anchor side="Top" relative="$parent/AttackDamageFrame" pos="Min" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/AttackDamageFrame" pos="Max" offset="0"/>
+              <Anchor side="Left" relative="$parent/AttackSpeedFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Right" relative="$parent/AttackSpeedFrame/LabelCombined" pos="Max" offset="200"/>
+              <Frame type="Image" name="StatIcon">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+                <Texture val="@UI/Storm_UI_Attack_Range_Icon" />
+              </Frame>
+              <Frame type="Label" name="LabelCombined">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Text val="{$parent/AttackRangeLabel/StatusLabel/@Text}"/>
+              </Frame>
+              <Frame type="UnitStatusAttackRangeLabel" name="AttackRangeLabel">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <RoundMode val="None" />
+                <FractionDigits val="2" />
+                <Height val="20" />
+                <Width val="60" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+            </Frame>
+            <Frame type="Frame" name="AbilityPowerFrame">
+              <Anchor side="Top" relative="$parent/AttackDamageFrame" pos="Min" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/AttackDamageFrame" pos="Max" offset="0"/>
+              <Anchor side="Left" relative="$parent/AttackRangeFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Right" relative="$parent/AttackRangeFrame/LabelCombined" pos="Max" offset="200"/>
+              <Frame type="Image" name="StatIcon">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+                <Texture val="@UI/Storm_UI_Spell_Power_Icon" />
+              </Frame>
+              <Frame type="Label" name="LabelCombined">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Text val="{$parent/AbilityPowerLabel/StatusLabel/@Text}"/>
+              </Frame>
+              <Frame type="UnitStatusAbilityPowerLabel" name="AbilityPowerLabel">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <RoundMode val="None" />
+                <FractionDigits val="0" />
+                <Height val="20" />
+                <Width val="60" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+            </Frame>
+            <Frame type="Frame" name="MoveSpeedFrame">
+              <Anchor side="Top" relative="$parent/AttackDamageFrame" pos="Max" offset="1"/>
+              <Anchor side="Bottom" relative="$parent/AttackDamageFrame" pos="Max" offset="25"/>
+              <Anchor side="Left" relative="$parent/AttackDamageFrame" pos="Min" offset="0"/>
+              <Anchor side="Right" relative="$parent/AttackDamageFrame" pos="Max" offset="0"/>
+              <CollapseLayout val="True" />
+              <Visible val="{$this/MoveSpeedLabel/@Visible}" />
+              <Frame type="Image" name="StatIcon">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+                <Texture val="@UI/Storm_UI_Move_Speed_Icon" />
+                <Visible val="{$parent/MoveSpeedLabel/@Visible}" />
+                <CollapseLayout val="True" />
+              </Frame>
+              <Frame type="Label" name="LabelCombined">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Text val="{$parent/MoveSpeedLabel/StatusLabel/@Text}"/>
+                <Visible val="{$parent/MoveSpeedLabel/@Visible}" />
+                <CollapseLayout val="True" />
+              </Frame>
+              <Frame type="UnitStatusMoveSpeedLabel" name="MoveSpeedLabel">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <RoundMode val="None" />
+                <FractionDigits val="0" />
+                <Height val="20" />
+                <Width val="60" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+            </Frame>
+            <Frame type="Frame" name="HealTakenFrame">
+              <Anchor side="Top" relative="$parent/MoveSpeedFrame" pos="Min" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/MoveSpeedFrame" pos="Max" offset="0"/>
+              <Anchor side="Left" relative="$parent/MoveSpeedFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Right" relative="$parent/MoveSpeedFrame/LabelCombined" pos="Max" offset="200"/>
+              <Frame type="Image" name="StatIcon">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+                <Texture val="@UI/Spazzo/HealTakenIcon" />
+              </Frame>
+              <Frame type="Label" name="LabelCombined">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Text val="{$parent/HealTakenLabel/@HealingModification}"/>
+              </Frame>
+              <Frame type="UnitStatusUnitHealingModifier" name="HealTakenLabel">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Height val="20" />
+                <Width val="60" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+            </Frame>
+            <Frame type="Frame" name="PhysicalArmorFrame">
+              <Anchor side="Top" relative="$parent/MoveSpeedFrame" pos="Min" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/MoveSpeedFrame" pos="Max" offset="0"/>
+              <Anchor side="Left" relative="$parent/HealTakenFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Right" relative="$parent/HealTakenFrame/LabelCombined" pos="Max" offset="200"/>
+              <Frame type="Image" name="StatIcon">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+                <Texture val="@UI/Storm_UI_Physical_Armor_Icon" />
+                <AcceptsMouseTooltip val="true" />
+                <Tooltip val="{$parent/CombinedFormatFrameTooltip/@Text}" />
+              </Frame>
+              <Frame type="Label" name="LabelCombined">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Text val="{$parent/ArmorLabelHero/@CurrentPhysicalArmor}"/>
+                <AcceptsMouseTooltip val="true" />
+                <Tooltip val="{$parent/CombinedFormatFrameTooltip/@Text}" />
+              </Frame>
+              <Frame type="UnitStatusUnitArmor" name="ArmorLabelHero">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Height val="20" />
+                <Width val="60" />
+                <UnitDamageType val="Hero" />
+                <DamageKind val="Basic" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="UnitStatusUnitArmor" name="ArmorLabelMerc">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Height val="20" />
+                <Width val="60" />
+                <UnitDamageType val="Merc" />
+                <DamageKind val="Basic" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="UnitStatusUnitArmor" name="ArmorLabelMonster">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Height val="20" />
+                <Width val="60" />
+                <UnitDamageType val="Monster" />
+                <DamageKind val="Basic" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="UnitStatusUnitArmor" name="ArmorLabelSummon">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Height val="20" />
+                <Width val="60" />
+                <UnitDamageType val="Summon" />
+                <DamageKind val="Basic" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="UnitStatusUnitArmor" name="ArmorLabelStructure">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Height val="20" />
+                <Width val="60" />
+                <UnitDamageType val="Structure" />
+                <DamageKind val="Basic" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="UnitStatusUnitArmor" name="ArmorLabelMinion">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Height val="20" />
+                <Width val="60" />
+                <UnitDamageType val="Minion" />
+                <DamageKind val="Basic" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="TextFormatFrame" name="CombinedFormatFrame">
+                <FormatText val="@UI/Spazzo/BottomLeft/Armor" />
+                <Replacement index="0" val="{$parent/ArmorLabelHero/@CurrentPhysicalArmor}" />
+                <ReplacedName index="0" val="heroarmor" />
+                <Replacement index="1" val="{$parent/ArmorLabelMinion/@CurrentPhysicalArmor}" />
+                <ReplacedName index="1" val="minionarmor" />
+                <Replacement index="2" val="{$parent/ArmorLabelMerc/@CurrentPhysicalArmor}" />
+                <ReplacedName index="2" val="mercarmor" />
+                <Replacement index="3" val="{$parent/ArmorLabelSummon/@CurrentPhysicalArmor}" />
+                <ReplacedName index="3" val="summonarmor" />
+                <Replacement index="4" val="{$parent/ArmorLabelMonster/@CurrentPhysicalArmor}" />
+                <ReplacedName index="4" val="monsterarmor" />
+                <Replacement index="5" val="{$parent/ArmorLabelStructure/@CurrentPhysicalArmor}" />
+                <ReplacedName index="5" val="structurearmor" />
+              </Frame>
+              <Frame type="TextFormatFrame" name="CombinedFormatFrameTooltip">
+                <FormatText val="@UI/Spazzo/BottomLeft/PhysicalArmorDescription" />
+                <Replacement index="0" val="{$parent/ArmorLabelHero/@CurrentPhysicalArmor}" />
+                <ReplacedName index="0" val="heroarmor" />
+                <Replacement index="1" val="{$parent/ArmorLabelMinion/@CurrentPhysicalArmor}" />
+                <ReplacedName index="1" val="minionarmor" />
+                <Replacement index="2" val="{$parent/ArmorLabelMerc/@CurrentPhysicalArmor}" />
+                <ReplacedName index="2" val="mercarmor" />
+                <Replacement index="3" val="{$parent/ArmorLabelSummon/@CurrentPhysicalArmor}" />
+                <ReplacedName index="3" val="summonarmor" />
+                <Replacement index="4" val="{$parent/ArmorLabelMonster/@CurrentPhysicalArmor}" />
+                <ReplacedName index="4" val="monsterarmor" />
+                <Replacement index="5" val="{$parent/ArmorLabelStructure/@CurrentPhysicalArmor}" />
+                <ReplacedName index="5" val="structurearmor" />
+              </Frame>
+            </Frame>
+            <Frame type="Frame" name="SpellArmorFrame">
+              <Anchor side="Top" relative="$parent/MoveSpeedFrame" pos="Min" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/MoveSpeedFrame" pos="Max" offset="0"/>
+              <Anchor side="Left" relative="$parent/PhysicalArmorFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Right" relative="$parent/PhysicalArmorFrame/LabelCombined" pos="Max" offset="200"/>
+              <Frame type="Image" name="StatIcon">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+                <Texture val="@UI/Storm_UI_Ability_Armor_Icon" />
+                <AcceptsMouseTooltip val="true" />
+                <Tooltip val="{$parent/CombinedFormatFrameTooltip/@Text}" />
+              </Frame>
+              <Frame type="Label" name="LabelCombined">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Text val="{$parent/ArmorLabelHero/@CurrentAbilityArmor}"/>
+                <AcceptsMouseTooltip val="true" />
+                <Tooltip val="{$parent/CombinedFormatFrameTooltip/@Text}" />
+              </Frame>
+              <Frame type="UnitStatusUnitArmor" name="ArmorLabelHero">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Height val="20" />
+                <Width val="60" />
+                <UnitDamageType val="Hero" />
+                <DamageKind val="Ability" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="UnitStatusUnitArmor" name="ArmorLabelMerc">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Height val="20" />
+                <Width val="60" />
+                <UnitDamageType val="Merc" />
+                <DamageKind val="Ability" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="UnitStatusUnitArmor" name="ArmorLabelMonster">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Height val="20" />
+                <Width val="60" />
+                <UnitDamageType val="Monster" />
+                <DamageKind val="Ability" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="UnitStatusUnitArmor" name="ArmorLabelSummon">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Height val="20" />
+                <Width val="60" />
+                <UnitDamageType val="Summon" />
+                <DamageKind val="Ability" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="UnitStatusUnitArmor" name="ArmorLabelStructure">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Height val="20" />
+                <Width val="60" />
+                <UnitDamageType val="Structure" />
+                <DamageKind val="Ability" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="UnitStatusUnitArmor" name="ArmorLabelMinion">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Height val="20" />
+                <Width val="60" />
+                <UnitDamageType val="Minion" />
+                <DamageKind val="Ability" />
+                <Frame type="Label" name="StatusLabel" template="TargetInfoPanel/StatusLabelTemplate">
+                  <Anchor relative="$parent" />
+                  <Visible val="False"/>
+                </Frame>
+              </Frame>
+              <Frame type="TextFormatFrame" name="CombinedFormatFrame">
+                <FormatText val="@UI/Spazzo/BottomLeft/Armor" />
+                <Replacement index="0" val="{$parent/ArmorLabelHero/@CurrentAbilityArmor}" />
+                <ReplacedName index="0" val="heroarmor" />
+                <Replacement index="1" val="{$parent/ArmorLabelMinion/@CurrentAbilityArmor}" />
+                <ReplacedName index="1" val="minionarmor" />
+                <Replacement index="2" val="{$parent/ArmorLabelMerc/@CurrentAbilityArmor}" />
+                <ReplacedName index="2" val="mercarmor" />
+                <Replacement index="3" val="{$parent/ArmorLabelSummon/@CurrentAbilityArmor}" />
+                <ReplacedName index="3" val="summonarmor" />
+                <Replacement index="4" val="{$parent/ArmorLabelMonster/@CurrentAbilityArmor}" />
+                <ReplacedName index="4" val="monsterarmor" />
+                <Replacement index="5" val="{$parent/ArmorLabelStructure/@CurrentAbilityArmor}" />
+                <ReplacedName index="5" val="structurearmor" />
+              </Frame>
+              <Frame type="TextFormatFrame" name="CombinedFormatFrameTooltip">
+                <FormatText val="@UI/Spazzo/BottomLeft/SpellArmorDescription" />
+                <Replacement index="0" val="{$parent/ArmorLabelHero/@CurrentPhysicalArmor}" />
+                <ReplacedName index="0" val="heroarmor" />
+                <Replacement index="1" val="{$parent/ArmorLabelMinion/@CurrentPhysicalArmor}" />
+                <ReplacedName index="1" val="minionarmor" />
+                <Replacement index="2" val="{$parent/ArmorLabelMerc/@CurrentPhysicalArmor}" />
+                <ReplacedName index="2" val="mercarmor" />
+                <Replacement index="3" val="{$parent/ArmorLabelSummon/@CurrentPhysicalArmor}" />
+                <ReplacedName index="3" val="summonarmor" />
+                <Replacement index="4" val="{$parent/ArmorLabelMonster/@CurrentPhysicalArmor}" />
+                <ReplacedName index="4" val="monsterarmor" />
+                <Replacement index="5" val="{$parent/ArmorLabelStructure/@CurrentPhysicalArmor}" />
+                <ReplacedName index="5" val="structurearmor" />
+              </Frame>
+            </Frame>
+          </Frame>
+          <Frame type="Frame" name="HeroStatsFrame">
+            <Anchor side="Top" relative="$parent/$parent/Background" pos="Min" offset="10"/>
+            <Anchor side="Left" relative="$parent/$parent/Background" pos="Min" offset="25"/>
+            <Anchor side="Right" relative="$parent/$parent/Background" pos="Max" offset="15"/>
+            <Anchor side="Bottom" relative="$parent/$parent/Background" pos="Max" offset="0"/>
+            <!-- <Frame type="Image" name="ImageBoundCheck">
+              <Anchor relative="$parent" />
+              <Texture val="Assets\Textures\storm_ui_homescreenbackground_nexomania.dds"/>
+              <RenderPriority val="999" />
+              <Alpha val="50"/>
+              <Visible val="true"/>
+            </Frame> -->
+            <Frame type="UnitStatusValidatorAnimElement" name="UnitStatusEnergyValidator">
+              <Anchor relative="$parent" />
+              <Validator val="IsStructureTarget" />
+              <Validator val="IsPseudoStructure" />
+              <Validator val="IsSummonedUnit" />
+              <Validator val="TargetIsAMonster" />
+              <Validator val="TargetIsAMonsterMajor" />
+              <Validator val="TargetMinionOrMerc" />
+              <Validator val="TargetIsManaUser" />
+              <StateGroup name="AnimState">
+                <DefaultState val="NoState" />
+                <State name="Illidan">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroIllidan"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="Murky">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMurky"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="Cho">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroCho"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="Samuro">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroSamuro"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="SamuroMirror">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="SamuroMirrorImage"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="DragonKnight">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="VehicleDragon"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel/StatusLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Height="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Width="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Alpha="0" />
+                </State>
+                <State name="RexxarMisha">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="RexxarMisha"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel/StatusLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Height="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Width="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Alpha="0" />
+                </State>
+                <State name="Abathur">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAbathur"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="Medivac">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MedicMedivacDropship"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="Olaf">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroOlaf"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="Baleog">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroBaleog"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="Erik">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroErik"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="Junkrat">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroJunkrat"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel/StatusLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Height="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Width="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Alpha="0" />
+                </State>
+                <State name="Tracer">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTracer"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel/StatusLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Height="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Width="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Alpha="0" />
+                </State>
+                <State name="HeroDVa">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroDVaMech"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel/StatusLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Height="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Width="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Alpha="0" />
+                </State>
+                <State name="HeroDVaPilot">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroDVaPilot"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel/StatusLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Height="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Width="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Alpha="0" />
+                </State>
+                <State name="Fenix">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroFenix"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBarLabel/StatusLabel" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Height="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Width="0" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Alpha="0" />
+                </State>
+                <State name="IsStructureTarget">
+                  <When type="AnimationState" UnitStatusValidatorState="IsStructureTarget" />
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="IsPseudoStructure">
+                  <When type="AnimationState" UnitStatusValidatorState="IsPseudoStructure" />
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="IsSummonedUnit">
+                  <When type="AnimationState" UnitStatusValidatorState="IsSummonedUnit" />
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="TargetIsAMonster">
+                  <When type="AnimationState" UnitStatusValidatorState="TargetIsAMonster" />
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="TargetIsAMonsterMajor">
+                  <When type="AnimationState" UnitStatusValidatorState="TargetIsAMonsterMajor" />
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="TargetMinionOrMerc">
+                  <When type="AnimationState" UnitStatusValidatorState="TargetMinionOrMerc" />
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="18" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="40" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="245" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/Storm_UI_InGame_hud_Bar_Health_Generic_NoResource" />
+                </State>
+                <State name="TargetIsManaUser">
+                  <When type="AnimationState" UnitStatusValidatorState="TargetIsManaUser" />
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="28" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="22" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="234" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/HUD_Bar_Health_Generic" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" ColorStyle="StandardEnergy" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Segmented="False" />
+                </State>
+                <State name="Valeera">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroValeera"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="28" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="22" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="234" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/HUD_Bar_Health_Generic" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" ColorStyle="BrewEnergy" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Segmented="False" />
+                </State>
+                <State name="Sonya">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroBarbarian"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="28" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="22" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="234" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/HUD_Bar_Health_Generic" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" ColorStyle="FuryEnergy" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Segmented="False" />
+                </State>
+                <State name="Gazlowe">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTinker"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="28" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="22" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="234" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/HUD_Bar_Health_Generic" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" ColorStyle="FuryEnergy" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Segmented="False" />
+                </State>
+                <State name="Deathwing">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroDeathwing"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="28" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="22" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="234" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/HUD_Bar_Health_Generic" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" ColorStyle="DeathwingEnergy" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Segmented="False" />
+                </State>
+                <State name="Chen">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="28" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="22" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="234" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/HUD_Bar_Health_Generic" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" ColorStyle="BrewEnergy" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Segmented="False" />
+                </State>
+                <State name="Morales">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMedic"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="28" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="22" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="234" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/HUD_Bar_Health_Generic" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" ColorStyle="BrewEnergy" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Segmented="False" />
+                </State>
+                <State name="Auriel">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAuriel"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="28" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="22" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="234" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/HUD_Bar_Health_Generic" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" ColorStyle="BrewEnergy" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Segmented="False" />
+                </State>
+                <State name="Hogger">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroHogger"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="28" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="22" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="234" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/HUD_Bar_Health_Generic" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" ColorStyle="MeatEnergy" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Segmented="False" />
+                </State>
+                <State name="Zarya">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroZarya"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="28" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="22" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="234" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/HUD_Bar_Health_Generic" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" ColorStyle="DivaEnergy" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Segmented="False" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" SegmentValue="25" />
+                </State>
+                <State name="VolskayaVehicle">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="VolskayaVehicleGunner"/>
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="28" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="22" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="234" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/HUD_Bar_Health_Generic" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" ColorStyle="DivaEnergy" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Segmented="True" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" SegmentValue="1" />
+                </State>
+                <State name="NoState">
+                  <When type="AnimationState" UnitStatusValidatorState="NoState" />
+                  <Action type="SetAnchor" frame="$parent/HealthBar" side="Left" relative="$parent" pos="Min" offset="28" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Height="22" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Width="234" />
+                  <Action type="SetProperty" frame="$parent/HealthBar" Texture="@UI/HUD_Bar_Health_Generic" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" ColorStyle="StandardEnergy" />
+                  <Action type="SetProperty" frame="$parent/EnergyBar" Segmented="False" />
+                </State>
+              </StateGroup>
+            </Frame>
+            <Frame type="UnitStatusShieldedHealthBar" name="HealthBar">
+              <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+              <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+              <Height val="22" />
+              <Width val="234" />
+              <Texture val="@UI/HUD_Bar_Health_Generic" />
+              <BarCount val="5" />
+              <ColorStyle val="Primary" index="0" />
+              <Tiled val="True" index="0" />
+              <ApplyToTotal val="True" index="0" />
+              <ColorStyle val="DoT" index="1" />
+              <Tiled val="True" index="1" />
+              <ReductionShown val="True" index="1" />
+              <IncreaseDuration val="0" index="1" />
+              <ApplyToTotal val="False" index="1" />
+              <ColorStyle val="Shields" index="2" />
+              <Tiled val="True" index="2" />
+              <ReductionShown val="true" index="2" />
+              <IncreaseDuration val="1000" index="2" />
+              <DecreaseDuration val="2000" index="2" />
+              <ApplyToTotal val="False" index="2" />
+              <ReductionColor val="109, 255, 255" index="2" />
+              <ColorStyle val="ShieldsDoT" index="3" />
+              <Tiled val="True" index="3" />
+              <ReductionShown val="True" index="3" />
+              <IncreaseDuration val="0" index="3" />
+              <ApplyToTotal val="False" index="3" />
+              <ColorStyle val="HoT" index="4" />
+              <Tiled val="True" index="4" />
+              <ReductionShown val="true" index="4" />
+              <IncreaseDuration val="0" index="4" />
+              <ApplyToTotal val="False" index="4" />
+              <Unclipped val="False"/>
+              <AcceptsMouseTooltip val="False" />
+              <AcceptsMouse val="False" />
+            </Frame>
+            <Frame type="UnitStatusShieldedHealthLabel" name="HealthBarLabel">
+              <Anchor side="Top" relative="$parent/HealthBar" pos="Min" offset="0" />
+              <Anchor side="Left" relative="$parent/HealthBar" pos="Min" offset="14" />
+              <Anchor side="Bottom" relative="$parent/HealthBar" pos="Max" offset="0" />
+              <Anchor side="Right" relative="$parent/HealthBar" pos="Max" offset="-20" />
+              <ShowWhileInvulnerable val="True" />
+              <Frame type="Label" name="StatusLabel">
+                <Anchor side="Top" relative="$parent" pos="Min" offset="-2" />
+                <Anchor side="Bottom" relative="$parent" pos="Max" offset="3" />
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+                <Style val="Storm_VitalsLabel_R" />
+              </Frame>
+            </Frame>
+            <Frame type="UnitStatusEnergyBar" name="EnergyBar">
+              <Anchor side="Top" relative="$parent/HealthBar" pos="Max" offset="2" />
+              <Anchor side="Left" relative="$parent" pos="Min" offset="17" />
+              <Height val="17" />
+              <Width val="232" />
+              <Texture val="@UI/HUD_Bar_Mana" />
+              <Tiled val="true" />
+              <BarCount val="1" />
+              <ColorStyle val="StandardEnergy" index="0" />
+              <Unclipped val="False"/>
+              <AcceptsMouseTooltip val="False" />
+              <AcceptsMouse val="False" />
+              <PreserveAnchorOffset val="True" />
+            </Frame>
+            <Frame type="UnitStatusEnergyLabel" name="EnergyBarLabel">
+              <Anchor side="Top" relative="$parent/EnergyBar" pos="Min" offset="-1" />
+              <Anchor side="Right" relative="$parent/EnergyBar" pos="Mid" offset="20" />
+              <Anchor side="Bottom" relative="$parent/EnergyBar" pos="Max" offset="1" />
+              <Anchor side="Left" relative="$parent/EnergyBar" pos="Min" offset="12" />
+              <Visible val="{$parent/EnergyBar/@Visible}"/>
+              <Frame type="Label" name="StatusLabel">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="1" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="1" />
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+                <Style val="Storm_VitalsLabel_R_Small" />
+              </Frame>
+            </Frame>
+          </Frame>
+          <Frame type="Frame" name="HealingFountainContainerFrame">
+            <Anchor side="Top" relative="$parent/$parent/BuffBackgroundImage" pos="Min" offset="3"/>
+            <Anchor side="Left" relative="$parent/$parent/BuffBackgroundImage" pos="Min" offset="3"/>
+            <Anchor side="Right" relative="$parent/$parent/BuffBackgroundImage" pos="Max" offset="0"/>
+            <Anchor side="Bottom" relative="$parent/$parent/BuffBackgroundImage" pos="Max" offset="25"/>
+            <Frame type="UnitStatusValidatorAnimElement" name="UnitStatusEnergyValidator">
+              <Anchor relative="$parent" />
+              <Validator val="IsHeroAndNotVehicleAndNotHallucination" />
+              <StateGroup name="AnimState">
+                <DefaultState val="NoState" />
+                <State name="IsHeroAndNotVehicleAndNotHallucination">
+                  <When type="AnimationState" UnitStatusValidatorState="IsHeroAndNotVehicleAndNotHallucination" />
+                  <Action type="SetProperty" frame="$parent" Visible="True" />
+                  <Action type="SetProperty" frame="$parent/$parent/$parent/Background" Texture="@UI/HUD_BG_ArtBarBottom" />
+                </State>
+                <State name="TargetIsAMonster">
+                  <When type="AnimationState" UnitStatusValidatorState="NoState" />
+                  <Action type="SetProperty" frame="$parent" Visible="False" />
+                  <Action type="SetProperty" frame="$parent/$parent/$parent/Background" Texture="_Assets\UI\hud_bg_artbarbottom_nofountain.dds" />
+                </State>
+              </StateGroup>
+            </Frame>
+            <Frame type="Image" name="HealingActiveImage">
+              <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+              <Anchor side="Left" relative="$parent" pos="Min" offset="13" />
+              <Texture val="@UI/Storm_UI_Ingame_HealingWell_Active" />
+              <AcceptsMouseTooltip val="True" />
+              <Tooltip val="@UI/HealingFountainDescription" />
+              <TooltipAnchorPosition val="TopRight" />
+            </Frame>
+            <Frame type="Image" name="HealingGlowImage">
+              <Anchor relative="$parent/HealingActiveImage" />
+              <SubpixelRendering val="True" />
+              <LayerCount val="2" />
+              <Texture val="@UI/Storm_UI_Ingame_HealingWell_Active_BorderGlow_Mask" layer="0" />
+              <TextureCoords top="0" left="0" bottom="1" right="1" layer="0" />
+              <AlphaLayer val="True" layer="0" />
+              <WrapUV val="False" layer="0" />
+              <Texture val="@UI/Storm_UI_Ingame_HealingWell_Active_BorderGlow" layer="1" />
+              <TextureCoords top="0" left="0" bottom="1" right="1" layer="1" />
+              <WrapUV val="True" layer="1" />
+              <Animation name="UVScroll">
+                <Event event="OnShown" action="Restart,DirectionForward,Play" frame="$parent" />
+                <Controller type="LayerUV" layer="0" side="Left" relative="True" sidelock="True" end="Loop">
+                  <Key type="Curve" time="0" value="1" inout="Linear" />
+                  <Key type="Curve" time="3" value="-2" inout="Linear" />
+                </Controller>
+              </Animation>
+            </Frame>
+            <Frame type="UnitStatusBehaviorIcon" name="UnitStatusHealingFountain">
+              <Anchor relative="$parent" />
+              <Behavior val="HealingFountainCooldown" />
+              <Frame type="BehaviorIcon" name="BehaviorIcon" template="BehaviorBar/BehaviorIconTemplate">
+                <Anchor relative="$parent/$parent/HealingActiveImage" />
+                <Announcable val="true" />
+                <Frame type="Image" name="HealingWellInactiveImage">
+                  <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+                  <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+                  <Texture val="@UI/Storm_UI_Ingame_HealingWell_Inactive" />
+                </Frame>
+                <Frame type="Label" name="CooldownLabel">
+                  <Anchor side="Top" relative="$parent" pos="Min" offset="2" />
+                  <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
+                  <Anchor side="Left" relative="$parent" pos="Min" offset="9" />
+                  <Anchor side="Right" relative="$parent" pos="Max" offset="-6" />
+                  <RenderPriority val="600" />
+                  <Text val="000" />
+                  <Alpha val="160" />
+                  <Style val="Storm_HealingCooldownLabel" />
+                </Frame>
+                <Frame type="Frame" name="ImageMaskContainer">
+                  <Visible val="False" />
+                </Frame>
+                <Frame type="ProgressBar" name="CooldownBar">
+                  <Visible val="False" />
+                  <Alpha val="0" />
+                </Frame>
+                <Frame type="Image" name="IconImageBg">
+                  <Anchor relative="$parent" />
+                  <Visible val="False" />
+                </Frame>
+                <Frame type="Image" name="IconImage">
+                  <Anchor relative="$parent" />
+                  <Visible val="False" />
+                </Frame>
+              </Frame>
+            </Frame>
+            <Animation name="Flash">
+              <Event event="OnHidden" action="DirectionForward,Play" frame="UnitStatusHealingFountain" />
+              <Controller type="Event" end="Stop" frame="HealingAvailableFlashImage">
+                <Key type="Event" time="0" event="Flash" />
+              </Controller>
+              <Controller type="Event" end="Stop" frame="HealingAvailableFlash2Image">
+                <Key type="Event" time="0.3" event="Flash" />
+              </Controller>
+              <Controller type="Event" end="Stop" frame="HealingAvailableFlash3Image">
+                <Key type="Event" time="0.6" event="Flash" />
+              </Controller>
+            </Animation>
+            <Frame type="Image" name="HealingAvailableFlashImage" template="HeroConsole\HealingAvailableFlashImageTemplate"></Frame>
+            <Frame type="Image" name="HealingAvailableFlash2Image" template="HeroConsole\HealingAvailableFlashImageTemplate"></Frame>
+            <Frame type="Image" name="HealingAvailableFlash3Image" template="HeroConsole\HealingAvailableFlashImageTemplate"></Frame>
+          </Frame>
+          <Frame type="Frame" name="BehaviorBarContainerFrame">
+            <Anchor side="Top" relative="$parent/$parent/BuffBackgroundImage" pos="Min" offset="2"/>
+            <Anchor side="Left" relative="$parent/$parent/BuffBackgroundImage" pos="Min" offset="57"/>
+            <Anchor side="Right" relative="$parent/$parent/BuffBackgroundImage" pos="Max" offset="0"/>
+            <Anchor side="Bottom" relative="$parent/$parent/BuffBackgroundImage" pos="Max" offset="25"/>
+            <Frame type="BehaviorBar" name="HeroBuffBar" template="BehaviorBar/BuffBehaviorBarTemplate">
+              <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+              <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+              <RenderPriority val="513" />
+            </Frame>
+            <Frame type="BehaviorBar" name="HeroDebuffBar" template="BehaviorBar/DebuffBehaviorBarTemplate">
+              <Anchor side="Top" relative="$parent/HeroBuffBar" pos="Min" offset="0" />
+              <Anchor side="Left" relative="$parent/HeroBuffBar" pos="Max" offset="0" />
+              <RenderPriority val="513" />
+            </Frame>
+          </Frame>
+          <!-- <Frame type="UnitStatusHeroCutscene" name="MishaCutscene">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="11" />
+            <Anchor side="Left" relative="$parent" pos="Min" offset="15" />
+            <Width val="94" />
+            <Height val="51" />
+            <Frame type="HeroCutsceneFrame" name="StatusCutscene">
+              <Anchor relative="$parent" />
+              <RenderType val="LDR" />
+              <RenderPriority val="497" />
+              <AutoPlay val="true" />
+              <Unclipped val="True" />
+              <HeroCutsceneType val="InGameUnitStatus" />
+              <AlphaMaskTexture val="@UI/Storm_UI_InGame_PetHealthbar_PortraitMask" />
+              <ToneMapping val="false" />
+              <Animation name="OnShown">
+                <Event event="OnShown" action="Reset,Play" />
+                <Controller type="Cutscene" end="Stop">
+                  <Key type="Cutscene" time="0.0" action="Bookmark" bookmark="Stand Start" />
+                </Controller>
+              </Animation>
+            </Frame>
+          </Frame> -->
+          <!-- MinionMeleeKingsCrest -->
+          <!-- MinionMeleeLuxoria -->
+          <!-- HeavenMeleeMinion -->
+          <!-- Storm_Minion_WCAV_Alliance_Melee -->
+          <!-- Storm_Minion_WCAV_Horde_Melee -->
+          <!-- <Frame type="CutsceneFrame" name="UnitCutsceneFrame">
+            <Anchor relative="$ancestor[@type=SelectionUnitStatusPanel]/PortraitFrameImage" />
+            <Height val="220"/>
+            <Width val="220"/>
+            <RenderType val="HDR" />
+            <StateGroup name="UnitDetector">
+              <DefaultState val="NoState" />
+              <State name="IsDVaMech">
+                <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroDVaMech"/>
+                <Action type="SetProperty" frame="$this" File="Cutscenes\FrameTestImport.StormCutscene" />
+              </State>
+              <State name="IsFootman">
+                <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="FootmanMinion"/>
+                <Action type="SetProperty" frame="$this" File="Cutscenes\SpazzoPortrait_MeleeMinion.StormCutscene" />
+              </State>
+              <State name="NoState">
+              </State>
+            </StateGroup>
+            <File val="Cutscenes/UI_Purchase_Celebration.StormCutscene" />
+            <AutoPlay val="True" />
+          </Frame> -->
+          <!-- This was a first attempt at adding portraits for things other than heroes, this won't work because actor messages through layout seem to be broken\gone, so will have to use cutscenes  -->
+          <!-- <Frame type="UnitModelFrame" name="UnitModelFrame">
+            <Anchor side="Top" relative="$parent/$parent/$parent" pos="Min" offset="150"/>
+            <Anchor side="Left" relative="$parent/$parent/$parent" pos="Min" offset="0"/>
+            <Anchor side="Right" relative="$parent/$parent/$parent" pos="Max" offset="0"/>
+            <Anchor side="Bottom" relative="$parent/$parent/$parent" pos="Max" offset="0"/>
+            <UseAlternateTime val="true"/>
+            <TeamColorIndex val="6"/>
+            <UnitLink val="{$ancestor[@type=UnitStatusFrame]/@Unit}"/>
+            <LightLink val="Storm_Portrait_Tassadar_DarkTemplar"/>
+            <RenderType val="HDR"/>
+            <TurningEnabled val="True"/>
+            <HasActorUnit val="True"/>
+            <RenderPriority val="999"/>
+            <Frame type="Model" name="Model">
+              <Anchor relative="$parent"/>
+              <UseAlternateTime val="true"/>
+              <UseAspectScaling val="false"/>
+              <RenderType val="HDR"/>
+              <Unclipped val="True"/>
+              <UseShadows val="false"/>
+              <Camera position="3.000000,3.000000,5.000000" target="0.000000,0.000000,0.000000" fov="90.000000" minz="1.000000" maxz="1000.000000"/>
+            </Frame>
+          </Frame> -->
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="CommandPanel" name="CommandPanel">
+      <!-- <Frame type="CommandButton" name="CommandButton01">
+        <Frame type="Frame" name="AttentionEffect">
+          <Frame type="Image" name="AttentionEffectImage">
+            <Height val="#SpazzoCommandButtonSize"/>
+            <Width val="#SpazzoCommandButtonSize"/>
+          </Frame>
+          <Frame type="Image" name="AttentionEffect2Image">
+            <Height val="#SpazzoCommandButtonSize"/>
+            <Width val="#SpazzoCommandButtonSize"/>
+          </Frame>
+        </Frame>
+      </Frame> -->
+      <Animation name="RepeatingHidden">
+        <Event event="ForceHide" action="Play"/>
+        <Event event="StopHide" action="Stop"/>
+        <Controller frame="$this" type="Visibility" end="PingPong">
+          <Key time="0" type="Bool" value="false"/>
+          <Key time="0.001" type="Bool" value="false"/>
+          <Key time="0.01" type="Bool" value="false"/>
+        </Controller>
+      </Animation>
+    </Frame>
+    <Frame type="Frame" name="HeroTalentTreeSelectionIndicatorContainer">
+      <RenderType val="Offscreen"/>
+      <Frame type="HeroTalentTreeSelectionIndicator" name="HeroTalentTreeSelectionIndicator">
+        <Frame type="Image" name="TalentAlertArrowBG">
+          <RenderType val="Offscreen"/>
+          <Visible val="False"/>
+        </Frame>
+        <Frame type="Image" name="TalentAlertArrow0">
+          <RenderType val="Offscreen"/>
+          <Visible val="False"/>
+        </Frame>
+        <Frame type="Image" name="TalentAlertArrow1">
+          <RenderType val="Offscreen"/>
+          <Visible val="False"/>
+        </Frame>
+        <Frame type="Image" name="TalentAlertArrow2">
+          <RenderType val="Offscreen"/>
+          <Visible val="False"/>
+        </Frame>
+        <Frame type="Image" name="TalentAlertArrow3">
+          <RenderType val="Offscreen"/>
+          <Visible val="False"/>
+        </Frame>
+        <Frame type="Label" name="TalentAlertLabel">
+          <RenderType val="Offscreen"/>
+          <Visible val="False"/>
+        </Frame>
+        <Frame type="Label" name="TalentAlertSubLabel">
+          <RenderType val="Offscreen"/>
+          <Visible val="False"/>
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="HeroTalentTreeSelectionIndicator" name="HeroTalentTreeSelectionIndicator">
+      <RenderType val="Offscreen"/>
+      <!-- <DescFlags val="CreationDeferred"/> -->
+      <Frame type="Image" name="TalentAlertPanelBG">
+        <RenderType val="Offscreen"/>
+        <Visible val="False"/>
+      </Frame>
+      <Frame type="Label" name="TalentAlertLabel">
+        <RenderType val="Offscreen"/>
+        <Visible val="False"/>
+      </Frame>
+      <Frame type="Image" name="TalentAlertPanelGlow">
+        <RenderType val="Offscreen"/>
+        <Visible val="False"/>
+      </Frame>
+    </Frame>
+    <Frame type="HeroTalentTreeSelectionToggleButton" name="HeroTalentTreeSelectionToggleButton">
+      <RenderType val="Offscreen"/>
+      <Frame type="Image" name="NormalImage">
+        <RenderType val="Offscreen"/>
+        <Visible val="False"/>
+      </Frame>
+    </Frame>
+    <!-- <Frame type="PartyFramePanel" name="PartyFramePanel" template="PartyFrame/PartyFrameOverview">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+      <OverrideVisibilityForObservers val="False" />
+      <OverriddenObserverVisibility val="True" />
+      <Visible val="True"/>
+    </Frame> -->
+  </Frame>
+  <Frame type="UnitStatusFrame" name="JainaIceBlockButtonOverlayFrame"  file="Jaina">
+    <StateGroup name="MasterController">
+      <DefaultState val="UseDefaultHeroSelect" />
+      <State name="UseDefaultHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Blizzard"/>
+        <Action type="SetProperty" frame="$this/JainaIceBlockContrainerFrame" Alpha="255" />
+        <Action type="SetProperty" frame="$this/JainaIceBlockContrainerFrameSmall" Alpha="0" />
+        <Action type="SetProperty" frame="$this/JainaIceBlockUsedAnim" Enabled="True" />
+        <Action type="SetProperty" frame="$this/JainaIceBlockUsedAnimSmall" Enabled="False" />
+      </State>
+      <State name="UseCustomHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+        <Action type="SetProperty" frame="$this/JainaIceBlockContrainerFrame" Alpha="0" />
+        <Action type="SetProperty" frame="$this/JainaIceBlockContrainerFrameSmall" Alpha="255" />
+        <Action type="SetProperty" frame="$this/JainaIceBlockUsedAnim" Enabled="False" />
+        <Action type="SetProperty" frame="$this/JainaIceBlockUsedAnimSmall" Enabled="True" />
+      </State>
+      <State name="UseDisabledHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Disabled"/>
+        <Action type="SetProperty" frame="$this/JainaIceBlockContrainerFrame" Alpha="0" />
+        <Action type="SetProperty" frame="$this/JainaIceBlockContrainerFrameSmall" Alpha="0" />
+        <Action type="SetProperty" frame="$this/JainaIceBlockUsedAnim" Enabled="False" />
+        <Action type="SetProperty" frame="$this/JainaIceBlockUsedAnimSmall" Enabled="False" />
+      </State>
+    </StateGroup>
+    <Frame type="UnitStatusValidatorAnimElement" name="JainaIceBlockUsedAnimSmall">
+      <Anchor relative="$parent" />
+      <Enabled val="False"/>
+      <Validator val="JainaDoesHaveIceBlockUsed" />
+      <Animation name="JainaDoesHaveIceBlockUsed">
+        <Event event="Reset" action="Stop" />
+        <Event event="JainaDoesHaveIceBlockUsed" action="Restart, Play" />
+        <Controller type="Visibility" end="Pause" frame="$parent/JainaIceBlockContrainerFrameSmall">
+          <Key type="Bool" time="0" value="True" />
+          <Key type="Bool" time="0" value="False" />
+        </Controller>
+      </Animation>
+    </Frame>
+    <Frame type="Frame" name="JainaIceBlockContrainerFrameSmall">
+      <Anchor relative="$parent" />
+      <Height val="#SpazzoCommandDynamicButtonSize"/>
+      <Width val="#SpazzoCommandDynamicButtonSize"/>
+      <Frame type="UnitStatusValidatorAnimElement" name="JainaIceBlockActiveAnims">
+        <Anchor relative="$parent" />
+        <Validator val="JainaHasIceBlockButtonFlash" />
+        <Animation name="JainaIceBlockReadyPulse">
+          <Event event="Reset" action="Stop" />
+          <Event event="NoState" action="Stop" />
+          <Event event="JainaHasIceBlockButtonFlash" action="Restart, Play" />
+          <Controller type="Property" property="ColorAdjustMode" end="Pause" frame="$parent/JainaIceBlockBehaviorIcon/BehaviorIcon/JainaIceBlockProgress/FillImageContainer/FillImage">
+            <Key type="Property" time="0" value="Addself" />
+          </Controller>
+          <Controller type="AdjustmentColor" end="pingpong" frame="$parent/JainaIceBlockBehaviorIcon/BehaviorIcon/JainaIceBlockProgress/FillImageContainer/FillImage">
+            <Key type="Curve" time="0" value="002573" inout="Linear" />
+            <Key type="Curve" time=".5" value="007fc3" inout="Linear,Slow" />
+          </Controller>
+          <Controller type="Visibility" end="Pause" frame="$parent/JainaIceBlockBehaviorIcon/BehaviorIcon/JainaIceBlockProgress/EndCapImage">
+            <Key type="Bool" time="0" value="False" />
+          </Controller>
+        </Animation>
+      </Frame>
+      <Frame type="Image" name="JainaIceBlockDarkBackGround">
+        <Anchor relative="$parent/JainaIceBlockBehaviorIcon/BehaviorIcon/JainaIceBlockProgress" />
+        <Height val="#SpazzoCommandDynamicButtonSize"/>
+        <Width val="#SpazzoCommandDynamicButtonSize"/>
+        <Visible val="True" />
+        <Alpha val="255" />
+        <ColorAdjustMode val="None" />
+        <Desaturated val="True" />
+        <DesaturationColor val="202020" />
+        <SubpixelRendering val="True" />
+        <BlendMode val="Normal" />
+        <RenderType val="LDR" />
+        <Texture val="@UI/storm_ui_icon_Jaina_ImprovedIceBlock" />
+        <ImageMaskTexture val="@UI/HUD_BTN_BG_Ability_AlphaMask" />
+      </Frame>
+      <Frame type="UnitStatusBehaviorIcon" name="JainaIceBlockBehaviorIcon">
+        <Anchor relative="$parent" />
+        <Alpha val="255" />
+        <Height val="#SpazzoCommandDynamicButtonSize"/>
+        <Width val="#SpazzoCommandDynamicButtonSize"/>
+        <AcceptsMouse val="False" />
+        <RenderPriority val="610" />
+        <Behavior val="JainaFrostbiteTokenCounter" />
+        <Frame type="BehaviorIcon" name="BehaviorIcon">
+          <Anchor relative="$parent" />
+          <Height val="#SpazzoCommandDynamicButtonSize"/>
+          <Width val="#SpazzoCommandDynamicButtonSize"/>
+          <AcceptsMouse val="False" />
+          <Frame type="ProgressBar" name="JainaIceBlockProgress">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+            <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+            <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
+            <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+            <AcceptsMouse val="False" />
+            <MinValue val="0" />
+            <MaxValue val="{$parent/@MaxStackCount}" />
+            <Value val="{$parent/@CurrentStackCount}" />
+            <FillInset val="0.0" />
+            <Height val="40"/>
+            <Width val="40"/>
+            <Vertical val="True" />
+            <UseFillContainer val="False" />
+            <AlphaMaskTexture val="@UI/HUD_BTN_BG_Ability_AlphaMask" />
+            <Frame type="Frame" name="FillImageContainer">
+              <Anchor relative="$parent" />
+              <Height val="#SpazzoCommandDynamicButtonSize"/>
+              <Width val="#SpazzoCommandDynamicButtonSize"/>
+              <Frame type="Image" name="FillImage">
+                <Anchor relative="$parent" />
+                <Height val="#SpazzoCommandDynamicButtonSize"/>
+                <Width val="#SpazzoCommandDynamicButtonSize"/>
+                <Texture val="@UI/storm_ui_icon_Jaina_ImprovedIceBlock" />
+                <RenderPriority val="600" />
+                <SubpixelRendering val="True" />
+                <ColorAdjustMode val="None" />
+                <Desaturated val="True" />
+                <DesaturationColor val="494B83" />
+                <Alpha val="255" />
+                <ImageMaskTexture val="@UI/HUD_BTN_BG_Ability_AlphaMask" />
+              </Frame>
+            </Frame>
+            <Frame type="Image" name="EndCapImage">
+              <Anchor side="Top" relative="$parent/FillImageContainer/FillImage" pos="Min" offset="0" />
+              <Anchor side="Left" relative="$parent/FillImageContainer/FillImage" pos="Min" offset="0" />
+              <Anchor side="Right" relative="$parent/FillImageContainer/FillImage" pos="Max" offset="0" />
+              <Height val="4" />
+              <Texture val="Assets/Textures/storm_ui_hud_bar_cap.dds" />
+            </Frame>
+          </Frame>
+        </Frame>
+      </Frame>
+    </Frame>
+  </Frame>
+  
+  <Frame type="UnitStatusFrame" name="DVaMechCommandCardFrame/UnitStatusFrame0" file="DVa">
+    <StateGroup name="MasterController">
+      <DefaultState val="UseDefaultHeroSelect" />
+      <State name="UseDefaultHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Blizzard"/>
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Blizzard"/>
+        <Action type="SetProperty" frame="$this/DVaMechSelfDestructChargeFrame" Height="76" />
+        <Action type="SetProperty" frame="$this/DVaMechSelfDestructChargeFrame" Width="68" />
+        <Action type="SetAnchor" frame="$this/DVaMechSelfDestructChargeFrame/ChargePercentLabel" side="Right" relative="$parent/DVaMechSelfDestructBackgroundImage" pos="Max" offset="-11" />
+        <Action type="SetAnchor" frame="$this/DVaMechSelfDestructChargeFrame/ChargePercentLabel" side="Top" relative="$parent/DVaMechSelfDestructBackgroundImage" pos="Mid" offset="-10" />
+        <Action type="SetProperty" frame="$this/DVaMechSelfDestructChargeFrame/ChargesLabel" Style="Storm_HUD_Tracer_Pulse_Bomb_Charge" />
+        <Action type="SetProperty" frame="$this/DVaMechSelfDestructChargeFrame/ChargePercentLabel" Style="Storm_HUD_Tracer_Pulse_Bomb_Charge_Percent" />
+      </State>
+      <State name="UseCustomHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+        <Action type="SetProperty" frame="$this/DVaMechSelfDestructChargeFrame" Height="53" />
+        <Action type="SetProperty" frame="$this/DVaMechSelfDestructChargeFrame" Width="47" />
+        <Action type="SetAnchor" frame="$this/DVaMechSelfDestructChargeFrame/ChargePercentLabel" side="Right" relative="$parent/DVaMechSelfDestructBackgroundImage" pos="Max" offset="-7" />
+        <Action type="SetAnchor" frame="$this/DVaMechSelfDestructChargeFrame/ChargePercentLabel" side="Top" relative="$parent/DVaMechSelfDestructBackgroundImage" pos="Mid" offset="-8" />
+        <Action type="SetProperty" frame="$this/DVaMechSelfDestructChargeFrame/ChargesLabel" Style="SpazzoBottomLeftTracerPulseBombCharge" />
+        <Action type="SetProperty" frame="$this/DVaMechSelfDestructChargeFrame/ChargePercentLabel" Style="SpazzoBottomLeftTracerPulseBombChargePercent" />
+      </State>
+      <State name="UseDisabledHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Disabled"/>
+        <Action type="SetProperty" frame="$this/DVaMechSelfDestructChargeFrame" Height="0" />
+        <Action type="SetProperty" frame="$this/DVaMechSelfDestructChargeFrame" Width="0" />
+        <Action type="SetAnchor" frame="$this/DVaMechSelfDestructChargeFrame/ChargePercentLabel" side="Right" relative="$INVALID" pos="Min" offset="0" />
+        <Action type="SetAnchor" frame="$this/DVaMechSelfDestructChargeFrame/ChargePercentLabel" side="Top" relative="$INVALID" pos="Min" offset="0" />
+        <Action type="SetProperty" frame="$this/DVaMechSelfDestructChargeFrame/ChargesLabel" Style="SpazzoBottomLeftTracerPulseBombCharge" />
+        <Action type="SetProperty" frame="$this/DVaMechSelfDestructChargeFrame/ChargePercentLabel" Style="SpazzoBottomLeftTracerPulseBombChargePercent" />
+      </State>
+    </StateGroup>
+  </Frame>
+  <Frame type="UnitStatusFrame" name="TracerPulseBombChargeButtonOverrideFrame/UnitStatusFrame0" file="Tracer">
+    <StateGroup name="MasterController">
+      <DefaultState val="UseDefaultHeroSelect" />
+      <State name="UseDefaultHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Blizzard"/>
+        <Action type="SetProperty" frame="$this/TracerPulseBombChargeFrame" Height="76" />
+        <Action type="SetProperty" frame="$this/TracerPulseBombChargeFrame" Width="68" />
+        <Action type="SetAnchor" frame="$this/TracerPulseBombChargeFrame/ChargePercentLabel" side="Right" relative="$parent/DVaMechSelfDestructBackgroundImage" pos="Max" offset="-11" />
+        <Action type="SetAnchor" frame="$this/TracerPulseBombChargeFrame/ChargePercentLabel" side="Top" relative="$parent/DVaMechSelfDestructBackgroundImage" pos="Mid" offset="-10" />
+        <Action type="SetProperty" frame="$this/TracerPulseBombChargeFrame/ChargesLabel" Style="Storm_HUD_Tracer_Pulse_Bomb_Charge" />
+        <Action type="SetProperty" frame="$this/TracerPulseBombChargeFrame/ChargePercentLabel" Style="Storm_HUD_Tracer_Pulse_Bomb_Charge_Percent" />
+      </State>
+      <State name="UseCustomHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+        <Action type="SetProperty" frame="$this/TracerPulseBombChargeFrame" Height="53" />
+        <Action type="SetProperty" frame="$this/TracerPulseBombChargeFrame" Width="47" />
+        <Action type="SetAnchor" frame="$this/TracerPulseBombChargeFrame/ChargePercentLabel" side="Right" relative="$parent/TracerPulseBombBackgroundImage" pos="Max" offset="-7" />
+        <Action type="SetAnchor" frame="$this/TracerPulseBombChargeFrame/ChargePercentLabel" side="Top" relative="$parent/TracerPulseBombBackgroundImage" pos="Mid" offset="-8" />
+        <Action type="SetProperty" frame="$this/TracerPulseBombChargeFrame/ChargesLabel" Style="SpazzoBottomLeftTracerPulseBombCharge" />
+        <Action type="SetProperty" frame="$this/TracerPulseBombChargeFrame/ChargePercentLabel" Style="SpazzoBottomLeftTracerPulseBombChargePercent" />
+      </State>
+      <State name="UseDisabledHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Disabled"/>
+        <Action type="SetProperty" frame="$this/TracerPulseBombChargeFrame" Height="0" />
+        <Action type="SetProperty" frame="$this/TracerPulseBombChargeFrame" Width="0" />
+        <Action type="SetAnchor" frame="$this/TracerPulseBombChargeFrame/ChargePercentLabel" side="Right" relative="$INVALID" pos="Min" offset="0" />
+        <Action type="SetAnchor" frame="$this/TracerPulseBombChargeFrame/ChargePercentLabel" side="Top" relative="$INVALID" pos="Min" offset="0" />
+        <Action type="SetProperty" frame="$this/TracerPulseBombChargeFrame/ChargesLabel" Style="SpazzoBottomLeftTracerPulseBombCharge" />
+        <Action type="SetProperty" frame="$this/TracerPulseBombChargeFrame/ChargePercentLabel" Style="SpazzoBottomLeftTracerPulseBombChargePercent" />
+      </State>
+    </StateGroup>
+  </Frame>
+  <Frame type="UnitStatusFrame" name="GenjiDragonBladeQHexagonOverrideFrame/UnitStatusFrame0" file="Genji">
+    <StateGroup name="MasterController">
+      <DefaultState val="UseDefaultHeroSelect" />
+      <State name="UseDefaultHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Blizzard"/>
+        <Action type="SetProperty" frame="$this/GenjiDragonBladeDragonHexagonQ" Height="120" />
+        <Action type="SetProperty" frame="$this/GenjiDragonBladeDragonHexagonQ" Width="118" />
+      </State>
+      <State name="UseCustomHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+        <Action type="SetProperty" frame="$this/GenjiDragonBladeDragonHexagonQ" Height="#SpazzoCommandButtonBorderSize" />
+        <Action type="SetProperty" frame="$this/GenjiDragonBladeDragonHexagonQ" Width="73" />
+      </State>
+      <State name="UseDisabledHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Disabled"/>
+        <Action type="SetProperty" frame="$this/GenjiDragonBladeDragonHexagonQ" Height="0" />
+        <Action type="SetProperty" frame="$this/GenjiDragonBladeDragonHexagonQ" Width="0" />
+      </State>
+    </StateGroup>
+  </Frame>
+  <Frame type="UnitStatusFrame" name="GenjiDragonBladeRHexagonOverrideFrame/UnitStatusFrame0" file="Genji">
+    <StateGroup name="MasterController">
+      <DefaultState val="UseDefaultHeroSelect" />
+      <State name="UseDefaultHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Blizzard"/>
+        <Action type="SetProperty" frame="$this/GenjiDragonBladeDragonHexagonR" Height="120" />
+        <Action type="SetProperty" frame="$this/GenjiDragonBladeDragonHexagonR" Width="118" />
+      </State>
+      <State name="UseCustomHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+        <Action type="SetProperty" frame="$this/GenjiDragonBladeDragonHexagonR" Height="#SpazzoCommandButtonBorderSize" />
+        <Action type="SetProperty" frame="$this/GenjiDragonBladeDragonHexagonR" Width="73" />
+      </State>
+      <State name="UseDisabledHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Disabled"/>
+        <Action type="SetProperty" frame="$this/GenjiDragonBladeDragonHexagonR" Height="0" />
+        <Action type="SetProperty" frame="$this/GenjiDragonBladeDragonHexagonR" Width="0" />
+      </State>
+    </StateGroup>
+  </Frame>
+  <Frame type="SelectionUnitStatusPanel" name="GenjiSwiftStrikeButtonCooldownOverrideFrame/UnitStatusFrame0" file="Genji">
+    <StateGroup name="MasterController">
+      <DefaultState val="UseDefaultHeroSelect" />
+      <State name="UseDefaultHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Blizzard"/>
+        <Action type="SetProperty" frame="$this/UnitStatusGenjiSwiftStrikeBehaviorIcon/BehaviorIcon/CooldownBar" Height="120" />
+        <Action type="SetProperty" frame="$this/UnitStatusGenjiSwiftStrikeBehaviorIcon/BehaviorIcon/CooldownBar" Width="120" />
+      </State>
+      <State name="UseCustomHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+        <Action type="SetProperty" frame="$this/UnitStatusGenjiSwiftStrikeBehaviorIcon/BehaviorIcon/CooldownBar" Height="#SpazzoCommandButtonBorderSize" />
+        <Action type="SetProperty" frame="$this/UnitStatusGenjiSwiftStrikeBehaviorIcon/BehaviorIcon/CooldownBar" Width="#SpazzoCommandButtonBorderSize" />
+      </State>
+      <State name="UseDisabledHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Disabled"/>
+        <Action type="SetProperty" frame="$this/UnitStatusGenjiSwiftStrikeBehaviorIcon/BehaviorIcon/CooldownBar" Height="0" />
+        <Action type="SetProperty" frame="$this/UnitStatusGenjiSwiftStrikeBehaviorIcon/BehaviorIcon/CooldownBar" Width="0" />
+      </State>
+    </StateGroup>
+  </Frame>
+    <!-- for some reason, this frame doesn't get moved with the hero specific container it's part of, and it also uses animations that manipulate dimensions, so we're going to just leave it, maybe get back to it later? -->
+  <!-- <Frame type="SelectionUnitStatusPanel" name="LiMingFrame" file="LiMing">
+    <StateGroup name="MasterController">
+      <DefaultState val="UseDefaultHeroSelect" />
+      <State name="UseDefaultHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Blizzard"/>
+        <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent" pos="Max" offset="-60" />
+        <Action type="SetAnchor" frame="$this" side="Left" relative="$parent" pos="Min" offset="44" />
+      </State>
+      <State name="UseCustomHeroSelect">
+        <When type="StateGroup" frame="$UnitSelectionCustomOverride" operator="Equal" SettingStateGroup="Custom"/>
+        <Action type="SetAnchor" frame="$this" side="Bottom" relative="$SpazzoSelectedUnitContainerFrame" pos="Max" offset="-30" />
+        <Action type="SetAnchor" frame="$this" side="Left" relative="$SpazzoSelectedUnitContainerFrame" pos="Min" offset="44" />
+        <Action type="SetProperty" frame="$this/UnitStatusFrame0/MagicMissilesBonusImage" Unclipped="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusFrame0/MagicMissilesBonusImage" Height="39" />
+        <Action type="SetProperty" frame="$this/UnitStatusFrame0/MagicMissilesBonusImage" Width="64" />
+        <Action type="SetAnchor" frame="$this/UnitStatusFrame0/MagicMissilesBonusImage" side="Top" relative="$parent" pos="Min" offset="16" />
+        <Action type="SetAnchor" frame="$this/UnitStatusFrame0/MagicMissilesBonusImage" side="Left" relative="$parent" pos="Min" offset="90" />
+        <Action type="SetProperty" frame="$this/UnitStatusFrame0/MagicMissilesBonusPulseImage" Unclipped="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusFrame0/ArcaneOrbBonusImage" Unclipped="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusFrame0/ArcaneOrbBonusPulseImage" Unclipped="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusFrame0/TeleportBonusImage" Unclipped="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusFrame0/TeleportBonusPulseImage" Unclipped="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusFrame0/HeroicBonusImage" Unclipped="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusFrame0/HeroicBonusPulseImage" Unclipped="True" />
+      </State>
+    </StateGroup>
+    <Frame type="Image" name="ImageBoundCheck">
+      <Anchor relative="$parent/UnitStatusFrame0/MagicMissilesBonusImage" />
+      <Texture val="Assets\Textures\storm_ui_homescreenbackground_nexomania.dds"/>
+      <RenderPriority val="999" />
+      <Alpha val="50"/>
+      <Unclipped val="True"/>
+    </Frame>
+  </Frame> -->
+</Desc>

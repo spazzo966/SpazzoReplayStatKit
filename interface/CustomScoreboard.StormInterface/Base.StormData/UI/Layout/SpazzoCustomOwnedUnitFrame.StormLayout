@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+
+  <Frame type="Button" name="BackgroundButtonTemplate">
+    <NormalImage val="NormalImage"/>
+    <HoverImage val="HoverImage"/>
+    <ClickSound val="@UI_ActionButtonSelect"/>
+    <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+    <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+    <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+    <Height val="50"/>
+    <Width val="50"/>
+    <Frame type="Image" name="NormalImage">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+      <Texture val="normalimage_leader.png"/>
+      <TextureType val="NineSlice"/>
+      <Tiled val="true"/>
+      <DescFlags val="Internal"/>
+    </Frame>
+
+    <Frame type="Image" name="HoverImage">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+      <Texture val="hoverimage.png"/>
+      <TextureType val="NineSlice"/>
+      <Tiled val="true"/>
+      <DescFlags val="Internal"/>
+    </Frame>
+  </Frame>
+
+  <Frame type="Image" name="UnitIconBackgroundTemplate">
+    <Texture val="@@UI/LeaderPanelBackground"/>
+    <TextureType val="None"/>
+    <LayerColor val="0,0,0"/>
+    <RenderPriority val="450"/>
+    <Anchor relative="$parent/BackgroundButton" offset="-2"/>
+  </Frame>
+
+  <Frame type="Image" name="IconImageTemplate">
+    <Anchor relative="$parent/BackgroundButton"/>
+    <Texture val="@@UI/LeaderPanelUnitBackground"/>
+    <TextureType val="Normal"/>
+    <IgnoreParentColor val="true"/>
+  </Frame>
+
+  <Frame type="Label" name="NumberLabelTemplateVisibleOne">
+    <Anchor side="Bottom" relative="$parent/IconImage" pos="Max" offset="5"/>
+    <Anchor side="Right" relative="$parent/IconImage" pos="Max" offset="0"/>
+    <Height val="32"/>
+    <Width val="48"/>
+    <Unclipped val="true"/>
+    <!-- <IgnoreParentColor val="true"/> -->
+    <Style val="LeaderPanel_CountLabel"/>
+    <RenderPriority val="555"/>
+    <Options val="NoWrapping | ScaleToPreventTruncation"/>
+  </Frame>
+  <Frame type="Label" name="NumberLabelTemplate" template="SpazzoCustomOwnedUnitFrame/NumberLabelTemplateVisibleOne">
+    <Anchor side="Bottom" relative="$parent/IconImage" pos="Max" offset="5"/>
+    <Anchor side="Right" relative="$parent/IconImage" pos="Max" offset="0"/>
+    <Height val="32"/>
+    <Width val="48"/>
+    <Unclipped val="true"/>
+    <!-- <IgnoreParentColor val="true"/> -->
+    <Style val="LeaderPanel_CountLabel"/>
+    <RenderPriority val="555"/>
+    <Options val="NoWrapping | ScaleToPreventTruncation"/>
+
+    <StateGroup name="LabelVisibility">
+      <DefaultState val="Other"/>
+      <State name="OneInNonUpgradesTab">
+        <When type="Property" frame="$this" text="1"/>
+        <Action type="SetProperty" frame="$this" visible="false"/>
+      </State>
+      <State name="Other">
+        <Action type="SetProperty" frame="$this" visible="true"/>
+      </State>
+    </StateGroup>
+  </Frame>
+
+  <Frame type="UnitCountFrame" name="UnitCountFrameTemplate">
+    <Height val="52"/>
+    <Width val="70"/>
+    <AcceptsMouse val="false"/>
+    <Visible val="false"/>
+    <Unclipped val="true"/>
+    <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+
+    <Frame type="Button" name="BackgroundButton" template="SpazzoCustomOwnedUnitFrame/BackgroundButtonTemplate">
+      <Tooltip val="{$parent/@Tooltip}"/>
+      <HitTestFrame val="HitTestFrame"/>
+
+      <Frame type="Frame" name="HitTestFrame">
+        <Anchor side="Top" relative="$parent/$parent" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent/$parent" pos="Min" offset="8"/>
+        <Anchor side="Right" relative="$parent/$parent" pos="Max" offset="-8"/>
+        <Anchor side="Bottom" relative="$parent/$parent" pos="Max" offset="0"/>
+        <DescFlags val="Internal"/>
+        <Unclipped val="true"/>
+      </Frame>
+    </Frame>
+
+    <Frame type="Image" name="UnitIconBackground" template="SpazzoCustomOwnedUnitFrame/UnitIconBackgroundTemplate">
+    </Frame>
+
+    <Frame type="Image" name="IconImage" template="SpazzoCustomOwnedUnitFrame/IconImageTemplate">
+    </Frame>
+
+    <Frame type="Label" name="NumberLabel" template="SpazzoCustomOwnedUnitFrame/NumberLabelTemplate">
+    </Frame>
+    <Frame type="Label" name="UnitName">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+      <Text val="{$parent/@Tooltip}"/>
+      <Options val="ScaleToPreventTruncation"/>
+    </Frame>
+      <Frame type="UnitStatusFrame" name="UnitStatusFrame0">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+        <Width val="200" />
+        <Height val="170" />
+        <Unclipped val="True"/>
+        <AcceptsMouse val="False"/>
+        <AcceptsMouseTooltip val="False"/>
+        <Frame type="Image" name="HealthBarBacking">
+          <Anchor side="Top" relative="$parent" pos="Min" offset="60" />
+          <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+          <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+          <Texture val="@UI/StormUnitStatusHealthBarFrame" />
+          <TextureType val="Nineslice" />
+          <Width val="143" />
+          <Height val="17" />
+          <Unclipped val="True"/>
+          <AcceptsMouseTooltip val="False" />
+          <AcceptsMouse val="False" />
+        </Frame>
+        <Frame type="UnitStatusShieldedHealthBar" name="HealthBar">
+          <Anchor side="Top" relative="$parent/HealthBarBacking" pos="Min" offset="2" />
+          <Anchor side="Right" relative="$parent/HealthBarBacking" pos="Max" offset="-3" />
+          <Height val="7" />
+          <Width val="137" />
+          <Unclipped val="True"/>
+          <Texture val="Assets/Textures/storm_ui_targetinfopanel_statusbar.dds" />
+          <BarCount val="5" />
+          <ColorStyle val="Primary" index="0" />
+          <Tiled val="True" index="0" />
+          <ApplyToTotal val="True" index="0" />
+          <ColorStyle val="DoT" index="1" />
+          <Tiled val="True" index="1" />
+          <ReductionShown val="True" index="1" />
+          <IncreaseDuration val="0" index="1" />
+          <ApplyToTotal val="False" index="1" />
+          <ColorStyle val="Shields" index="2" />
+          <Tiled val="True" index="2" />
+          <ReductionShown val="true" index="2" />
+          <IncreaseDuration val="1000" index="2" />
+          <DecreaseDuration val="2000" index="2" />
+          <ApplyToTotal val="False" index="2" />
+          <ReductionColor val="109, 255, 255" index="2" />
+          <ColorStyle val="ShieldsDoT" index="3" />
+          <Tiled val="True" index="3" />
+          <ReductionShown val="True" index="3" />
+          <IncreaseDuration val="0" index="3" />
+          <ApplyToTotal val="False" index="3" />
+          <ColorStyle val="HoT" index="4" />
+          <Tiled val="True" index="4" />
+          <ReductionShown val="true" index="4" />
+          <IncreaseDuration val="0" index="4" />
+          <ApplyToTotal val="False" index="4" />
+          <AcceptsMouseTooltip val="False" />
+          <AcceptsMouse val="False" />
+        </Frame>
+      </Frame>
+  </Frame>
+
+  <Frame type="PlayerOwnedUnitsFrame" name="OwnedUnitFrameTemplate">
+    <Height val="70"/>
+    <Width val="745"/>
+    <Unclipped val="true"/>
+    <ShowUnits val="True"/>
+    <ShowStructures val="False"/>
+    <ShowKilled val="False"/>
+    <ShowKills val="False"/>
+    <ShowTotal val="False"/>
+    <ShowPeak val="False"/>
+    <ShowInProgress val="False"/>
+    <ShowQueued val="False"/>
+    <ShowComplete val="True"/>
+  </Frame>
+
+  <Frame type="PlayerOwnedUnitsFrame" name="OwnedUnitFrameTemplateOrder">
+    <Height val="70"/>
+    <Width val="745"/>
+    <Unclipped val="true"/>
+    <Frame type="UnitCountFrame" name="UnitCountFrame0" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame1" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame0" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame2" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame1" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame3" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame2" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame4" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame3" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame5" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame4" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame6" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame5" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame7" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame6" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame8" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame7" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame9" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame8" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame10" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame9" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame11" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame9" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame12" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame11" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame13" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame12" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame14" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame13" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame15" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame14" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame16" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame15" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame17" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame16" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame18" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame17" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame19" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame18" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame20" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame19" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame21" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame20" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame22" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame21" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame23" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame22" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame24" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame23" pos="Max" offset="-15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame25" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Left" relative="$parent/UnitCountFrame24" pos="Max" offset="-15"/>
+    </Frame>
+  </Frame>
+
+  <Frame type="PlayerOwnedUnitsFrame" name="OwnedUnitFrameTemplateChaos" template="SpazzoCustomOwnedUnitFrame/OwnedUnitFrameTemplate">
+    <Height val="70"/>
+    <Width val="745"/>
+    <Unclipped val="true"/>
+    <Frame type="UnitCountFrame" name="UnitCountFrame0" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame1" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame0" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame2" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame1" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame3" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame2" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame4" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame3" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame5" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame4" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame6" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame5" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame7" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame6" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame8" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame7" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame9" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame8" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame10" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame9" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame11" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame9" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame12" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame11" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame13" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame12" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame14" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame13" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame15" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame14" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame16" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame15" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame17" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame16" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame18" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame17" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame19" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame18" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame20" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame19" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame21" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame20" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame22" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame21" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame23" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame22" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame24" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame23" pos="Min" offset="15"/>
+    </Frame>
+
+    <Frame type="UnitCountFrame" name="UnitCountFrame25" template="SpazzoCustomOwnedUnitFrame/UnitCountFrameTemplate">
+      <Anchor side="Right" relative="$parent/UnitCountFrame24" pos="Min" offset="15"/>
+    </Frame>
+  </Frame>
+</Desc>

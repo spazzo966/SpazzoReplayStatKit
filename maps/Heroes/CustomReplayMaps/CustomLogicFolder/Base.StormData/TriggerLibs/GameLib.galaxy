@@ -13423,58 +13423,57 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroKelThuzad")) {
     if ((lp_damageEffect == "KelThuzadShadowFissureDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadFrostNovaSlowDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadFrostNovaRootDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadFrostNovaDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadChainsDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadChainsLinkDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadDeathAndDecayDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadFrozenTombDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadFrozenTombExplosionDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadDeathAndDecayRotDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadBarbedChainsDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadHungeringColdDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadArchlichArmorDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadGlacialSpikeDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadChillingTouchDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadDeathAndDecayShadeDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
     if ((lp_damageEffect == "KelThuzadDeathAndDecayShadeRotDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "BaselineThree";
     }
   }
-
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAlarak")) {
     if ((lp_damageEffect == "AlarakHeroWeaponDamage")) {
       lv_primaryScoreString = "BaselineThree";
@@ -13500,7 +13499,7 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
   }
 
   // Hi! This has nothing to do with Blizzard, I'm making a zenyatta hero and the stuff failing annoyed me.
-  if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZenyatta") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroIsendra") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroPaladin")) {
+  if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZenyatta") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroIsendra") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroPaladin") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroDoomfist")) {
     lv_primaryScoreString = "Discard";
   }
 
@@ -14199,6 +14198,9 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur")) {
       lv_primaryScoreString = "TalentTen";
+    }
+    if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZenyatta") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroIsendra") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroPaladin") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroDoomfist")) {
+      lv_primaryScoreString = "Discard";
     }
     if ((lv_primaryScoreString != "Discard") && (lv_primaryScoreString != "")) {
       libGame_gf_TallyHeroSpecificStatShared(lv_primaryScoreOverride, lv_primaryPlayerOverride, lv_primaryScoreString, "HeroAbsorbedBlindedTrackerCombined");
@@ -15116,7 +15118,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroKelThuzad")) {
       if ((lp_behavior == "KelThuzadStripShieldsShield")) {
-        lv_primaryScoreString = "TalentFour";
+        lv_primaryScoreString = "BaselineThree";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroYrel")) {
@@ -15301,6 +15303,9 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
         lv_primaryScoreString = "SupportTwelve";
       }
 			
+    }
+    if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZenyatta") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroIsendra") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroPaladin") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroDoomfist")) {
+      lv_primaryScoreString = "Discard";
     }
     if ((lv_primaryScoreString != "Discard") && (lv_primaryScoreString != "")) {
       libGame_gf_TallyHeroSpecificStatShared(lv_primaryScoreOverride, lv_primaryPlayerOverride, lv_primaryScoreString, "HeroAbsorbedShieldsTrackerCombined");
@@ -16000,6 +16005,9 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZarya")) {
       if ((lp_healEffect == "ZaryaEnergyMaximumChargeCreateHealer")) {
         lv_primaryScoreString = "SupportFourteen";
+      }
+      if ((lp_healEffect == "ZaryaParticleGrenadeDeepBurnTalentModifyUnit")) {
+        lv_primaryScoreString = "ScoreSeven";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroArthas")) {
@@ -17035,7 +17043,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroKelThuzad")) {
       if ((lp_healEffect == "KelThuzadChainsOfKelThuzadChainLinkCreateManaHealer")) {
-        lv_primaryScoreString = "TalentThirteen";
+        lv_primaryScoreString = "TalentOne";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroKerrigan")) {
@@ -17622,7 +17630,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       }
     }
     // Hi! This has nothing to do with Blizzard, I'm making a zenyatta hero and the stuff failing annoyed me.
-    if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZenyatta") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroIsendra") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroPaladin")) {
+    if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZenyatta") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroIsendra") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroPaladin") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroDoomfist")) {
       lv_primaryScoreString = "Discard";
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMeiOW")) {
@@ -18387,7 +18395,7 @@ void libGame_gf_HeroSpecificStatTrackerOther (fixed lp_scoreValue, int lp_caster
     // lv_scoreValue /= (CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "ZaryaEnergyBoostDecay", "Period", 0) * Pow(1.04, UnitXPGetCurrentLevel(libGame_gv_players[lp_casterPlayer].lv_heroUnit, null)));
     lv_scoreValue = (lv_scoreValue / CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "ZaryaEnergyBoostDecay", "Period", lp_casterPlayer));
 
-    if ((PlayerHasTalent(lp_casterPlayer, "ZaryaEnergyHitMe") == true)) {
+    if ((PlayerHasTalent(lp_casterPlayer, "ZaryaPersonalBarrierIAmTheStrongest") == true)) {
       lv_scoreValue = (lv_scoreValue * 1.2);
     }
 
@@ -23118,6 +23126,14 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_primaryScoreString = "ScoreTen";
       }
     }
+    if ((lp_damageEffect == "ZaryaGravitonSurgeDamage")) {
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_primaryScoreString = "ScoreNine";
+      }
+      else {
+        lv_primaryScoreString = "ScoreTen";
+      }
+    }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroCrusader")) {
     if ((lp_damageEffect == "CrusaderWeaponDamage")) {
@@ -27520,6 +27536,18 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((lp_damageEffect == "KelThuzadFrostNovaRootDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreThree";
+        if ((libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] == 0.0) && (UnitGetTokenCount(lp_casterUnit, "KelThuzadMasterOfTheColdDarkToken") >= 15.0)) {
+          lv_secondaryScoreOverride = FixedToInt(TimerGetElapsed(libGame_gv_gameTimer));
+          lv_secondaryScoreString = "BaselineOne";
+          libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = 1.0;
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("First Milestone reached!"));
+        }
+          if ((libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] != 2.0) && (UnitGetTokenCount(lp_casterUnit, "KelThuzadMasterOfTheColdDarkToken") >= 30.0)) {
+          lv_secondaryScoreOverride = FixedToInt(TimerGetElapsed(libGame_gv_gameTimer));
+          lv_secondaryScoreString = "BaselineTwo";
+          libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = 2.0;
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Final Milestone reached!"));
+        }
       }
       else {
         lv_primaryScoreString = "ScoreFour";
@@ -27535,9 +27563,33 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
     if ((lp_damageEffect == "KelThuzadChainsDamage")) {
       lv_primaryScoreString = "ScoreFive";
+      if ((libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] == 0.0) && (UnitGetTokenCount(lp_casterUnit, "KelThuzadMasterOfTheColdDarkToken") >= 15.0)) {
+        lv_secondaryScoreOverride = FixedToInt(TimerGetElapsed(libGame_gv_gameTimer));
+        lv_secondaryScoreString = "BaselineOne";
+        libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = 1.0;
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("First Milestone reached!"));
+      }
+      if ((libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] != 2.0) && (UnitGetTokenCount(lp_casterUnit, "KelThuzadMasterOfTheColdDarkToken") >= 30.0)) {
+        lv_secondaryScoreOverride = FixedToInt(TimerGetElapsed(libGame_gv_gameTimer));
+        lv_secondaryScoreString = "BaselineTwo";
+        libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = 2.0;
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Final Milestone reached!"));
+      }
     }
     if ((lp_damageEffect == "KelThuzadChainsLinkDamage")) {
       lv_primaryScoreString = "ScoreSix";
+      if ((libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] == 0.0) && (UnitGetTokenCount(lp_casterUnit, "KelThuzadMasterOfTheColdDarkToken") >= 15.0)) {
+        lv_secondaryScoreOverride = FixedToInt(TimerGetElapsed(libGame_gv_gameTimer));
+        lv_secondaryScoreString = "BaselineOne";
+        libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = 1.0;
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("First Milestone reached!"));
+      }
+      if ((libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] != 2.0) && (UnitGetTokenCount(lp_casterUnit, "KelThuzadMasterOfTheColdDarkToken") >= 30.0)) {
+        lv_secondaryScoreOverride = FixedToInt(TimerGetElapsed(libGame_gv_gameTimer));
+        lv_secondaryScoreString = "BaselineTwo";
+        libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = 2.0;
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Final Milestone reached!"));
+      }
     }
     if ((lp_damageEffect == "KelThuzadGlacialSpikeDamage")) {
       lv_primaryScoreString = "ScoreSeven";
@@ -31648,7 +31700,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
   }
   // Hi! This has nothing to do with Blizzard, I'm making a zenyatta hero and the stuff failing annoyed me.
-  if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroZenyatta") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroIsendra") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroPaladin")) {
+  if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroZenyatta") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroIsendra") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroPaladin") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroDoomfist")) {
     lv_primaryScoreString = "Discard";
   }
   if ((lv_primaryScoreString != "Discard") && (lv_primaryScoreString != "")) {
@@ -34151,7 +34203,7 @@ int libGame_gf_unitGroupCountRaynorInspire (unitgroup lp_generatedUnitGroup, str
 void libGame_gf_exportStatsForPlayer (int lp_player) {
   string lv_scoreString;
 
-  lv_scoreString = "Version 0.24 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
+  lv_scoreString = "Version 0.25 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
   lv_scoreString += " ,[ HSPrimary: ";
   lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwelve, 1);
   lv_scoreString += " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThirteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFourteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFifteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSixteen, 1);
@@ -39557,7 +39609,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     }
   }
   // Hi! This has nothing to do with Blizzard, I'm making a zenyatta hero and the stuff failing annoyed me.
-  else if ((lv_heroUnitType == "HeroZenyatta") || (lv_heroUnitType == "HeroIsendra") || (lv_heroUnitType == "HeroPaladin")) {
+  else if ((lv_heroUnitType == "HeroZenyatta") || (lv_heroUnitType == "HeroIsendra") || (lv_heroUnitType == "HeroPaladin") || (lv_heroUnitType == "HeroDoomfist")) {
     lv_scoreString = "Discard";
   }
   else {
@@ -39867,7 +39919,20 @@ void libGame_gv_initializeOBSUI () {
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Mercenary Tracker"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.24 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.25 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    // Well, I tried to add team coloured globes.
+    // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamOrder, "11");
+    // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Person", libCore_gv_cOMPUTER_TeamOrder, "Observer");
+    // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Model", libCore_gv_cOMPUTER_TeamOrder, "ExperienceGlobeAlly");
+    // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(1) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamOrder, "12");
+    // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(1) + "].Person", libCore_gv_cOMPUTER_TeamOrder, "Observer");
+    // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(1) + "].Model", libCore_gv_cOMPUTER_TeamOrder, "ExperienceGlobeEnemy");
+    // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamChaos, "11");
+    // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Person", libCore_gv_cOMPUTER_TeamChaos, "Observer");
+    // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Model", libCore_gv_cOMPUTER_TeamChaos, "ExperienceGlobeAlly");
+    // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(1) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamChaos, "12");
+    // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(1) + "].Person", libCore_gv_cOMPUTER_TeamChaos, "Observer");
+    // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(1) + "].Model", libCore_gv_cOMPUTER_TeamChaos, "ExperienceGlobeEnemy");
     // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Order core tag: ") + IntToText(UnitGetTag(libGame_gv_teams[1].lv_core)) + StringToText(" Chaos core tag: ") + IntToText(UnitGetTag(libGame_gv_teams[2].lv_core)));
     // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("player 1 unit tag: ") + IntToText(UnitGetTag(libGame_gv_players[1].lv_heroUnit)));
     // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("player 2 unit tag: ") + IntToText(UnitGetTag(libGame_gv_players[2].lv_heroUnit)));

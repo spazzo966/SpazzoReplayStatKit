@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+    <Include path="UI/Layout/TargetInfoPanelFix.StormLayout"/>
+    <Include path="UI/Layout/SpazzoCustomOptions.StormLayout"/>
+    <Include path="UI/Layout/CustomConfig.StormLayout"/>
+    <Include path="UI/Layout/SpazzoCustomConstants.StormLayout"/>
+    <Include path="UI/Layout/SpazzoCustomScoreboardTemplates.StormLayout"/>
+    <Include path="UI/Layout/SpazzoCustomUnitStatusFrames.StormLayout"/>
+    <!-- <Include path="UI/Layout/SpazzoCustomOwnedUnitFrame.StormLayout"/> -->
+    <Include path="UI/Layout/SpazzoCustomTopBarAbilities.StormLayout"/>
+    <Include path="UI/Layout/SpazzoCustomTopBarQuests.StormLayout"/>
+    <Include path="UI/Layout/SpazzoTemplates.StormLayout"/>
+    <Include path="UI/Layout/SpazzoCustomTimer.StormLayout"/>
+    <Include path="UI/Layout/SpazzoCustomPlayerActive.StormLayout"/>
+    <Include path="UI/Layout/CustomPanelSpazzo.StormLayout"/>
+</Desc>

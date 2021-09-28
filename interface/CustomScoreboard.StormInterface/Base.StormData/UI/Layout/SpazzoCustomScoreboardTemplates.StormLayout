@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+  <Frame type="Frame" name="ScoreboardDescriptionTemplateLabel">
+    <Frame type="Label" name="ScoreboardDescriptionLabel">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+      <Style val="Storm_PersonalizedStats_HeaderModified" />
+      <Options val="ScaleToPreventTruncation" />
+      <Text val="ReplaceMe" />
+      <Frame type="Frame" name="TooltipAnchorFrame">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+        <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
+        <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+        <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+        <Tooltip val="IsThisBigEnough?" />
+        <AcceptsMouse val="False" />
+        <AcceptsMouseTooltip val="true" />
+      </Frame>
+    </Frame>
+  </Frame>
+  <Frame type="Frame" name="ScoreboardDescriptionTemplateLabelNoTooltip">
+    <Frame type="Label" name="ScoreboardDescriptionLabel">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+      <Style val="Storm_PersonalizedStats_HeaderModified" />
+      <Options val="ScaleToPreventTruncation" />
+      <Text val="ReplaceMe" />
+    </Frame>
+  </Frame>
+</Desc>

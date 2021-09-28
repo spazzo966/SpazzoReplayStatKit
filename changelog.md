@@ -1,4 +1,78 @@
-# v0.24 (**2021-08-22**)
+# v0.25 (**2021-09-28**)
+
+* Github
+ * Interfaces are no longer included as part of the repository moving forward, and instead the raw files are included
+
+* Statistics
+  * Kel'Thuzad now features two new score values for when he reaches the first milestone of Master of the Cold Dark and when he reaches the final milestone of Master of the Cold Dark
+  * Added support for Zarya's talent shuffle
+
+* UI
+  * Top Bar
+    * Whitemane's Clemency is no longer separated in the selected unit abilities, the tooltip values related to it can be seen in the tooltip for Inquisition, reducing the number of selected unit abilities listed to 4
+    * Brightwing's Soothing Mist Active and Passive cooldowns are now merged into one baseline slot, instead of the Active being part of the selected unit cooldowns and the passive being the baseline slot, reducing the number of selected unit abilities listed to 4. This can be set to only display the cooldown of the Active by disabling baseline buffs
+    * Zul'jin's Berserker and You Want Axe? are now merged into one baseline slot, instead of Berseker being part of selected unit cooldowns, and You Want Axe? being part of the baseline slot, reducing the number of selected unit abilities listed to 4. This can be set to only display quest progress of You Want Axe? by disabling baseline buffs
+    * Cho'Gall's Ogre Hide\Ogre Rage has been relocated to the baseline slot, and will display the icon of whichever is active for both Heroes, meaning if Ogre Hide is active, both Cho and Gall's icon will display Ogre Hide, even though it only affects Cho
+    * Sgt. Hammer's Siege Mode has been relocated to the baseline slot, reducing the number of selected unit abilities listed to 4, and while in Siege Mode will display the icon for Siege Mode, and while in Tank Mode, will display the icon for Tank Mode
+    * Probius' Warp In Pylon has been relocated to the baseline slot, reducing the number of selected unit abilities listed to 4
+    * Dehaka's Essence Collection has been relocated to the baseline slot, reducing the number of selected unit abilities listed to 4
+    * Deathwing's Form Switch cooldown has been removed to reduce the number of selected unit abilities listed to 4, with this the maximum number of selected unit abilities possible is 4
+    * Added a new option to insert the Heroic Talent amid Basic Abilities, located after the 3rd ability
+      * This is not compatible with the Spaced Layout option, as the position of the Heroic ability is part of the core design of that layout
+      * When used with the Compact Layout option, talents 13, 16 and 20 will cascade to the previous tier position even if cascading talents is disabled
+    * Compact Layout now supports cascading talent slots.
+    * Updated the Mount-replacement icons for Probius, Deathwing, Falstad, Brightwing, Dehaka, and Sgt. Hammer to use higher resolution icons
+    * Minor adjustments to the one of the potential baseline locations in the Spaced Layout option for to help prevent overlap
+    * The Vehicle Passenger UI has been rearranged in all layouts to improve space efficiency
+    * The Map Mechanic(Overwatch Turrets, Warhead Nuke, Tomb Gems, Blackheart's Coins, so on) will now more correctly position itself in the Compact Layout relative to space availability
+    * Ultrawide Layout now obeys the align-to-left option, and the ability icon & style size has been increased
+    * Gall now displays his Eye of Kilrog charges in the selected unit abilities
+    * Deathwing's Heat Wave remaining duration & bonus damage token count is now displayed as a buff if selected as a talent
+      * Due to technical limitations & the implementation of this talent, when active with just the initial buff, 0 will be displayed as the buff count. The maximum value for this is 3.
+    * Ana's Eye of Horus now displays the remaining number of shots while active
+    * Kerrigan's Maelstrom remaining duration is now displayed as a buff if selected as a talent
+    * Added Sonya's Battle Rage cooldown & charges
+    * Added Sgt. Hammer's Maelstrom Rounds cooldown & charges
+    * Added Varian's Parry charges
+    * Added Zagara's Creep Tumour charges
+    * Added Zagara's Nydus Network charges
+    * Talents that grant or remove charges to abilities or that use charges now display those charges
+      * List of Ability charges granted by talents this system supports: Johanna's Zealous Glare(Shield Glare), Valla's Acrobat(Vault), Diablo's Overpowering Nightmare(Overpower), Illidan's Unbound(Sweeping Strike, this currently shows on talent selection instead of quest completion), Kael'thas' Twin Spheres(Verdant Spheres), Malfurion's Shan'do's Clarity(Innervate), Lt. Morales Shield Sequencer(Safeguard), Nova's Double Tap(Pinning Shot), Stitches' Second Helping(Devour), Thrall's Echo of the Elements(Chain Lightning), Gazlowe's Bomb Toss(Xplodium Charge) & Overload(Deth Lazor), Tychus' Bob & Weave(Run and Gun), Zeratul's Warp Skirmisher(Vorpal Blade), Anduin's Glyph of Faith(Leap of Faith), Garrosh's Seasoned Soldier(Bloodthirst), Hanzo's Perfect Agility(Natural Agility), Mei's Fresh Powder(Snow Blind), Mephisto's Unyielding Power(Skull Missile, this currently shows on talent selection instead of quest completion), Tracer's One-Two Punch(Melee), Varian's Shield Wall(Parry), and Maiev's Vigorous Vault(Vault of the Wardens)
+      * List of Talent charges added: Garrosh Body Check(with Inner Rage selected), Maiev's Naisha's Memento, Gul'dan's Consume Soul, Thrall's Ancestral Wrath, Sonya's Battle Rage, Illidan's Blades of Azzinoth, Maiev's Shadow Orb: Vengeance, Maiev's Shadow Orb: Huntress, Maiev's Shadow Orb: Shadow Strike, Sgt. Hammer's Maelstrom Rounds, Sylvanas' Possession, and Medivh's Dust of Disppearance
+      * If you see any talents that use charges or abilities that are granted charges not listed here, please tell me so I can resolve that
+  * Bottom Panel
+    * Redesigned the Bottom Panel's Background to match the Top Bar
+    * Added Sonya's Battle Rage cooldown & charges
+    * Added Sgt. Hammer's Maelstrom Rounds cooldown & charges
+    * Added Zagara's Nydus Network charges
+    * Talents that use charges now display those charges
+      * For a list of these charges, look at the list above for the Top Bar, as these are shared between the two.
+  * Added two new shortcuts
+    * Shift+L: Display the Hero & Player Names of the left-side team, anchored to the left of the screen
+    * Shift+R: Display the Hero & Player Names of the right-side team, anchored to the right of the screen
+  * Other
+    * The Quest Label for the Top Bar and Bottom Panel for Talents and Baseline has been moved slightly downward
+    * Removed Valla's Tempered by Discipline Buff, as Blizzard fixed the bug where the stacks would not match your Hatred stacks
+    * Removed Kel'Thuzad's Phylactery as an active ability, as it features no cooldown and only the quest portion is relevant, which is otherwise tracked(This only matters if you were to set the tier this talent is to only display if the ability is an active, which will now hide this talent)
+    * The Observed Unit UI now features a third option to be disabled entirely, accessed through a pulldown menu
+    * The Observed Unit UI no longer displays the talent available popup text
+  * Bug Fixes
+    * Fixed an issue where Whitemane's Desperation Preview could not be disabled
+    * Fixed an issue where Baseline quest progress would not display correctly when reaching high values(1000+)
+    * Fixed an issue where Valeera's Basic Abilities would not display correctly while in Stealth Mode in the Top Bar
+    * Fixed an issue where score styles for the Bottom Panel would not display correctly when viewing from the perspective of a player
+    * Fixed an issue where disabling Minimal Mode(Alt+T) would cause the cascading talent option to revert to the incorrect value if a non-vanilla option was set to be default through settings having been exported
+    * Fixed an issue where Buffs would not display correctly in the Top Bar in the second talent tier
+
+## v0.24A (**2021-08-23**)
+
+* Statistics
+  * No changes, refer to previous version for downloads
+
+* UI
+  * Fixed an issue where the text for the Healing Fountain Cooldown was not visible in the Top Bar
+
+## v0.24 (**2021-08-22**)
 
 * Statistics
   * Expanded Support for Falstad

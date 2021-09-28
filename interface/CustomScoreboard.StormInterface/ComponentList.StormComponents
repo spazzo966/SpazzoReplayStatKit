@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Components>
+    <DataComponent Type="gada">GameData</DataComponent>
+    <DataComponent Type="text" Locale="enUS">GameText</DataComponent>
+    <DataComponent Type="info">DocumentInfo</DataComponent>
+    <DataComponent Type="font">UI/FontStyles.StormStyle</DataComponent>
+    <DataComponent Type="uiui">UI/Layout/DescIndex.StormLayout</DataComponent>
+    <DataComponent Type="uiui">UI/Layout/SpazzoCustomOptions.StormLayout</DataComponent>
+    <DataComponent Type="uiui">UI/Layout/SpazzoCustomConstants.StormLayout</DataComponent>
+    <DataComponent Type="uiui">UI/Layout/SpazzoCustomUnitStatusFrames.StormLayout</DataComponent>
+    <DataComponent Type="uiui">UI/Layout/SpazzoCustomTopBarAbilities.StormLayout</DataComponent>
+    <DataComponent Type="uiui">UI/Layout/SpazzoCustomTopBarQuests.StormLayout</DataComponent>
+    <DataComponent Type="uiui">UI/Layout/SpazzoTemplates.StormLayout</DataComponent>
+    <DataComponent Type="uiui">UI/Layout/SpazzoCustomTimer.StormLayout</DataComponent>
+    <DataComponent Type="uiui">UI/Layout/SpazzoCustomPlayerActive.StormLayout</DataComponent>
+    <DataComponent Type="uiui">UI/Layout/CustomPanelSpazzo.StormLayout</DataComponent>
+</Components>
