@@ -105,4 +105,25 @@
   <Constant name="SpazzoVehicleSizeNegOffset" val="-31" />
   <Constant name="SpazzoVehicleSizeNegOffsetTop" val="-28" />
   <!-- <Constant name="ReplacementTopPanelShiftValue" val="152" /> -->
+  <Constant name="ScoreTabsRevampButtonHeight" val="50" />
+  <Constant name="ScoreTabsRevampButtonWidth" val="205" />
+  <Constant name="ScoreTabsRevampTopRowBottomOffset" val="-145" />
+  <Constant name="ScoreTabsRevampBottomRowBottomOffset" val="-60" />
+  <Constant name="ScoreTabsRevampBottomRowOutsiderOffset" val="0" />
+  <Constant name="ScoreTabsRevampRightExpansionOffsetFromLeft" val="10" />
+  <Constant name="ScoreTabsRevampLeftExpansionOffsetFromRight" val="-10" />
+  <Constant name="ScoreTabRevampButtonInsertTopOffset" val="-2" />
+  <Constant name="ScoreTabRevampButtonInsertLeftOffset" val="2" />
+  <Constant name="ScoreTabRevampButtonInsertRightOffset" val="-2" />
+  <Constant name="ScoreTabRevampButtonHeightOffset" val="25" />
+  <Constant name="ScoreTabRevampButtonWidthOffset" val="58" />
+  <Constant name="ScoreTabRevampButtonWidthOffsetPlusRightOffset" val="-60" />
+  <Constant name="ScoreTabRevampButtonLeftOffset" val="3" />
+  <Constant name="SpazzoTopBarUltracompactBottomOffset" val="61" />
+  <Constant name="SpazzoTopBarUltracompactMiddleBottomOffset" val="60" />
+  <Constant name="TLVHealthBarRightOffsetUltracompact" val="47" />
+  <Constant name="TLVHealthBarBottomOffsetUltracompact" val="16" />
+  <Constant name="TLVIconSizeUltracompact" val="17" />
+  <Constant name="ScoreTabRevampButtonWidthOffsetLargeLabel" val="80" />
+  <Constant name="ScoreTabRevampButtonWidthOffsetLargeLabelPlusRightOffset" val="-82" />
 </Desc>

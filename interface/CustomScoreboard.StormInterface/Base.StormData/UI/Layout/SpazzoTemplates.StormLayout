@@ -410,6 +410,13 @@
   <Frame type="Frame" name="VehicleTrackedUnitContainerFrame">
     <StateGroup name="VehiclePassengerToggleStateGroup">
       <DefaultState val="Enabled"/>
+      <State name="Ultracompact">
+        <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+        <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="0" offset="0" />
+        <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="0" offset="0" />
+        <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="0" offset="0" />
+        <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="0" offset="0" />
+      </State>
       <State name="EnabledCompact">
         <When type="Property" frame="$Talent0MasterSetting/ShowVehicleHP/CheckBoxButton" Toggled="True"/>
         <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
@@ -2694,6 +2701,37 @@
     </Frame>
   </Frame>
 
+  <Frame type="Image" name="ExpandoNotch">
+    <Anchor side="Top" relative="$parent" pos="Min" offset="-6"/>
+    <Anchor side="Bottom" relative="$parent" pos="Min" offset="4"/>
+    <Anchor side="Left" relative="$parent" pos="0.4" offset="0"/>
+    <Anchor side="Right" relative="$parent" pos="0.6" offset="0"/>
+    <Texture val="@UI/Spazzo/MenuNotch" />
+    <Unclipped val="True"/>
+    <StateGroup name="ParentButtonState">
+      <DefaultState val="Untoggled"/>
+      <State name="Toggled">
+        <When type="Property" frame="$parent" Toggled="True" />
+        <Action type="SetProperty" frame="$this" Texture="@UI/Spazzo/MenuNotchPress"/>
+      </State>
+      <State name="Pushed">
+        <When type="Property" frame="$parent" Pushed="True" />
+        <Action type="SetProperty" frame="$this" Texture="@UI/Spazzo/MenuNotchPress"/>
+      </State>
+      <State name="HoveredNotToggled">
+        <When type="Property" frame="$parent" Hovering="True" />
+        <When type="Property" frame="$parent" Toggled="False" />
+        <When type="Property" frame="$parent" Pushed="False" />
+        <Action type="SetProperty" frame="$this" Texture="@UI/Spazzo/MenuNotchHover"/>
+      </State>
+      <State name="Untoggled">
+        <When type="Property" frame="$parent" Toggled="False" />
+        <When type="Property" frame="$parent" Hovering="False" />
+        <When type="Property" frame="$parent" Pushed="False" />
+        <Action type="SetProperty" frame="$this" Texture="@UI/Spazzo/MenuNotch"/>
+      </State>
+    </StateGroup>
+  </Frame>
 
   <Frame type="Button" name="ButtonNewNoBottomNoTopLabelAnchorTemplate">
     <ClickSound val="@UI_BNet_Generic_01" />
@@ -2765,6 +2803,26 @@
   <Frame type="Button" name="ButtonNewTemplate" template="SpazzoTemplates/ButtonNewNoBottomLabelAnchorTemplate">
     <Frame type="Label" name="Label">
       <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
+    </Frame>
+  </Frame>
+
+  <Frame type="Button" name="ButtonMenuSelectMiddile" template="SpazzoTemplates/ButtonNewTemplate">
+    <Height val="#ScoreTabsRevampButtonHeight" />
+    <Width val="#ScoreTabsRevampButtonWidth" />
+    <Toggleable val="false" />
+    <Toggled val="false"/>
+    <CollapseLayout val="False" />
+    <Frame type="Image" name="NormalImage">
+      <Texture val="@UI/Spazzo/TrimMenu" layer="0" />
+      <Texture val="@UI/Spazzo/TrimMenuPress" layer="1" />
+      <Texture val="@UI/Spazzo/TrimMenuPress" layer="2" />
+      <Texture val="@UI/Spazzo/TrimMenuHover" layer="3" />
+    </Frame>
+    <Frame type="Image" name="HoverImage">
+      <Texture val="@UI/Spazzo/TrimMenuHover" layer="0" />
+      <Texture val="@UI/Spazzo/TrimMenuPress" layer="1" />
+      <Texture val="@UI/Spazzo/TrimMenuPress" layer="2" />
+      <Texture val="@UI/Spazzo/TrimMenu" layer="3" />
     </Frame>
   </Frame>
 
@@ -4420,7 +4478,7 @@
     <RenderPriority val="514"/>
     <Height val="100" />
     <Frame type="Frame" name="ContainerFrame">
-      <Anchor side="Bottom" relative="PulldownSubButton4" pos="Max" offset="#CustomPulldownBottomOffset" />
+      <Anchor side="Bottom" relative="PulldownSubButton5" pos="Max" offset="#CustomPulldownBottomOffset" />
       <Frame type="Button" name="PulldownSubButton1" template="SpazzoTemplates/FakePulldownSubButtonTopBarSettingsTemplate">
         <Text val="@UI/Spazzo/Layout/Wide" />
         <Animation name="OnPress">
@@ -4434,6 +4492,18 @@
         </Animation>
       </Frame>
       <Frame type="Button" name="PulldownSubButton2" template="SpazzoTemplates/FakePulldownSubButtonTopBarSettingsTemplate">
+        <Text val="@UI/Spazzo/Layout/Form3" />
+        <Animation name="OnPress">
+          <Event event="OnMouseDown" action="Reset,Play" />
+          <Controller type="State" stateGroup="SelectedValue" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-1">
+            <Key type="Identifier" time="0" value="4" />
+          </Controller>
+          <Controller type="Property" property="Toggled" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-1">
+            <Key type="Bool" time="0" value="False"/>
+          </Controller>
+        </Animation>
+      </Frame>
+      <Frame type="Button" name="PulldownSubButton3" template="SpazzoTemplates/FakePulldownSubButtonTopBarSettingsTemplate">
         <Text val="@UI/Spazzo/Layout/Form2" />
         <Animation name="OnPress">
           <Event event="OnMouseDown" action="Reset,Play" />
@@ -4445,7 +4515,7 @@
           </Controller>
         </Animation>
       </Frame>
-      <Frame type="Button" name="PulldownSubButton3" template="SpazzoTemplates/FakePulldownSubButtonTopBarSettingsTemplate">
+      <Frame type="Button" name="PulldownSubButton4" template="SpazzoTemplates/FakePulldownSubButtonTopBarSettingsTemplate">
         <Text val="@UI/Spazzo/Layout/Form1" />
         <Animation name="OnPress">
           <Event event="OnMouseDown" action="Reset,Play" />
@@ -4457,7 +4527,7 @@
           </Controller>
         </Animation>
       </Frame>
-      <Frame type="Button" name="PulldownSubButton4" template="SpazzoTemplates/FakePulldownSubButtonTopBarSettingsTemplate">
+      <Frame type="Button" name="PulldownSubButton5" template="SpazzoTemplates/FakePulldownSubButtonTopBarSettingsTemplate">
         <Text val="@UI/Spazzo/Layout/Default" />
         <Animation name="OnPress">
           <Event event="OnMouseDown" action="Reset,Play" />

@@ -69,7 +69,12 @@
   <Constant name="TopBarWideBasicAbilOffsetNeg" val="-30" />
   <Constant name="TopBarCompactFountain" val="-27" />
   <Constant name="TopBarWideBasicAbilOffsetPlusInnerOffset" val="39" />
-  
+  <Constant name="Talent4TopOffsetUltracompact" val="15" />
+  <Constant name="Talent4TopOffsetUltracompactIntoBasic" val="30" />
+  <Constant name="HeroicUltracompactAnchorOffset" val="29" />
+  <Constant name="ChargeBGAlpha" val="220" />
+  <Constant name="ChargeBGHex" val="004A66" />
+
   <Frame type="Frame" name="AbilityTopBarContainerTemplate">
     <Anchor side="Left" relative="$sibling-1" pos="Max" offset="0" />
     <Anchor side="Top" relative="$sibling-1" pos="Min" offset="0" />
@@ -80,6 +85,11 @@
     <CollapseLayout val="True" />
     <StateGroup name="AbilSize">
       <DefaultState val="Default"/>
+      <State name="Ultracompact">
+        <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+        <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="0" />
+        <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="0" />
+      </State>
       <State name="WIIIDE">
         <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="3"/>
         <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TopBarWideBasicAbilOffset" />
@@ -425,6 +435,36 @@
       <SendChargesFullAnimEvent val="True" />
       <SendCurrentChangedAnimEvent val="True" />
       <SendMaxChangedAnimEvent val="True" />
+      <Frame type="ProgressBar" name="ChargeFillProgress">
+        <Anchor relative="$parent" />
+        <AcceptsMouse val="False" />
+        <RenderPriority val="511" />
+        <Alpha val="#ChargeBGAlpha" />
+        <FillInset val="0.0" />
+        <Circular val="True" />
+        <CircularStart val="0" />
+        <CircularEndOffset val="360" />
+        <MinValue val="0" />
+        <MaxValue val="100" />
+        <Value val="50" />
+        <InvertFill val="True" />
+        <AcceptsMouse val="False"/>
+        <AcceptsMouseTooltip val="False"/>
+        <Frame type="Frame" name="FillImageContainer">
+          <Anchor relative="$parent" />
+          <AcceptsMouse val="False"/>
+          <AcceptsMouseTooltip val="False"/>
+          <Frame type="Image" name="FillImage">
+            <Anchor relative="$parent" />
+            <Texture val="@UI/Storm_UI_GenFX_BallAlpha" />
+            <LayerColor val="#ChargeBGHex" />
+            <TextureCoords top=".145" left=".145" bottom=".855" right=".855" />
+            <AcceptsMouse val="False"/>
+            <AcceptsMouseTooltip val="False"/>
+            <TextureType val="Circular" />
+          </Frame>
+        </Frame>
+      </Frame>
       <Frame type="Label" name="ChargesLabel">
         <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
         <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
@@ -452,6 +492,46 @@
     <SendChargesFullAnimEvent val="True" />
     <SendCurrentChangedAnimEvent val="True" />
     <SendMaxChangedAnimEvent val="True" />
+    <Frame type="ProgressBar" name="ChargeFillProgress">
+      <Anchor relative="$parent" />
+      <AcceptsMouse val="False" />
+      <RenderPriority val="511" />
+      <Alpha val="#ChargeBGAlpha" />
+      <FillInset val="0.0" />
+      <Circular val="True" />
+      <CircularStart val="0" />
+      <CircularEndOffset val="360" />
+      <MinValue val="0" />
+      <MaxValue val="100" />
+      <Value val="50" />
+      <InvertFill val="True" />
+      <AcceptsMouse val="False"/>
+      <AcceptsMouseTooltip val="False"/>
+      <Frame type="Frame" name="FillImageContainer">
+        <Anchor relative="$parent" />
+        <AcceptsMouse val="False"/>
+        <AcceptsMouseTooltip val="False"/>
+        <Frame type="Image" name="FillImage">
+          <Anchor relative="$parent" />
+          <Texture val="@UI/Storm_UI_GenFX_BallAlpha" />
+          <LayerColor val="#ChargeBGHex" />
+          <TextureCoords top=".145" left=".145" bottom=".855" right=".855" />
+          <AcceptsMouse val="False"/>
+          <AcceptsMouseTooltip val="False"/>
+          <TextureType val="Circular" />
+        </Frame>
+      </Frame>
+      <!-- I could probably fix this, but this shows up when at full charges, which looks a bit crummy -->
+      <!-- <Frame type="Image" name="EndCapImage">
+        <Anchor relative="$parent" />
+        <RenderPriority val="259" />
+        <Texture val="@UI/HUD_BTN_Ability_Cooldown_Endcap" layer="0" />
+        <LayerColor val="00BBFF" layer="0" />
+        <Unclipped val="False"/>
+        <AcceptsMouse val="False"/>
+        <AcceptsMouseTooltip val="False"/>
+      </Frame> -->
+    </Frame>
     <Frame type="Label" name="ChargesLabel">
       <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
       <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
@@ -869,6 +949,38 @@
         <Action type="SetProperty" frame="HeroAbil7/BackupAbilFrame2" AbilityLink="NULL"/>
         <Action type="SetProperty" frame="Label" Text="Abathur" />
       </State>
+      <State name="ForcedDisableUltracompact">
+        <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+        <Action type="SetState" frame="HeroAbil1" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="NULL"/>
+        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame2" AbilityLink="NULL"/>
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="NULL"/>
+        <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame2" AbilityLink="NULL"/>
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="NULL"/>
+        <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame2" AbilityLink="NULL"/>
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil4/BackupAbilFrame" AbilityLink="NULL"/>
+        <Action type="SetProperty" frame="HeroAbil4/BackupAbilFrame2" AbilityLink="NULL"/>
+        <Action type="SetProperty" frame="HeroAbil5/UnitAbilFrame" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil5/BackupAbilFrame" AbilityLink="NULL"/>
+        <Action type="SetProperty" frame="HeroAbil5/BackupAbilFrame2" AbilityLink="NULL"/>
+        <Action type="SetProperty" frame="HeroAbil6/UnitAbilFrame" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil6/BackupAbilFrame" AbilityLink="NULL"/>
+        <Action type="SetProperty" frame="HeroAbil6/BackupAbilFrame2" AbilityLink="NULL"/>
+        <Action type="SetProperty" frame="HeroAbil7/UnitAbilFrame" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil7/BackupAbilFrame" AbilityLink="NULL"/> 
+        <Action type="SetProperty" frame="HeroAbil7/BackupAbilFrame2" AbilityLink="NULL"/>
+        <Action type="SetProperty" frame="Label" Text="Abathur" />
+      </State>
       <State name="Abathur">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroAbathur"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame" AbilityLink="AbathurSymbiote" />
@@ -922,6 +1034,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AbathurSymbioteStab" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -944,6 +1059,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AlarakDiscordStrike" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -980,6 +1098,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="AlexstraszaBreathOfLife" />
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="AlexstraszaPreservation" />
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="AlexstraszaWingBuffet" />
@@ -1014,6 +1134,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil4/BackupAbilFrame" AbilityLink="AnaAimDownSightsDeactivate" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AnaHealingDart" /> 
@@ -1042,6 +1164,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AnduinFlashHeal" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1066,6 +1190,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="AnubarakBurrowChargeCancel" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AnubarakImpale" /> 
@@ -1092,6 +1219,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil2/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_artanis_doubleslash_off.dds" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilBehaviorFrame" Behavior="ArtanisTwinBladesPrimedButtonDummy" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1121,6 +1250,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="ArthasFrozenTempestCancel" />
         <Action type="SetProperty" frame="HeroAbil4/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_arthas_frostmournehungers_on.dds" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilBehaviorFrame" Behavior="ArthasFrostmourneHungersPrimed" />
@@ -1153,6 +1284,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AurielSacredSweep" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1178,6 +1311,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="AzmodanAllShallBurnCancel" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AzmodanGlobeOfAnnihilation" /> 
@@ -1206,6 +1341,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/FirebatFlameStream" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1231,6 +1368,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Texture="Assets\Textures\storm_ui_icon_brightwing_hypershift.dds" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1257,6 +1396,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="RuthlessOnslaughtCancel" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ButcherHamstring" /> 
@@ -1282,6 +1424,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="AmazonFendCancelChannel" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AmazonLightningFury" /> 
@@ -1308,10 +1453,10 @@
       </State> -->
       <State name="Chen">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroChen"/>
-        <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame" AbilityLink="ChenFlyingKick" />
-        <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame" AbilityLink="ChenBreathOfFire" /> 
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame" AbilityLink="ChenStorm" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame" AbilityLink="ChenEarth" /> 
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame" AbilityLink="ChenStagger" />
-        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame" AbilityLink="ChenFortifyingBrew" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame" AbilityLink="NULL" />
         <Action type="SetProperty" frame="HeroAbil5/UnitAbilFrame" AbilityLink="NULL" />
         <Action type="SetProperty" frame="HeroAbil6/UnitAbilFrame" AbilityLink="NULL" />
         <Action type="SetProperty" frame="HeroAbil7/UnitAbilFrame" AbilityLink="NULL" />
@@ -1319,21 +1464,20 @@
         <Action type="SetState" frame="HeroAbil1" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
-        <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
+        <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
-        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="ChenStorm" />
-        <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="ChenKegSmash" />
-        <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame2" AbilityLink="ChenEarth" />
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="ChenFlyingKick" />
+        <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="ChenBreathOfFire" />
+        <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame2" AbilityLink="ChenKegSmash" />
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="ChenFire" />
-        <Action type="SetProperty" frame="HeroAbil4/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_chen_fortifyingbrew.dds" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ChenFlyingKick" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ChenBreathOfFire" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ChenStagger" />
-        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
-        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ChenFortifyingBrew" />
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ChenStorm" /> 
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1342,8 +1486,6 @@
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame2/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ChenEarth" /> 
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ChenFire" />
-        <Action type="SetProperty" frame="HeroAbil4/BackgroundImage" Tooltip="{$this/TFFrame/@Text}" /> 
-        <Action type="SetProperty" frame="HeroAbil4/BackgroundImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ChenFortifyingBrew" />
         <!-- <Action type="SetProperty" frame="HeroAbil5/UnitAbilFrame" AbilityLink="ChenBreathOfFire" /> -->
         <Action type="SetProperty" frame="Label" Text="Chen" />
       </State>
@@ -1362,6 +1504,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="ChoSurgingFistTrigger" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ChoSurgingFist" />
@@ -1388,6 +1532,7 @@
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/GallShadowflame" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1413,6 +1558,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil4/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_Chromie_Detonate_TimeTrap.dds" />
         <Action type="SetProperty" frame="HeroAbil4/BackgroundImage" Color="55,55,55" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1443,6 +1590,7 @@
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="DeathwingMoltenFlameCancel" />
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame2" AbilityLink="DeathwingDestroyerForm" />
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="DeathwingLavaBurst" />
@@ -1499,6 +1647,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="DehakaCancelBurrow" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Texture="Assets\Textures\storm_ui_icon_dehaka_brushstalker.dds" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Visible="True" />
@@ -1528,6 +1678,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DeckardHealingPotion" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1550,6 +1703,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="DVaBoostersOff" />
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="DVaMechDefenseMatrixRetarget" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1579,6 +1735,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="DVaPilotRemoteBoostersOff" />
         <!-- <Action type="SetProperty" frame="HeroAbil1/BackgroundImage" Color="55,55,55" />
         <Action type="SetProperty" frame="HeroAbil1/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_dva_jetpackattack.dds" />
@@ -1612,6 +1770,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DiabloShadowCharge" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1634,6 +1795,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/L90ETCPowerslide" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1657,6 +1821,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Texture="Assets\Textures\storm_ui_icon_falstad_epicmount.dds" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="FalstadBOOMerang" />
@@ -1687,6 +1853,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="FenixRepeaterCannon" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/FenixPlasmaCutter" /> 
@@ -1715,6 +1883,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/GarroshGroundbreaker" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1740,6 +1910,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/TinkerRockItTurret" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1765,6 +1937,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="GenjiDragonbladeAttack" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/GenjiShuriken" /> 
@@ -1792,6 +1966,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="GreymaneRazorSwipe" />
         <!-- <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="NULL" /> -->
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="GreymaneDisengage" />
@@ -1826,6 +2003,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="GuldanDrainLifeCancel" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/GuldanFelFlame" /> 
@@ -1854,6 +2033,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/OverrideImage" Texture="Assets\Textures\storm_ui_icon_hanzo_stormbow.dds" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/OverrideImage" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1880,6 +2061,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/IllidanDive" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1902,6 +2086,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ImperiusCelestialCharge" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1926,6 +2113,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil4/BackgroundImage" Texture="Assets\Textures\hud_btn_bg_ability_cancel.dds" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/JainaFrostbolt" /> 
@@ -1952,6 +2141,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/CrusaderPunish" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1976,6 +2167,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/JunkratFragLauncher" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -1999,6 +2193,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil4/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_kaelthas_verdantspheres_2.dds" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilBehaviorFrame" Behavior="KaelthasVerdantSpheresActive" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2028,6 +2224,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="KelThuzadChainsLink" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/KelThuzadDeathAndDecay" /> 
@@ -2055,6 +2253,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/KerriganRavage" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2077,6 +2278,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_monk_deadlyreachactive.dds" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilBehaviorFrame" Behavior="MonkDeadlyReachPrimed" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2103,6 +2307,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="LeoricGhastlySwing" />
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="LeoricDrainEssence" />
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="LeoricCancelWraithWalk" />
@@ -2137,6 +2344,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/LiLiHealingBrew" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2159,6 +2369,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/WizardMagicMissiles" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2185,6 +2398,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="Label" Text="Lost Vikings" />
       </State>
       <State name="Lucio">
@@ -2202,6 +2418,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/OverrideImage" Texture="Assets\Textures\storm_ui_icon_lucio_crossfadespeed.dds" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/OverrideImage" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_lucio_crossfadehealing.dds" />
@@ -2231,6 +2449,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="MedicRedirectHealingBeam" />
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="MedicDetonateDisplacementGrenade" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2259,6 +2480,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="DryadWispRedirect" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DryadNoxiousBlossom" /> 
@@ -2285,6 +2509,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil2/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_maiev_umbra_2.dds" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilBehaviorFrame" Behavior="MaievUmbralBindPrimed" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2314,6 +2540,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/MalfurionRegrowth" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2338,6 +2566,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="MalGanisFelClawsSecond" />
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame2" AbilityLink="MalGanisFelClawsThird" />
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="MalGanisNightRushCancel" />
@@ -2369,6 +2600,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/MalthaelSoulRip" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2391,6 +2625,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/MedivhArcaneRift" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2413,6 +2650,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/MedivhArcaneRift" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2436,6 +2676,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="MeiOWIcingCancel" />
         <Action type="SetProperty" frame="HeroAbil4/BackupAbilFrame" AbilityLink="MeiOWCryoFreezeCancel" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2466,6 +2708,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/MephistoSkullMissile" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2488,6 +2733,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/MuradinStormBolt" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2511,6 +2759,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/MurkySlime" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2535,6 +2785,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="WitchDoctorZombieWallCancel" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/WitchDoctorCorpseSpiders" /> 
@@ -2561,6 +2814,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/NovaSnipe" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2585,6 +2840,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/OrpheaShadowWaltz" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2607,6 +2865,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Texture="Assets\Textures\storm_ui_icon_probius_workerrush.dds" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2634,6 +2894,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <!-- <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="NexusHunterRevolvingSweepSecondary" /> -->
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/NexusHunterCarnage" /> 
@@ -2660,6 +2922,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="RagnarosLivingMeteorShiftingMeteor" />
         <Action type="SetProperty" frame="HeroAbil1/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_ragnaros_empowersulfuras_active.dds" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilBehaviorFrame" Behavior="RagnarosEmpowerSulfurasCasterBehavior" />
@@ -2694,6 +2958,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil4/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_ragnaros_return.dds" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/RagnarosBigRagMoltenSwing" /> 
@@ -2717,6 +2984,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <!-- <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame" AbilityLink="RaynorBountyHunter" /> -->
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/RaynorPenetratingRound" /> 
@@ -2741,6 +3011,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <!-- <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="RehgarTotemicProjection" /> -->
         <Action type="SetProperty" frame="HeroAbil4/BackupAbilFrame" AbilityLink="RehgarGhostWolfDeactivate" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Texture="Assets\Textures\storm_ui_icon_rehgar_ghostwolf.dds" />
@@ -2774,6 +3046,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/RexxarSpiritSwoop" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2799,6 +3073,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/SamuroMirrorImage" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2824,6 +3100,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/SamuroMirrorImageImageTransmission" />
         <Action type="SetProperty" frame="Label" Text="Samuro" />
@@ -2844,6 +3122,7 @@
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="SgtHammerSpiderMinesSiegeMode"/>
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="ConcussiveBlastScrapCancel"/>
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Texture="Assets\Textures\storm_ui_icon_sgthammer_hypercoolingengines.dds" />
@@ -2876,6 +3155,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="BarbarianWhirlwindCancel"/>
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilBehaviorFrame" Behavior="BarbarianWhirlwindChannel" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2903,6 +3185,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/StitchesHook" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2928,6 +3212,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="StukovLurkingArmCancel"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/StukovHealingPathogen" /> 
@@ -2956,6 +3242,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="SylvanasHauntingWaveActivate"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame2" AbilityLink="SylvanasHauntingWaveWindrunnerTalent"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -2986,6 +3274,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="TassadarForceWallCancel"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/TassadarShockRay" /> 
@@ -3011,6 +3302,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <!-- <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/> -->
         <!-- <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame" AbilityLink="ThrallFrostwolfsGrace" /> -->
         <!-- <Action type="SetProperty" frame="HeroAbil2/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_thrall_frostwolfresilience.dds" /> -->
@@ -3038,6 +3332,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <!-- <Action type="SetProperty" frame="HeroAbil1/AbilChargeContainerFrame" Visible="True" /> -->
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/OverrideImage" Texture="Assets\Textures\storm_ui_icon_tracer_blink.dds" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/OverrideImage" Visible="True" />
@@ -3064,6 +3361,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="TychusOdinAnnihilate"/>
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="TychusOdinRagnarokMissilesTargeted"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="TychusRunAndGunOverkill" />
@@ -3111,6 +3410,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="ElDruinsMightEldruinsFlash"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/TyraelElDruinsMight" /> 
@@ -3137,6 +3439,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/TyrandeLightofElune" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -3161,6 +3465,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="UtherHolyShock"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame2" AbilityLink="UtherFlashofLight"/>
         <Action type="SetProperty" frame="HeroAbil2/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_uther_holyradiance.dds" />
@@ -3202,6 +3509,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <!-- <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="ValeeraAmbush"/>
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="ValeeraCheapShot"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="ValeeraGarrote"/>
@@ -3242,6 +3551,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DemonHunterHungeringArrow" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -3265,6 +3577,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/VarianLionsFang" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -3290,6 +3604,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="WhitemaneInquisitionCancel"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/WhitemaneDesperatePlea" /> 
@@ -3318,6 +3634,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <!-- <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/> -->
         <Action type="SetProperty" frame="HeroAbil2/BackgroundImage" Texture="Assets\Textures\storm_ui_icon_necromancer_cursedstrikes_on.dds" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilBehaviorFrame" Behavior="NecromancerCursedStrikesPrimed" />
@@ -3348,6 +3666,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="YrelVindicationCast"/>
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="YrelRighteousHammerDivinePurpose"/>
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame2" AbilityLink="YrelRighteousHammer"/>
@@ -3391,6 +3711,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ZagaraBanelingBarrage" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -3415,6 +3737,9 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ZaryaParticleGrenade" /> 
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -3438,6 +3763,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Texture="Assets\Textures\storm_ui_icon_zeratul_vorpalblade.dds" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" /> 
@@ -3465,6 +3792,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="ZuljinRegenerationForestMedicine"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame2" AbilityLink="ZuljinCancelRegeneration"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
@@ -3496,6 +3825,8 @@
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil5" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil6" Group="AbilControllerGroup" State="NoAbil"/>
+        <Action type="SetState" frame="HeroAbil7" Group="AbilControllerGroup" State="NoAbil"/>
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="HoggerCancelHoggWild"/>
         <Action type="SetProperty" frame="HeroAbil4/BackupAbilFrame" AbilityLink="HoggerCancelLootHoard"/>
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilBehaviorFrame" Behavior="HoggerHoggWildCasterBuff" />
@@ -3682,71 +4013,107 @@
         <Action type="SetProperty" frame="HeroAbil7/UnitAbilCharge" ChargeLink="Abil/NULL" />
         <Action type="SetProperty" frame="Label" Text="Abathur" />
       </State>
+      <State name="NoStateUltracompact">
+        <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="False" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/NULL" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="False" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/NULL" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="False" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/NULL" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" Visible="False" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" ChargeLink="Abil/NULL" />
+        <Action type="SetProperty" frame="HeroAbil5/UnitAbilCharge" Visible="False" />
+        <Action type="SetProperty" frame="HeroAbil5/UnitAbilCharge" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil5/UnitAbilCharge" ChargeLink="Abil/NULL" />
+        <Action type="SetProperty" frame="HeroAbil6/UnitAbilCharge" Visible="False" />
+        <Action type="SetProperty" frame="HeroAbil6/UnitAbilCharge" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil6/UnitAbilCharge" ChargeLink="Abil/NULL" />
+        <Action type="SetProperty" frame="HeroAbil7/UnitAbilCharge" Visible="False" />
+        <Action type="SetProperty" frame="HeroAbil7/UnitAbilCharge" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="HeroAbil7/UnitAbilCharge" ChargeLink="Abil/NULL" />
+        <Action type="SetProperty" frame="Label" Text="Abathur" />
+      </State>
       <State name="Abathur">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroAbathur"/>
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="AbathurToxicNest" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/AbathurToxicNest" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="AbathurSymbiote">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="AbathurSymbiote"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="AbathurSymbioteStab" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/AbathurSymbioteStab" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroAmazon">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroAmazon"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="AmazonLightningFury" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/AmazonLightningFury" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroFirebat">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroFirebat"/>
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="FirebatOilSpill" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/FirebatOilSpill" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroGall">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroGall"/>
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" AbilityLink="GallTalentEyeOfKilrogg" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" ChargeLink="Abil/GallTalentEyeOfKilrogg" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroGenji">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroGenji"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="GenjiShuriken" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/GenjiShuriken" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroJunkrat">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroJunkrat"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="JunkratFragLauncher" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/JunkratFragLauncher" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroKerrigan">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroKerrigan"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="KerriganRavage" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/KerriganRavage" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroMonk">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMonk"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="MonkRadiantDash" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/MonkRadiantDash" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroWitchDoctor">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroWitchDoctor"/>
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="WitchDoctorPlagueofToads" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/WitchDoctorPlagueofToads" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroProbius">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroProbius"/>
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="ProbiusWarpRift" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/ProbiusWarpRift" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroTracerOneTwoPunch">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroTracer"/>
@@ -3755,39 +4122,69 @@
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="TracerBlink" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/TracerBlink" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="TracerMelee" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/TracerMelee" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroTracer">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroTracer"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="TracerBlink" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/TracerBlink" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="False" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="NULL" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/NULL" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroTyrande">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroTyrande"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="TyrandeLightofElune" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/TyrandeLightofElune" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroZagara">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroZagara"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="ZagaraBanelingBarrage" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/ZagaraBanelingBarrage" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" AbilityLink="ZagaraSummonCreepTumor" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" ChargeLink="Abil/ZagaraSummonCreepTumor" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroZarya">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroZarya"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="ZaryaParticleGrenade" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/ZaryaParticleGrenade" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
+      </State>
+      <State name="HeroChenStormEarthFire">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroChen"/>
+        <When type="StateGroup" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/DummyAncestorRelationFrame/SelectionUnitStatusPanelTalentsFrame/UnitStatusFrame0/QuestAndBuffContainerFrameT4/HeroicActiveValidatorFrame" operator="Equal" AnimState="ChenHasStormEarthFireCasterBehavior" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="ChenStorm" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/ChenStorm" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="True" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargesLabel" Visible="False" />
+        <!-- <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLocation="Player" /> -->
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="ChenEarth" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/ChenEarth" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="True" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargesLabel" Visible="False" />
+        <!-- <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLocation="Player" /> -->
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="True" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="ChenFire" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/ChenFire" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="True" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargesLabel" Visible="False" />
+        <!-- <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLocation="Player" /> -->
       </State>
       <State name="HeroVarianNoShieldWall">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroVarian"/>
@@ -3795,6 +4192,7 @@
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="VarianParry" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/VarianParry" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroVarianNoTalent">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroVarian"/>
@@ -3802,6 +4200,7 @@
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="VarianParry" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/VarianParry" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroMephistoUnyeildingPower">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMephisto"/>
@@ -3810,6 +4209,7 @@
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="MephistoSkullMissile" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/MephistoSkullMissile" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroMeiOWFreshPowder">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMeiOW"/>
@@ -3818,6 +4218,7 @@
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="MeiOWSnowBlind" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/MeiOWSnowBlind" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroHanzoPerfectAgility">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroHanzo"/>
@@ -3826,6 +4227,7 @@
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" AbilityLink="HanzoNaturalAgilityButton" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" ChargeLink="Abil/HanzoNaturalAgilityButton" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroGarroshSeasonedSoldier">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroGarrosh"/>
@@ -3834,6 +4236,7 @@
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="GarroshBloodthirst" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/GarroshBloodthirst" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroChromieAndorhalAnomaly">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroChromie"/>
@@ -3842,6 +4245,7 @@
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="ChromieTimeTrap" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/ChromieTimeTrap" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroAnduinGlyphOfFaith">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroAnduin"/>
@@ -3850,6 +4254,7 @@
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" AbilityLink="AnduinLeapOfFaithInstant" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" ChargeLink="Abil/AnduinLeapOfFaithInstant" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroZeratulWarpSkirmisher">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroZeratul"/>
@@ -3859,6 +4264,7 @@
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" AbilityLink="VorpalBladeBlink" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" ChargeLink="Abil/ZeratulBlinkReturn" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" ChargeLocation="Player" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <!-- Maybe look at inherited visible property of the other frames? -->
       <State name="HeroTychusBobAndWeave">
@@ -3868,6 +4274,7 @@
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="TychusRunAndGun" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/TychusRunAndGun" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
         <!-- TychusRunAndGunOverkill -->
         <!-- TychusOdinThrusters -->
       </State>
@@ -3880,9 +4287,11 @@
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="GazloweDethLazor" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/GazloweDethLazor" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="TinkerXplodiumBomb" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/TinkerXplodiumBomb" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroGazloweOverloadNoBombToss">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroTinker"/>
@@ -3892,9 +4301,11 @@
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="GazloweDethLazor" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/GazloweDethLazor" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="False" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="NULL" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/NULL" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroGazloweOverloadNo20">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroTinker"/>
@@ -3904,9 +4315,11 @@
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="GazloweDethLazor" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/GazloweDethLazor" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="False" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="NULL" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/NULL" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroGazloweBombToss">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroTinker"/>
@@ -3915,9 +4328,11 @@
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="NULL" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/NULL" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="TinkerXplodiumBomb" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/TinkerXplodiumBomb" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroThrallEchooftheElements">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroThrall"/>
@@ -3926,6 +4341,7 @@
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="ThrallChainLightning" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/ThrallChainLightning" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroStitchesSecondHelping">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroStitches"/>
@@ -3934,6 +4350,7 @@
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="StitchesDevour" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/StitchesDevour" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroNovaDoubleTap">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroNova"/>
@@ -3942,6 +4359,7 @@
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="NovaPinningShot" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/NovaPinningShot" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroMedicShieldSequencer">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMedic"/>
@@ -3950,6 +4368,7 @@
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="MedicSafeguard" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/MedicSafeguard" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroMalfurionShandosClarity">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMalfurion"/>
@@ -3958,6 +4377,7 @@
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" AbilityLink="MalfurionInnervate" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" ChargeLink="Abil/MalfurionInnervate" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <!-- test this! -->
       <State name="HeroKaelthasTwinSpheres">
@@ -3967,6 +4387,7 @@
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" AbilityLink="KaelthasVerdantSpheres" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" ChargeLink="Abil/KaelthasVerdantSpheres" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroIllidanUnbound">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroIllidan"/>
@@ -3975,6 +4396,7 @@
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="IllidanSweepingStrike" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/IllidanSweepingStrike" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroDiabloOverpoweringNightmare">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroDiablo"/>
@@ -3983,6 +4405,7 @@
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="DiabloOverpower" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/DiabloOverpower" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroDemonHunterAcrobat">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroDemonHunter"/>
@@ -3991,6 +4414,7 @@
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="DemonHunterVault" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/DemonHunterVault" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroCrusaderZealousGlare">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroCrusader"/>
@@ -3999,13 +4423,16 @@
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="CrusaderShieldGlare" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/CrusaderShieldGlare" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroMaievVeterancyGTE20">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMaiev"/>
         <When type="Property" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/DummyAncestorRelationFrame/SelectionUnitStatusPanelTalentsFrame/UnitStatusFrame0/UnitStatusDummyBehaviorCount/BehaviorIcon" operator="GreaterThanOrEqual" CurrentStackCount="20"/>
+        <When type="Property" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/DummyAncestorRelationFrame/SelectionUnitStatusPanelTalentsFrame/UnitStatusFrame0" unit="HeroMaiev"/>
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" AbilityLink="MaievVaultOfTheWardens" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" ChargeLink="Abil/MaievVaultOfTheWardens" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
     </StateGroup>
     <StateGroup name="AbilCount">
@@ -4688,6 +5115,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT1/UnitAbilFrame" AbilityLink="GarroshArmorUpBodyCheck" />
         <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge" AbilityLink="GarroshArmorUpBodyCheck" />
         <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge" ChargeLink="Abil/GarroshArmorUpBodyCheck" />
+        <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="GarroshHasArmorUpBodyCheckTalent">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" texture="Assets\Textures\storm_ui_icon_garrosh_slam.dds"/>
@@ -4697,6 +5126,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT1/UnitAbilFrame" AbilityLink="GarroshArmorUpBodyCheck" />
         <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge" AbilityLink="NULL" />
         <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge" ChargeLink="Abil/NULL" />
+        <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge/ChargesLabel" Visible="False" />
       </State>
       <State name="MaievHasFanOfKnivesNaishasMementoTalent">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" texture="Assets\Textures\storm_ui_icon_maiev_memento.dds"/>
@@ -4707,6 +5138,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge" AbilityLink="MaievFanOfKnivesNaishasMemento" />
         <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge" ChargeLink="Abil/MaievFanOfKnivesNaishasMemento" />
         <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge" ChargeLocation="Player" />
+        <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge/ChargeFillProgress" Visible="True" />
+        <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge/ChargesLabel" Visible="False" />
       </State>
       <!-- <State name="MedivhHasPortalPortalMasteryTalent">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" texture="Assets\Textures\storm_ui_icon_medivh_portal.dds"/>
@@ -4759,6 +5192,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge" AbilityLink="SgtHammerSiegeModeMaelstromRounds" />
         <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge" ChargeLink="Abil/SgtHammerSiegeModeMaelstromRounds" />
         <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge" ChargeLocation="Player" />
+        <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT1/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="NoState">
         <Action type="SetProperty" frame="LabelT1" Text="NoState" />
@@ -4885,6 +5320,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT2/UnitAbilFrame" AbilityLink="GuldanConsumeSoul" />
         <Action type="SetProperty" frame="HeroActiveAbilT2/AbilityCharge" AbilityLink="GuldanConsumeSoul" />
         <Action type="SetProperty" frame="HeroActiveAbilT2/AbilityCharge" ChargeLink="Abil/GuldanConsumeSoul" />
+        <Action type="SetProperty" frame="HeroActiveAbilT2/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT2/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="KelthuzadArchlichArmor">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" texture="Assets\Textures\storm_ui_icon_kel'thuzad_armorofthearchlich.dds.dds"/>
@@ -4938,6 +5375,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT2/UnitAbilFrame" AbilityLink="SylvanasPossession" />
         <Action type="SetProperty" frame="HeroActiveAbilT2/AbilityCharge" AbilityLink="SylvanasPossession" />
         <Action type="SetProperty" frame="HeroActiveAbilT2/AbilityCharge" ChargeLink="Abil/SylvanasPossession" />
+        <Action type="SetProperty" frame="HeroActiveAbilT2/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT2/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="ValeeraWoundPoison">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" texture="Assets\Textures\storm_ui_icon_valeera_woundpoison.dds"/>
@@ -5056,14 +5495,14 @@
         <Action type="SetProperty" frame="LabelT3" Text="RaynorHeavySlugs" />
         <Action type="SetProperty" frame="HeroActiveAbilT3/UnitAbilFrame" AbilityLink="RaynorHeavySlugs" />
       </State>
-      <State name="RehgarTalentCleanse">
+      <!-- <State name="RehgarTalentCleanse">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroRehgar"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" texture="Assets\Textures\storm_ui_icon_talent_cleanse.dds"/>
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" TextureState="TierSelected" />
         <When type="Property" frame="$this/T3ControllerFrame" Visible="True"/>
         <Action type="SetProperty" frame="LabelT3" Text="TalentCleanse" />
         <Action type="SetProperty" frame="HeroActiveAbilT3/UnitAbilFrame" AbilityLink="TalentCleanse" />
-      </State>
+      </State> -->
       <State name="StitchesBlight">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" texture="Assets\Textures\storm_ui_icon_stitches_acidcloud.dds"/>
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" TextureState="TierSelected" />
@@ -5081,6 +5520,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT3/UnitAbilFrame" AbilityLink="ThrallAncestralWrath" />
         <Action type="SetProperty" frame="HeroActiveAbilT3/AbilityCharge" AbilityLink="ThrallAncestralWrath" />
         <Action type="SetProperty" frame="HeroActiveAbilT3/AbilityCharge" ChargeLink="Abil/ThrallAncestralWrath" />
+        <Action type="SetProperty" frame="HeroActiveAbilT3/AbilityCharge/ChargeFillProgress" Visible="True" />
+        <Action type="SetProperty" frame="HeroActiveAbilT3/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="UtherHandOfProtection">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroUther"/>
@@ -5191,6 +5632,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT3/AbilityCharge" AbilityLink="BarbarianBattleRage" />
         <Action type="SetProperty" frame="HeroActiveAbilT3/AbilityCharge" ChargeLink="Abil/BarbarianBattleRage" />
         <Action type="SetProperty" frame="HeroActiveAbilT3/AbilityCharge" ChargeLocation="Player" />
+        <Action type="SetProperty" frame="HeroActiveAbilT3/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT3/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="NoState">
         <Action type="SetProperty" frame="LabelT3" Text="NoState" />
@@ -5236,6 +5679,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="ArtanisSpearofAdunSuppressionPulse" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="ArtanisSpearofAdunSuppressionPulse" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/ArtanisSpearofAdunSuppressionPulse" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="ArtanisHeroicAbilitySpearofAdunSuppressionPulse">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_artanis_disruptionweb.dds"/>
@@ -5301,6 +5746,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="FaerieDragonBlinkHealDash" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="FaerieDragonBlinkHealDash" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/FaerieDragonBlinkHealDash" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="FaerieDragonHeroicAbilityEmeraldWind">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_brightwing_emeraldwind.dds"/>
@@ -5366,6 +5813,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="DemonHunterRainOfVengeance" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="DemonHunterRainOfVengeance" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/DemonHunterRainOfVengeance" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="DiabloHeroicAbilityApocalypse">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_diablo_apocalypse.dds"/>
@@ -5389,6 +5838,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="DryadThornwoodVine" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="DryadThornwoodVine" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/DryadThornwoodVine" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="DryadHeroicAbilityLeapingStrike">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_Lunara_BoundlessStride.dds"/>
@@ -5398,6 +5849,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="DryadLeapingStrike" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="DryadLeapingStrike" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/DryadLeapingStrike" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="FalstadHeroicAbilityHinterlandBlast">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_falstad_hinterlandblast.dds"/>
@@ -5596,6 +6049,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="MuradinHaymaker" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="MuradinHaymaker" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/MuradinHaymaker" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="MuradinHeroicAbilityHaymaker">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_Muradin_Haymaker.dds"/>
@@ -5647,6 +6102,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="NovaPrecisionStrike" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="NovaPrecisionStrike" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/NovaPrecisionStrike" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="NovaHeroicAbilityPrecisionStrike">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_nova_orbitalstrike.dds"/>
@@ -5916,6 +6373,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="ZagaraSummonNydusWorm" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="ZagaraSummonNydusWorm" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/ZagaraSummonNydusWorm" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="ZeratulMightOfTheNerazim">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_zeratul_mightofnerazim.dds"/>
@@ -5990,6 +6449,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="NULL" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="AnaEyeOfHorusAttack" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/AnaEyeOfHorusAttack" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="AnaHeroicAbilityEyeOfHorus">
         <When type="StateGroup" frame="$ancestor[@type=UnitStatusFrame]/QuestAndBuffContainerFrameT4/HeroicActiveValidatorFrame" operator="NotEqual" AnimState="AnaHaveEyeOfHorus" />
@@ -6000,6 +6461,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="AnaEyeOfHorusActivate" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="NULL" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/NULL" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="False" />
       </State>
       <State name="AnduinHolyWordSalvation">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_anduin_holy_word_salvation.dds"/>
@@ -6101,6 +6564,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="DeckardLorenado" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="DeckardLorenado" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/DeckardLorenado" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="DeckardLorenado">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_deckard_lorenado.dds"/>
@@ -6132,6 +6597,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="DVaMicroMissiles" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/DVaMicroMissiles" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLocation="Player" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="FenixHeroicAbilityPurificationSalvo">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_fenix_r_scan.dds"/>
@@ -6176,6 +6643,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="GarroshDecimate" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="GarroshDecimate" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/GarroshDecimate" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="GenjiHeroicDragonblade">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_genji_dragonblade.dds"/>
@@ -6437,6 +6906,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="StukovFlailingSwipe" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="StukovFlailingSwipe" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/StukovFlailingSwipe" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="StukovHeroicAbilityFlailingSwipe">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_stukov_flailingswipe.dds"/>
@@ -6468,6 +6939,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="RagnarosLavaWaveTargetPoint" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/RagnarosLavaWaveTargetPoint" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLocation="Player" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="RagnarosLavaWave">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_ragnaros_lavawave.dds"/>
@@ -6572,6 +7045,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="NULL" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="NULL" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="False" />
       </State>
     </StateGroup>
     <StateGroup name="T5TalentState">
@@ -6929,6 +7404,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT6/UnitAbilFrame" AbilityLink="IllidanBladesOfAzzinoth" />
         <Action type="SetProperty" frame="HeroActiveAbilT6/AbilityCharge" AbilityLink="IllidanBladesOfAzzinoth" />
         <Action type="SetProperty" frame="HeroActiveAbilT6/AbilityCharge" ChargeLink="Abil/IllidanBladesOfAzzinoth" />
+        <Action type="SetProperty" frame="HeroActiveAbilT6/AbilityCharge/ChargeFillProgress" Visible="True" />
+        <Action type="SetProperty" frame="HeroActiveAbilT6/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="ImperiusValorousPursuit">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" texture="Assets\Textures\storm_ui_icon_imperius_item_03.dds"/>
@@ -7162,14 +7639,14 @@
         <Action type="SetProperty" frame="LabelT7" Text="TalentRewind" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/UnitAbilFrame" AbilityLink="TalentRewind" />
       </State>
-      <State name="RehgarRewind">
+      <!-- <State name="RehgarRewind">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroRehgar"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_Talent_Rewind.dds"/>
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected" />
         <When type="Property" frame="$this/T7ControllerFrame" Visible="True" />
         <Action type="SetProperty" frame="LabelT7" Text="TalentRewind" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/UnitAbilFrame" AbilityLink="TalentRewind" />
-      </State>
+      </State> -->
       <State name="AnubarakHardenedShield">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroAnubarak"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_glues_draft_portrait_anubarak.dds"/>
@@ -7297,14 +7774,14 @@
         <Action type="SetProperty" frame="LabelT7" Text="TalentBucketStormShield" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/UnitAbilFrame" AbilityLink="TalentBucketStormShield" />
       </State>
-      <State name="RehgarStormShield">
+      <!-- <State name="RehgarStormShield">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroRehgar"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_Talent_StormShield.dds"/>
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected" />
         <When type="Property" frame="$this/T7ControllerFrame" Visible="True" />
         <Action type="SetProperty" frame="LabelT7" Text="TalentBucketStormShield" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/UnitAbilFrame" AbilityLink="TalentBucketStormShield" />
-      </State>
+      </State> -->
       <State name="FenixUnconqueredSpirit">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_fenix_shield_1.dds"/>
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected" />
@@ -7440,6 +7917,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge" AbilityLink="MaievSpiritOfVengeanceShadowOrbVengeance" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge" ChargeLink="Abil/MaievSpiritOfVengeanceShadowOrbVengeance" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge" ChargeLocation="Player" />
+        <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge/ChargeFillProgress" Visible="True" />
+        <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge/ChargesLabel" Visible="False" />
       </State>
       <State name="MaievShadowOrbHuntress">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_maiev_shadoworb_relentless.dds"/>
@@ -7451,6 +7930,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge" AbilityLink="MaievShadowOrbHuntress" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge" ChargeLink="Abil/MaievShadowOrbHuntress" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge" ChargeLocation="Player" />
+        <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge/ChargeFillProgress" Visible="True" />
+        <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge/ChargesLabel" Visible="False" />
       </State>
       <State name="MaievShadowOrbShadowStrike">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_maiev_shadoworb_strike.dds"/>
@@ -7462,6 +7943,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge" AbilityLink="MaievShadowOrbShadowStrike" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge" ChargeLink="Abil/MaievShadowOrbShadowStrike" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge" ChargeLocation="Player" />
+        <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge/ChargeFillProgress" Visible="True" />
+        <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge/ChargesLabel" Visible="False" />
       </State>
       <State name="MalthaelNoOneCanStopDeath">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_Malthael_NoOneCanStopDeath.dds"/>
@@ -7487,6 +7970,8 @@
         <Action type="SetProperty" frame="HeroActiveAbilT7/UnitAbilFrame" AbilityLink="MedivhDustofDisappearance" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge" AbilityLink="MedivhDustofDisappearance" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge" ChargeLink="Abil/MedivhDustofDisappearance" />
+        <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT7/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
       <State name="MephistoShadeOfMephistoShadeLord">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_mephisto_shade.dds"/>
@@ -7652,6 +8137,21 @@
         <When type="Property" frame="$this/T7ControllerFrame" Visible="True" />
         <Action type="SetProperty" frame="LabelT7" Text="WitchDoctorBadMedicine" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/UnitAbilFrame" AbilityLink="WitchDoctorBadMedicine" />
+      </State>
+      <State name="JunkratIHateWaiting">
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_junkrat_mount_rocket.dds"/>
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected" />
+        <When type="Property" frame="$this/T7ControllerFrame" Visible="True" />
+        <Action type="SetProperty" frame="LabelT7" Text="JunkratIHateWaitingSummonMount" />
+        <Action type="SetProperty" frame="HeroActiveAbilT7/UnitAbilFrame" AbilityLink="JunkratIHateWaitingSummonMount" />
+      </State>
+      <State name="RehgarElementalConduit">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroRehgar"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_talent_stormshield.dds"/>
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected" />
+        <When type="Property" frame="$this/T7ControllerFrame" Visible="True" />
+        <Action type="SetProperty" frame="LabelT7" Text="RehgarElementalConduit" />
+        <Action type="SetProperty" frame="HeroActiveAbilT7/UnitAbilFrame" AbilityLink="RehgarElementalConduit" />
       </State>
       <State name="NoState">
         <Action type="SetProperty" frame="LabelT7" Text="NoState" />

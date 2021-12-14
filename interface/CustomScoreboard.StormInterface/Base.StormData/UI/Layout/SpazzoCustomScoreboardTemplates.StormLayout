@@ -31,4 +31,985 @@
       <Text val="ReplaceMe" />
     </Frame>
   </Frame>
+
+  <Frame type="TextFormatFrame" name="HeroGenericSharedTableScore3">
+    <Anchor relative="$parent" />
+    <Visible val="True" />
+    <FormatText val="%23%(%2%)%1%%3%: %13%%1%%4%: %14%%1%%5%: %15%%1%%6%: %16%%1%%7%: %17%%1%%8%: %18%%1%%9%: %19%%1%%10%: %20%%1%%11%: %21%%1%%12%: %22%%0%" />
+    <Replacement val="#NewLine" index="0" />
+    <Replacement val="#VerticalBar" index="1" />
+    <Replacement val="{$parent/HeroNameDataRef/@StringValue}" index="2" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameBasicAttacksVsHeroes/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="3" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameBasicAttacksVsNonHeroes/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="4" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameTimeMounted/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="5" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameTimeInShrubs/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="6" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="7" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="8" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameTimeWithFountainActive/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="9" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameTimeWithGlobeActive/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="10" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameTimesUsedFountain/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="11" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameTimesHearthed/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="12" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameManaFromFountain/ScoreValueLabel/@Text}" index="13" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameManaFromGlobes/ScoreValueLabel/@Text}" index="14" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameManaFromBase/ScoreValueLabel/@Text}" index="15" />
+    <Replacement val="{$parent/PlayerScoreContainerFramePercentOfLifeLostFromHeroes/ScoreValueLabel/@Text}" index="16" />
+    <Replacement val="{$parent/PlayerScoreContainerFramePercentOfLifeLostFromNonHeroes/ScoreValueLabel/@Text}" index="17" />
+    <Replacement val="{$parent/PlayerScoreContainerFramePercentOfLifeTaken/ScoreValueLabel/@Text}" index="18" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameBasicAttacksVsHeroes/ScoreValueLabel/@Text}" index="19" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameBasicAttacksVsNonHeroes/ScoreValueLabel/@Text}" index="20" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameTimeMounted/ScoreValueLabel/@Text}" index="21" />
+    <Replacement val="{$parent/PlayerScoreContainerFrameTimeInShrubs/ScoreValueLabel/@Text}" index="22" />
+    <Replacement val="{$parent/PlayerNameDataRef/@StringValue}" index="23" />
+  </Frame>
+
+  <Frame type="Frame" name="PlayerScoreContainerFrameTemplate">
+    <Anchor relative="$parent"/>
+    <Width val="100" />
+    <Height val="55" />
+    <Frame type="DataRefFrame" name="ScoreValueDataReference">
+      <Anchor relative="$parent"/>
+      <Argument name="score" val="HeroDamage"/>
+      <PlayerId val="{$parent/$parent/PlayerHeroNameFrameTemplate/@PlayerId}" />
+      <Handle val="HeroDamage"/>
+    </Frame>
+    <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+      <Anchor side="Top" relative="ScoreValueFrame0/ScoreValueLabel" pos="Min" offset="0" />
+      <Anchor side="Bottom" relative="ScoreValueFrame0/ScoreValueLabel" pos="Max" offset="0" />
+      <Anchor side="Right" relative="ScoreValueFrame0/ScoreValueLabel" pos="Min" offset="0" />
+      <Anchor side="Left" relative="ScoreValueFrame0/ScoreValueLabel" pos="Max" offset="0" />
+      <PlayerId val="{$parent/$parent/PlayerHeroNameFrameTemplate/@PlayerId}" />
+      <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+        <ScoreValueLink val="{$parent/$parent/ScoreValueDataReference/@Handle}" />
+        <Anchor relative="$parent" />
+        <BestValueGrouping val="None"/>
+        <Frame type="Label" name="Label">
+          <Anchor side="Top" relative="$parent/$parent/$parent/ScoreValueLabel" pos="Min" offset="25" />
+          <Anchor side="Left" relative="$parent/$parent/$parent/ScoreValueLabel" pos="Min" offset="75" />
+          <Anchor side="Bottom" relative="$parent/$parent/$parent/ScoreValueLabel" pos="Min" offset="0" />
+          <Anchor side="Right" relative="$parent/$parent/$parent/ScoreValueLabel" pos="Min" offset="0" />
+          <Options val="ScaleToPreventTruncation" />
+          <Width val="600" />
+          <Height val="600" />
+          <Style val="Storm_ScoreScreenResultValueTeam2" />
+          <IgnoreParentColor val="true" />
+          <RenderPriority val="#RenderPriorityLevel_1" />
+          <Visible val="false"/>
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="CountdownLabel" name="TimerProxyLabel">
+      <Anchor relative="$parent"/>
+      <Visible val="false"/>
+      <FormatNumber val="False"/>
+      <FormatTime val="True"/>
+      <CurrentValue val="{$parent/ScoreValueDataReference/@RealValue}"/>
+    </Frame>
+    <Frame type="Label" name="TimerLabel">
+      <Anchor relative="$parent"/>
+      <Visible val="false"/>
+      <Text val="{$parent/TimerProxyLabel/@Text}" />
+      <Visible val="true"/>
+      <StateGroup name="ZeroController">
+        <DefaultState val="Zero"/>
+        <State name="Zero">
+          <When type="Property" frame="$parent/ScoreValueDataReference" RealValue="0" />
+          <Action type="SetProperty" frame="$this" Text="0:00" />
+        </State>
+        <State name="NonZero">
+          <When type="Property" frame="$parent/ScoreValueDataReference" Operator="NotEqual" RealValue="0" />
+          <Action type="SetProperty" frame="$this" Text="{$parent/TimerProxyLabel/@Text}" />
+        </State>
+      </StateGroup>
+    </Frame>
+    <Frame type="Label" name="ScoreValueLabel">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
+      <Width val="95" />
+      <Height val="56" />
+      <Style val="Storm_ScoreScreenResultValue" />
+      <Text val="{$parent/PlayerScoreValueLabel/ScoreValueFrame0/Label/@Text}" />
+      <Frame type="Frame" name="TooltipAnchorFrame">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+        <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
+        <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+        <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+        <Tooltip val="Replace Me!" />
+        <TooltipAnchorPosition val="TopRight" />
+        <AcceptsMouse val="false" />
+        <AcceptsMouseTooltip val="true" />
+        <Unclipped val="false" />
+      </Frame>
+    </Frame>
+    <Frame type="Image" name="ColumnSeparator">
+      <Anchor side="Left" relative="$parent/ScoreValueLabel" pos="Min" offset="99" />
+      <Anchor side="Bottom" relative="$parent/ScoreValueLabel" pos="Max" offset="-25" />
+      <Anchor side="Right" relative="$parent/ScoreValueLabel" pos="Max" offset="0" />
+      <Width val="150"/>
+      <RenderPriority val="511" />
+      <Texture val="Assets\Textures\storm_ui_scorescreen_playerbg_horizontalLine.dds" />
+      <TextureType val="NineSlice" />
+      <BlendMode val="Normal" />
+      <Color val="8493ff" />
+      <Rotation val="90" />
+      <AcceptsMouseTooltip val="false" />
+      <AcceptsMouse val="false" />
+    </Frame>
+  </Frame>
+
+  <Frame type="Frame" name="PlayerCustomScoreboardTemplatePersonalValue3">
+    <Anchor side="Left" relative="$parent" pos="Min" offset="-1055"/>
+    <Anchor side="Right" relative="$parent" pos="Max" offset="25"/>
+    <Anchor side="Bottom" relative="$parent" pos="Max" offset="25"/>
+    <Frame type="PlayerHeroNameFrame" name="PlayerHeroNameFrameTemplate">
+      <Anchor side="Top" relative="$parent/PlayerHeroIconFrame" pos="Min" offset="-65"/>
+      <Anchor side="Left" relative="$parent/PlayerHeroIconFrame" pos="Min" offset="115"/>
+      <Anchor side="Right" relative="$parent/PlayerHeroIconFrame" pos="Max" offset="0"/>
+      <Anchor side="Bottom" relative="$parent/PlayerHeroIconFrame" pos="Max" offset="0"/>
+      <Width val="230" />
+      <Height val="22" />
+      <PlayerId val="1" />
+      <Frame type="Label" name="HeroNameLabel">
+        <Anchor relative="$parent" />
+        <Style val="Storm_LeaderHeroNameModified" />
+        <IgnoreParentColor val="true" />
+        <RenderPriority val="#RenderPriorityLevel_2" />
+        <Options val="Ellipsis | TooltipIfTruncated" />
+        <AcceptsMouseTooltip val="false" />
+        <AcceptsMouse val="false" />
+      </Frame>
+    </Frame>
+    <Frame type="PlayerHeroIconFrame" name="PlayerHeroIconFrame">
+      <!-- <Anchor relative="$parent"/> -->
+      <Anchor side="Top" relative="$parent" pos="Min" offset="-120"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="-605"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+      <Width val="70" />
+      <Height val="39.2" />
+      <PlayerId val="{$parent/PlayerHeroNameFrameTemplate/@PlayerId}" />
+      <Frame type="Image" name="HeroIconImage">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-1" />
+        <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+        <Width val="70" />
+        <Height val="39.2" />
+        <IgnoreParentColor val="true" />
+        <AcceptsMouseTooltip val="false" />
+        <AcceptsMouse val="false" />
+        <StateGroup name="HeroState">
+          <DefaultState val="NoHeroFound"/>
+          <State name="NoHeroFound">
+            <!-- <Action type="SetProperty" frame="$this" Tooltip="No Hero Found"/> -->
+            <When type="Property" frame="$this" Text="" />
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/TimeAtFullManaTooltip"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/TimeLT20ManaTooltip"/>
+          </State>
+          <State name="DVa">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_dva.dds"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/DVa100ManaOverride"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/DVaLT20ManaOverride"/>
+          </State>
+          <State name="Chen">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_chen.dds"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/Chen100ManaOverride"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/ChenLT20ManaOverride"/>
+          </State>
+          <State name="Auriel">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_auriel.dds"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/Auriel100ManaOverride"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/AurielLT20ManaOverride"/>
+          </State>
+          <State name="Barbarian">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_femalebarbarian.dds"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/Barbarian100ManaOverride"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/BarbarianLT20ManaOverride"/>
+          </State>
+          <State name="Tinker">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_gazlowe.dds"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/Tinker100ManaOverride"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/TinkerLT20ManaOverride"/>
+          </State>
+          <State name="Hogger">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_hogger.dds"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/Hogger100ManaOverride"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/HoggerLT20ManaOverride"/>
+          </State>
+          <State name="Tracer">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_tracer.dds"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/Ammo100ManaOverride"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/AmmoLT20ManaOverride"/>
+          </State>
+          <State name="Junkrat">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_junkrat.dds"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/Ammo100ManaOverride"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/AmmoLT20ManaOverride"/>
+          </State>
+          <State name="Valeera">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_valeera.dds"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/Energy100ManaOverride"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/EnergyLT20ManaOverride"/>
+          </State>
+          <State name="Medic">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_medic.dds"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/Energy100ManaOverride"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/EnergyLT20ManaOverride"/>
+          </State>
+          <State name="Deathwing">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_deathwing.dds"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/Energy100ManaOverride"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/EnergyLT20ManaOverride"/>
+          </State>
+          <State name="Zarya">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_zarya.dds"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/Energy100ManaOverride"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Hero/EnergyLT20ManaOverride"/>
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="Image" name="ColumnSeparatorVertical">
+      <!-- <Anchor side="Top" relative="$parent/ScoreValueLabel" pos="Min" offset="0" /> -->
+      <Anchor side="Left" relative="$parent/PlayerHeroIconFrame" pos="Min" offset="159" />
+      <Anchor side="Bottom" relative="$parent/PlayerHeroIconFrame" pos="Max" offset="-25" />
+      <Anchor side="Right" relative="$parent/PlayerHeroIconFrame" pos="Max" offset="0" />
+      <Width val="150"/>
+      <RenderPriority val="511" />
+      <Texture val="Assets\Textures\storm_ui_scorescreen_playerbg_horizontalLine.dds" />
+      <TextureType val="NineSlice" />
+      <BlendMode val="Normal" />
+      <Color val="8493ff" />
+      <Rotation val="90" />
+      <AcceptsMouseTooltip val="false" />
+      <AcceptsMouse val="false" />
+    </Frame>
+    <Frame type="DataRefFrame" name="PlayerColourReference">
+      <Anchor relative="$parent"/>
+      <Argument name="GameValue" val="PlayerColor"/>
+      <PlayerId val="{$parent/PlayerHeroNameFrameTemplate/@PlayerId}" />
+      <!-- <PlayerId val="1" /> -->
+    </Frame>
+    <Frame type="DataRefFrame" name="HeroNameDataRef">
+      <Anchor relative="$parent"/>
+      <Argument name="GameValue" val="PlayerHero"/>
+      <PlayerId val="{$parent/PlayerHeroNameFrameTemplate/@PlayerId}" />
+    </Frame>
+    <Frame type="DataRefFrame" name="PlayerNameDataRef">
+      <Anchor relative="$parent"/>
+      <Argument name="GameValue" val="PlayerName"/>
+      <PlayerId val="{$parent/PlayerHeroNameFrameTemplate/@PlayerId}" />
+    </Frame>
+    <Frame type="TextFormatFrame" name="HeroGenericTableScore" template="SpazzoCustomScoreboardTemplates/HeroGenericSharedTableScore3"/>
+    <Frame type="Image" name="GridBackgroundImage">
+      <!-- <Anchor side="Top" relative="$parent/PlayerHeroIconFrame" pos="Min" offset="0" /> -->
+      <Anchor side="Left" relative="$parent" pos="Min" offset="1045" />
+      <Anchor side="Bottom" relative="$parent/PlayerHeroIconFrame" pos="Max" offset="3" />
+      <Anchor side="Right" relative="$parent" pos="Max" offset="-18" />
+      <Width val="1735"/>
+      <Visible val="True" />
+      <Alpha val="170"/>
+      <Height val="65" />
+      <ColorAdjustMode val="Colorize" />
+      <AdjustmentColor val="{$parent/PlayerColourReference/@StringValue}" />
+      <RenderPriority val="3" />
+      <Texture val="@UI/Editor/BorderImage" />
+      <TextureType val="Nineslice" />
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFrameBasicAttacksVsHeroes" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="TimeOnPoint"/>
+        <Handle val="TimeOnPoint"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="45" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/BasicAttacksAgainstHeroesTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFrameBasicAttacksVsNonHeroes" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMostDamageToPlantsBoolean"/>
+        <Handle val="EndOfMatchAwardMostDamageToPlantsBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="145" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/BasicAttacksAgainstNonHeroesTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFrameTimeMounted" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMostSkullsCollectedBoolean"/>
+        <Handle val="EndOfMatchAwardMostSkullsCollectedBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="245" />
+        <Text val="{$parent/TimerLabel/@Text}" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/TimeMountedTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFrameTimeInShrubs" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMostTimePushingBoolean"/>
+        <Handle val="EndOfMatchAwardMostTimePushingBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="345" />
+        <Text val="{$parent/TimerLabel/@Text}" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/TimeInShrubsTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFrameTimeFullMana" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMostDamageDoneToZergBoolean"/>
+        <Handle val="EndOfMatchAwardMostDamageDoneToZergBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="445" />
+        <Text val="{$parent/TimerLabel/@Text}" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/TimeAtFullManaTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFrameTimeLT20PercentMana" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMostImmortalDamageBoolean"/>
+        <Handle val="EndOfMatchAwardMostImmortalDamageBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="545" />
+        <Text val="{$parent/TimerLabel/@Text}" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/TimeLT20ManaTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFrameTimeWithFountainActive" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMostCoinsPaidBoolean"/>
+        <Handle val="EndOfMatchAwardMostCoinsPaidBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="645" />
+        <Text val="{$parent/TimerLabel/@Text}" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/TimeWithFountainTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFrameTimeWithGlobeActive" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMostCurseDamageDoneBoolean"/>
+        <Handle val="EndOfMatchAwardMostCurseDamageDoneBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="745" />
+        <Text val="{$parent/TimerLabel/@Text}" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/TimeWithGlobeTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFrameTimesUsedFountain" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMostDragonShrinesCapturedBoolean"/>
+        <Handle val="EndOfMatchAwardMostDragonShrinesCapturedBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="845" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/FountainsUsedTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFrameTimesHearthed" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMapSpecificBoolean"/>
+        <Handle val="EndOfMatchAwardMapSpecificBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="945" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/HearthsUsedTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFrameManaFromFountain" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMVPBoolean"/>
+        <Handle val="EndOfMatchAwardMVPBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="1045" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/ManaFromFountainTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFrameManaFromGlobes" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMostTimeOnPointBoolean"/>
+        <Handle val="EndOfMatchAwardMostTimeOnPointBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="1145" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/ManaFromGlobesTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFrameManaFromBase" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMostStunsBoolean"/>
+        <Handle val="EndOfMatchAwardMostStunsBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="1245" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/ManaFromBaseTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFramePercentOfLifeLostFromHeroes" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMostRootsBoolean"/>
+        <Handle val="EndOfMatchAwardMostRootsBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="1345" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/PercentLifeLostVsHeroesTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFramePercentOfLifeLostFromNonHeroes" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardGivenToNonwinner"/>
+        <Handle val="EndOfMatchAwardGivenToNonwinner"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="1445" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/PercentLifeLostVsNonHeroesTooltip" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="PlayerScoreContainerFramePercentOfLifeTaken" template="SpazzoCustomScoreboardTemplates/PlayerScoreContainerFrameTemplate">
+      <Anchor relative="$parent"/>
+      <Frame type="DataRefFrame" name="ScoreValueDataReference">
+        <Argument name="score" val="EndOfMatchAwardMostSilencesBoolean"/>
+        <Handle val="EndOfMatchAwardMostSilencesBoolean"/>
+      </Frame>
+      <Frame type="PlayerScoreValueFrame" name="PlayerScoreValueLabel">
+        <Frame type="ScoreValueLabelFrame" name="ScoreValueFrame0">
+          <BestValueGrouping val="Team" />
+          <Animation name="AllyBestValue">
+            <Event event="AllyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam1" style2="Storm_ScoreScreenResultBestValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="AllyNotBestValue">
+            <Event event="AllyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam1" style2="Storm_ScoreScreenResultValueTeam1">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyBestValue">
+            <Event event="EnemyBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultBestValueTeam2" style2="Storm_ScoreScreenResultBestValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+          <Animation name="EnemyNotBestValue">
+            <Event event="EnemyNotBestValue" action="Reset,Play" />
+            <Controller type="Style" end="Pause" frame="$parent/$parent/ScoreValueLabel" style1="Storm_ScoreScreenResultValueTeam2" style2="Storm_ScoreScreenResultValueTeam2">
+              <Key type="Curve" time="0.00" value="1.0" inout="Linear,Auto" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="Label" name="ScoreValueLabel">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="-120" />
+        <Anchor side="Left" relative="$parent/$parent/PlayerHeroIconFrame" pos="Max" offset="1545" />
+        <Frame type="Frame" name="TooltipAnchorFrame">
+          <Tooltip val="@UI/Spazzo/Hero/PercentLifeTakenTooltip" />
+        </Frame>
+      </Frame>
+      <Frame type="Image" name="ColumnSeparator">
+        <Visible val="false"/>
+      </Frame>
+    </Frame>
+  </Frame>
+
 </Desc>

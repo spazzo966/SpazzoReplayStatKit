@@ -1,4 +1,4 @@
-﻿UI/Spazzo/UIVersion=v0.24
+﻿UI/Spazzo/UIVersion=v0.26
 UI/Spazzo/UIWARNING=WARNING
 UI/Spazzo/UIWARNINGTOOLTIP=Game is detected as having ended, statistics may be incorrect, please rewind to after the core is destroyed, but before these images become visible!
 
@@ -32,7 +32,7 @@ UI/Spazzo/StatTableTooltip=Copy Table of Potential Statistics Seen in this Match
 UI/Spazzo/ScoreTable=Score Table
 UI/Spazzo/ScoreTableTooltip=Copy Table of Scores in this Match to Clipboard(for use with Reddit Tables, which uses '|' to separate columns)</n></n>If not pressed in Export Menu, will require each score menu to be reopened prior to pressing.</n></n>Scores are displayed as 6 rows per hero, as many columns as needed
 UI/Spazzo/ScoreTableV2=CCL Table
-UI/Spazzo/ScoreTableV2Tooltip=Copy Table of Scores in this Match to Clipboard(for use with Reddit Tables, which uses '|' to separate columns)</n></n>If not pressed in Export Menu, will require each score menu to be reopened prior to pressing.</n></n>Scores are displayed as 1 column per hero, as many rows as needed(Requested format for CCL posts)</n>Shortcut: Alt+C
+UI/Spazzo/ScoreTableV2Tooltip=Copy Table of Scores in this Match to Clipboard(for use with Reddit Tables, which uses '|' to separate columns)</n></n>If not pressed in Export Menu, will require each score menu to be reopened prior to pressing.</n></n>Scores are displayed as 1 column per hero, as many rows as needed(Requested format for CCL posts)</n>Shortcut: <c val="ffffff">Alt+C</c> while this menu is displayed
 UI/Spazzo/Table/Generic=Generic
 
 UI/Spazzo/NewLine=</n>
@@ -51,7 +51,7 @@ UI/Spazzo/TopBarCustomSetting=Custom Top Bar
 UI/Spazzo/TopBarCustomSettingTooltip=When toggled, enable a replacement Top Bar
 
 UI/Spazzo/TopBarCustomSettingsMenu=Additional Settings
-UI/Spazzo/TopBarCustomSettingsMenuTooltip=Display additional settings
+UI/Spazzo/TopBarCustomSettingsMenuTooltip=Display additional settings relating to the Custom Top Bar and Bottom Panel
 
 UI/Spazzo/AttachmentSettingsAToL=Attachments A-L
 UI/Spazzo/AttachmentSettingsAToLTooltip=Display additional settings relating to Hero Attachments A through L
@@ -93,29 +93,34 @@ UI/Spazzo/PlayerNameSetting=Hero Display Name
 UI/Spazzo/PlayerNameSettingTooltip=When toggled, Display Hero Names instead of Player Names in Healthplates
 
 UI/Spazzo/HealthLabelSetting=Hero Health Label
-UI/Spazzo/HealthLabelSettingTooltip=The percentage of health to display the health of a Heroic unit as text.</n>Shortcut: Alt+Y to reduce value, ALT+U to increase value
+UI/Spazzo/HealthLabelSettingTooltip=The percentage of health to display the health of a Heroic unit as text.</n>Shortcut: <c val="ffffff">Alt+Y</c> to reduce value, <c val="ffffff">Alt+U</c> to increase value
 UI/Spazzo/HealthLabelSettingFormatFrame=Hero HP Label: %hp%%
 
-UI/Spazzo/HealthLabelSliderSettingTooltip=Adjust Slider to select which health percentage to show the health of heroes in their healthplate.</n>Shortcut: Alt+Y to reduce value, ALT+U to increase value
+UI/Spazzo/HealthLabelSliderSettingTooltip=Adjust Slider to select which health percentage to show the health of heroes in their healthplate.</n>Shortcut: <c val="ffffff">Alt+Y</c> to reduce value, <c val="ffffff">Alt+U</c> to increase value
 
-UI/Spazzo/CoreHealthLabelSetting=Core Health Label
-UI/Spazzo/CoreHealthLabelSettingTooltip=When toggled, Display Core Health in Healthplates.</n>Shortcut: Alt+K
+UI/Spazzo/TownLabelSetting=Town Health Label
+UI/Spazzo/TownLabelSettingTooltip=The percentage of health to display the health of a town units(Forts, Keeps, Towers, Walls, Gates, Fountains) as text.</n>Shortcut: <c val="ffffff">Alt+K</c> to disable
+UI/Spazzo/TownLabelSettingFormatFrame=Town HP Label: %hp%%
 
-UI/Spazzo/KeepFortHealthLabelSetting=Town Health Label
-UI/Spazzo/KeepFortHealthLabelSettingTooltip=When toggled, Display Fort, Keep, Tower, Gate, Wall Health in Healthplates.</n>Shortcut: Alt+K
+UI/Spazzo/CoreLabelSetting=Core Health Label
+UI/Spazzo/CoreLabelSettingTooltip=The percentage of health to display the health of the Core as text.</n>Shortcut: <c val="ffffff">Alt+K</c> to disable
+UI/Spazzo/CoreLabelSettingFormatFrame=Core HP Label: %hp%%
 
 UI/Spazzo/UnitStatusGlobalSetting=Healthplates
 UI/Spazzo/UnitStatusGlobalSettingTooltip=When toggled, disable all healthplates & similar UI displays.
 
+UI/Spazzo/Guide=Guide
+UI/Spazzo/GuideTooltip=When toggled, display additional information to the side of this options menu while it is open
+
 UI/Spazzo/CustomUnitSelectionUI=Selection UI
-UI/Spazzo/CustomUnitSelectionUITooltip=Which Unit Selection UI form to use
+UI/Spazzo/CustomUnitSelectionUITooltip=Which unit selection UI standard to use</n>Blizz: The default selected unit UI, located in the bottom middle of the screen and bottom left</n>Custom: A modified unit selected unit UI, where everything is located in the bottom left of the screen</n>Disabled: Disable the selected unit UI entirely
 UI/Spazzo/SelectionUIFormatFrame=Unit UI: %ui%
 UI/Spazzo/SelectionUIFormatFrame/Blizzard=Blizz
 UI/Spazzo/SelectionUIFormatFrame/Custom=Custom
 UI/Spazzo/SelectionUIFormatFrame/Disabled=Disabled
 
 UI/Spazzo/HideAttachmentOnCD=Attachment Display
-UI/Spazzo/HideAttachmentOnCDTooltip=When toggled, hide Ability Attachments when they are on cooldown, and hide Behavior Attachments when not present
+UI/Spazzo/HideAttachmentOnCDTooltip=When toggled, hide Ability Attachments when they are on cooldown, and hide Behavior Attachments when not present</n>Shortcut: <c val="ffffff">Alt+I</c> to quickly disable all hero attachments or return them to their default settings
 
 UI/Spazzo/WhitemaneDesperationPreviewTooltip=When toggled, display Whitemane's Desperate Plea mana cost in her Healthplate
 
@@ -123,11 +128,13 @@ UI/Spazzo/DeathwingChonkerSettingTooltip=When toggled, swap to a more minimal ve
 
 UI/Spazzo/OrpheaTraitSettingTooltip=When toggled, display Orphea's Overwhelming Chaos in her health bar as it is displayed when playing as her
 
-UI/Spazzo/RaynorTraitSettingTooltip=When toggled, display Raynor's Give Em' Some Pepper Count in his health bar as it is displayed when played by him
+UI/Spazzo/RaynorTraitSettingTooltip=When toggled, display Raynor's Give Em' Some Pepper Count in his health bar as it is displayed when playing as him
 
 UI/Spazzo/AbathurTraitSettingTooltip=When toggled, display Abathur's Monstrosity Stack Count in the Monstrosity health bar
 
 UI/Spazzo/AzmodanDemonLieutenantSettingTooltip=When toggled, display Demon Lieutenant's Smite Cooldown in it's health bar
+
+UI/Spazzo/LayoutPulldownTooltip=Set the layout form of the Top Bar</n>Shortcut: <c val="ffffff">Ctrl+L</c> to cycle through available layouts
 
 UI/Spazzo/MedivhPortalPreview=When toggled, display Portal Timer in their healthplate
 UI/Spazzo/MedivhRavenOverride=When toggled, display the Raven healthplate as a standard healthplate instead of as a reduced healthplate
@@ -146,11 +153,12 @@ UI/Spazzo/Chen/KegSmashBreathofFire=Keg Smash+Breath of Fire
 UI/Spazzo/Tychus/MinigunDuration=Minigun Duration
 UI/Spazzo/Falstad/LightningRodDuration=Lightning Rod Duration
 UI/Spazzo/Monk/Allies=Mystic Ally
+UI/Spazzo/Sonya/SmartWrath=Smart Wrath
 
 UI/Spazzo/HeroAttachment/Disabled=Disabled
 
 UI/Spazzo/OpenUIButtonSetting=UI Shortcut
-UI/Spazzo/OpenUIButtonSettingTooltip=When toggled, hide the button to open this UI interface(ALT+L hotkey remains enabled)
+UI/Spazzo/OpenUIButtonSettingTooltip=When toggled, hide the button to open this UI interface.</n>Shortcut to hide\display this interface: <c val="ffffff">Alt+L</c>
 
 UI/Spazzo/WeatherTimerVisibilitySetting=Weather Timer
 UI/Spazzo/WeatherTimerVisibilitySettingTooltip=When toggled, display the time till the next weather event.
@@ -159,31 +167,34 @@ UI/Spazzo/CustomStatsButton=Custom Stats
 UI/Spazzo/CustomStatsButtonTooltip=When toggled, force display statistics & menu features related to custom game logic.
 
 UI/Spazzo/TopBarDisplayNonQuestQuests=Display non-quests
-UI/Spazzo/TopBarDisplayNonQuestQuestsTooltip=When Toggled off, Display non-quest progress as quests, like Uther's Holy Fire stacking damage bonus or Thrall's Frostwolf Resilience.</n>Shortcut: Alt+P
+UI/Spazzo/TopBarDisplayNonQuestQuestsTooltip=When Toggled off, Display non-quest progress as quests, like Uther's Holy Fire stacking damage bonus or Thrall's Frostwolf Resilience.</n>Shortcut: <c val="ffffff">Alt+P</c>
 
 UI/Spazzo/TopBarDisplayTooltips=Display Top Tooltips
-UI/Spazzo/TopBarDisplayTooltipsTooltip=When toggled off, don't display tooltips for abilities & talents in the replacement top bar.</n>Shortcut: Alt+O
+UI/Spazzo/TopBarDisplayTooltipsTooltip=When toggled off, don't display tooltips for abilities & talents in the replacement top bar.</n>Shortcut: <c val="ffffff">Alt+O</c>
 
 UI/Spazzo/BottomBarMirror=Mirror Stats
-UI/Spazzo/BottomBarMirrorTooltip=When untoggled, do not mirror the bottom panel stats.</n>Shortcut: Control+0
+UI/Spazzo/BottomBarMirrorTooltip=When untoggled, do not mirror the bottom panel stats.</n>Shortcut: <c val="ffffff">Control+0</c>
 
 UI/Spazzo/BottomBarMirror2=Mirror Talents
-UI/Spazzo/BottomBarMirror2Tooltip=When untoggled, do not mirror the bottom panel talents.</n>Shortcut: Control+9
+UI/Spazzo/BottomBarMirror2Tooltip=When untoggled, do not mirror the bottom panel talents.</n>Shortcut: <c val="ffffff">Control+9</c>
 
 UI/Spazzo/BottomBarShowActives=Bottom Abilities
-UI/Spazzo/BottomBarShowActivesTooltip=When toggled, display cooldowns in the bottom panel.</n>Shortcut: Control+8
+UI/Spazzo/BottomBarShowActivesTooltip=When toggled, display cooldowns in the bottom panel.</n>Shortcut: <c val="ffffff">Control+8</c>
 
 UI/Spazzo/BottomBarShowQuests=Bottom Quests
-UI/Spazzo/BottomBarShowQuestsTooltip=When toggled, display quests in the bottom panel.</n>Shortcut: Control+8
+UI/Spazzo/BottomBarShowQuestsTooltip=When toggled, display quests in the bottom panel.</n>Shortcut: <c val="ffffff">Control+8</c>
+
+UI/Spazzo/BottomBarTimestampedStatistics=Timestamped Stats
+UI/Spazzo/BottomBarTimestampedStatisticsTooltip=When toggled, enable use of the timestamped statistics</n>Timestamp statistics can be displayed by pressing <c val="ffffff">Alt+1</c>(display the statistics), started with <c val="ffffff">Alt+2</c>, and paused with <c val="ffffff">Alt+3</c></n></n>Refer to the tooltip for the REC or PAUSED text in the timestamped statistics tab for more information</n>Shortcut to disable: <c val="ffffff">Alt+4</c>
 
 UI/Spazzo/BottomPanelDisplayTooltips=Bottom Tooltips
 UI/Spazzo/BottomPanelDisplayTooltipsTooltip=When toggled, do not display tooltips in the bottom panel.
 
 UI/Spazzo/BottomLeftDisplayStatistics=Unit Stats
-UI/Spazzo/BottomLeftDisplayStatisticsTooltip=When Toggled on, Display statistics of the selected unit in the bottom left.</n>Shortcut: Control+7
+UI/Spazzo/BottomLeftDisplayStatisticsTooltip=When Toggled on, Display statistics of the selected unit in the bottom left.</n>Shortcut: <c val="ffffff">Control+7</c>
 
 UI/Spazzo/WideTopBar=Wide Top Bar
-UI/Spazzo/WideTopBarTooltip=Enable a work-in-progress wider version of the Top Bar.</n>Shortcut: Control+L
+UI/Spazzo/WideTopBarTooltip=Enable a work-in-progress wider version of the Top Bar.</n>Shortcut: <c val="ffffff">Control+L</c>
 
 UI/Spazzo/TopBarTalentBorders=Talent Borders
 UI/Spazzo/TopBarTalentBordersTooltip=When toggled off, do not display talent borders in the Top Bar. Quest borders will still be displayed
@@ -205,6 +216,12 @@ UI/Spazzo/TopBarUnitSelectionTooltip=When toggled on, the portrait & border arou
 
 UI/Spazzo/ShowTownTotal=Show Fort Total
 UI/Spazzo/ShowTownTotalTooltip=When toggled on, Fort counter in Top Bar will now display the total potential Forts\Keeps that could be owned by the team.
+
+UI/Spazzo/TopBarUnitBackground=Unit Background
+UI/Spazzo/TopBarUnitBackgroundTooltip=When toggled off, the background behind the Hero in the Top Bar will not be displayed
+
+UI/Spazzo/TopBarHeroes=Display Heroes
+UI/Spazzo/TopBarHeroesTooltip=When toggled off, the  Heroes in the Top Bar will not be displayed
 
 UI/Spazzo/ExportSettings=Export Settings
 UI/Spazzo/ExportSettingsTooltip=Copy the current settings to the Clipboard, used in conjunction with renameDraggedFile.bat and importCustomSettings.bat in the conversion\XportSettings folder. Refer to the readme on the github repository for more information
@@ -236,15 +253,16 @@ UI/Spazzo/Talent/IfHeroicNever=Never Visible(If Heroic)
 UI/Spazzo/Layout/Default=Standard Layout
 UI/Spazzo/Layout/Form1=Spaced Layout
 UI/Spazzo/Layout/Form2=Compact Layout
+UI/Spazzo/Layout/Form3=Minimal Layout
 UI/Spazzo/Layout/Wide=Ultrawide Layout
 
 UI/Spazzo/Baseline/Proxy=When toggled, non-Heroic Talents will cascade to a lower non-Heroic Talent slot if it is free</n>Not compatible with Ultrawide Layout
 UI/Spazzo/Baseline/ProxyShort=Cascading Talents
-UI/Spazzo/Baseline/Tooltips=When toggled, display tooltips for abilities & talents in the Top Bar.</n>Shortcut: Alt+O
+UI/Spazzo/Baseline/Tooltips=When toggled, display tooltips for abilities & talents in the Top Bar.</n>Shortcut: <c val="ffffff">Alt+O</c>
 UI/Spazzo/Baseline/TooltipsShort=Display Tooltips
-UI/Spazzo/Baseline/Vehicle=When toggled, don't display Vehicle Passenger Health in the Top Bar.</n>Shortcut: Alt+R
+UI/Spazzo/Baseline/Vehicle=When toggled, don't display Vehicle Passenger Health in the Top Bar.</n>Shortcut: <c val="ffffff">Alt+R</c>
 UI/Spazzo/Baseline/VehicleShort=Show Passenger HP
-UI/Spazzo/Baseline/Abilities=When toggled, don't display Basic Abilities in the Top Bar.</n>Shortcut: Alt+R
+UI/Spazzo/Baseline/Abilities=When toggled, don't display Basic Abilities in the Top Bar.</n>Shortcut: <c val="ffffff">Alt+R</c>
 UI/Spazzo/Baseline/AbilitiesShort=Show Basic Abilities
 UI/Spazzo/Baseline/HealingFountain=When toggled, display Healing Fountain Cooldown in the Top Bar
 UI/Spazzo/Baseline/HealingFountainShort=Healing Fountain
@@ -365,9 +383,12 @@ UI/Spazzo/Attachment/AurielStormTooltip=Due to technical limitations, Auriel's A
 UI/Spazzo/Attachment/SonyaStormTooltip=Due to technical limitations, Sonya's Ignore Pain cannot function as an attachment if selected
 UI/Spazzo/Attachment/BrightwingSoothingMistPassive=Soothing Mist Passive
 UI/Spazzo/Attachment/DemonHunter3Tooltip=If Acrobat is selected, this will also display Vault charges
+UI/Spazzo/Attachment/ChenBreathOfFireTooltip=While Breath of Fire is available to be cast, display the cast window, and while Keg Smash is on cooldown or able to be cast, display that.
 
 UI/Spazzo/Recording=REC
 UI/Spazzo/Paused=PAUSED
+UI/Spazzo/PausedInfoTooltip=<c val="#Spazzo_Paused">PAUSED</c></n></n><c val="ffffff">Alt+1</c>: Display this tab</n><c val="ffffff">Alt+2</c>: Start a new stat record & unpause the record</n><c val="ffffff">Alt+3</c>: Pause & Unpause the record</n></n>Timestamped Statitsics can be used to grab a snapshot of the scores gained over a period of time - if you press start a new record at 2:45 seconds into a game, and then pause that record 3:45 into the game, then you can press open the timestamp statistics tab to see the stats earned in that period.</n></n>If you press unpause when the statistics are already paused, then the timestamped stats tab display will live display the statistics earned since the last time a new record was started
+UI/Spazzo/RecordingInfoTooltip=<c val="#Spazzo_Recording">RECORDING</c></n></n><c val="ffffff">Alt+1</c>: Display this tab</n><c val="ffffff">Alt+2</c>: Start a new stat record & unpause the record</n><c val="ffffff">Alt+3</c>: Pause & Unpause the record</n></n>Timestamped Statitsics can be used to grab a snapshot of the scores gained over a period of time - if you press start a new record at 2:45 seconds into a game, and then pause that record 3:45 into the game, then you can press open the timestamp statistics tab to see the stats earned in that period.</n></n>If you press unpause when the statistics are already paused, then the timestamped stats tab display will live display the statistics earned since the last time a new record was started
 
 UI/Spazzo/Calculator=<d ref="%scorecurrent% - %scoreprior%" />
 UI/Spazzo/CalculatorDivide=<d ref="[d ref='Effect,ZaryaGravitonSurgeGravityKillsSearchArea,Chance+%score1current%-%score1prior%'/] / [d ref='Effect,ZaryaGravitonSurgeGravityKillsSearchArea,Chance+%score2current%-%score2prior%'/] * 100" player="0" />
@@ -379,28 +400,38 @@ UI/Spazzo/GlobalGameTimer=base: <d ref="$GalaxyVar:libGame_gv_gameTimer$"/></n>3
 
 UI/Spazzo/NexusHunterTrackedUnitCount=<d ref="$RunAccumulators:NexusHunterBloodRageYourPainMyGainAccumulatorTrackedHeroCount$/5" precision="1"/>
 
+
+UI/Spazzo/SpecificHero=Hero Specific Stats
+UI/Spazzo/SpecificHeroTooltip=Hero-specific statistics, things split up ability-by-ability
+UI/Spazzo/GenericStats=Generic Stats
+UI/Spazzo/GenericStatsTooltip=Generic statistics
+UI/Spazzo/TargetStats=Target-based Stats
+UI/Spazzo/TargetStatsTooltip=Target-based statistics, statistics that show things like "Times thrown each ally with Into the Fray"
+UI/Spazzo/1=1
+UI/Spazzo/2=2
+UI/Spazzo/3=3
+UI/Spazzo/4=4
+UI/Spazzo/SpecificHeroDamageButtonTooltip=Hero-specific tab 1
+UI/Spazzo/SpecificHeroHealingButtonTooltip=Hero-specific tab 2
+UI/Spazzo/SpecificHeroAccuracyButtonTooltip=Hero-specific tab 3
+UI/Spazzo/GenericHeroButtonTooltip=Generic tab 1, generally relating to things your hero has done
+UI/Spazzo/GenericHero2ButtonTooltip=Generic tab 2, generally relating to things happening to your Hero Unit
+UI/Spazzo/GenericHero3ButtonTooltip=Generic tab 3, generally relating to how often or how long things have happened
+UI/Spazzo/DamageToButton=Damage
+UI/Spazzo/HealingToButton=Healing
+UI/Spazzo/DamageToButtonTooltip=Damage and other statistics to players
+UI/Spazzo/HealingToButtonTooltip=Healing and other statistics to players
+UI/Spazzo/OptionsButtonPrimary=Options
+UI/Spazzo/OptionsButtonPrimaryTooltip=Adjust options for Observer Interface
+UI/Spazzo/OptionsButton=Options
+UI/Spazzo/ExportButton=Export
 UI/Spazzo/ExportButtonTooltip=Adjust options for Observer Interface
-UI/Spazzo/ExportButton=Options
+UI/Spazzo/TrueExportButtonTooltip=Export Statistics, requires Custom Replay Logic
+
 UI/Spazzo/AITeamStatsButtonTooltip=Statistics relating to AI and overall team performance
 UI/Spazzo/AITeamStatsButton=Team Statistics
 UI/Spazzo/BlizzardStatsButtonTooltip=Statistics implemented by Blizzard, some being battleground-specific.
 UI/Spazzo/BlizzardStatsButton=Blizzard-made<n/>Stats
-UI/Spazzo/SpecificHeroHealingButtonTooltip=Hero-specific secondary statistics - usually healing, shielding, leech, but can also include some damage statistics
-UI/Spazzo/SpecificHeroHealingButton=Hero Specific<n/>Secondary Stats
-UI/Spazzo/SpecificHeroDamageButtonTooltip=Hero-specific primary statistics - generally damage
-UI/Spazzo/SpecificHeroDamageButton=Hero Specific<n/>Primary Stats
-UI/Spazzo/SpecificHeroAccuracyButtonTooltip=Hero-specific tertiary statistics - generally number of casts, ability accuracy
-UI/Spazzo/SpecificHeroAccuracyButton=Hero Specific<n/>Tertiary Stats
-UI/Spazzo/GenericHeroButtonTooltip=Generic Hero Statistics
-UI/Spazzo/GenericHeroButton=Generic Hero<n/>Stats
-UI/Spazzo/GenericHero2ButtonTooltip=Generic Hero Statistics, relating to things happening to your Hero Unit
-UI/Spazzo/GenericHero2Button=Generic Hero<n/>Stats 2
-UI/Spazzo/DamageToButtonTooltip=Damage and other statistics to players
-UI/Spazzo/DamageToButton=Generic Damage<n/>Stats
-UI/Spazzo/HealingToButtonTooltip=Healing and other statistics to players
-UI/Spazzo/HealingToButton=Generic Healing<n/>Stats
-UI/Spazzo/TrueExportButtonTooltip=Export Statistics, requires Custom Replay Logic
-UI/Spazzo/TrueExportButton=Export
 
 UI/Spazzo/Hero/ArmorPositive=Armor +
 UI/Spazzo/Hero/ArmorPositiveTooltip=Damage prevented by Armor to Hero Unit
@@ -471,12 +502,50 @@ UI/Spazzo/Hero/ShieldsTaken=Shielded
 UI/Spazzo/Hero/ShieldsTakenTooltip=Damage prevented to Hero Unit with Shields, Protected, Evasion
 UI/Spazzo/Hero/DamageBlinded=Blinded
 UI/Spazzo/Hero/DamageBlindedTooltip=Damage prevented by Hero Unit with Blinds, Defense Matrix
-UI/Spazzo/Hero/DamageLeeched=Leeched
-UI/Spazzo/Hero/DamageLeechedTooltip=Amount healed to Hero Unit by Leech
+UI/Spazzo/Hero/Damageleeched=leeched
+UI/Spazzo/Hero/DamageleechedTooltip=Amount healed to Hero Unit by Leech
 UI/Spazzo/Hero/PhysDamageTaken=Phys Hurt
 UI/Spazzo/Hero/PhysDamageTakenTooltip=Physical Damage taken to Hero Unit
 UI/Spazzo/Hero/SpellDamageTaken=Spell Hurt
 UI/Spazzo/Hero/SpellDamageTakenTooltip=Spell Damage taken to Hero Unit
+
+UI/Spazzo/Hero/BasicAttacksAgainstHeroes=Hero ATKS
+UI/Spazzo/Hero/BasicAttacksAgainstHeroesTooltip=Basic Attacks that connected against Enemy Heroes
+UI/Spazzo/Hero/BasicAttacksAgainstNonHeroes=Other ATKS
+UI/Spazzo/Hero/BasicAttacksAgainstNonHeroesTooltip=Basic Attacks that connected against non-Heroes
+UI/Spazzo/Hero/TimeMounted=Mounted
+UI/Spazzo/Hero/TimeMountedTooltip=Time Spent with Mount active
+UI/Spazzo/Hero/TimeInShrubs=Shrub
+UI/Spazzo/Hero/TimeInShrubsTooltip=Time Spent in Shrubs & Stationary
+UI/Spazzo/Hero/TimeAtFullMana=100% Mana
+UI/Spazzo/Hero/TimeAtFullManaTooltip=Time Spent at 100% Mana
+UI/Spazzo/Hero/TimeLT20Mana=LE 20% Mana
+UI/Spazzo/Hero/TimeLT20ManaTooltip=Time Spent at 20% or less Mana
+UI/Spazzo/Hero/TimeWithFountain=Well Time
+UI/Spazzo/Hero/TimeWithFountainTooltip=Time Spent with Healing Fountain active
+UI/Spazzo/Hero/TimeWithGlobe=Globe Time
+UI/Spazzo/Hero/TimeWithGlobeTooltip=Time Spent with Regeneration Globe active
+UI/Spazzo/Hero/FountainsUsed=Wells
+UI/Spazzo/Hero/FountainsUsedTooltip=Times used the Healing Fountain
+UI/Spazzo/Hero/HearthsUsed=Hearths
+UI/Spazzo/Hero/HearthsUsedTooltip=Times completed a Hearthstone Cast(NONFUNCTIONAL)
+UI/Spazzo/Hero/ManaFromFountain=Mana(F)
+UI/Spazzo/Hero/ManaFromFountainTooltip=Mana restored from Healing Fountains
+UI/Spazzo/Hero/ManaFromGlobes=Mana(G)
+UI/Spazzo/Hero/ManaFromGlobesTooltip=Mana restored from Regeneration Globes
+UI/Spazzo/Hero/ManaFromBase=Mana(B)
+UI/Spazzo/Hero/ManaFromBaseTooltip=Mana restored from Hearthing, Hall of Storms
+UI/Spazzo/Hero/PercentLifeLostVsHeroes=% Hurt(H)
+UI/Spazzo/Hero/PercentLifeLostVsHeroesTooltip=Percentage of Life Lost from damage dealt by enemy Heroes
+UI/Spazzo/Hero/PercentLifeLostVsNonHeroes=% Hurt(NH)
+UI/Spazzo/Hero/PercentLifeLostVsNonHeroesTooltip=Percentage of Life Lost from damage dealt by non-Heroes
+UI/Spazzo/Hero/PercentLifeTaken=% Taken
+UI/Spazzo/Hero/PercentLifeTakenTooltip=Percentage of Life Taken from dealing damage to enemy Heroes
+
+UI/Spazzo/Hero/Ammo100ManaOverride=Time Spent at 100% Ammo
+UI/Spazzo/Hero/AmmoLT20ManaOverride=Time Spent at 20% or less Ammo
+UI/Spazzo/Hero/Energy100ManaOverride=Time Spent at 100% Energy
+UI/Spazzo/Hero/EnergyLT20ManaOverride=Time Spent at 20% or less Energy
 
 UI/Spazzo/Hero/RollingDmgDone=Rolling 1
 UI/Spazzo/Hero/RollingDmgDoneTooltip=Hero Damage over the past 180 seconds
@@ -1518,6 +1587,8 @@ UI/Spazzo/DVa/Order/HealingToPlayer7=Self-Destruct Charge caused by Player 7
 UI/Spazzo/DVa/Order/HealingToPlayer8=Self-Destruct Charge caused by Player 8
 UI/Spazzo/DVa/Order/HealingToPlayer9=Self-Destruct Charge caused by Player 9
 UI/Spazzo/DVa/Order/HealingToPlayer10=Self-Destruct Charge caused by Player 10
+UI/Spazzo/Hero/DVaLT20ManaOverride=Time In Pilot Form
+UI/Spazzo/Hero/DVa100ManaOverride=Time In Mech Form
 Spazzo/Button/Tooltip/DVaMechBoosters=<s val="StandardTooltipHeader">Boosters</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Effect,DVaBoostersApplyCooldown,Cost[0].CooldownTimeUse" player="0"/> seconds</s><n/>Increase D.Va's Movement Speed by <c val="#TooltipNumbers"><d ref="Behavior,DVaBoostersMoveSpeedActive,Modification.MoveSpeedMaximum/Unit,HeroDVaMech,Speed-1*100" player="%playernum%"/>%</c> for <c val="#TooltipNumbers"><d ref="Behavior,DVaBoostersActive,Duration" precision="2" player="%playernum%"/></c> seconds. Enemies that are hit take <c val="#TooltipNumbers"><d ref="Effect,DVaBoostersImpactDamage,Amount" player="%playernum%"/></c> damage and are knocked away. <n/><n/>D.Va cannot be Slowed while Boosters are active, and each enemy can only be hit once per use.
 Spazzo/Button/Tooltip/DVaMechDefenseMatrix=<s val="StandardTooltipHeader">Defense Matrix</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Effect,DVaMechDefenseMatrixApplyCooldown,Cost[0].CooldownTimeUse" player="0"/> seconds</s><n/>Project a defensive field in the target direction for <c val="#TooltipNumbers"><d ref="Behavior,DVaMechDefenseMatrixChannelling,Duration" player="0"/></c> seconds, reducing the damage dealt by enemy Heroes inside it by <c val="#TooltipNumbers"><d ref="100-(Behavior,DVaMechDefenseMatrixDebuff,DamageResponse.ModifyFraction*100)" player="%playernum%"/>%</c>.<n/><n/>Activate again to change the angle of projection.<n/><n/>Damage dealt to the Mech from enemies within Defense Matrix still grants the same amount of Self-Destruct Charge.
 Spazzo/Button/Tooltip/DVaMechSelfDestruct=<s val="StandardTooltipHeader">Self Destruct</s><n/>Eject from the Mech, setting it to self-destruct after <c val="#TooltipNumbers"><d ref="Behavior,DVaMechSelfDestructMechDetonationCountdown,Duration" player="0"/></c> seconds. Deals <c val="#TooltipNumbers"><d ref="Effect,DVaMechSelfDestructDetonationSearchDamage,Amount+Accumulator,DVaSelfDestructDistanceAccumulator,MinAccumulation" player="%playernum%"/></c> to <c val="#TooltipNumbers"><d ref="Effect,DVaMechSelfDestructDetonationSearchDamage,Amount" player="%playernum%"/></c> damage in a large area, depending on distance from center. Deals <c val="#TooltipNumbers"><d ref="Effect,DVaMechSelfDestructDetonationSearchDamage,AttributeFactor[Structure]*(-100)" player="%playernum%"/>%</c> damage against Structures.</n></n><c val="FF8000">Gain <c val="#TooltipNumbers">1%</c> Charge for every <c val="#TooltipNumbers">2</c> seconds spent Basic Attacking, and <c val="#TooltipNumbers">25%</c> Charge per <c val="#TooltipNumbers">100%</c> of Mech Health lost.</c><n/><n/>Once the Mech has detonated, Call Mech's cooldown is reset.
@@ -1531,51 +1602,52 @@ Spazzo/Button/Tooltip/DVaPilotBigShot=<s val="StandardTooltipHeader">Big Shot</s
 UI/Spazzo/Rehgar/BaselineOne=Amount healed with Chain Heal to Allied Heroes
 UI/Spazzo/Rehgar/BaselineTwo=Amount healed with Chain Heal to Self
 UI/Spazzo/Rehgar/BaselineThree=Amount healed to non-Heroes
-UI/Spazzo/Rehgar/TalentOne=Leech from by Electric Charge
-UI/Spazzo/Rehgar/TalentFour=Mana restored with Stormcaller, Feral Heart, Amount healed with Healing Totem
-UI/Spazzo/Rehgar/TalentSeven=Unused
-UI/Spazzo/Rehgar/TalentTen=Amount healed with Ancestral Healing, Leech from Bloodlust
-UI/Spazzo/Rehgar/TalentThirteen=Healing from Earthliving Enchant, Shielding from Earth Shield
-UI/Spazzo/Rehgar/TalentSixteen=Amount healed with Hunger of the Wolf
-UI/Spazzo/Rehgar/TalentTwenty=Amount healed with Farseer's Blessing, Amount prevented with Storm Shield
-UI/Spazzo/Rehgar/SupportEleven=Unused
-UI/Spazzo/Rehgar/SupportTwelve=Unused
-UI/SpazzoDamage/Rehgar/ScoreOne=Basic Attack Damage to Heroes
-UI/SpazzoDamage/Rehgar/ScoreTwo=Basic Attack Damage to non-Heroes
-UI/SpazzoDamage/Rehgar/ScoreThree=Lightning Shield Damage to Heroes
-UI/SpazzoDamage/Rehgar/ScoreFour=Lightning Shield Damage to non-Heroes
-UI/SpazzoDamage/Rehgar/ScoreFive=Ghost Wolf Damage to Heroes
-UI/SpazzoDamage/Rehgar/ScoreSix=Ghost Wolf Damage to non-Heroes
-UI/SpazzoDamage/Rehgar/ScoreSeven=Hunger of the Wolf Damage
-UI/SpazzoDamage/Rehgar/ScoreEight=Unused
-UI/SpazzoDamage/Rehgar/ScoreNine=Unused
+UI/Spazzo/Rehgar/TalentOne=Mana restored with Lightning Shield
+UI/Spazzo/Rehgar/TalentFour=Amount leeched with Electric Charge to Allied Heroes, Healing Totem, Earthliving Enchant healing to Allied Heroes
+UI/Spazzo/Rehgar/TalentSeven=Amount leeched with Electric Charge, Healing Totem, Earthliving Enchant to Self
+UI/Spazzo/Rehgar/TalentTen=Mana restored with Blood and Thunder, Amount healed with Purification to Allied Heroes
+UI/Spazzo/Rehgar/TalentThirteen=Amount healed with Ancestral Healing, Leech from Bloodlust
+UI/Spazzo/Rehgar/TalentSixteen=Damage prevented to Allied Heroes with Earth Shields, Amount healed with Wellspring to Allied Heroes
+UI/Spazzo/Rehgar/TalentTwenty=Damage prevented to Self with Earth Shields, Amount healed with Wellspring to Self
+UI/Spazzo/Rehgar/SupportEleven=Damage prevented to Allied Heroes with Elemental Conduit, Amount healed to the primary target with Farseer's Blessing's Second Activation
+UI/Spazzo/Rehgar/SupportTwelve=Damage prevented to Self with Elemental Conduit, Amount healed with Farseer's Blessing's Area Heal
+UI/SpazzoDamage/Rehgar/ScoreOne=Standard Form Basic Attack Damage to Heroes
+UI/SpazzoDamage/Rehgar/ScoreTwo=Standard Form Basic Attack Damage to non-Heroes
+UI/SpazzoDamage/Rehgar/ScoreThree=Ghost Wolf Basic Attack Damage to Heroes
+UI/SpazzoDamage/Rehgar/ScoreFour=Ghost Wolf Basic Attack Damage to non-Heroes
+UI/SpazzoDamage/Rehgar/ScoreFive=Lightning Shield Damage to Heroes
+UI/SpazzoDamage/Rehgar/ScoreSix=Lightning Shield Damage to non-Heroes
+UI/SpazzoDamage/Rehgar/ScoreSeven=Purification Damage to Shields
+UI/SpazzoDamage/Rehgar/ScoreEight=Hunger of the Wolf Damage, Earthgrasp Totem Damage to Heroes
+UI/SpazzoDamage/Rehgar/ScoreNine=Hunger of the Wolf Healing, Earthgrasp Totem Damage to non-Heroes
 UI/SpazzoDamage/Rehgar/ScoreTen=Unused
 UI/SpazzoDamage/Rehgar/ScoreEleven=Unused
 UI/SpazzoDamage/Rehgar/ScoreTwelve=Unused
 UI/SpazzoAccuracy/Rehgar/ScoreOne=Chain Heal Casts
 UI/SpazzoAccuracy/Rehgar/ScoreTwo=Lightning Shield Casts
 UI/SpazzoAccuracy/Rehgar/ScoreThree=Earthbind Totem Casts
-UI/SpazzoAccuracy/Rehgar/ScoreFour=Colossal Totem Casts
+UI/SpazzoAccuracy/Rehgar/ScoreFour=Purge Casts
 UI/SpazzoAccuracy/Rehgar/ScoreFive=Healing Totem Casts
-UI/SpazzoAccuracy/Rehgar/ScoreSix=Cleanse Casts
+UI/SpazzoAccuracy/Rehgar/ScoreSix=Colossal Totem Casts
 UI/SpazzoAccuracy/Rehgar/ScoreSeven=Ancestral Healing, Bloodlust Casts
-UI/SpazzoAccuracy/Rehgar/ScoreEight=Rewind, Storm Shield Casts
-UI/SpazzoAccuracy/Rehgar/ScoreNine=Unused
-UI/SpazzoAccuracy/Rehgar/ScoreTen=Unused
+UI/SpazzoAccuracy/Rehgar/ScoreEight=Heroes healed with Ancestral Healing
+UI/SpazzoAccuracy/Rehgar/ScoreNine=Elemental Conduit Casts, Heroes Healed with Farseer's Blessing Second Activation
+UI/SpazzoAccuracy/Rehgar/ScoreTen=Heroes Healed with Farseer's Blessing Area Heal
 UI/SpazzoAccuracy/Rehgar/ScoreEleven=Unused
 UI/SpazzoAccuracy/Rehgar/ScoreTwelve=Unused
 Spazzo/Button/Tooltip/RehgarChainHeal=<s val="StandardTooltipHeader">Chain Heal</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,RehgarChainHeal,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,RehgarChainHeal,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Heal an ally with a wave of healing for <c val="#TooltipNumbers"><d ref="Effect,RehgarChainHealPrimaryHeal,RechargeVitalRate" player="%playernum%"/></c> Health. The wave then bounces <c val="#TooltipNumbers">2</c> times to nearby allies within <c val="#TooltipNumbers"><d ref="Effect,RehgarChainHeal1SearchForNewTarget,AreaArray[0].Radius" player="%playernum%"/></c> range, restoring <c val="#TooltipNumbers"><d ref="Effect,RehgarChainHealSecondaryHeal,RechargeVitalRate" player="%playernum%"/></c> Health to them.
 Spazzo/Button/Tooltip/RehgarLightningShield=<s val="StandardTooltipHeader">Lightning Shield</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,RehgarLightningShield,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,RehgarLightningShield,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Imbue an ally with lightning dealing <c val="#TooltipNumbers"><d ref="Effect,RehgarLightningShieldDamage,Amount/Behavior,RehgarLightningShieldBuff,Period" player="%playernum%"/></c> damage a second to nearby enemies. Lasts <c val="#TooltipNumbers"><d ref="Behavior,RehgarLightningShieldBuff,Duration" player="0"/></c> seconds.
 Spazzo/Button/Tooltip/RehgarEarthbindTotem=<s val="StandardTooltipHeader">Earthbind Totem</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,RehgarEarthbindTotem,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,RehgarEarthbindTotem,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Create a totem that Slows nearby enemies by <c val="#TooltipNumbers"><d ref="-100*Behavior,RehgarEarthbindTotemSlow,Modification.UnifiedMoveSpeedFactor"/>%</c>. The totem has <c val="#TooltipNumbers"><d ref="Unit,RehgarEarthbindTotem,LifeMax" player="%playernum%"/></c> Health and lasts for <c val="#TooltipNumbers"><d ref="Behavior,RehgarEarthbindTotemTimedLife,Duration" player="0"/></c> seconds.
 Spazzo/Button/Tooltip/RehgarGhostWolf=<s val="StandardTooltipHeader">Ghost Wolf</s><n/><s val="StandardTooltipDetails">Cooldown: 4 seconds</s><n/>Instead of using a mount, Rehgar transforms into a Ghost Wolf with <c val="#TooltipNumbers"><d ref="100*Behavior,RehgarGhostWolfBuff,Modification.UnifiedMoveSpeedFactor" player="0"/>%</c> increased Movement Speed. Basic Attacks in Ghost Wolf form cause him to lunge at his target and deal <c val="#TooltipNumbers"><d ref="Effect,RehgarWeaponDamage,MultiplicativeModifierArray[0].Modifier*100" player="0" precision="2"/>%</c> bonus damage. Dealing damage, using Abilities, and channeling cancels Ghost Wolf form.
+Spazzo/Button/Tooltip/RehgarPurge=<s val="StandardTooltipHeader">Purge</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,RehgarPurge,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>When used on an allied Hero, make them Unstoppable for <c val="#TooltipNumbers"><d ref="Behavior,RehgarPurgeBuff,Duration"precision="1"/></c> seconds. When used on an enemy Hero, Slow them by <c val="#TooltipNumbers"><d ref="-100*Behavior,RehgarPurgeSlow,Modification.UnifiedMoveSpeedFactor*Behavior,RehgarPurgeSlow,MaxStackCount"/>%</c>, decaying over <c val="#TooltipNumbers"><d ref="Behavior,RehgarPurgeSlow,Duration"precision="3"/></c> seconds.<n/><n/>Cannot be cast on yourself.
 
 UI/Spazzo/Monk/BaselineOne=Amount healed with Breath of Heaven to Self
 UI/Spazzo/Monk/BaselineTwo=Amount healed with Breath of Heaven to Allied Heroes
 UI/Spazzo/Monk/BaselineThree=Amount healed to Self with Transcendence, Mana restored with Insight
 UI/Spazzo/Monk/TalentOne=Amount healed with Spirit Ally to Self
 UI/Spazzo/Monk/TalentFour=Amount healed with Spirit Ally to Allied Heroes
-UI/Spazzo/Monk/TalentSeven=Amount healed with Divine Palm to Self
-UI/Spazzo/Monk/TalentTen=Amount healed with Divine Palm to Allied Heroes
+UI/Spazzo/Monk/TalentSeven=Amount healed\prevented with Divine Palm to Self
+UI/Spazzo/Monk/TalentTen=Amount healed\prevented with Divine Palm to Allied Heroes
 UI/Spazzo/Monk/TalentThirteen=Amount healed with Echo of Heaven to Self
 UI/Spazzo/Monk/TalentSixteen=Amount healed with Echo of Heaven to Allied Heroes
 UI/Spazzo/Monk/TalentTwenty=non-Heroic Damage prevented with Storm Shield
@@ -1650,13 +1722,13 @@ Spazzo/Button/Tooltip/TracerBlink=<s val="StandardTooltipHeader">Blink</s><n/><s
 Spazzo/Button/Tooltip/TracerMelee=<s val="StandardTooltipHeader">Melee</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,TracerMelee,Cost.Charge.TimeUse" player="0"/> seconds</s><n/>Deal <c val="#TooltipNumbers"><d ref="Effect,TracerMeleeDamage,Amount" player="%playernum%"/></c> damage to a nearby enemy, prioritizing Heroes. Gain <c val="#TooltipNumbers"><d ref="-Effect,TracerMeleeApplyPulseBombCharges,Cost[0].ChargeCountUse"/>%</c> Pulse Bomb charge when using Melee against an enemy, and <c val="#TooltipNumbers"><d ref="-Effect,TracerMeleeApplyPulseBombChargesHero,Cost[0].ChargeCountUse"/>%</c> against Heroes.
 Spazzo/Button/Tooltip/TracerRecall=<s val="StandardTooltipHeader">Recall</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,TracerRecall,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>After <c val="#TooltipNumbers"><d ref="Behavior,TracerRecallActive,Duration"precision="2" player="%playernum%"/></c> seconds, Tracer returns to the position she was at <c val="#TooltipNumbers">2</c> seconds prior to casting, refilling her ammo, and removing all negative status effects from herself.
 
-UI/Spazzo/Medivh/BaselineOne=Shielding to Self with Force of Will
-UI/Spazzo/Medivh/BaselineTwo=Healing to Self with Force of Will
-UI/Spazzo/Medivh/BaselineThree=Mana restored from hitting enemy Heroes with Arcane Rift
-UI/Spazzo/Medivh/TalentOne=Shielding to Allied Heroes with Force of Will
-UI/Spazzo/Medivh/TalentFour=Healing to Allied Heroes with Force of Will
-UI/Spazzo/Medivh/TalentSeven=Leech from Mystic Assault
-UI/Spazzo/Medivh/TalentTen=Unused
+UI/Spazzo/Medivh/BaselineOne=Time completed The Master's Touch
+UI/Spazzo/Medivh/BaselineTwo=Shielding to Self with Force of Will
+UI/Spazzo/Medivh/BaselineThree=Healing to Self with Force of Will
+UI/Spazzo/Medivh/TalentOne=Mana restored from hitting enemy Heroes with Arcane Rift
+UI/Spazzo/Medivh/TalentFour=Shielding to Allied Heroes with Force of Will
+UI/Spazzo/Medivh/TalentSeven=Healing to Allied Heroes with Force of Will
+UI/Spazzo/Medivh/TalentTen=Leech from Mystic Assault
 UI/Spazzo/Medivh/TalentThirteen=Shielding with Circle of Protection
 UI/Spazzo/Medivh/TalentSixteen=Healing with Circle of Protection
 UI/Spazzo/Medivh/TalentTwenty=Mana restored with Arcane Brilliance
@@ -2141,11 +2213,11 @@ UI/Spazzo/Anduin/SupportFifteen/One=Unused
 UI/Spazzo/Anduin/SupportFifteen/Two=Unused
 UI/Spazzo/Anduin/SupportFifteen/Three=Chastise Casts after selecting Censure
 UI/Spazzo/Anduin/SupportFifteen/Four=Varian's Legacy Damage to non-Heroes
-UI/Spazzo/Anduin/SupportSixteen=Varian's Legacy Amount Leeched
+UI/Spazzo/Anduin/SupportSixteen=Varian's Legacy Amount leeched
 UI/Spazzo/Anduin/SupportSixteen/One=Unused
 UI/Spazzo/Anduin/SupportSixteen/Two=Unused
 UI/Spazzo/Anduin/SupportSixteen/Three=Unused
-UI/Spazzo/Anduin/SupportSixteen/Four=Varian's Legacy Amount Leeched
+UI/Spazzo/Anduin/SupportSixteen/Four=Varian's Legacy Amount leeched
 UI/SpazzoAccuracy/Anduin/AccuracyOne=Flash Heal Casts
 UI/SpazzoAccuracy/Anduin/AccuracyTwo=Divine Star Casts
 UI/SpazzoAccuracy/Anduin/AccuracyThree=Chastise Casts
@@ -2344,6 +2416,8 @@ UI/Spazzo/Auriel/Chaos/DamageToPlayer8=Hope Gained from Player 8
 UI/Spazzo/Auriel/Chaos/DamageToPlayer9=Hope Gained from Player 9
 UI/Spazzo/Auriel/Chaos/DamageToPlayer10=Hope Gained from Player 10
 UI/Spazzo/Auriel/DamageTo=Hope Gained from %player%(%hero%)
+UI/Spazzo/Hero/Auriel100ManaOverride=Time Spent at 100% Hope
+UI/Spazzo/Hero/AurielLT20ManaOverride=Time Spent at 20% or less Hope
 Spazzo/Button/Tooltip/AurielSacredSweep=<s val="StandardTooltipHeader">Sacred Sweep</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,AurielSacredSweep,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Sweep the area with sacred power, dealing <c val="#TooltipNumbers"><d ref="Effect,AurielSacredSweepHeroDamage,Amount" player="%playernum%"/></c> damage to enemies and an additional <c val="#TooltipNumbers"><d ref="Effect,AurielSacredSweepHeroCenterDamage,Amount" player="%playernum%"/></c> damage to enemies caught in the center.
 Spazzo/Button/Tooltip/AurielRayOfHeaven=<s val="StandardTooltipHeader">Ray of Heaven</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,AurielRayOfHeaven,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Consume Auriel's stored energy and heal allied Heroes in the area for the amount of energy consumed.
 Spazzo/Button/Tooltip/AurielDetainmentStrike=<s val="StandardTooltipHeader">Detainment Strike</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,AurielDetainmentStrike,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Deal <c val="#TooltipNumbers"><d ref="Effect,AurielDetainmentStrikeInitialHeroDamage,Amount" player="%playernum%"/></c> damage to the first enemy Hero hit and knock them back. If they collide with terrain, they are also stunned for <c val="#TooltipNumbers"><d ref="Behavior,AurielDetainmentStrikeStun,Duration" precision="2" player="%playernum%"/></c> seconds and take an additional <c val="#TooltipNumbers"><d ref="Effect,AurielDetainmentStrikeStunHeroDamage,Amount" player="%playernum%"/></c> damage.
@@ -2500,16 +2574,16 @@ UI/SpazzoAccuracy/Firebat/AccuracyEleven=Times healed by Ignited Oil Spill
 UI/SpazzoAccuracy/Firebat/AccuracyTwelve=Times Jet Propulsion impacted
 UI/SpazzoAccuracy/Firebat/AccuracyThirteen=Heroes hit with Jet Propulsion
 UI/SpazzoAccuracy/Firebat/AccuracyFourteen=Heroes hit with Pyromania
-UI/Spazzo/Firebat/Order/DamageToPlayer1=Flamethrower Damage from Player 1
-UI/Spazzo/Firebat/Order/DamageToPlayer2=Flamethrower Damage from Player 2
-UI/Spazzo/Firebat/Order/DamageToPlayer3=Flamethrower Damage from Player 3
-UI/Spazzo/Firebat/Order/DamageToPlayer4=Flamethrower Damage from Player 4
-UI/Spazzo/Firebat/Order/DamageToPlayer5=Flamethrower Damage from Player 5
-UI/Spazzo/Firebat/Chaos/DamageToPlayer6=Flamethrower Damage from Player 6
-UI/Spazzo/Firebat/Chaos/DamageToPlayer7=Flamethrower Damage from Player 7
-UI/Spazzo/Firebat/Chaos/DamageToPlayer8=Flamethrower Damage from Player 8
-UI/Spazzo/Firebat/Chaos/DamageToPlayer9=Flamethrower Damage from Player 9
-UI/Spazzo/Firebat/Chaos/DamageToPlayer10=Flamethrower Damage from Player 10
+UI/Spazzo/Firebat/Order/DamageToPlayer1=Bunker Flamethrower Damage from Player 1
+UI/Spazzo/Firebat/Order/DamageToPlayer2=Bunker Flamethrower Damage from Player 2
+UI/Spazzo/Firebat/Order/DamageToPlayer3=Bunker Flamethrower Damage from Player 3
+UI/Spazzo/Firebat/Order/DamageToPlayer4=Bunker Flamethrower Damage from Player 4
+UI/Spazzo/Firebat/Order/DamageToPlayer5=Bunker Flamethrower Damage from Player 5
+UI/Spazzo/Firebat/Chaos/DamageToPlayer6=Bunker Flamethrower Damage from Player 6
+UI/Spazzo/Firebat/Chaos/DamageToPlayer7=Bunker Flamethrower Damage from Player 7
+UI/Spazzo/Firebat/Chaos/DamageToPlayer8=Bunker Flamethrower Damage from Player 8
+UI/Spazzo/Firebat/Chaos/DamageToPlayer9=Bunker Flamethrower Damage from Player 9
+UI/Spazzo/Firebat/Chaos/DamageToPlayer10=Bunker Flamethrower Damage from Player 10
 Spazzo/Button/Tooltip/FirebatFlameStream=<s val="StandardTooltipHeader">Flame Stream</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,FirebatFlameStream,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,FirebatFlameStream,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Fire two streams that deal <c val="#TooltipNumbers"><d ref="Effect,FirebatFlameStreamDamage,Amount" player="%playernum%"/></c> damage to enemies hit, and an additional <c val="#TooltipNumbers"><d ref="Effect,FirebatFlameStreamCrossfireDamage,Amount" player="%playernum%"/></c> damage to enemies hit by both streams. Flame Stream Ignites Oil Spills it comes in contact with.
 Spazzo/Button/Tooltip/FirebatOilSpill=<s val="StandardTooltipHeader">Oil Spill</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,FirebatOilSpill,Cost.Vital[Energy]" player="0"/><n/>Charge Cooldown: <d ref="Abil,FirebatOilSpill,Cost.Charge.TimeUse" player="0"/> seconds</s><n/><c val="#TooltipNumbers">Vector Targeting</c></n>Dispense a slick of oil that lasts for <c val="#TooltipNumbers"><d ref="Behavior,FirebatOilSpillTimedLife,Duration" player="%playernum%"/></c> seconds and Slows enemies that come in contact with it by <c val="#TooltipNumbers"><d ref="-Behavior,FirebatOilSpillSlow,Modification.UnifiedMoveSpeedFactor*100" precision="1"player="0"/>%</c>.<n/><n/>Oil Spills are Ignited for <c val="#TooltipNumbers"><d ref="Behavior,FirebatOilSpillFireStartTimedLife,Duration-.1"Precision="1"Player="0"/></c> seconds when hit by Flame Stream. Ignited Oil Spills no longer Slow enemies, but instead deal <c val="#TooltipNumbers"><d ref="Effect,FirebatOilSpillIgnitedDamage,Amount" player="%playernum%"/></c> damage to them every <c val="#TooltipNumbers"><d ref="Behavior,FirebatOilSpillFireStartTimedLife,Period" precision="1" player="%playernum%"/></c> seconds. Additionally, Blaze is healed for <c val="#TooltipNumbers"><d ref="Effect,FirebatOilSpillHeal,RechargeVitalRate" player="%playernum%"/></c> Health every <c val="#TooltipNumbers"><d ref="Behavior,FirebatOilSpillFireStartTimedLife,Period" precision="1" player="%playernum%"/></c> seconds while standing in Ignited Oil Spills.<n/><n/>Stores up to <c val="#TooltipNumbers"><d ref="Abil,FirebatOilSpill,Cost.Charge.CountMax" player="%playernum%"/></c> charges.
 Spazzo/Button/Tooltip/FirebatJetPropulsion=<s val="StandardTooltipHeader">Jet Propulsion</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,FirebatJetPropulsion,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,FirebatJetPropulsion,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>After <c val="#TooltipNumbers"><d ref="Abil,FirebatJetPropulsion,CastIntroTime" precision="3"/></c> seconds, charge forward. Colliding with an enemy Hero deals <c val="#TooltipNumbers"><d ref="Effect,FirebatJetPropulsionDamage,Amount" player="%playernum%"/></c> damage to all nearby enemy Heroes and Stuns them for <c val="#TooltipNumbers"><d ref="Behavior,FirebatJetPropulsionStun,Duration" precision="2" player="%playernum%"/></c> seconds.
@@ -2664,6 +2738,8 @@ UI/SpazzoAccuracy/Chen/ScoreNine=Earth Casts
 UI/SpazzoAccuracy/Chen/ScoreTen=Fire Casts
 UI/SpazzoAccuracy/Chen/ScoreEleven=Unused
 UI/SpazzoAccuracy/Chen/ScoreTwelve=Unused
+UI/Spazzo/Hero/Chen100ManaOverride=Time Spent at 100% Brew
+UI/Spazzo/Hero/ChenLT20ManaOverride=Time Spent at 20% or less Brew
 Spazzo/Button/Tooltip/ChenFlyingKick=<s val="StandardTooltipHeader">Flying Kick</s><n/><s val="StandardTooltipDetails">Brew: <d ref="Abil,ChenFlyingKick,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,ChenFlyingKick,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Kick through target enemy, dealing <c val="#TooltipNumbers"><d ref="Effect,ChenFlyingKickDamage,Amount" player="%playernum%"/></c> damage.
 Spazzo/Button/Tooltip/ChenKegSmash=<s val="StandardTooltipHeader">Keg Smash</s><n/><s val="StandardTooltipDetails">Brew: <d ref="Abil,ChenKegSmash,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Effect,ChenBreathOfFireKegSmashModifyCooldown,Cost[0].CooldownTimeUse" player="0"/> seconds</s><n/>Deal <c val="#TooltipNumbers"><d ref="Effect,ChenKegSmashDamage,Amount" player="%playernum%"/></c> damage and soak enemies in Brew for <c val="#TooltipNumbers"><d ref="Behavior,ChenKegSmashDrenched,Duration"Player="0"/></c> seconds, Slowing them by <c val="#TooltipNumbers"><d ref="-Behavior,ChenKegSmashSlow,Modification[0].UnifiedMoveSpeedFactor[0] * 100" player="0"/>%</c>. After <c val="#TooltipNumbers"><d ref="Behavior,ChenKegSmashSlow,Duration"Precision="2"Player="0"/></c> seconds, the Slow is increased to <c val="#TooltipNumbers"><d ref="-Behavior,ChenKegSmashBoggedDownSlow,Modification[0].UnifiedMoveSpeedFactor[0] * 100" player="0"/>%</c>.<n/><n/>After being used, this ability becomes Breath of Fire.<n/><n/><s val="StandardTooltipHeader">Breath of Fire</s><n/>Breathe a cone of flames, dealing <c val="#TooltipNumbers"><d ref="Effect,ChenBreathOfFireDamage,Amount" player="%playernum%"/></c> damage. Enemies that are soaked in Brew are Ignited, dealing <c val="#TooltipNumbers"><d ref="Effect,ChenBreathOfFireDoTDamage,Amount*Behavior,ChenBreathofFireDoT,Duration" player="%playernum%"/></c> additional damage over <c val="#TooltipNumbers"><d ref="Behavior,ChenBreathofFireDoT,Duration" player="%playernum%"/></c> seconds and adding <c val="#TooltipNumbers"><d ref="Effect,ChenBreathofFireBoggedDownModifySlowBehaviorBuffDuration,Value"Precision="2" player="%playernum%"/></c> seconds to the duration of the Slow from Keg Smash.
 Spazzo/Button/Tooltip/ChenStagger=<s val="StandardTooltipHeader">Stagger</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,ChenStagger,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Damage taken over the next <c val="#TooltipNumbers"><d ref="Behavior,ChenStaggerProtectedBuff,Duration"Player="0"/></c> seconds is prevented. Once this effect ends, Chen receives <c val="#TooltipNumbers">75%</c> of the damage taken over <c val="#TooltipNumbers"><d ref="Behavior,ChenStaggerDoT,Duration"Player="0"/></c> seconds. This damage cannot be modified.
@@ -3271,6 +3347,8 @@ UI/SpazzoAccuracy/Tinker/ScoreNine=Unused
 UI/SpazzoAccuracy/Tinker/ScoreTen=Unused
 UI/SpazzoAccuracy/Tinker/ScoreEleven=Unused
 UI/SpazzoAccuracy/Tinker/ScoreTwelve=Unused
+UI/Spazzo/Hero/Tinker100ManaOverride=Time Spent at 100% Scrap
+UI/Spazzo/Hero/TinkerLT20ManaOverride=Time Spent at 20% or less Scrap
 Spazzo/Button/Tooltip/TinkerRockItTurret=<s val="StandardTooltipHeader">Rock-it! Turret</s><n/><s val="StandardTooltipDetails">Scrap: <d ref="Abil,TinkerRockItTurret,Cost.Vital[Energy]" player="0"/></s><n/>Create a turret that deals <c val="#TooltipNumbers"><d ref="Effect,RockItTurretWeaponDamage,Amount" player="%playernum%"/></c> damage. Lasts for <c val="#TooltipNumbers"><d ref="Behavior,RockItTurretTimedLife,Duration" player="0"/></c> seconds and has <c val="#TooltipNumbers"><d ref="Unit,TinkerRockItTurret,LifeMax" player="%playernum%"/></c> health.</n></n>Turrets prioritize the nearest enemy Hero when first created.
 Spazzo/Button/Tooltip/GazloweDethLazor=<s val="StandardTooltipHeader">Deth Lazor</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,GazloweDethLazor,Cost.Charge.TimeUse" player="0"/> seconds</s><n/>After <c val="#TooltipNumbers"><d ref="Abil,GazloweDethLazor,CastIntroTime" precision="2"/></c> seconds, deal <c val="#TooltipNumbers"><d ref="Effect,DethLazorCharged1Damage,Amount" player="%playernum%"/></c> damage to enemies in a line. Heal for <c val="#TooltipNumbers"><d ref="100*Effect,DethLazorCharged1Damage,LeechFraction[Life]" player="0" precision="2"/>%</c> of the damage dealt, increased to <c val="#TooltipNumbers"><d ref="100*Effect,DethLazorCharged1Damage,LeechFraction[Life]*(Effect,DethLazorCharged1Damage,LeechMultiplicativeModifierArray[Hero].Modifier+1)" player="0"/>%</c> against enemy Heroes.
 Spazzo/Button/Tooltip/TinkerXplodiumCharge=<s val="StandardTooltipHeader">Xplodiun Charge</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,TinkerXplodiumBomb,Cost.Charge.TimeUse" player="0"/> seconds</s><n/>Place a bomb that deals <c val="#TooltipNumbers"><d ref="Effect,XplodiumBombDamage,Amount" player="%playernum%"/></c> damage to enemies within the target area after <c val="#TooltipNumbers"><d ref="Effect,XplodiumBombCreatePersistent,PeriodicPeriodArray[0]" precision="2"/></c> seconds. Enemies hit are also Stunned for <c val="#TooltipNumbers"><d ref="Behavior,XplodiumBombStun,Duration"Precision="2" player="0"/></c> second.
@@ -3747,7 +3825,7 @@ UI/SpazzoAccuracy/Maiev/ScoreTwelve=Unused
 Spazzo/Button/Tooltip/MaievFanOfKnives=<s val="StandardTooltipHeader">Fan of Knives</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,MaievFanOfKnives,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,MaievFanOfKnives,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Deal <c val="#TooltipNumbers"><d ref="Effect,MaievFanOfKnivesDamage,Amount" player="%playernum%"/></c> damage to enemies in a crescent area.<n/><n/>Hitting at least <c val="#TooltipNumbers"><d ref="Behavior,MaievFanOfKnivesTargetCounter,ConditionalEvents[0].CompareValue"/></c> enemy Heroes with Fan of Knives reduces its cooldown to <c val="#TooltipNumbers"><d ref="Effect,MaievFanOfKnivesModifyCooldown,Cost[0].CooldownTimeUse" precision="2"/></c> seconds, and refunds its Mana cost.
 Spazzo/Button/Tooltip/MaievUmbralBind=<s val="StandardTooltipHeader">Umbral Bind</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,MaievUmbralBind,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,MaievUmbralBind,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Maiev's next Basic Attack cleaves and applies a tether to enemy Heroes hit for <c val="#TooltipNumbers"><d ref="Effect,MaievUmbralBindTetherPersistent,ExpireDelay" precision="1"/></c> seconds. If a tethered Hero moves too far from Maiev, they are pulled toward her, dealing <c val="#TooltipNumbers"><d ref="Effect,MaievUmbralBindPullDamage,Amount" player="%playernum%"/></c> damage and breaking the tether.
 Spazzo/Button/Tooltip/MaievSpiritOfVengeance=<s val="StandardTooltipHeader">Spirit of Vengeance</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,MaievSpiritOfVengeance,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,MaievSpiritOfVengeance,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Send a shadow of Maiev outward that will return to its cast location, dealing <c val="#TooltipNumbers"><d ref="Effect,MaievSpiritOfVengeanceDamage,Amount" player="%playernum%"/></c> damage to enemies along both paths. If an enemy Hero is hit, reduce the cooldown by <c val="#TooltipNumbers"><d ref="-Effect,MaievSpiritOfVengeanceHeroHitModifyUnit,Cost[0].CooldownTimeUse"player="0"/></c> seconds.</n></n>Spirit of Vengeance can be reactivated to teleport to the Spirit, destroying it.
-Spazzo/Button/Tooltip/MaievVaultOfTheWardens=<s val="StandardTooltipHeader">Vault of the Wardens</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,MaievVaultOfTheWardens,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Leap into the air, becoming Immune to all hostile effects for <c val="#TooltipNumbers"><d ref="Behavior,MaievVaultOfTheWardensAirborneStasis,Duration" precision="2"/></c> seconds.
+Spazzo/Button/Tooltip/MaievVaultOfTheWardens=<s val="StandardTooltipHeader">Vault of the Wardens</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,MaievVaultOfTheWardens,Cost.Charge.TimeUse" player="0"/> seconds</s><n/>Leap into the air, becoming Immune to all hostile effects for <c val="#TooltipNumbers"><d ref="Behavior,MaievVaultOfTheWardensAirborneStasis,Duration" precision="2"/></c> seconds.</n>Vault of the Wardens gains an additional charge at Level <c val="#TooltipNumbers">20</c>
 
 UI/Spazzo/Malganis/BaselineOne=Leech from Vampiric Touch Basic Abilities
 UI/Spazzo/Malganis/BaselineTwo=Unused
@@ -4145,10 +4223,10 @@ UI/SpazzoDamage/Probius/ScoreFive=Warp Rift Detonation Damage to Heroes
 UI/SpazzoDamage/Probius/ScoreSix=Warp Rift Detonation Damage to non-Heroes
 UI/SpazzoDamage/Probius/ScoreSeven=Photon Cannon Damage to Heroes
 UI/SpazzoDamage/Probius/ScoreEight=Photon Cannon Damage to non-Heroes
-UI/SpazzoDamage/Probius/ScoreNine=Rift Shock Bonus Damage
+UI/SpazzoDamage/Probius/ScoreNine=Rift Shock Damage to Heroes
 UI/SpazzoDamage/Probius/ScoreTen=Null Gate, Pylon Overcharge Damage to Heroes
 UI/SpazzoDamage/Probius/ScoreEleven=Null Gate, Pylon Overcharge Damage to non-Heroes
-UI/SpazzoDamage/Probius/ScoreTwelve=Unused
+UI/SpazzoDamage/Probius/ScoreTwelve=Shoot 'Em Up Damage to Heroes
 UI/SpazzoAccuracy/Probius/ScoreOne=Disruption Pulse Casts
 UI/SpazzoAccuracy/Probius/ScoreTwo=Warp Rift Casts
 UI/SpazzoAccuracy/Probius/ScoreThree=Photon Cannon Casts
@@ -4472,6 +4550,8 @@ UI/SpazzoAccuracy/Barbarian/ScoreNine=Unused
 UI/SpazzoAccuracy/Barbarian/ScoreTen=Unused
 UI/SpazzoAccuracy/Barbarian/ScoreEleven=Unused
 UI/SpazzoAccuracy/Barbarian/ScoreTwelve=Unused
+UI/Spazzo/Hero/Barbarian100ManaOverride=Time Spent at 100% Fury
+UI/Spazzo/Hero/BarbarianLT20ManaOverride=Time Spent at 20% or less Fury
 Spazzo/Button/Tooltip/BarbarianAncientSpear=<s val="StandardTooltipHeader">Ancient Spear</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,BarbarianAncientSpear,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Throw out a spear that pulls Sonya to the first enemy hit, dealing <c val="#TooltipNumbers"><d ref="Effect,BarbarianAncientSpearDamage,Amount" player="%playernum%"/></c> damage and briefly stunning them. If this hits an enemy, generate <c val="#TooltipNumbers"><d ref="Effect,BarbarianAncientSpearRegenFuryModifyUnit,VitalArray[Energy].Change" player="0"/></c> Fury.
 Spazzo/Button/Tooltip/BarbarianSeismicSlam=<s val="StandardTooltipHeader">Seismic Slam</s><n/><s val="StandardTooltipDetails">Fury: <d ref="Abil,BarbarianSeismicSlam,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,BarbarianSeismicSlam,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Deals <c val="#TooltipNumbers"><d ref="Effect,BarbarianSeismicSlamDamage,Amount" player="%playernum%"/></c> damage to the target enemy, and <c val="#TooltipNumbers"><d ref="Effect,BarbarianSeismicSlamSecondaryDamage,Amount" player="%playernum%"/></c> to enemies behind the target.
 Spazzo/Button/Tooltip/BarbarianWhirlwind=<s val="StandardTooltipHeader">Whirlwind</s><n/><s val="StandardTooltipDetails">Fury: <d ref="Abil,BarbarianWhirlwind,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,BarbarianWhirlwind,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Deals <c val="#TooltipNumbers"><d ref="Effect,BarbarianWhirlwindDamage,Amount" player="%playernum%"/></c> damage every <c val="#TooltipNumbers"><d ref="Behavior,BarbarianWhirlwindChannel,Period" precision="1" player="%playernum%"/></c> seconds to nearby enemies for <c val="#TooltipNumbers"><d ref="Behavior,BarbarianWhirlwindChannel,Duration" player="0"/></c> seconds, healing for <c val="#TooltipNumbers"><d ref="Effect,BarbarianWhirlwindDamage,LeechFraction[Life]*100" player="0"/>%</c> of damage dealt. Healing is increased to <c val="#TooltipNumbers"><d ref="Effect,BarbarianWhirlwindHeroDamage,LeechFraction[Life]*100" player="0"/>%</c> against Heroes.
@@ -4864,6 +4944,7 @@ UI/SpazzoAccuracy/TheLostVikings/ScoreTwelve=Unused
 UI/Spazzo/Hero/TimeUnhurtVikingOverride=Time all Vikings are Unhurt & Alive
 UI/Spazzo/Hero/TimeVisibleVikingOverride=Time all Vikings are in Vision
 Spazzo/Button/Tooltip/LostVikingsVikingHoardTokenCounter=<s val="StandardTooltipHeader">Viking Hoard/s><n/><c val="#TooltipQuest">Bonus Health regen:</c><c val="#TooltipNumbers" validator="True"> <d ref="$BehaviorStackCount:LostVikingsVikingHoardTokenCounter$ * Accumulator,LostVikingsVikingHoardAccumulator,Scale"precision="2" player="%playernum%"/></c>
+Spazzo/Button/Tooltip/LostVikingsGoGoGo=<s val="StandardTooltipHeader">Go Go Go!</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,LostVikingsGoGoGo,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>The Vikings gain <c val="#TooltipNumbers"><d ref="100*Behavior,LostVikingsGoGoGo,Modification.UnifiedMoveSpeedFactor"/>%</c> increased Movement Speed for <c val="#TooltipNumbers"><d ref="Behavior,LostVikingsGoGoGo,Duration" player="0"/></c> seconds.
 
 UI/Spazzo/Tychus/BaselineOne=Tychus Basic Attack Damage to non-Heroes
 UI/Spazzo/Tychus/BaselineTwo=Overkill Damage to non-Heroes
@@ -5580,6 +5661,8 @@ UI/SpazzoAccuracy/Hogger/ScoreEleven=Dense Blasting Powder, Secret Stash Dynamit
 UI/SpazzoAccuracy/Hogger/ScoreTwelve=Hoardapult, Shockwave Casts
 UI/SpazzoAccuracy/Hogger/ScoreThirteen=Headbanger hit Count
 UI/SpazzoAccuracy/Hogger/ScoreFourteen=No Control Casts
+UI/Spazzo/Hero/Hogger100ManaOverride=Time Spent at 100% Rage
+UI/Spazzo/Hero/HoggerLT20ManaOverride=Time Spent at 20% or less Rage
 Spazzo/Button/Tooltip/HoggerStaggeringBlow=<s val="StandardTooltipHeader">Staggering Blow</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,HoggerStaggeringBlow,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Swing your chain in a wide arc, dealing <c val="#TooltipNumbers"><d ref="Effect,HoggerStaggeringBlowDamage,Amount" player="%playernum%"/></c> damage to enemies hit and knocking them away. If an enemy hits terrain, deal an additional <c val="#TooltipNumbers"><d ref="Effect,HoggerStaggeringBlowProcDamage,Amount" player="%playernum%"/></c> damage, Stun for <c val="#TooltipNumbers"><d ref="Behavior,HoggerStaggeringBlowProcStun,Duration"precision="2"Player="0"/></c> seconds, and gain <c val="#TooltipNumbers"><d ref="Effect,HoggerStaggeringBlowCollisionProcGnollFrenzyRage,VitalArray[Energy].Change" player="%playernum%"/></c> Rage.
 Spazzo/Button/Tooltip/HoggerEzThroDynamite=<s val="StandardTooltipHeader">Ez-Thro Dynamite</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,HoggerEzThroDynamite,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Toss a bundle of Dynamite with a <c val="#TooltipNumbers"><d ref="Behavior,HoggerEzThroDynamiteTimedLife,Duration"precision="1"/></c> second fuse. Upon detonation, enemies take <c val="#TooltipNumbers"><d ref="Effect,HoggerEzThroDynamiteDamage,Amount" player="%playernum%"/></c> damage and are Slowed by <c val="#TooltipNumbers"><d ref="-100*Behavior,HoggerEzThroDynamiteSlow,Modification.UnifiedMoveSpeedFactor"player="0"/>%</c> for <c val="#TooltipNumbers"><d ref="Behavior,HoggerEzThroDynamiteSlow,Duration"/></c> seconds. <n/><n/>The Dynamite instantly detonates when landing on an enemy Hero granting Hogger <c val="#TooltipNumbers"><d ref="Effect,HoggerEzThroDynamiteDirectHitGnollFrenzyRage,VitalArray[Energy].Change" player="%playernum%"/></c> Rage.
 Spazzo/Button/Tooltip/HoggerHoggWild=<s val="StandardTooltipHeader">Hogg Wild</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,HoggerHoggWild,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>After <c val="#TooltipNumbers"><d ref="Abil,HoggerHoggWild,CastIntroTime"precision="4"/></c> seconds, become Unstoppable and uncontrollably spin towards the target direction, ricocheting off terrain. Every <c val="#TooltipNumbers"><d ref="Behavior,HoggerHoggWildDamageCooldown,Duration"precision="3" player="%playernum%"/></c> seconds, deal <c val="#TooltipNumbers"><d ref="Effect,HoggerHoggWildDamage,Amount" player="%playernum%"/></c> damage to nearby non-Structure enemies, increased by <c val="#TooltipNumbers"><d ref="Accumulator,HoggerHoggWildDamageAccumulator,Ratio*100" precision="3" player="%playernum%" />%</c> for each point of Rage. Ricocheting off terrain refreshes the duration.

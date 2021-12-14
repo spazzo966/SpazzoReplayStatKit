@@ -48,138 +48,138 @@
     <StateGroup name="UnitHealthLabelStateGroup">
       <DefaultState val="HealthLabelNotVisible"/>
       <State name="HealthLabelNotVisible">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="0" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="0" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
         <Event action="Reset" event="Reset"/>
       </State>
       <State name="HealthLabelAlwaysVisible">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="100" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="100" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
         <Event action="Reset" event="Reset"/>
       </State>
       <State name="HealthLabelVisibleLT90True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="90" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="90" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT90Percent" LifePercent="LT90" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT90False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="90" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="90" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT90Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT80True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="80" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="80" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT80Percent" LifePercent="LT80" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT80False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="80" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="80" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT80Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT70True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="70" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="70" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT70Percent" LifePercent="LT70" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT70False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="70" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="70" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT70Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="false" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT60True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="60" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="60" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT60Percent" LifePercent="LT60" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT60False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="60" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="60" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT60Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT50True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="50" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="50" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT50Percent" LifePercent="LT50" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT50False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="50" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="50" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT50Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT40True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="40" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="40" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT40Percent" LifePercent="LT40" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT40False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="40" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="40" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT40Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT30True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="30" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="30" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT30Percent" LifePercent="LT30" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT30False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="30" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="30" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT30Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT20True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="20" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="20" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT20Percent" LifePercent="LT20" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT20False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="20" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="20" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT20Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT10True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="10" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="10" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT10Percent" LifePercent="LT10" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT10False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="10" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="10" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT10Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
@@ -204,138 +204,138 @@
     <StateGroup name="UnitHealthLabelStateGroup">
       <DefaultState val="HealthLabelNotVisible"/>
       <State name="HealthLabelNotVisible">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="0" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="0" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
         <Event action="Reset" event="Reset"/>
       </State>
       <State name="HealthLabelAlwaysVisible">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="100" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="100" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
         <Event action="Reset" event="Reset"/>
       </State>
       <State name="HealthLabelVisibleLT90True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="90" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="90" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT90Percent" LifePercent="LT90" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT90False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="90" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="90" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT90Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT80True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="80" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="80" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT80Percent" LifePercent="LT80" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT80False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="80" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="80" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT80Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT70True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="70" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="70" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT70Percent" LifePercent="LT70" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT70False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="70" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="70" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT70Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="false" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT60True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="60" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="60" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT60Percent" LifePercent="LT60" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT60False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="60" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="60" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT60Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT50True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="50" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="50" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT50Percent" LifePercent="LT50" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT50False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="50" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="50" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT50Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT40True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="40" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="40" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT40Percent" LifePercent="LT40" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT40False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="40" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="40" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT40Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT30True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="30" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="30" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT30Percent" LifePercent="LT30" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT30False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="30" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="30" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT30Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT20True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="20" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="20" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT20Percent" LifePercent="LT20" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT20False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="20" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="20" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT20Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
       <State name="HealthLabelVisibleLT10True">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="10" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="10" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT10Percent" LifePercent="LT10" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
       </State>
       <State name="HealthLabelVisibleLT10False">
-        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle" HealthLabelStateGroup="10" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusHealthLabelSettingToggle1" HealthLabelStateGroup="10" />
         <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT10Percent" LifePercent="NoState" />
         <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
@@ -359,17 +359,145 @@
     </StateGroup>
   </Frame>
   <Frame type="Frame" name="UnitStatusCoreStateGroupControlTemplate">
-    <StateGroup name="CoreHealthLabelStateGroup">
+    <StateGroup name="UnitHealthLabelStateGroup">
       <DefaultState val="HealthLabelNotVisible"/>
       <State name="HealthLabelNotVisible">
-        <When type="StateGroup" frame="$ExportContainerFrame" CoreHealthLabelControllerStateGroup="HealthLabelNotVisible" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="0" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+        <Event action="Reset" event="Reset"/>
+      </State>
+      <State name="HealthLabelAlwaysVisible">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="100" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+        <Event action="Reset" event="Reset"/>
+      </State>
+      <State name="HealthLabelVisibleLT90True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="90" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT90Percent" LifePercent="LT90" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT90False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="90" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT90Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
-      <State name="HealthLabelAlwaysVisible">
-        <When type="StateGroup" frame="$ExportContainerFrame" CoreHealthLabelControllerStateGroup="HealthLabelVisible" />
+      <State name="HealthLabelVisibleLT80True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="80" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT80Percent" LifePercent="LT80" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT80False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="80" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT80Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT70True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="70" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT70Percent" LifePercent="LT70" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT70False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="70" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT70Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="false" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT60True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="60" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT60Percent" LifePercent="LT60" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT60False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="60" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT60Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT50True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="50" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT50Percent" LifePercent="LT50" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT50False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="50" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT50Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT40True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="40" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT40Percent" LifePercent="LT40" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT40False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="40" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT40Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT30True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="30" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT30Percent" LifePercent="LT30" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT30False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="30" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT30Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT20True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="20" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT20Percent" LifePercent="LT20" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT20False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="20" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT20Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT10True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="10" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT10Percent" LifePercent="LT10" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT10False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusCoreHealthLabelSettingToggle1" HealthLabelStateGroup="10" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT10Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
     </StateGroup>
     <StateGroup name="CoreHealthplateVisibilityController">
@@ -387,17 +515,145 @@
     </StateGroup>
   </Frame>
   <Frame type="Frame" name="UnitStatusTownStateGroupControlTemplate">
-    <StateGroup name="TownHealthLabelStateGroup">
+    <StateGroup name="UnitHealthLabelStateGroup">
       <DefaultState val="HealthLabelNotVisible"/>
       <State name="HealthLabelNotVisible">
-        <When type="StateGroup" frame="$ExportContainerFrame" TownHealthLabelControllerStateGroup="HealthLabelNotVisible" />
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="0" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+        <Event action="Reset" event="Reset"/>
+      </State>
+      <State name="HealthLabelAlwaysVisible">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="100" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+        <Event action="Reset" event="Reset"/>
+      </State>
+      <State name="HealthLabelVisibleLT90True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="90" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT90Percent" LifePercent="LT90" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT90False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="90" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT90Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
-      <State name="HealthLabelAlwaysVisible">
-        <When type="StateGroup" frame="$ExportContainerFrame" TownHealthLabelControllerStateGroup="HealthLabelVisible" />
+      <State name="HealthLabelVisibleLT80True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="80" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT80Percent" LifePercent="LT80" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
         <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT80False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="80" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT80Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT70True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="70" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT70Percent" LifePercent="LT70" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT70False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="70" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT70Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="false" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT60True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="60" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT60Percent" LifePercent="LT60" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT60False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="60" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT60Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT50True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="50" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT50Percent" LifePercent="LT50" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT50False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="50" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT50Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT40True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="40" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT40Percent" LifePercent="LT40" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT40False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="40" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT40Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT30True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="30" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT30Percent" LifePercent="LT30" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT30False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="30" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT30Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT20True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="20" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT20Percent" LifePercent="LT20" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT20False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="20" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT20Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
+      </State>
+      <State name="HealthLabelVisibleLT10True">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="10" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT10Percent" LifePercent="LT10" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="FadeIn" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="True" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="255" />
+      </State>
+      <State name="HealthLabelVisibleLT10False">
+        <When type="StateGroup" frame="$ExportContainerFrame/UnitStatusStructureHealthLabelSettingToggle1" HealthLabelStateGroup="10" />
+        <When type="StateGroup" frame="$parent/UnitStatusValidatorContainerFrame/HealthLabelValidatorCheckLT10Percent" LifePercent="NoState" />
+        <Action type="SendEvent" frame="$parent/UnitHealthAndShieldLabel" event="Reset" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Visible="False" />
+        <Action type="SetProperty" frame="$parent/UnitHealthAndShieldLabel" Alpha="0" />
       </State>
     </StateGroup>
     <StateGroup name="TownOverallVisibilityStateGroupController">
@@ -1921,10 +2177,58 @@
         <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
         <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
       </State>
+      <State name="HeroDVaPilotHeroicBunnyHop">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroDVaPilot"/>
+        <When type="StateGroup" frame="$DVaCooldownSetting/TogglePulldown2" operator="Equal" SelectedAttachmentStategroup="4"/>
+        <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate1Unlocked"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="DVaMechBunnyHopHeroic" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="Assets\Textures\storm_ui_icon_dva_bunnyhop.dds" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$DVaCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroDVaPilotHeroicMicroMissiles">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroDVaPilot"/>
+        <When type="StateGroup" frame="$DVaCooldownSetting/TogglePulldown2" operator="Equal" SelectedAttachmentStategroup="4"/>
+        <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate2Unlocked"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="DVaMicroMissiles" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLocation="Player" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="DVaMicroMissiles" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="Abil/DVaMicroMissiles" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="True" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="Assets\Textures\storm_ui_icon_dva_micromissiles.dds" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$DVaCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
       <State name="HeroMaievShowCharges">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMaiev"/>
         <When type="StateGroup" frame="$MaievCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="4"/>
-        <When type="StateGroup" frame="UnitStatusAbathurUltimateEvoltuion" AnimState="NoState"/>
+        <When type="StateGroup" frame="UnitStatusAbathurUltimateEvolution" AnimState="NoState"/>
         <When type="Property" frame="$this/UnitStatusDummyBehaviorCount/BehaviorIcon" operator="GreaterThanOrEqual" CurrentStackCount="20"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$MaievCooldownSetting/TogglePulldown1/AbilName/@Text}" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="MaievVaultOfTheWardens" />
@@ -4721,6 +5025,152 @@
         <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
         <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
       </State>
+      <State name="HeroChenKegSmashBreathofFireActive">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
+        <When type="StateGroup" frame="$ChenCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="2"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator2" operator="Equal" AnimState="ChenHasBreathOfFireAbilityChangeDummyCastBehaviorOrKegSmashHasBreathOfFireAbilityChangeDummyBehavior"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="ChenBreathOfFireKegSmashAbilityChangeTimerBehavior" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="Assets\Textures\storm_ui_icon_chen_breathoffire.dds" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="Behavior" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroChenKegSmashKegSmashActive">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
+        <When type="StateGroup" frame="$ChenCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="2"/>
+        <!-- <When type="StateGroup" frame="UnitStatusTalentValidator2" operator="NotEqual" AnimState="ChenHasBreathOfFireAbilityChangeDummyCastBehaviorOrKegSmashHasBreathOfFireAbilityChangeDummyBehavior"/> -->
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$ChenCooldownSetting/TogglePulldown1/AbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$ChenCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$ChenCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroChenNotKegSmashBreathofFire">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
+        <When type="StateGroup" frame="$ChenCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="0"/>
+        <When type="StateGroup" frame="$ChenCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="2"/>
+        <When type="StateGroup" frame="$ChenCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="5"/>
+        <When type="StateGroup" frame="$ChenCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="6"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$ChenCooldownSetting/TogglePulldown1/AbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$ChenCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$ChenCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroChenTalentEvasiveBrew">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
+        <When type="StateGroup" frame="$ChenCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="5"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator" AnimState="ChenHasElusiveBrawler"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$ChenCooldownSetting/TogglePulldown1/AbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$ChenCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$ChenCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroChenHeroicWanderingKeg">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
+        <When type="StateGroup" frame="$ChenCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="6"/>
+        <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate1Unlocked"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="ChenWanderingKeg" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="Assets\Textures\storm_ui_icon_chen_wanderingkeg.dds" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$ChenCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroChenHeroicStormEarthFire">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
+        <When type="StateGroup" frame="$ChenCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="6"/>
+        <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate2Unlocked"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="ChenStormEarthFire" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="Assets\Textures\storm_ui_icon_chen_stormearthfire.dds" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$ChenCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
       <State name="HeroTassadarNotResonanceBeam">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTassadar"/>
         <When type="Property" frame="$TassadarCooldownSetting/SliderValue" operator="NotEqual" Value="0"/>
@@ -6376,54 +6826,6 @@
         <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
         <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
       </State>
-      <State name="HeroChenNotKegSmashBreathofFire">
-        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
-        <When type="Property" frame="$ChenCooldownSetting/SliderValue" operator="NotEqual" Value="0"/>
-        <When type="Property" frame="$ChenCooldownSetting/SliderValue" operator="NotEqual" Value="2"/>
-        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$ChenCooldownSetting/AbilName/@Text}" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
-        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
-        <Action type="SetProperty" frame="MechanicTexture" Texture="{$ChenCooldownSetting/AbilIcon/@Texture}" />
-        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
-        <Action type="SetProperty" frame="TypeLabel" Text="{$ChenCooldownSetting/TypeLabel/@Text}" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-      </State>
-      <State name="HeroChenKegSmashBreathofFire">
-        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
-        <When type="Property" frame="$ChenCooldownSetting/SliderValue" operator="NotEqual" Value="0"/>
-        <When type="Property" frame="$ChenCooldownSetting/SliderValue" operator="Equal" Value="2"/>
-        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$ChenCooldownSetting/AbilName/@Text}" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
-        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="ChenBreathOfFireKegSmashAbilityChangeTimerBehavior" />
-        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
-        <Action type="SetProperty" frame="MechanicTexture" Texture="{$parent/ChenTextureRef/@Texture}" />
-        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
-        <Action type="SetProperty" frame="TypeLabel" Text="{$ChenCooldownSetting/TypeLabel/@Text}" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-      </State>
       <State name="HeroDryad">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroDryad"/>
         <When type="Property" frame="$DryadCooldownSetting/SliderValue" operator="NotEqual" Value="0"/>
@@ -7223,6 +7625,7 @@
       <Validator val="MedivhHasTransformRavenDustOfAppearanceTalent" />
       <Validator val="FalstadHasTailwindFrequentFlyerTalent" />
       <Validator val="DemonHunterHasVaultAcrobatTalent" />
+      <Validator val="ChenHasElusiveBrawler" />
       <StateGroup name="AnimState">
         <DefaultState val="NoState" />
         <State name="NoState">
@@ -7336,6 +7739,10 @@
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroDemonHunter"/>
           <When type="AnimationState" UnitStatusValidatorState="DemonHunterHasVaultAcrobatTalent" />
         </State>
+        <State name="ChenHasElusiveBrawler">
+          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
+          <When type="AnimationState" UnitStatusValidatorState="ChenHasElusiveBrawler" />
+        </State>
       </StateGroup>
     </Frame>
     <Frame type="UnitStatusValidatorAnimElement" name="UnitStatusTalentValidator2">
@@ -7359,6 +7766,7 @@
       <Validator val="MedivhHasForceofMagicTalent" />
       <Validator val="HasFalstadMasteryLightningRodStaticShield" />
       <Validator val="HasMonkEpiphany" />
+      <Validator val="ChenHasBreathOfFireAbilityChangeDummyCastBehaviorOrKegSmashHasBreathOfFireAbilityChangeDummyBehavior" />
       <StateGroup name="AnimState">
         <DefaultState val="NoState" />
         <State name="NoState">
@@ -7439,6 +7847,10 @@
         <State name="HasMonkEpiphany">
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMonk"/>
           <When type="AnimationState" UnitStatusValidatorState="HasMonkEpiphany" />
+        </State>
+        <State name="ChenHasBreathOfFireAbilityChangeDummyCastBehaviorOrKegSmashHasBreathOfFireAbilityChangeDummyBehavior">
+          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
+          <When type="AnimationState" UnitStatusValidatorState="ChenHasBreathOfFireAbilityChangeDummyCastBehaviorOrKegSmashHasBreathOfFireAbilityChangeDummyBehavior" />
         </State>
       </StateGroup>
     </Frame>
@@ -7801,38 +8213,6 @@
         </State>
       </StateGroup>
     </Frame>
-    <Frame type="UnitStatusValidatorAnimElement" name="UnitStatusChenValidator">
-      <Anchor relative="$parent" />
-      <Validator val="ChenKegSmashHasBreathOfFireAbilityChangeDummyBehavior" />
-      <Validator val="ChenKegSmashDoesNotHaveBreathOfFireAbilityChangeDummyBehavior" />
-      <StateGroup name="ChenControlState">
-        <DefaultState val="NotChen" />
-        <State name="NotChen">
-          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" operator="NotEqual" Unit="HeroChen"/>
-          <Action type="SetProperty" frame="$this" Visible="False" />
-        </State>
-        <State name="IsChen">
-          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
-          <Action type="SetProperty" frame="$this" Visible="True" />
-        </State>
-      </StateGroup>
-      <StateGroup name="AnimState">
-        <DefaultState val="NoState" />
-        <State name="NoState">
-          <When type="AnimationState" UnitStatusValidatorState="NoState" />
-        </State>
-        <State name="BreathofFire">
-          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
-          <When type="Property" frame="$ChenCooldownSetting/SliderValue" operator="Equal" Value="2"/>
-          <When type="AnimationState" UnitStatusValidatorState="ChenKegSmashHasBreathOfFireAbilityChangeDummyBehavior" />
-        </State>
-        <State name="KegSmash">
-          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
-          <When type="Property" frame="$ChenCooldownSetting/SliderValue" operator="Equal" Value="2"/>
-          <When type="AnimationState" UnitStatusValidatorState="ChenKegSmashDoesNotHaveBreathOfFireAbilityChangeDummyBehavior" />
-        </State>
-      </StateGroup>
-    </Frame>
     <Frame type="UnitStatusValidatorAnimElement" name="UnitStatusKaelthasValidator">
       <Anchor relative="$parent" />
       <Validator val="KaelthasCasterVerdantSpheresActive" />
@@ -8029,36 +8409,6 @@
         </State>
       </StateGroup>
     </Frame>
-    <Frame type="Image" name="ChenTextureRef">
-      <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
-      <Anchor side="Left" relative="$parent" pos="Mid" offset="0" />
-      <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
-      <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
-      <RenderPriority val="511" />
-      <Height val="25" />
-      <Width val="25" />
-      <Visible val="False"/>
-      <ImageMaskTexture val="@UI/Storm_UI_HUD_GenericHeroUI_RingIcon_Mask" />
-      <SnapToDevicePixels val="true"/>
-      <Texture val="Assets\Textures\storm_ui_icon_chen_kegsmash.dds" />
-      <StateGroup name="CustomHeroOverride">
-        <DefaultState val="NoState" />
-        <State name="ChenBreathofFire">
-          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
-          <When type="Property" frame="$ChenCooldownSetting/SliderValue" operator="Equal" Value="2"/>
-          <When type="StateGroup" frame="$parent/UnitStatusChenValidator" AnimState="BreathofFire"/>
-          <Action type="SetProperty" frame="$this" Texture="Assets\Textures\storm_ui_icon_chen_breathoffire.dds" on="Enter" />
-        </State>
-        <State name="ChenKegSmash">
-          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
-          <When type="Property" frame="$ChenCooldownSetting/SliderValue" operator="Equal" Value="2"/>
-          <When type="StateGroup" frame="$parent/UnitStatusChenValidator" AnimState="KegSmash"/>
-          <Action type="SetProperty" frame="$this" Texture="Assets\Textures\storm_ui_icon_chen_kegsmash.dds" on="Enter" />
-        </State>
-        <State name="NoState">
-        </State>
-      </StateGroup>
-    </Frame>
     <Frame type="Image" name="KaelthasTextureRef">
       <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
       <Anchor side="Left" relative="$parent" pos="Mid" offset="0" />
@@ -8070,16 +8420,16 @@
       <Visible val="False"/>
       <ImageMaskTexture val="@UI/Storm_UI_HUD_GenericHeroUI_RingIcon_Mask" />
       <SnapToDevicePixels val="true"/>
-      <Texture val="Assets\Textures\storm_ui_icon_chen_kegsmash.dds" />
+      <Texture val="Assets\Textures\storm_ui_icon_kaelthas_verdantspheres.dds" />
       <StateGroup name="CustomHeroOverride">
         <DefaultState val="NoState" />
-        <State name="ChenBreathofFire">
+        <State name="VerdantActive">
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroKaelthas"/>
           <When type="Property" frame="$KaelthasCooldownSetting/SliderValue" operator="Equal" Value="4"/>
           <When type="StateGroup" frame="$parent/UnitStatusKaelthasValidator" AnimState="KaelthasCasterVerdantSpheresActive"/>
           <Action type="SetProperty" frame="$this" Texture="Assets\Textures\storm_ui_icon_kaelthas_verdantspheres_2.dds" on="Enter" />
         </State>
-        <State name="ChenKegSmash">
+        <State name="VerdantInactive">
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroKaelthas"/>
           <When type="Property" frame="$KaelthasCooldownSetting/SliderValue" operator="Equal" Value="4"/>
           <When type="StateGroup" frame="$parent/UnitStatusKaelthasValidator" AnimState="KaelthasCasterVerdantSpheresNotActive"/>
@@ -8130,6 +8480,7 @@
       <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
       <Anchor side="Right" relative="$parent" pos="Min" offset="0" />
       <Anchor side="Bottom" relative="$parent" pos="Min" offset="0" />
+      <!-- debug bookmark -->
       <Visible val="False"/>
       <Frame type="Label" name="BehaviorMonitor1">
         <Anchor side="Top" relative="$parent" pos="Min" offset="13" />
@@ -9893,6 +10244,7 @@
   </Frame>
   <Frame type="UnitStatusFrame" name="LordOrderUnitStatusFrameTemplate" file="UnitStatus">
     <Frame type="Frame" name="UnitStatusStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusCoreStateGroupControlTemplate" />
+    <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate">
       <ShowPercent val="false"/>
       <ShowWhileInvulnerable val="true"/>
@@ -9908,6 +10260,7 @@
   </Frame>
   <Frame type="UnitStatusFrame" name="CoreUnitStatusFrame" file="AlteracMechanics">
     <Frame type="Frame" name="UnitStatusStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusCoreStateGroupControlTemplate" />
+    <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate">
       <ShowPercent val="false"/>
       <ShowWhileInvulnerable val="true"/>
@@ -9923,6 +10276,7 @@
   </Frame>
   <Frame type="UnitStatusFrame" name="TowerUnitStatusFrameTemplate" file="UnitStatus">
     <Frame type="Frame" name="UnitStatusStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusTownStateGroupControlTemplate" />
+    <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate">
       <ShowPercent val="false"/>
       <ShowWhileInvulnerable val="true"/>
@@ -9938,6 +10292,7 @@
   </Frame>
   <Frame type="UnitStatusFrame" name="TowerUnitStatusFrameTemplate40Ammo" file="UnitStatus">
     <Frame type="Frame" name="UnitStatusStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusTownStateGroupControlTemplate" />
+    <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate">
       <ShowPercent val="false"/>
       <ShowWhileInvulnerable val="true"/>
@@ -9953,6 +10308,7 @@
   </Frame>
   <Frame type="UnitStatusFrame" name="WallGateUnitStatusFrameTemplate" file="UnitStatus">
     <Frame type="Frame" name="UnitStatusStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusTownStateGroupControlTemplate" />
+    <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate">
       <ShowPercent val="false"/>
       <ShowWhileInvulnerable val="true"/>
@@ -10051,7 +10407,7 @@
     <Frame type="Frame" name="UnitStatusNameDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusStateGroupControlTemplate" />
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>
     <Frame type="UnitStatusName" name="UnitUnitNameLabel" Template="SpazzoCustomUnitStatusFrames/UnitUnitNameLabelTemplate" />
-    <Frame type="Frame" name="OlafChargeContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate">
+    <Frame type="Frame" name="UnitAbilIconContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate">
       <Anchor side="Top" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="11" />
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-105" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
@@ -10183,7 +10539,7 @@
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>
     <Frame type="UnitStatusName" name="UnitUnitNameLabel" Template="SpazzoCustomUnitStatusFrames/UnitUnitNameLabelTemplate" />
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
-    <Frame type="Frame" name="DVaMechDefenseMatrixContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
+    <Frame type="Frame" name="UnitAbilIconContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
       <Anchor side="Top" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="11" />
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-105" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
@@ -10195,7 +10551,7 @@
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>
     <Frame type="UnitStatusName" name="UnitUnitNameLabel" Template="SpazzoCustomUnitStatusFrames/UnitUnitNameLabelTemplate" />
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
-    <Frame type="Frame" name="DVaPilotBigShotContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
+    <Frame type="Frame" name="UnitAbilIconContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
       <Anchor side="Top" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="11" />
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-105" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
@@ -10211,7 +10567,7 @@
     </Frame>
     <Frame type="UnitStatusName" name="UnitUnitNameLabel" Template="SpazzoCustomUnitStatusFrames/UnitUnitNameLabelTemplate" />
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
-    <Frame type="Frame" name="FenixCooldownContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
+    <Frame type="Frame" name="UnitAbilIconContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
       <Anchor side="Top" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="11" />
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-105" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
@@ -10253,7 +10609,7 @@
           <MinStackCountDisplayed val="0"/>
         </Frame>
       </Frame>
-      <Frame type="UnitStatusValidatorAnimElement" name="UnitStatusAbathurUltimateEvoltuion">
+      <Frame type="UnitStatusValidatorAnimElement" name="UnitStatusAbathurUltimateEvolution">
         <Anchor relative="$parent" />
         <Validator val="SourceHasAbathurUltimateEvolutionControl" />
         <StateGroup name="AnimState">
@@ -10324,7 +10680,7 @@
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>
     <Frame type="UnitStatusName" name="UnitUnitNameLabel" Template="SpazzoCustomUnitStatusFrames/UnitUnitNameLabelTemplate" />
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
-    <Frame type="Frame" name="UnitAbilContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
+    <Frame type="Frame" name="UnitAbilIconContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
       <Anchor side="Top" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="11" />
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-105" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
@@ -10336,7 +10692,7 @@
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>
     <Frame type="UnitStatusName" name="UnitUnitNameLabel" Template="SpazzoCustomUnitStatusFrames/UnitUnitNameLabelTemplate" />
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
-    <Frame type="Frame" name="SamuroAbilContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate">
+    <Frame type="Frame" name="UnitAbilIconContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate">
       <Anchor side="Top" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="11" />
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-105" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
@@ -10354,7 +10710,7 @@
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>
     <Frame type="UnitStatusName" name="UnitUnitNameLabel" Template="SpazzoCustomUnitStatusFrames/UnitUnitNameLabelTemplate" />
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
-    <Frame type="Frame" name="UnitAbilContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
+    <Frame type="Frame" name="UnitAbilIconContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
       <Anchor side="Top" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="3" />
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-95" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
@@ -10366,7 +10722,7 @@
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>
     <Frame type="UnitStatusName" name="UnitUnitNameLabel" Template="SpazzoCustomUnitStatusFrames/UnitUnitNameLabelTemplate" />
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
-    <Frame type="Frame" name="TracerPulseBombContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate">
+    <Frame type="Frame" name="UnitAbilIconContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate">
       <Anchor side="Top" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="11" />
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-105" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
@@ -10378,7 +10734,7 @@
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>
     <Frame type="UnitStatusName" name="UnitUnitNameLabel" Template="SpazzoCustomUnitStatusFrames/UnitUnitNameLabelTemplate" />
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
-    <Frame type="Frame" name="WhitemaneAbilityPreviewContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
+    <Frame type="Frame" name="UnitAbilIconContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
       <Anchor side="Top" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="11" />
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-105" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
@@ -10390,7 +10746,7 @@
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>
     <Frame type="UnitStatusName" name="UnitUnitNameLabel" Template="SpazzoCustomUnitStatusFrames/UnitUnitNameLabelTemplate" />
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
-    <Frame type="Frame" name="UnitAbilContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
+    <Frame type="Frame" name="UnitAbilIconContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate" >
       <Anchor side="Top" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="11" />
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-105" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
@@ -10402,7 +10758,7 @@
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>
     <Frame type="UnitStatusName" name="UnitUnitNameLabel" Template="SpazzoCustomUnitStatusFrames/UnitUnitNameLabelTemplate" />
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
-    <Frame type="Frame" name="GazloweScrapContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate">
+    <Frame type="Frame" name="UnitAbilIconContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate">
       <Anchor side="Top" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="11" />
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-105" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
@@ -10419,7 +10775,7 @@
     </Frame>
     <Frame type="UnitStatusName" name="UnitUnitNameLabel" Template="SpazzoCustomUnitStatusFrames/UnitUnitNameLabelTemplate" />
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
-    <Frame type="Frame" name="DeathwingAbilContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplateDeathwing">
+    <Frame type="Frame" name="UnitAbilIconContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplateDeathwing">
       <Anchor side="Top" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="11" />
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-135" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
@@ -10441,7 +10797,7 @@
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>
     <Frame type="UnitStatusName" name="UnitUnitNameLabel" Template="SpazzoCustomUnitStatusFrames/UnitUnitNameLabelTemplate" />
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
-    <Frame type="Frame" name="GazloweScrapContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate">
+    <Frame type="Frame" name="UnitAbilIconContainer" Template="SpazzoCustomUnitStatusFrames/UnitStatusAbilIconContainerTemplate">
       <Anchor side="Top" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="11" />
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-105" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
@@ -10627,7 +10983,7 @@
   <Frame type="UnitStatusFrame" name="MedivhPortalDurationBar" file="Medivh">
     <Frame type="Frame" name="UnitStatusMedivhPortalStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMedivhPortalPlateVisibilityStateGroupControlTemplate" />
   </Frame>
-  <Frame type="UnitStatusUnitTrackingBehavior" name="CustomZagaraMawUnitStatusFrame/TrackingCenteringFrame/UnitTrackingElement" file="Zagara">
+  <!-- <Frame type="UnitStatusUnitTrackingBehavior" name="CustomZagaraMawUnitStatusFrame/TrackingCenteringFrame/UnitTrackingElement" file="Zagara">
     <ShowValidator val="TargetIsHero" />
-  </Frame>
+  </Frame> -->
 </Desc>

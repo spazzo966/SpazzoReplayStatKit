@@ -1,7 +1,72 @@
-# v0.25 (**2021-09-28**)
+# v0.26 (**2021-12-14**)
+
+* Statistics
+  * General Updates to support game version 2.55.0.86938
+  * Medivh now features one new score value for when he completes Arcane Rift's baseline quest
+  * Added 16 new generic scores
+    * Basic Attacks against Heroes
+    * Basic Attacks against non-Heroes
+    * Time Spent Mounted
+    * Time in Shrubs & Stationary
+    * Time at 100% Mana\Custom Resource & Alive(Replaced with Time in Mech Form for D.Va)
+    * Time at or below 20% Mana\Custom Resource(Replaced with Time in Pilot Form for D.Va)
+    * Time affected by Healing Fountain
+    * Time affected by Regeneration Globes
+    * Times used the Healing Fountain
+    * Times used Hearthstone(Currently nonfunctional)
+    * Mana restored with Healing Fountian
+    * Mana restored with Regeneration Globes
+    * Mana restored from Hearthstone, Hall of Storms
+    * Percentage of Life Lost from taking damage from enemy Heroes
+    * Percentage of Life Lost from taking damage from non-Heroes
+    * Percentage of Life Taken from dealing damage to enemy Heroes
+  * Fixed an issue where the Healing from Hall of Storms would increase from mana restored
+  * Known Issue: In games that do not feature a complete 5v5, some statistics may stop updating
+  * Known Issue: Rehgar's Electric Charge does not function properly if the target allied hero has a non-standard heal taken modifier present.
+
+* UI
+  * General Updates to support game version 2.55.0.86938
+  * Top Bar
+    * Added The Lost Viking's Go Go Go! cooldown to the Top Bar as a baseline slot ability
+    * Added The Junkrat's I Hate Waiting! cooldown if selected
+    * Added a 5th layout option - Minimal
+      * Minimal mode only displays the following: Heroic Ability, Healing Fountain, Carried Objective(s), Health & Mana bar, Death Timer, Team Experience & Level, Game Time, and the Upcoming Objective Timer, any other features are not present, and their settings will be ignored in this layout form
+      * When the "Heroic Into Basic" option is enabled in this layout form, this will insert the Heroic inside the Health & Mana bar, similar to what is seen in the "Spaced" Layout, note that The Lost Vikings ignores this setting due to limited space for their health
+      * Tracer's Pulse Bomb Charge will be placed into the Heroic slot in this layout format, same as in all other formats except Ultrawide
+      * In a future version, certain Heroes will have their portraits shifted or shrunk to better suit the reduction in space available
+    * Added a new option to disable the hero background
+    * Added a new option to disable displaying Heroes and their talents, cooldowns and health entirely in the Top Bar, for when you don't want to see that info, but like seeing the game time, team xp, and objective timer preview
+    * Updated Vault of the Warden's tooltip in the Top Bar to display the information about the second charge available at level 20
+    * Chen's Fortifying Brew has been relocated to the baseline slot, reducing the number of selected unit abilities for Chen to 3, and it now also displays the remaining duration on any shields that have yet to expire
+    * Chen's Storm, Earth, Fire abilities will now more reliably display while Storm, Earth, Fire is active, and it will now grey out slightly after being used
+    * Chen's Storm, Earth, Fire remaining duration is now displayed as a buff if selected as a talent
+    * Buff duration bar now displays above cooldown duration bar in the Baseline slot in the Top Bar, this only impacts Brightwing, and with this most recent version, Chen
+    * Charge-based talents that do not display their charge count now display as a radial charge instead of their numeric charge counter, such as in the case of Maiev's level 20 talents. Illidan's Blade of Azzinoth and Thrall's Ancestral Wrath display both a radial charge counter and numeric charge counter
+    * Minor optimisation to the performance impact of the Top Bar
+  * Bottom Panel
+    * Added The Junkrat's I Hate Waiting! cooldown if selected
+  * Attachments
+    * Chen has had his attachments updated to use the new standard of implementation, supporting displaying Heroic abilities & compatible talents
+    * D.Va's Attachment settings now features the option to display her Heroic Ability Charges & Cooldown for the Pilot form, instead of just for the Mech form
+  * Other
+    * Core & Structure Health Labels as part of their Healthplates now uses a Pulldown menu to select the percentage of health to display the health label, instead of being a simple enabled or disabled. Previously the default option for both of these was enabled, now the default option for the Core is enabled at any percentage of health, and the default option for Structures is disabled. The hotkey to alter these settings remains as Alt+K, which will first disable both of them, and then when pressed again, enable both of them
+    * Added a new option to disable the timestamped statistics, which may see a very minor performance improvement when disabled. The default option is enabled, this can be toggled with Alt+4
+    * Redesigned the tab selection on the custom scoreboard to reduce the space required for tab selection
+    * The Additional Settings and Hero Attachment Settings buttons in the option menu now feature a ridge to help indicate them as buttons of interest
+    * Rearranged some of the buttons in the options menu to better place things near similar options
+  * Adjusted Defaults
+    * The default settings for displaying the Observed Unit UI details has been changed to enabled(Basic Attack Damage, Movespeed, so on)
+  * Bug Fixes
+    * Fixed an issue where Maiev's Vault of the Wardens would display a the charge count if the Maiev is a clone created by Ultimate Evolution beyond level 20 in the Top Bar, as they do not gain the second charge
+    * Fixed an issue where Maiev's Vault of the Wardens would not display the correct cooldown in the Top Bar
+    * Fixed an issue where baseline charges would not display the radial progress bar when at 1 charge(only applicable for Tracer's Pulse Bomb and D.Va's Self-Destruct) in the Top Bar
+    * Fixed an issue where the option to the place Heroic talent amid the Basic Abilities in the Top Bar would relocate the Heroic ability for The Lost Vikings to an incorrect location, as they do not feature Basic Abilities, instead that option is now ignored for The Lost Vikings
+  * Known Issue: Zul'jin's Baseline Quest progress can stop displaying properly in the top bar, unknown cause, seems to fix itself when Zul'jin gains progress
+
+## v0.25 (**2021-09-28**)
 
 * Github
- * Interfaces are no longer included as part of the repository moving forward, and instead the raw files are included
+  * Interfaces are no longer included as part of the repository moving forward, and instead the raw files are included
 
 * Statistics
   * Kel'Thuzad now features two new score values for when he reaches the first milestone of Master of the Cold Dark and when he reaches the final milestone of Master of the Cold Dark

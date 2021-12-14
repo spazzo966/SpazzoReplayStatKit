@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <StyleFile>
+  <Constant name="Spazzo_Paused" val="3523FF" />
+  <Constant name="Spazzo_Recording" val="FF0000" />
   <Style name="SpazzoDebug" template="HeaderExtendedTemplate" Height="12" vjustify="Middle" hjustify="Center" />
   <Style name="Storm_TabButton_Label_Modified" template="HeaderExtendedTemplate" height="16" textcolor="d5cff9-aaa1ed" vjustify="Middle" hjustify="Center" glowcolor="030212" highlightglowcolor="030212" highlightcolor="ffffff-b6acff" styleflags="!Shadow|Glow" disabledcolor="6d64a9" disabledglowcolor="030212" />
   <Style name="Spazzo_SliderValue" template="Storm_TabButton_Label_Modified" fontflags="Outline" styleflags="Shadow" outlinewidth="2" />

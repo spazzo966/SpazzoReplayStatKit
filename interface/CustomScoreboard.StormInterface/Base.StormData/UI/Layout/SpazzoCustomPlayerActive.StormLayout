@@ -766,6 +766,14 @@
             <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
             <CollapseLayout val="True"/>
             <Visible val="{$TopBarSettingsFrame/BottomLeftDisplayUnitStatistics/@Toggled}"/>
+            <Frame type="Frame" name="AttackDamageTooltipFrame">
+              <Anchor side="Top" relative="$parent/AttackDamageFrame/StatIcon" pos="Min" offset="0"/>
+              <Anchor side="Left" relative="$parent/AttackDamageFrame/StatIcon" pos="Min" offset="0"/>
+              <Anchor side="Right" relative="$parent/AttackDamageFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/AttackDamageFrame/StatIcon" pos="Max" offset="0"/>
+              <AcceptsMouseTooltip val="true" />
+              <Tooltip val="{$parent/AttackDamageFrame/CombinedFormatFrameTooltip/@Text}" />
+            </Frame>
             <Frame type="Frame" name="AttackDamageFrame">
               <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
               <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
@@ -776,7 +784,7 @@
                 <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
                 <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
                 <Texture val="@UI/Storm_UI_Attack_Damage_Icon" />
-                <AcceptsMouseTooltip val="true" />
+                <AcceptsMouseTooltip val="False" />
                 <Tooltip val="{$parent/CombinedFormatFrameTooltip/@Text}" />
               </Frame>
               <Frame type="Label" name="LabelCombined">
@@ -784,7 +792,7 @@
                 <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
                 <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
                 <Text val="{$parent/BaseDamageLabel/StatusLabel/@Text}"/>
-                <AcceptsMouseTooltip val="true" />
+                <AcceptsMouseTooltip val="False" />
                 <Tooltip val="{$parent/CombinedFormatFrameTooltip/@Text}" />
               </Frame>
               <Frame type="UnitStatusDamageLabel" name="BaseDamageLabel">
@@ -1025,6 +1033,14 @@
                 </Frame>
               </Frame>
             </Frame>
+            <Frame type="Frame" name="PhysicalArmorTooltipFrame">
+              <Anchor side="Top" relative="$parent/PhysicalArmorFrame/StatIcon" pos="Min" offset="0"/>
+              <Anchor side="Left" relative="$parent/PhysicalArmorFrame/StatIcon" pos="Min" offset="0"/>
+              <Anchor side="Right" relative="$parent/PhysicalArmorFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/PhysicalArmorFrame/StatIcon" pos="Max" offset="0"/>
+              <AcceptsMouseTooltip val="true" />
+              <Tooltip val="{$parent/PhysicalArmorFrame/CombinedFormatFrameTooltip/@Text}" />
+            </Frame>
             <Frame type="Frame" name="PhysicalArmorFrame">
               <Anchor side="Top" relative="$parent/MoveSpeedFrame" pos="Min" offset="0"/>
               <Anchor side="Bottom" relative="$parent/MoveSpeedFrame" pos="Max" offset="0"/>
@@ -1035,7 +1051,7 @@
                 <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
                 <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
                 <Texture val="@UI/Storm_UI_Physical_Armor_Icon" />
-                <AcceptsMouseTooltip val="true" />
+                <AcceptsMouseTooltip val="False" />
                 <Tooltip val="{$parent/CombinedFormatFrameTooltip/@Text}" />
               </Frame>
               <Frame type="Label" name="LabelCombined">
@@ -1043,7 +1059,7 @@
                 <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
                 <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
                 <Text val="{$parent/ArmorLabelHero/@CurrentPhysicalArmor}"/>
-                <AcceptsMouseTooltip val="true" />
+                <AcceptsMouseTooltip val="False" />
                 <Tooltip val="{$parent/CombinedFormatFrameTooltip/@Text}" />
               </Frame>
               <Frame type="UnitStatusUnitArmor" name="ArmorLabelHero">
@@ -1155,6 +1171,14 @@
                 <ReplacedName index="5" val="structurearmor" />
               </Frame>
             </Frame>
+            <Frame type="Frame" name="SpellArmorTooltipFrame">
+              <Anchor side="Top" relative="$parent/SpellArmorFrame/StatIcon" pos="Min" offset="0"/>
+              <Anchor side="Left" relative="$parent/SpellArmorFrame/StatIcon" pos="Min" offset="0"/>
+              <Anchor side="Right" relative="$parent/SpellArmorFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/SpellArmorFrame/StatIcon" pos="Max" offset="0"/>
+              <AcceptsMouseTooltip val="true" />
+              <Tooltip val="{$parent/SpellArmorFrame/CombinedFormatFrameTooltip/@Text}" />
+            </Frame>
             <Frame type="Frame" name="SpellArmorFrame">
               <Anchor side="Top" relative="$parent/MoveSpeedFrame" pos="Min" offset="0"/>
               <Anchor side="Bottom" relative="$parent/MoveSpeedFrame" pos="Max" offset="0"/>
@@ -1165,7 +1189,7 @@
                 <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
                 <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
                 <Texture val="@UI/Storm_UI_Ability_Armor_Icon" />
-                <AcceptsMouseTooltip val="true" />
+                <AcceptsMouseTooltip val="False" />
                 <Tooltip val="{$parent/CombinedFormatFrameTooltip/@Text}" />
               </Frame>
               <Frame type="Label" name="LabelCombined">
@@ -1173,7 +1197,7 @@
                 <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
                 <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
                 <Text val="{$parent/ArmorLabelHero/@CurrentAbilityArmor}"/>
-                <AcceptsMouseTooltip val="true" />
+                <AcceptsMouseTooltip val="False" />
                 <Tooltip val="{$parent/CombinedFormatFrameTooltip/@Text}" />
               </Frame>
               <Frame type="UnitStatusUnitArmor" name="ArmorLabelHero">

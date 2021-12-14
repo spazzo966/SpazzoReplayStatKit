@@ -5,9 +5,9 @@
   <Constant name="HeroHealthLabelVisibilityFraction" val="100" />
   <Constant name="HeroNamePlateVisibility" val="False" />
   <Constant name="HeroUnitNameVisibility" val="False" />
-  <Constant name="CoreUnitNameVisibility" val="True" />
+  <Constant name="CoreUnitNameVisibility" val="100" />
   <Constant name="CoreUnitHealthPlateVisibility" val="False" />
-  <Constant name="TownUnitNameVisibility" val="True" />
+  <Constant name="TownUnitNameVisibility" val="0" />
   <Constant name="KeepFortVisibilitySettingToggle" val="False" />
   <Constant name="TopBarCompleteVisibilityToggle" val="True" />
   <Constant name="TopBarCustomVisibilityToggle" val="True" />
@@ -17,7 +17,7 @@
   <Constant name="MercCampVisibilityToggle" val="False" />
   <Constant name="MinionHealthPlateVisibilityToggle" val="False" />
   <Constant name="HideAttachmentOnCD" val="False" />
-  <Constant name="BottomLeftDisplayUnitStats" val="False" />
+  <Constant name="BottomLeftDisplayUnitStats" val="True" />
   <Constant name="CrusaderCooldownDisplay" val="4" />
   <Constant name="AmazonCooldownDisplay" val="0" />
   <Constant name="ZeratulCooldownDisplay" val="0" />
@@ -133,6 +133,8 @@
   <Constant name="TopBarAlignToLeft" val="False" />
   <Constant name="TopBarShowTownTotal" val="False" />
   <Constant name="TopBarAllowUnitSelection" val="True" />
+  <Constant name="TopBarShowBackground" val="True" />
+  <Constant name="TopBarShowHeroes" val="True" />
   <Constant name="TopBarProxyTalents" val="True" />
   <Constant name="DisplayObjWarning" val="True" />
   <Constant name="DisplayTalentBorders" val="True" />
@@ -145,6 +147,7 @@
   <Constant name="BottomPanelDisplayTooltips" val="True" />
   <Constant name="DisplayHealthBackings" val="True" />
   <Constant name="DisplayAbilBackings" val="True" />
+  <Constant name="EnableTimestampedStatistics" val="True" />
   <Constant name="Tab2Score1" val="SoloKill" />
   <Constant name="Tab2Score1Description" val="@Spazzo/ScoreTypeKills" />
   <Constant name="Tab2Score2" val="Assists" />

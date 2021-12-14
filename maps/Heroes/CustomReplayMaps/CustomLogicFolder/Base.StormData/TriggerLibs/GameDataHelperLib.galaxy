@@ -2623,6 +2623,7 @@ void libGDHL_gf_HeroMedicDecrementHeroCountFunction () {
 
 }
 
+
 string libGDHL_gf_HealingBeamGetPortraitPathforUnit (unit lp_unit) {
   // Automatic Variable Declarations
   string auto0CC21378_val;
@@ -2674,38 +2675,36 @@ text libGDHL_gf_MedicUIUnitDisplayName (unit lp_unit) {
   }
 }
 
-
-
 trigger auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger = null;
 bool auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_showHide;
 int auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_player;
 
 void libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI (bool lp_showHide, int lp_player) {
-    auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_showHide = lp_showHide;
-    auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_player = lp_player;
+  auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_showHide = lp_showHide;
+  auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_player = lp_player;
 
-    if (auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger == null) {
-        auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger = TriggerCreate("auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_TriggerFunc");
-    }
+  if (auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger == null) {
+      auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger = TriggerCreate("auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_TriggerFunc");
+  }
 
-    TriggerExecute(auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger, false, false);
+  TriggerExecute(auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger, false, false);
 }
 
 bool auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_TriggerFunc (bool testConds, bool runActions) {
-    bool lp_showHide = auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_showHide;
-    int lp_player = auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_player;
+  bool lp_showHide = auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_showHide;
+  int lp_player = auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_player;
 
-    // Automatic Variable Declarations
-    // Implementation
-    if ((lp_showHide == true)) {
-        DialogControlSendAnimationEvent(libGDHL_gv_medicUI.lv_medivacAlert, libCore_gv_playerGroupFromPlayer[lp_player], "Begin");
-    }
-    else {
-        DialogControlSendAnimationEvent(libGDHL_gv_medicUI.lv_medivacAlert, libCore_gv_playerGroupFromPlayer[lp_player], "End");
-        Wait(0.5, c_timeGame);
-        DialogControlSendAnimationEvent(libGDHL_gv_medicUI.lv_medivacAlert, libCore_gv_playerGroupFromPlayer[lp_player], "End");
-    }
-    return true;
+  // Automatic Variable Declarations
+  // Implementation
+  if ((lp_showHide == true)) {
+      DialogControlSendAnimationEvent(libGDHL_gv_medicUI.lv_medivacAlert, libCore_gv_playerGroupFromPlayer[lp_player], "Begin");
+  }
+  else {
+      DialogControlSendAnimationEvent(libGDHL_gv_medicUI.lv_medivacAlert, libCore_gv_playerGroupFromPlayer[lp_player], "End");
+      Wait(0.5, c_timeGame);
+      DialogControlSendAnimationEvent(libGDHL_gv_medicUI.lv_medivacAlert, libCore_gv_playerGroupFromPlayer[lp_player], "End");
+  }
+  return true;
 }
 
 void libGDHL_gf_HeroMonkIncrementHeroCountFunction () {
@@ -9417,7 +9416,7 @@ bool libGDHL_gt_HeroDemonHunterVaultDamageBuff_Func (bool testConds, bool runAct
     }
 
     if ((PlayerHasTalent(lv_player, "DemonHunterDeathDealer") == true)) {
-		lv_stackMod = 0.14;
+		lv_stackMod = 0.15;
         // lv_stackMod = CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "DemonHunterWeaponDamage", "MultiplicativeModifierArray[" + "DeathDealer" + "].Modifier", lv_player);
     }
 
@@ -18994,7 +18993,7 @@ bool libGDHL_gt_HeroRehgarTidalWavesModifyCooldown_Func (bool testConds, bool ru
         return true;
     }
 
-    UnitModifyCooldown(lv_rehgarUnit, CatalogReferenceGet("Abil,RehgarChainHeal,Cost[0].Cooldown.Link", UnitGetOwner(lv_rehgarUnit)), -0.75, c_cooldownOperationAdd);
+    UnitModifyCooldown(lv_rehgarUnit, CatalogReferenceGet("Abil,RehgarChainHeal,Cost[0].Cooldown.Link", UnitGetOwner(lv_rehgarUnit)), -1.0, c_cooldownOperationAdd);
     return true;
 }
 
@@ -19052,7 +19051,7 @@ bool libGDHL_gt_HeroRehgarTotemicProjectionTalentSaveTotem_Func (bool testConds,
 void libGDHL_gt_HeroRehgarTotemicProjectionTalentSaveTotem_Init () {
     libGDHL_gt_HeroRehgarTotemicProjectionTalentSaveTotem = TriggerCreate("libGDHL_gt_HeroRehgarTotemicProjectionTalentSaveTotem_Func");
     TriggerEnable(libGDHL_gt_HeroRehgarTotemicProjectionTalentSaveTotem, false);
-    TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroRehgarTotemicProjectionTalentSaveTotem, c_playerAny, "RehgarEarthbindTotemCreateUnitSet");
+    TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroRehgarTotemicProjectionTalentSaveTotem, c_playerAny, "RehgarEarthbindTotemSpawnSet");
 }
 
 //--------------------------------------------------------------------------------------------------

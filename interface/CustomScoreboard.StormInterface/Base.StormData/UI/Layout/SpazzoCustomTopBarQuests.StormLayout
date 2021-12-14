@@ -705,6 +705,19 @@
         <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ProbiusWarpInPylon" /> 
         <Action type="SetState" frame="$this" Group="BaselineType" State="DoesNotHaveTokenDoesNotHaveDurationHasAbilityDoesNotHaveCharge"/>
       </State>
+      <State name="Rehgar">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroRehgar"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowActives/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <Action type="SetProperty" frame="$this/UnitAbilFrame" AbilityLink="RehgarPurge" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_rehgar_purge.dds" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/RehgarPurge" /> 
+        <Action type="SetState" frame="$this" Group="BaselineType" State="DoesNotHaveTokenDoesNotHaveDurationHasAbilityDoesNotHaveCharge"/>
+      </State>
       <State name="SamuroDummyState">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroSamuro"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
@@ -918,6 +931,74 @@
         <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_dehaka_essencecollection.dds" /> 
         <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DehakaEssenceCollection" /> 
         <Action type="SetState" frame="$this" Group="BaselineType" State="DoesNotHaveTokenDoesNotHaveDurationDoesHaveAbilityDoesHaveCharge"/>
+      </State>
+      <State name="ChenActiveOnly">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroChen"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="False"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowActives/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <Action type="SetProperty" frame="$this/UnitAbilFrame" AbilityLink="ChenFortifyingBrew" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_chen_fortifyingbrew.dds" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ChenFortifyingBrew" /> 
+        <Action type="SetState" frame="$this" Group="BaselineType" State="DoesNotHaveTokenDoesNotHaveDurationHasAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="ChenBuffOnly">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroChen"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowActives/CheckBoxButton" Toggled="False"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <Action type="SetProperty" frame="$this/UnitAbilFrame" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="NULL" /> 
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/DummyStackProgressBar" Visible="False" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_chen_fortifyingbrew.dds" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ChenFortifyingBrew" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar" Behavior="ChenFortifyingBrewController" />
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" AdjustmentColor="255,200,200,200" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" Alpha="130" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" ColorAdjustMode="Fill" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="DoesNotHaveTokenHasDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="ChenBoth">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroChen"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowActives/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="NULL" /> 
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/DummyStackProgressBar" Visible="False" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_chen_fortifyingbrew.dds" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" /> 
+        <Action type="SetProperty" frame="$this/UnitAbilFrame" AbilityLink="ChenFortifyingBrew" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ChenFortifyingBrew" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar" Behavior="ChenFortifyingBrewController" />
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" AdjustmentColor="255,200,200,200" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" Alpha="130" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" ColorAdjustMode="Fill" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="DoesNotHaveTokenDoesHaveDurationHasAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="TLVGoGoGo">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroLostVikingsController"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$Talent0MasterSetting/ShowActives/CheckBoxButton" Toggled="True"/>
+        <Action type="SetProperty" frame="$this/UnitAbilFrame" AbilityLink="LostVikingsGoGoGo" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_lostvikings_64kbmarathon.dds" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/LostVikingsGoGoGo" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="DoesNotHaveTokenDoesNotHaveDurationHasAbilityDoesNotHaveCharge"/>
       </State>
       <State name="AzmodanForceDisplay">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroAzmodan"/>
@@ -1249,12 +1330,12 @@
             <Anchor relative="$parent" />
             <AcceptsMouse val="False"/>
             <AcceptsMouseTooltip val="False"/>
-            <RenderPriority val="600"/>
+            <RenderPriority val="603"/>
             <Frame type="Image" name="FillImage">
               <Anchor relative="$parent" />
               <Texture val="_Assets\UI\spaz_ui_talentborder_newer_quest.dds" />
               <TextureType val="Circular" />
-              <RenderPriority val="600"/>
+              <RenderPriority val="604"/>
               <AcceptsMouse val="False"/>
               <AcceptsMouseTooltip val="False"/>
             </Frame>
@@ -1377,7 +1458,7 @@
         <Circular val="True" />
         <CircularStart val="0" />
         <CircularEndOffset val="360" />
-        <MinValue val="1" />
+        <MinValue val="0" />
         <MaxValue val="100" />
         <Value val="50" />
         <AcceptsMouse val="False"/>
@@ -1964,6 +2045,12 @@
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]/T1QuestControllerFrame" Visible="True"/>
         <Action type="SetProperty" frame="$parent" Behavior="CrusaderLawsOfHopeTokenCounter" />
       </State>
+      <State name="Stormcaller">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" texture="Assets\Textures\storm_ui_icon_rehgar_lightningshield.dds"/>
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]/T1QuestControllerFrame" Visible="True"/>
+        <Action type="SetProperty" frame="$parent" Behavior="RehgarLightningShieldStormcallerTalentTokenCounter" />
+      </State>
       <State name="CreedoftheHunterLoan">
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierSelected"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" texture="Assets\Textures\storm_ui_icon_valla_hatred.dds"/>
@@ -2067,7 +2154,9 @@
       </State> -->
       <State name="NoState">
         <Action type="SetProperty" frame="$parent" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent" Visible="False" />
         <Action type="SetProperty" frame="$parent/$parent/LoanStackCounterT1" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/$parent/LoanStackCounterT1" Visible="False" />
         <Action type="SetState" frame="$parent/$parent/LoanStackProgressBarDummyT1" Group="LoanState" State="IsNotLoanTalent"/>
       </State>
     </StateGroup>
@@ -2441,7 +2530,9 @@
       </State>
       <State name="NoState">
         <Action type="SetProperty" frame="$parent/QuestStackCounterT2" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT2" Visible="False" />
         <Action type="SetProperty" frame="$parent/BuffDurationT2" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT2" Visible="False" />
         <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
       </State>
     </StateGroup>
@@ -2564,7 +2655,9 @@
       </State>
       <State name="NoState">
         <Action type="SetProperty" frame="$parent" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent" Visible="False" />
         <Action type="SetProperty" frame="$parent/$parent/LoanStackCounterT3" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/$parent/LoanStackCounterT3" Visible="False" />
         <Action type="SetState" frame="$parent/$parent/LoanStackProgressBarDummyT3" Group="LoanState" State="IsNotLoanTalent"/>
       </State>
     </StateGroup>
@@ -2645,9 +2738,20 @@
         <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="KerriganMaelstrom" />
         <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
       </State>
+      <State name="StormEarthFire">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_chen_stormearthfire.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="StormEarthFireCasterBehavior" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State>
       <State name="NoState">
         <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Visible="False" />
         <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Visible="False" />
         <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
       </State>
     </StateGroup>
@@ -2895,6 +2999,7 @@
       </State> -->
       <State name="NoState">
         <Action type="SetProperty" frame="$parent" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent" Visible="False" />
       </State>
     </StateGroup>
   </Frame>
@@ -3094,6 +3199,7 @@
       </State>
       <State name="NoState">
         <Action type="SetProperty" frame="$parent" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent" Visible="False" />
       </State>
     </StateGroup>
   </Frame>
@@ -3152,8 +3258,20 @@
         <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" Alpha="130" /> 
         <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" ColorAdjustMode="Fill" /> 
       </State>
+      <State name="PitFighter">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent7MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_ingame_heroselect_btn_rehgar.dds"/>
+        <Action type="SetProperty" frame="$parent" Behavior="RehgarPitFighterTokenCounter" /> 
+        <Action type="SetProperty" frame="$parent/BehaviorIcon/StackLabel" Style="Spazzo_TopPanelQuestLabel_NotQuest" /> 
+        <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" AdjustmentColor="255,200,200,200" /> 
+        <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" Alpha="130" /> 
+        <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" ColorAdjustMode="Fill" /> 
+      </State>
       <State name="NoState">
         <Action type="SetProperty" frame="$parent" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent" Visible="False" />
       </State>
     </StateGroup>
   </Frame>
