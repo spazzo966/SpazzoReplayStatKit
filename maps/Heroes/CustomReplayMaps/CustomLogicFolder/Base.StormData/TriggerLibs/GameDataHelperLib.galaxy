@@ -1110,6 +1110,8 @@ void libGDHL_gf_HeroDiabloIncrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroDiabloInfernoBreathEnd, true);
         TriggerEnable(libGDHL_gt_HeroDiabloBlackSoulstoneStackTalentPicked, true);
         TriggerEnable(libGDHL_gt_HeroDiabloOverpowerSetFacing, true);
+        TriggerEnable(libGDHL_gt_HeroDiabloEternalSoulstoneRessurection, true);
+        TriggerEnable(libGDHL_gt_HeroDiabloResetEternalSoulstoneRessurection, true);
     }
 
 }
@@ -1127,6 +1129,8 @@ void libGDHL_gf_HeroDiabloDecrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroDiabloInfernoBreathEnd, false);
         TriggerEnable(libGDHL_gt_HeroDiabloBlackSoulstoneStackTalentPicked, false);
         TriggerEnable(libGDHL_gt_HeroDiabloOverpowerSetFacing, false);
+        TriggerEnable(libGDHL_gt_HeroDiabloEternalSoulstoneRessurection, false);
+        TriggerEnable(libGDHL_gt_HeroDiabloResetEternalSoulstoneRessurection, false);
     }
 
 }
@@ -1172,8 +1176,6 @@ void libGDHL_gf_HeroDryadIncrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroDryadDeactivateCameraSettings, true);
         TriggerEnable(libGDHL_gt_HeroDryadActivateCameraforSymbiote, true);
         TriggerEnable(libGDHL_gt_HeroDryadLossofControlCamera, true);
-        TriggerEnable(libGDHL_gt_HeroDryadAbolishMagicBehaviorActivate, true);
-        TriggerEnable(libGDHL_gt_HeroDryadAbolishMagicBehaviorDeactivate, true);
     }
 
 }
@@ -1197,9 +1199,6 @@ void libGDHL_gf_HeroDryadDecrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroDryadDeactivateCameraSettings, false);
         TriggerEnable(libGDHL_gt_HeroDryadActivateCameraforSymbiote, false);
         TriggerEnable(libGDHL_gt_HeroDryadLossofControlCamera, false);
-        TriggerEnable(libGDHL_gt_HeroDryadAbolishMagicBehaviorActivate, false);
-        TriggerEnable(libGDHL_gt_HeroDryadAbolishMagicBehaviorDeactivate, false);
-        TriggerEnable(libGDHL_gt_HeroDryadAbolishMagicCCRecognition, false);
     }
 
 }
@@ -9347,6 +9346,113 @@ void libGDHL_gt_HeroDiabloInfernoBreathEnd_Init () {
     libGDHL_gt_HeroDiabloInfernoBreathEnd = TriggerCreate("libGDHL_gt_HeroDiabloInfernoBreathEnd_Func");
     TriggerEnable(libGDHL_gt_HeroDiabloInfernoBreathEnd, false);
     TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroDiabloInfernoBreathEnd, null, "DiabloLightningBreathActive", c_unitBehaviorChangeDeactivate);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero - Diablo - Eternal Soulstone Ressurection
+//--------------------------------------------------------------------------------------------------
+bool libGDHL_gt_HeroDiabloEternalSoulstoneRessurection_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+    unit lv_unit;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = libGame_gf_HeroLevelUpPlayer();
+    lv_unit = libGame_gv_players[lv_player].lv_heroUnit;
+
+    // Conditions
+    if (testConds) {
+        if (!((lv_player >= 1))) {
+            return false;
+        }
+
+        if (!((lv_player <= libCore_gv_bALMaxPlayers))) {
+            return false;
+        }
+
+        if (!((libGame_gf_HeroLevelUpLevel() >= 10))) {
+            return false;
+        }
+
+        if (!((UnitGetType(lv_unit) == "HeroDiablo"))) {
+            return false;
+        }
+
+        if (!((UnitHasBehavior2(lv_unit, "DiabloBlackSoulstoneEternalSoulstone") == false))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitBehaviorAdd(lv_unit, "DiabloBlackSoulstoneEternalSoulstone", lv_unit, 1);
+    UnitCreateEffectUnit(lv_unit, "DiabloBlackSoulstoneAdd1EternalSoulstoneTokenCount", lv_unit);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libGDHL_gt_HeroDiabloEternalSoulstoneRessurection_Init () {
+    libGDHL_gt_HeroDiabloEternalSoulstoneRessurection = TriggerCreate("libGDHL_gt_HeroDiabloEternalSoulstoneRessurection_Func");
+    TriggerEnable(libGDHL_gt_HeroDiabloEternalSoulstoneRessurection, false);
+    libGame_gf_HeroLevelUp(libGDHL_gt_HeroDiabloEternalSoulstoneRessurection);
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero - Diablo - Reset Eternal Soulstone Ressurection
+//--------------------------------------------------------------------------------------------------
+bool libGDHL_gt_HeroDiabloResetEternalSoulstoneRessurection_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_player;
+    unit lv_unit;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = UnitGetOwner(EventUnit());
+    lv_unit = libGame_gv_players[lv_player].lv_heroUnit;
+
+    // Conditions
+    if (testConds) {
+        if (!((lv_player >= 1))) {
+            return false;
+        }
+
+        if (!((lv_player <= libCore_gv_bALMaxPlayers))) {
+            return false;
+        }
+
+        if (!((UnitGetType(lv_unit) == "HeroDiablo"))) {
+            return false;
+        }
+
+        if (!((UnitHasBehavior2(lv_unit, "DiabloBlackSoulstoneEternalSoulstone") == true))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    UnitCreateEffectUnit(lv_unit, "DiabloBlackSoulstoneResetEternalSoulstoneTokenCount", lv_unit);
+    UnitBehaviorRemove(lv_unit, "DiabloBlackSoulstoneEternalSoulstone", 1);
+    Wait(0.125, c_timeGame);
+    if ((UnitBehaviorCount(EventUnit(), "HeroDummyVeterancy") >= 10)) {
+        UnitBehaviorAdd(lv_unit, "DiabloBlackSoulstoneEternalSoulstone", lv_unit, 1);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libGDHL_gt_HeroDiabloResetEternalSoulstoneRessurection_Init () {
+    libGDHL_gt_HeroDiabloResetEternalSoulstoneRessurection = TriggerCreate("libGDHL_gt_HeroDiabloResetEternalSoulstoneRessurection_Func");
+    TriggerEnable(libGDHL_gt_HeroDiabloResetEternalSoulstoneRessurection, false);
+    TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroDiabloResetEternalSoulstoneRessurection, null, "MuradinItsHammerTimeTokenCounter", c_unitBehaviorChangeCreate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -26601,6 +26707,8 @@ void libGDHL_InitTriggers () {
     libGDHL_gt_HeroDiabloOverpowerSetFacing_Init();
     libGDHL_gt_HeroDiabloInfernoBreathCast_Init();
     libGDHL_gt_HeroDiabloInfernoBreathEnd_Init();
+    libGDHL_gt_HeroDiabloEternalSoulstoneRessurection_Init();
+    libGDHL_gt_HeroDiabloResetEternalSoulstoneRessurection_Init();
     libGDHL_gt_HeroDiabloBlackSoulstoneStackTalentPicked_Init();
     libGDHL_gt_HeroDemonHunterVaultDamageBuff_Init();
     libGDHL_gt_HeroDemonHunterManticoreProc_Init();

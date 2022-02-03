@@ -1,4 +1,49 @@
-# v0.26 (**2021-12-14**)
+# v0.27 (**2022-02-03**)
+
+* Statistics
+  * General Updates to support game version 2.55.1.87306
+  * Replays converted to feature custom statistics now feature an altered map preview image showing the version and intended game build
+    * This is a more reliable tell of if the version that the custom map is up to date, as the details shown in the replay player text is stored in the replay itself, while this is stored in the custom map, replacing the battleground preview image
+  * Times used Hearthstone is now functional. Yrel's Bubble Hearth is not included in this count, as it already has it's own cast count tracked
+
+* UI
+  * General Updates to support game version 2.55.1.87306
+  * Top Bar
+    * If the Battleground is Alterac Pass, the number of Keeps standing will be displayed in the Core Health bar for each team
+    * Deathwing's Cataclysm will now override the Heroic slot prior to reaching level 10, and after level 10 if Burn Beneath My Shadow(the level 10 upgrade to Cataclysm) is selected, and will otherwise be relocated, such as if Bellowing Roar is selected
+    * 25 Heroes have had their portrait position in the Minimal Top Bar Layout shifted upwards varying degrees: Anduin, Alarak, Alexstrasza, Auriel, Cassia, Ragnaros, Deathwing, Deckard, Fenix, Garrosh, Hogger, Hanzo, Gul'dan, Junkrat, Kel'Thuzad, Lucio, Malthael, Maiev, Mei, Mal'Ganis, Qhira, Samuro, Valeera, Zarya and Zul'jin. This is done to better fit their portrait into the reduced vertical space
+    * The position of the death timer text in the Minimal Top Bar layout has been shifted slightly down
+    * The Heroic Icon size in the Minimal Top Bar Layout has been increased by 2
+    * Greymane's Go For The Throat free cast duration is now displayed as a buff if selected as a talent
+    * Dehaka's Adaption duration is now displayed as a buff if selected as a talent
+    * Genji's Dragonblade duration is now displayed as a buff if selected as a talent
+    * Muradin's Avatar duration is now displayed as a buff if selected as a talent
+    * Illidan's Metamorphosis bonus health duration is now displayed as a buff if selected as a talent
+    * Malfurion's Tranquility duration is now displayed as a buff if selected as a talent
+    * Rehgar's Bloodlust duration is now displayed as a buff if selected as a talent
+    * Tychus' Odin duration is now displayed as a buff if selected as a talent
+    * Tyrande's Shadowstalk heal duration is now displayed as a buff if selected as a talent
+    * Yrel's Ardent Defender duration is now displayed as a buff if selected as a talent
+    * Jaina's Improved Ice Block icon has been changed to a more complete icon in the selected unit ability display
+    * Yrel's Basic Abilities now display an altered icon and hide their cooldown while charging in the selected unit ability display
+    * D.Va's Mech Boosters ability is now replaced with the Cancel Boosters ability while Boosters are active in the selected unit ability display
+    * Tassadar now displays his Resonance Beam as a non-quest baseline trait.
+    * Anduin's Glyph of Faith now causes Leap of Faith to display it's charge count when selected at the sixth talent tier
+    * Genji's Dragonblade now causes Shuriken's Charges to be hidden while active
+    * Arthas now displays his remaining number of Army of the Dead Ghouls, and the cooldown for sacrificing them, instead of the cooldown of Army of the Dead while any Ghouls are alive
+  * Bottom Panel
+    * Arthas now displays his remaining number of Army of the Dead Ghouls, and the cooldown for sacrificing them, instead of the cooldown of Army of the Dead while any Ghouls are alive
+  * Selected Unit Stats
+    * Added Unit Radius, this will live-read from the unit, so Heroes like Cho'Gall or Diablo will display a different value while Surging Fist or Shadow Charge is actively moving the unit
+    * Added Unit XP Value, which will display on non-hero units, when hovered, this will also display the unit veterancy and unit name in the tooltip. Note that Monsters may display an experience value, but this experience is not granted
+    * Hovering over the movement speed now display the base unit movement speed, as well as the percentage of movespeed compared to the standard heroic movespeed
+  * Bug Fixes
+    * Fixed an issue where that the baseline ability slot cooldown could become truncated at certain screen resolutions if the cooldown text was greater than 99 in the Top Bar when set to Compact Layout
+    * Fixed an issue that caused Anduin's Desperate Prayer cooldown to not be displayed when selected at the third talent tier in the Top Bar and Bottom Panel
+    * Fixed an issue that caused the Healing Fountian cooldown to be in the incorrect location when the Heroic talent was set to be inserted amongst the selected unit ability display
+    * Fixed an issue that caused Genji's Dragonblade's Slash ability to not be displayed over the top of Shuriken's icon
+
+## v0.26 (**2021-12-14**)
 
 * Statistics
   * General Updates to support game version 2.55.0.86938

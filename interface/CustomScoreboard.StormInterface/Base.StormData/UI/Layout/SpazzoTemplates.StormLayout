@@ -9,6 +9,9 @@
   <Constant name="SpazzoBottomPanelTalentReworkQuestRightOffset" val="0" />
   <Constant name="HeroPullOutBGBorderOffset" val="4" />
   <Constant name="HeroPullOutBGBorderOffsetNeg" val="-4" />
+  <Constant name="AlteracCoreArmorWidth" val="22" />
+  <Constant name="AlteracCoreArmorWidthNeg" val="-22" />
+  <Constant name="AlteracCoreArmorInset" val="-6" />
 
   <Frame type="UnitStatusFrame" name="UnitStatusFrameTemplate">
     <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
@@ -1532,6 +1535,14 @@
                     <Action type="SetProperty" frame="$this" style="Spazzo_BottomPanelAbilCharge" />
                   </State>
                 </StateGroup>
+              </Frame>
+            </Frame>
+            <Frame type="DataRefFrame" name="UnitDataRefFrame">
+              <PlayerId val="{$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/@PlayerId}" />
+            </Frame>
+            <Frame type="Frame" name="HeroicUnitCountFrame">
+              <Frame type="Label" name="UnitCountLabel">
+                <Style val="Spazzo_BottomPanelAbilCharge"/>
               </Frame>
             </Frame>
           </Frame>
@@ -4757,6 +4768,120 @@
         <Color val="{$GameUI/TeamChaosColors/@Color}" />
         <TextureType val="Nineslice" />
       </Frame>
+    </Frame>
+  </Frame>
+
+
+  <Frame type="UnitStatusValidatorAnimElement" name="AlteracKeepsAliveTemplate">
+    <Anchor relative="$parent" />
+    <Validator val="SourceHas3WarchiefsAlive" />
+    <Validator val="SourceHas2WarchiefsAlive" />
+    <Validator val="SourceHas1WarchiefsAlive" />
+    <Validator val="SourceHas0WarchiefsAlive" />
+    <StateGroup name="WarchiefsAlive">
+      <DefaultState val="3Alive" />
+      <State name="NotAlterac">
+        <When type="Property" frame="$BattlegroundVariableHandle" operator="NotEqual" StringValue="AlteracPass" />
+        <Action type="SetProperty" frame="$parent/AlteracCoreArmor" Visible="False" />
+      </State>
+      <State name="3Alive">
+        <When type="AnimationState" UnitStatusValidatorState="SourceHas3WarchiefsAlive" />
+        <Action type="SetProperty" frame="$parent/AlteracCoreArmor/BossHealthBarShield3/ShieldInside" Visible="True" />
+        <Action type="SetProperty" frame="$parent/AlteracCoreArmor/BossHealthBarShield2/ShieldInside" Visible="True" />
+        <Action type="SetProperty" frame="$parent/AlteracCoreArmor/BossHealthBarShield1/ShieldInside" Visible="True" />
+      </State>
+      <State name="2Alive">
+        <When type="AnimationState" UnitStatusValidatorState="SourceHas2WarchiefsAlive" />
+        <Action type="SetProperty" frame="$parent/AlteracCoreArmor/BossHealthBarShield3/ShieldInside" Visible="False" />
+        <Action type="SetProperty" frame="$parent/AlteracCoreArmor/BossHealthBarShield2/ShieldInside" Visible="True" />
+        <Action type="SetProperty" frame="$parent/AlteracCoreArmor/BossHealthBarShield1/ShieldInside" Visible="True" />
+      </State>
+      <State name="1Alive">
+        <When type="AnimationState" UnitStatusValidatorState="SourceHas1WarchiefsAlive" />
+        <Action type="SetProperty" frame="$parent/AlteracCoreArmor/BossHealthBarShield3/ShieldInside" Visible="False" />
+        <Action type="SetProperty" frame="$parent/AlteracCoreArmor/BossHealthBarShield2/ShieldInside" Visible="False" />
+        <Action type="SetProperty" frame="$parent/AlteracCoreArmor/BossHealthBarShield1/ShieldInside" Visible="True" />
+      </State>
+      <State name="0Alive">
+        <When type="AnimationState" UnitStatusValidatorState="SourceHas0WarchiefsAlive" />
+        <Action type="SetProperty" frame="$parent/AlteracCoreArmor/BossHealthBarShield3/ShieldInside" Visible="False" />
+        <Action type="SetProperty" frame="$parent/AlteracCoreArmor/BossHealthBarShield2/ShieldInside" Visible="False" />
+        <Action type="SetProperty" frame="$parent/AlteracCoreArmor/BossHealthBarShield1/ShieldInside" Visible="False" />
+      </State>
+    </StateGroup>
+  </Frame>
+
+  <Frame type="Frame" name="BossHealthBarShieldTemplate">
+    <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+    <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+    <Height val="#AlteracCoreArmorWidth" />
+    <Unclipped val="True" />
+    <Frame type="Image" name="ShieldBG">
+      <Anchor relative="$parent" />
+      <Texture val="@UI/Storm_UI_HUD_WCAV_HealthBarShield" />
+      <SubpixelRendering val="True" />
+    </Frame>
+    <Frame type="Image" name="ShieldInside">
+      <Anchor side="Top" relative="$parent/ShieldBG" pos="Mid" offset="0" />
+      <Anchor side="Bottom" relative="$parent/ShieldBG" pos="Mid" offset="0" />
+      <Anchor side="Right" relative="$parent/ShieldBG" pos="Mid" offset="0" />
+      <Anchor side="Left" relative="$parent/ShieldBG" pos="Mid" offset="0" />
+      <Texture val="@UI/Storm_UI_HUD_WCAV_HealthBarShieldInside" />
+      <SubpixelRendering val="True" />
+      <ColorAdjustMode val="Colorize" />
+      <LightAdjustColor val="{$GameUI/TeamOrderColors/@AdditionalColor}" />
+      <DarkAdjustColor val="{$GameUI/TeamOrderColors/@Color}" />
+      <Width val="14" />
+      <Height val="14" />
+    </Frame>
+  </Frame>
+  
+  <Frame type="Frame" name="BossHealthBarShieldChaosTemplate" template="SpazzoTemplates/BossHealthBarShieldTemplate">
+    <Frame type="Image" name="ShieldInside">
+      <LightAdjustColor val="{$GameUI/TeamChaosColors/@AdditionalColor}" />
+      <DarkAdjustColor val="{$GameUI/TeamChaosColors/@Color}" />
+    </Frame>
+  </Frame>
+  
+  <Frame type="Frame" name="AlteracCoreArmorTemplateOrder">
+    <Anchor side="Top" relative="$parent" pos="Max" offset="#AlteracCoreArmorInset" />
+    <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+    <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+    <Visible val="True" />
+    <Width val="3" />
+    <Height val="3" />
+    <Frame type="Frame" name="BossHealthBarShield3" template="SpazzoTemplates/BossHealthBarShieldTemplate">
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+      <Anchor side="Right" relative="$this" pos="Min" offset="#AlteracCoreArmorWidth" />
+    </Frame>
+    <Frame type="Frame" name="BossHealthBarShield2" template="SpazzoTemplates/BossHealthBarShieldTemplate">
+      <Anchor side="Left" relative="$parent/BossHealthBarShield3" pos="Max" offset="0" />
+      <Anchor side="Right" relative="$this" pos="Min" offset="#AlteracCoreArmorWidth" />
+    </Frame>
+    <Frame type="Frame" name="BossHealthBarShield1" template="SpazzoTemplates/BossHealthBarShieldTemplate">
+      <Anchor side="Left" relative="$parent/BossHealthBarShield2" pos="Max" offset="0" />
+      <Anchor side="Right" relative="$this" pos="Min" offset="#AlteracCoreArmorWidth" />
+    </Frame>
+  </Frame>
+  
+  <Frame type="Frame" name="AlteracCoreArmorTemplateChaos">
+    <Anchor side="Top" relative="$parent" pos="Max" offset="#AlteracCoreArmorInset" />
+    <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+    <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+    <Visible val="True" />
+    <Width val="3" />
+    <Height val="3" />
+    <Frame type="Frame" name="BossHealthBarShield3" template="SpazzoTemplates/BossHealthBarShieldChaosTemplate">
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+      <Anchor side="Left" relative="$parent" pos="Max" offset="#AlteracCoreArmorWidthNeg" />
+    </Frame>
+    <Frame type="Frame" name="BossHealthBarShield2" template="SpazzoTemplates/BossHealthBarShieldChaosTemplate">
+      <Anchor side="Right" relative="$parent/BossHealthBarShield3" pos="Min" offset="0" />
+      <Anchor side="Left" relative="$parent/BossHealthBarShield3" pos="Min" offset="#AlteracCoreArmorWidthNeg" />
+    </Frame>
+    <Frame type="Frame" name="BossHealthBarShield1" template="SpazzoTemplates/BossHealthBarShieldChaosTemplate">
+      <Anchor side="Right" relative="$parent/BossHealthBarShield2" pos="Min" offset="0" />
+      <Anchor side="Left" relative="$parent/BossHealthBarShield2" pos="Min" offset="#AlteracCoreArmorWidthNeg" />
     </Frame>
   </Frame>
 

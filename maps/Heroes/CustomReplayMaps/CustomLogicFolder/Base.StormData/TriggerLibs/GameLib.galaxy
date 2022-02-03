@@ -11500,6 +11500,7 @@ void libGame_gf_TalentsSetupTalentChoicesFromHeroDataForPlayer (int lp_heroIndex
     if ((lv_numberOfAbilitiesModified > 0)) {
       libGame_gv_talents_TalentChoices[lp_player][lv_tier].lv_talentData[lv_column].lv_totalModifications = lv_currentTalentModNumber;
     }
+
   }
 }
 
@@ -11571,6 +11572,7 @@ void libGame_gf_TalentsRespecHeroForPlayer (int lp_player) {
         UnitBehaviorRemove(lv_itHeroUnit, lv_removedBehavior, 1);
         UnitBehaviorAdd(lv_itHeroUnit, lv_removedBehavior, lv_itHeroUnit, 1);
       }
+
     }
   }
   if ((UnitGetType(lv_heroUnit) == "HeroSgtHammer")) {
@@ -11610,6 +11612,7 @@ void libGame_gf_TalentsUpdateChoicePanelForPlayer (int lp_player) {
       lv_currentChoice = lv_itChoice;
       break;
     }
+
   }
   libGame_gv_talents_ActiveChoiceTierForPlayer[lp_player] = lv_currentChoice;
   if ((libCore_gv_tUTTalentsAutobuyOn == false)) {
@@ -11627,6 +11630,7 @@ void libGame_gf_TalentsUpdateChoicePanelForPlayer (int lp_player) {
       libGame_gf_SendEventTalentPanelVisibilityChanged(lp_player, false);
     }
   }
+
 }
 
 void libGame_gf_TalentsChooseTalentForPlayer (int lp_tierIndex, int lp_buttonIndex, int lp_player) {
@@ -11712,6 +11716,7 @@ void libGame_gf_TeleportPetstoHeroLocation (int lp_player, point lp_preTeleportL
         UnitSetPosition(lv_petUnit, UnitGetPosition(lv_heroUnit), false);
         UnitIssueOrder(lv_petUnit, Order(AbilityCommand("stop", 0)), c_orderQueueReplace);
       }
+
     }
   }
 }
@@ -11779,6 +11784,7 @@ void libGame_gf_TownAddStructureToTownArray (int lp_townIndex, unit lp_structure
     else {
     }
   }
+
 }
 
 int libGame_gf_TownGetTownForUnit (unit lp_unit) {
@@ -11857,6 +11863,7 @@ int libGame_gf_TownGetTownFromPoint (point lp_point) {
     if ((RegionContainsPoint(libGame_gv_townTownData[lv_town].lv_townRegion, lp_point) == true)) {
       return lv_town;
     }
+
   }
   return 0;
 }
@@ -11972,6 +11979,7 @@ void libGame_gf_TownAddMoonwellMinimapIconstoTown (int lp_townIndex) {
         DialogControlSetAnimationState(DialogControlLastCreated(), PlayerGroupAll(), "MoonwellIndicator", "Right");
       }
     }
+
   }
 }
 
@@ -11988,6 +11996,7 @@ void libGame_gf_TownRemoveMoonwellMinimapIconsFromTown (int lp_townIndex) {
       DialogControlHookupMinimapUnitStatus(c_triggerControlTypePanel, "$this", libGame_gv_townTownData[lp_townIndex].lv_structureUnits[auto15527A5B_var]);
       DialogControlSetAnimationState(DialogControlLastCreated(), PlayerGroupAll(), "MoonwellIndicator", "None");
     }
+
   }
 }
 
@@ -12003,6 +12012,7 @@ void libGame_gf_TownHideMinimapIconsOnMoonwellUnits (int lp_townIndex) {
     if ((libGame_gf_TownGetTownStructurePresetFromUnit(libGame_gv_townTownData[lp_townIndex].lv_structureUnits[autoBB5EACC1_var]) == libGame_ge_TownStructureTypes_Moonwell) && (UnitIsAlive(libGame_gv_townTownData[lp_townIndex].lv_structureUnits[autoBB5EACC1_var]) == true)) {
       libNtve_gf_SendActorMessageToUnit(libGame_gv_townTownData[lp_townIndex].lv_structureUnits[autoBB5EACC1_var], "Signal HideMinimapIcon");
     }
+
   }
 }
 
@@ -12018,6 +12028,7 @@ void libGame_gf_TownUnhideMinimapIconsOnMoonwellUnits (int lp_townIndex) {
     if ((libGame_gf_TownGetTownStructurePresetFromUnit(libGame_gv_townTownData[lp_townIndex].lv_structureUnits[auto44E10018_var]) == libGame_ge_TownStructureTypes_Moonwell) && (UnitIsAlive(libGame_gv_townTownData[lp_townIndex].lv_structureUnits[auto44E10018_var]) == true)) {
       libNtve_gf_SendActorMessageToUnit(libGame_gv_townTownData[lp_townIndex].lv_structureUnits[auto44E10018_var], "Signal RevealMinimapIcon");
     }
+
   }
 }
 
@@ -12028,7 +12039,9 @@ void libGame_gf_TownTurnOnOffBasicMinimapHealthMonitor (bool lp_turnOnOff) {
     libGame_gv_townBasicMinimapHealthMontior = lp_turnOnOff;
     if ((lp_turnOnOff == true)) {
     }
+
   }
+
 }
 
 void libGame_gf_ControlGroupsEnterVehicleLostVikings (unit lp_vehicle, unit lp_hero, int lp_player) {
@@ -12155,6 +12168,7 @@ void libGame_gf_UnitSelectionEnterVehicle (unit lp_vehicle, unit lp_hero, int lp
     if ((UnitGetType(autoC37B1399_var) == "KaelthasPhoenix") && (UnitGetType(autoC37B1399_var) == "RexxarMisha")) {
       UnitGroupRemove(lv_selectedUnits, autoC37B1399_var);
     }
+
   }
   if ((UnitGroupCount(lv_selectedUnits, c_unitCountAll) == 1) && (UnitIsSelected(lp_hero, lp_player) == true)) {
     libGame_gv_players[lp_player].lv_cameraPlayerUnitGroupToFocusOn = libNtve_gf_ConvertUnitToUnitGroup(lp_vehicle);
@@ -12173,6 +12187,7 @@ void libGame_gf_UnitSelectionEnterVehicle (unit lp_vehicle, unit lp_hero, int lp
   if ((PlayerHero(lp_player) == "Samuro") && (PlayerHasTalent(lp_player, "SamuroHeroicAbilityIllusionMaster") == true)) {
     libGame_gf_ControlGroupsEnterVehicleSamuro(lp_vehicle, lp_hero, lp_player);
   }
+
 }
 
 void libGame_gf_UnitSelectionExitVehicle (unit lp_vehicle, unit lp_hero, int lp_player) {
@@ -12194,6 +12209,7 @@ void libGame_gf_UnitSelectionExitVehicle (unit lp_vehicle, unit lp_hero, int lp_
       libGame_gv_players[lp_player].lv_cameraPlayerUnitGroupToFocusOn = libNtve_gf_ConvertUnitToUnitGroup(lp_hero);
       libGame_gf_CameraUpdateCameraForPlayer(lp_player);
     }
+
   }
 
   if ((PlayerHero(lp_player) == "LostVikings")) {
@@ -12203,6 +12219,7 @@ void libGame_gf_UnitSelectionExitVehicle (unit lp_vehicle, unit lp_hero, int lp_
   if ((PlayerHero(lp_player) == "Samuro") && (PlayerHasTalent(lp_player, "SamuroHeroicAbilityIllusionMaster") == true)) {
     libGame_gf_ControlGroupsExitVehicleSamuro(lp_vehicle, lp_hero, lp_player);
   }
+
 }
 
 void libGame_gf_UnitSelectionSwapVehicle (unit lp_originVehicle, unit lp_newVehicle, int lp_player) {
@@ -12225,6 +12242,7 @@ void libGame_gf_UnitSelectionSwapVehicle (unit lp_originVehicle, unit lp_newVehi
     libGame_gv_players[lp_player].lv_cameraPlayerUnitGroupToFocusOn = libNtve_gf_ConvertUnitToUnitGroup(lp_newVehicle);
     libGame_gf_CameraUpdateCameraForPlayer(lp_player);
   }
+
 }
 
 void libGame_gf_VehiclesUseVehicle (int lp_player, unit lp_hero, unit lp_vehicle, bool lp_storeSelection, bool lp_stopOverlays) {
@@ -12341,6 +12359,7 @@ void libGame_gf_VehiclesReturnPlayerFromVehicleAtPoint (int lp_player, point lp_
       lv_driverUnit = auto5266370D_var;
       break;
     }
+
   }
   UnitBehaviorRemove(lv_driverUnit, "UsingVehicle", 1);
   if ((UnitHasBehavior2(libGame_gv_players[lp_player].lv_heroUnit, "AbathurUltimateEvolutionVehicleCasterBehavior") == false)) {
@@ -12365,6 +12384,7 @@ void libGame_gf_VehiclesReturnPlayerFromVehicleAtPoint (int lp_player, point lp_
       libGame_gf_CameraPanCameraForPlayerAndUpdateMapBoundsIfNecessary(lp_player, UnitGetPosition(lv_driverUnit), 0.0, -1, 0.0, false);
       libGame_gf_CameraUpdateCameraForPlayer(lp_player);
     }
+    
   }
   AIAddPlayerUnit(lv_driverUnit);
 }
@@ -12452,7 +12472,6 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
   lv_leechFractionSpecialCase = 0.0;
   lv_leechFractionFromOwnBehavior = libGame_gv_GetLeechFractionFromCasterBehaviors(lp_damageEffect, lp_targetUnit, lp_casterUnit, lp_casterPlayer);
   lv_calculatedActualLeechFraction = (((lp_damageValue + lp_leechValue) / lp_damageValue) - 1.0);
-  lv_healTakenModifier = libGame_gv_GetHealTakenAsFixed(lp_casterUnit);
   lv_leechState = "Leeches Present: ";
   lv_leechValueTemp = lp_leechValue;
   // lv_leechFractionFromOutside[0] = 0.0;
@@ -12463,6 +12482,15 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
   // lv_leechFractionFromOutsideBehaviorOwner[2] = 0;
 
   // Buckle up, we're in for a wild, wild ride!
+  if (lp_damageEffect != "RehgarLightningShieldDamage") {
+    lv_healTakenModifier = libGame_gv_GetHealTakenAsFixed(lp_casterUnit);
+  }
+  else if ((lp_damageEffect == "RehgarLightningShieldDamage") && (UnitHasBehavior2(lp_casterUnit, "RehgarLightningShieldBuff") == true)) {
+    lv_healTakenModifier = libGame_gv_GetHealTakenAsFixed(lp_casterUnit);
+  }
+  else {
+    lv_healTakenModifier = 1.0;
+  }
 
   // Implementation
   if ((CatalogFieldValueGet(c_gameCatalogEffect, lp_damageEffect, "LeechValidator[" + IntToString(c_unitVitalLife) + "]", lp_casterPlayer) != "")) {
@@ -32546,7 +32574,6 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
   if ((lp_damageEffect == "GardenTerrorWeaponSplashDamage")) {
     lv_assignedScore = "ObjectiveDamage";
   }
-
   if ((lp_damageEffect == "SoulEaterMinionWeaponDamage")) {
     lv_assignedScore = "ObjectiveDamage";
   }
@@ -32556,7 +32583,6 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
   if ((lp_damageEffect == "SoulEaterDeathWaveDamage")) {
     lv_assignedScore = "ObjectiveDamage";
   }
-
   if ((lp_damageEffect == "MapEventCannonDamage")) {
     lv_assignedScore = "ObjectiveDamage";
     if (UnitGetType(lp_casterUnit) == "MercWinterCrestHorsemanEntrance") {
@@ -32564,7 +32590,6 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
     }
     // UnitFromId(245)
   }
-
   if ((lp_damageEffect == "DragonFireBreathDamage")) {
     lv_assignedScore = "ObjectiveDamage";
   }
@@ -32577,14 +32602,12 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
   if ((lp_damageEffect == "VehicleDragonDragonFireBreathNapalmDamage")) {
     lv_assignedScore = "ObjectiveDamage";
   }
-
   if ((lp_damageEffect == "NukeOuterImpactHeroDamage")) {
     lv_assignedScore = "ObjectiveDamage";
   }
   if ((lp_damageEffect == "NukeOuterImpactDamage")) {
     lv_assignedScore = "ObjectiveDamage";
   }
-
   if ((lp_damageEffect == "MercPunisherLanerMinionKillDamage")) {
     lv_assignedScore = "ObjectiveDamage";
   }
@@ -32627,7 +32650,6 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
   if ((lp_damageEffect == "MercPunisherLanerFixateWeaponDamage")) {
     lv_assignedScore = "ObjectiveDamage";
   }
-
   if ((lp_damageEffect == "AlteracSuperCavalryWeaponDamage")) {
     lv_assignedScore = "ObjectiveDamage";
   }
@@ -32637,14 +32659,12 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
   if ((lp_damageEffect == "HordeSuperCavalryWeaponDamage")) {
     lv_assignedScore = "ObjectiveDamage";
   }
-
   if ((lp_damageEffect == "BattleshipBombardDamage")) {
     lv_assignedScore = "ObjectiveDamage";
   }
   if ((lp_damageEffect == "BattleshipBombardSplashDamage")) {
     lv_assignedScore = "ObjectiveDamage";
   }
-
   if ((lp_damageEffect == "LuxoriaTempleStage1WeaponDamage")) {
     lv_assignedScore = "ObjectiveDamage";
     // UnitFromId(21) = Mid
@@ -34449,7 +34469,7 @@ int libGame_gf_unitGroupCountRaynorInspire (unitgroup lp_generatedUnitGroup, str
 void libGame_gf_exportStatsForPlayer (int lp_player) {
   string lv_scoreString;
 
-  lv_scoreString = "Version 0.26 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
+  lv_scoreString = "Version 0.27 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
   lv_scoreString += " ,[ HSPrimary: ";
   lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwelve, 1);
   lv_scoreString += " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThirteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFourteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFifteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSixteen, 1);
@@ -36222,6 +36242,11 @@ fixed libGame_gf_FetchAbilityCooldownTime (unit lp_unit, string lp_ability, int 
       lv_cooldownTime = 0.0;
     }
     lv_method = "Hearthstone";
+    if ((UnitHasBehavior2(lp_unit, "HallOfStormsProtectionBuff") == true) && (lp_oldValue > 98.0) && (lp_oldValue != 300.0)) {
+      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Hearthstone Previous Value ") + FixedToText(lp_oldValue, 4)));
+      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("CAST WAS COMPLETED?")));
+      lv_cooldownTime = 300.0;
+    }
   }
 
   if (lp_unit == null) {
@@ -40251,9 +40276,9 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     }
   }
   if ((lp_abilityName == "Hearthstone")) {
-    if ((UnitHasBehavior2(lp_casterUnit, "HallOfStormsProtectionBuff") == true)) {
-      // lv_scoreString = "TimesHearthed";
-      lv_scoreString = "Discard";
+    if ((UnitHasBehavior2(lp_casterUnit, "HallOfStormsProtectionBuff") == true) && (lp_cooldownNewValue == 300.0)) {
+      lv_scoreString = "TimesHearthed";
+      // lv_scoreString = "Discard";
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Hearth was completed"));
     }
     else {
@@ -40405,7 +40430,7 @@ void libGame_gv_initializeOBSUI () {
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Mercenary Tracker"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.26 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.27 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
     // Well, I tried to add team coloured globes.
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamOrder, "11");
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Person", libCore_gv_cOMPUTER_TeamOrder, "Observer");
@@ -47265,6 +47290,7 @@ bool libGame_gt_HeroDeathDiabloDiabloDies_Func (bool testConds, bool runActions)
   int lv_killingPlayer;
   int lv_respawnDuration;
   int lv_currentStackCountofSoulstone;
+  int lv_currentStackCountofPrimeEvil;
   int lv_removeAmount;
   point lv_deadUnitsOriginalLocation;
   fixed lv_respawnTime;
@@ -47275,6 +47301,7 @@ bool libGame_gt_HeroDeathDiabloDiabloDies_Func (bool testConds, bool runActions)
   lv_deadPlayer = EventPlayer();
   lv_killingPlayer = libNtve_gf_KillingPlayer();
   lv_currentStackCountofSoulstone = UnitBehaviorCount(EventUnit(), "DiabloBlackSoulstoneTokenCounter");
+  lv_currentStackCountofPrimeEvil = UnitBehaviorCount(EventUnit(), "DiabloBlackSoulstoneEternalSoulstone");
   lv_deadUnitsOriginalLocation = UnitGetPosition(EventUnit());
 
   // Conditions
@@ -47327,6 +47354,10 @@ bool libGame_gt_HeroDeathDiabloDiabloDies_Func (bool testConds, bool runActions)
     lv_soulstoneRes = true;
     PlayerCreateEffectPoint(lv_deadPlayer, "DiabloBlackSoulstoneResurrectDummyPersistent", libNtve_gf_PointWithZOffset(lv_deadUnitsOriginalLocation, 2.0));
     UnitCreateEffectUnit(lv_deadUnit, "DiabloBlackSoulstoneRemove100TokenSet", lv_deadUnit);
+    if ((lv_currentStackCountofPrimeEvil >= 1)) {
+        UnitCreateEffectUnit(lv_deadUnit, "DiabloBlackSoulstoneAdd25TokenSet", lv_deadUnit);
+    }
+
   }
 
   libGame_gf_SendEventHeroKilled(lv_killingPlayer, lv_deadUnit);

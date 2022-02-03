@@ -967,6 +967,15 @@
                 </Frame>
               </Frame>
             </Frame>
+            <Frame type="Frame" name="MoveSpeedTooltipFrame">
+              <Anchor side="Top" relative="$parent/MoveSpeedFrame/StatIcon" pos="Min" offset="0"/>
+              <Anchor side="Left" relative="$parent/MoveSpeedFrame/StatIcon" pos="Min" offset="0"/>
+              <Anchor side="Right" relative="$parent/MoveSpeedFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/MoveSpeedFrame/StatIcon" pos="Max" offset="0"/>
+              <AcceptsMouseTooltip val="true" />
+              <Tooltip val="{$parent/MoveSpeedFrame/HeroSpeedTooltip/@Text}" />
+              <Visible val="{$parent/MoveSpeedFrame/MoveSpeedLabel/@Visible}" />
+            </Frame>
             <Frame type="Frame" name="MoveSpeedFrame">
               <Anchor side="Top" relative="$parent/AttackDamageFrame" pos="Max" offset="1"/>
               <Anchor side="Bottom" relative="$parent/AttackDamageFrame" pos="Max" offset="25"/>
@@ -981,6 +990,14 @@
                 <Texture val="@UI/Storm_UI_Move_Speed_Icon" />
                 <Visible val="{$parent/MoveSpeedLabel/@Visible}" />
                 <CollapseLayout val="True" />
+              </Frame>
+              <Frame type="TextFormatFrame" name="HeroSpeedTooltip">
+                <Anchor relative="$parent" />
+                <FormatText val="@UI/Spazzo/SelectionUI/SpeedTooltip" />
+                <Replacement index="0" val="{$ancestor[@oftype=UnitStatusFrame]/@Unit}" />
+                <ReplacedName index="0" val="unitname" />
+                <Replacement index="1" val="{$parent/$parent/$parent/@ControlPlayerId}" />
+                <ReplacedName index="1" val="playernum" />
               </Frame>
               <Frame type="Label" name="LabelCombined">
                 <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
@@ -1177,7 +1194,7 @@
               <Anchor side="Right" relative="$parent/SpellArmorFrame/LabelCombined" pos="Max" offset="0"/>
               <Anchor side="Bottom" relative="$parent/SpellArmorFrame/StatIcon" pos="Max" offset="0"/>
               <AcceptsMouseTooltip val="true" />
-              <Tooltip val="{$parent/SpellArmorFrame/CombinedFormatFrameTooltip/@Text}" />
+              <Tooltip val="{$parent/SpellArmorFrame/LabelCombined/@Tooltip}" />
             </Frame>
             <Frame type="Frame" name="SpellArmorFrame">
               <Anchor side="Top" relative="$parent/MoveSpeedFrame" pos="Min" offset="0"/>
@@ -1307,6 +1324,859 @@
                 <ReplacedName index="4" val="monsterarmor" />
                 <Replacement index="5" val="{$parent/ArmorLabelStructure/@CurrentPhysicalArmor}" />
                 <ReplacedName index="5" val="structurearmor" />
+              </Frame>
+            </Frame>
+            <Frame type="Frame" name="UnitRadiusTooltipFrame">
+              <Anchor side="Top" relative="$parent/UnitRadiusFrame/StatIcon" pos="Min" offset="0"/>
+              <Anchor side="Left" relative="$parent/UnitRadiusFrame/StatIcon" pos="Min" offset="0"/>
+              <Anchor side="Right" relative="$parent/UnitRadiusFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/UnitRadiusFrame/StatIcon" pos="Max" offset="0"/>
+              <AcceptsMouseTooltip val="true" />
+              <Tooltip val="@UI/Spazzo/SelectionUI/RadiusTooltip" />
+            </Frame>
+            <Frame type="Frame" name="UnitRadiusFrame">
+              <Anchor side="Top" relative="$parent/MoveSpeedFrame" pos="Min" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/MoveSpeedFrame" pos="Max" offset="0"/>
+              <Anchor side="Left" relative="$parent/SpellArmorFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Right" relative="$parent/SpellArmorFrame/LabelCombined" pos="Max" offset="200"/>
+              <Frame type="Image" name="StatIcon">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+                <Texture val="@UI/Spazzo/HeroRadius" />
+              </Frame>
+              <Frame type="TextFormatFrame" name="HeroRadiusText">
+                <Anchor relative="$parent" />
+                <FormatText val="@UI/Spazzo/SelectionUI/Radius" />
+                <Replacement index="0" val="{$ancestor[@oftype=UnitStatusFrame]/@Unit}" />
+                <ReplacedName index="0" val="unitname" />
+                <Replacement index="1" val="{$parent/$parent/$parent/@ControlPlayerId}" />
+                <ReplacedName index="1" val="playernum" />
+              </Frame>
+              <Frame type="Label" name="LabelCombined">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Text val="{$parent/HeroRadiusText/@Text}"/>
+                <AcceptsMouseTooltip val="False" />
+              </Frame>
+            </Frame>
+            <Frame type="Frame" name="UnitVeterancyTooltipFrame">
+              <Anchor side="Top" relative="$parent/UnitVeterancyFrame/StatIcon" pos="Min" offset="0"/>
+              <Anchor side="Left" relative="$parent/UnitVeterancyFrame/StatIcon" pos="Min" offset="0"/>
+              <Anchor side="Right" relative="$parent/UnitVeterancyFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/UnitVeterancyFrame/StatIcon" pos="Max" offset="0"/>
+              <AcceptsMouseTooltip val="true" />
+              <Tooltip val="{$parent/UnitVeterancyFrame/TooltipFormatFrame/@Text}" />
+            </Frame>
+            <Frame type="Frame" name="UnitVeterancyFrame">
+              <Anchor side="Top" relative="$parent/MoveSpeedFrame" pos="Min" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/MoveSpeedFrame" pos="Max" offset="0"/>
+              <Anchor side="Left" relative="$parent/UnitRadiusFrame/LabelCombined" pos="Max" offset="0"/>
+              <Anchor side="Right" relative="$parent/UnitRadiusFrame/LabelCombined" pos="Max" offset="200"/>
+              <Frame type="Image" name="StatIcon">
+                <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+                <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+                <Texture val="@UI/Spazzo/UnitVeterancy" />
+              </Frame>
+              <Frame type="Label" name="LabelCombined">
+                <Anchor side="Top" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Bottom" relative="$parent/StatIcon" pos="Mid" offset="0" />
+                <Anchor side="Left" relative="$parent/StatIcon" pos="Max" offset="1" />
+                <Text val="NA"/>
+                <AcceptsMouseTooltip val="False" />
+                <Unclipped val="True"/>
+              </Frame>
+              <Frame type="TextFormatFrame" name="XPFormatFrame">
+                <Anchor relative="$parent" />
+                <FormatText val="@UI/Spazzo/SelectionUI/UnitXP" />
+                <Replacement index="0" val="{$ancestor[@oftype=UnitStatusFrame]/@Unit}" />
+                <ReplacedName index="0" val="unitname" />
+                <Replacement index="1" val="{$parent/UnitVeterancyReference/@Text}" />
+                <ReplacedName index="1" val="veterancy" />
+                <Replacement index="2" val="{$ancestor[@oftype=UnitStatusFrame]/@ControlPlayerId}" />
+                <ReplacedName index="2" val="playernum" />
+              </Frame>
+              <Frame type="Label" name="UnitVeterancyReference">
+                <Anchor relative="$parent" />
+                <AcceptsMouse val="false" />
+                <Visible val="false" />
+                <AcceptsMouseTooltip val="false" />
+                <Text val="CoreScaling" />
+              </Frame>
+              <StateGroup name="XPState">
+                <DefaultState val="Other" />
+                <State name="FootmanMinion">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="FootmanMinion"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="FootmanMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="FootmanMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="@UI/Spazzo/SelectionUI/UnitXPMinions" />
+                </State>
+                <State name="WizardMinion">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="WizardMinion"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="WizardMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="WizardMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="@UI/Spazzo/SelectionUI/UnitXPWizard" />
+                </State>
+                <State name="RangedMinion">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="RangedMinion"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="RangedMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="RangedMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="@UI/Spazzo/SelectionUI/UnitXPMinions" />
+                </State>
+                <State name="CatapultMinion">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="CatapultMinion"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="CatapultMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="CatapultMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="@UI/Spazzo/SelectionUI/UnitXPCatapult" />
+                </State>
+                <State name="ReaverMinion">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="ReaverMinion"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="ReaverMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="ReaverMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="@UI/Spazzo/SelectionUI/UnitXPCatapult" />
+                </State>
+                <State name="MercLanerRangedMage">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercLanerRangedMage"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="KnightMageScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="KnightMageScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercDefenderRangedMage">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercDefenderRangedMage"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="KnightMageScaling2" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="KnightMageScaling2" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercLanerMeleeKnight">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercLanerMeleeKnight"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="OgreMercScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="OgreMercScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercDefenderMeleeKnight">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercDefenderMeleeKnight"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="OgreDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="OgreDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercLanerSiegeGiant">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercLanerSiegeGiant"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="SiegeGiantMercScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="SiegeGiantMercScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercDefenderSiegeGiant">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercDefenderSiegeGiant"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="SiegeGiantDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="SiegeGiantDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="SkeletalPirate">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="SkeletalPirate"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="DoubloonDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="DoubloonDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="VehicleDragon">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="VehicleDragon"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="DragonKnightScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="DragonKnightScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="KingsCore">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="KingsCore"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="CoreScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="CoreScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="JungleGraveGolemDefender">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="JungleGraveGolemDefender"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="GraveGolemDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="GraveGolemDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="JungleGraveGolemDefenderOverwatch">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="JungleGraveGolemDefender"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="OverwatchBossScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="OverwatchBossScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="UnderworldBoss">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="UnderworldBoss"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="UnderworldBossScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="UnderworldBossScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="UnderworldSummonedBoss">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="UnderworldSummonedBoss"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="UnderworldSummonedBossScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="UnderworldSummonedBossScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="UnderworldMinion">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="UnderworldMinion"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="UnderworldMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="UnderworldMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="UnderworldRangedMinion">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="UnderworldRangedMinion"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="UnderworldMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="UnderworldMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="ItemMULE">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="ItemMULE"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MuleScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MuleScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="VolskayaVehicle">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="VolskayaVehicle"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="VolskayaVehicleScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="VolskayaVehicleScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TerranHellbat">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TerranHellbat"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TerranHellbatScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TerranHellbatScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TerranHellbatDefender">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TerranHellbatDefender"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TerranHellbatDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TerranHellbatDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercGoblinSapperLaner">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercGoblinSapperLaner"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercGoblinSapperLanerScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercGoblinSapperLanerScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercGoblinSapperDefender">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercGoblinSapperDefender"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercGoblinSapperDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercGoblinSapperDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercSiegeTrooperDefender">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercSiegeTrooperDefender"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercSiegeTrooperDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercSiegeTrooperDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercSiegeTrooperLaner">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercSiegeTrooperLaner"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercSiegeTrooperLanerScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercSiegeTrooperLanerScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercSummonerDefender">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercSummonerDefender"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercSummonerDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercSummonerDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercSummonerDefenderMinion">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercSummonerDefenderMinion"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercSummonerDefenderMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercSummonerDefenderMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercSummonerLaner">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercSummonerLaner"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercSummonerLanerScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercSummonerLanerScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercSummonerLanerMinion">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercSummonerLanerMinion"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercSummonerLanerMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercSummonerLanerMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercDefenderSentinel">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercDefenderSentinel"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercenaryDefenderSwordsmanScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercenaryDefenderSwordsmanScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercLanerSentinel">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercLanerSentinel"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercenaryLanerSwordsmanScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercenaryLanerSwordsmanScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="AVCapturePointDefender">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="AVCapturePointDefender"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="AVCapturePointDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="AVCapturePointDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="AlteracSuperCavalryParent">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="AlteracSuperCavalryParent"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="SuperCavalryScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="SuperCavalryScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="AllianceCavalry">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="AllianceCavalry"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="SuperCavalryScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="SuperCavalryScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="HordeCavalry">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HordeCavalry"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="SuperCavalryScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="SuperCavalryScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="VanndarStormpike">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="VanndarStormpike"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="CoreScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="CoreScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="DrekThar">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="DrekThar"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="CoreScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="CoreScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="BossDuelBoss">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="BossDuelBoss"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="DuelBossJungleScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="DuelBossJungleScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="BossDuelBossHell">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="BossDuelBossHell"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="DuelBossJungleScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="DuelBossJungleScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="BossDuelBossHeaven">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="BossDuelBossHeaven"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="DuelBossJungleScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="DuelBossJungleScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="BossDuelLaner">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="BossDuelLaner"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="DuelBossLanerScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="DuelBossLanerScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="BossDuelLanerHeaven">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="BossDuelLanerHeaven"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="DuelBossLanerScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="DuelBossLanerScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="BossDuelLanerHell">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="BossDuelLanerHell"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="DuelBossLanerScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="DuelBossLanerScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="LanerMinionDefault">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="LanerMinionDefault"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="LanerMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="LanerMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="LanerMinionHeaven">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="LanerMinionHeaven"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="LanerMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="LanerMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="LanerMinionHell">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="LanerMinionHell"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="LanerMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="LanerMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="JungleMinionDefault">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="JungleMinionDefault"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="JungleMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="JungleMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="JungleMinionHeaven">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="JungleMinionHeaven"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="JungleMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="JungleMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="JungleMinionHell">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="JungleMinionHell"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="JungleMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="JungleMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TerranArchangelDefender">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TerranArchangelDefender"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TerranArchangelDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TerranArchangelDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TerranArchangelLaner">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TerranArchangelLaner"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TerranArchangelLanerScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TerranArchangelLanerScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="ZergZergling">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="ZergZergling"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="ZergZerglingScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="ZergZerglingScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="ZergBaneling">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="ZergBaneling"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="ZergBanelingScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="ZergBanelingScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="ZergHydralisk">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="ZergHydralisk"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="ZergHydraliskScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="ZergHydraliskScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="ZergGuardian">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="ZergGuardian"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="ZergGuardianScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="ZergGuardianScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="ZergUltralisk">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="ZergUltralisk"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="ZergUltraliskScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="ZergUltraliskScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="VehiclePlantHorror">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="VehiclePlantHorror"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="HauntedWoodsVehicleScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="HauntedWoodsVehicleScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="PlantHorrorOvergrowthPlant">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="PlantHorrorOvergrowthPlant"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="HauntedWoodsOvergrowthPlantScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="HauntedWoodsOvergrowthPlantScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="JunglePlantHorror">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="JunglePlantHorror"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="HauntedWoodsBossScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="HauntedWoodsBossScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="Shambler">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="Shambler"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="ShamblerScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="ShamblerScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="GardenTerror">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="GardenTerror"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="GardenTerrorScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="GardenTerrorScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="OvergrowthPlant">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="OvergrowthPlant"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="HauntedWoodsOvergrowthPlantScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="HauntedWoodsOvergrowthPlantScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="OverwatchMechanic">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="OverwatchMechanic"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="OverwatchMechanicScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="OverwatchMechanicScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="OverwatchTurretPlayer">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="OverwatchTurretPlayer"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="OverwatchTurretPlayerScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="OverwatchTurretPlayerScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="OverwatchTurret">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="OverwatchTurret"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="OverwatchTurretScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="OverwatchTurretScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercDefenderHenchmanParent">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercDefenderHenchmanParent"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercHenchmanDefender" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercHenchmanDefender" />
+                </State>
+                <State name="MercDefenderHenchman1">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercDefenderHenchman1"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercHenchmanDefender" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercHenchmanDefender" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercDefenderHenchman2">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercDefenderHenchman2"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercHenchmanDefender" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercHenchmanDefender" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercDefenderHenchman3">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercDefenderHenchman3"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercHenchmanDefender" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercHenchmanDefender" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercLanerHenchman1">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercLanerHenchman1"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercHenchmanLaner" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercHenchmanLaner" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercLanerHenchman2">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercLanerHenchman2"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercHenchmanLaner" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercHenchmanLaner" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercLanerHenchman3">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercLanerHenchman3"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercHenchmanLaner" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercHenchmanLaner" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercPunisherLaner">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercPunisherLaner"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercLanerPunisherScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercLanerPunisherScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="CursedShrineMinion">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="CursedShrineMinion"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="CursedShrineMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="CursedShrineMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="ShrineAuraMinion">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="ShrineAuraMinion"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="ShrineAuraMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="ShrineAuraMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercDefenderMeleeBruiser">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercDefenderMeleeBruiser"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MeleeDefenderBruiserScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MeleeDefenderBruiserScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercDefenderMeleeIndividual">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercDefenderMeleeIndividual"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MercDefenderIndividualCampScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="MercDefenderIndividualCampScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="BioticEmitter">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="BioticEmitter"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="BioticEmitterScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="BioticEmitterScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="LuxoriaTemple">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="LuxoriaTemple"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="LuxoriaTempleScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="LuxoriaTempleScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TempleChampionBoss">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TempleChampionBoss"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TempleChampionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TempleChampionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TempleGuardianBoss">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TempleGuardianBoss"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TempleGuardianScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TempleGuardianScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TempleDefenderRanged">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TempleDefenderRanged"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TempleDefenderRangedScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TempleDefenderRangedScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TempleDefenderMelee">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TempleDefenderMelee"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TempleDefenderMeleeScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TempleDefenderMeleeScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TerranMarine">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TerranMarine"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TerranMarineScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TerranMarineScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TerranGoliath">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TerranGoliath"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TerranGoliathScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TerranGoliathScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TerranGoliathDefender">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TerranGoliathDefender"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TerranGoliathDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TerranGoliathDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TerranRaven">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TerranRaven"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TerranRavenScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TerranRavenScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TerranRavenDefender">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TerranRavenDefender"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TerranRavenDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TerranRavenDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="TerranAutoTurret">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="TerranAutoTurret"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="TerranAutoTurretScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="TerranAutoTurretScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="SoulEaterMinion">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="SoulEaterMinion"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="SoulEaterMinionScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="SoulEaterMinionScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="LostSoul">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="LostSoul"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="LostSoulScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="LostSoulScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercHorsemanDefender">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercHorsemanDefender"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="HorsemanDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="HorsemanDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="MercHorsemanLaner">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="MercHorsemanLaner"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="HorsemanLanerScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="HorsemanLanerScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="SlimeBossDefender">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="SlimeBossDefender"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="SlimeBossDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="SlimeBossDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="SlimeBossLaner">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="SlimeBossLaner"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="SlimeBossLanerScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="SlimeBossLanerScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="SlimeBossPodlingDefender">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="SlimeBossPodlingDefender"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="SlimePodDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="SlimePodDefenderScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <State name="SlimeBossPodlingLaner">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="SlimeBossPodlingLaner"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="SlimePodLanerScaling" />
+                  <Action type="SetProperty" frame="$this/UnitVeterancyReference" Text="SlimePodLanerScaling" />
+                  <Action type="SetProperty" frame="$this/LabelCombined" Text="{$parent/XPFormatFrame/@Text}" />
+                </State>
+                <!-- 
+                <State name="ItemMULE">
+                  <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="ItemMULE"/>
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="MuleScaling" />
+                </State>
+                 HauntedWoodsMinionScaling
+                 HauntedWoodsBossScaling
+                 LignifyScaling
+                 OverwatchMechanicScaling
+                 MercenaryDefenderSwordsmanScaling
+                -->
+                <State name="Other">
+                  <Action type="SetProperty" frame="$this/UnitStatusVeterancyCount" Behavior="HeroDummyVeterancy" />
+                  <Action type="SetProperty" frame="$this/TooltipFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXPTooltipNoVeterancy" />
+                </State>
+              </StateGroup>
+              <StateGroup name="VeterancyCount">
+                <DefaultState val="0" />
+                <State name="0">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="0"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP0" undo="false" />
+                </State>
+                <State name="1">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="1"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP1" undo="false" />
+                </State>
+                <State name="2">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="2"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP2" undo="false" />
+                </State>
+                <State name="3">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="3"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP3" undo="false" />
+                </State>
+                <State name="4">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="4"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP4" undo="false" />
+                </State>
+                <State name="5">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="5"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP5" undo="false" />
+                </State>
+                <State name="6">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="6"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP6" undo="false" />
+                </State>
+                <State name="7">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="7"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP7" undo="false" />
+                </State>
+                <State name="8">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="8"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP8" undo="false" />
+                </State>
+                <State name="9">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="9"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP9" undo="false" />
+                </State>
+                <State name="10">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="10"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP10" undo="false" />
+                </State>
+                <State name="11">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="11"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP11" undo="false" />
+                </State>
+                <State name="12">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="12"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP12" undo="false" />
+                </State>
+                <State name="13">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="13"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP13" undo="false" />
+                </State>
+                <State name="14">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="14"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP14" undo="false" />
+                </State>
+                <State name="15">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="15"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP15" undo="false" />
+                </State>
+                <State name="16">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="16"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP16" undo="false" />
+                </State>
+                <State name="17">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="17"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP17" undo="false" />
+                </State>
+                <State name="18">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="18"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP18" undo="false" />
+                </State>
+                <State name="19">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="19"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP19" undo="false" />
+                </State>
+                <State name="20">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="20"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP20" undo="false" />
+                </State>
+                <State name="21">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="21"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP21" undo="false" />
+                </State>
+                <State name="22">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="22"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP22" undo="false" />
+                </State>
+                <State name="23">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="23"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP23" undo="false" />
+                </State>
+                <State name="24">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="24"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP24" undo="false" />
+                </State>
+                <State name="25">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="25"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP25" undo="false" />
+                </State>
+                <State name="26">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="26"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP26" undo="false" />
+                </State>
+                <State name="27">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="27"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP27" undo="false" />
+                </State>
+                <State name="28">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="28"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP28" undo="false" />
+                </State>
+                <State name="29">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="29"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP29" undo="false" />
+                </State>
+                <State name="30">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="30"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP30" undo="false" />
+                </State>
+                <State name="31">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="31"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP31" undo="false" />
+                </State>
+                <State name="32">
+                  <When type="Property" frame="$this/UnitStatusVeterancyCount/BehaviorIcon" CurrentStackCount="32"/>
+                  <Action type="SetProperty" frame="$this/XPFormatFrame" FormatText="@UI/Spazzo/SelectionUI/UnitXP32" undo="false" />
+                </State>
+              </StateGroup>
+              <Frame type="TextFormatFrame" name="TooltipFormatFrame">
+                <Anchor relative="$parent" />
+                <FormatText val="@UI/Spazzo/SelectionUI/UnitXPTooltip" />
+                <Replacement index="0" val="{$parent/UnitStatusVeterancyCount/BehaviorIcon/@CurrentStackCount}" />
+                <ReplacedName index="0" val="veterancy" />
+                <Replacement index="1" val="{$ancestor[@oftype=UnitStatusFrame]/@Unit}" />
+                <ReplacedName index="1" val="unitname" />
+              </Frame>
+              <Frame type="UnitStatusBehaviorIcon" name="UnitStatusVeterancyCount">
+                <Anchor relative="$parent" />
+                <AcceptsMouse val="false" />
+                <AcceptsMouseTooltip val="false" />
+                <Behavior val="CoreScaling" />
+                <MinStackCountDisplayed val="0"/>
+                <Frame type="BehaviorIcon" name="BehaviorIcon">
+                  <Anchor relative="$parent" />
+                  <AcceptsMouse val="false" />
+                  <AcceptsMouseTooltip val="false" />
+                  <MinStackCountDisplayed val="0"/>
+                </Frame>
               </Frame>
             </Frame>
           </Frame>
