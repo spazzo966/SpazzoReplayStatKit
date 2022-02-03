@@ -5,7 +5,7 @@ Custom user interface for Heroes of the Storm for use in Replays and while watch
 
 * **Custom Stats Installation**
 
-To use the the custom replay statistics, you will need to place the maps folder contained in this repository in your Heroes of the Storm folder, alongside Heroes of the Storm.exe, the HeroesData folder, and other miscellaneous folders
+To use the the custom replay statistics, you will need to place the maps folder contained in this repository in your Heroes of the Storm installation folder, alongside Heroes of the Storm.exe, the HeroesData folder, and other miscellaneous folders
 
 * **Custom Stats per-game setup**
 
@@ -91,7 +91,7 @@ Export Settings - by pressing the Export Settings button, the current settings f
 
 * Installing and using the expanded replay statistics, step-by-step:
 
-  * Step 1: Extract the maps.zip file to your Heroes of the Storm installation folder, making note that the folder structure inside looks like this ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100839056638072/3.2_confirm_file_structure.png)
+  * Step 1: Extract the maps.zip file to your Heroes of the Storm installation folder(meaning the one located in your Program Files folder), making note that the folder structure inside looks like this ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100839056638072/3.2_confirm_file_structure.png)
 
   * Step 2: Drag the replay you desire to watch with the expanded replay statistics on top of the dragAll_details.bat file, contained in the conversion.zip file(after having extracted that to your desired location), as seen here ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100853354991646/3.3_drag_replay.png)
 
