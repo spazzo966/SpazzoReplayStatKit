@@ -17503,7 +17503,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroNova")) {
-      if ((lp_healEffect == "NovaSnipePerfectShotTalentCreateManaHealer")) {
+      if ((lp_healEffect == "NovaSnipePerfectShotTalentCreateManaHealer") || (lp_healEffect == "NovaSnipePerfectShotTalentNonHeroicCreateManaHealer")) {
         lv_primaryScoreString = "TalentSeven";
       }
     }
@@ -29140,7 +29140,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_primaryScoreString = "ScoreEleven";
       }
     }
-    if ((lp_damageEffect == "ProbiusWarpRiftRiftShockDamage")) {
+    if ((lp_damageEffect == "ProbiusWarpRiftRiftShockDamage") || (lp_damageEffect == "ProbiusDisruptionPulseParticleAcceleratorDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreNine";
       }
@@ -34469,7 +34469,7 @@ int libGame_gf_unitGroupCountRaynorInspire (unitgroup lp_generatedUnitGroup, str
 void libGame_gf_exportStatsForPlayer (int lp_player) {
   string lv_scoreString;
 
-  lv_scoreString = "Version 0.27 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
+  lv_scoreString = "Version 0.27a " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
   lv_scoreString += " ,[ HSPrimary: ";
   lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwelve, 1);
   lv_scoreString += " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThirteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFourteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFifteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSixteen, 1);
@@ -40430,7 +40430,7 @@ void libGame_gv_initializeOBSUI () {
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Mercenary Tracker"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.27 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.27a ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
     // Well, I tried to add team coloured globes.
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamOrder, "11");
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Person", libCore_gv_cOMPUTER_TeamOrder, "Observer");

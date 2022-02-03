@@ -1,4 +1,10 @@
-# v0.27 (**2022-02-03**)
+# v0.27A (**2022-02-03**)
+
+* Statistics
+  * Fixed an issue that caused Nova's Perfect Shot would not be tracked accurately
+  * Fixed an issue that caused Probius' Particle Accelerator to not be tracked
+
+## v0.27 (**2022-02-03**)
 
 * Statistics
   * General Updates to support game version 2.55.1.87306

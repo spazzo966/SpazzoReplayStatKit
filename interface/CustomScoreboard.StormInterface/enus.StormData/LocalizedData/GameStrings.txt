@@ -1,4 +1,4 @@
-﻿UI/Spazzo/UIVersion=v0.27
+﻿UI/Spazzo/UIVersion=v0.27a
 UI/Spazzo/UIWARNING=WARNING
 UI/Spazzo/UIWARNINGTOOLTIP=Game is detected as having ended, statistics may be incorrect, please rewind to after the core is destroyed, but before these images become visible!
 
@@ -4267,7 +4267,7 @@ UI/SpazzoDamage/Probius/ScoreFive=Warp Rift Detonation Damage to Heroes
 UI/SpazzoDamage/Probius/ScoreSix=Warp Rift Detonation Damage to non-Heroes
 UI/SpazzoDamage/Probius/ScoreSeven=Photon Cannon Damage to Heroes
 UI/SpazzoDamage/Probius/ScoreEight=Photon Cannon Damage to non-Heroes
-UI/SpazzoDamage/Probius/ScoreNine=Rift Shock Damage to Heroes
+UI/SpazzoDamage/Probius/ScoreNine=Rift Shock, Particle Accelerator Damage to Heroes
 UI/SpazzoDamage/Probius/ScoreTen=Null Gate, Pylon Overcharge Damage to Heroes
 UI/SpazzoDamage/Probius/ScoreEleven=Null Gate, Pylon Overcharge Damage to non-Heroes
 UI/SpazzoDamage/Probius/ScoreTwelve=Shoot 'Em Up Damage to Heroes
