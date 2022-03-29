@@ -12,6 +12,17 @@
   <Constant name="AlteracCoreArmorWidth" val="22" />
   <Constant name="AlteracCoreArmorWidthNeg" val="-22" />
   <Constant name="AlteracCoreArmorInset" val="-6" />
+  <Constant name="SpazzoCommandButtonSize" val="84" />
+  <Constant name="SpazzoCommandButtonBorderSize" val="74" />
+  <Constant name="SpazzoCommandButtonChargeBackgroundSize" val="23" />
+  <Constant name="SpazzoCommandButtonChargeProgressSize" val="44" />
+  <Constant name="SpazzoCommandDynamicButtonSize" val="60" />
+  <Constant name="SpazzoCommandDynamicButtonBorderSize" val="68" />
+  <Constant name="SpazzoCommandDynamicButtonNormalImageSize" val="46" />
+  <Constant name="SpazzoCommandDynamicButtonBottomAnchor" val="28" />
+  <Constant name="SpazzoCommandDynamicButtonLeftAnchorInitial" val="-16" />
+  <Constant name="SpazzoCommandDynamicButtonLeftAnchor" val="-8" />
+  <Constant name="SpazzoCommandFButtonLeftAnchor" val="-5" />
 
   <Frame type="UnitStatusFrame" name="UnitStatusFrameTemplate">
     <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
@@ -108,8 +119,75 @@
     </Frame>
   </Frame>
   
-  <Frame type="Button" name="ButtonTemplate">
+  <Frame type="CopyClipboardButton" name="ClipboardButtonTemplate">
+    <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+    <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
+    <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+    <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+    <ClipboardText val="{$this/@Tooltip}"/>
+    <DisplayType val="ImageLayer"/>
     <ClickSound val="@UI_BNet_Generic_01" />
+    <Width val="58" />
+    <Height val="58" />
+    <HitTestTexture val="@UI/Storm_UI_DeathRecap_Talents_Button_HitArea" />
+    <Tooltip val="@UI/Spazzo/Clipboard/Var1" />
+    <Frame type="Image" name="NormalImage">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+      <LayerCount val="4" />
+      <Texture val="@UI/Storm_Taskbar_SocialButton_Normal" layer="0" />
+      <Texture val="@UI/Storm_Taskbar_SocialButton_Normal" layer="1" />
+      <Texture val="@UI/Storm_Taskbar_SocialButton_Down" layer="2" />
+      <Texture val="@UI/Storm_Taskbar_SocialButton_Disabled" layer="3" />
+      <TextureType val="NineSlice" />
+      <Tiled val="false" />
+      <StateCount val="1" />
+      <DesaturateOnDisable val="false" />
+    </Frame>
+    <Frame type="Image" name="HoverImage">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+      <LayerCount val="4" />
+      <Texture val="@UI/Storm_Taskbar_SocialButton_Hover" layer="0" />
+      <Texture val="@UI/Storm_Taskbar_SocialButton_Hover" layer="1" />
+      <Texture val="@UI/Storm_Taskbar_SocialButton_Down" layer="2" />
+      <Texture val="@UI/Storm_Taskbar_SocialButton_Disabled" layer="3" />
+      <TextureType val="NineSlice" />
+      <Tiled val="false" />
+      <StateCount val="1" />
+      <DesaturateOnDisable val="false" />
+    </Frame>
+    <Frame type="Image" name="IconImage">
+      <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+      <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+      <Anchor side="Left" relative="$parent" pos="Mid" offset="0" />
+      <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
+      <DesaturateOnDisable val="false" />
+      <Texture val="Assets/Textures/storm_ui_collection_filter_newlyacquired-on.dds" />
+    </Frame>
+    <Frame type="Image" name="IconImageHover">
+      <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+      <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+      <Anchor side="Left" relative="$parent" pos="Mid" offset="0" />
+      <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
+      <DesaturateOnDisable val="false" />
+      <Visible val="False" />
+      <Alpha val="0" />
+      <Texture val="Assets/Textures/storm_ui_collection_filter_newlyacquired-hover.dds" />
+    </Frame>
+    <Frame type="Frame" name="HitTestFrame">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+    </Frame>
+  </Frame>
+
+  <Frame type="Button" name="ButtonTemplate">
     <DisplayType val="ImageLayer" />
     <Frame type="Image" name="NormalImage">
       <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
@@ -2151,7 +2229,6 @@
       <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
       <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
       <Height val="36"/>
-      <ClickSound val="@UI_BNet_Generic_01" />
       <Toggleable val="true" />
       <DisplayType val="ImageLayer" />
       <AcceptsMouseTooltip val="False"/>
@@ -2241,7 +2318,6 @@
       <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
       <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
       <Height val="36"/>
-      <ClickSound val="@UI_BNet_Generic_01" />
       <Toggleable val="true" />
       <DisplayType val="ImageLayer" />
       <AcceptsMouseTooltip val="False"/>
@@ -2335,7 +2411,6 @@
       <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
       <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
       <Height val="36"/>
-      <ClickSound val="@UI_BNet_Generic_01" />
       <Toggleable val="true" />
       <DisplayType val="ImageLayer" />
       <AcceptsMouseTooltip val="False"/>
@@ -2745,7 +2820,6 @@
   </Frame>
 
   <Frame type="Button" name="ButtonNewNoBottomNoTopLabelAnchorTemplate">
-    <ClickSound val="@UI_BNet_Generic_01" />
     <DisplayType val="ImageLayer" />
     <CollapseLayout val="True" />
     <Animation name="Click">
@@ -2899,7 +2973,6 @@
     <Anchor side="Right" relative="$parent" pos="Max" offset="-2" />
     <Anchor side="Top" relative="$sibling-1" pos="Max" offset="#CustomPulldownAnchorOffset" />
     <Anchor side="Bottom" relative="$this/Label" pos="Max" offset="3" />
-    <ClickSound val="@UI_BNet_Generic_01" />
     <DisplayType val="ImageLayer" />
     <CollapseLayout val="True" />
     <Animation name="Click">
@@ -2966,7 +3039,6 @@
     <Anchor side="Right" relative="$parent" pos="Max" offset="-2" />
     <Anchor side="Top" relative="$sibling-1" pos="Max" offset="#CustomPulldownAnchorOffset" />
     <Anchor side="Bottom" relative="$this/Label" pos="Max" offset="3" />
-    <ClickSound val="@UI_BNet_Generic_01" />
     <DisplayType val="ImageLayer" />
     <CollapseLayout val="True" />
     <Animation name="Click">
@@ -3066,7 +3138,6 @@
     <Anchor side="Bottom" relative="$this/Label" pos="Max" offset="1"/>
     <Toggleable val="true" />
     <Toggled val="False"/>
-    <ClickSound val="@UI_BNet_Generic_01" />
     <DisplayType val="ImageLayer" />
     <CollapseLayout val="True" />
     <Animation name="AttachmentOff">
@@ -3203,7 +3274,6 @@
     <Anchor side="Right" relative="$parent" pos="Max" offset="-2" />
     <Anchor side="Top" relative="$sibling-1" pos="Max" offset="#CustomPulldownAnchorOffsetNeg" />
     <Anchor side="Bottom" relative="$this/Label" pos="Max" offset="3" />
-    <ClickSound val="@UI_BNet_Generic_01" />
     <DisplayType val="ImageLayer" />
     <CollapseLayout val="True" />
     <Frame type="Image" name="NormalImage">
@@ -4381,7 +4451,6 @@
     <Anchor side="Right" relative="$parent" pos="Max" offset="-2" />
     <Anchor side="Top" relative="$sibling-1" pos="Max" offset="#CustomPulldownAnchorOffset" />
     <Anchor side="Bottom" relative="$this/Label" pos="Max" offset="3" />
-    <ClickSound val="@UI_BNet_Generic_01" />
     <DisplayType val="ImageLayer" />
     <CollapseLayout val="True" />
     <Animation name="Click">
@@ -4602,7 +4671,7 @@
       <!-- <Texture val="@UI/Spazzo/BottomTile" /> -->
       <Texture val="_Assets\UI\hero_bg.dds" />
       <Tiled val="True"/>
-      <Color val="{$GameUI/TeamOrderColors/@Color}" />
+      <Color val="{$SpazzoColours/OrderColours/@Color}" />
       <RenderPriority val="250"/>
       <Frame type="Image" name="BGTL">
         <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
@@ -4612,7 +4681,7 @@
         <Texture val="_Assets\UI\herobg_tline.dds" />
         <Tiled val="True"/>
         <RenderPriority val="252"/>
-        <Color val="{$GameUI/TeamOrderColors/@Color}" />
+        <Color val="{$SpazzoColours/OrderColours/@Color}" />
         <TextureType val="Nineslice" />
       </Frame>
       <Frame type="Image" name="BGBL">
@@ -4623,7 +4692,7 @@
         <Texture val="_Assets\UI\herobg_bline.dds" />
         <Tiled val="True"/>
         <RenderPriority val="252"/>
-        <Color val="{$GameUI/TeamOrderColors/@Color}" />
+        <Color val="{$SpazzoColours/OrderColours/@Color}" />
         <TextureType val="Nineslice" />
       </Frame>
       <Frame type="Image" name="BGRL">
@@ -4634,7 +4703,7 @@
         <Texture val="_Assets\UI\herobg_rline.dds" />
         <Tiled val="True"/>
         <RenderPriority val="252"/>
-        <Color val="{$GameUI/TeamOrderColors/@Color}" />
+        <Color val="{$SpazzoColours/OrderColours/@Color}" />
         <TextureType val="Nineslice" />
       </Frame>
       <Frame type="Image" name="BGTRC">
@@ -4645,7 +4714,7 @@
         <Texture val="_Assets\UI\herobg_trcorner.dds" />
         <Tiled val="True"/>
         <RenderPriority val="252"/>
-        <Color val="{$GameUI/TeamOrderColors/@Color}" />
+        <Color val="{$SpazzoColours/OrderColours/@Color}" />
         <TextureType val="Nineslice" />
       </Frame>
       <Frame type="Image" name="BGBRC">
@@ -4656,7 +4725,7 @@
         <Texture val="_Assets\UI\herobg_brcorner.dds" />
         <Tiled val="True"/>
         <RenderPriority val="252"/>
-        <Color val="{$GameUI/TeamOrderColors/@Color}" />
+        <Color val="{$SpazzoColours/OrderColours/@Color}" />
         <TextureType val="Nineslice" />
       </Frame>
     </Frame>
@@ -4711,7 +4780,7 @@
       <!-- <Texture val="@UI/Spazzo/BottomTile" /> -->
       <Texture val="_Assets\UI\hero_bg.dds" />
       <Tiled val="True"/>
-      <Color val="{$GameUI/TeamChaosColors/@Color}" />
+      <Color val="{$SpazzoColours/ChaosColours/@Color}" />
       <RenderPriority val="250"/>
       <Frame type="Image" name="BGTL">
         <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
@@ -4721,7 +4790,7 @@
         <Texture val="_Assets\UI\herobg_tline.dds" />
         <Tiled val="True"/>
         <RenderPriority val="252"/>
-        <Color val="{$GameUI/TeamChaosColors/@Color}" />
+        <Color val="{$SpazzoColours/ChaosColours/@Color}" />
         <TextureType val="Nineslice" />
       </Frame>
       <Frame type="Image" name="BGBL">
@@ -4732,7 +4801,7 @@
         <Texture val="_Assets\UI\herobg_bline.dds" />
         <Tiled val="True"/>
         <RenderPriority val="252"/>
-        <Color val="{$GameUI/TeamChaosColors/@Color}" />
+        <Color val="{$SpazzoColours/ChaosColours/@Color}" />
         <TextureType val="Nineslice" />
       </Frame>
       <Frame type="Image" name="BGLL">
@@ -4743,7 +4812,7 @@
         <Texture val="_Assets\UI\herobg_lline.dds" />
         <Tiled val="True"/>
         <RenderPriority val="252"/>
-        <Color val="{$GameUI/TeamChaosColors/@Color}" />
+        <Color val="{$SpazzoColours/ChaosColours/@Color}" />
         <TextureType val="Nineslice" />
       </Frame>
       <Frame type="Image" name="BGTLC">
@@ -4754,7 +4823,7 @@
         <Texture val="_Assets\UI\herobg_tlcorner.dds" />
         <Tiled val="True"/>
         <RenderPriority val="252"/>
-        <Color val="{$GameUI/TeamChaosColors/@Color}" />
+        <Color val="{$SpazzoColours/ChaosColours/@Color}" />
         <TextureType val="Nineslice" />
       </Frame>
       <Frame type="Image" name="BGBLC">
@@ -4765,7 +4834,7 @@
         <Texture val="_Assets\UI\herobg_blcorner.dds" />
         <Tiled val="True"/>
         <RenderPriority val="252"/>
-        <Color val="{$GameUI/TeamChaosColors/@Color}" />
+        <Color val="{$SpazzoColours/ChaosColours/@Color}" />
         <TextureType val="Nineslice" />
       </Frame>
     </Frame>
@@ -4829,8 +4898,8 @@
       <Texture val="@UI/Storm_UI_HUD_WCAV_HealthBarShieldInside" />
       <SubpixelRendering val="True" />
       <ColorAdjustMode val="Colorize" />
-      <LightAdjustColor val="{$GameUI/TeamOrderColors/@AdditionalColor}" />
-      <DarkAdjustColor val="{$GameUI/TeamOrderColors/@Color}" />
+      <LightAdjustColor val="{$SpazzoColours/OrderColours/@AdditionalColor}" />
+      <DarkAdjustColor val="{$SpazzoColours/OrderColours/@Color}" />
       <Width val="14" />
       <Height val="14" />
     </Frame>
@@ -4838,8 +4907,8 @@
   
   <Frame type="Frame" name="BossHealthBarShieldChaosTemplate" template="SpazzoTemplates/BossHealthBarShieldTemplate">
     <Frame type="Image" name="ShieldInside">
-      <LightAdjustColor val="{$GameUI/TeamChaosColors/@AdditionalColor}" />
-      <DarkAdjustColor val="{$GameUI/TeamChaosColors/@Color}" />
+      <LightAdjustColor val="{$SpazzoColours/ChaosColours/@AdditionalColor}" />
+      <DarkAdjustColor val="{$SpazzoColours/ChaosColours/@Color}" />
     </Frame>
   </Frame>
   
@@ -4882,6 +4951,130 @@
     <Frame type="Frame" name="BossHealthBarShield1" template="SpazzoTemplates/BossHealthBarShieldChaosTemplate">
       <Anchor side="Right" relative="$parent/BossHealthBarShield2" pos="Min" offset="0" />
       <Anchor side="Left" relative="$parent/BossHealthBarShield2" pos="Min" offset="#AlteracCoreArmorWidthNeg" />
+    </Frame>
+  </Frame>
+
+
+  <Frame type="Label" name="ShortcutLeft">
+    <Anchor side="Top" relative="$sibling-1" pos="Max" offset="1"/>
+    <Anchor side="Left" relative="$sibling-1" pos="Min" offset="0"/>
+    <Style val="SpazzoHelpShortcutListing" />
+  </Frame>
+  
+  <Frame type="Label" name="ShortcutRight">
+    <!-- <Anchor side="Top" relative="$sibling-1" pos="Max" offset="1"/>
+    <Anchor side="Right" relative="$sibling-1" pos="Max" offset="0"/>
+    <Style val="SpazzoHelpShortcutListingRight" /> -->
+    <Anchor side="Top" relative="$sibling-1" pos="Max" offset="1"/>
+    <Anchor side="Left" relative="$sibling-1" pos="Min" offset="0"/>
+    <Style val="SpazzoHelpShortcutListing" />
+  </Frame>
+
+  <Frame type="Image" name="EmptyDynamicButtonImageTemplate">
+    <Texture val="@UI/HUD_BTN_BG_Ability_Inventory_Empty" />
+    <Alpha val="80" />
+    <Width val="#SpazzoCommandDynamicButtonSize" />
+    <Height val="#SpazzoCommandDynamicButtonSize" />
+    <RenderPriority val="10" />
+  </Frame>
+
+  <Frame type="CommandButton" name="SpazzoCommandButtonTemplate" template="CommandButton/CommandButtonTemplate">
+    <Height val="#SpazzoCommandButtonSize"/>
+    <Width val="#SpazzoCommandButtonSize"/>
+    <Frame type="Image" name="GameButtonDefaultBorder">
+      <Height val="#SpazzoCommandButtonBorderSize"/>
+      <Width val="#SpazzoCommandButtonBorderSize"/>
+    </Frame>
+    <Frame type="CommandHotkeyFrame" name="HotkeyFrame">
+      <Visible val="False"/>
+      <Frame type="Label" name="HotkeyLabel">
+        <Visible val="False"/>
+      </Frame>
+    </Frame>
+    <Frame type="Label" name="CooldownLabel">
+      <Style val="SpazzoBottomLeftStandardLabel" />
+    </Frame>
+    <Frame type="Image" name="ChargeBackground">
+      <Height val="#SpazzoCommandButtonChargeBackgroundSize"/>
+      <Width val="#SpazzoCommandButtonChargeBackgroundSize"/>
+    </Frame>
+    <Frame type="Image" name="ChargeCompleteImage">
+      <Height val="#SpazzoCommandButtonChargeBackgroundSize"/>
+      <Width val="#SpazzoCommandButtonChargeBackgroundSize"/>
+    </Frame>
+    <Frame type="ProgressBar" name="ChargeCooldown">
+      <Height val="#SpazzoCommandButtonChargeProgressSize"/>
+      <Width val="#SpazzoCommandButtonChargeProgressSize"/>
+    </Frame>
+    <Frame type="Label" name="ChargeLabel">
+      <Style val="SpazzoBottomLeftChargesLabel" />
+    </Frame>
+    <Frame type="Frame" name="ActiveEffect">
+      <Height val="#SpazzoCommandButtonSize"/>
+      <Width val="#SpazzoCommandButtonSize"/>
+      <Frame type="Frame" name="ActiveEffectImage">
+        <Height val="#SpazzoCommandButtonSize"/>
+        <Width val="#SpazzoCommandButtonSize"/>
+      </Frame>
+      <Frame type="Frame" name="ActiveEffect2Image">
+        <Height val="#SpazzoCommandButtonSize"/>
+        <Width val="#SpazzoCommandButtonSize"/>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="AttentionEffect">
+      <Height val="#SpazzoCommandButtonSize"/>
+      <Width val="#SpazzoCommandButtonSize"/>
+      <Frame type="Frame" name="AttentionEffectImage">
+        <Height val="#SpazzoCommandButtonSize"/>
+        <Width val="#SpazzoCommandButtonSize"/>
+      </Frame>
+      <Frame type="Frame" name="AttentionEffect2Image">
+        <Height val="#SpazzoCommandButtonSize"/>
+        <Width val="#SpazzoCommandButtonSize"/>
+      </Frame>
+      <Frame type="Frame" name="InnerGlowImage">
+        <Height val="#SpazzoCommandButtonSize"/>
+        <Width val="#SpazzoCommandButtonSize"/>
+      </Frame>
+    </Frame>
+  </Frame>
+  
+  <Frame type="CommandButton" name="SpazzoDynamicCommandButtonTemplate" template="CommandButton/DynamicButtonTemplate">
+    <Height val="#SpazzoCommandDynamicButtonSize"/>
+    <Width val="#SpazzoCommandDynamicButtonSize"/>
+    <Frame type="Image" name="NormalImage">
+      <Height val="#SpazzoCommandDynamicButtonNormalImageSize"/>
+      <Width val="#SpazzoCommandDynamicButtonNormalImageSize"/>
+    </Frame>
+    <Frame type="Image" name="GameButtonDefaultBorder">
+      <Height val="#SpazzoCommandDynamicButtonBorderSize"/>
+      <Width val="#SpazzoCommandDynamicButtonBorderSize"/>
+    </Frame>
+    <Frame type="CommandHotkeyFrame" name="HotkeyFrame">
+      <Visible val="False"/>
+      <Frame type="Label" name="HotkeyLabel">
+        <Visible val="False"/>
+      </Frame>
+    </Frame>
+    <Frame type="Label" name="CooldownLabel">
+      <Style val="SpazzoBottomLeftDynamicLabel" />
+    </Frame>
+    <Frame type="Image" name="ChargeBackground">
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="-10"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="-30"/>
+      <Height val="#SpazzoCommandButtonChargeBackgroundSize"/>
+      <Width val="#SpazzoCommandButtonChargeBackgroundSize"/>
+    </Frame>
+    <Frame type="Image" name="ChargeCompleteImage">
+      <Height val="#SpazzoCommandButtonChargeBackgroundSize"/>
+      <Width val="#SpazzoCommandButtonChargeBackgroundSize"/>
+    </Frame>
+    <Frame type="ProgressBar" name="ChargeCooldown">
+      <Height val="#SpazzoCommandButtonChargeProgressSize"/>
+      <Width val="#SpazzoCommandButtonChargeProgressSize"/>
+    </Frame>
+    <Frame type="Label" name="ChargeLabel">
+      <Style val="SpazzoBottomLeftChargesLabel" />
     </Frame>
   </Frame>
 

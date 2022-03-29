@@ -10815,7 +10815,8 @@
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
   </Frame>
   <Frame type="UnitStatusFrame" name="MinionUnitStatusFrameTemplate" file="UnitStatus">
-    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" /></Frame>
+    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" />
+  </Frame>
   <Frame type="UnitStatusFrame" name="MinionUnitStatusFrameWithDurationBars" file="UnitStatus">
     <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" />
     <Frame type="Frame" name="AzmodanDemonLieutenantDemonicSmiteCooldown">
@@ -10962,24 +10963,32 @@
     </Frame>
   </Frame>
   <Frame type="UnitStatusFrame" name="SmallMinionUnitStatusFrameTemplate" file="UnitStatus">
-    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" /></Frame>
+    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" />
+  </Frame>
   <Frame type="UnitStatusFrame" name="CreepTumorUnitStatusFrameTemplate" file="UnitStatus">
-    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" /></Frame>
+    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" />
+  </Frame>
   <Frame type="UnitStatusFrame" name="SuperCreepUnitStatusFrameTemplate" file="UnitStatus">
     <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" />
   </Frame>
   <Frame type="UnitStatusFrame" name="SuperCreepNeutralUnitStatusFrameTemplate" file="UnitStatus">
-    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" /></Frame>
+    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" />
+  </Frame>
   <Frame type="UnitStatusFrame" name="IndestructibleTimedUnitStatusFrameTemplate" file="UnitStatus">
-    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" /></Frame>
+    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" />
+  </Frame>
   <Frame type="UnitStatusFrame" name="IndestructibleTimedUnitTeamColorIndicatedDurationTemplate" file="UnitStatus">
-    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" /></Frame>
+    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" />
+  </Frame>
   <Frame type="UnitStatusFrame" name="MedivacStatusFrameTemplate" file="Medic">
-    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" /></Frame>
+    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" />
+  </Frame>
   <Frame type="UnitStatusFrame" name="CustomBlazeBunkerDropUnitStatusFrame" file="Blaze">
-    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" /></Frame>
+    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" />
+  </Frame>
   <Frame type="UnitStatusFrame" name="MeiOWAvalancheUnitStatusFrame" file="MeiOW">
-    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" /></Frame>
+    <Frame type="Frame" name="UnitStatusOverallDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMinionHealthPlateVisibilityStateGroupControlTemplate" />
+  </Frame>
   <Frame type="UnitStatusFrame" name="MedivhPortalDurationBar" file="Medivh">
     <Frame type="Frame" name="UnitStatusMedivhPortalStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMedivhPortalPlateVisibilityStateGroupControlTemplate" />
   </Frame>

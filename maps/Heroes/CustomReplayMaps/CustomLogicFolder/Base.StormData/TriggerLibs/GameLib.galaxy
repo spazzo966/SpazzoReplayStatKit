@@ -2236,14 +2236,16 @@ void libGame_gf_AssignMVP (int lp_winningTeam) {
   TriggerDebugOutput(8, (StringExternal("Param/Value/lib_Game_11E00082") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topHealerPerTeam[2]].lv_heroUnit))), false);
   TriggerDebugOutput(8, (StringExternal("Param/Value/lib_Game_E893337F") + FixedToText(lv_topHealAmountPerTeam[2], c_fixedPrecisionAny)), false);
 
-  UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_F2DB1E8D") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topHeroDamagerPerTeam[1]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topHeroDamageAmountPerTeam[1], c_fixedPrecisionAny))));
-  UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_B4D8E244") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topHeroDamagerPerTeam[2]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topHeroDamageAmountPerTeam[2], c_fixedPrecisionAny))));
-  UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_BAC429E4") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topSiegeDamagerPerTeam[1]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topSiegeDamageAmountPerTeam[1], c_fixedPrecisionAny))));
-  UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_E97B07AB") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topSiegeDamagerPerTeam[2]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topSiegeDamageAmountPerTeam[2], c_fixedPrecisionAny))));
-  UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_DD4D7AB3") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topDamageTakerPerTeam[1]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topDamageTakenAmountPerTeam[1], c_fixedPrecisionAny))));
-  UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_667838D9") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topDamageTakerPerTeam[2]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topDamageTakenAmountPerTeam[2], c_fixedPrecisionAny))));
-  UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_8E88CA60") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topHealerPerTeam[1]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topHealAmountPerTeam[1], c_fixedPrecisionAny))));
-  UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_11E00082") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topHealerPerTeam[2]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topHealAmountPerTeam[2], c_fixedPrecisionAny))));
+  if ((libCore_gv_mAPMapStringID != "TryMeMode")) {
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_F2DB1E8D") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topHeroDamagerPerTeam[1]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topHeroDamageAmountPerTeam[1], c_fixedPrecisionAny))));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_B4D8E244") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topHeroDamagerPerTeam[2]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topHeroDamageAmountPerTeam[2], c_fixedPrecisionAny))));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_BAC429E4") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topSiegeDamagerPerTeam[1]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topSiegeDamageAmountPerTeam[1], c_fixedPrecisionAny))));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_E97B07AB") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topSiegeDamagerPerTeam[2]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topSiegeDamageAmountPerTeam[2], c_fixedPrecisionAny))));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_DD4D7AB3") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topDamageTakerPerTeam[1]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topDamageTakenAmountPerTeam[1], c_fixedPrecisionAny))));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_667838D9") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topDamageTakerPerTeam[2]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topDamageTakenAmountPerTeam[2], c_fixedPrecisionAny))));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_8E88CA60") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topHealerPerTeam[1]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topHealAmountPerTeam[1], c_fixedPrecisionAny))));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, ((StringExternal("Param/Value/lib_Game_11E00082") + UnitTypeGetName(UnitGetType(libGame_gv_players[lv_topHealerPerTeam[2]].lv_heroUnit)) + StringToText(": ") + FixedToText(lv_topHealAmountPerTeam[2], c_fixedPrecisionAny))));
+  }
 
   auto62E88247_ae = libCore_gv_bALMaxPlayers;
   lv_iterator = 1;
@@ -2358,7 +2360,10 @@ void libGame_gf_AssignMVP (int lp_winningTeam) {
   auto7F8B851F_ae = 10;
   lv_iterator = 1;
     for ( ; lv_iterator <= auto7F8B851F_ae ; lv_iterator += 1 ) {
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringExternal("Param/Value/lib_Game_45CD443A") + libGame_gv_mVPStats[lv_iterator].lv_heroName + StringExternal("Param/Value/lib_Game_5228A42B") + FixedToText(libGame_gv_mVPStats[lv_iterator].lv_mVPScore, c_fixedPrecisionAny) + StringToText(" (FractionOfTopScoresBonus: ") + FixedToText(lv_thoroughputBonus[lv_iterator], c_fixedPrecisionAny) + StringToText(" TimeDead: ") + FixedToText((((libGame_gv_mVPStats[lv_iterator].lv_timeSpentDead / lv_gameLength) * 100.0) * libGame_gf_GetMVPAwardAmount(libGame_gv_mVPStats[lv_iterator].lv_unitType, libGame_ge_MVPAwards_TimeSpentDead)), c_fixedPrecisionAny) + StringToText(lv_personalStatString[lv_iterator]) + StringToText(")")));
+      
+    if ((libCore_gv_mAPMapStringID != "TryMeMode")) {
+      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringExternal("Param/Value/lib_Game_45CD443A") + libGame_gv_mVPStats[lv_iterator].lv_heroName + StringExternal("Param/Value/lib_Game_5228A42B") + FixedToText(libGame_gv_mVPStats[lv_iterator].lv_mVPScore, c_fixedPrecisionAny) + StringToText(" (FractionOfTopScoresBonus: ") + FixedToText(lv_thoroughputBonus[lv_iterator], c_fixedPrecisionAny) + StringToText(" TimeDead: ") + FixedToText((((libGame_gv_mVPStats[lv_iterator].lv_timeSpentDead / lv_gameLength) * 100.0) * libGame_gf_GetMVPAwardAmount(libGame_gv_mVPStats[lv_iterator].lv_unitType, libGame_ge_MVPAwards_TimeSpentDead)), c_fixedPrecisionAny) + StringToText(lv_personalStatString[lv_iterator]) + StringToText(")")));
+    }
     TriggerDebugOutput(8, (StringExternal("Param/Value/lib_Game_45CD443A") + libGame_gv_mVPStats[lv_iterator].lv_heroName + StringExternal("Param/Value/lib_Game_5228A42B") + FixedToText(libGame_gv_mVPStats[lv_iterator].lv_mVPScore, c_fixedPrecisionAny)), false);
     if ((libGame_gv_mVPStats[lv_iterator].lv_mVPScore > lv_mVPScoreToBeat)) {
       lv_mVPScoreToBeat = libGame_gv_mVPStats[lv_iterator].lv_mVPScore;
@@ -13252,7 +13257,7 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroSylvanas")) {
     if (((lp_damageEffect == "SylvanasWitheringFireDamageRemorseless") || (lp_damageEffect == "SylvanasShadowDaggerInitialDamage") || (lp_damageEffect == "SylvanasBlackArrowUnstablePoisonTalentDamage") || (lp_damageEffect == "SylvanasWeaponDamage") || (lp_damageEffect == "SylvanasWitheringFireDamage") || (lp_damageEffect == "SylvanasHauntingWaveDamage") || (lp_damageEffect == "SylvanasWailingArrowDamage") || (lp_damageEffect == "SylvanasWailingArrowDeafeningBlastDamage") || (lp_damageEffect == "SylvanasShadowDaggerDoTDamage"))) {
-      lv_primaryScoreString = "TalentSixteen";
+      lv_primaryScoreString = "SupportTwelve";
     }
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZeratul")) {
@@ -17826,7 +17831,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroSylvanas")) {
       if ((lp_healEffect == "SylvanasPossessionFullHeal")) {
-        lv_primaryScoreString = "TalentFour";
+        lv_primaryScoreString = "TalentSixteen";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroUther")) {
@@ -18602,7 +18607,9 @@ void libGame_gf_HeroSpecificStatTrackerOther (fixed lp_scoreValue, int lp_caster
     lv_secondaryScoreValue = 1.0;
     lv_secondaryScoreString = "Globes";
     if (!((lp_targetPlayer >= 1) && (lp_targetPlayer <= libCore_gv_bALMaxPlayers))) {
-      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (IntToText(lp_targetPlayer) + StringToText(" disjointed an experience globe, ") + StringToText(UnitGetType(lp_extraDataUnit)) + StringToText(" globe belongs to player: ") + StringToText(lp_extraDataString)));
+      if (libGame_gv_heroSpecificDebugString == "Globes") {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (IntToText(lp_targetPlayer) + StringToText(" disjointed an experience globe, ") + StringToText(UnitGetType(lp_extraDataUnit)) + StringToText(" globe belongs to player: ") + StringToText(lp_extraDataString)));
+      }
       lv_scoreString = "Discard";
       lv_secondaryScoreString = "Discard";
     }
@@ -18612,7 +18619,9 @@ void libGame_gf_HeroSpecificStatTrackerOther (fixed lp_scoreValue, int lp_caster
     lv_secondaryScoreValue = 1.0;
     lv_secondaryScoreString = "TinyGlobes";
     if (!((lp_targetPlayer >= 1) && (lp_targetPlayer <= libCore_gv_bALMaxPlayers))) {
-      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (IntToText(lp_targetPlayer) + StringToText(" disjointed a tiny experience globe, ") + StringToText(UnitGetType(lp_extraDataUnit)) + StringToText(" globe belongs to player: ") + StringToText(lp_extraDataString)));
+      if (libGame_gv_heroSpecificDebugString == "Globes") {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (IntToText(lp_targetPlayer) + StringToText(" disjointed a tiny experience globe, ") + StringToText(UnitGetType(lp_extraDataUnit)) + StringToText(" globe belongs to player: ") + StringToText(lp_extraDataString)));
+      }
       lv_scoreString = "Discard";
       lv_secondaryScoreString = "Discard";
     }
@@ -30077,6 +30086,15 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       else {
         lv_primaryScoreString = "ScoreTwo";
       }
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_secondaryScoreString = "BaselineOne";
+        }
+        else {
+          lv_secondaryScoreString = "TalentTen";
+        }
+      }
     }
     if ((lp_damageEffect == "SylvanasWitheringFireDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -30087,12 +30105,21 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
       if ((PlayerHasTalent(lv_casterPlayer, "SylvanasTalentWitheringFireBarbedShot") == true) && (UnitGetTokenCount(lp_casterUnit, "SylvanasWitheringFireBarbedShotTokenCounter") == 5.0)) {
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "TalentSeven";
+          lv_secondaryScoreString = "TalentTwenty";
         }
         else {
-          lv_secondaryScoreString = "TalentTen";
+          lv_secondaryScoreString = "SupportEleven";
         }
         lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBarbedShot");
+      }
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+        lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_tertiaryScoreString = "BaselineTwo";
+        }
+        else {
+          lv_tertiaryScoreString = "TalentThirteen";
+        }
       }
     }
     if ((lp_damageEffect == "SylvanasShadowDaggerInitialDamage")) {
@@ -30104,12 +30131,21 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
       if (PlayerHasTalent(lv_casterPlayer, "SylvanasTalentLostSoul") == true) {
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "TalentSeven";
+          lv_secondaryScoreString = "TalentTwenty";
         }
         else {
-          lv_secondaryScoreString = "TalentTen";
+          lv_secondaryScoreString = "SupportEleven";
         }
         lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasLostSoul");
+      }
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+        lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_tertiaryScoreString = "BaselineThree";
+        }
+        else {
+          lv_tertiaryScoreString = "TalentThirteen";
+        }
       }
     }
     if ((lp_damageEffect == "SylvanasShadowDaggerDoTDamage")) {
@@ -30121,12 +30157,21 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
       if (PlayerHasTalent(lv_casterPlayer, "SylvanasTalentLostSoul") == true) {
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "TalentSeven";
+          lv_secondaryScoreString = "TalentTwenty";
         }
         else {
-          lv_secondaryScoreString = "TalentTen";
+          lv_secondaryScoreString = "SupportEleven";
         }
         lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasLostSoul");
+      }
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+        lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_tertiaryScoreString = "BaselineThree";
+        }
+        else {
+          lv_tertiaryScoreString = "TalentThirteen";
+        }
       }
     }
     if ((lp_damageEffect == "SylvanasHauntingWaveDamage")) {
@@ -30138,12 +30183,21 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
       if (PlayerHasTalent(lv_casterPlayer, "SylvanasTalentFesteringWounds") == true) {
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "TalentSeven";
+          lv_secondaryScoreString = "TalentTwenty";
         }
         else {
-          lv_secondaryScoreString = "TalentTen";
+          lv_secondaryScoreString = "SupportEleven";
         }
         lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasFesteringWounds");
+      }
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+        lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_tertiaryScoreString = "TalentOne";
+        }
+        else {
+          lv_tertiaryScoreString = "TalentThirteen";
+        }
       }
     }
     if ((lp_damageEffect == "SylvanasBlackArrowsWeaponDamageOverwhelmingAfflictionPercentBonusDamage")) {
@@ -30151,6 +30205,15 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
     if ((lp_damageEffect == "SylvanasBlackArrowUnstablePoisonTalentDamage")) {
       lv_primaryScoreString = "ScoreTen";
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_secondaryScoreString = "BaselineThree";
+        }
+        else {
+          lv_secondaryScoreString = "TalentThirteen";
+        }
+      }
     }
     if ((lp_damageEffect == "SylvanasWailingArrowDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -30158,6 +30221,15 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
       else {
         lv_primaryScoreString = "Discard";
+      }
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_secondaryScoreString = "TalentFour";
+        }
+        else {
+          lv_secondaryScoreString = "TalentThirteen";
+        }
       }
     }
     if ((lp_damageEffect == "SylvanasWailingArrowDeafeningBlastDamage")) {
@@ -30167,9 +30239,27 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       else {
         lv_primaryScoreString = "Discard";
       }
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_secondaryScoreString = "TalentFour";
+        }
+        else {
+          lv_secondaryScoreString = "TalentThirteen";
+        }
+      }
     }
     if ((lp_damageEffect == "SylvanasWitheringFireDamageRemorseless")) {
       lv_primaryScoreString = "ScoreTwelve";
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_secondaryScoreString = "TalentSeven";
+        }
+        else {
+          lv_secondaryScoreString = "TalentThirteen";
+        }
+      }
     }
     if ((lp_damageEffect == "SylvanasShadowDaggerSpreadDummyDamage")) {
       lv_primaryScoreString = "Discard";
@@ -34469,7 +34559,7 @@ int libGame_gf_unitGroupCountRaynorInspire (unitgroup lp_generatedUnitGroup, str
 void libGame_gf_exportStatsForPlayer (int lp_player) {
   string lv_scoreString;
 
-  lv_scoreString = "Version 0.27a " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
+  lv_scoreString = "Version 0.28 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
   lv_scoreString += " ,[ HSPrimary: ";
   lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwelve, 1);
   lv_scoreString += " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThirteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFourteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFifteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSixteen, 1);
@@ -40430,7 +40520,7 @@ void libGame_gv_initializeOBSUI () {
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Mercenary Tracker"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.27a ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.28 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
     // Well, I tried to add team coloured globes.
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamOrder, "11");
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Person", libCore_gv_cOMPUTER_TeamOrder, "Observer");
@@ -42112,6 +42202,11 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
     }
 
     lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SylvanasHauntingWaveDamage", "MultiplicativeModifierArray[" + "FesteringWoundsBonusDamage" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
+  }
+  if ((lp_inputData == "SylvanasBlackArrows")) {
+    lv_flatDamageModifier = 0.0;
+
+    lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SylvanasWitheringFireDamage", "MultiplicativeModifierArray[" + "BlackArrowsBonusDamage" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
   }
 
   if ((lp_inputData == "StukovLowBlow")) {

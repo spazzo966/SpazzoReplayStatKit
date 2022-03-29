@@ -544,6 +544,26 @@
         <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" ColorAdjustMode="Fill" />
         <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenHasDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
       </State>
+      <State name="Valeera">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroValeera"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="ValeeraComboPointsToken" /> 
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="NonQuest" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/DummyStackProgressBar" Visible="False" /> 
+        <Action type="ApplyTemplate" frame="$this/UnitStatusBehaviorIconBaselineQuest/VisiblityControllerFrame" template="SpazzoCustomTopBarQuests/VisibityControllerFrameDontHideAtCompletion"/>
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_valeera_eviscerate.dds" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ValeeraComboPoints" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar" Behavior="ValeeraInCombatComboPoints" />
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" AdjustmentColor="255,200,200,200" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" Alpha="130" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" ColorAdjustMode="Fill" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenHasDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
       <State name="Tassadar">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroTassadar"/>
         <When type="Property" frame="$Talent0MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
@@ -2789,7 +2809,7 @@
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
         <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
-        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_dehaka_adaptation.dds"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_Muradin_Avatar.dds"/>
         <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
         <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="MuradinAvatarHealthBuff" />
         <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
@@ -3379,6 +3399,17 @@
         <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" Alpha="130" /> 
         <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" ColorAdjustMode="Fill" /> 
       </State>
+      <!-- <State name="NoControl">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent7MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_orphea_trait.dds"/>
+        <Action type="SetProperty" frame="$parent" Behavior="HoggerNoControlCasterBuff" /> 
+        <Action type="SetProperty" frame="$parent/BehaviorIcon/StackLabel" Style="Spazzo_TopPanelQuestLabel_NotQuest" /> 
+        <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" AdjustmentColor="255,200,200,200" /> 
+        <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" Alpha="130" /> 
+        <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" ColorAdjustMode="Fill" /> 
+      </State> -->
       <State name="NoState">
         <Action type="SetProperty" frame="$parent" Behavior="NULL" />
         <Action type="SetProperty" frame="$parent" Visible="False" />

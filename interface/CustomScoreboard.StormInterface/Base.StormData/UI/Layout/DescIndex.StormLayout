@@ -4,6 +4,7 @@
     <Include path="UI/Layout/SpazzoCustomOptions.StormLayout"/>
     <Include path="UI/Layout/CustomConfig.StormLayout"/>
     <Include path="UI/Layout/SpazzoCustomConstants.StormLayout"/>
+    <Include path="UI/Layout/SpazzoTextFormatFrames.StormLayout"/>
     <Include path="UI/Layout/SpazzoCustomScoreboardTemplates.StormLayout"/>
     <Include path="UI/Layout/SpazzoCustomUnitStatusFrames.StormLayout"/>
     <!-- <Include path="UI/Layout/SpazzoCustomOwnedUnitFrame.StormLayout"/> -->

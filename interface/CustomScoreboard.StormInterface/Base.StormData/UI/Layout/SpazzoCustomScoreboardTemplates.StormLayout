@@ -32,36 +32,6 @@
     </Frame>
   </Frame>
 
-  <Frame type="TextFormatFrame" name="HeroGenericSharedTableScore3">
-    <Anchor relative="$parent" />
-    <Visible val="True" />
-    <FormatText val="%23%(%2%)%1%%3%: %13%%1%%4%: %14%%1%%5%: %15%%1%%6%: %16%%1%%7%: %17%%1%%8%: %18%%1%%9%: %19%%1%%10%: %20%%1%%11%: %21%%1%%12%: %22%%0%" />
-    <Replacement val="#NewLine" index="0" />
-    <Replacement val="#VerticalBar" index="1" />
-    <Replacement val="{$parent/HeroNameDataRef/@StringValue}" index="2" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameBasicAttacksVsHeroes/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="3" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameBasicAttacksVsNonHeroes/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="4" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameTimeMounted/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="5" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameTimeInShrubs/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="6" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameTimeFullMana/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="7" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameTimeLT20PercentMana/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="8" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameTimeWithFountainActive/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="9" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameTimeWithGlobeActive/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="10" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameTimesUsedFountain/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="11" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameTimesHearthed/ScoreValueLabel/TooltipAnchorFrame/@Tooltip}" index="12" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameManaFromFountain/ScoreValueLabel/@Text}" index="13" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameManaFromGlobes/ScoreValueLabel/@Text}" index="14" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameManaFromBase/ScoreValueLabel/@Text}" index="15" />
-    <Replacement val="{$parent/PlayerScoreContainerFramePercentOfLifeLostFromHeroes/ScoreValueLabel/@Text}" index="16" />
-    <Replacement val="{$parent/PlayerScoreContainerFramePercentOfLifeLostFromNonHeroes/ScoreValueLabel/@Text}" index="17" />
-    <Replacement val="{$parent/PlayerScoreContainerFramePercentOfLifeTaken/ScoreValueLabel/@Text}" index="18" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameBasicAttacksVsHeroes/ScoreValueLabel/@Text}" index="19" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameBasicAttacksVsNonHeroes/ScoreValueLabel/@Text}" index="20" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameTimeMounted/ScoreValueLabel/@Text}" index="21" />
-    <Replacement val="{$parent/PlayerScoreContainerFrameTimeInShrubs/ScoreValueLabel/@Text}" index="22" />
-    <Replacement val="{$parent/PlayerNameDataRef/@StringValue}" index="23" />
-  </Frame>
-
   <Frame type="Frame" name="PlayerScoreContainerFrameTemplate">
     <Anchor relative="$parent"/>
     <Width val="100" />
@@ -297,7 +267,7 @@
       <Argument name="GameValue" val="PlayerName"/>
       <PlayerId val="{$parent/PlayerHeroNameFrameTemplate/@PlayerId}" />
     </Frame>
-    <Frame type="TextFormatFrame" name="HeroGenericTableScore" template="SpazzoCustomScoreboardTemplates/HeroGenericSharedTableScore3"/>
+    <Frame type="TextFormatFrame" name="HeroGenericTableScore" template="SpazzoTextFormatFrames/HeroGenericSharedTableScore3"/>
     <Frame type="Image" name="GridBackgroundImage">
       <!-- <Anchor side="Top" relative="$parent/PlayerHeroIconFrame" pos="Min" offset="0" /> -->
       <Anchor side="Left" relative="$parent" pos="Min" offset="1045" />

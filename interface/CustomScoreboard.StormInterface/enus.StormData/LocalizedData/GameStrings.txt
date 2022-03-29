@@ -1,4 +1,4 @@
-﻿UI/Spazzo/UIVersion=v0.27a
+﻿UI/Spazzo/UIVersion=v0.28
 UI/Spazzo/UIWARNING=WARNING
 UI/Spazzo/UIWARNINGTOOLTIP=Game is detected as having ended, statistics may be incorrect, please rewind to after the core is destroyed, but before these images become visible!
 
@@ -112,8 +112,68 @@ UI/Spazzo/UnitStatusGlobalSettingTooltip=When toggled, disable all healthplates 
 UI/Spazzo/Guide=Guide
 UI/Spazzo/GuideTooltip=When toggled, display additional information to the side of this options menu while it is open
 
+UI/Spazzo/Help=UI Hotkeys
+UI/Spazzo/Shortcut1=<c val="ffffff">Alt+T</c>: "Caster Mode" Fast Toggle
+UI/Spazzo/Shortcut2=<c val="ffffff">Control+1</c>: Hero Talents
+UI/Spazzo/Shortcut3=<c val="ffffff">Control+2</c>: Kills, Assists, Deaths, XP
+UI/Spazzo/Shortcut4=<c val="ffffff">Control+3</c>: Hero DMG, Siege, Minion, Building
+UI/Spazzo/Shortcut5=<c val="ffffff">Control+4</c>: Healing, Self Healing, Dmg Taken, Dmg vs Creep
+UI/Spazzo/Shortcut6=<c val="ffffff">Control+5</c>: XP Breakdown
+UI/Spazzo/Shortcut7=<c val="ffffff">Control+6</c>: APM, Avg APM, Time Dead, Time CC'd Heroes
+UI/Spazzo/Shortcut8=<c val="ffffff">Alt+1</c>: Display Timestamped Stats
+UI/Spazzo/Shortcut9=<c val="ffffff">Alt+2</c>: Reset & Unpause Timestamped Stats
+UI/Spazzo/Shortcut10=<c val="ffffff">Alt+3</c>: Pause, Unpause Timestamped Stats
+UI/Spazzo/Shortcut11=<c val="ffffff">Alt+4</c>: Disable Timestamped Stats
+UI/Spazzo/Shortcut12=<c val="ffffff">Control+7</c>: Toggle Selected Unit Stats
+UI/Spazzo/Shortcut13=<c val="ffffff">Control+8</c>: Toggle Bottom CDs, Quests
+UI/Spazzo/Shortcut14=<c val="ffffff">Control+9</c>: Toggle Bottom Talent Mirroring
+UI/Spazzo/Shortcut15=<c val="ffffff">Control+0</c>: Toggle Bottom Stats Mirroring
+UI/Spazzo/Shortcut16=<c val="ffffff">Alt+E</c>: Toggle Top Bar Unit Selection
+UI/Spazzo/Shortcut17=<c val="ffffff">Alt+R</c>: Toggle Basic Abilities, Vehicle HP
+UI/Spazzo/Shortcut18=<c val="ffffff">Alt+Y</c>: Hero Health Label Slider Down
+UI/Spazzo/Shortcut19=<c val="ffffff">Alt+U</c>: Hero Health Label Slider Up
+UI/Spazzo/Shortcut20=<c val="ffffff">Alt+K</c>: Toggle Structure Health Labels
+UI/Spazzo/Shortcut21=<c val="ffffff">Alt+I</c>: Toggle All Hero Attachments
+UI/Spazzo/Shortcut22=<c val="ffffff">Alt+O</c>: Toggle Top Bar Tooltips
+UI/Spazzo/Shortcut23=<c val="ffffff">Alt+P</c>: Toggle Top Bar Buffs
+UI/Spazzo/Shortcut24=<c val="ffffff">Control+L</c>: Cycle Through Top Bar Layouts
+UI/Spazzo/Shortcut25=<c val="ffffff">Shift+L</c>: Display <c style="Primary" relation="Ally">Left-Side Team</c> Hero & Player Name
+UI/Spazzo/Shortcut26=<c val="ffffff">Shift+R</c>: Display <c style="Primary" relation="Enemy">Right-Side Team</c> Hero & Player Name
+UI/Spazzo/Shortcut27=<c val="ffffff">Alt+L</c>: Open Options & Scoreboard Menu
+UI/Spazzo/Shortcut28=<c val="ffffff">Alt+H</c>: Open Hotkey List(This Menu!)
+
+UI/Spazzo/HelpDefaults=Game Hotkeys
+UI/Spazzo/Blizzcut1=<k val="ObserveAllPlayers"/> Observer All
+UI/Spazzo/Blizzcut2=<k val="ObserveCommentator"/> Observer Camera
+UI/Spazzo/Blizzcut3=<k val="ObservePreview"/> Selected Unit Vision
+UI/Spazzo/Blizzcut4=<k val="ObserveSelected"/> Selected Unit Camera
+UI/Spazzo/Blizzcut5=<k val="ObservePlayer10"/> Player 11 Camera
+UI/Spazzo/Blizzcut6=<k val="ObservePlayer11"/> Player 12 Camera
+UI/Spazzo/Blizzcut7=<k val="ObservePlayer12"/> Player 13 Camera
+UI/Spazzo/Blizzcut8=<k val="ObservePlayer13"/> Player 14 Camera
+UI/Spazzo/Blizzcut9=<k val="ObservePlayer14"/> Player 15 Camera
+UI/Spazzo/Blizzcut10=<k val="ObservePlayer15"/> Player 16 Camera
+UI/Spazzo/Blizzcut11=<k val="ReplaySkipBack"/> Skip Replay Back
+UI/Spazzo/Blizzcut12=<k val="ReplaySkipNext"/> Skip Replay Forward
+UI/Spazzo/Blizzcut13=<k val="CameraSave0"/> Save Camera 1
+UI/Spazzo/Blizzcut14=<k val="CameraSave1"/> Save Camera 2
+UI/Spazzo/Blizzcut15=<k val="CameraSave2"/> Save Camera 3
+UI/Spazzo/Blizzcut16=<k val="CameraSave3"/> Save Camera 4
+UI/Spazzo/Blizzcut17=<k val="CameraSave4"/> Save Camera 5
+UI/Spazzo/Blizzcut18=<k val="CameraSave5"/> Save Camera 6
+UI/Spazzo/Blizzcut19=<k val="CameraSave6"/> Save Camera 7
+UI/Spazzo/Blizzcut20=<k val="CameraSave7"/> Save Camera 8
+UI/Spazzo/Blizzcut21=<k val="CameraView0"/> View Camera 1
+UI/Spazzo/Blizzcut22=<k val="CameraView1"/> View Camera 2
+UI/Spazzo/Blizzcut23=<k val="CameraView2"/> View Camera 3
+UI/Spazzo/Blizzcut24=<k val="CameraView3"/> View Camera 4
+UI/Spazzo/Blizzcut25=<k val="CameraView4"/> View Camera 5
+UI/Spazzo/Blizzcut26=<k val="CameraView5"/> View Camera 6
+UI/Spazzo/Blizzcut27=<k val="CameraView6"/> View Camera 7
+UI/Spazzo/Blizzcut28=<k val="CameraView7"/> View Camera 8
+
 UI/Spazzo/CustomUnitSelectionUI=Selection UI
-UI/Spazzo/CustomUnitSelectionUITooltip=Which unit selection UI standard to use</n>Blizz: The default selected unit UI, located in the bottom middle of the screen and bottom left</n>Custom: A modified unit selected unit UI, where everything is located in the bottom left of the screen</n>Disabled: Disable the selected unit UI entirely
+UI/Spazzo/CustomUnitSelectionUITooltip=When untoggled, disable the selected unit UI entirely
 UI/Spazzo/SelectionUIFormatFrame=Unit UI: %ui%
 UI/Spazzo/SelectionUIFormatFrame/Blizzard=Blizz
 UI/Spazzo/SelectionUIFormatFrame/Custom=Custom
@@ -122,6 +182,10 @@ UI/Spazzo/SelectionUIFormatFrame/Disabled=Disabled
 UI/Spazzo/SelectionUI/Radius=<d ref="Unit,%unitname%,Radius" precision="4" player="%playernum%"/>
 UI/Spazzo/SelectionUI/RadiusTooltip=Unit Radius
 
+UI/Spazzo/ScoreTest=<d score="FractionalTeamLevel" player="3" precision="3"/>
+
+UI/Spazzo/SelectionUI/HeroXP1=<d ref="50 * [d ref='%veterancyvalue% + 5'] * %unitvalue%" />
+UI/Spazzo/SelectionUI/HeroXP=<d ref="50 * [d ref='%veterancyvalue% + 5'/] * %unitvalue%" precision="2" />
 UI/Spazzo/SelectionUI/UnitXP0=<d ref="Unit,%unitname%,KillXP" player="%playernum%"/>
 UI/Spazzo/SelectionUI/UnitXP1=<d ref="Unit,%unitname%,KillXP + Behavior,%veterancy%,VeterancyLevelArray[0].Modification.KillXPBonus" player="%playernum%"/>
 UI/Spazzo/SelectionUI/UnitXP2=<d ref="Unit,%unitname%,KillXP + Behavior,%veterancy%,VeterancyLevelArray[0].Modification.KillXPBonus + Behavior,%veterancy%,VeterancyLevelArray[1].Modification.KillXPBonus" player="%playernum%"/>
@@ -158,8 +222,11 @@ UI/Spazzo/SelectionUI/UnitXP32=<d ref="Unit,%unitname%,KillXP + Behavior,%vetera
 UI/Spazzo/SelectionUI/UnitXPMinions=<d ref="Effect,ExperienceAcquiredMinions,XP" player="11"/>
 UI/Spazzo/SelectionUI/UnitXPWizard=0
 UI/Spazzo/SelectionUI/UnitXPCatapult=1
+UI/Spazzo/SelectionUI/UnitXPCreepTumour=0
 UI/Spazzo/SelectionUI/UnitXPTooltip=Veterancy Level: %veterancy%</n>Unit: %unitname%
-UI/Spazzo/SelectionUI/UnitXPTooltipNoVeterancy=Veterancy Level: NA</n>Unit: %unitname%
+UI/Spazzo/SelectionUI/UnitXPTooltipNoVeterancy=Veterancy Level: %veterancy%</n>Unit: %unitname%
+UI/Spazzo/SelectionUI/UnitXPTooltipStructureVeterancy=Unit: %unitname%
+UI/Spazzo/SelectionUI/UnitXPTooltipSummonedVeterancy=Veterancy Level: %veterancy%</n>Unit: %unitname%
 
 UI/Spazzo/SelectionUI/SpeedTooltip=Base Speed: <d ref="Unit,%unitname%,Speed" precision="4" player="%playernum%"/>(<d ref="[d ref='Unit,%unitname%,Speed' precision='5' player='%playernum%'/] / [d ref='Unit,StormBasicHeroicUnit,Speed' precision='5' player='0'/]*100" precision="1"/>%)
 
@@ -178,7 +245,7 @@ UI/Spazzo/AbathurTraitSettingTooltip=When toggled, display Abathur's Monstrosity
 
 UI/Spazzo/AzmodanDemonLieutenantSettingTooltip=When toggled, display Demon Lieutenant's Smite Cooldown in it's health bar
 
-UI/Spazzo/LayoutPulldownTooltip=Set the layout form of the Top Bar</n>Shortcut: <c val="ffffff">Ctrl+L</c> to cycle through available layouts
+UI/Spazzo/LayoutPulldownTooltip=Set the layout form of the Top Bar</n>Shortcut: <c val="ffffff">Control+L</c> to cycle through available layouts
 
 UI/Spazzo/MedivhPortalPreview=When toggled, display Portal Timer in their healthplate
 UI/Spazzo/MedivhRavenOverride=When toggled, display the Raven healthplate as a standard healthplate instead of as a reduced healthplate
@@ -201,8 +268,8 @@ UI/Spazzo/Sonya/SmartWrath=Smart Wrath
 
 UI/Spazzo/HeroAttachment/Disabled=Disabled
 
-UI/Spazzo/OpenUIButtonSetting=UI Shortcut
-UI/Spazzo/OpenUIButtonSettingTooltip=When toggled, hide the button to open this UI interface.</n>Shortcut to hide\display this interface: <c val="ffffff">Alt+L</c>
+UI/Spazzo/OpenUIButtonSetting=Shortcut Button
+UI/Spazzo/OpenUIButtonSettingTooltip=When toggled, hide the button to open the shortcut list.</n>Shortcut to display Shortcut List: <c val="ffffff">Alt+H</c>
 
 UI/Spazzo/WeatherTimerVisibilitySetting=Weather Timer
 UI/Spazzo/WeatherTimerVisibilitySettingTooltip=When toggled, display the time till the next weather event.
@@ -260,6 +327,9 @@ UI/Spazzo/TopBarUnitSelectionTooltip=When toggled on, the portrait & border arou
 
 UI/Spazzo/ShowTownTotal=Show Fort Total
 UI/Spazzo/ShowTownTotalTooltip=When toggled on, Fort counter in Top Bar will now display the total potential Forts\Keeps that could be owned by the team.
+
+UI/Spazzo/ShowTeamNames=Show Teams
+UI/Spazzo/ShowTeamNamesTooltip=When toggled on, a section for team names will be displayed below the hero portraits in the top bar. Use an external overlay program to add the team names & scores as desired
 
 UI/Spazzo/TopBarUnitBackground=Unit Background
 UI/Spazzo/TopBarUnitBackgroundTooltip=When toggled off, the background behind the Hero in the Top Bar will not be displayed
@@ -374,8 +444,8 @@ UI/Spazzo/Shortcut/BottomBarMirrorredStatsOn=Bottom Panel Statistics Mirrored
 UI/Spazzo/Shortcut/BottomBarMirrorredStatsOff=Bottom Panel Statistics Unmirrored
 UI/Spazzo/Shortcut/BottomBarMirrorredTalentsOn=Bottom Panel Talents Mirrored
 UI/Spazzo/Shortcut/BottomBarMirrorredTalentsOff=Bottom Panel Talents Unmirrored
-UI/Spazzo/Shortcut/TopBarNonQuestsOn=Top Bar non-Quests enabled
-UI/Spazzo/Shortcut/TopBarNonQuestsOff=Top Bar non-Quests disabled
+UI/Spazzo/Shortcut/TopBarNonQuestsOn=Top Bar Buffs enabled
+UI/Spazzo/Shortcut/TopBarNonQuestsOff=Top Bar Buffs disabled
 UI/Spazzo/Shortcut/TopBarTooltipsOn=Top Bar Tooltips enabled
 UI/Spazzo/Shortcut/TopBarTooltipsOff=Top Bar Tooltips disabled
 UI/Spazzo/Shortcut/TopBarTalentsOn=Top Bar Talents disabled
@@ -392,6 +462,8 @@ UI/Spazzo/Shortcut/BottomBarActivesOn=Bottom Panel CDs enabled
 UI/Spazzo/Shortcut/BottomBarActivesOff=Bottom Panel CDs disabled
 UI/Spazzo/Shortcut/BottomLeftStatsOn=Bottom Left Stats enabled
 UI/Spazzo/Shortcut/BottomLeftStatsOff=Bottom Left Stats disabled
+UI/Spazzo/Shortcut/TopBarSelectionOn=Top Bar Selection enabled
+UI/Spazzo/Shortcut/TopBarSelectionOff=Top Bar Selection disabled
 UI/Spazzo/Shortcut/CasterModeOn=Minimal Mode enabled
 UI/Spazzo/Shortcut/CasterModeOff=Minimal Mode disabled
 UI/Spazzo/Shortcut/SettingsCopied=Settings Copied
@@ -4826,18 +4898,18 @@ Spazzo/Button/Tooltip/StukovWeightedPustule=<s val="StandardTooltipHeader">Weigh
 Spazzo/Button/Tooltip/StukovLurkingArm=<s val="StandardTooltipHeader">Lurking Arm</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,StukovLurkingArm,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,StukovLurkingArm,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Channel at a target location, creating an area that deals <c val="#TooltipNumbers"><d ref="Effect,StukovLurkingArmDamage,Amount*4" player="%playernum%"/></c> damage per second to non-Structure enemies and Silences them. Deals <c val="#TooltipNumbers">50%</c> reduced damage to non-Heroes.<n/><n/>Does not cost Mana while Channeling, and lasts until canceled or interrupted.
 Spazzo/Button/Tooltip/StukovBioKillSwitch=<s val="StandardTooltipHeader">Bio-Kill Switch</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,StukovBioKillSwitch,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Activate to detonate all of Stukov's Viruses. Each Healing Pathogen heals its target for <c val="#TooltipNumbers"><d ref="Effect,StukovBioKillSwitchHeal,RechargeVitalRate" player="%playernum%"/></c> Health, and each Weighted Pustule does <c val="#TooltipNumbers"><d ref="Effect,StukovBioKillswitchDamage,Amount" player="%playernum%"/></c> damage and Slows its target by <c val="#TooltipNumbers"><d ref="Behavior,StukovBioKillSwitchSlow,Modification.UnifiedMoveSpeedFactor*(-100)"/>%</c> for <c val="#TooltipNumbers"><d ref="Behavior,StukovBioKillSwitchSlow,Duration" precision="2"/></c> seconds.</n></n>Can be cast while Channeling Lurking Arm.
 
-UI/Spazzo/Sylvanas/BaselineOne=Unused
-UI/Spazzo/Sylvanas/BaselineTwo=Unused
-UI/Spazzo/Sylvanas/BaselineThree=Unused
-UI/Spazzo/Sylvanas/TalentOne=Unused
-UI/Spazzo/Sylvanas/TalentFour=Minion Heal from Possession
-UI/Spazzo/Sylvanas/TalentSeven=Bonus Damage to Heroes from Barbed Shot, Lost Soul, Festering Wounds
-UI/Spazzo/Sylvanas/TalentTen=Bonus Damage to non-Heroes from Barbed Shot, Lost Soul, Festering Wounds
-UI/Spazzo/Sylvanas/TalentThirteen=Unused
-UI/Spazzo/Sylvanas/TalentSixteen=Leech from Life Drain
-UI/Spazzo/Sylvanas/TalentTwenty=Unused
-UI/Spazzo/Sylvanas/SupportEleven=Unused
-UI/Spazzo/Sylvanas/SupportTwelve=Unused
+UI/Spazzo/Sylvanas/BaselineOne=Black Arrows Bonus Damage to Basic Attacks against Heroes
+UI/Spazzo/Sylvanas/BaselineTwo=Black Arrows Bonus Damage to Withering Fire against Heroes
+UI/Spazzo/Sylvanas/BaselineThree=Black Arrows Bonus Damage to Shadow Dagger against Heroes
+UI/Spazzo/Sylvanas/TalentOne=Black Arrows Bonus Damage to Haunting Wave against Heroes
+UI/Spazzo/Sylvanas/TalentFour=Black Arrows Bonus Damage to Wailing Arrow against Heroes
+UI/Spazzo/Sylvanas/TalentSeven=Black Arrows Bonus Damage to Remorseless against Heroes
+UI/Spazzo/Sylvanas/TalentTen=Black Arrows Bonus Physical Damage against non-Heroes
+UI/Spazzo/Sylvanas/TalentThirteen=Black Arrows Bonus Spell Damage against non-Heroes
+UI/Spazzo/Sylvanas/TalentSixteen=Minion Heal from Possession
+UI/Spazzo/Sylvanas/TalentTwenty=Bonus Damage to Heroes from Barbed Shot, Lost Soul, Festering Wounds
+UI/Spazzo/Sylvanas/SupportEleven=Bonus Damage to non-Heroes from Barbed Shot, Lost Soul, Festering Wounds
+UI/Spazzo/Sylvanas/SupportTwelve=Leech from Life Drain
 UI/SpazzoDamage/Sylvanas/ScoreOne=Basic Attack Damage to Heroes
 UI/SpazzoDamage/Sylvanas/ScoreTwo=Basic Attack Damage to non-Heroes
 UI/SpazzoDamage/Sylvanas/ScoreThree=Withering Fire Damage to Heroes
@@ -5159,6 +5231,7 @@ Spazzo/Button/Tooltip/ValeeraStealth=<s val="StandardTooltipHeader">Stealth</s><
 Spazzo/Button/Tooltip/ValeeraAmbush=<s val="StandardTooltipHeader">Ambush</s><n/><s val="StandardTooltipDetails">Energy: <d ref="Abil,ValeeraAmbush,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,ValeeraAmbush,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Ambush an enemy, dealing <c val="#TooltipNumbers"><d ref="Effect,ValeeraAmbushDamage,Amount" player="%playernum%"/></c> damage and reducing their Armor by <c val="#TooltipNumbers"><d ref="-Behavior,ValeeraAmbushReduceArmorArmorDecrease,ArmorModification.AllArmorBonus" player="%playernum%"/></c> for <c val="#TooltipNumbers"><d ref="Behavior,ValeeraAmbushReduceArmorArmorDecrease,Duration" player="%playernum%"/></c> seconds.<n/><n/><c val="#GlowColorRed">Awards 1 Combo Point</c>.<n/><n/><c val="#ColorViolet">Unstealth: Sinister Strike<n/></c>Dash forward, hitting all enemies in a line for <c val="#TooltipNumbers"><d ref="Effect,ValeeraSinisterStrikeDamage,Amount" player="%playernum%"/></c> damage. If Sinister Strike hits a Hero, Valeera stops dashing immediately and the cooldown is reduced to <c val="#TooltipNumbers"><d ref="Effect,ValeeraSinisterStrikeModifyCooldown,Cost[0].CooldownTimeUse"/></c> second.<n/><n/><c val="#GlowColorRed">Awards 1 Combo Point</c>.
 Spazzo/Button/Tooltip/ValeeraCheapShot=<s val="StandardTooltipHeader">Cheap Shot</s><n/><s val="StandardTooltipDetails">Energy: <d ref="Abil,ValeeraCheapShot,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,ValeeraCheapShot,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Deal <c val="#TooltipNumbers"><d ref="Effect,ValeeraCheapShotDamage,Amount" player="%playernum%"/></c> damage to an enemy, Stun them for <c val="#TooltipNumbers"><d ref="Behavior,ValeeraCheapShotStun,Duration" precision="2" player="%playernum%"/></c> seconds, and Blind them for <c val="#TooltipNumbers"><d ref="Behavior,ValeeraCheapShotBlind,Duration" precision="1" player="0"/></c> seconds once Cheap Shot's Stun expires.<n/><n/><c val="#GlowColorRed">Awards 1 Combo Point.</c><n/><n/><c val="#ColorViolet">Unstealth: Blade Flurry<n/></c>Deal <c val="#TooltipNumbers"><d ref="Effect,ValeeraBladeFlurryDamage,Amount" player="%playernum%"/></c> damage in an area around Valeera. <n/><n/><c val="#GlowColorRed">Awards 1 Combo Point</c> per enemy Hero hit.
 Spazzo/Button/Tooltip/ValeeraGarrote=<s val="StandardTooltipHeader">Garrote</s><n/><s val="StandardTooltipDetails">Energy: <d ref="Abil,ValeeraGarrote,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,ValeeraGarrote,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Deal <c val="#TooltipNumbers"><d ref="Effect,ValeeraGarroteDamage,Amount" player="%playernum%"/></c> damage to an enemy and an additional <c val="#TooltipNumbers"><D ref="Behavior,ValeeraGarrote,Duration * Effect,ValeeraGarroteDoTDamage,Amount" player="%playernum%"/></c> damage over <c val="#TooltipNumbers"><d ref="Behavior,ValeeraGarrote,Duration" player="%playernum%"/></c> seconds, and Silence them for <c val="#TooltipNumbers"><d ref="Behavior,ValeeraGarroteSilence,Duration" precision="2"/></c> seconds.<n/><n/><c val="#GlowColorRed">Awards 1 Combo Point.</c><n/><n/><c val="#ColorViolet">Unstealth: Eviscerate<n/></c>Consumes all Combo Points</s><n/>Eviscerate an enemy, dealing damage per <c val="#GlowColorRed">Combo Point</c>. <n/><n/><c val="#GlowColorRed">1 Point</c>: <c val="#TooltipNumbers"><d ref="Accumulator,ValeeraEviscerateComboPointsAccumulator,Scale" player="%playernum%"/></c><n/><c val="#GlowColorRed">2 Points</c>: <c val="#TooltipNumbers"><d ref="Accumulator,ValeeraEviscerateComboPointsAccumulator,Scale*2" player="%playernum%"/></c><n/><c val="#GlowColorRed">3 Points</c>: <c val="#TooltipNumbers"><d ref="Accumulator,ValeeraEviscerateComboPointsAccumulator,Scale*3" player="%playernum%"/></c>
+Spazzo/Button/Tooltip/ValeeraComboPoints=<s val="StandardTooltipHeader">Combo Points</s><n/>Valeera gains <c val="#GlowColorRed">Combo Points</c> by using Abilities against enemy Heroes, and uses them to empower Eviscerate.</n>Combo Points last for <c val="#TooltipNumbers"><d ref="Behavior,ValeeraInCombatComboPoints,Duration" precision="1" player="%playernum%"/></c> seconds, and are refreshed when Valeera takes or deals damage.
 
 UI/SpazzoDamage/DemonHunter/ScoreOne=Basic Attack Damage to Heroes
 UI/SpazzoDamage/DemonHunter/ScoreTwo=Basic Attack Damage to non-Heroes

@@ -121,7 +121,7 @@
   <Constant name="ZagaraCooldownDisplay" val="0" />
   <Constant name="TopBarAbilityDebug" val="False" />
   <Constant name="TopBarAbilityAlpha" val="170" />
-  <Constant name="UnitSelectionCustomOverride" val="Custom" />
+  <Constant name="UnitSelectionCustomOverride" val="True" />
   <Constant name="ReplayTimelineVisibilityToggle" val="False" />
   <Constant name="UnitStatusGlobalVisibilityToggle" val="False" />
   <Constant name="MinimapVisibilityToggle" val="False" />
@@ -148,6 +148,7 @@
   <Constant name="DisplayHealthBackings" val="True" />
   <Constant name="DisplayAbilBackings" val="True" />
   <Constant name="EnableTimestampedStatistics" val="True" />
+  <Constant name="TopBarShowTeamNames" val="False" />
   <Constant name="Tab2Score1" val="SoloKill" />
   <Constant name="Tab2Score1Description" val="@Spazzo/ScoreTypeKills" />
   <Constant name="Tab2Score2" val="Assists" />

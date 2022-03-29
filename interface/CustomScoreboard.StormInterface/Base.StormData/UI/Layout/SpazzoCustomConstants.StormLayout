@@ -126,4 +126,6 @@
   <Constant name="TLVIconSizeUltracompact" val="17" />
   <Constant name="ScoreTabRevampButtonWidthOffsetLargeLabel" val="80" />
   <Constant name="ScoreTabRevampButtonWidthOffsetLargeLabelPlusRightOffset" val="-82" />
+  <Constant name="SpazzoTeamScoreSize" val="44" />
+  <Constant name="SpazzoTeamScoreSizeNeg" val="-44" />
 </Desc>

@@ -1,4 +1,35 @@
-# v0.27A (**2022-02-03**)
+# v0.28 (**2022-03-30**)
+
+* Statistics
+  * Sylvanas now features 8 new score values
+    * Black Arrow Bonus Damage against Heroes, split into Basic Attacks, Withering Fire, Shadow Dagger, Haunting Wave, Wailing Arrow and Remorseless
+    * Black Arrow Bonus Damage against non-Heroes, split into Physical Damage and Spell Damage
+  * Debug Text for Experience Globes being disjointed will no longer be displayed
+
+* UI
+  * Colour Scheme adjusted & made more consistent in the Top Bar & Bottom Panel
+  * Top Bar
+    * Added Valeera's Combo Points to the Top Bar as a baseline slot duration & stack counter
+  * Added two new hotkeys
+    * Alt+H: Display the newly-added hotkey list, which will display hotkeys added from this user interface, as well as a number of game shortcuts that Blizzard has available(these will display whatever you have them bound to)
+    * Alt+E: Disable the unit selection in the Top Bar, allowing tooltips to be hovered over more readily
+  * The Options menu is no longer opened by pressing the Nexus Logo in the Top Bar, and that instead now opens the hotkey list. The Options menu can still be opened by use of the Alt+L Hotkey
+  * Removed "Click" sound effects from shortcut & buttons, with the exception of buttons that place text in the clipboard
+  * Added a new option to display a section for team names as part of the top bar, which will resize itself depending on the Top Bar layout selected, similarly to how Core Health functions
+    * A future version may see an expansion of this to add in a number of different team names and a tally of the maps won by each team
+  * Gazlowe now features the correct portrait for the sliding team & player names
+  * Selected Unit UI
+    * Heroes now display their approximate Experience value, note that this value does not include the winner\loser modifier due to technical limitations
+    * Slight positional adjustments to make better use of the space
+    * Removed the ability to revert to Blizzard's Unit Selection UI, as supporting it introduced some bugs that proved difficult to resolve
+    * Removed the Control Group(Lost Vikings, Samuro with Illusion Master) interface
+  * Bug Fixes
+    * Fixed an issue that caused Muradin's Avatar buff to not display correctly in the Top Bar
+    * Fixed an issue that caused Zarya's target stats for Healing to display the tooltips for Lucio
+    * Selected Unit Command Panel will now have the correct icon size for the map mechanic active
+    * Selected Unit Command Panel will now have the correct size for the flashing ability indicator
+
+## v0.27A (**2022-02-03**)
 
 * Statistics
   * Fixed an issue that caused Nova's Perfect Shot would not be tracked accurately
