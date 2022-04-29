@@ -929,6 +929,7 @@
     <Hieght val="200"/>
     <Width val="200"/>
     <RenderPriority val="601"/>
+    <Visible val="{$sibling-1/@Visible}"/>
     <Frame type="Frame" name="PlayerScoreValueLabelContainer">
       <Anchor side="Top" relative="$parent" pos="Min" offset="9999" />
       <Anchor side="Left" relative="$parent" pos="Max" offset="9999" />
@@ -3150,7 +3151,8 @@
     </Animation>
     <StateGroup name="SelectedAttachmentStategroup">
       <State name="0">
-        <Action type="SetProperty" frame="$this/AbilIcon" Visible="False" />
+        <Action type="SetProperty" frame="$this/AbilIcon" Visible="True" />
+        <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/Attachment1HeroIcon/@Texture}" />
         <Action type="SetProperty" frame="$this/Label" Text="@UI/Spazzo/HeroAttachment/Disabled" />
         <Action type="SetProperty" frame="$this/AbilName" Text="NULL" />
         <Action type="SetProperty" frame="$this/TypeLabel" Text="None" />
@@ -3753,6 +3755,14 @@
   <Frame type="Button" name="SecondButtonAttachmentPulldown1Template" template="SpazzoTemplates/ButtonAttachmentPulldownTemplate">
     <Anchor side="Top" relative="$sibling-1" pos="Max" offset="1"/>
     <StateGroup name="SelectedAttachmentStategroup">
+      <State name="0">
+        <Action type="SetProperty" frame="$this/AbilIcon" Visible="True" />
+        <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/Attachment2HeroIcon/@Texture}" />
+        <Action type="SetProperty" frame="$this/Label" Text="@UI/Spazzo/HeroAttachment/Disabled" />
+        <Action type="SetProperty" frame="$this/AbilName" Text="NULL" />
+        <Action type="SetProperty" frame="$this/TypeLabel" Text="None" />
+        <Action type="SetProperty" frame="$this/ChosenNumber" Text="0" />
+      </State>
       <State name="1">
         <Action type="SetProperty" frame="$this/AbilIcon" Visible="True" />
         <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton2/AbilIcon/@Texture}" />
@@ -4645,7 +4655,7 @@
       <Width val="108"/> <!-- 180 x 0.6 -->
       <IgnoreParentAlpha val="True"/>
       <IgnoreParentColor val="True"/> 
-      <Texture val="{$Player2TalentContainer/$parent/PlayerIconRef/@Texture}"/>
+      <Texture val="Assets\Textures\storm_ui_glues_gemicon_small.dds"/>
       <!-- <ImageMaskTexture val="_Assets\UI\spaz_ui_heroiconalpha.dds" /> -->
       <RenderPriority val="511"/>
     </Frame>

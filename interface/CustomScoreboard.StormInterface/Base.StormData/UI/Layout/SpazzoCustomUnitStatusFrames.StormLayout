@@ -4734,7 +4734,7 @@
       </State>
       <State name="HeroDemonHunterVaultCharges">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroDemonHunter"/>
-        <When type="StateGroup" frame="$DemonHunterCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="3"/>
+        <When type="StateGroup" frame="$DemonHunterCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="3"/>
         <When type="StateGroup" frame="UnitStatusTalentValidator" AnimState="DemonHunterHasVaultAcrobatTalent"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$DemonHunterCooldownSetting/TogglePulldown1/AbilName/@Text}" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="DemonHunterVault" />
@@ -5171,11 +5171,14 @@
         <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
         <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
       </State>
-      <State name="HeroTassadarNotResonanceBeam">
-        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTassadar"/>
-        <When type="Property" frame="$TassadarCooldownSetting/SliderValue" operator="NotEqual" Value="0"/>
-        <When type="Property" frame="$TassadarCooldownSetting/SliderValue" operator="NotEqual" Value="4"/>
-        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$TassadarCooldownSetting/AbilName/@Text}" />
+      <State name="HeroAbathurDontShowCharges">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAbathur"/>
+        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="0"/>
+        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="2"/>
+        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="5"/>
+        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="6"/>
+        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="7"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$AbathurCooldownSetting/TogglePulldown1/AbilName/@Text}" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
@@ -5183,9 +5186,9 @@
         <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
         <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
         <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
-        <Action type="SetProperty" frame="MechanicTexture" Texture="{$TassadarCooldownSetting/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$AbathurCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
         <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
-        <Action type="SetProperty" frame="TypeLabel" Text="{$TassadarCooldownSetting/TypeLabel/@Text}" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$AbathurCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
         <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
         <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
         <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
@@ -5195,10 +5198,156 @@
         <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
         <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
       </State>
-      <State name="HeroTassadarResonanceBeam">
+      <State name="HeroAbathurShowChargesShowChargeFill">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAbathur"/>
+        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="2"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$AbathurCooldownSetting/TogglePulldown1/AbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="{$AbathurCooldownSetting/TogglePulldown1/AbilChargeAbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="{$AbathurCooldownSetting/TogglePulldown1/AbilChargeName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="True" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$AbathurCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$AbathurCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroAbathurHeroicAbilityUltimateEvolution">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAbathur"/>
+        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="5"/>
+        <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate1Unlocked"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="AbathurUltimateEvolution" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="Assets\Textures\storm_ui_icon_abathur_ultimateevolution.dds" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$AbathurCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroAbathurHeroicAbilityEvolveMonstrosity">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAbathur"/>
+        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="5"/>
+        <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate2Unlocked"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="AbathurEvolveMonstrosity" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="Assets\Textures\storm_ui_icon_abathur_evolvemonstrosity.dds" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$AbathurCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroAbathurTalentLocustSwarm">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAbathur"/>
+        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="6"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator2" AnimState="HasAbathurCombatStyleLocustBrood"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$AbathurCooldownSetting/TogglePulldown1/AbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$AbathurCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$AbathurCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroAbathurTalentLocustNest">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAbathur"/>
+        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="7"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator" AnimState="AbathurHasLocustMaster"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$AbathurCooldownSetting/TogglePulldown1/AbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$AbathurCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$AbathurCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroTassadarNotTrait">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTassadar"/>
-        <When type="Property" frame="$TassadarCooldownSetting/SliderValue" operator="NotEqual" Value="0"/>
-        <When type="Property" frame="$TassadarCooldownSetting/SliderValue" operator="Equal" Value="4"/>
+        <When type="StateGroup" frame="$TassadarCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="0"/>
+        <When type="StateGroup" frame="$TassadarCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="4"/>
+        <When type="StateGroup" frame="$TassadarCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="5"/>
+        <When type="StateGroup" frame="$TassadarCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="6"/>
+        <When type="StateGroup" frame="$TassadarCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="7"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$TassadarCooldownSetting/TogglePulldown1/AbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$TassadarCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$TassadarCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroTassadarTrait">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTassadar"/>
+        <When type="StateGroup" frame="$TassadarCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="4"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
@@ -5207,9 +5356,105 @@
         <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="TassadarResonanceBeamTokenCounter" />
         <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
         <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="True" />
-        <Action type="SetProperty" frame="MechanicTexture" Texture="{$TassadarCooldownSetting/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$TassadarCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
         <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
-        <Action type="SetProperty" frame="TypeLabel" Text="{$TassadarCooldownSetting/TypeLabel/@Text}" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$TassadarCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroTassadarTalentArcDischarge">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTassadar"/>
+        <When type="StateGroup" frame="$TassadarCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="5"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator" AnimState="TassadarHasArcDischargeTalent"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$TassadarCooldownSetting/TogglePulldown1/AbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$TassadarCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$TassadarCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroTassadarHeroicArchon">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTassadar"/>
+        <When type="StateGroup" frame="$TassadarCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="6"/>
+        <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate1Unlocked"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="TassadarArchon" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="Assets\Textures\storm_ui_icon_tassadar_archon.dds" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$TassadarCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroTassadarHeroicBlackHole">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTassadar"/>
+        <When type="StateGroup" frame="$TassadarCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="6"/>
+        <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate2Unlocked"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="TassadarBlackHole" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="Assets\Textures\storm_ui_icon_tassadar_rework_blackhole.dds" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$TassadarCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
+        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
+      </State>
+      <State name="HeroTassadarTalentExecutorsWill">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTassadar"/>
+        <When type="StateGroup" frame="$TassadarCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="7"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator2" AnimState="HasTassadarEpiphany"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$TassadarCooldownSetting/TogglePulldown1/AbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$TassadarCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$TassadarCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
         <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
         <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
         <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
@@ -7279,153 +7524,6 @@
         <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
         <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
       </State>
-      <State name="HeroAbathurDontShowCharges">
-        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAbathur"/>
-        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="0"/>
-        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="2"/>
-        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="5"/>
-        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="6"/>
-        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="7"/>
-        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$AbathurCooldownSetting/TogglePulldown1/AbilName/@Text}" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
-        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
-        <Action type="SetProperty" frame="MechanicTexture" Texture="{$AbathurCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
-        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
-        <Action type="SetProperty" frame="TypeLabel" Text="{$AbathurCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-      </State>
-      <State name="HeroAbathurShowChargesShowChargeFill">
-        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAbathur"/>
-        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="2"/>
-        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$AbathurCooldownSetting/TogglePulldown1/AbilName/@Text}" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="{$AbathurCooldownSetting/TogglePulldown1/AbilChargeAbilName/@Text}" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="{$AbathurCooldownSetting/TogglePulldown1/AbilChargeName/@Text}" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargeFillProgress" Visible="False" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="True" />
-        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
-        <Action type="SetProperty" frame="MechanicTexture" Texture="{$AbathurCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
-        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
-        <Action type="SetProperty" frame="TypeLabel" Text="{$AbathurCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-      </State>
-      <State name="HeroAbathurHeroicAbilityUltimateEvolution">
-        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAbathur"/>
-        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="5"/>
-        <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate1Unlocked"/>
-        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="AbathurUltimateEvolution" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
-        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
-        <Action type="SetProperty" frame="MechanicTexture" Texture="Assets\Textures\storm_ui_icon_abathur_ultimateevolution.dds" />
-        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
-        <Action type="SetProperty" frame="TypeLabel" Text="{$AbathurCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-      </State>
-      <State name="HeroAbathurHeroicAbilityEvolveMonstrosity">
-        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAbathur"/>
-        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="5"/>
-        <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate2Unlocked"/>
-        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="AbathurEvolveMonstrosity" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
-        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
-        <Action type="SetProperty" frame="MechanicTexture" Texture="Assets\Textures\storm_ui_icon_abathur_evolvemonstrosity.dds" />
-        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
-        <Action type="SetProperty" frame="TypeLabel" Text="{$AbathurCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-      </State>
-      <State name="HeroAbathurTalentLocustSwarm">
-        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAbathur"/>
-        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="6"/>
-        <When type="StateGroup" frame="UnitStatusTalentValidator2" AnimState="HasAbathurCombatStyleLocustBrood"/>
-        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$AbathurCooldownSetting/TogglePulldown1/AbilName/@Text}" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
-        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
-        <Action type="SetProperty" frame="MechanicTexture" Texture="{$AbathurCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
-        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
-        <Action type="SetProperty" frame="TypeLabel" Text="{$AbathurCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-      </State>
-      <State name="HeroAbathurTalentLocustNest">
-        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroAbathur"/>
-        <When type="StateGroup" frame="$AbathurCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="7"/>
-        <When type="StateGroup" frame="UnitStatusTalentValidator" AnimState="AbathurHasLocustMaster"/>
-        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$AbathurCooldownSetting/TogglePulldown1/AbilName/@Text}" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
-        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
-        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
-        <Action type="SetProperty" frame="MechanicTexture" Texture="{$AbathurCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
-        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
-        <Action type="SetProperty" frame="TypeLabel" Text="{$AbathurCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTargetBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicTarget2BehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitBehaviorStackCountFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehaviorIcon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior2Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior3Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/UnitStatusMapMechanicInstantBehavior4Icon" side="Left" relative="$parent" pos="Min" offset="-15" />
-        <Action type="SetAnchor" frame="$parent/CarriedMechanicScoreValueFrame" side="Left" relative="$parent" pos="Min" offset="-15" />
-      </State>
       <State name="NoUnit">
         <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="NULL" />
@@ -7626,6 +7724,7 @@
       <Validator val="FalstadHasTailwindFrequentFlyerTalent" />
       <Validator val="DemonHunterHasVaultAcrobatTalent" />
       <Validator val="ChenHasElusiveBrawler" />
+      <Validator val="TassadarHasArcDischargeTalent" />
       <StateGroup name="AnimState">
         <DefaultState val="NoState" />
         <State name="NoState">
@@ -7743,6 +7842,10 @@
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
           <When type="AnimationState" UnitStatusValidatorState="ChenHasElusiveBrawler" />
         </State>
+        <State name="TassadarHasArcDischargeTalent">
+          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTassadar"/>
+          <When type="AnimationState" UnitStatusValidatorState="TassadarHasArcDischargeTalent" />
+        </State>
       </StateGroup>
     </Frame>
     <Frame type="UnitStatusValidatorAnimElement" name="UnitStatusTalentValidator2">
@@ -7767,6 +7870,7 @@
       <Validator val="HasFalstadMasteryLightningRodStaticShield" />
       <Validator val="HasMonkEpiphany" />
       <Validator val="ChenHasBreathOfFireAbilityChangeDummyCastBehaviorOrKegSmashHasBreathOfFireAbilityChangeDummyBehavior" />
+      <Validator val="TassadarHasExecutorsWillTalent" />
       <StateGroup name="AnimState">
         <DefaultState val="NoState" />
         <State name="NoState">
@@ -7851,6 +7955,10 @@
         <State name="ChenHasBreathOfFireAbilityChangeDummyCastBehaviorOrKegSmashHasBreathOfFireAbilityChangeDummyBehavior">
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroChen"/>
           <When type="AnimationState" UnitStatusValidatorState="ChenHasBreathOfFireAbilityChangeDummyCastBehaviorOrKegSmashHasBreathOfFireAbilityChangeDummyBehavior" />
+        </State>
+        <State name="TassadarHasExecutorsWillTalent">
+          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTassadar"/>
+          <When type="AnimationState" UnitStatusValidatorState="TassadarHasExecutorsWillTalent" />
         </State>
       </StateGroup>
     </Frame>

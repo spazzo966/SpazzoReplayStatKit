@@ -2877,6 +2877,15 @@
         <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="GenjiDragonbladeActive" />
         <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
       </State>
+      <State name="Tazdingo">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_zuljin_tazdingo.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="ZuljinTazdingoUnkillable" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State>
       <State name="NoState">
         <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
         <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Visible="False" />

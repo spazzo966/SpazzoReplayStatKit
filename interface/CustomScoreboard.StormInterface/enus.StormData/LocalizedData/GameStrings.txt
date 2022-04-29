@@ -1,4 +1,4 @@
-﻿UI/Spazzo/UIVersion=v0.28
+﻿UI/Spazzo/UIVersion=v0.29
 UI/Spazzo/UIWARNING=WARNING
 UI/Spazzo/UIWARNINGTOOLTIP=Game is detected as having ended, statistics may be incorrect, please rewind to after the core is destroyed, but before these images become visible!
 
@@ -58,6 +58,8 @@ UI/Spazzo/AttachmentSettingsAToLTooltip=Display additional settings relating to 
 
 UI/Spazzo/AttachmentSettingsMToZ=Attachments M-Z
 UI/Spazzo/AttachmentSettingsMToZTooltip=Display additional settings relating to Hero Attachments M through Z
+
+UI/Spazzo/TopBarSeparationSliderTooltip=Spacing between Heroes in the Top Bar</n>Value: %slidervalue%
 
 UI/Spazzo/TopBarAbilitySetting=Top Bar Ability CDs
 UI/Spazzo/TopBarAbilitySettingTooltip=When toggled, Display Hero Cooldowns in the Vanilla Top Bar
@@ -618,8 +620,8 @@ UI/Spazzo/Hero/ShieldsTaken=Shielded
 UI/Spazzo/Hero/ShieldsTakenTooltip=Damage prevented to Hero Unit with Shields, Protected, Evasion
 UI/Spazzo/Hero/DamageBlinded=Blinded
 UI/Spazzo/Hero/DamageBlindedTooltip=Damage prevented by Hero Unit with Blinds, Defense Matrix
-UI/Spazzo/Hero/Damageleeched=leeched
-UI/Spazzo/Hero/DamageleechedTooltip=Amount healed to Hero Unit by Leech
+UI/Spazzo/Hero/DamageLeeched=Leeched
+UI/Spazzo/Hero/DamageLeechedTooltip=Amount healed to Hero Unit by Leech
 UI/Spazzo/Hero/PhysDamageTaken=Phys Hurt
 UI/Spazzo/Hero/PhysDamageTakenTooltip=Physical Damage taken to Hero Unit
 UI/Spazzo/Hero/SpellDamageTaken=Spell Hurt
@@ -644,7 +646,7 @@ UI/Spazzo/Hero/TimeWithGlobeTooltip=Time Spent with Regeneration Globe active
 UI/Spazzo/Hero/FountainsUsed=Wells
 UI/Spazzo/Hero/FountainsUsedTooltip=Times used the Healing Fountain
 UI/Spazzo/Hero/HearthsUsed=Hearths
-UI/Spazzo/Hero/HearthsUsedTooltip=Times completed a Hearthstone Cast(NONFUNCTIONAL)
+UI/Spazzo/Hero/HearthsUsedTooltip=Times completed a Hearthstone Cast
 UI/Spazzo/Hero/ManaFromFountain=Mana(F)
 UI/Spazzo/Hero/ManaFromFountainTooltip=Mana restored from Healing Fountains
 UI/Spazzo/Hero/ManaFromGlobes=Mana(G)

@@ -11,7 +11,7 @@
   <Constant name="KeepFortVisibilitySettingToggle" val="False" />
   <Constant name="TopBarCompleteVisibilityToggle" val="True" />
   <Constant name="TopBarCustomVisibilityToggle" val="True" />
-  <Constant name="TopBarAbilityCooldownsVisibiity" val="True" />
+  <Constant name="TopBarSeparationSlider" val="0" />
   <Constant name="KillLogVisiblityToggle" val="False" />
   <Constant name="NotificationVisibilityToggle" val="False" />
   <Constant name="MercCampVisibilityToggle" val="False" />

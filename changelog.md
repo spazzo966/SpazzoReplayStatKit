@@ -1,4 +1,29 @@
-# v0.28 (**2022-03-30**)
+# v0.29 (**2022-04-29**)
+
+* Statistics
+  * Updated Alterac Pass to the version added in build 87990
+
+* UI
+  * Hero Attachments
+    * When a Hero Attachment is disabled, it will now display the icon of the unit it is disabled for. This is so you can more quickly discern which attachment that option is related to in the attachments submenu
+    * Tassadar has had his attachments updated to use the new standard of implementation, supporting displaying Heroic abilities & compatible talents
+  * Top Bar
+    * Added a new slider-based option to define the spacing between Heroes. The recommended maximum value is 50, but it's possible to set it to up to 100, which might look okay on Ultrawide displays. Haven't tested, honestly.
+    * Zul'jin's Taz'dingo! remaining duration is now displayed as a buff if selected as a talent
+    * Removed the blur on the talent numbering, and now batch those frames together, which may improve performance
+    * Player Slots will now be correctly positioned when there are less than 5 players on the left-side team
+    * Infernal Shrines will now display the next & current objective type when it has been determined as an image. If two purple crystal are displayed beside the objective countdown timer, the next Punisher will be Arcane, if they're orange, it'll be a Mortar Punisher, and if they're blue, it'll be a Frozen Punisher. This resets to being blank once the Punisher has been slain, and displays when there is 2 minutes left on the countdown timer, as that is when the game determines which Punisher type to spawn
+  * Bottom Panel
+    * Player Slots will no longer be filled out when the player slot is not used
+  * The Hero & Player Names Slideout frames will no longer display incorrectly for player slots that aren't used. The first player slot on each team will always be displayed, even if not present, but it won't appear as bugged as before
+  * Removed cooldown listings from the vanilla top bar, which should improve performance somewhat as they weren't properly culled
+  * Fixed an issue that caused Valla's attachment to show incorrectly
+  * Fixed an issue that caused the right-side Core Health background to display incorrectly when there are no right-side players
+  * Fixed an issue with the display label and tooltip with the Healing from Leech score
+  * Fixed a tooltip error with the Hearthstones completed score
+  * Fixed an issue that caused the icon for the left-side Fort Kills icon in the Top Bar to stop displaying after swapping to the Minimal Layout, and back to a different layout
+
+## v0.28 (**2022-03-30**)
 
 * Statistics
   * Sylvanas now features 8 new score values
