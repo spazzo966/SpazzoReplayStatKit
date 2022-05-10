@@ -12,7 +12,6 @@ echo extracting tracker events
 
 echo finding map name in tracker events
 
-
 findstr /c:"MapCursedHollow" "%mpqdirectory%\replay.tracker.events"
 if %ERRORLEVEL%==0 (
     echo string found cursed
@@ -190,7 +189,6 @@ if %ERRORLEVEL%==0 (
 	set battleground=SilverCity
 	GOTO found
 )
-
 
 echo failed to discern battleground, please use the manual converter.
 

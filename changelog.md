@@ -1,4 +1,27 @@
-# v0.29 (**2022-04-29**)
+# v0.29a
+
+* Statistics
+  * Sgt. Hammer now tracks the bonus damage from Mechanical Knowhow, split into Heroic targets and non-Heroic targets
+  * Fixed an issue where Alexstrasza's Cleansing Flame would not be counted correctly. Thanks, Dragonqueen Form
+  * Fixed an issue where Blaze's Adrenaline Stimpack casts would not be be in the correct location
+  * Fixed an issue where Diablo would display error text when Shadow Charge was interrupted before hitting an enemy
+
+* UI
+  * Top Bar
+    * Anub'arak's Locust Swarm remaining duration is now displayed as a buff if selected as a talent
+    * Chen's Wandering Keg remaining duration is now displayed as a buff if selected as a talent
+    * Diablo's Lightning Breath remaining duration is now displayed as a buff if selected as a talent
+    * D.Va's Bunny Hop remaining duration is now displayed as a buff if selected as a talent. This will be hidden when it is not decaying
+    * E.T.C.'s Mosh Pit remaining duration is now displayed as a buff if selected as a talent
+    * Blaze's Combustion channel timer is now displayed as a buff if selected as a talent, this will fill the duration indicator rather than empty it
+    * Gall's Twisting Nether channel timer is now displayed as a buff if selected as a talent, this will fill the duration indicator rather than empty it
+    * Imperius's Angelic Armaments reactivation delay is now displayed as a buff if selected as a talent, this will fill the duration indicator rather than empty it
+    * Dehaka's Adaption buff display will now fill the duration indicator, rather than empty it
+  * Bug Fixes
+    * Fixed an issue with Diablo's thirteenth score entry in the secondary hero-specific stat tab not referencing the correct string
+
+
+## v0.29 (**2022-04-29**)
 
 * Statistics
   * Updated Alterac Pass to the version added in build 87990

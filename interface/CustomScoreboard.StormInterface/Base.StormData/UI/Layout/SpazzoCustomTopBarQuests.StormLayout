@@ -2731,6 +2731,109 @@
         <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="NULL" />
         <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
       </State>
+      <State name="AnubarakLocustSwarm">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_Anubarak_LocustSwarm.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="AnubarakLocustSwarmActive" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State>
+      <State name="BlazeCombustion">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_blaze_combustion.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="FirebatCombustionChannel" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4/BehaviorIcon/CooldownBar" InvertFill="True" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State>
+      <State name="StormEarthFire">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_chen_stormearthfire.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="StormEarthFireCasterBehavior" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State>
+      <State name="WanderingKeg">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_chen_wanderingkeg.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="ChenWanderingKegArmorBuff" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State>
+      <State name="LightningBreath">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_diablo_lightningbreath.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="DiabloLightningBreathController" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State>
+      <State name="BunnyHop">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroDVaMech"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_dva_bunnyhop.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="DVaBunnyHopDuration" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State>
+      <State name="Moshpit">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_ETC_MoshPit.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="L90ETCMoshPitChannel" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State>
+      <State name="AngelicArmaments">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_imperius_r1.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="ImperiusAngelicArmamentsShieldBehavior" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4/BehaviorIcon/CooldownBar" InvertFill="True" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State>
+      <State name="TwistingNether">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_gall_twistingnether_a.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" eBehavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="GallTwistingNetherChannelingBehavior" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4/BehaviorIcon/CooldownBar" InvertFill="True" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State>
+      <State name="LongboatRaid">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_lostvikings_longboatraid.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="LongboatRaidTimedLife" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State>
+      <!-- <State name="RavenousSpirit">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_Nazeebo_RavenousSpirit.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="WitchDoctorRavenousSpiritPersistent" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State> -->
       <State name="WrathoftheBerserker">
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
         <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
@@ -2778,15 +2881,6 @@
         <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="KerriganMaelstrom" />
         <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
       </State>
-      <State name="StormEarthFire">
-        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
-        <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
-        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
-        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_chen_stormearthfire.dds"/>
-        <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
-        <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="StormEarthFireCasterBehavior" />
-        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
-      </State>
       <State name="GoForTheThroat">
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
         <When type="Property" frame="$Talent4MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
@@ -2803,6 +2897,7 @@
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_dehaka_adaptation.dds"/>
         <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
         <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="DehakaAdaptationDamageTrackerBehavior" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4/BehaviorIcon/CooldownBar" InvertFill="True" />
         <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
       </State>
       <State name="Avatar">
@@ -2890,6 +2985,7 @@
         <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Behavior="NULL" />
         <Action type="SetProperty" frame="$parent/QuestStackCounterT4" Visible="False" />
         <Action type="SetProperty" frame="$parent/BuffDurationT4" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT4/BehaviorIcon/CooldownBar" InvertFill="False" />
         <Action type="SetProperty" frame="$parent/BuffDurationT4" Visible="False" />
         <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
       </State>

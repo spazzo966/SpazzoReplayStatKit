@@ -12957,9 +12957,11 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
       }
     }
     else {
-      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Expected Leech is less than actual leech! Effect: ") + StringToText(lp_damageEffect)));
-      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText(lv_leechState));
-      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Leech Value: ") + FixedToText(lp_leechValue, 2) + StringToText(" Expected Leech Value: ") + FixedToText(lv_expectedLeechValue, 2) + StringToText(" Calculated Leech Fraction: ") + FixedToText(lv_calculatedActualLeechFraction, 2)));
+      if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Expected Leech is less than actual leech! Effect: ") + StringToText(lp_damageEffect)));
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText(lv_leechState));
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Leech Value: ") + FixedToText(lp_leechValue, 2) + StringToText(" Expected Leech Value: ") + FixedToText(lv_expectedLeechValue, 2) + StringToText(" Calculated Leech Fraction: ") + FixedToText(lv_calculatedActualLeechFraction, 2)));
+        }
     }
   }
   else if ((lv_expectedLeechValue >= lp_leechValue)) {
@@ -13069,9 +13071,11 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
           }
         }
         if ((lv_expectedLeechValue > lp_leechValue)) {
-          UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Expected Leech is higher than actual leech! Effect: ") + StringToText(lp_damageEffect)));
-          UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText(lv_leechState));
-          UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Leech Value: ") + FixedToText(lp_leechValue, 2) + StringToText(" Expected Leech Value: ") + FixedToText(lv_expectedLeechValue, 4) + StringToText(" Calculated Leech Fraction: ") + FixedToText(lv_calculatedActualLeechFraction, 2)));
+          if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Expected Leech is higher than actual leech! Effect: ") + StringToText(lp_damageEffect)));
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText(lv_leechState));
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Leech Value: ") + FixedToText(lp_leechValue, 2) + StringToText(" Expected Leech Value: ") + FixedToText(lv_expectedLeechValue, 4) + StringToText(" Calculated Leech Fraction: ") + FixedToText(lv_calculatedActualLeechFraction, 2)));
+            }
         }
         // if ((lv_expectedLeechValue < 0.0)) {
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("More Leech was subtracted than leech was present! Effect: ") + StringToText(lp_damageEffect) + StringToText(" Expected Leech Value: ") + FixedToText(lv_expectedLeechValue, 2)));
@@ -16894,6 +16898,9 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       }
       if ((lp_healEffect == "DiabloFireStompEternalFlamesManaRestore")) {
         lv_primaryScoreString = "TalentOne";
+      }
+      if ((lp_healEffect == "DiabloShadowChargeNotUnitImpactedRefund")) {
+        lv_primaryScoreString = "Discard";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroThrall")) {
@@ -29591,25 +29598,49 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((lp_damageEffect == "SiegeWeaponBaseDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreOne";
+        if ((UnitHasBehavior2(lp_targetUnit, "SgtHammerNeosteelPlatingMechanicalKnowhowDamageCarryBuff") == true)) {
+          lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SgtHammerMechanicalKnowhow");
+          lv_secondaryScoreString = "ScoreTen";
+        }
       }
       else {
         lv_primaryScoreString = "ScoreThree";
+        if ((UnitHasBehavior2(lp_targetUnit, "SgtHammerNeosteelPlatingMechanicalKnowhowDamageCarryBuff") == true)) {
+          lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SgtHammerMechanicalKnowhow");
+          lv_secondaryScoreString = "ScoreEleven";
+        }
       }
     }
     if ((lp_damageEffect == "SiegeWeaponSplashDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreTwo";
+        if ((UnitHasBehavior2(lp_targetUnit, "SgtHammerNeosteelPlatingMechanicalKnowhowDamageCarryBuff") == true)) {
+          lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SgtHammerMechanicalKnowhow");
+          lv_secondaryScoreString = "ScoreTen";
+        }
       }
       else {
         lv_primaryScoreString = "ScoreThree";
+        if ((UnitHasBehavior2(lp_targetUnit, "SgtHammerNeosteelPlatingMechanicalKnowhowDamageCarryBuff") == true)) {
+          lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SgtHammerMechanicalKnowhow");
+          lv_secondaryScoreString = "ScoreEleven";
+        }
       }
     }
     if ((lp_damageEffect == "SgtHammerTankAttackDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreOne";
+        if ((UnitHasBehavior2(lp_targetUnit, "SgtHammerNeosteelPlatingMechanicalKnowhowDamageCarryBuff") == true)) {
+          lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SgtHammerMechanicalKnowhow");
+          lv_secondaryScoreString = "ScoreTen";
+        }
       }
       else {
         lv_primaryScoreString = "ScoreThree";
+        if ((UnitHasBehavior2(lp_targetUnit, "SgtHammerNeosteelPlatingMechanicalKnowhowDamageCarryBuff") == true)) {
+          lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SgtHammerMechanicalKnowhow");
+          lv_secondaryScoreString = "ScoreEleven";
+        }
       }
     }
     if ((lp_damageEffect == "SgtHammerSpiderMinesDamage")) {
@@ -34559,7 +34590,7 @@ int libGame_gf_unitGroupCountRaynorInspire (unitgroup lp_generatedUnitGroup, str
 void libGame_gf_exportStatsForPlayer (int lp_player) {
   string lv_scoreString;
 
-  lv_scoreString = "Version 0.28 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
+  lv_scoreString = "Version 0.29a " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
   lv_scoreString += " ,[ HSPrimary: ";
   lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwelve, 1);
   lv_scoreString += " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThirteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFourteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFifteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSixteen, 1);
@@ -36528,6 +36559,10 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     }
     if ((lp_abilityName == "AlexstraszaLifebinder") || (lp_abilityName == "AlexstraszaCleansingFlame")) {
       lv_scoreString = "AccuracyEight";
+      if (libGame_gv_HeroRButtonTimestamp[lv_casterPlayerOverride] == GameGetMissionTime()) {
+        lv_scoreString = "Discard";
+      }
+      libGame_gv_HeroRButtonTimestamp[lv_casterPlayerOverride] = GameGetMissionTime();
       if (((lp_cooldownNewValue < (lp_interruptCost + 0.5))) && (lp_abilityName == "AlexstraszaCleansingFlame")) {
         lv_scoreString = "Discard";
       }
@@ -36537,6 +36572,10 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     }
     if ((lp_abilityName == "AlexstraszaBlessingOfTheRed")) {
       lv_scoreString = "AccuracyTen";
+    }
+    if (lp_abilityName == "AlexstraszaCleansingFlameDragonqueen") {
+      libGame_gv_HeroRButtonTimestamp[lv_casterPlayerOverride] = GameGetMissionTime();
+      lv_scoreString = "Discard";
     }
   }
   else if ((lv_heroUnitType == "HeroAna")) {
@@ -36890,7 +36929,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
       libGame_gv_HeroDButtonTimestamp[lv_casterPlayerOverride] = GameGetMissionTime();
     }
     if ((lp_abilityName == "FirebatAdrenalineStimpack")) {
-      lv_scoreString = "ScoreFifteen";
+      lv_scoreString = "ScoreFourteen";
     }
     if ((lp_abilityName == "FirebatEnduranceStimpack")) {
       lv_scoreString = "ScoreFourteen";
@@ -40520,7 +40559,7 @@ void libGame_gv_initializeOBSUI () {
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Mercenary Tracker"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.28 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.29a ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
     // Well, I tried to add team coloured globes.
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamOrder, "11");
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Person", libCore_gv_cOMPUTER_TeamOrder, "Observer");
@@ -42068,6 +42107,14 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
     }
 
     lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "RaynorHeroWeaponDamage", "MultiplicativeModifierArray[" + "CavalrysArrived" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
+  }
+  
+  if ((lp_inputData == "SgtHammerMechanicalKnowhow")) {
+    if ((lp_damageEffect == "SiegeWeaponBaseDamage") || (lp_damageEffect == "SiegeWeaponSplashDamage") || (lp_damageEffect == "SgtHammerTankAttackDamage")) {
+      lv_flatDamageModifier = 0.0;
+    }
+
+    lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SiegeWeaponBaseDamage", "MultiplicativeModifierArray[" + "MechanicalKnowhow" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
   }
 
   if ((lp_inputData == "MedivhForceofMagic")) {

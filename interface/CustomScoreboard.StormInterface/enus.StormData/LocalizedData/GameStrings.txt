@@ -1,4 +1,4 @@
-﻿UI/Spazzo/UIVersion=v0.29
+﻿UI/Spazzo/UIVersion=v0.29a
 UI/Spazzo/UIWARNING=WARNING
 UI/Spazzo/UIWARNINGTOOLTIP=Game is detected as having ended, statistics may be incorrect, please rewind to after the core is destroyed, but before these images become visible!
 
@@ -4610,8 +4610,8 @@ UI/SpazzoDamage/SgtHammer/ScoreSix=Concussive Blast Damage to Heroes
 UI/SpazzoDamage/SgtHammer/ScoreSeven=Concussive Blast Damage to non-Heroes
 UI/SpazzoDamage/SgtHammer/ScoreEight=Napalm Strike, BFG Damage to Heroes
 UI/SpazzoDamage/SgtHammer/ScoreNine=Napalm Strike, BFG Damage to non-Heroes
-UI/SpazzoDamage/SgtHammer/ScoreTen=Giant Killer Damage
-UI/SpazzoDamage/SgtHammer/ScoreEleven=Unused
+UI/SpazzoDamage/SgtHammer/ScoreTen=Mechanical Know-How Bonus Damage to Heroes, Giant Killer Damage
+UI/SpazzoDamage/SgtHammer/ScoreEleven=Mechanical Know-How Bonus Damage to non-Heroes
 UI/SpazzoDamage/SgtHammer/ScoreTwelve=Unused
 UI/SpazzoAccuracy/SgtHammer/ScoreOne=Spider Mine Casts
 UI/SpazzoAccuracy/SgtHammer/ScoreTwo=Concussive Blast Casts
