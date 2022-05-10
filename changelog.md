@@ -1,4 +1,4 @@
-# v0.29a
+# v0.29a(**2022-05-10**)
 
 * Statistics
   * Sgt. Hammer now tracks the bonus damage from Mechanical Knowhow, split into Heroic targets and non-Heroic targets
