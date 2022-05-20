@@ -2939,6 +2939,74 @@
     </Animation>
   </Frame>
 
+  <Frame type="Slider" name="SliderTemplate">
+    <AutoSizeFillBar val="true" />
+    <Orientation val="Horizontal" />
+    <StepValue val="1"/>
+    <Tooltip val="{$this/FormatFrame/@Text}"/>
+    <Frame type="TextFormatFrame" name="FormatFrame">
+      <Anchor relative="$parent" />
+      <Replacement index="0" val="{$parent/@Value}" />
+      <ReplacedName index="0" val="slidervalue" />
+    </Frame>
+    <Frame type="Image" name="Image">
+      <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+      <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+      <Height val="20" />
+      <Texture val="@UI/Storm_StandardSlider_Bg" />
+      <TextureType val="Nineslice" />
+      <Tiled val="true" />
+      <DesaturateOnDisable val="false" />
+      <DisabledAlpha val="64" />
+    </Frame>
+    <Frame type="Frame" name="FillContainer">
+      <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+      <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+      <Height val="20" />
+    </Frame>
+    <Frame type="Image" name="FillBarImage0">
+      <Texture val="@UI/Storm_StandardSlider_Fill" />
+      <TextureType val="Nineslice" />
+      <Tiled val="true" />
+      <DesaturateOnDisable val="false" />
+      <DisabledAlpha val="64" />
+    </Frame>
+    <Frame type="Button" name="Button">
+      <Width val="17" />
+      <Height val="30" />
+      <Frame type="Image" name="NormalImage">
+        <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+        <Anchor side="Left" relative="$parent" pos="Mid" offset="0" />
+        <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+        <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
+        <Texture val="@UI/Storm_StandardSlider_Button_Normal" />
+        <StateCount val="1" />
+        <DesaturateOnDisable val="false" />
+        <DisabledAlpha val="64" />
+      </Frame>
+      <Frame type="Image" name="HoverImage">
+        <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
+        <Anchor side="Left" relative="$parent" pos="Mid" offset="0" />
+        <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+        <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
+        <Texture val="@UI/Storm_StandardSlider_Button_Hover" />
+        <StateCount val="1" />
+        <DesaturateOnDisable val="false" />
+        <DisabledAlpha val="64" />
+      </Frame>
+      <Frame type="Frame" name="HitTestFrame">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+        <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
+        <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+        <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+      </Frame>
+    </Frame>
+  </Frame>
+
   <Frame type="Button" name="FakePulldownButtonOpenTopBarSettingsTemplate" template="SpazzoTemplates/ButtonNewNoBottomLabelAnchorTemplate">
     <Frame type="Label" name="Label">
       <Anchor side="Right" relative="$parent/ArrowImage" pos="Min" offset="3" />

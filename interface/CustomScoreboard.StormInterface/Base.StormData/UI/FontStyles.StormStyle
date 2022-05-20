@@ -67,6 +67,7 @@
   <Style name="SpazzoBottomPanelRecordTimer" template="Spazzo_ObjWarnTimer" hjustify="Left" />
   <Style name="SpazzoBottomPanelLockTimer" template="Spazzo_ObjWarnTimer" height="20" hjustify="Right" />
   <Style name="SpazzoWarningText" template="Storm_TabButton_Label_Modified" textcolor="255,170,15,15"  />
+  <Style name="SpazzoWarningTextBig" template="SpazzoWarningText" height="32" />
   <Style name="CustomPulldownLabel" template="StandardGlueButtonMini" height="14" hjustify="Left" />
   <Style name="Spazzo_TopBarSettingsLabel" template="Spazzo_HeroAttachmentLabel" height="17" hjustify="Center" />
   <Style name="ExpandoLabel" template="CustomPulldownLabel" height="14" hjustify="Right" />

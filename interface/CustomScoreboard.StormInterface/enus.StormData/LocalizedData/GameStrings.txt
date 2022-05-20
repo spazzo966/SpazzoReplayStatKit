@@ -1,6 +1,8 @@
-﻿UI/Spazzo/UIVersion=v0.29a
+﻿UI/Spazzo/UIVersion=v0.30
 UI/Spazzo/UIWARNING=WARNING
 UI/Spazzo/UIWARNINGTOOLTIP=Game is detected as having ended, statistics may be incorrect, please rewind to after the core is destroyed, but before these images become visible!
+
+UI/Spazzo/Unused=Unused
 
 UI/Spazzo/Score01=Stat 01
 UI/Spazzo/Score02=Stat 02
@@ -60,6 +62,11 @@ UI/Spazzo/AttachmentSettingsMToZ=Attachments M-Z
 UI/Spazzo/AttachmentSettingsMToZTooltip=Display additional settings relating to Hero Attachments M through Z
 
 UI/Spazzo/TopBarSeparationSliderTooltip=Spacing between Heroes in the Top Bar</n>Value: %slidervalue%
+
+UI/Spazzo/TopBarStormBGSliderTooltip=Opacity of the Storm Background in the Top Bar</n>Value: %slidervalue%
+
+UI/Spazzo/TopBarTeamColourBGSliderTooltip=Opacity of the Team-Coloured Background in the Top Bar</n>Value: %slidervalue%
+UI/Spazzo/TopBarTeamColourBorderSliderTooltip=Opacity of the Team-Coloured Border in the Top Bar</n>Value: %slidervalue%
 
 UI/Spazzo/TopBarAbilitySetting=Top Bar Ability CDs
 UI/Spazzo/TopBarAbilitySettingTooltip=When toggled, Display Hero Cooldowns in the Vanilla Top Bar
@@ -1144,7 +1151,11 @@ UI/SpazzoDamage/Hanzo/ScoreEight=Giant Slayer Damage
 UI/SpazzoDamage/Hanzo/ScoreNine=Play of the Game Damage
 UI/SpazzoDamage/Hanzo/ScoreTen=Unused
 UI/SpazzoDamage/Hanzo/ScoreEleven=Unused
-UI/SpazzoDamage/Hanzo/ScoreTwelve=Unused
+UI/SpazzoDamage/Hanzo/ScoreTwelve=Scatter Arrows that hit any Hero 4+ Times
+UI/SpazzoDamage/Hanzo/ScoreThirteen=Scatter Arrows that hit any Hero 5+ Times
+UI/SpazzoDamage/Hanzo/ScoreFourteen=Scatter Arrows that hit any Hero 6+ Times
+UI/SpazzoDamage/Hanzo/ScoreFifteen=Scatter Arrows that hit any Hero 7+ Times
+UI/SpazzoDamage/Hanzo/ScoreSixteen=Scatter Arrows that hit any Hero 8+ Times
 UI/SpazzoAccuracy/Hanzo/ScoreOne=Storm Bow Casts
 UI/SpazzoAccuracy/Hanzo/ScoreTwo=Scatter Arrow Casts
 UI/SpazzoAccuracy/Hanzo/ScoreThree=Sonic Arrow Casts
@@ -1736,8 +1747,8 @@ UI/SpazzoDamage/Rehgar/ScoreFour=Ghost Wolf Basic Attack Damage to non-Heroes
 UI/SpazzoDamage/Rehgar/ScoreFive=Lightning Shield Damage to Heroes
 UI/SpazzoDamage/Rehgar/ScoreSix=Lightning Shield Damage to non-Heroes
 UI/SpazzoDamage/Rehgar/ScoreSeven=Purification Damage to Shields
-UI/SpazzoDamage/Rehgar/ScoreEight=Hunger of the Wolf Damage, Earthgrasp Totem Damage to Heroes
-UI/SpazzoDamage/Rehgar/ScoreNine=Hunger of the Wolf Healing, Earthgrasp Totem Damage to non-Heroes
+UI/SpazzoDamage/Rehgar/ScoreEight=Hunger of the Wolf Damage, Earthgrasp Totem Damage to Heroes, Rising Storm Bonus Damage to Heroes
+UI/SpazzoDamage/Rehgar/ScoreNine=Hunger of the Wolf Healing, Earthgrasp Totem Damage to non-Heroes, Rising Storm Bonus Damage to non-Heroes
 UI/SpazzoDamage/Rehgar/ScoreTen=Unused
 UI/SpazzoDamage/Rehgar/ScoreEleven=Unused
 UI/SpazzoDamage/Rehgar/ScoreTwelve=Unused
@@ -5129,8 +5140,8 @@ UI/SpazzoDamage/Tyrael/ScoreFive=Smite Damage to Heroes
 UI/SpazzoDamage/Tyrael/ScoreSix=Smite Damage to non-Heroes
 UI/SpazzoDamage/Tyrael/ScoreSeven=Archangel's Wrath Damage to Heroes
 UI/SpazzoDamage/Tyrael/ScoreEight=Archangel's Wrath to non-Heroes
-UI/SpazzoDamage/Tyrael/ScoreNine=Reciprocate Damage to Heroes
-UI/SpazzoDamage/Tyrael/ScoreTen=Reciprocate Damage to non-Heroes
+UI/SpazzoDamage/Tyrael/ScoreNine=Reciprocate Damage to Heroes, Purge Evil Bonus Damage to Heroes
+UI/SpazzoDamage/Tyrael/ScoreTen=Reciprocate Damage to non-Heroes, Purge Evil Bonus Damage to non-Heroes
 UI/SpazzoDamage/Tyrael/ScoreEleven=Judgement Damage to Heroes
 UI/SpazzoDamage/Tyrael/ScoreTwelve=Burning Halo Damage
 UI/SpazzoAccuracy/Tyrael/ScoreOne=El'druin's Might Casts

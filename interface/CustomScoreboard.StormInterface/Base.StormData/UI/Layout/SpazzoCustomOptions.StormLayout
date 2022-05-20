@@ -18,36 +18,36 @@
   <Constant name="MinionHealthPlateVisibilityToggle" val="False" />
   <Constant name="HideAttachmentOnCD" val="False" />
   <Constant name="BottomLeftDisplayUnitStats" val="True" />
-  <Constant name="CrusaderCooldownDisplay" val="4" />
+  <Constant name="CrusaderCooldownDisplay" val="0" />
   <Constant name="AmazonCooldownDisplay" val="0" />
   <Constant name="ZeratulCooldownDisplay" val="0" />
   <Constant name="BarbarianCooldownDisplay" val="0" />
   <Constant name="AlarakCooldownDisplay" val="0" />
-  <Constant name="AnduinCooldownDisplay" val="4" />
+  <Constant name="AnduinCooldownDisplay" val="0" />
   <Constant name="WizardCooldownDisplay" val="0" />
-  <Constant name="DemonHunterCooldownDisplay" val="4" />
-  <Constant name="ArtanisCooldownDisplay" val="4" />
-  <Constant name="SylvanasCooldownDisplay" val="5" />
-  <Constant name="StukovCooldownDisplay" val="4" />
-  <Constant name="TassadarCooldownDisplay" val="4" />
+  <Constant name="DemonHunterCooldownDisplay" val="0" />
+  <Constant name="ArtanisCooldownDisplay" val="0" />
+  <Constant name="SylvanasCooldownDisplay" val="0" />
+  <Constant name="StukovCooldownDisplay" val="0" />
+  <Constant name="TassadarCooldownDisplay" val="0" />
   <Constant name="WhitemaneCooldownDisplay" val="0" />
   <Constant name="WhitemaneDesperationPreviewSetting" val="True" />
   <Constant name="TinkerCooldownDisplay" val="0" />
-  <Constant name="DVaMechCooldownDisplay" val="2" />
-  <Constant name="DVaPilotCooldownDisplay" val="3" />
-  <Constant name="LostVikingsCooldownDisplay" val="1" />
-  <Constant name="ValeeraCooldownDisplay" val="3" />
-  <Constant name="DehakaCooldownDisplay" val="4" />
+  <Constant name="DVaMechCooldownDisplay" val="0" />
+  <Constant name="DVaPilotCooldownDisplay" val="0" />
+  <Constant name="LostVikingsCooldownDisplay" val="0" />
+  <Constant name="ValeeraCooldownDisplay" val="0" />
+  <Constant name="DehakaCooldownDisplay" val="0" />
   <Constant name="MuradinCooldownDisplay" val="0" />
   <Constant name="MephistoCooldownDisplay" val="0" />
-  <Constant name="LucioCooldownDisplay" val="2" />
-  <Constant name="MedivhCooldownDisplay" val="3" />
+  <Constant name="LucioCooldownDisplay" val="0" />
+  <Constant name="MedivhCooldownDisplay" val="0" />
   <Constant name="MedivhPortalDurationVisibility" val="True" />
   <Constant name="MedivhRavenHealthplateOverride" val="True" />
   <Constant name="DeathwingCooldownDisplay" val="0" />
   <Constant name="DeathwingChonkerSetting" val="False" />
-  <Constant name="FalstadCooldownDisplay" val="4" />
-  <Constant name="BrightwingCooldownDisplay" val="5" />
+  <Constant name="FalstadCooldownDisplay" val="0" />
+  <Constant name="BrightwingCooldownDisplay" val="0" />
   <Constant name="MaievCooldownDisplay" val="0" />
   <Constant name="NexusHunterCooldownDisplay" val="0" />
   <Constant name="AnubarakCooldownDisplay" val="0" />
@@ -133,7 +133,9 @@
   <Constant name="TopBarAlignToLeft" val="False" />
   <Constant name="TopBarShowTownTotal" val="False" />
   <Constant name="TopBarAllowUnitSelection" val="True" />
-  <Constant name="TopBarShowBackground" val="True" />
+  <Constant name="TopBarStormSliderValue" val="255" />
+  <Constant name="TopBarTeamSliderValue" val="255" />
+  <Constant name="TopBarTeamBorderSliderValue" val="255" />
   <Constant name="TopBarShowHeroes" val="True" />
   <Constant name="TopBarProxyTalents" val="True" />
   <Constant name="DisplayObjWarning" val="True" />

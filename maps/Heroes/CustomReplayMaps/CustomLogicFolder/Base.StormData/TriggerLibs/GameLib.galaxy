@@ -14838,6 +14838,14 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
           lv_tertiaryScoreString = "BaselineThree";
           // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Steed Charge second helped"));
         }
+        libGame_gv_HeroSpecificStoredValue5[lp_casterPlayer] -= (lp_preventedValue);
+        libGame_gv_HeroSpecificStoredValue6[lp_casterPlayer] += (lp_preventedValue);
+        if (libGame_gv_HeroSpecificStoredValue6[lp_casterPlayer] > CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "CrusaderIronSkin", "DamageResponse.ModifyLimit", lp_casterPlayer)) {
+          lv_quaternaryScoreOverride = (libGame_gv_HeroSpecificStoredValue6[lp_casterPlayer] - CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "CrusaderIronSkin", "DamageResponse.ModifyLimit", lp_casterPlayer));
+          lv_quaternaryScoreString = "ScoreSixteen";
+          libGame_gv_HeroSpecificStoredValue6[lp_casterPlayer] = CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "CrusaderIronSkin", "DamageResponse.ModifyLimit", lp_casterPlayer);
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Hold Your Ground Prevented: ") + FixedToText(lv_quaternaryScoreOverride, 3)));
+        }
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroJaina")) {
@@ -16898,9 +16906,6 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       }
       if ((lp_healEffect == "DiabloFireStompEternalFlamesManaRestore")) {
         lv_primaryScoreString = "TalentOne";
-      }
-      if ((lp_healEffect == "DiabloShadowChargeNotUnitImpactedRefund")) {
-        lv_primaryScoreString = "Discard";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroThrall")) {
@@ -19380,13 +19385,13 @@ void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterP
     lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "TimeOnPoint";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_heroicBasicAttacks += FixedToInt(lp_scoreValue);
-    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_heroicBasicAttacks;
-  }
+    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_heroicBasicAttacks;
+    }
   else if ((lp_scoreString == "BasicsVsNonHeroes")) {
     lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAwardMostDamageToPlantsBoolean";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_nonHeroicBasicAttacks += FixedToInt(lp_scoreValue);
-    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_nonHeroicBasicAttacks;
+    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_nonHeroicBasicAttacks;
   }
   else if ((lp_scoreString == "TimeMounted")) {
     lv_scoreToIncrease = "EndOfMatchAwardMostSkullsCollectedBoolean";
@@ -19428,13 +19433,13 @@ void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterP
     lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAwardMostDragonShrinesCapturedBoolean";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_wellsUsed += FixedToInt(lp_scoreValue);
-    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_wellsUsed;
+    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_wellsUsed;
   }
   else if ((lp_scoreString == "TimesHearthed")) {
     lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAwardMapSpecificBoolean";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_timesHearthed += FixedToInt(lp_scoreValue);
-    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_timesHearthed;
+    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_timesHearthed;
   }
   else if ((lp_scoreString == "ManaFromFountain")) {
     lv_scoreToIncrease = "EndOfMatchAwardMVPBoolean";
@@ -27400,18 +27405,38 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_primaryScoreString = "ScoreThree";
         lv_secondaryScoreOverride = 1.0;
         lv_secondaryScoreString = "AccuracyNine";
-        // lv_tempUnit = libGame_gf_effectGetUnitFromHistory(lp_targetUnit, "HanzoScatterArrowRicochetDamage", lv_casterPlayer, 1);
-        // if (UnitGetType(lv_tempUnit) == "HanzoScatterArrowInitialMissile") {
-        //   lv_primaryScoreString = "ScoreThree";
-        //   lv_secondaryScoreString = "AccuracyNine";
+        // if ((UnitTestState(lp_targetUnit, c_unitStateIsDead) == true) || (UnitHasBehavior2(lp_targetUnit, "TyraelArchangelsWrathDeathActiveBuff") == true) || (UnitHasBehavior2(lp_targetUnit, "UtherEternalVanguardRezDelay") == true) || (UnitHasBehavior2(lp_targetUnit, "LeoricUndyingSpecialDeathCase") == true) || (UnitHasBehavior2(lp_targetUnit, "DVaMechFatalDamageDisabledTimeout") == true)) {
+        //   lv_quaternaryScoreString = "ScoreSixteen";
+        //   lv_quaternaryScoreOverride = 1.0;
+        //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Scatter Arrow Killed Target"));
         // }
-        // else if (UnitGetType(lv_tempUnit) == "HanzoScatterArrowMissile") {
-        //   lv_primaryScoreString = "ScoreFour";
-        //   lv_secondaryScoreString = "AccuracyTen";
-        // }
-        // else {
-        //     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Unable to determine Scattor Arrow source, defaulting to direct hit"));
-        // }
+        libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] += 1.0;
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Scatter Arrow hit count: ") + FixedToText(libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer], 0)));
+        if (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] == 8.0) {
+          lv_tertiaryScoreString = "ScoreSixteen";
+          lv_tertiaryScoreOverride = 1.0;
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Scatter Arrow hit 7+"));
+        }
+        if (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] == 7.0) {
+          lv_tertiaryScoreString = "ScoreFifteen";
+          lv_tertiaryScoreOverride = 1.0;
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Scatter Arrow hit 7+"));
+        }
+        if (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] == 6.0) {
+          lv_tertiaryScoreString = "ScoreFourteen";
+          lv_tertiaryScoreOverride = 1.0;
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Scatter Arrow hit 6"));
+        }
+        else if (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] == 5.0) {
+          lv_tertiaryScoreString = "ScoreThirteen";
+          lv_tertiaryScoreOverride = 1.0;
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Scatter Arrow hit 5"));
+        }
+        else if (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] == 4.0) {
+          lv_tertiaryScoreString = "ScoreTwelve";
+          lv_tertiaryScoreOverride = 1.0;
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Scatter Arrow hit 4"));
+        }
       }
       else {
         lv_primaryScoreString = "BaselineThree";
@@ -29517,19 +29542,33 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
     }
     if ((lp_damageEffect == "RehgarLightningShieldDamage") || (lp_damageEffect == "RehgarLightningShieldElectricChargeTalentDamage")) {
-      // if ((libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] > UnitGetTokenCount(lp_casterUnit, "RehgarLightningShieldRisingStormTokenCounter"))) {
-      // libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = 0.0;
-      // }
+      if ((libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] > UnitGetTokenCount(lp_casterUnit, "RehgarLightningShieldRisingStormTokenCounter")) && (PlayerHasTalent(lv_casterPlayer, "RehgarLightningShieldRisingStorm") == true)) {
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && ((UnitGetTokenCount(lp_casterUnit, "RehgarLightningShieldRisingStormTokenCounter") != 0.0))) {
+          libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = (UnitGetTokenCount(lp_casterUnit, "RehgarLightningShieldRisingStormTokenCounter") - 1.0);
+        }
+        else {
+          libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = UnitGetTokenCount(lp_casterUnit, "RehgarLightningShieldRisingStormTokenCounter");
+        }
+      }
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreFive";
+        if (PlayerHasTalent(lv_casterPlayer, "RehgarLightningShieldRisingStorm") == true) {
+          lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "RehgarRisingStorm");
+          lv_secondaryScoreString = "ScoreEight";
+          //  UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Rising Storm: ") + FixedToText(lv_secondaryScoreOverride, 2)));
+        }
       }
       else {
         lv_primaryScoreString = "ScoreSix";
+        if (PlayerHasTalent(lv_casterPlayer, "RehgarLightningShieldRisingStorm") == true) {
+          lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "RehgarRisingStorm");
+          lv_secondaryScoreString = "ScoreNine";
+        }
       }
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Storm Current: ") + FixedToText(UnitGetTokenCount(lp_casterUnit, "RehgarLightningShieldRisingStormTokenCounter"), 0) + StringToText(" Storm Old: ") + FixedToText(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer], 0)));
-      // if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && !(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] >= 15)) {
-      // libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] += 1.0;
-      // }
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && ((PlayerHasTalent(lv_casterPlayer, "RehgarLightningShieldRisingStorm") == true)) && !(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] >= 15)) {
+        libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] += 1.0;
+      }
     }
     if ((lp_damageEffect == "RehgarPurgePurificationTalentDamage")) {
       lv_primaryScoreString = "ScoreSeven";
@@ -30746,9 +30785,17 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((lp_damageEffect == "TyraelWeaponDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreOne";
+        if ((PlayerHasTalent(lv_casterPlayer, "TyraelMasteryPurgeEvil") == true) && (UnitBehaviorCount(lp_casterUnit, "TyraelSmitePurgeEvilProcBuff") != 0)) {
+          lv_secondaryScoreString = "ScoreNine";
+          lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "TyraelPurgeEvil");
+        }
       }
       else {
         lv_primaryScoreString = "ScoreTwo";
+        if ((PlayerHasTalent(lv_casterPlayer, "TyraelMasteryPurgeEvil") == true) && (UnitBehaviorCount(lp_casterUnit, "TyraelSmitePurgeEvilProcBuff") != 0)) {
+          lv_secondaryScoreString = "ScoreNine";
+          lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "TyraelPurgeEvil");
+        }
       }
     }
     if ((lp_damageEffect == "ElDruinsMightDamage")) {
@@ -31881,6 +31928,9 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((lp_damageEffect == "TimedLifeFate") && (UnitGetType(lp_targetUnit) == "HoggerEzThroDynamiteDenseBlastingPowderTalentUnit")) {
       lv_primaryScoreString = "Discard";
     }
+    if ((lp_damageEffect == "TimedLifeFate") && (UnitGetType(lp_targetUnit) == "FirebatBunkerDropTurretUnit")) {
+      lv_primaryScoreString = "Discard";
+    }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroAbathur") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "AbathurSymbiote")) {
     if ((lp_damageEffect == "AbathurWeaponDamage")) {
@@ -32137,7 +32187,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     libGame_gf_TallyHeroSpecificStatShared(lv_denaryScoreOverride, lv_denaryPlayerOverride, lv_denaryScoreString, "HeroCombinedDamageTrackerDenary");
   }
   if ((lv_onodenaryScoreString != "Discard")) {
-    libGame_gf_TallyHeroSpecificStatShared(lv_onodenaryScoreOverride, lv_onodenaryPlayerOverride, lv_onodenaryScoreString, "HeroCombinedDamageTrackerDenary");
+    libGame_gf_TallyHeroSpecificStatShared(lv_onodenaryScoreOverride, lv_onodenaryPlayerOverride, lv_onodenaryScoreString, "HeroCombinedDamageTrackerOnodenary");
   }
 }
 
@@ -32150,10 +32200,13 @@ void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue,
   lv_mercCampCaptureOwner = lp_casterPlayer;
   lv_scoreOverride = lp_damageValue;
 
-  if ((lp_damageEffect == "StormSuicide") && ((UnitGetType(lp_casterUnit) == "RegenGlobe") || (UnitGetType(lp_casterUnit) == "RegenGlobeNeutral") || (UnitGetType(lp_casterUnit) == "RegenGlobeMissile") || (UnitGetType(lp_casterUnit) == "CatapultMinion") || (UnitGetType(lp_casterUnit) == "WizardMinion") || (UnitGetType(lp_casterUnit) == "FootmanMinion") || (UnitGetType(lp_casterUnit) == "RangedMinion") || (UnitGetType(lp_casterUnit) == "ReaverMinion") || (UnitGetType(lp_casterUnit) == "MercGoblinSapperLaner"))) {
+  if ((lp_damageEffect == "StormSuicide") && ((UnitGetType(lp_casterUnit) == "RegenGlobe") || (UnitGetType(lp_casterUnit) == "RegenGlobeNeutral") || (UnitGetType(lp_casterUnit) == "RegenGlobeMissile") || (UnitGetType(lp_casterUnit) == "RegenGlobeMissileNoEnemyVisibility") || (UnitGetType(lp_casterUnit) == "CatapultMinion") || (UnitGetType(lp_casterUnit) == "WizardMinion") || (UnitGetType(lp_casterUnit) == "FootmanMinion") || (UnitGetType(lp_casterUnit) == "RangedMinion") || (UnitGetType(lp_casterUnit) == "ReaverMinion") || (UnitGetType(lp_casterUnit) == "MercGoblinSapperLaner"))) {
     lv_assignedScore = "Discard";
   }
   if ((lp_damageEffect == "StormSuicide") && (UnitGetType(lp_targetUnit) == "RegenGlobeMissile")) {
+    lv_assignedScore = "Discard";
+  }
+  if ((lp_damageEffect == "StormSuicide") && (UnitGetType(lp_targetUnit) == "RegenGlobeMissileNoEnemyVisibility")) {
     lv_assignedScore = "Discard";
   }
   if ((lp_damageEffect == "TimedLifeFate") && (UnitGetType(lp_casterUnit) == "DiabloArcaneUnit")) {
@@ -34590,7 +34643,7 @@ int libGame_gf_unitGroupCountRaynorInspire (unitgroup lp_generatedUnitGroup, str
 void libGame_gf_exportStatsForPlayer (int lp_player) {
   string lv_scoreString;
 
-  lv_scoreString = "Version 0.29a " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
+  lv_scoreString = "Version 0.30 " + "[ " + "PlayerNumber: " + IntToString(lp_player) + " Handle: " + PlayerHandle(lp_player) + " , " + UnitGetType(libGame_gv_players[lp_player].lv_heroUnit) + " ] , " + libGame_gf_statsForPlayerHeroSpecificString(lp_player);
   lv_scoreString += " ,[ HSPrimary: ";
   lv_scoreString += FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreOne, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwo, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThree, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFour, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFive, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSix, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSeven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEight, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreNine, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreEleven, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreTwelve, 1);
   lv_scoreString += " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreThirteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFourteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreFifteen, 1) + " , " + FixedToString(libGame_gv_heroSpecificScoreValues[lp_player].lv_scoreSixteen, 1);
@@ -37750,6 +37803,8 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     }
     if ((lp_abilityName == "HanzoScatterArrow")) {
       lv_scoreString = "AccuracyTwo";
+      // libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride] = GameGetMissionTime();
+      libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride] = 0.0;
     }
     if ((lp_abilityName == "HanzoSonicArrow")) {
       lv_scoreString = "AccuracyThree";
@@ -37908,6 +37963,10 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
         }
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Time Between Casts: ") + FixedToText((GameGetMissionTime() - libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride]), 3)));
         libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride] = GameGetMissionTime();
+        libGame_gv_HeroSpecificStoredValue5[lv_casterPlayerOverride] = UnitBehaviorDamageModifyLimit(lp_casterUnit, "CrusaderIronSkinHoldYourGroundImproved");
+        libGame_gv_HeroSpecificStoredValue6[lv_casterPlayerOverride] = 0.0;
+        libGame_gv_HeroSpecificStoredValue7[lv_casterPlayerOverride] = 0.0;
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Hold Your Ground Shield Value: ") + FixedToText(libGame_gv_HeroSpecificStoredValue5[lv_casterPlayerOverride], 3)));
       }
     }
     if ((lp_abilityName == "CrusaderLawsOfHope")) {
@@ -39468,6 +39527,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
       if ((UnitHasBehavior2(lp_casterUnit, "RehgarLightningShieldBuff") == false)) {
         // inregion
       }
+      libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride] = UnitGetTokenCount(lp_casterUnit, "RehgarLightningShieldRisingStormTokenCounter");
     }
     if ((lp_abilityName == "RehgarEarthbindTotem")) {
       lv_scoreString = "AccuracyThree";
@@ -39501,6 +39561,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     }
     if ((lp_abilityName == "RehgarElementalConduit")) {
       lv_scoreString = "AccuracyNine";
+      libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride] = UnitGetTokenCount(lp_casterUnit, "RehgarLightningShieldRisingStormTokenCounter");
     }
     // RehgarGhostWolfLunge
   }
@@ -40559,7 +40620,7 @@ void libGame_gv_initializeOBSUI () {
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Mercenary Tracker"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.29a ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.30 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
     // Well, I tried to add team coloured globes.
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamOrder, "11");
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Person", libCore_gv_cOMPUTER_TeamOrder, "Observer");
@@ -42131,6 +42192,14 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
 
     lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "BarbarianSeismicSlamDamage", "MultiplicativeModifierArray[" + "FuriousBlows" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
   }
+  
+  if ((lp_inputData == "RehgarRisingStorm")) {
+    if ((lp_damageEffect == "RehgarLightningShieldDamage") || (lp_damageEffect == "RehgarLightningShieldElectricChargeTalentDamage")) {
+      lv_flatDamageModifier = 0.0;
+    }
+
+    lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "RehgarLightningShieldLightningStormDamageAccumulator", "Scale", lv_casterPlayer)))) - lv_damageValuePerCatalog);
+  }
 
   if ((lp_inputData == "ShotofFury")) {
     if ((lp_damageEffect == "BarbarianHeroWeaponDamage")) {
@@ -42199,6 +42268,15 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
     }
 
     lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "BarbarianWrathoftheBerserkerBase", "Modification.DamageDealtFraction[" + IntToString(c_unitDamageTypeBasic) + "]", lv_casterPlayer))) - lv_damageValuePerCatalog);
+  }
+  
+
+  if ((lp_inputData == "TyraelPurgeEvil")) {
+    if ((lp_damageEffect == "TyraelWeaponDamage")) {
+      lv_flatDamageModifier = 0.0;
+    }
+
+    lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + (UnitBehaviorCount(lp_casterUnit, "TyraelSmitePurgeEvilProcBuff") * CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "TyraelSmitePurgeEvilProcBuff", "Modification.DamageDealtFraction[" + IntToString(c_unitDamageTypeBasic) + "]", c_playerAny)))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
   }
 
   if ((lp_inputData == "ArtanisFinalCut")) {

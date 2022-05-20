@@ -81,6 +81,8 @@
   <Constant name="OptionsMenuRevampWidth" val="160" />
   <Constant name="OptionsMenuRevampHeight" val="35" />
   <Constant name="OptionsMenuRevampOffsetUpwards" val="-41" />
+  <Constant name="OptionsMenuRevampOffsetUpwardsFromSlider" val="-56" />
+  <Constant name="OptionsMenuRevampOffsetUpwardsFromSliderTopOffset" val="-26" /> 
   <Constant name="OptionsMenuRevampOffsetRightwards" val="166" />
   <Constant name="OptionsMenuRevampOffsetLeftwards" val="-166" />
   <Constant name="OptionsMenuRevampHeroIconLeftMinOffset" val="133" />

@@ -1,3 +1,30 @@
+# v0.30(**2022-05-21**)
+
+* Statistics
+  * Rehgar now tracks the bonus damage from Rising Storm, split into Heroic targets and non-Heroic targets
+  * Hanzo now tracks Scatter Arrows hit accuracy when hitting Heroes 4 or more times in a single cast
+  * Fixed an issue that caused Johanna's Bonus Damage prevented by Hold Your Ground to not be updated
+  * Fixed an issue that caused the number of Basic Attacks against Heroes to not be updated
+  * Fixed an issue that caused the number of Basic Attacks against non-Heroes to not be updated
+  * Fixed an issue that caused the Healing Fountain uses to not be updated
+  * Fixed an issue that cuased the Times Hearthed to not be updated
+  * Fixed an issue that caused Regeneration Globes to display error text when they were sent as a missile to a hero out of the vision of the enemy, who died before the regen globe hit them
+  * Fixed an issue that caused Blaze's Bunker Drop to display error text when used by Hogger
+  * Added a custom mods folder for Alterac Pass so games can have the stat framework added
+
+* UI
+  * Top Bar
+    * The Hero Background option has been replaced with a slider to set the opacity of the hero background
+    * Added a new slider option to set the opacity of the team-coloured background
+    * Added a new slider option to set the opacity of the team-coloured border
+  * Hero Attachments
+    * The default option for all Hero Attachments has been changed to disabled
+    * The Alt+I Shortcut will still function, and now only serves a purpose when you have custom default settings for any hero attachments
+  * Scoreboard
+    * The text for many unused score entries now actually says Unused, rather than BUG!
+  * The Healing Fountain Heathplate is now hidden
+  * Updated the warning display for when the game has ended to try and make it more noticable
+
 # v0.29a(**2022-05-10**)
 
 * Statistics
