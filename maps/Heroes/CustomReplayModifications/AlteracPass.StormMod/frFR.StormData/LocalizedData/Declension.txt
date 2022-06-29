@@ -1,0 +1,60 @@
+﻿Cavalerie de l’Alliance	t	la cavalerie de l’Alliance
+Cavalerie de l’Alliance	g	de la cavalerie de l’Alliance
+Cavalerie de l’Alliance	a	à la cavalerie de l’Alliance
+Cavalerie de l’Alliance	d	à la cavalerie de l’Alliance
+Défenseur de camp d’emprisonnement	t	le défenseur de camp d’emprisonnement
+Défenseur de camp d’emprisonnement	g	du défenseur de camp d’emprisonnement
+Défenseur de camp d’emprisonnement	a	au défenseur de camp d’emprisonnement
+Défenseur de camp d’emprisonnement	d	au défenseur de camp d’emprisonnement
+Soldat capturé	t	le soldat capturé
+Soldat capturé	g	du soldat capturé
+Soldat capturé	a	au soldat capturé
+Soldat capturé	d	au soldat capturé
+Drek’Thar	t	Drek’Thar
+Drek’Thar	g	de Drek’Thar
+Drek’Thar	a	à Drek’Thar
+Drek’Thar	d	à Drek’Thar
+Cavalerie de la Horde	t	la cavalerie de la Horde
+Cavalerie de la Horde	g	de la cavalerie de la Horde
+Cavalerie de la Horde	a	à la cavalerie de la Horde
+Cavalerie de la Horde	d	à la cavalerie de la Horde
+Vanndar Foudrepique	t	Vanndar Foudrepique
+Vanndar Foudrepique	g	de Vanndar Foudrepique
+Vanndar Foudrepique	a	à Vanndar Foudrepique
+Vanndar Foudrepique	d	à Vanndar Foudrepique
+Camp d’emprisonnement	t	le camp d’emprisonnement
+Camp d’emprisonnement	g	du camp d’emprisonnement
+Camp d’emprisonnement	a	au camp d’emprisonnement
+Camp d’emprisonnement	d	au camp d’emprisonnement
+Camp de siège	t	le camp de siège
+Camp de siège	g	du camp de siège
+Camp de siège	a	au camp de siège
+Camp de siège	d	au camp de siège
+Meute de gnolls	t	la meute de gnolls
+Meute de gnolls	g	de la meute de gnolls
+Meute de gnolls	a	à la meute de gnolls
+Meute de gnolls	d	à la meute de gnolls
+Gnoll	t	le gnoll
+Gnoll	g	du gnoll
+Gnoll	a	au gnoll
+Gnoll	d	au gnoll
+Gnoll neutre	t	le gnoll neutre
+Gnoll neutre	g	du gnoll neutre
+Gnoll neutre	a	au gnoll neutre
+Gnoll neutre	d	au gnoll neutre
+Géant des montagnes	t	le géant des montagnes
+Géant des montagnes	g	du géant des montagnes
+Géant des montagnes	a	au géant des montagnes
+Géant des montagnes	d	au géant des montagnes
+Saccageur	t	le saccageur
+Saccageur	g	au saccageur
+Saccageur	a	au saccageur
+Saccageur	d	au saccageur
+Camp d’emprisonnement de l’Alliance	t	le camp d’emprisonnement de l’Alliance
+Camp d’emprisonnement de l’Alliance	g	du camp d’emprisonnement de l’Alliance
+Camp d’emprisonnement de l’Alliance	a	au camp d’emprisonnement de l’Alliance
+Camp d’emprisonnement de l’Alliance	d	au camp d’emprisonnement de l’Alliance
+Camp d’emprisonnement de la Horde	t	le camp d’emprisonnement de la Horde
+Camp d’emprisonnement de la Horde	g	du camp d’emprisonnement de la Horde
+Camp d’emprisonnement de la Horde	a	au camp d’emprisonnement de la Horde
+Camp d’emprisonnement de la Horde	d	au camp d’emprisonnement de la Horde

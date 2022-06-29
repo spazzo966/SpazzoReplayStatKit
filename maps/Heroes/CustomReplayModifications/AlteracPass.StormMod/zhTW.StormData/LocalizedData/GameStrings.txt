@@ -1,0 +1,87 @@
+﻿﻿Alterac/AllianceCavalry/MinimapTooltip=聯盟騎兵
+Alterac/CaptureCage/Alliance/Tooltip=聯盟俘虜營地
+Alterac/CaptureCage/Horde/Tooltip=部落俘虜營地
+Alterac/Cavalry/TIP/Info=提高附近盟友的傷害和移動速度
+Alterac/General/TIP/Info=每座友方要塞未被摧毀，可獲得額外的護甲
+Alterac/HordeCavalry/MinimapTooltip=部落騎兵
+Alterac/MapMechanic/MinimapPreview=下一座營地位置
+Alterac/Warmaster/TIP/Info=無敵。摧毀要塞可移除該路線所對應的將領<n/>守護並且給予他們的將軍增益效果
+Button/Name/AlteracBossCharge=衝鋒
+Button/Name/AlteracBossWhirlwind=旋風斬
+Button/SimpleDisplayText/AlteracBossCharge=衝向一名敵人並造成傷害
+Button/SimpleDisplayText/AlteracBossWhirlwind=對附近的敵人造成傷害
+DocInfo/Name=奧特蘭克隘口（模組）
+Param/Expression/lib_MMAP_0B9554B7=攻擊最近的敵人：~A~。
+Param/Expression/lib_MMAP_0B9B9A27=~A~秒
+Param/Expression/lib_MMAP_1625AB31=~A~~B~
+Param/Expression/lib_MMAP_178C4779=復位至~A~，~B~。
+Param/Expression/lib_MMAP_46214EA8=現在觀看~A~ ~B~。
+Param/Expression/lib_MMAP_52604118=~A~ ~B~
+Param/Expression/lib_MMAP_5680DAF8=<s val="AlteracValley_Flag_Contested">爭奪中！</s>
+Param/Expression/lib_MMAP_6184A784=~A~ ~B~
+Param/Expression/lib_MMAP_62543C3F=~A~~B~
+Param/Expression/lib_MMAP_68F75484=~A~ ~B~
+Param/Expression/lib_MMAP_6B435B15=巡邏至~A~，~B~。
+Param/Expression/lib_MMAP_6B811A80=友方旗幟可被選定為目標 =  ~A~<n/>旗幟可否被選定為目標的bug多半是誤判
+Param/Expression/lib_MMAP_7875ECC8=~A~~B~
+Param/Expression/lib_MMAP_7D5D3EFA=原地不動~A~秒。
+Param/Expression/lib_MMAP_8AEAE885=<s val="AlteracValley_Flag_Contested">爭奪中！</s>
+Param/Expression/lib_MMAP_90CCDEED=~A~ ~B~
+Param/Expression/lib_MMAP_90D96786=~A~~B~
+Param/Expression/lib_MMAP_BA578963=~A~~B~<n/>~C~
+Param/Expression/lib_MMAP_E4E00F33=防衛者在 = ~A~
+Param/Expression/lib_MMAP_F22F0F30=~A~秒
+Param/Expression/lib_MMAP_FE255E93=~A~~B~
+Param/Value/lib_MMAP_022215B2=俘虜營地即將設置完畢：
+Param/Value/lib_MMAP_2546397C=~C~~A~</c>想防衛~D~~B~</c>
+Param/Value/lib_MMAP_313D78D3=所有敵方騎兵已陣亡
+Param/Value/lib_MMAP_40A4464B=敵人已奪回營地
+Param/Value/lib_MMAP_517A2ABE=盟友已奪回營地
+Param/Value/lib_MMAP_59CD13AA=~C~~A~</c>想防衛~D~~B~</c>
+Param/Value/lib_MMAP_5C623B18=俘虜營地防衛者
+Param/Value/lib_MMAP_685412A2=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7783E20B=~C~~A~</c>想防衛~D~~B~</c>
+Param/Value/lib_MMAP_792FC7E7=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7FC233D0=~C~~A~</c>想攻擊~D~~B~</c>
+Param/Value/lib_MMAP_88D81357=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8A297E2E=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8BF6B30B="!help" 再次顯示此訊息<n/>"eventstart" 跳到事件警告<n/>"eventstartfast" 立即開始事件<n/>"togcampdefenders" 切換開啟/關閉營地守衛者<n/>"targetable" 使友方旗幟可被選定為目標<n/>"sendwaveleft" 生成左方團隊騎兵獎勵<n/>"sendwaveright" 生成右方團隊騎兵獎勵
+Param/Value/lib_MMAP_92C3B477=守住牢籠！
+Param/Value/lib_MMAP_9A842AA8=敵人正在佔領友方營地
+Param/Value/lib_MMAP_9B9D6F6C=俘虜營地
+Param/Value/lib_MMAP_9E9B64E8=所有友方騎兵已陣亡
+Param/Value/lib_MMAP_A8BA7A28=重新奪回旗幟。
+Param/Value/lib_MMAP_ACC431E2=點擊<k val="SmartCommand"/>以佔領
+Param/Value/lib_MMAP_B563C334=俘虜營地即將設置完畢：
+Param/Value/lib_MMAP_C1050C0B=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_C514A158=守住牢籠！
+Param/Value/lib_MMAP_CD91F8E7=點擊<k val="SmartCommand"/>以佔領
+Param/Value/lib_MMAP_DFE72DC0=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_EDABA208=點擊<k val="SmartCommand"/>以中斷佔領
+Param/Value/lib_MMAP_F02BC796=標準
+Param/Value/lib_MMAP_F2C25EDF=盟友正在佔領敵方營地
+Param/Value/lib_MMAP_FECF5B8B=佔領倒數：
+UI/MapLoadingScreen/AlteracValley/Description1=佔領敵方俘虜營地可召喚騎兵。英雄和小兵可以奪回佔領中的營地，所以要記得守好營地！
+UI/MapLoadingScreen/AlteracValley/Description2=騎兵被召喚出來後，會朝每條路線衝鋒，並且提高附近友方英雄的傷害和移動速度。
+UI/MapLoadingScreen/AlteracValley/Description3=雙方隊伍的核心都改由一名將軍把守最後的關卡，並且會與敵人交戰。摧毀要塞會降低將軍的護甲。
+UI/MapLoadingScreen/AlteracValley/Title1=俘虜營地
+UI/MapLoadingScreen/AlteracValley/Title2=騎兵
+UI/MapLoadingScreen/AlteracValley/Title3=將軍
+Unit/Name/AVCaptureFlagPreviewDummyAlliance=聯盟俘虜營地
+Unit/Name/AVCaptureFlagPreviewDummyHorde=部落俘虜營地
+Unit/Name/AVCapturePointDefender=牢籠防衛者
+Unit/Name/AllianceCavalry=聯盟騎兵
+Unit/Name/AlteracCoreBossParent=AlteracCoreBossParent
+Unit/Name/CaptureCage=CaptureCage
+Unit/Name/CapturedSoldier=被俘虜的士兵
+Unit/Name/DrekThar=德雷克塔爾
+Unit/Name/HordeCavalry=部落騎兵
+Unit/Name/ReaverMinion=掠奪者小兵
+Unit/Name/Storm_Building_WCAV_Alliance_CaptureCage=Storm_Building_WCAV_Alliance_CaptureCage
+Unit/Name/VanndarStormpike=范達爾‧雷矛
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">忠誠防禦者</lang>
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Description=中斷~AwardValue~%的牢籠解鎖
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Tooltip Text=中斷~TooltipAmount~次牢籠解鎖
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">忠誠防禦者</lang>
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Description=貢獻全隊~AwardValue~%牢籠解鎖中斷
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Tooltip Text=中斷~TooltipAmount~次牢籠解鎖

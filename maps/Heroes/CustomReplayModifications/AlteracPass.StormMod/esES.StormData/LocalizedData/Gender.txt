@@ -1,0 +1,16 @@
+﻿f	Caballería de la Alianza
+m	Defensor de jaula
+m	Soldado capturado
+m	Drek'Thar
+f	Caballería de la Horda
+m	Vanndar Pico Tormenta
+f	Yrel
+m	Campamento de prisioneros
+m	Defensor de campamento de prisioneros
+f	Banda de gnolls
+m	Gnoll
+m	Gnoll enemigo
+m	Gigante montés
+m	Esbirro atracador
+m	Campamento de prisioneros de la Alianza
+m	Campamento de prisioneros de la Horda

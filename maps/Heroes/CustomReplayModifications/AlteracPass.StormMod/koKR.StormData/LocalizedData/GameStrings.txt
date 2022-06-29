@@ -1,0 +1,87 @@
+﻿﻿Alterac/AllianceCavalry/MinimapTooltip=얼라이언스 기병대
+Alterac/CaptureCage/Alliance/Tooltip=얼라이언스 포로수용소
+Alterac/CaptureCage/Horde/Tooltip=호드 포로수용소
+Alterac/Cavalry/TIP/Info=주위 아군의 공격력 및 이동 속도 증가
+Alterac/General/TIP/Info=아군 성채 하나당 방어력 증가
+Alterac/HordeCavalry/MinimapTooltip=호드 기병대
+Alterac/MapMechanic/MinimapPreview=다음 수용소 위치
+Alterac/Warmaster/TIP/Info=무적 상태입니다. 해당 공격로의 성채를 파괴하면 사라집니다.<n/>해당 진영의 사령관을 지키고 강화합니다.
+Button/Name/AlteracBossCharge=돌진
+Button/Name/AlteracBossWhirlwind=소용돌이
+Button/SimpleDisplayText/AlteracBossCharge=적에게 돌진하여 피해를 줌
+Button/SimpleDisplayText/AlteracBossWhirlwind=주위 적들에게 피해를 줌
+DocInfo/Name=Alterac Pass (Mod)
+Param/Expression/lib_MMAP_0B9554B7=가장 가까운 적 공격: ~A~
+Param/Expression/lib_MMAP_0B9B9A27=~A~초
+Param/Expression/lib_MMAP_1625AB31=~A~~B~
+Param/Expression/lib_MMAP_178C4779=~A~, ~B~로 복귀
+Param/Expression/lib_MMAP_46214EA8=~A~ ~B~ 보는 중
+Param/Expression/lib_MMAP_52604118=~A~ ~B~
+Param/Expression/lib_MMAP_5680DAF8=<s val="AlteracValley_Flag_Contested">격돌 중!</s>
+Param/Expression/lib_MMAP_6184A784=~A~ ~B~
+Param/Expression/lib_MMAP_62543C3F=~A~~B~
+Param/Expression/lib_MMAP_68F75484=~A~ ~B~
+Param/Expression/lib_MMAP_6B435B15=~A~, ~B~로 순찰
+Param/Expression/lib_MMAP_6B811A80=allied flags targetable =  ~A~<n/>flag targetability bugs will most likely be false positives
+Param/Expression/lib_MMAP_7875ECC8=~A~~B~
+Param/Expression/lib_MMAP_7D5D3EFA=~A~초 동안 움직이지 않음
+Param/Expression/lib_MMAP_8AEAE885=<s val="AlteracValley_Flag_Contested">격돌 중!</s>
+Param/Expression/lib_MMAP_90CCDEED=~A~ ~B~
+Param/Expression/lib_MMAP_90D96786=~A~~B~
+Param/Expression/lib_MMAP_BA578963=~A~~B~<n/>~C~
+Param/Expression/lib_MMAP_E4E00F33=~A~의 경비병
+Param/Expression/lib_MMAP_F22F0F30=~A~초
+Param/Expression/lib_MMAP_FE255E93=~A~~B~
+Param/Value/lib_MMAP_022215B2=포로 위치 파악까지
+Param/Value/lib_MMAP_2546397C=~C~~A~</c>%Rjon(이,가) ~D~~B~</c>%Rjon(을,를) 확보하자고 합니다.
+Param/Value/lib_MMAP_313D78D3=적 기병대 전멸
+Param/Value/lib_MMAP_40A4464B=적이 포로수용소를 방어했습니다
+Param/Value/lib_MMAP_517A2ABE=아군이 포로수용소를 방어했습니다
+Param/Value/lib_MMAP_59CD13AA=~C~~A~</c>%Rjon(이,가) ~D~~B~</c>%Rjon(을,를) 방어하자고 합니다.
+Param/Value/lib_MMAP_5C623B18=포로수용소 경비병
+Param/Value/lib_MMAP_685412A2=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7783E20B=~C~~A~</c>%Rjon(이,가) ~D~~B~</c>%Rjon(을,를) 방어하자고 합니다.
+Param/Value/lib_MMAP_792FC7E7=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7FC233D0=~C~~A~</c>%Rjon(이,가) ~D~~B~</c>%Rjon(을,를) 공격하자고 합니다.
+Param/Value/lib_MMAP_88D81357=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8A297E2E=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8BF6B30B="!help"를 입력하면 이 메시지를 다시 확인할 수 있습니다.<n/>"eventstart" 이벤트 예고부터 시작합니다.<n/>"eventstartfast" 이벤트를 즉시 시작합니다.<n/>"togcampdefenders" 수용소 경비병을 키거나 끕니다.<n/>"targetable" 아군 깃발을 대상으로 삼을 수 있게 합니다.<n/>"sendwaveleft" 왼쪽 팀의 기병대를 생성합니다.<n/>"sendwaveright" 오른쪽 팀의 기병대를 생성합니다.
+Param/Value/lib_MMAP_92C3B477=방어!
+Param/Value/lib_MMAP_9A842AA8=적이 아군 수용소를 공격하고 있습니다
+Param/Value/lib_MMAP_9B9D6F6C=포로수용소
+Param/Value/lib_MMAP_9E9B64E8=아군 기병대 전멸
+Param/Value/lib_MMAP_A8BA7A28=깃발 탈환
+Param/Value/lib_MMAP_ACC431E2=<k val="SmartCommand"/>하여 공격
+Param/Value/lib_MMAP_B563C334=포로 위치 파악까지
+Param/Value/lib_MMAP_C1050C0B=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_C514A158=방어!
+Param/Value/lib_MMAP_CD91F8E7=<k val="SmartCommand"/>하여 공격
+Param/Value/lib_MMAP_DFE72DC0=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_EDABA208=<k val="SmartCommand"/>하여 방어
+Param/Value/lib_MMAP_F02BC796=일반
+Param/Value/lib_MMAP_F2C25EDF=아군이 적 수용소를 공격하고 있습니다
+Param/Value/lib_MMAP_FECF5B8B=점령까지
+UI/MapLoadingScreen/AlteracValley/Description1=적의 포로수용소를 공격하면 아군의 기병대가 충원됩니다. 수용소는 영웅이나 돌격병이 다시 빼앗을 수 있으니 주의하세요!
+UI/MapLoadingScreen/AlteracValley/Description2=기병대는 각 공격로에 소환되어 적을 향해 돌진합니다. 기병대 주위의 아군 영웅은 공격력과 이동 속도가 증가합니다.
+UI/MapLoadingScreen/AlteracValley/Description3=각 팀의 핵이 침입하는 적과 싸우는 사령관으로 대체됩니다. 성채를 파괴하면 사령관의 방어력이 감소합니다.
+UI/MapLoadingScreen/AlteracValley/Title1=포로수용소
+UI/MapLoadingScreen/AlteracValley/Title2=기병대
+UI/MapLoadingScreen/AlteracValley/Title3=사령관
+Unit/Name/AVCaptureFlagPreviewDummyAlliance=얼라이언스 포로수용소
+Unit/Name/AVCaptureFlagPreviewDummyHorde=호드 포로수용소
+Unit/Name/AVCapturePointDefender=수용소 경비병
+Unit/Name/AllianceCavalry=얼라이언스 기병대
+Unit/Name/AlteracCoreBossParent=AlteracCoreBossParent
+Unit/Name/CaptureCage=CaptureCage
+Unit/Name/CapturedSoldier=사로잡힌 병사
+Unit/Name/DrekThar=드렉타르
+Unit/Name/HordeCavalry=호드 기병대
+Unit/Name/ReaverMinion=약탈자 돌격병
+Unit/Name/Storm_Building_WCAV_Alliance_CaptureCage=Storm_Building_WCAV_Alliance_CaptureCage
+Unit/Name/VanndarStormpike=반다르 스톰파이크
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">충직한 수호자</lang>
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Description=수용소 방어의 ~AwardValue~% 기여
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Tooltip Text=수용소 방어 ~TooltipAmount~회
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">충직한 수호자</lang>
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Description=팀의 수용소 방어의 ~AwardValue~% 기여
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Tooltip Text=수용소 방어 ~TooltipAmount~회

@@ -1,0 +1,87 @@
+﻿﻿Alterac/AllianceCavalry/MinimapTooltip=Caballería de la Alianza
+Alterac/CaptureCage/Alliance/Tooltip=Campamento de prisioneros de la Alianza
+Alterac/CaptureCage/Horde/Tooltip=Campamento de prisioneros de la Horda
+Alterac/Cavalry/TIP/Info=Aumenta el daño y la velocidad de movimiento de los aliados cercanos
+Alterac/General/TIP/Info=Obtiene una bonificación de Armadura por cada fortaleza aliada en pie
+Alterac/HordeCavalry/MinimapTooltip=Caballería de la Horda
+Alterac/MapMechanic/MinimapPreview=Ubicación del siguiente campamento
+Alterac/Warmaster/TIP/Info=Invulnerable; destruye la respectiva fortaleza de su vía para eliminarlos<n/>Protege y potencia a su general aliado
+Button/Name/AlteracBossCharge=Carga
+Button/Name/AlteracBossWhirlwind=Remolino
+Button/SimpleDisplayText/AlteracBossCharge=Carga hacia un enemigo y lo daña
+Button/SimpleDisplayText/AlteracBossWhirlwind=Daña a los enemigos cercanos
+DocInfo/Name=Paso de Alterac (Mod)
+Param/Expression/lib_MMAP_0B9554B7=Atacando al enemigo más cercano: ~A~.
+Param/Expression/lib_MMAP_0B9B9A27=~A~s
+Param/Expression/lib_MMAP_1625AB31=~A~~B~
+Param/Expression/lib_MMAP_178C4779=Dirigiendo captura hacia ~A~, ~B~.
+Param/Expression/lib_MMAP_46214EA8=Ahora observando ~A~ ~B~.
+Param/Expression/lib_MMAP_52604118=~A~ ~B~
+Param/Expression/lib_MMAP_5680DAF8=<s val="AlteracValley_Flag_Contested">¡EN DISPUTA!</s>
+Param/Expression/lib_MMAP_6184A784=~A~ ~B~
+Param/Expression/lib_MMAP_62543C3F=~A~~B~
+Param/Expression/lib_MMAP_68F75484=~A~ ~B~
+Param/Expression/lib_MMAP_6B435B15=Patrullando hacia ~A~, ~B~.
+Param/Expression/lib_MMAP_6B811A80=banderas aliadas que pueden ser marcadas como objetivo =  ~A~<n/>los errores de marcación de objetivo de banderas serán probablemente falsos positivos
+Param/Expression/lib_MMAP_7875ECC8=~A~~B~
+Param/Expression/lib_MMAP_7D5D3EFA=Inmóvil durante ~A~ segundos.
+Param/Expression/lib_MMAP_8AEAE885=<s val="AlteracValley_Flag_Contested">¡EN DISPUTA!</s>
+Param/Expression/lib_MMAP_90CCDEED=~A~ ~B~
+Param/Expression/lib_MMAP_90D96786=~A~~B~
+Param/Expression/lib_MMAP_BA578963=~A~~B~<n/>~C~
+Param/Expression/lib_MMAP_E4E00F33=Defensores en = ~A~
+Param/Expression/lib_MMAP_F22F0F30=~A~s
+Param/Expression/lib_MMAP_FE255E93=~A~~B~
+Param/Value/lib_MMAP_022215B2=Prisioneros ubicados en:
+Param/Value/lib_MMAP_2546397C=~C~~A~</c> <lang rule="plural" val="~A~">quiere,quieren</lang> asegurar ~D~~B~</c>
+Param/Value/lib_MMAP_313D78D3=Toda la caballería enemiga fue asesinada
+Param/Value/lib_MMAP_40A4464B=Los enemigos recapturaron su campamento
+Param/Value/lib_MMAP_517A2ABE=Los aliados recapturaron su campamento
+Param/Value/lib_MMAP_59CD13AA=~C~~A~</c> <lang rule="plural" val="~A~">quiere,quieren</lang> defender el ~D~~B~</c>
+Param/Value/lib_MMAP_5C623B18=Defensor de campamento de prisioneros
+Param/Value/lib_MMAP_685412A2=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7783E20B=~C~~A~</c> <lang rule="plural" val="~A~">quiere,quieren</lang> defender el ~D~~B~</c>
+Param/Value/lib_MMAP_792FC7E7=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7FC233D0=~C~~A~</c> <lang rule="plural" val="~A~">quiere,quieren</lang> atacar el ~D~~B~</c>
+Param/Value/lib_MMAP_88D81357=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8A297E2E=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8BF6B30B="!help" muestra este mensaje nuevamente<n/>"eventstart" salta a la advertencia del evento<n/>"eventstartfast" da inicio inmediatamente a los eventos<n/>"togcampdefenders" activa/desactiva los defensores de campamento<n/>"targetable" hace que las banderas aliadas puedan ser marcadas como objetivo<n/>"sendwaveleft" regenera la recompensa de caballería del equipo de la izquierda<n/>"sendwaveright" regenera la recompensa de caballería del equipo de la derecha
+Param/Value/lib_MMAP_92C3B477=¡A defender!
+Param/Value/lib_MMAP_9A842AA8=Enemigos capturando el campamento aliado
+Param/Value/lib_MMAP_9B9D6F6C=Campamento de prisioneros
+Param/Value/lib_MMAP_9E9B64E8=Toda la caballería aliada fue asesinada
+Param/Value/lib_MMAP_A8BA7A28=Recapturando la bandera.
+Param/Value/lib_MMAP_ACC431E2=<k val="SmartCommand"/> para capturar
+Param/Value/lib_MMAP_B563C334=Prisioneros ubicados en:
+Param/Value/lib_MMAP_C1050C0B=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_C514A158=¡A defender!
+Param/Value/lib_MMAP_CD91F8E7=<k val="SmartCommand"/> para capturar
+Param/Value/lib_MMAP_DFE72DC0=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_EDABA208=<k val="SmartCommand"/> para detener la captura
+Param/Value/lib_MMAP_F02BC796=Estándar
+Param/Value/lib_MMAP_F2C25EDF=Aliados capturando el campamento enemigo
+Param/Value/lib_MMAP_FECF5B8B=Defender durante:
+UI/MapLoadingScreen/AlteracValley/Description1=Captura el campamento de prisioneros enemigo para invocar a tu caballería. Los campamentos pueden ser recapturados por héroes y esbirros, ¡así que vigílalos bien!
+UI/MapLoadingScreen/AlteracValley/Description2=Los soldados de la caballería cargan por cada vía cuando son invocados otorgando un incremento de daño y velocidad de movimiento a los héroes aliados cercanos.
+UI/MapLoadingScreen/AlteracValley/Description3=El núcleo de cada equipo ha sido reemplazado por un general que lucha contra los enemigos atacantes. Destruir una fortaleza reduce la Armadura del general.
+UI/MapLoadingScreen/AlteracValley/Title1=Campamentos de prisioneros
+UI/MapLoadingScreen/AlteracValley/Title2=Caballería
+UI/MapLoadingScreen/AlteracValley/Title3=Generales
+Unit/Name/AVCaptureFlagPreviewDummyAlliance=Campamento de prisioneros de la Alianza
+Unit/Name/AVCaptureFlagPreviewDummyHorde=Campamento de prisioneros de la Horda
+Unit/Name/AVCapturePointDefender=Defensor de jaula
+Unit/Name/AllianceCavalry=Caballería de la Alianza
+Unit/Name/AlteracCoreBossParent=AlteracCoreBossParent
+Unit/Name/CaptureCage=CaptureCage
+Unit/Name/CapturedSoldier=Soldado capturado
+Unit/Name/DrekThar=Drek'Thar
+Unit/Name/HordeCavalry=Caballería de la Horda
+Unit/Name/ReaverMinion=Esbirro atracador
+Unit/Name/Storm_Building_WCAV_Alliance_CaptureCage=Storm_Building_WCAV_Alliance_CaptureCage
+Unit/Name/VanndarStormpike=Vanndar Pico Tormenta
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">Defensor leal</lang>
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Description=Interrumpido ~AwardValue~% de apertura de jaula
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Tooltip Text=Interrumpido ~TooltipAmount~ de apertura de jaula
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">Defensor leal</lang>
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Description=Interrumpido ~AwardValue~% de apertura de jaula del equipo
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Tooltip Text=Interrumpido ~TooltipAmount~ de apertura de jaula

@@ -1,0 +1,68 @@
+﻿Kawalerzysta Przymierza	t	kawalerzysta Przymierza
+Kawalerzysta Przymierza	g	kawalerzysty Przymierza
+Kawalerzysta Przymierza	d	kawalerzyście Przymierza
+Kawalerzysta Przymierza	a	kawalerzystę Przymierza
+Strażnik klatki	t	strażnik klatki
+Strażnik klatki	g	strażnika klatki
+Strażnik klatki	d	strażnikowi klatki
+Strażnik klatki	a	strażnika klatki
+Jeniec wojenny	t	jeniec
+Jeniec wojenny	g	jeńca
+Jeniec wojenny	d	jeńcowi
+Jeniec wojenny	a	jeńca
+Drek'Tar	t	Drek'Tar
+Drek'Tar	g	Drek'Tara
+Drek'Tar	d	Drek'Tarowi
+Drek'Tar	a	Drek'Tara
+Jeździec Hordy	t	jeździec Hordy
+Jeździec Hordy	g	jeźdźca Hordy
+Jeździec Hordy	d	jeźdźcowi Hordy
+Jeździec Hordy	a	jeźdźca Hordy
+Vandar Gromdarda	t	Vandar
+Vandar Gromdarda	g	Vandara
+Vandar Gromdarda	d	Vandarowi
+Vandar Gromdarda	a	Vandara
+Więzienie	t	więzienie
+Więzienie	g	więzienia
+Więzienie	d	więzieniu
+Więzienie	a	więzienie
+Gnol	t	gnol
+Gnol	g	gnola
+Gnol	d	gnolowi
+Gnol	a	gnola
+Strażnik więzienia	t	strażnik więzienia
+Strażnik więzienia	g	strażnika więzienia
+Strażnik więzienia	d	strażnikowi więzienia
+Strażnik więzienia	a	strażnika więzienia
+Gnol	t	gnol
+Gnol	g	gnola
+Gnol	d	gnolowi
+Gnol	a	gnola
+Wataha gnoli	t	wataha gnoli
+Wataha gnoli	g	watahy gnoli
+Wataha gnoli	d	watasze gnoli
+Wataha gnoli	a	watahę gnoli
+Neutralny gnol	t	neutralny gnol
+Neutralny gnol	g	neutralnego gnola
+Neutralny gnol	d	neutralnemu gnolowi
+Neutralny gnol	a	neutralnego gnola
+Górski olbrzym	t	górski olbrzym
+Górski olbrzym	g	górskiego olbrzyma
+Górski olbrzym	d	górskiemu olbrzymowi
+Górski olbrzym	a	górskiego olbrzyma
+Rozpruwacz	t	Rozpruwacz
+Rozpruwacz	g	Rozpruwacza
+Rozpruwacz	d	Rozpruwaczowi
+Rozpruwacz	a	Rozpruwacza
+Demoniczny Żołdak	t	Demoniczny Żołdak
+Demoniczny Żołdak	g	Demonicznego Żołdaka
+Demoniczny Żołdak	d	Demonicznemu Żołdakowi
+Demoniczny Żołdak	a	Demonicznego Żołdaka
+Więzienie Przymierza	t	więzienie Przymierza
+Więzienie Przymierza	g	więzienia Przymierza
+Więzienie Przymierza	d	więzieniu Przymierza
+Więzienie Przymierza	a	więzienie Przymierza
+Więzienie Hordy	t	więzienie Hordy
+Więzienie Hordy	g	więzienia Hordy
+Więzienie Hordy	d	więzieniu Hordy
+Więzienie Hordy	a	więzienie Hordy

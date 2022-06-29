@@ -1,0 +1,87 @@
+﻿Alterac/AllianceCavalry/MinimapTooltip=Cavalleria dell'Alleanza
+Alterac/CaptureCage/Alliance/Tooltip=Campo di prigionia dell'Alleanza
+Alterac/CaptureCage/Horde/Tooltip=Campo di prigionia dell'Orda
+Alterac/Cavalry/TIP/Info=Aumenta i danni e la velocità di movimento degli alleati vicini.
+Alterac/General/TIP/Info=Fornisce un bonus alla resistenza per ogni fortezza alleata che resiste.
+Alterac/HordeCavalry/MinimapTooltip=Cavalleria dell'Orda
+Alterac/MapMechanic/MinimapPreview=Posizione campo successivo
+Alterac/Warmaster/TIP/Info=Invulnerabile: distruggete la Fortezza della corsia per eliminarlo.<n/>Protegge e potenzia il generale alleato.
+Button/Name/AlteracBossCharge=Carica
+Button/Name/AlteracBossWhirlwind=Turbine
+Button/SimpleDisplayText/AlteracBossCharge=Carica verso un nemico e lo danneggia.
+Button/SimpleDisplayText/AlteracBossWhirlwind=Infligge danni ai nemici vicini.
+DocInfo/Name=Passo d'Alterac (Mod)
+Param/Expression/lib_MMAP_0B9554B7=Attacca il nemico più vicino: ~A~.
+Param/Expression/lib_MMAP_0B9B9A27=~A~s
+Param/Expression/lib_MMAP_1625AB31=~A~~B~
+Param/Expression/lib_MMAP_178C4779=Trascina verso ~A~, ~B~.
+Param/Expression/lib_MMAP_46214EA8=Osserva ~A~ ~B~.
+Param/Expression/lib_MMAP_52604118=~A~ ~B~
+Param/Expression/lib_MMAP_5680DAF8=<s val="AlteracValley_Flag_Contested">CONTESO!</s>
+Param/Expression/lib_MMAP_6184A784=~A~ ~B~
+Param/Expression/lib_MMAP_62543C3F=~A~~B~
+Param/Expression/lib_MMAP_68F75484=~A~ ~B~
+Param/Expression/lib_MMAP_6B435B15=Pattuglia verso ~A~, ~B~.
+Param/Expression/lib_MMAP_6B811A80=allied flags targetable =  ~A~<n/>flag targetability bugs will most likely be false positives
+Param/Expression/lib_MMAP_7875ECC8=~A~~B~
+Param/Expression/lib_MMAP_7D5D3EFA=Rimane immobile per ~A~s.
+Param/Expression/lib_MMAP_8AEAE885=<s val="AlteracValley_Flag_Contested">CONTESO!</s>
+Param/Expression/lib_MMAP_90CCDEED=~A~ ~B~
+Param/Expression/lib_MMAP_90D96786=~A~~B~
+Param/Expression/lib_MMAP_BA578963=~A~~B~<n/>~C~
+Param/Expression/lib_MMAP_E4E00F33=Difensori attivi = ~A~
+Param/Expression/lib_MMAP_F22F0F30=~A~s
+Param/Expression/lib_MMAP_FE255E93=~A~~B~
+Param/Value/lib_MMAP_022215B2=Prigionieri rivelati tra:
+Param/Value/lib_MMAP_2546397C=~C~~A~</c> <lang rule="plural" val="~A~">vuole,vogliono</lang> conquistare ~D~~B~</c>.
+Param/Value/lib_MMAP_313D78D3=Cavalleria nemica eliminata
+Param/Value/lib_MMAP_40A4464B=Il nemico ha riconquistato il campo
+Param/Value/lib_MMAP_517A2ABE=Gli alleati hanno riconquistato il campo
+Param/Value/lib_MMAP_59CD13AA=~C~~A~</c> <lang rule="plural" val="~A~">vuole,vogliono</lang> difendere ~D~<lang rule="declension" case="t">~B~</lang></c>.
+Param/Value/lib_MMAP_5C623B18=Difensore del campo di prigionia
+Param/Value/lib_MMAP_685412A2=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7783E20B=~C~~A~</c> <lang rule="plural" val="~A~">vuole,vogliono</lang> difendere ~D~<lang rule="declension" case="t">~B~</lang></c>.
+Param/Value/lib_MMAP_792FC7E7=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7FC233D0=~C~~A~</c> <lang rule="plural" val="~A~">vuole,vogliono</lang> attaccare ~D~<lang rule="declension" case="t">~B~</lang></c>.
+Param/Value/lib_MMAP_88D81357=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8A297E2E=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8BF6B30B="!help" mostra di nuovo il messaggio<n/>"eventstart" salta all'avviso di evento<n/>"eventstartfast" avvia gli eventi<n/>"togcampdefenders" attiva e disattiva i difensori dei campi<n/>"targetable" consente di puntare sulle bandiere alleate<n/>"sendwaveleft" genera la cavalleria da sinistra<n/>"sendwaveright" genera la cavalleria da destra
+Param/Value/lib_MMAP_92C3B477=Difesa necessaria!
+Param/Value/lib_MMAP_9A842AA8=Il nemico conquista un campo alleato
+Param/Value/lib_MMAP_9B9D6F6C=Campo di prigionia
+Param/Value/lib_MMAP_9E9B64E8=Cavalleria alleata eliminata
+Param/Value/lib_MMAP_A8BA7A28=Riprende la bandiera.
+Param/Value/lib_MMAP_ACC431E2=<k val="SmartCommand"/> per conquistare
+Param/Value/lib_MMAP_B563C334=Prigionieri rivelati tra:
+Param/Value/lib_MMAP_C1050C0B=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_C514A158=Difesa necessaria!
+Param/Value/lib_MMAP_CD91F8E7=<k val="SmartCommand"/> per conquistare
+Param/Value/lib_MMAP_DFE72DC0=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_EDABA208=<k val="SmartCommand"/> per interrompere la conquista.
+Param/Value/lib_MMAP_F02BC796=Standard
+Param/Value/lib_MMAP_F2C25EDF=Gli alleati conquistano un campo nemico
+Param/Value/lib_MMAP_FECF5B8B=Difendete per:
+UI/MapLoadingScreen/AlteracValley/Description1=Conquistate il campo di prigionia nemico per richiamare la cavalleria. I campi possono essere riconquistati da eroi e servitori, difendeteli!
+UI/MapLoadingScreen/AlteracValley/Description2=I soldati della cavalleria caricano su tutte le corsie, fornendo un bonus a danni e velocità di movimento agli eroi alleati vicini.
+UI/MapLoadingScreen/AlteracValley/Description3=Il nucleo è stato sostituito da un generale che combatte i nemici. Distruggere le fortezze riduce la resistenza del generale.
+UI/MapLoadingScreen/AlteracValley/Title1=Campi di prigionia
+UI/MapLoadingScreen/AlteracValley/Title2=Cavalleria
+UI/MapLoadingScreen/AlteracValley/Title3=Generali
+Unit/Name/AVCaptureFlagPreviewDummyAlliance=Campo di prigionia dell'Alleanza
+Unit/Name/AVCaptureFlagPreviewDummyHorde=Campo di prigionia dell'Orda
+Unit/Name/AVCapturePointDefender=Difensore della prigione
+Unit/Name/AllianceCavalry=Cavalleria dell'Alleanza
+Unit/Name/AlteracCoreBossParent=AlteracCoreBossParent
+Unit/Name/CaptureCage=CaptureCage
+Unit/Name/CapturedSoldier=Soldato prigioniero
+Unit/Name/DrekThar=Drek'Thar
+Unit/Name/HordeCavalry=Cavalleria dell'Orda
+Unit/Name/ReaverMinion=Servitore Saccheggiatore
+Unit/Name/Storm_Building_WCAV_Alliance_CaptureCage=Storm_Building_WCAV_Alliance_CaptureCage
+Unit/Name/VanndarStormpike=Vanndar Piccatonante
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">Strenuo protettore,Strenua protettrice</lang>
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Description=Ha interrotto il ~AwardValue~% delle aperture delle gabbie
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Tooltip Text=Ha interrotto ~TooltipAmount~ aperture delle gabbie
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">Strenuo protettore,Strenua protettrice</lang>
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Description=Ha interrotto il ~AwardValue~% delle aperture delle gabbie della squadra
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Tooltip Text=Ha interrotto ~TooltipAmount~ aperture delle gabbie della squadra

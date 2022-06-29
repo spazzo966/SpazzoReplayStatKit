@@ -1,0 +1,87 @@
+﻿﻿Alterac/AllianceCavalry/MinimapTooltip=Cavalerie de l’Alliance
+Alterac/CaptureCage/Alliance/Tooltip=Camp d’emprisonnement de l’Alliance
+Alterac/CaptureCage/Horde/Tooltip=Camp d’emprisonnement de la Horde
+Alterac/Cavalry/TIP/Info=Augmente les dégâts et la vitesse de déplacement des alliés proches.
+Alterac/General/TIP/Info=Obtient un bonus d’armure pour chaque bastion allié toujours debout.
+Alterac/HordeCavalry/MinimapTooltip=Cavalerie de la Horde
+Alterac/MapMechanic/MinimapPreview=Emplacement du camp suivant
+Alterac/Warmaster/TIP/Info=Invulnérables. Détruisez les bastions ennemis pour les supprimer.<n/>Protègent et renforcent leur général.
+Button/Name/AlteracBossCharge=Charge
+Button/Name/AlteracBossWhirlwind=Tourbillon
+Button/SimpleDisplayText/AlteracBossCharge=Charge un ennemi et lui inflige des dégâts.
+Button/SimpleDisplayText/AlteracBossWhirlwind=Inflige des dégâts aux ennemis proches.
+DocInfo/Name=La passe d’Alterac (mod)
+Param/Expression/lib_MMAP_0B9554B7=Attaque de l’ennemi le plus proche : ~A~.
+Param/Expression/lib_MMAP_0B9B9A27=~A~ s
+Param/Expression/lib_MMAP_1625AB31=~A~~B~
+Param/Expression/lib_MMAP_178C4779=Poursuite de ~A~, ~B~.
+Param/Expression/lib_MMAP_46214EA8=Observation de ~A~, ~B~.
+Param/Expression/lib_MMAP_52604118=~A~ ~B~
+Param/Expression/lib_MMAP_5680DAF8=<s val="AlteracValley_Flag_Contested">DISPUTÉ !</s>
+Param/Expression/lib_MMAP_6184A784=~A~ ~B~
+Param/Expression/lib_MMAP_62543C3F=~A~~B~
+Param/Expression/lib_MMAP_68F75484=~A~ ~B~
+Param/Expression/lib_MMAP_6B435B15=Patrouille vers ~A~, ~B~.
+Param/Expression/lib_MMAP_6B811A80=Bannières alliées ciblables = ~A~<n/>Les bugs de ciblabilité des bannières seront vraisemblablement des faux positifs.
+Param/Expression/lib_MMAP_7875ECC8=~A~~B~
+Param/Expression/lib_MMAP_7D5D3EFA=Immobilisation pendant ~A~ s.
+Param/Expression/lib_MMAP_8AEAE885=<s val="AlteracValley_Flag_Contested">DISPUTÉ !</s>
+Param/Expression/lib_MMAP_90CCDEED=~A~ ~B~
+Param/Expression/lib_MMAP_90D96786=~A~~B~
+Param/Expression/lib_MMAP_BA578963=~A~~B~<n/>~C~
+Param/Expression/lib_MMAP_E4E00F33=Défenseurs activés = ~A~
+Param/Expression/lib_MMAP_F22F0F30=~A~ s
+Param/Expression/lib_MMAP_FE255E93=~A~~B~
+Param/Value/lib_MMAP_022215B2=Prisonniers localisés dans :
+Param/Value/lib_MMAP_2546397C=~C~~A~</c> <lang rule="plural" val="~A~">veut,veulent</lang> capturer ~D~<lang rule="declension" case="t">~B~</lang></c>
+Param/Value/lib_MMAP_313D78D3=Cavalerie ennemie éradiquée
+Param/Value/lib_MMAP_40A4464B=Les ennemis ont repris leur camp
+Param/Value/lib_MMAP_517A2ABE=Les alliés ont repris leur camp
+Param/Value/lib_MMAP_59CD13AA=~C~~A~</c> <lang rule="plural" val="~A~">veut,veulent</lang> défendre ~D~<lang rule="declension" case="t">~B~</lang></c>
+Param/Value/lib_MMAP_5C623B18=Défenseur de camp d’emprisonnement
+Param/Value/lib_MMAP_685412A2=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7783E20B=~C~~A~</c> <lang rule="plural" val="~A~">veut,veulent</lang> défendre ~D~<lang rule="declension" case="t">~B~</lang></c>
+Param/Value/lib_MMAP_792FC7E7=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7FC233D0=~C~~A~</c> <lang rule="plural" val="~A~">veut,veulent</lang> attaquer ~D~<lang rule="declension" case="t">~B~</lang></c>
+Param/Value/lib_MMAP_88D81357=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8A297E2E=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8BF6B30B="!help" affiche ce message<n/>"eventstart" passe à l’annonce d’évènement<n/>"eventstartfast" lance l’évènement<n/>"togcampdefenders" active ou désactive les défenseurs de camp<n/>"targetable" rend les bannières alliées ciblables<n/>"sendwaveleft" invoque la récompense de cavalerie de l’équipe gauche<n/>"sendwaveright" invoque la récompense de cavalerie de l’équipe droite
+Param/Value/lib_MMAP_92C3B477=Défendez !
+Param/Value/lib_MMAP_9A842AA8=Les ennemis capturent un camp allié
+Param/Value/lib_MMAP_9B9D6F6C=Camp d’emprisonnement
+Param/Value/lib_MMAP_9E9B64E8=Cavalerie alliée éradiquée
+Param/Value/lib_MMAP_A8BA7A28=Reprise du drapeau.
+Param/Value/lib_MMAP_ACC431E2=<k val="SmartCommand"/> pour capturer
+Param/Value/lib_MMAP_B563C334=Prisonniers localisés dans :
+Param/Value/lib_MMAP_C1050C0B=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_C514A158=Défendez !
+Param/Value/lib_MMAP_CD91F8E7=<k val="SmartCommand"/> pour capturer
+Param/Value/lib_MMAP_DFE72DC0=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_EDABA208=<k val="SmartCommand"/> pour interrompre la capture
+Param/Value/lib_MMAP_F02BC796=Bannière
+Param/Value/lib_MMAP_F2C25EDF=Les alliés capturent un camp ennemi
+Param/Value/lib_MMAP_FECF5B8B=Défendre pendant :
+UI/MapLoadingScreen/AlteracValley/Description1=Capturez le camp d’emprisonnement ennemi pour invoquer votre cavalerie. Les camps peuvent être repris par les héros et les serviteurs donc gardez-les bien !
+UI/MapLoadingScreen/AlteracValley/Description2=La cavalerie charge le long de chaque voie quand elle est invoquée et améliore les dégâts et la vitesse de déplacement des héros alliés à proximité.
+UI/MapLoadingScreen/AlteracValley/Description3=L’idole de chaque équipe est remplacée par un général qui se défend contre les ennemis. Détruire un bastion réduit l’armure du général.
+UI/MapLoadingScreen/AlteracValley/Title1=Camps d’emprisonnement
+UI/MapLoadingScreen/AlteracValley/Title2=Cavalerie
+UI/MapLoadingScreen/AlteracValley/Title3=Généraux
+Unit/Name/AVCaptureFlagPreviewDummyAlliance=Camp d’emprisonnement de l’Alliance
+Unit/Name/AVCaptureFlagPreviewDummyHorde=Camp d’emprisonnement de la Horde
+Unit/Name/AVCapturePointDefender=Défenseur de camp d’emprisonnement
+Unit/Name/AllianceCavalry=Cavalerie de l’Alliance
+Unit/Name/AlteracCoreBossParent=AlteracCoreBossParent
+Unit/Name/CaptureCage=Camp d’emprisonnement
+Unit/Name/CapturedSoldier=Soldat capturé
+Unit/Name/DrekThar=Drek’Thar
+Unit/Name/HordeCavalry=Cavalerie de la Horde
+Unit/Name/ReaverMinion=Saccageur
+Unit/Name/Storm_Building_WCAV_Alliance_CaptureCage=Camp d’emprisonnement
+Unit/Name/VanndarStormpike=Vanndar Foudrepique
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">Geôlier,Geôlière</lang>
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Description=a interrompu ~AwardValue~% des ouvertures de camp d’emprisonnement
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Tooltip Text=a interrompu ~TooltipAmount~ ouvertures de camp d’emprisonnement
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">Geôlier,Geôlière</lang>
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Description=a interrompu ~AwardValue~% des ouvertures de camp de l’équipe
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Tooltip Text=a interrompu ~TooltipAmount~ ouvertures de camp d’emprisonnement

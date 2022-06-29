@@ -1,0 +1,16 @@
+﻿Caballería de la Alianza	1
+Defensor de jaula	1
+Soldado capturado	1
+Drek'Thar	1
+Caballería de la Horda	1
+Vanndar Pico Tormenta	1
+Yrel	1
+Campamento de prisioneros	1
+Defensor de campamento de prisioneros	1
+Banda de gnolls	1
+Gnoll	1
+Gnoll enemigo	1
+Gigante montés	1
+Esbirro atracador	1
+Campamento de prisioneros de la Alianza	1
+Campamento de prisioneros de la Horda	1

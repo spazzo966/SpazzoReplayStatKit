@@ -1,0 +1,68 @@
+﻿Kavallerie der Allianz	t	die Kavallerie der Allianz
+Kavallerie der Allianz	g	der Kavallerie der Allianz
+Kavallerie der Allianz	d	der Kavallerie der Allianz
+Kavallerie der Allianz	a	die Kavallerie der Allianz
+Kavallerie der Horde	t	die Kavallerie der Horde
+Kavallerie der Horde	g	der Kavallerie der Horde
+Kavallerie der Horde	d	der Kavallerie der Horde
+Kavallerie der Horde	a	die Kavallerie der Horde
+Gefangener Soldat	t	der gefangene Soldat
+Gefangener Soldat	g	des gefangenen Soldaten
+Gefangener Soldat	d	dem gefangenen Soldaten
+Gefangener Soldat	a	den gefangenen Soldaten
+Käfigverteidiger	t	der Käfigverteidiger
+Käfigverteidiger	g	des Käfigverteidigers
+Käfigverteidiger	d	dem Käfigverteidiger
+Käfigverteidiger	a	den Käfigverteidiger
+Gefängnis	t	das Gefängnis
+Gefängnis	g	des Gefängnisses
+Gefängnis	d	dem Gefängnis
+Gefängnis	a	das Gefängnis
+Drek'Thar	t	Drek'Thar
+Drek'Thar	g	Drek'Thars
+Drek'Thar	d	Drek'Thar
+Drek'Thar	a	Drek'Thar
+Drek'thar	t	Drek'Thar
+Drek'thar	g	Drek'Thars
+Drek'thar	d	Drek'Thar
+Drek'thar	a	Drek'Thar
+Vanndar Sturmlanze	t	Vanndar Sturmlanze
+Vanndar Sturmlanze	g	Vanndar Sturmlanzes
+Vanndar Sturmlanze	d	Vanndar Sturmlanze
+Vanndar Sturmlanze	a	Vanndar Sturmlanze
+Vanndar	t	Vanndar
+Vanndar	g	Vanndars
+Vanndar	d	Vanndar
+Vanndar	a	Vanndar
+Gefängnisverteidiger	t	der Gefängnisverteidiger
+Gefängnisverteidiger	g	des Gefängnisverteidigers
+Gefängnisverteidiger	d	dem Gefängnisverteidiger
+Gefängnisverteidiger	a	den Gefängnisverteidiger
+Neutraler Gnoll	t	der neutrale Gnoll
+Neutraler Gnoll	g	des neutralen Gnolls
+Neutraler Gnoll	d	dem neutralen Gnoll
+Neutraler Gnoll	a	den neutralen Gnoll
+Gnoll	t	der Gnoll
+Gnoll	g	des Gnolls
+Gnoll	d	dem Gnoll
+Gnoll	a	den Gnoll
+Gnollrudel	t	das Gnollrudel
+Gnollrudel	g	des Gnollrudels
+Gnollrudel	d	dem Gnollrudel
+Gnollrudel	a	das Gnollrudel
+Bergriese	t	der Bergriese
+Bergriese	g	des Bergriesen
+Bergriese	d	dem Bergriesen
+Bergriese	a	den Bergriesen
+Häscher	t	der Häscher
+Häscher	g	des Häschers
+Häscher	d	dem Häscher
+Häscher	a	den Häscher
+Allianzgefängnis	t	das Allianzgefängnis
+Allianzgefängnis	g	des Allianzgefängnisses
+Allianzgefängnis	d	dem Allianzgefängnis
+Allianzgefängnis	a	das Allianzgefängnis
+Hordegefängnis	t	das Hordegefängnis
+Hordegefängnis	g	des Hordegefängnisses
+Hordegefängnis	d	dem Hordegefängnis
+Hordegefängnis	a	das Hordegefängnis

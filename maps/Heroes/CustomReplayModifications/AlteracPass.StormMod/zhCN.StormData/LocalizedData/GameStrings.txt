@@ -1,0 +1,87 @@
+﻿﻿Alterac/AllianceCavalry/MinimapTooltip=联盟骑兵
+Alterac/CaptureCage/Alliance/Tooltip=联盟囚营
+Alterac/CaptureCage/Horde/Tooltip=部落囚营
+Alterac/Cavalry/TIP/Info=提高附近盟友的伤害和移动速度
+Alterac/General/TIP/Info=每存在一个友方要塞获得护甲加成
+Alterac/HordeCavalry/MinimapTooltip=部落骑兵
+Alterac/MapMechanic/MinimapPreview=下一处囚营位置
+Alterac/Warmaster/TIP/Info=无敌；摧毁他们各自兵线上的要塞即可将他们解除<n/>守卫他们的将军并为其提供增益
+Button/Name/AlteracBossCharge=冲锋
+Button/Name/AlteracBossWhirlwind=旋风斩
+Button/SimpleDisplayText/AlteracBossCharge=向一名敌人冲锋，并对其造成伤害
+Button/SimpleDisplayText/AlteracBossWhirlwind=对附近敌人造成伤害
+DocInfo/Name=奥特兰克战道 (Mod)
+Param/Expression/lib_MMAP_0B9554B7=正在攻击最近的敌人：~A~。
+Param/Expression/lib_MMAP_0B9B9A27=~A~秒
+Param/Expression/lib_MMAP_1625AB31=~A~~B~
+Param/Expression/lib_MMAP_178C4779=正束缚至~A~, ~B~。
+Param/Expression/lib_MMAP_46214EA8=正在观察~A~ ~B~。
+Param/Expression/lib_MMAP_52604118=~A~ ~B~
+Param/Expression/lib_MMAP_5680DAF8=<s val="AlteracValley_Flag_Contested">争夺中！</s>
+Param/Expression/lib_MMAP_6184A784=~A~ ~B~
+Param/Expression/lib_MMAP_62543C3F=~A~~B~
+Param/Expression/lib_MMAP_68F75484=~A~ ~B~
+Param/Expression/lib_MMAP_6B435B15=正在巡逻至~A~, ~B~。
+Param/Expression/lib_MMAP_6B811A80=allied flags targetable =  ~A~<n/>flag targetability bugs will most likely be false positives
+Param/Expression/lib_MMAP_7875ECC8=~A~~B~
+Param/Expression/lib_MMAP_7D5D3EFA=Standing still for ~A~ secs.
+Param/Expression/lib_MMAP_8AEAE885=<s val="AlteracValley_Flag_Contested">争夺中！</s>
+Param/Expression/lib_MMAP_90CCDEED=~A~ ~B~
+Param/Expression/lib_MMAP_90D96786=~A~~B~
+Param/Expression/lib_MMAP_BA578963=~A~~B~<n/>~C~
+Param/Expression/lib_MMAP_E4E00F33=Defenders on = ~A~
+Param/Expression/lib_MMAP_F22F0F30=~A~秒
+Param/Expression/lib_MMAP_FE255E93=~A~~B~
+Param/Value/lib_MMAP_022215B2=囚犯即将刷新：
+Param/Value/lib_MMAP_2546397C=~C~~A~</c><lang rule="plural" val="~A~">想,想</lang>要保护~D~~B~</c>
+Param/Value/lib_MMAP_313D78D3=所有敌方骑兵已被消灭
+Param/Value/lib_MMAP_40A4464B=敌人重新夺取了营地
+Param/Value/lib_MMAP_517A2ABE=盟友夺回了我方营地
+Param/Value/lib_MMAP_59CD13AA=~C~~A~</c><lang rule="plural" val="~A~">想,想</lang>要保护~D~~B~</c>
+Param/Value/lib_MMAP_5C623B18=囚营防御者
+Param/Value/lib_MMAP_685412A2=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7783E20B=~C~~A~</c><lang rule="plural" val="~A~">想,想</lang>要保护~D~~B~</c>
+Param/Value/lib_MMAP_792FC7E7=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7FC233D0=~C~~A~</c><lang rule="plural" val="~A~">想,想</lang>要攻击~D~~B~</c>
+Param/Value/lib_MMAP_88D81357=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8A297E2E=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8BF6B30B="!help" display this message again<n/>"eventstart" skips to event warning<n/>"eventstartfast" immediately starts the events<n/>"togcampdefenders" toggles camp defenders on/off<n/>"targetable" make allied flags targetable<n/>"sendwaveleft" spawn left team cavalry reward<n/>"sendwaveright" spawn right team cavalry reward
+Param/Value/lib_MMAP_92C3B477=防守！
+Param/Value/lib_MMAP_9A842AA8=敌人正在占领我方营地
+Param/Value/lib_MMAP_9B9D6F6C=囚营
+Param/Value/lib_MMAP_9E9B64E8=所有友方骑兵已被消灭
+Param/Value/lib_MMAP_A8BA7A28=重新夺取旗帜。
+Param/Value/lib_MMAP_ACC431E2=<k val="SmartCommand"/>进行夺取
+Param/Value/lib_MMAP_B563C334=囚犯即将刷新：
+Param/Value/lib_MMAP_C1050C0B=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_C514A158=防守！
+Param/Value/lib_MMAP_CD91F8E7=<k val="SmartCommand"/>进行夺取
+Param/Value/lib_MMAP_DFE72DC0=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_EDABA208=<k val="SmartCommand"/>停止占领
+Param/Value/lib_MMAP_F02BC796=标准游戏
+Param/Value/lib_MMAP_F2C25EDF=盟友正在占领敌方营地
+Param/Value/lib_MMAP_FECF5B8B=防守：
+UI/MapLoadingScreen/AlteracValley/Description1=占领敌人的囚营来召唤你们的骑兵。营地可以被英雄和小兵重新夺取，所以要注意防守！
+UI/MapLoadingScreen/AlteracValley/Description2=骑兵队被召唤后将向每一条兵线发起冲锋，并给予附近友方英雄伤害和速度加成。
+UI/MapLoadingScreen/AlteracValley/Description3=双方队伍的核心已经被替换成了彼此为敌的将军。摧毁要塞会削弱敌方将军的护甲。
+UI/MapLoadingScreen/AlteracValley/Title1=囚营
+UI/MapLoadingScreen/AlteracValley/Title2=骑兵
+UI/MapLoadingScreen/AlteracValley/Title3=将军
+Unit/Name/AVCaptureFlagPreviewDummyAlliance=联盟囚营
+Unit/Name/AVCaptureFlagPreviewDummyHorde=部落囚营
+Unit/Name/AVCapturePointDefender=牢笼防御者
+Unit/Name/AllianceCavalry=联盟骑兵
+Unit/Name/AlteracCoreBossParent=AlteracCoreBossParent
+Unit/Name/CaptureCage=占领牢笼
+Unit/Name/CapturedSoldier=被俘的士兵
+Unit/Name/DrekThar=德雷克塔尔
+Unit/Name/HordeCavalry=部落骑兵
+Unit/Name/ReaverMinion=抢劫者小兵
+Unit/Name/Storm_Building_WCAV_Alliance_CaptureCage=Storm_Building_WCAV_Alliance_CaptureCage
+Unit/Name/VanndarStormpike=范达尔·雷矛
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">忠勇卫士</lang>
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Description=打断~AwardValue~%的牢笼解锁
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Tooltip Text=打断~TooltipAmount~次牢笼解锁
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">忠勇卫士</lang>
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Description=打断队伍中~AwardValue~%的牢笼解锁
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Tooltip Text=打断~TooltipAmount~次牢笼解锁

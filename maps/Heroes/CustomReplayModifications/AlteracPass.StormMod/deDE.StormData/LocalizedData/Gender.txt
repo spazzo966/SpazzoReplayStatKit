@@ -1,0 +1,17 @@
+﻿m	Käfigverteidiger
+m	Gefangener Soldat
+n	Gefängnis
+f	Kavallerie der Allianz
+f	Kavallerie der Horde
+m	Vanndar Sturmlanze
+m	Vanndar
+m	Drek'Thar
+m	Drek'thar
+m	Gefängnisverteidiger
+m	Neutraler Gnoll
+m	Gnoll
+n	Gnollrudel
+m	Bergriese
+m	Häscher
+n	Allianzgefängnis
+n	Hordegefängnis

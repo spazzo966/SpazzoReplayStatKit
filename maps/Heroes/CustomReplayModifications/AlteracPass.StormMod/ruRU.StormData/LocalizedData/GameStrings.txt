@@ -1,0 +1,87 @@
+﻿﻿Alterac/AllianceCavalry/MinimapTooltip=Кавалерия Альянса
+Alterac/CaptureCage/Alliance/Tooltip=Тюрьма Альянса
+Alterac/CaptureCage/Horde/Tooltip=Тюрьма Орды
+Alterac/Cavalry/TIP/Info=Повышает урон и скорость передвижения находящихся поблизости союзников.
+Alterac/General/TIP/Info=Получает прибавку к броне за каждую союзную крепость.
+Alterac/HordeCavalry/MinimapTooltip=Кавалерия Орды
+Alterac/MapMechanic/MinimapPreview=Следующий лагерь
+Alterac/Warmaster/TIP/Info=Неуязвим. Уничтожьте крепость на соответствующей линии, чтобы убить его.<n/>Охраняет и усиливает своего генерала.
+Button/Name/AlteracBossCharge=Рывок
+Button/Name/AlteracBossWhirlwind=Вихрь
+Button/SimpleDisplayText/AlteracBossCharge=Совершает рывок к противнику и наносит ему урон.
+Button/SimpleDisplayText/AlteracBossWhirlwind=Наносит урон противникам поблизости.
+DocInfo/Name=Альтеракский перевал (модификация)
+Param/Expression/lib_MMAP_0B9554B7=Атака ближайшего противника: ~A~.
+Param/Expression/lib_MMAP_0B9B9A27=~A~ сек.
+Param/Expression/lib_MMAP_1625AB31=~A~~B~
+Param/Expression/lib_MMAP_178C4779=Привязка к ~A~, ~B~.
+Param/Expression/lib_MMAP_46214EA8=Наблюдение: ~A~ ~B~.
+Param/Expression/lib_MMAP_52604118=~A~ ~B~
+Param/Expression/lib_MMAP_5680DAF8=<s val="AlteracValley_Flag_Contested">ОСПАРИВАЕТСЯ!</s>
+Param/Expression/lib_MMAP_6184A784=~A~ ~B~
+Param/Expression/lib_MMAP_62543C3F=~A~~B~
+Param/Expression/lib_MMAP_68F75484=~A~ ~B~
+Param/Expression/lib_MMAP_6B435B15=Патрулирование ~A~, ~B~.
+Param/Expression/lib_MMAP_6B811A80=allied flags targetable =  ~A~<n/>flag targetability bugs will most likely be false positives
+Param/Expression/lib_MMAP_7875ECC8=~A~~B~
+Param/Expression/lib_MMAP_7D5D3EFA=Простой в течение ~A~ сек.
+Param/Expression/lib_MMAP_8AEAE885=<s val="AlteracValley_Flag_Contested">ОСПАРИВАЕТСЯ!</s>
+Param/Expression/lib_MMAP_90CCDEED=~A~ ~B~
+Param/Expression/lib_MMAP_90D96786=~A~~B~
+Param/Expression/lib_MMAP_BA578963=~A~~B~<n/>~C~
+Param/Expression/lib_MMAP_E4E00F33=Защитники = ~A~
+Param/Expression/lib_MMAP_F22F0F30=~A~ сек.
+Param/Expression/lib_MMAP_FE255E93=~A~~B~
+Param/Value/lib_MMAP_022215B2=Пленники появятся через
+Param/Value/lib_MMAP_2546397C=~C~<up/>~A~</c> <lang rule="plural" val="~A~"><lang rule="gender" word="~A~">хочет,хочет,хочет</lang>,хотят</lang> захватить ~D~<lang rule="declension" case="a">~B~</lang></c>.
+Param/Value/lib_MMAP_313D78D3=Вражеская кавалерия уничтожена
+Param/Value/lib_MMAP_40A4464B=Враги отбили свой лагерь
+Param/Value/lib_MMAP_517A2ABE=Союзники отбили свой лагерь
+Param/Value/lib_MMAP_59CD13AA=~C~<up/>~A~</c> <lang rule="plural" val="~A~"><lang rule="gender" word="~A~">хочет,хочет,хочет</lang>,хотят</lang> защитить ~D~<lang rule="declension" case="a">~B~</lang></c>.
+Param/Value/lib_MMAP_5C623B18=Защитник тюрьмы
+Param/Value/lib_MMAP_685412A2=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7783E20B=~C~<up/>~A~</c> <lang rule="plural" val="~A~"><lang rule="gender" word="~A~">хочет,хочет,хочет</lang>,хотят</lang> защитить ~D~<lang rule="declension" case="a">~B~</lang></c>.
+Param/Value/lib_MMAP_792FC7E7=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7FC233D0=~C~<up/>~A~</c> <lang rule="plural" val="~A~"><lang rule="gender" word="~A~">хочет,хочет,хочет</lang>,хотят</lang> атаковать ~D~<lang rule="declension" case="a">~B~</lang></c>.
+Param/Value/lib_MMAP_88D81357=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8A297E2E=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8BF6B30B="!help" display this message again<n/>"eventstart" skips to event warning<n/>"eventstartfast" immediately starts the events<n/>"togcampdefenders" toggles camp defenders on/off<n/>"targetable" make allied flags targetable<n/>"sendwaveleft" spawn left team cavalry reward<n/>"sendwaveright" spawn right team cavalry reward
+Param/Value/lib_MMAP_92C3B477=Защищайте!
+Param/Value/lib_MMAP_9A842AA8=Враги захватывают лагерь союзников
+Param/Value/lib_MMAP_9B9D6F6C=Тюрьма
+Param/Value/lib_MMAP_9E9B64E8=Союзная кавалерия уничтожена
+Param/Value/lib_MMAP_A8BA7A28=Возвращение флага.
+Param/Value/lib_MMAP_ACC431E2=Щелкните <k val="SmartCommand"/>, чтобы захватить.
+Param/Value/lib_MMAP_B563C334=Пленники появятся через
+Param/Value/lib_MMAP_C1050C0B=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_C514A158=Защищайте!
+Param/Value/lib_MMAP_CD91F8E7=Щелкните <k val="SmartCommand"/>, чтобы захватить.
+Param/Value/lib_MMAP_DFE72DC0=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_EDABA208=Щелкните <k val="SmartCommand"/>, чтобы прервать захват.
+Param/Value/lib_MMAP_F02BC796=Стандартная
+Param/Value/lib_MMAP_F2C25EDF=Союзники захватывают вражеский лагерь
+Param/Value/lib_MMAP_FECF5B8B=Продержитесь еще
+UI/MapLoadingScreen/AlteracValley/Description1=Захватывайте вражеские тюрьмы, чтобы призывать кавалерию. Герои и воины могут отбивать тюрьмы, так что позаботьтесь об их защите!
+UI/MapLoadingScreen/AlteracValley/Description2=Кавалерия повышает урон и скорость передвижения находящихся рядом союзных героев. Сразу после призыва она атакует все линии.
+UI/MapLoadingScreen/AlteracValley/Description3=Цитадели заменены генералами, которые отбиваются от врагов. Уничтожайте крепости, чтобы ослабить броню генерала противника.
+UI/MapLoadingScreen/AlteracValley/Title1=Тюрьмы
+UI/MapLoadingScreen/AlteracValley/Title2=Кавалерия
+UI/MapLoadingScreen/AlteracValley/Title3=Генералы
+Unit/Name/AVCaptureFlagPreviewDummyAlliance=Тюрьма Альянса
+Unit/Name/AVCaptureFlagPreviewDummyHorde=Тюрьма Орды
+Unit/Name/AVCapturePointDefender=Защитник клетки
+Unit/Name/AllianceCavalry=Кавалерия Альянса
+Unit/Name/AlteracCoreBossParent=AlteracCoreBossParent
+Unit/Name/CaptureCage=CaptureCage
+Unit/Name/CapturedSoldier=Пленный солдат
+Unit/Name/DrekThar=Дрек'Тар
+Unit/Name/HordeCavalry=Кавалерия Орды
+Unit/Name/ReaverMinion=Разоритель
+Unit/Name/Storm_Building_WCAV_Alliance_CaptureCage=Storm_Building_WCAV_Alliance_CaptureCage
+Unit/Name/VanndarStormpike=Вандар Грозовая Вершина
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">Верный защитник,Верная защитница</lang>
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Description=Предотвращено ~AwardValue~% захватов клеток
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Tooltip Text=Предотвращено захватов клеток: ~TooltipAmount~
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">Верный защитник,Верная защитница</lang>
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Description=Предотвращено ~AwardValue~% захватов клеток
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Tooltip Text=Предотвращено захватов клеток: ~TooltipAmount~

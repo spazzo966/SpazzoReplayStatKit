@@ -1,0 +1,64 @@
+﻿Caballería de la Alianza	t	la caballería de la Alianza
+Caballería de la Alianza	g	de la caballería de la Alianza
+Caballería de la Alianza	a	a la caballería de la Alianza
+Caballería de la Alianza	d	a la caballería de la Alianza
+Defensor de jaula	t	el defensor de jaula
+Defensor de jaula	g	del defensor de jaula
+Defensor de jaula	a	al defensor de jaula
+Defensor de jaula	d	al defensor de jaula
+Soldado capturado	t	el soldado capturado
+Soldado capturado	g	del soldado capturado
+Soldado capturado	a	al soldado capturado
+Soldado capturado	d	al soldado capturado
+Drek'Thar	t	Drek'Thar
+Drek'Thar	g	de Drek'Thar
+Drek'Thar	a	a Drek'Thar
+Drek'Thar	d	a Drek'Thar
+Caballería de la Horda	t	la caballería de la Horda
+Caballería de la Horda	g	de la caballería de la Horda
+Caballería de la Horda	a	a la caballería de la Horda
+Caballería de la Horda	d	a la caballería de la Horda
+Vanndar Pico Tormenta	t	Vanndar Pico Tormenta
+Vanndar Pico Tormenta	g	de Vanndar Pico Tormenta
+Vanndar Pico Tormenta	a	a Vanndar Pico Tormenta
+Vanndar Pico Tormenta	d	a Vanndar Pico Tormenta
+Yrel	t	Yrel
+Yrel	g	de Yrel
+Yrel	a	a Yrel
+Yrel	d	a Yrel
+Campamento de prisioneros	t	el campamento de prisioneros
+Campamento de prisioneros	g	del campamento de prisioneros
+Campamento de prisioneros	a	el campamento de prisioneros
+Campamento de prisioneros	d	al campamento de prisioneros
+Defensor de campamento de prisioneros	t	el defensor de campamento de prisioneros
+Defensor de campamento de prisioneros	g	del defensor de campamento de prisioneros
+Defensor de campamento de prisioneros	a	al defensor de campamento de prisioneros
+Defensor de campamento de prisioneros	d	al defensor de campamento de prisioneros
+Banda de gnolls	t	la banda de gnolls
+Banda de gnolls	g	de la banda de gnolls
+Banda de gnolls	a	a la banda de gnolls
+Banda de gnolls	d	a la banda de gnolls
+Gnoll	t	el gnoll
+Gnoll	g	del gnoll
+Gnoll	a	al gnoll
+Gnoll	d	al gnoll
+Gnoll enemigo	t	el gnoll enemigo
+Gnoll enemigo	g	del gnoll enemigo
+Gnoll enemigo	a	al gnoll enemigo
+Gnoll enemigo	d	al gnoll enemigo
+Gigante montés	t	el gigante montés
+Gigante montés	g	del gigante montés
+Gigante montés	a	al gigante montés
+Gigante montés	d	al gigante montés
+Esbirro atracador	t	el esbirro atracador
+Esbirro atracador	g	del esbirro atracador
+Esbirro atracador	a	al esbirro atracador
+Esbirro atracador	d	al esbirro atracador
+Campamento de prisioneros de la Alianza	t	el campamento de prisioneros de la Alianza
+Campamento de prisioneros de la Alianza	g	del campamento de prisioneros de la Alianza
+Campamento de prisioneros de la Alianza	a	el campamento de prisioneros de la Alianza
+Campamento de prisioneros de la Alianza	d	al campamento de prisioneros de la Alianza
+Campamento de prisioneros de la Horda	t	el campamento de prisioneros de la Horda
+Campamento de prisioneros de la Horda	g	del campamento de prisioneros de la Horda
+Campamento de prisioneros de la Horda	a	el campamento de prisioneros de la Horda
+Campamento de prisioneros de la Horda	d	al campamento de prisioneros de la Horda

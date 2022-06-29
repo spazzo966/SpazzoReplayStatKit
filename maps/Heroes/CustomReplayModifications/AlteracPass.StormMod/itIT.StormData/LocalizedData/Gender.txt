@@ -1,0 +1,12 @@
+﻿f	Cavalleria dell'Alleanza
+m	Difensore della prigione
+m	Soldato prigioniero
+m	Drek'thar
+f	Cavalleria dell'Orda
+m	Vanndar Piccatonante
+m	Gnoll
+m	Branco di Gnoll
+m	Gnoll Neutrale
+m	Gigante di Montagna
+m	Servitore Saccheggiatore
+m	Difensore del campo di prigionia

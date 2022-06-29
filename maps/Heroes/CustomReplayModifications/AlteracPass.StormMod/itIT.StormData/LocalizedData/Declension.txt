@@ -1,0 +1,15 @@
+﻿Cavalleria dell'Alleanza	t	la Cavalleria dell'Alleanza
+Difensore della prigione	t	il Difensore della prigione
+Soldato prigioniero	t	il Soldato prigioniero
+Drek'thar	t	Drek'thar
+Cavalleria dell'Orda	t	la Cavalleria dell'Orda
+Vanndar Piccatonante	t	Vanndar Piccatonante
+Campo di prigionia	t	il Campo di prigionia
+Gnoll	t	lo Gnoll
+Branco di Gnoll	t	il Branco di Gnoll
+Gnoll Neutrale	t	lo Gnoll Neutrale
+Gigante di Montagna	t	il Gigante di Montagna
+Servitore Saccheggiatore	t	il Servitore Saccheggiatore
+Campo di prigionia dell'Alleanza	t	il Campo di prigionia dell'Alleanza
+Campo di prigionia dell'Orda	t	il Campo di prigionia dell'Orda
+Difensore del campo di prigionia	t	il Difensore del campo di prigionia

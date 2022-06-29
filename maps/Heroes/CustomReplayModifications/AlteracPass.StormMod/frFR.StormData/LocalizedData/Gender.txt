@@ -1,0 +1,15 @@
+﻿f	Cavalerie de l’Alliance
+m	Défenseur de camp d’emprisonnement
+m	Soldat capturé
+m	Drek’Thar
+f	Cavalerie de la Horde
+m	Vanndar Foudrepique
+m	Camp d’emprisonnement
+m	Camp de siège
+m	Gnoll
+m	Gnoll neutre
+f	Meute de gnolls
+m	Géant des montagnes
+m	Saccageur
+m	Camp d’emprisonnement de l’Alliance
+m	Camp d’emprisonnement de la Horde

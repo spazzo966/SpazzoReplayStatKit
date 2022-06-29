@@ -1,0 +1,17 @@
+﻿Kawalerzysta Przymierza	1
+Strażnik klatki	1
+Jeniec wojenny	1
+Drek'Tar	1
+Jeździec Hordy	1
+Vandar Gromdarda	1
+Więzienie	1
+Gnol	1
+Strażnik więzienia	1
+Wataha gnoli	1
+Neutralny gnol	1
+Górski olbrzym	1
+Rozpruwacz	1
+Demoniczny Żołdak	1
+Marine Alfa	1
+Więzienie Hordy	1
+Więzienie Przymierza	1

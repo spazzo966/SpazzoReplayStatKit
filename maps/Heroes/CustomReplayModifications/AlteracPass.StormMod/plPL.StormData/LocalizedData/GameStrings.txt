@@ -1,0 +1,87 @@
+﻿﻿Alterac/AllianceCavalry/MinimapTooltip=Kawalerzysta Przymierza
+Alterac/CaptureCage/Alliance/Tooltip=Więzienie Przymierza
+Alterac/CaptureCage/Horde/Tooltip=Więzienie Hordy
+Alterac/Cavalry/TIP/Info=Pobliscy sojusznicy zadają zwiększone obrażenia, a ich szybkość ruchu wzrasta
+Alterac/General/TIP/Info=Zyskuje premię do pancerza za każdą ocalałą twierdzę
+Alterac/HordeCavalry/MinimapTooltip=Jeździec Hordy
+Alterac/MapMechanic/MinimapPreview=Położenie kolejnego więzienia
+Alterac/Warmaster/TIP/Info=Niewrażliwość. Aby usunąć oficera, zniszcz powiązaną z nim twierdzę na odpowiedniej alei.<n/>Chroni sojuszniczego generała i zapewnia mu wzmocnienia.
+Button/Name/AlteracBossCharge=Szarża
+Button/Name/AlteracBossWhirlwind=Tornado
+Button/SimpleDisplayText/AlteracBossCharge=Szarżuje na wroga i zadaje mu obrażenia
+Button/SimpleDisplayText/AlteracBossWhirlwind=Zadaje obrażenia pobliskim wrogom
+DocInfo/Name=Przełęcz Alterak (Modyfikacja)
+Param/Expression/lib_MMAP_0B9554B7=Wykonanie ataku wymierzonego w najbliższego przeciwnika: ~A~.
+Param/Expression/lib_MMAP_0B9B9A27=~A~ sek.
+Param/Expression/lib_MMAP_1625AB31=~A~~B~
+Param/Expression/lib_MMAP_178C4779=Powrót do ~A~, ~B~.
+Param/Expression/lib_MMAP_46214EA8=Obserwacja ~A~ ~B~.
+Param/Expression/lib_MMAP_52604118=~A~ ~B~
+Param/Expression/lib_MMAP_5680DAF8=<s val="AlteracValley_Flag_Contested">WALKA!</s>
+Param/Expression/lib_MMAP_6184A784=~A~ ~B~
+Param/Expression/lib_MMAP_62543C3F=~A~~B~
+Param/Expression/lib_MMAP_68F75484=~A~ ~B~
+Param/Expression/lib_MMAP_6B435B15=Patrolowanie do ~A~, ~B~.
+Param/Expression/lib_MMAP_6B811A80=wybieranie sojuszniczych flag =  ~A~<n/>błędy związane z wybieraniem flag to najprawdopodobniej fałszywy alarm
+Param/Expression/lib_MMAP_7875ECC8=~A~~B~
+Param/Expression/lib_MMAP_7D5D3EFA=Pozostawanie w bezruchu przez ~A~ sek.
+Param/Expression/lib_MMAP_8AEAE885=<s val="AlteracValley_Flag_Contested">WALKA!</s>
+Param/Expression/lib_MMAP_90CCDEED=~A~ ~B~
+Param/Expression/lib_MMAP_90D96786=~A~~B~
+Param/Expression/lib_MMAP_BA578963=~A~~B~<n/>~C~
+Param/Expression/lib_MMAP_E4E00F33=Obrońcy na = ~A~
+Param/Expression/lib_MMAP_F22F0F30=~A~ sek.
+Param/Expression/lib_MMAP_FE255E93=~A~~B~
+Param/Value/lib_MMAP_022215B2=Rozmieszczanie więźniów:
+Param/Value/lib_MMAP_2546397C=~C~~A~</c> <lang rule="plural" val="~A~">chce,chcą</lang> przejąć ~D~<lang rule="declension" case="a">~B~</lang></c>
+Param/Value/lib_MMAP_313D78D3=Kawalerzyści wroga zgładzeni
+Param/Value/lib_MMAP_40A4464B=Wrogowie odbili więzienie
+Param/Value/lib_MMAP_517A2ABE=Sojusznicy odbili więzienie
+Param/Value/lib_MMAP_59CD13AA=~C~~A~</c> <lang rule="plural" val="~A~">chce,chcą</lang> bronić ~D~<lang rule="declension" case="g">~B~</lang></c>
+Param/Value/lib_MMAP_5C623B18=Strażnik więzienia
+Param/Value/lib_MMAP_685412A2=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7783E20B=~C~~A~</c> <lang rule="plural" val="~A~">chce,chcą</lang> bronić ~D~<lang rule="declension" case="g">~B~</lang></c>
+Param/Value/lib_MMAP_792FC7E7=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_7FC233D0=~C~~A~</c> <lang rule="plural" val="~A~">chce,chcą</lang> zaatakować ~D~<lang rule="declension" case="a">~B~</lang></c>
+Param/Value/lib_MMAP_88D81357=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8A297E2E=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_8BF6B30B=Wpisz „!help”, aby ponownie wyświetlić tę wiadomość.<n/>Wpisz „eventstart”, aby przejść do ostrzeżenia o rozpoczęciu wydarzenia.<n/>Wpisz „eventstartfast”, aby natychmiast rozpocząć wydarzenia.<n/>Wpisz „togcampdefenders”, aby włączyć lub wyłączyć obrońców więzień.<n/>Wpisz „targetable”, aby można było wybierać sojusznicze flagi.<n/>Wpisz „sendwaveleft”, aby otrzymać nagrodę w postaci kawalerii dla drużyny po lewej.<n/>Wpisz „sendwaveright”, aby otrzymać nagrodę w postaci kawalerii dla drużyny po prawej.
+Param/Value/lib_MMAP_92C3B477=Brońcie!
+Param/Value/lib_MMAP_9A842AA8=Wróg zajmuje sojusznicze więzienie
+Param/Value/lib_MMAP_9B9D6F6C=Więzienie
+Param/Value/lib_MMAP_9E9B64E8=Sojuszniczy kawalerzyści zgładzeni
+Param/Value/lib_MMAP_A8BA7A28=Odebranie flagi.
+Param/Value/lib_MMAP_ACC431E2=<k val="SmartCommand"/>, aby zająć
+Param/Value/lib_MMAP_B563C334=Rozmieszczanie więźniów:
+Param/Value/lib_MMAP_C1050C0B=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_C514A158=Brońcie!
+Param/Value/lib_MMAP_CD91F8E7=<k val="SmartCommand"/>, aby zająć
+Param/Value/lib_MMAP_DFE72DC0=<s val="MechanicHelperStyle">
+Param/Value/lib_MMAP_EDABA208=<k val="SmartCommand"/>, aby uniemożliwić zajęcie
+Param/Value/lib_MMAP_F02BC796=Standardowy
+Param/Value/lib_MMAP_F2C25EDF=Sojusznicy zajmują więzienie wroga
+Param/Value/lib_MMAP_FECF5B8B=Brońcie przez:
+UI/MapLoadingScreen/AlteracValley/Description1=Zajmuj wrogie więzienia, aby wezwać sojuszniczą kawalerię. Bohaterowie i stronnicy mogą odbijać więzienia, zatem dobrze ich strzeż!
+UI/MapLoadingScreen/AlteracValley/Description2=Wezwani kawalerzyści szarżują wzdłuż wszystkich alei i zapewniają pobliskim bohaterom sojuszniczym premię do zadawanych obrażeń oraz szybkości ruchu.
+UI/MapLoadingScreen/AlteracValley/Description3=Bazy zostały zastąpione generałami walczącymi z nacierającymi wrogami. Niszczenie twierdz zmniejsza pancerz generała.
+UI/MapLoadingScreen/AlteracValley/Title1=Zajmuj więzienia
+UI/MapLoadingScreen/AlteracValley/Title2=Wzywaj kawalerię
+UI/MapLoadingScreen/AlteracValley/Title3=Pokonaj generała
+Unit/Name/AVCaptureFlagPreviewDummyAlliance=Więzienie Przymierza
+Unit/Name/AVCaptureFlagPreviewDummyHorde=Więzienie Hordy
+Unit/Name/AVCapturePointDefender=Strażnik klatki
+Unit/Name/AllianceCavalry=Kawalerzysta Przymierza
+Unit/Name/AlteracCoreBossParent=AlteracCoreBossParent
+Unit/Name/CaptureCage=CaptureCage
+Unit/Name/CapturedSoldier=Jeniec wojenny
+Unit/Name/DrekThar=Drek'Tar
+Unit/Name/HordeCavalry=Jeździec Hordy
+Unit/Name/ReaverMinion=Rozpruwacz
+Unit/Name/Storm_Building_WCAV_Alliance_CaptureCage=Storm_Building_WCAV_Alliance_CaptureCage
+Unit/Name/VanndarStormpike=Vandar Gromdarda
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">Lojalny Obrońca,Lojalna Obrończyni</lang>
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Description=Przerwano ~AwardValue~% prób otwarcia klatek
+UserData/EndOfMatchMapSpecificAward/Generic Instance_Tooltip Text=Przerwane próby otwarcia klatek: ~TooltipAmount~
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Award Name=<lang rule="gender" word="~HeroName~">Lojalny Obrońca,Lojalna Obrończyni</lang>
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Description=Przerwano ~AwardValue~% wszystkich prób otwarcia klatek przez drużynę sojuszniczą
+UserData/EndOfMatchMapSpecificAward/[Override]Generic Instance_Tooltip Text=Przerwane próby otwarcia klatek: ~TooltipAmount~

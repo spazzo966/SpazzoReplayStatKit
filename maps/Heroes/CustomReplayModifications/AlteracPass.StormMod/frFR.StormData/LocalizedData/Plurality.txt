@@ -1,0 +1,15 @@
+﻿Cavalerie de l’Alliance	1
+Défenseur de camp d’emprisonnement	1
+Soldat capturé	1
+Drek’Thar	1
+Soldat capturé	1
+Cavalerie de la Horde	1
+Camp d’emprisonnement	1
+Camp de siège	1
+Gnoll	1
+Gnoll neutre	1
+Meute de gnolls	1
+Géant des montagnes	1
+Saccageur	1
+Camp d’emprisonnement de l’Alliance	1
+Camp d’emprisonnement de la Horde	1
