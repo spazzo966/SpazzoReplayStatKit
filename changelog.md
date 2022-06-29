@@ -1,4 +1,46 @@
-# v0.30(**2022-05-21**)
+# v0.31 (**2022-06-29**)
+
+* Statistics
+  * Muradin now tracks the bonus damage from Perfect Storm, split into Heroic targets and non-Heroic targets
+  * Lunara now tracks the bonus damage from Unfair Advantage
+  * Lunara now tracks the bonus damage from Intensifying Toxins, split into Heroic targets and non-Heroic targets
+  * Lunara now tracks the amount of time she has spent with each possible variation of Dryad's Swiftness while moving
+  * Tracer now tracks her number of Basic Attacks with Pulse Bomb Charged\not Charged, and after taking Pulse Rounds, against Heroes while Charged\not Charged
+  * Fixed an issue that caused Falstad's Tailwind related scores to not be updated correctly
+  * Fixed an issue that caused Tracer's Reload count to be inflated for the value of succesful Locked and Loaded activations
+  * Fixed an issue that caused Rehgar's amount healed by Leech to not count the amount healed from externally provided leech when Rehgar did not take Electric Charge
+  * Fixed an issue where Tracer's Level Four talents would not be put into the correct score entry
+
+* UI
+  * Now compatible with Ahli's Observer UI Settings Editor
+  * Hero Attachments
+    * All remaining Heroes have had their attachments updated to use the new standard of implementation, supporting displaying Heroic abilities & compatible talents
+    * The carried map mechanic element will now reposition itself if the attachment is set to be hidden when on cooldown or inactive while the attachment is on cooldown or inactive
+      * Presently this does not occur for Cho'Gall
+    * Arthas's now features the option for Icebound Fortitude
+    * Alarak's Storm Talent Tier now supports displaying Counter-Strike
+    * Sonya's Striding Giant attachment is now for both Striding Giant and Ignore Pain, and has been renamed to Storm Ability
+    * Leoric's Undying form now features an attachment setting
+    * The Lost Vikings now features an attachment setting for each Viking, instead of just for Olaf
+    * Medivh's Arcane Brilliance attachment is now for both Arcane Brilliance and Dust of Disappearance, and has been renamed to Storm Ability
+    * Fenix now features the option to display his weapon mode
+    * Johanna's Shield Glare now shows charges if Zealous Glare has been selected at level 1
+    * Alexstrasza's Dragonqueen now features the option to display Dragonqueen duration
+    * Mephisto no longer features the option of displaying Lightning Nova damage stacks
+    * Deathwing's attachment now more properly obeys visibility rules
+    * Deathwing's attachment now more correctly positions itself in regards to the carried map mechanic element
+    * The disabled entry for each hero will now also display the hero icon in the pulldown box
+  * Bottom Panel
+    * The default option for displaying Ability cooldowns has been changed to disabled
+  * Fixed an issue that caused Abathur's Evolve Monstrosity Stack Count display to not have a correct default setting
+  * Fixed an issue that caused Tracer's Hero Attachment to not have a correct default setting
+  * Fixed an issue that caused Arthas's Hero Attachment setting to not be exported properly
+  * Fixed an issue that caused Azmodan's Hero Attachment setting to not be exported properly
+  * Fixed an issue that caused Chen's Hero Attachment setting to not be exported properly
+  * Fixed an issue that caused Sonya's Hero Attachment setting to not be exported properly
+  * Fixed an issue that caused Tassadar's Hero Attachment to not display correctly with Executor's Will
+
+## v0.30(**2022-05-21**)
 
 * Statistics
   * Rehgar now tracks the bonus damage from Rising Storm, split into Heroic targets and non-Heroic targets

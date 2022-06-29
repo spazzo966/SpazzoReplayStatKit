@@ -88,8 +88,6 @@ Export Settings - by pressing the Export Settings button, the current settings f
 
   * Step 1: Extract the maps.zip file to your Heroes of the Storm installation folder(meaning the one located in your Program Files folder), making note that the folder structure inside looks like this ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100839056638072/3.2_confirm_file_structure.png)
 
-  * Step 1.5(Required as of Version 0.30): Extract the CustomReplayModifications folder to 
-
   * Step 2: Drag the replay you desire to watch with the expanded replay statistics on top of the dragAll_details.bat file, contained in the conversion.zip file(after having extracted that to your desired location), as seen here ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100853354991646/3.3_drag_replay.png)
 
   * Step 3: This will create a copy of that replay with affix of _stats, and you can open that as a standard replay in the Heroes of the Storm game client for offline replay use, as seen here ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100870459371530/3.4_open__stats_replay.png)

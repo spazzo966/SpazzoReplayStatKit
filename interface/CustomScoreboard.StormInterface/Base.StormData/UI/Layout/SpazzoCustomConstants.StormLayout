@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Desc>
+  <Constant name="Tab2Score1" val="SoloKill" />
+  <Constant name="Tab2Score1Description" val="@Spazzo/ScoreTypeKills" />
+  <Constant name="Tab2Score2" val="Assists" />
+  <Constant name="Tab2Score2Description" val="@Spazzo/ScoreTypeAssists" />
+  <Constant name="Tab2Score3" val="Deaths" />
+  <Constant name="Tab2Score3Description" val="@Spazzo/ScoreTypeDeaths" />
+  <Constant name="Tab2Score4" val="ExperienceContribution" />
+  <Constant name="Tab2Score4Description" val="@Spazzo/ScoreTypeSoak" />
+  <Constant name="Tab3Score1" val="HeroDamage" />
+  <Constant name="Tab3Score1Description" val="@Spazzo/ScoreTypeHeroDMG" />
+  <Constant name="Tab3Score2" val="SiegeDamage" />
+  <Constant name="Tab3Score2Description" val="@Spazzo/ScoreTypeSiegeDMG" />
+  <Constant name="Tab3Score3" val="MinionDamage" />
+  <Constant name="Tab3Score3Description" val="@Spazzo/ScoreTypeMinionDMG" />
+  <Constant name="Tab3Score4" val="StructureDamage" />
+  <Constant name="Tab3Score4Description" val="@Spazzo/ScoreTypeStructureDMG" />
+  <Constant name="Tab4Score1" val="Healing" />
+  <Constant name="Tab4Score1Description" val="@Spazzo/ScoreTypeHealing" />
+  <Constant name="Tab4Score2" val="SelfHealing" />
+  <Constant name="Tab4Score2Description" val="@Spazzo/ScoreTypeSelfHealing" />
+  <Constant name="Tab4Score3" val="DamageTaken" />
+  <Constant name="Tab4Score3Description" val="@Spazzo/ScoreTypeDamageTaken" />
+  <Constant name="Tab4Score4" val="CreepDamage" />
+  <Constant name="Tab4Score4Description" val="@Spazzo/ScoreTypeCreepDamage" />
+  <Constant name="Tab6Score1" val="APM" />
+  <Constant name="Tab6Score1Description" val="@Spazzo/ScoreTypeAPM" />
+  <Constant name="Tab6Score2" val="APMAverage" />
+  <Constant name="Tab6Score2Description" val="@Spazzo/ScoreTypeAPMAVG" />
+  <Constant name="Tab6Score3" val="TimeSpentDead" />
+  <Constant name="Tab6Score3Description" val="@Spazzo/ScoreTypeTimeDead" />
+  <Constant name="Tab6Score4" val="TimeCCdEnemyHeroes" />
+  <Constant name="Tab6Score4Description" val="@Spazzo/ScoreTypeTimeCCDEnemies" />
+  <Constant name="TimeStampTabScore1" val="HeroDamage" />
+  <Constant name="TimeStampTabScore1Description" val="@Spazzo/ScoreTypeHeroDMG" />
+  <Constant name="TimeStampTabScore2" val="Healing" />
+  <Constant name="TimeStampTabScore2Description" val="@Spazzo/ScoreTypeHealing" />
+  <Constant name="TimeStampTabScore3" val="DamageTaken" />
+  <Constant name="TimeStampTabScore3Description" val="@Spazzo/ScoreTypeDamageTaken" />
+  <Constant name="TimeStampTabScore4" val="SelfHealing" />
+  <Constant name="TimeStampTabScore4Description" val="@Spazzo/ScoreTypeSelfHealing" />
   <Constant name="ButtonVerticalOffsetInside" val="-125" />
   <Constant name="ButtonVerticalOffsetOutside" val="-60" />
   <Constant name="ButtonVerticalOffsetOutsider" val="0" />

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+  <Constant name="CasterModeHotkey" val="Alt+T" />
+  <Constant name="HeroTalentsHotkey" val="Control+1" />
+  <Constant name="KillsAssistsDeathsXPHotkey" val="Control+2" />
+  <Constant name="HeroSiegeMinionBuildingDMGHotkey" val="Control+3" />
+  <Constant name="HealingSelfHealingDmgTakenDmgToCreepsHotkey" val="Control+4" />
+  <Constant name="XPBreakdownHotkey" val="Control+5" />
+  <Constant name="APMAvgAPMTimeDeadTimeCCdHeroesHotkey" val="Control+6" />
+  <Constant name="TimestampedStatsHotkey" val="Alt+1" />
+  <Constant name="ResetTimestampHotkey" val="Alt+2" />
+  <Constant name="PausePlayTimestampHotkey" val="Alt+3" />
+  <Constant name="DisabledTimestampsHotkey" val="Alt+4" />
+  <Constant name="ToggleSelectedUnitStatsHotkey" val="Control+7" />
+  <Constant name="ToggleBottomPanelQuestsActivesHotkey" val="Control+8" />
+  <Constant name="ToggleBottomPanelMirrorTalentsHotkey" val="Control+9" />
+  <Constant name="ToggleBottomPanelMirrorStatsHotkey" val="Control+0" />
+  <Constant name="ToggleTopBarUnitSelectionHotkey" val="Alt+E" />
+  <Constant name="ToggleTopBarBasicAbilitiesVehicleHealthHotkey" val="Alt+R" />
+  <Constant name="ToggleHeroHealthPlateHealthDownHotkey" val="Alt+Y" />
+  <Constant name="ToggleHeroHealthPlateHealthUpHotkey" val="Alt+U" />
+  <Constant name="ToggleStructureHealthPlateHotkey" val="Alt+K" />
+  <Constant name="ToggleHeroAttachmentsHotkey" val="Alt+I" />
+  <Constant name="ToggleTopBarTooltipsHotkey" val="Alt+O" />
+  <Constant name="ToggleTopBarBuffsHotkey" val="Alt+P" />
+  <Constant name="CycleThroughTopBarLayoutsHotkey" val="Control+L" />
+  <Constant name="DisplayLeftSideTeamHotkey" val="Shift+L" />
+  <Constant name="DisplayRightSideTeamHotkey" val="Shift+R" />
+  <Constant name="ToggleOptionsMenuHotkey" val="Alt+L" />
+  <Constant name="HelpMenuHotkey" val="Alt+H" />
+  <!-- @Hotkey (	constant = "CasterModeHotkey",
+    default = "Alt+T",
+    description = "Toggle Caster Mode"
+  ) -->
+  <!-- @Hotkey (	constant = "HeroTalentsHotkey",
+    default = "Control+1",
+    description = "Display Hero Talents"
+  ) -->
+  <!-- @Hotkey (	constant = "KillsAssistsDeathsXPHotkey",
+    default = "Control+2",
+    description = "Display Kills, Assists, Deaths, XP Contribution"
+  ) -->
+  <!-- @Hotkey (	constant = "HeroSiegeMinionBuildingDMGHotkey",
+    default = "Control+3",
+    description = "Display Hero Damage, Siege Damage, Minion Damage, Building Damage"
+  ) -->
+  <!-- @Hotkey (	constant = "HealingSelfHealingDmgTakenDmgToCreepsHotkey",
+    default = "Control+4",
+    description = "Display Healing, Self Healing, Damage Taken, Neutral Damage"
+  ) -->
+  <!-- @Hotkey (	constant = "XPBreakdownHotkey",
+    default = "Control+5",
+    description = "Display Experience Breakdown"
+  ) -->
+  <!-- @Hotkey (	constant = "APMAvgAPMTimeDeadTimeCCdHeroesHotkey",
+    default = "Control+6",
+    description = "Display APM, Average APM, Time Spent Dead, Time CC'd Enemy Heroes"
+  ) -->
+  <!-- @Hotkey (	constant = "TimestampedStatsHotkey",
+    default = "Alt+1",
+    description = "Display Timestamped Hero Damage, Healing, Damage Taken, Self Healing"
+  ) -->
+  <!-- @Hotkey (	constant = "ResetTimestampHotkey",
+    default = "Alt+2",
+    description = "Reset Timestamped Scores"
+  ) -->
+  <!-- @Hotkey (	constant = "PausePlayTimestampHotkey",
+    default = "Alt+3",
+    description = "Pause\Play Timpestamped Scores"
+  ) -->
+  <!-- @Hotkey (	constant = "DisabledTimestampsHotkey",
+    default = "Alt+4",
+    description = "Disable Timestamped Statistics"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleSelectedUnitStatsHotkey",
+    default = "Control+7",
+    description = "Toggle displaying unit statistics in the unit selection UI"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleBottomPanelQuestsActivesHotkey",
+    default = "Control+8",
+    description = "Toggle displaying Quests & Actives in the Hero Talents display"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleBottomPanelMirrorTalentsHotkey",
+    default = "Control+9",
+    description = "Toggle mirroring talents in the Hero Talents display"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleBottomPanelMirrorStatsHotkey",
+    default = "Control+0",
+    description = "Toggle mirroring Scores in the score displays"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleTopBarUnitSelectionHotkey",
+    default = "Alt+E",
+    description = "Toggle selecting unit with the mouse in the custom Top Bar"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleTopBarBasicAbilitiesVehicleHealthHotkey",
+    default = "Alt+R",
+    description = "Toggle displaying Basic Abilities and Passenger Health in the custom Top Bar"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleHeroHealthPlateHealthDownHotkey",
+    default = "Alt+Y",
+    description = "Reduce the health percentage that health displays as text in Heroic Healthplates"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleHeroHealthPlateHealthUpHotkey",
+    default = "Alt+U",
+    description = "Increase the health percentage that health displays as text in Heroic Healthplates"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleStructureHealthPlateHotkey",
+    default = "Alt+K",
+    description = "Toggle displaying health as text in Structure Healthplates"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleHeroAttachmentsHotkey",
+    default = "Alt+I",
+    description = "Toggle all Heroic Healthplate attachments(by default all are disabled, this only performs a function if those settings have been changed)"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleTopBarTooltipsHotkey",
+    default = "Alt+O",
+    description = "Toggle displaying tooltips in the custom Top Bar(unit selection must be disabled for this to function)"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleTopBarBuffsHotkey",
+    default = "Alt+P",
+    description = "Toggle displaying buff duration & stacks in the custom Top Bar"
+  ) -->
+  <!-- @Hotkey (	constant = "CycleThroughTopBarLayoutsHotkey",
+    default = "Control+L",
+    description = "Cycle through the custom Top Bar layouts"
+  ) -->
+  <!-- @Hotkey (	constant = "DisplayLeftSideTeamHotkey",
+    default = "Shift+L",
+    description = "Display the Hero & Player names of the left-side team"
+  ) -->
+  <!-- @Hotkey (	constant = "DisplayRightSideTeamHotkey",
+    default = "Shift+R",
+    description = "Toggle the Hero & Player names of the right-side team"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleOptionsMenuHotkey",
+    default = "Alt+L",
+    description = "Toggle the Options menu"
+  ) -->
+  <!-- @Hotkey (	constant = "HelpMenuHotkey",
+    default = "Alt+H",
+    description = "Toggle Shortcut List"
+  ) -->
+</Desc>

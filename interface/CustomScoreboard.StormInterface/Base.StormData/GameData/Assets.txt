@@ -25,3 +25,4 @@ UI/Spazzo/TrimMenuPress=_Assets\UI\spaz_ui_trim_menuborderpress.dds
 UI/Spazzo/MenuNotch=_Assets\UI\spaz_ui_buttonnotch.dds
 UI/Spazzo/MenuNotchHover=_Assets\UI\spaz_ui_buttonnotch_hover.dds
 UI/Spazzo/MenuNotchPress=_Assets\UI\spaz_ui_buttonnotch_press.dds
+UI/Spazzo/Disabled=_Assets\UI\filled_disable.dds

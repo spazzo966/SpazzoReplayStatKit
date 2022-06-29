@@ -1,0 +1,1048 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+  <Constant name="TopBarAbilityDebug" val="false" />
+  <Constant name="TopBarAbilityAlpha" val="170" />
+  <Constant name="HeroHealthLabelVisibilityFraction" val="100" />
+  <Constant name="HeroNamePlateVisibility" val="false" />
+  <Constant name="HeroUnitNameVisibility" val="false" />
+  <Constant name="CoreUnitNameVisibility" val="100" />
+  <Constant name="CoreUnitHealthPlateVisibility" val="false" />
+  <Constant name="TownUnitNameVisibility" val="0" />
+  <Constant name="KeepFortVisibilitySettingToggle" val="false" />
+  <Constant name="TopBarCompleteVisibilityToggle" val="true" />
+  <Constant name="TopBarCustomVisibilityToggle" val="true" />
+  <Constant name="TopBarSeparationSlider" val="0" />
+  <Constant name="KillLogVisiblityToggle" val="false" />
+  <Constant name="NotificationVisibilityToggle" val="false" />
+  <Constant name="MercCampVisibilityToggle" val="false" />
+  <Constant name="MinionHealthPlateVisibilityToggle" val="false" />
+  <Constant name="ReplayTimelineVisibilityToggle" val="false" />
+  <Constant name="UnitSelectionCustomOverride" val="true" />
+  <Constant name="UnitStatusGlobalVisibilityToggle" val="false" />
+  <Constant name="MinimapVisibilityToggle" val="false" />
+  <Constant name="UIShortcutVisibilityToggle" val="true" />
+  <Constant name="TopBarAllowUnitSelection" val="true" />
+  <Constant name="TopBarDisplayTooltips" val="true" />
+  <Constant name="TopBarShowBasicAbilities" val="true" />
+  <Constant name="TopBarAlignToLeft" val="false" />
+  <Constant name="TopBarShowVehiclePassengerHealth" val="true" />
+  <Constant name="DefaultLayoutOption" val="0" />
+  <Constant name="TopBarShowTownTotal" val="false" />
+  <Constant name="TopBarStormSliderValue" val="255" />
+  <Constant name="TopBarTeamSliderValue" val="255" />
+  <Constant name="TopBarTeamBorderSliderValue" val="255" />
+  <Constant name="TopBarShowHeroes" val="true" />
+  <Constant name="TopBarShowTeamNames" val="false" />
+  <Constant name="TopBarProxyTalents" val="true" />
+  <Constant name="DisplayObjWarning" val="true" />
+  <Constant name="DisplayAbilBackings" val="true" />
+  <Constant name="DisplayHealthBackings" val="true" />
+  <Constant name="DisplayFountainCD" val="true" />
+  <Constant name="DisplayHeldObjective" val="true" />
+  <Constant name="BottomPanelMirrorTalents" val="true" />
+  <Constant name="BottomPanelMirrorStats" val="true" />
+  <Constant name="BottomPanelShowActives" val="false" />
+  <Constant name="BottomPanelShowQuests" val="true" />
+  <Constant name="BottomPanelDisplayTooltips" val="true" />
+  <Constant name="BottomLeftDisplayUnitStats" val="true" />
+  <Constant name="HideAttachmentOnCD" val="false" />
+  <Constant name="AbathurCooldownDisplay" val="0" />
+  <Constant name="AbathurMonstrosityStacksToggle" val="false" />
+  <Constant name="AlarakCooldownDisplay" val="0" />
+  <Constant name="AlexstraszaHumanCooldownDisplay" val="0" />
+  <Constant name="AlexstraszaDragonCooldownDisplay" val="0" />
+  <Constant name="AnaCooldownDisplay" val="0" />
+  <Constant name="AnduinCooldownDisplay" val="0" />
+  <Constant name="AnubarakCooldownDisplay" val="0" />
+  <Constant name="ArtanisCooldownDisplay" val="0" />
+  <Constant name="ArthasCooldownDisplay" val="0" />
+  <Constant name="AurielCooldownDisplay" val="0" />
+  <Constant name="AzmodanCooldownDisplay" val="0" />
+  <Constant name="AzmodanDemonLieutenantSmite" val="false" />
+  <Constant name="FirebatCooldownDisplay" val="0" />
+  <Constant name="BrightwingCooldownDisplay" val="0" />
+  <Constant name="ButcherCooldownDisplay" val="0" />
+  <Constant name="AmazonCooldownDisplay" val="0" />
+  <Constant name="ChenCooldownDisplay" val="0" />
+  <Constant name="ChoCooldownDisplay" val="0" />
+  <Constant name="GallCooldownDisplay" val="0" />
+  <Constant name="ChromieCooldownDisplay" val="0" />
+  <Constant name="DeathwingCooldownDisplay" val="0" />
+  <Constant name="DeathwingChonkerSetting" val="false" />
+  <Constant name="DeckardCooldownDisplay" val="0" />
+  <Constant name="DehakaCooldownDisplay" val="0" />
+  <Constant name="DiabloCooldownDisplay" val="0" />
+  <Constant name="DVaMechCooldownDisplay" val="0" />
+  <Constant name="DVaPilotCooldownDisplay" val="0" />
+  <Constant name="L90ETCCooldownDisplay" val="0" />
+  <Constant name="FalstadCooldownDisplay" val="0" />
+  <Constant name="FenixCooldownDisplay" val="0" />
+  <Constant name="FenixWeaponDisplay" val="true" />
+  <Constant name="GarroshCooldownDisplay" val="0" />
+  <Constant name="TinkerCooldownDisplay" val="0" />
+  <Constant name="GenjiCooldownDisplay" val="0" />
+  <Constant name="GreymaneHumanCooldownDisplay" val="0" />
+  <Constant name="GreymaneWorgenCooldownDisplay" val="0" />
+  <Constant name="GuldanCooldownDisplay" val="0" />
+  <Constant name="HanzoCooldownDisplay" val="0" />
+  <Constant name="HoggerCooldownDisplay" val="0" />
+  <Constant name="IllidanCooldownDisplay" val="0" />
+  <Constant name="ImperiusCooldownDisplay" val="0" />
+  <Constant name="JainaCooldownDisplay" val="0" />
+  <Constant name="CrusaderCooldownDisplay" val="0" />
+  <Constant name="JunkratCooldownDisplay" val="0" />
+  <Constant name="KaelthasCooldownDisplay" val="0" />
+  <Constant name="KelThuzadCooldownDisplay" val="0" />
+  <Constant name="KerriganCooldownDisplay" val="0" />
+  <Constant name="MonkCooldownDisplay" val="0" />
+  <Constant name="LeoricCooldownDisplay" val="0" />
+  <Constant name="LeoricUndyingCooldownDisplay" val="0" />
+  <Constant name="LiLiCooldownDisplay" val="0" />
+  <Constant name="WizardCooldownDisplay" val="0" />
+  <Constant name="LostVikingsCooldownDisplay" val="0" />
+  <Constant name="LostVikingsBaleogCooldownDisplay" val="0" />
+  <Constant name="LostVikingsErikCooldownDisplay" val="0" />
+  <Constant name="MedicCooldownDisplay" val="0" />
+  <Constant name="LucioCooldownDisplay" val="0" />
+  <Constant name="DryadCooldownDisplay" val="0" />
+  <Constant name="MaievCooldownDisplay" val="0" />
+  <Constant name="MalGanisCooldownDisplay" val="0" />
+  <Constant name="MalfurionCooldownDisplay" val="0" />
+  <Constant name="MalthaelCooldownDisplay" val="0" />
+  <Constant name="MedivhCooldownDisplay" val="0" />
+  <Constant name="MedivhPortalDurationVisibility" val="true" />
+  <Constant name="MedivhRavenHealthplateOverride" val="true" />
+  <Constant name="MeiOWCooldownDisplay" val="0" />
+  <Constant name="MephistoCooldownDisplay" val="0" />
+  <Constant name="MuradinCooldownDisplay" val="0" />
+  <Constant name="MurkyCooldownDisplay" val="0" />
+  <Constant name="WitchDoctorCooldownDisplay" val="0" />
+  <Constant name="NovaCooldownDisplay" val="0" />
+  <Constant name="OrpheaCooldownDisplay" val="0" />
+  <Constant name="OrpheaOverwhelmingChaosToggle" val="true" />
+  <Constant name="ProbiusCooldownDisplay" val="0" />
+  <Constant name="NexusHunterCooldownDisplay" val="0" />
+  <Constant name="RagnarosCooldownDisplay" val="0" />
+  <Constant name="RagnarosBigRagCooldownDisplay" val="0" />
+  <Constant name="RaynorCooldownDisplay" val="0" />
+  <Constant name="RaynorGiveEmSomePepperToggle" val="true" />
+  <Constant name="RehgarCooldownDisplay" val="0" />
+  <Constant name="RexxarCooldownDisplay" val="0" />
+  <Constant name="SamuroCooldownDisplay" val="0" />
+  <Constant name="SgtHammerCooldownDisplay" val="0" />
+  <Constant name="BarbarianCooldownDisplay" val="0" />
+  <Constant name="StitchesCooldownDisplay" val="0" />
+  <Constant name="StukovCooldownDisplay" val="0" />
+  <Constant name="SylvanasCooldownDisplay" val="0" />
+  <Constant name="TassadarCooldownDisplay" val="0" />
+  <Constant name="ThrallCooldownDisplay" val="0" />
+  <Constant name="TracerCooldownDisplay" val="0" />
+  <Constant name="TychusCooldownDisplay" val="0" />
+  <Constant name="TychusOdinCooldownDisplay" val="0" />
+  <Constant name="TyraelCooldownDisplay" val="0" />
+  <Constant name="TyrandeCooldownDisplay" val="0" />
+  <Constant name="UtherCooldownDisplay" val="0" />
+  <Constant name="ValeeraCooldownDisplay" val="0" />
+  <Constant name="DemonHunterCooldownDisplay" val="0" />
+  <Constant name="VarianCooldownDisplay" val="0" />
+  <Constant name="WhitemaneCooldownDisplay" val="0" />
+  <Constant name="WhitemaneDesperationPreviewSetting" val="true" />
+  <Constant name="NecromancerCooldownDisplay" val="0" />
+  <Constant name="YrelCooldownDisplay" val="0" />
+  <Constant name="ZagaraCooldownDisplay" val="0" />
+  <Constant name="ZaryaCooldownDisplay" val="0" />
+  <Constant name="ZeratulCooldownDisplay" val="0" />
+  <Constant name="ZuljinCooldownDisplay" val="0" />
+  <Constant name="TopBarSettingTalent0ShowNonQuests" val="true" />
+  <Constant name="TopBarSettingTalent0ShowActives" val="true" />
+  <Constant name="TopBarSettingTalent0ShowQuests" val="true" />
+  <Constant name="TopBarSettingTalent1" val="1" />
+  <Constant name="TopBarSettingTalent1ShowNonQuests" val="true" />
+  <Constant name="TopBarSettingTalent1ShowQuests" val="true" />
+  <Constant name="TopBarSettingTalent1ShowActives" val="true" />
+  <Constant name="TopBarSettingTalent1ShowBorders" val="true" />
+  <Constant name="TopBarSettingTalent2" val="1" />
+  <Constant name="TopBarSettingTalent2Heroic" val="1" />
+  <Constant name="TopBarSettingTalent2ShowNonQuests" val="true" />
+  <Constant name="TopBarSettingTalent2ShowQuests" val="true" />
+  <Constant name="TopBarSettingTalent2ShowActives" val="true" />
+  <Constant name="TopBarSettingTalent2ShowBorders" val="true" />
+  <Constant name="TopBarSettingTalent3" val="1" />
+  <Constant name="TopBarSettingTalent3ShowNonQuests" val="true" />
+  <Constant name="TopBarSettingTalent3ShowQuests" val="true" />
+  <Constant name="TopBarSettingTalent3ShowActives" val="true" />
+  <Constant name="TopBarSettingTalent3ShowBorders" val="true" />
+  <Constant name="TopBarSettingTalent4" val="1" />
+  <Constant name="TopBarSettingTalent4Heroic" val="1" />
+  <Constant name="TopBarSettingTalent4ShowNonQuests" val="true" />
+  <Constant name="TopBarSettingTalent4ShowQuests" val="true" />
+  <Constant name="TopBarSettingTalent4ShowActives" val="true" />
+  <Constant name="TopBarSettingTalent4ShowBorders" val="true" />
+  <Constant name="TopBarSettingTalent4Ingress" val="false" />
+  <Constant name="TopBarSettingTalent5" val="1" />
+  <Constant name="TopBarSettingTalent5ShowNonQuests" val="true" />
+  <Constant name="TopBarSettingTalent5ShowQuests" val="true" />
+  <Constant name="TopBarSettingTalent5ShowActives" val="true" />
+  <Constant name="TopBarSettingTalent5ShowBorders" val="true" />
+  <Constant name="TopBarSettingTalent6" val="1" />
+  <Constant name="TopBarSettingTalent6ShowNonQuests" val="true" />
+  <Constant name="TopBarSettingTalent6ShowQuests" val="true" />
+  <Constant name="TopBarSettingTalent6ShowActives" val="true" />
+  <Constant name="TopBarSettingTalent6ShowBorders" val="true" />
+  <Constant name="TopBarSettingTalent7" val="1" />
+  <Constant name="TopBarSettingTalent7ShowNonQuests" val="true" />
+  <Constant name="TopBarSettingTalent7ShowQuests" val="true" />
+  <Constant name="TopBarSettingTalent7ShowActives" val="true" />
+  <Constant name="TopBarSettingTalent7ShowBorders" val="true" />
+  <Constant name="EnableTimestampedStatistics" val="true" />
+  <!-- @Setting (	constant = "TopBarAbilityDebug",
+    default = "false",
+    description = "Display text related to UI development",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TopBarAbilityAlpha",
+    default = "170",
+    description = "Transparency of text related to UI development, 0 to 255 value",
+    type = "Number"
+  ) -->
+  <!-- @Setting (	constant = "HeroHealthLabelVisibilityFraction",
+    default = "100",
+    description = "What health percentage to display Heroic Health as text in Healthplates",
+    values = "100"/"90"/"80"/"70"/"60"/"50"/"40"/"30"/"20"/"10"/"0",
+    valuesDisplayNames = "100%"/"90%"/"80%"/"70%"/"60%"/"50%"/"40%"/"30%"/"20%"/"10%"/"0%"
+  ) -->
+  <!-- @Setting (	constant = "HeroNamePlateVisibility",
+    default = "false",
+    description = "Display Hero Healthplate, set to true to hide all Heroic healthplates",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "HeroUnitNameVisibility",
+    default = "false",
+    description = "Set to true to cause player names in hero Healthplates to instead show the hero name",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "CoreUnitNameVisibility",
+    default = "100",
+    description = "What health percentage to display Core Health as text in Healthplates",
+    values = "100"/"90"/"80"/"70"/"60"/"50"/"40"/"30"/"20"/"10"/"0",
+    valuesDisplayNames = "100%"/"90%"/"80%"/"70%"/"60%"/"50%"/"40%"/"30%"/"20%"/"10%"/"0%"
+  ) -->
+  <!-- @Setting (	constant = "CoreUnitHealthPlateVisibility",
+    default = "false",
+    description = "Set to true to cause Core Healthplates to not be displayed",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TownUnitNameVisibility",
+    default = "0",
+    description = "What health percentage to display Town Health as text in Healthplates(Forts, Keeps, Gates, Walls, so on)",
+    values = "100"/"90"/"80"/"70"/"60"/"50"/"40"/"30"/"20"/"10"/"0",
+    valuesDisplayNames = "100%"/"90%"/"80%"/"70%"/"60%"/"50%"/"40%"/"30%"/"20%"/"10%"/"0%"
+  ) -->
+  <!-- @Setting (	constant = "KeepFortVisibilitySettingToggle",
+    default = "false",
+    description = "Set to true to cause Town Healthplates to not be displayed",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TopBarCompleteVisibilityToggle",
+    default = "true",
+    description = "Set to false to enable the vanilla Top Bar",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TopBarCustomVisibilityToggle",
+    default = "true",
+    description = "Set to false to disable the custom Top Bar",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TopBarSeparationSlider",
+    default = "0",
+    description = "Spacing between Heroes in the custom Top Bar, recommended setting to somewhere between -5 and 100",
+    type = "Number"
+  ) -->
+  <!-- @Setting (	constant = "KillLogVisiblityToggle",
+    default = "false",
+    description = "Set to true to disable the Takedown & Quest blotter",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "NotificationVisibilityToggle",
+    default = "false",
+    description = "Set to true to disable the Takedown notifier text",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "MercCampVisibilityToggle",
+    default = "false",
+    description = "Set to true to disable the Mercenary Camp respawn timer text and Watchtower\Mercenary Camp Capture Bar",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "MinionHealthPlateVisibilityToggle",
+    default = "false",
+    description = "Set to true to cause Minion, Summons and Mercenary Healthplates to not be displayed",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "ReplayTimelineVisibilityToggle",
+    default = "false",
+    description = "Set to true to cause the Replay Timeline to not be displayed",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "UnitSelectionCustomOverride",
+    default = "true",
+    description = "Set to false to disable the unit selection UI",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "UnitStatusGlobalVisibilityToggle",
+    default = "false",
+    description = "Set to false to globally disable all Healthplates",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "MinimapVisibilityToggle",
+    default = "false",
+    description = "Set to true to cause the Minimap to not be displayed",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "UIShortcutVisibilityToggle",
+    default = "true",
+    description = "Set to false to cause the Shortcut Menu Button to not be displayed",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TopBarAllowUnitSelection",
+    default = "true",
+    description = "Set to false to disable unit selection in the custom Top Bar",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TopBarDisplayTooltips",
+    default = "true",
+    description = "Set to false to cause Tooltips to not be displayed in the custom Top Bar(is not compatible with Unit Selection)",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TopBarShowBasicAbilities",
+    default = "true",
+    description = "Set to false to disable Basic Abilities in the custom Top Bar",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TopBarAlignToLeft",
+    default = "false",
+    description = "Set to true to cause Basic Abilities in the custom Top Bar to align to the left of the player box, instead of to the middle",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TopBarShowVehiclePassengerHealth",
+    default = "true",
+    description = "Set to false to cause Vehicles to not display the health of the passenger(Triglav Protector, Bunker, Medivac, so on)",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "DefaultLayoutOption",
+    default = "0",
+    description = "What layout option to use for the custom Top Bar",
+    values = "0"/"1"/"2"/"3"/"4",
+    valuesDisplayNames = "Standard"/"Spaced"/"Compact"/"Minimal"/"Ultrawide"
+  ) -->
+  <!-- @Setting (	constant = "TopBarShowTownTotal",
+    default = "false",
+    description = "Set to true to cause the custom Top Bar to show the total potential towns that a team could have",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TopBarStormSliderValue",
+    default = "255",
+    description = "Transparency of hero background in the custom Top Bar, 0 to 255 value",
+    type = "Number"
+  ) -->
+  <!-- @Setting (	constant = "TopBarTeamSliderValue",
+    default = "255",
+    description = "Transparency of team colour background in the custom Top Bar, 0 to 255 value",
+    type = "Number"
+  ) -->
+  <!-- @Setting (	constant = "TopBarTeamBorderSliderValue",
+    default = "255",
+    description = "Transparency of team colour border in the custom Top Bar, 0 to 255 value",
+    type = "Number"
+  ) -->
+  <!-- @Setting (	constant = "TopBarShowHeroes",
+    default = "true",
+    description = "Set to false to only display the center portion of the custom Top Bar",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TopBarShowTeamNames",
+    default = "false",
+    description = "Set to true to display a section of the UI for team names. Team names must be managed through external overlay software",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TopBarProxyTalents",
+    default = "true",
+    description = "Set to false to cause hero talents to not cascade to an earlier tier's slot in the custom Top Bar when talents are set to have custom visibility rules",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "DisplayObjWarning",
+    default = "true",
+    description = "Set to false to not display the objective preview timer",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "DisplayAbilBackings",
+    default = "true",
+    description = "When set to false, don't display Ability & Fountain Borders in the custom Top Bar",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "DisplayHealthBackings",
+    default = "true",
+    description = "When set to false, don't display Health & Energy Borders in the custom Top Bar",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "DisplayFountainCD",
+    default = "true",
+    description = "When set to false, don't display Healing Fountain cooldown in the custom Top Bar",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "DisplayHeldObjective",
+    default = "true",
+    description = "When set to false, don't display carried objective in the custom Top Bar",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "BottomPanelMirrorTalents",
+    default = "true",
+    description = "When set to false, don't mirror talents in the bottom panel",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "BottomPanelMirrorStats",
+    default = "true",
+    description = "When set to false, don't mirror score entries in the bottom panel",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "BottomPanelShowActives",
+    default = "false",
+    description = "When set to true, display talent cooldowns in the bottom panel's talent tab",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "BottomPanelShowQuests",
+    default = "true",
+    description = "When set to false, don't display quest progress in the bottom panel's talent tab",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "BottomPanelDisplayTooltips",
+    default = "true",
+    description = "When set to false, don't display tooltips for talents in the bottom panel's talent tab",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "BottomLeftDisplayUnitStats",
+    default = "true",
+    description = "When set to false, don't display unit statistics in the unit selection UI",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "HideAttachmentOnCD",
+    default = "false",
+    description = "When set to false, hero healthplate attachments will be hidden when they are on cooldown if an ability or not active when they are a buff",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "AbathurCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Abathur's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Toxic Nest"/"Locust Strain"/"Deep Tunnel"/"Heroic Ability"/"Locust Swarm"/"Locust Nest"
+  ) -->
+  <!-- @Setting (	constant = "AbathurMonstrosityStacksToggle",
+    default = "false",
+    description = "When set to true, display how many stacks a Monstrosity has on the Healthplate for it",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "AlarakCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Alarak's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Discord Strike"/"Telekinesis"/"Lightning Surge"/"Heroic Ability"/"Rite of Rakshir"/"Level 20 Talent"
+  ) -->
+  <!-- @Setting (	constant = "AlexstraszaHumanCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Alexstrasza's Human Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Gift of Life"/"Abundance"/"Flame Buffet"/"Dragonqueen"/"Heroic Ability"/"Pacify"/"Blessing of the Red"
+  ) -->
+  <!-- @Setting (	constant = "AlexstraszaDragonCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Alexstrasza's Dragon Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Breath of Life"/"Preservation"/"Wing Buffet"/"Dragonqueen Duration"/"Heroic Ability"/"Pacify"/"Blessing of the Red"
+  ) -->
+  <!-- @Setting (	constant = "AnaCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Ana's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Healing Dart"/"Biotic Grenade"/"Sleep Dart"/"Debilitating Dart"/"Heroic Ability"/"Detachable Box Magazine"
+  ) -->
+  <!-- @Setting (	constant = "AnduinCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Anduin's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8",
+    valuesDisplayNames = "Disabled"/"Flash Heal"/"Divine Star"/"Chastise"/"Leap of Faith"/"Lightwell"/"Desperate Prayer"/"Heroic Ability"/"Inner Focus"
+  ) -->
+  <!-- @Setting (	constant = "AnubarakCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Anub'arak's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Impale"/"Harden Carapace"/"Burrow Charge"/"Legion of Beetles"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "ArtanisCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Artanis' Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Blade Dash"/"Twin Blades"/"Phase Prism"/"Shield Overload"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "ArthasCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Arthas' Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Death Coil"/"Howling Blast"/"Frozen Tempest"/"Frostmourne Hungers"/"Icy Talons"/"Icebound Fortitude"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "AurielCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Auriel's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4",
+    valuesDisplayNames = "Disabled"/"Sacred Sweep"/"Ray of Heaven"/"Detainment Strike"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "AzmodanCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Azmodan's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Globe of Annihilation"/"Summon Demon Warrior"/"All Shall Burn"/"Demon Lieutenant"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "AzmodanDemonLieutenantSmite",
+    default = "false",
+    description = "When set to true, display Demonic Smite's cooldown on the Demon Lieutenant's Healthplate",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "FirebatCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Blaze's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"
+    valuesDisplayNames = "Disabled"/"Flame Stream"/"Oil Spill"/"Jet Propulsion"/"Pyromania"/"Level 1 Talent"/"Heroic Ability"/"Juggernaut Plating"
+  ) -->
+  <!-- @Setting (	constant = "BrightwingCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Brightwing's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8"/"9"/"10",
+    valuesDisplayNames = "Disabled"/"Arcane Flare"/"Polymorph"/"Pixie Dust"/"Soothing Mist Cooldown"/"Soothing Mist Passive"/"Phase Shift"/"Pixie Charm"/"Heroic Ability"/"Phase Out"/"Faerie Protector"
+  ) -->
+  <!-- @Setting (	constant = "ButcherCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on The Butcher's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Hamstring"/"Butcher's Brand"/"Ruthless Onslaught"/"Fresh Meat"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "AmazonCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Cassia's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Lightning Fury"/"Blinding Light"/"Fend"/"Charged Strikes"/"Inner Light"/"Heroic Ability"/"Rockstopper"
+  ) -->
+  <!-- @Setting (	constant = "ChenCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Chen's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Flying Kick"/"Keg Smash + Breath of Fire"/"Stagger"/"Fortifying Brew"/"Elusive Brawler"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "ChoCooldownDisplay",
+    default = "0",
+    description = "Which Cho Attachment to display on Cho's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Surging Fist"/"Consuming Blaze"/"Rune Bomb"/"Heroic Ability"/"Twilight Veil"
+  ) -->
+  <!-- @Setting (	constant = "GallCooldownDisplay",
+    default = "0",
+    description = "Which Gall Attachment to display on Cho's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Shadowflame"/"Dread Orb"/"Shove"/"Eye of Kilrogg"/"Heroic Ability"/"Psychotic Break"
+  ) -->
+  <!-- @Setting (	constant = "ChromieCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Chromie's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8",
+    valuesDisplayNames = "Disabled"/"Sand Blast"/"Dragon's Breath"/"Time Trap"/"Timewlaker's Pursuit"/"Level 5 Talents"/"Heroic Ability"/"Level 14 Talents"/"Blessing of the Bronze"
+  ) -->
+  <!-- @Setting (	constant = "DeathwingCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Deathwing's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8",
+    valuesDisplayNames = "Disabled"/"Molten Flame"/"Incinerate+Lava Burst"/"Onslaught+Earth Shatter"/"Cataclysm"/"Form Switch"/"Dragonflight"/"Bellowing Roar"/"Elementium Plating"
+  ) -->
+  <!-- @Setting (	constant = "DeathwingChonkerSetting",
+    default = "false",
+    description = "When set to true, reduce the size of Deathwing's Healthplate",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "DeckardCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Deckard's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8"/"9",
+    valuesDisplayNames = "Disabled"/"Healing Potion"/"Horadric Cube"/"Scroll of Sealing"/"Sapphire"/"Ruby"/"Emerald"/"Heroic Ability"/"Ancient Blessings"/"Horadric Staff"
+  ) -->
+  <!-- @Setting (	constant = "DehakaCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Dehaka's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Drag"/"Dark Swarm"/"Burrow"/"Essence Collection"/"Brushstalker"/"Brushstalker+Essence"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "DiabloCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Diablo's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Shadow Charge"/"Fire Stomp"/"Overpower"/"Black Soulstone"/"Soul Shield"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "DVaMechCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on D.Va's Mech Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Boosters"/"Defense Matrix"/"Liquid Cooling"/"Heroic Ability"/"Emergency Shielding"
+  ) -->
+  <!-- @Setting (	constant = "DVaPilotCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on D.Va's Pilot Healthplate",
+    values = "0"/"1"/"2"/"3"/"4",
+    valuesDisplayNames = "Disabled"/"Torpedo Dash"/"Concussive Pulse"/"Big Shot"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "L90ETCCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on E.T.C.'s Healthplate",
+    values = "0"/"1"/"2"/"3"/"4",
+    valuesDisplayNames = "Disabled"/"Powerslide"/"Face Melt"/"Guitar Solo"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "FalstadCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Falstad's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8"/"9",
+    valuesDisplayNames = "Disabled"/"Hammerang"/"Lightning Rod"/"Lightning Rod Duration"/"Barrel Roll"/"Tailwind"/"Flight"/"Frequent Flyer"/"Static Shield"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "FenixCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Fenix's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Plasma Cutter"/"Warp"/"Shield Capacitor"/"Divert Power: Weapons"/"Heroic Ability"/"Unconquered Spirit"
+  ) -->
+  <!-- @Setting (	constant = "FenixWeaponDisplay",
+    default = "true",
+    description = "When set to true, display Fenix's Weapon Mode in his Healthplate",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "GarroshCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Garrosh's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8",
+    valuesDisplayNames = "Disabled"/"Groundbreaker"/"Bloodthirst"/"Wrecking Ball"/"Into the Fray"/"Body Check"/"Indomitable"/"Heroic Ability"/"Double Up"
+  ) -->
+  <!-- @Setting (	constant = "TinkerCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Gazlowe's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Scrap"/"Deth Lazor"/"Xplodium Bomb"/"EZ-PZ Dimensional Ripper"/"Heroic Ability"/"Overklock"
+  ) -->
+  <!-- @Setting (	constant = "GenjiCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Genji's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Shurikens"/"Deflect"/"Swift Strike"/"Cyber Agility"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "GreymaneHumanCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Human Greymane's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4",
+    valuesDisplayNames = "Disabled"/"Gilnean Cocktail"/"Inner Beast"/"Darkflight"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "GreymaneWorgenCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Worgen Greymane's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4",
+    valuesDisplayNames = "Disabled"/"Razor Swipe"/"Inner Beast"/"Disengage"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "GuldanCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Gul'dan's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Fel Flame"/"Drain Life"/"Corruption"/"Heroic Ability"/"Demonic Circle"
+  ) -->
+  <!-- @Setting (	constant = "HanzoCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Hanzo's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Storm Bow"/"Scatter Arrow"/"Sonic Arrow"/"Natural Agility"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "HoggerCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Hogger's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Staggering Blow"/"Ez-Thro Dynamite"/"Hogg Wild"/"Loot Hoard"/"On The Prowl"/"Heroic Ability"/"No Control"
+  ) -->
+  <!-- @Setting (	constant = "IllidanCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Illidan's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Dive"/"Sweeping Strike"/"Evasion"/"Sweeping+Battered Duration"/"Battered Assault"/"Heroic Ability"/"Blades of Azzinoth"
+  ) -->
+  <!-- @Setting (	constant = "ImperiusCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Imperius' Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Celestial Charge"/"Molten Armor"/"Solarion's Fire"/"Holy Fervor"/"Heroic Ability"/"Impervious"
+  ) -->
+  <!-- @Setting (	constant = "JainaCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Jaina's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Frost Bolt"/"Blizzard"/"Cone of Cold"/"Improved Ice Block"/"Heroic Ability"/"Icy Veins"
+  ) -->
+  <!-- @Setting (	constant = "CrusaderCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Johanna's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8"/"9",
+    valuesDisplayNames = "Disabled"/"Punish"/"Condemn"/"Sheld Glare"/"Iron Skin"/"Laws of Hope"/"Steed Charge"/"Heroic Ability"/"Blessed Hammer"/"Level 20 Talent"
+  ) -->
+  <!-- @Setting (	constant = "JunkratCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Junkrat's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Frag Launcher"/"Concussive Mine"/"Steep Trap"/"Dirty Trickster"/"Heroic Ability"/"Spread Volley"
+  ) -->
+  <!-- @Setting (	constant = "KaelthasCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Kael'thas' Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Flamestrike"/"Living Bomb"/"Gravity Lapse"/"Verdant Spheres"/"Arcane Barrier"/"Heroic Ability-"
+  ) -->
+  <!-- @Setting (	constant = "KelThuzadCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Kel'Thuzad's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Death and Decay"/"Frost Nova"/"Chains of Kel'Thuzad"/"Glacial Spike"/"Phylactery of Kel'Thuzad"/"Heroic Ability"/"Level 20 Talent"
+  ) -->
+  <!-- @Setting (	constant = "KerriganCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Kerrigan's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Ravage"/"Impaling Blades"/"Primal Grasp"/"Heroic Ability"/"Chrysalis"
+  ) -->
+  <!-- @Setting (	constant = "MonkCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Kharazim's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Radiant Dash"/"Breath of Heaven"/"Deadly Reach"/"Trait"/"Heroic Ability"/"Spell Shield"/"Epiphany"
+  ) -->
+  <!-- @Setting (	constant = "LeoricCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Leoric's Alive Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Skeletal Swing"/"Drain Hope"/"Wraith Walk"/"Ossein Renewal"/"Heroic Ability"/"Shroud of the Dead King"
+  ) -->
+  <!-- @Setting (	constant = "LeoricUndyingCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Leoric's Undying Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Ghastly Swing"/"Drain Essenec"/"Ossein Renewal"/"Heroic Ability"/"Shroud of the Dead King"
+  ) -->
+  <!-- @Setting (	constant = "LiLiCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Li Li's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Healing Brew"/"Cloud Serpent"/"Blinding Wind"/"Fast Feet"/"Let's Go"/"Heroic Ability"/"Mistweaver"
+  ) -->
+  <!-- @Setting (	constant = "WizardCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Li-Ming's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Magic Missiles"/"Arcane Orb"/"Teleport"/"Power Hungry"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "LostVikingsCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Olaf's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Go Go Go"/"Charge"/"Level 7 Talent"/"Heroic Ability"/"Jump"
+  ) -->
+  <!-- @Setting (	constant = "LostVikingsBaleogCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Baleog's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4",
+    valuesDisplayNames = "Disabled"/"Go Go Go"/"Level 7 Talent"/"Heroic Ability"/"Jump"
+  ) -->
+  <!-- @Setting (	constant = "LostVikingsErikCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Erik's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4",
+    valuesDisplayNames = "Disabled"/"Go Go Go"/"Level 7 Talent"/"Heroic Ability"/"Jump"
+  ) -->
+  <!-- @Setting (	constant = "MedicCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Lt. Morales' Healthplate",
+    values = "0"/"1"/"2"/"3"/"4",
+    valuesDisplayNames = "Disabled"/"Safeguard"/"Displacement Grenade"/"Level 4 Talent"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "LucioCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Lúcio's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8",
+    valuesDisplayNames = "Disabled"/"Soundwave"/"Crossfade"/"Amp it Up"/"Crossfade+Amp it Up"/"Push Off"/"Boombox"/"Sound Barrier"/"Summer Anthem"
+  ) -->
+  <!-- @Setting (	constant = "DryadCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Lunara's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Noxious Blossom"/"Crippling Spores"/"Wisp"/"Heroic Ability"/"Level 13 Talent"/"Galloping Gait"
+  ) -->
+  <!-- @Setting (	constant = "MaievCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Maiev's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Fan of Knives"/"Umbral Bind"/"Spirit of Vengeance"/"Vault of the Wardens"/"Naisha's Memento"/"Heroic Ability"/"Level 20 Talent"
+  ) -->
+  <!-- @Setting (	constant = "MalGanisCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Mal'Ganis' Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Fel Claws"/"Necrotic Embrace"/"Night Rush"/"Heroic Ability"/"Blind as a Bat"
+  ) -->
+  <!-- @Setting (	constant = "MalfurionCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Malfurion's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Regrowth"/"Moonfire"/"Entangling Roots"/"Innervate"/"Level 7 Talent"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "MalthaelCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Malthael's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Soul Rip"/"Wraith Strike"/"Death Shroud"/"Fear the Reaper"/"Touch of Death"/"Heroic Ability"/"No One Can Stop Death"
+  ) -->
+  <!-- @Setting (	constant = "MedivhCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Medivh's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Arcane Rift"/"Force of Will"/"Portal"/"Dust of Appearance"/"Force of Magic"/"Heroic Ability"/"Level 20 Talent"
+  ) -->
+  <!-- @Setting (	constant = "MedivhPortalDurationVisibility",
+    default = "true",
+    description = "Display Medivh's Portals Durationplate",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "MedivhRavenHealthplateOverride",
+    default = "true",
+    description = "Display Medivh's Raven Form Healthplate as a standard Healthplate",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "MeiOWCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Mei's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Snow Blind"/"Blizzard"/"Icing"/"Cryo-Freeze"/"Backup Battery"/"Heroic Ability"/"Level 20 Talent"
+  ) -->
+  <!-- @Setting (	constant = "MephistoCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Mephisto's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Skull Missile"/"Lightning Nova"/"Shade of Mephisto"/"Heroic Ability"/"Shade Lord"
+  ) -->
+  <!-- @Setting (	constant = "MuradinCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Muradin's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Storm Bolt"/"Thunder Clap"/"Dwarf Toss"/"Heroic Ability"/"Stoneform"
+  ) -->
+  <!-- @Setting (	constant = "MurkyCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Murky's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Slime"/"Pufferfish"/"Safety Bubble"/"A Fishy Deal"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "WitchDoctorCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Nazeebo's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Corpse Spiders"/"Zombie Wall"/"Plague of Toads"/"Vodoo Ritual"/"Heroic Ability"/"Soul Harvest"/"Bad Medicine"
+  ) -->
+  <!-- @Setting (	constant = "NovaCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Nova's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Snipe"/"Pinning Shot"/"Holo Decoy"/"Ghost Protocol"/"Heroic Ability"/"Rewind"
+  ) -->
+  <!-- @Setting (	constant = "OrpheaCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Orphea's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Shadow Waltz"/"Chomp"/"Dread"/"Heroic Ability"/"Invasive Miasma"/"Final Toccata"
+  ) -->
+  <!-- @Setting (	constant = "OrpheaOverwhelmingChaosToggle",
+    default = "true",
+    description = "Display Orphea's Overwhelming Chaos in her Healthplate as it does when playing as her",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "ProbiusCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Probius' Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Disruption Pulse"/"Warp Rift"/"Photon Cannon"/"Warp In Pylon"/"Worker Rush"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "NexusHunterCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Qhira's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Carnage"/"Blood Rage"/"Revolving Sweep"/"Grappling Hook"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "RagnarosCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Ragnaros's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8",
+    valuesDisplayNames = "Disabled"/"Empower Sulfuras"/"Living Meteor"/"Blast Wave"/"Molten Core"/"Catching Fire"/"Heroic Ability"/"Resilient"/"Submerge"
+  ) -->
+  <!-- @Setting (	constant = "RagnarosBigRagCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Ragnaros's Molten Core Healthplate",
+    values = "0"/"1"/"2"/"3"/"4",
+    valuesDisplayNames = "Disabled"/"Molten Swing"/"Meteor Shower"/"Explosive Rune"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "RaynorCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Raynor's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Penetrating Round"/"Inspire"/"Adrenaline Rush"/"Heroic Ability"/"Bounty Hunter"
+  ) -->
+  <!-- @Setting (	constant = "RaynorGiveEmSomePepperToggle",
+    default = "true",
+    description = "Display Raynor's Give Em' Some Pepper in his Healthplate as it does when playing as him",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "RehgarCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Rehgar's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8",
+    valuesDisplayNames = "Disabled"/"Chain Heal"/"Lightning Shield"/"Earthbind Totem"/"Purge"/"Ghost Wolf"/"Healing Ward"/"Heroic Ability"/"Elemental Conduit"
+  ) -->
+  <!-- @Setting (	constant = "RexxarCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Rexxar's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8",
+    valuesDisplayNames = "Disabled"/"Spirit Swoop"/"Misha, Charge!"/"Mend Pet"/"Misha, Focus!"/"Flare"/"Heroic Ability"/"Level 16 Talent"/"Hardened Skin"
+  ) -->
+  <!-- @Setting (	constant = "SamuroCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Samuro's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Mirror Image"/"Critical Strike"/"Windwalk"/"Image Transmission"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "BarbarianCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Sonya's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8"/"9"/"10",
+    valuesDisplayNames = "Disabled"/"Ancient Spear"/"Seismic Slam"/"Whirlwind"/"Fury Movespeed"/"Level 1 Talent"/"Shot of Fury"/"Battle Rage"/"Heroic Ability"/"Nerves of Steel"/"Level 20 Talent"
+  ) -->
+  <!-- @Setting (	constant = "StukovCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Stukov's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Healing Pathogen"/"Weighted Pustule"/"Lurking Arm"/"Bio-Kill Switch"/"Reactive Ballistospores"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "SylvanasCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Sylvanas' Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8",
+    valuesDisplayNames = "Disabled"/"Withering Fire"/"Shadow Dagger"/"Haunting Wave"/"Black Arrows Cooldown"/"Black Arrows Duration"/"Possession"/"Heroic Ability"/"Evasive Fire"
+  ) -->
+  <!-- @Setting (	constant = "TassadarCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Tassadar's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Shock Ray"/"Psionic Storm"/"Force Wall"/"Resonance Beam"/"Arc Discharge"/"Heroic Ability"/"Executor's Will"
+  ) -->
+  <!-- @Setting (	constant = "ThrallCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Thrall's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8",
+    valuesDisplayNames = "Disabled"/"Chain Lightning"/"Feral Spirit"/"Windfury"/"Frostwolf Resilience"/"Ancestral Wrath"/"Heroic Ability"/"Spirit Shield"/"Wind Rush"
+  ) -->
+  <!-- @Setting (	constant = "TracerCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Tracer's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Blink"/"Melee"/"Recall"/"Pulsebomb"/"Pulsebomb+Recall"
+  ) -->
+  <!-- @Setting (	constant = "TychusCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Tychus's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8",
+    valuesDisplayNames = "Disabled"/"Overkill"/"Frag Grenade"/"Run and Gun"/"Minigun"/"Minigun Duration"/"Minigun Merged"/"Heroic Ability"/"Neosteel Coating"
+  ) -->
+  <!-- @Setting (	constant = "TychusOdinCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Odin's(Tychus Heroic) Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Annihilate"/"Ragnarok Missiles"/"Thrusters"/"Odin Duration"/"Neosteel Coating"
+  ) -->
+  <!-- @Setting (	constant = "TyraelCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Tyrael's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"El'Druin's Might"/"Righteousness"/"Smite"/"Heroic Ability"/"Defense of the Angels"
+  ) -->
+  <!-- @Setting (	constant = "TyrandeCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Tyrande's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Light of Elune"/"Sentinel"/"Lunar Flare"/"Hunter's Mark"/"Trueshot Aura"/"Elune's Chosen"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "UtherCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Uther's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Holy Light"/"Holy Radiance"/"Hammer of Justice"/"Level 7 Talent"/"Heroic Ability"/"Spell Shield"/"Benediction"
+  ) -->
+  <!-- @Setting (	constant = "ValeeraCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Valeera's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8",
+    valuesDisplayNames = "Disabled"/"Sinister Strike"/"Blade Flurry"/"Combo Points"/"Stealth+Deep Stealth"/"Crippling Poison"/"Wound Poison"/"Heroic Ability"/"Thistle Tea"
+  ) -->
+  <!-- @Setting (	constant = "DemonHunterCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Valla's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Hungering Arrow"/"Multishot"/"Vault"/"Hatred"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "VarianCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Varian's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Lion's Fang"/"Parry"/"Charge"/"Heroic Strike"/"Heroic Ability"/"Victory Rush"/"Shattering Throw"
+  ) -->
+  <!-- @Setting (	constant = "WhitemaneCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Whitemane's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Desperate Plea"/"Inquisition"/"Searing Lash"/"Fanatical Power"/"Intercession"/"Heroic Ability"/"Guiding Light"
+  ) -->
+  <!-- @Setting (	constant = "NecromancerCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Xul's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Spectral Scythe"/"Cursed Strikes"/"Bone Prison"/"Bone Armor"/"Heroic Ability"/"Bone Spear"
+  ) -->
+  <!-- @Setting (	constant = "YrelCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Yrel's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Vindication"/"Righteous Hammer"/"Avenging Wrath"/"Divine Purpose"/"Hand of Freedom"/"Heroic Ability"/"Level 20 Talent"
+  ) -->
+  <!-- @Setting (	constant = "ZagaraCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Zagara's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Baneling Barrage"/"Hunter Killer"/"Infested Drop"/"Creep Tumor"/"Envenomed Spines"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "ZaryaCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Zarya's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
+    valuesDisplayNames = "Disabled"/"Particle Grenade"/"Personal Barrier"/"Shield Ally"/"Heroic Ability"/"Pain is Temporary"/"Unyielding Defender"
+  ) -->
+  <!-- @Setting (	constant = "ZeratulCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Zeratul's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Cleave"/"Singularity Spike"/"Blink"/"Vorpal Blade"/"Level 4 Talent"/"Heroic Ability"/"Spell Shield"
+  ) -->
+  <!-- @Setting (	constant = "ZuljinCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Zul'jin's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
+    valuesDisplayNames = "Disabled"/"Grevious Throw"/"Twin Cleave"/"Regeneration"/"Amani Rage"/"Voodoo Shuffle"/"Heroic Ability"/"Ensnare"
+  ) -->
+</Desc>

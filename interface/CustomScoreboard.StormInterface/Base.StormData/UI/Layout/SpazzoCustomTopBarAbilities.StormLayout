@@ -4269,6 +4269,7 @@
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <!-- Maybe look at inherited visible property of the other frames? -->
+      <!-- TODO: Fix this -->
       <State name="HeroTychusBobAndWeave">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroTychus"/>
         <When type="Property" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_tychus_runandgun.dds"/>

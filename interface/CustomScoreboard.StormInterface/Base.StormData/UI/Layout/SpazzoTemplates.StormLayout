@@ -2211,13 +2211,6 @@
       </Frame>
     </Frame>
   </Frame>
-  <Frame type="Frame" name="AttachmentCollapsibleTemplate">
-    <Anchor side="Right" relative="$this" pos="Min" offset="#OptionsMenuRevampHeroOptionsWidth"/>
-    <Anchor side="Bottom" relative="$this" pos="Min" offset="#OptionsMenuRevampHeroOptionsHeight"/>
-    <Alpha val="110"/>
-    <Visible val="False"/>
-    <CollapseLayout val="True"/>
-  </Frame>
   
   <Frame type="Frame" name="ExpandoCheckboxRightMost">
     <Anchor side="Left" relative="$this/CheckBoxButton" pos="Max" offset="-36" />
@@ -2585,7 +2578,12 @@
         <Anchor side="Right" relative="$parent" pos="Max" offset="-1" />
         <Frame type="Button" name="CheckBoxButton">
           <Toggled val="#TopBarShowBasicAbilities"/>
-          <Tooltip val="@UI/Spazzo/Baseline/Abilities" />
+          <Frame type="TextFormatFrame" name="FormatFrame">
+            <Anchor relative="$parent" />
+            <FormatText val="@UI/Spazzo/Baseline/Abilities" />
+            <Replacement index="0" val="#ToggleTopBarBasicAbilitiesVehicleHealthHotkey" />
+            <ReplacedName index="0" val="hotkeyvalue" />
+          </Frame>
         </Frame>
         <Frame type="Label" name="Label">
           <Text val="@UI/Spazzo/Baseline/AbilitiesShort"/>
@@ -2606,7 +2604,13 @@
         <Anchor side="Bottom" relative="$parent/ShowQuests" pos="Min" offset="#OptionsMenuRevampTalentOptionsDistance" />
         <Frame type="Button" name="CheckBoxButton">
           <Toggled val="#TopBarShowVehiclePassengerHealth"/>
-          <Tooltip val="@UI/Spazzo/Baseline/Vehicle" />
+          <Tooltip val="{$this/FormatFrame/@Text}"/>
+          <Frame type="TextFormatFrame" name="FormatFrame">
+            <Anchor relative="$parent" />
+            <FormatText val="@UI/Spazzo/Baseline/Vehicle" />
+            <Replacement index="0" val="#ToggleTopBarBasicAbilitiesVehicleHealthHotkey" />
+            <ReplacedName index="0" val="hotkeyvalue" />
+          </Frame>
         </Frame>
         <Frame type="Label" name="Label">
           <Text val="@UI/Spazzo/Baseline/VehicleShort"/>
@@ -2628,7 +2632,13 @@
         <Anchor side="Left" relative="$parent" pos="Min" offset="1" />
         <Frame type="Button" name="CheckBoxButton">
           <Toggled val="#TopBarDisplayTooltips"/>
-          <Tooltip val="@UI/Spazzo/Baseline/Tooltips" />
+          <Tooltip val="{$this/FormatFrame/@Text}"/>
+          <Frame type="TextFormatFrame" name="FormatFrame">
+            <Anchor relative="$parent" />
+            <FormatText val="@UI/Spazzo/Baseline/Tooltips" />
+            <Replacement index="0" val="#ToggleTopBarTooltipsHotkey" />
+            <ReplacedName index="0" val="hotkeyvalue" />
+          </Frame>
         </Frame>
         <Frame type="Label" name="Label">
           <Text val="@UI/Spazzo/Baseline/TooltipsShort"/>
@@ -3223,6 +3233,7 @@
         <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/Attachment1HeroIcon/@Texture}" />
         <Action type="SetProperty" frame="$this/Label" Text="@UI/Spazzo/HeroAttachment/Disabled" />
         <Action type="SetProperty" frame="$this/AbilName" Text="NULL" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="NULL" />
         <Action type="SetProperty" frame="$this/TypeLabel" Text="None" />
         <Action type="SetProperty" frame="$this/ChosenNumber" Text="0" />
       </State>
@@ -3300,6 +3311,14 @@
       <Text val="None" />
     </Frame>
     <Frame type="Label" name="AbilName">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+      <Visible val="False"/>
+      <Text val="NULL"/>
+    </Frame>
+    <Frame type="Label" name="AbilName2">
       <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
       <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
       <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
@@ -3386,8 +3405,7 @@
       <Anchor side="Top" relative="$parent" pos="Mid" offset="0"/>
       <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0"/>
       <Anchor side="Left" relative="$parent" pos="Min" offset="3"/>
-      <Texture val=""/>
-      <Visible val="False"/>
+      <Texture val="{$ancestor[@name=ContainerFrame]/$parent/$sibling-2/Attachment1HeroIcon/@Texture}"/>
       <Height val="18"/>
       <Width val="18"/>
       <CollapseLayout val="True"/>
@@ -3401,6 +3419,14 @@
       <Text val="None" />
     </Frame>
     <Frame type="Label" name="AbilName">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+      <Visible val="False"/>
+      <Text val="NULL"/>
+    </Frame>
+    <Frame type="Label" name="AbilName2">
       <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
       <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
       <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
@@ -3697,17 +3723,6 @@
     </Frame>
   </Frame>
 
-  <Frame type="Image" name="HeroAttachmentBackgroundTemplate">
-    <Anchor side="Top" relative="$sibling-1" pos="Min" offset="0"/>
-    <Anchor side="Left" relative="$sibling-1" pos="Min" offset="0"/>
-    <Anchor side="Right" relative="$sibling-1" pos="Max" offset="0"/>
-    <Anchor side="Bottom" relative="$sibling-1" pos="Max" offset="0"/>
-    <Width val="#OptionsMenuRevampHeroOptionsWidth"/>
-    <Height val="#OptionsMenuRevampHeroOptionsHeight" />
-    <Alpha val="110"/>
-    <Texture val="_Assets\UI\spaz_ui_heroattachment_bg3.dds"/>
-    <RenderPriority val="511"/>
-  </Frame>
   
   <Frame type="Frame" name="HeroAttachment1Template">
     <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
@@ -3721,6 +3736,7 @@
           <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton2/AbilIcon/@Texture}" />
           <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton2/@Text}" />
           <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton2/AbilName/@Text}" />
+          <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton2/AbilName2/@Text}" />
           <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton2/TypeLabel/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton2/AbilChargeAbilName/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton2/AbilChargeName/@Text}" />
@@ -3828,6 +3844,7 @@
         <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/Attachment2HeroIcon/@Texture}" />
         <Action type="SetProperty" frame="$this/Label" Text="@UI/Spazzo/HeroAttachment/Disabled" />
         <Action type="SetProperty" frame="$this/AbilName" Text="NULL" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="NULL" />
         <Action type="SetProperty" frame="$this/TypeLabel" Text="None" />
         <Action type="SetProperty" frame="$this/ChosenNumber" Text="0" />
       </State>
@@ -3836,6 +3853,7 @@
         <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton2/AbilIcon/@Texture}" />
         <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton2/@Text}" />
         <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton2/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton2/AbilName2/@Text}" />
         <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton2/TypeLabel/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton2/AbilChargeAbilName/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton2/AbilChargeName/@Text}" />
@@ -3854,6 +3872,9 @@
       <Anchor side="Bottom" relative="PulldownSubButton2" pos="Max" offset="#CustomPulldownBottomOffset" />
       <Frame type="Button" name="PulldownSubButton1" template="SpazzoTemplates/FakePulldownSubButtonTemplateAttachment">
         <Text val="@UI/Spazzo/HeroAttachment/Disabled" />
+        <Frame type="Image" name="AbilIcon">
+          <Texture val="{$ancestor[@name=ContainerFrame]/$parent/$sibling-3/Attachment2HeroIcon/@Texture}"/>
+        </Frame>
         <Animation name="OnPress">
           <Event event="OnMouseDown" action="Reset,Play" />
           <Controller type="State" stateGroup="SelectedAttachmentStategroup" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-3/TogglePulldown2">
@@ -3879,6 +3900,70 @@
     </Frame>
   </Frame>
 
+  <Frame type="Button" name="ThirdButtonAttachmentPulldown1Template" template="SpazzoTemplates/ButtonAttachmentPulldownTemplate">
+    <Anchor side="Top" relative="$sibling-1" pos="Max" offset="1"/>
+    <StateGroup name="SelectedAttachmentStategroup">
+      <State name="0">
+        <Action type="SetProperty" frame="$this/AbilIcon" Visible="True" />
+        <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/Attachment3HeroIcon/@Texture}" />
+        <Action type="SetProperty" frame="$this/Label" Text="@UI/Spazzo/HeroAttachment/Disabled" />
+        <Action type="SetProperty" frame="$this/AbilName" Text="NULL" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="NULL" />
+        <Action type="SetProperty" frame="$this/TypeLabel" Text="None" />
+        <Action type="SetProperty" frame="$this/ChosenNumber" Text="0" />
+      </State>
+      <State name="1">
+        <Action type="SetProperty" frame="$this/AbilIcon" Visible="True" />
+        <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton2/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton2/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton2/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton2/AbilName2/@Text}" />
+        <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton2/TypeLabel/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton2/AbilChargeAbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton2/AbilChargeName/@Text}" />
+        <Action type="SetProperty" frame="$this/ChosenNumber" Text="1" />
+      </State>
+    </StateGroup>
+  </Frame>
+  <Frame type="ScrollableFrame" name="HeroAttachment1ThirdPulldownTemplate" template="SpazzoTemplates/FakePulldownTemplate">
+    <Anchor side="Top" relative="$sibling-4/TogglePulldown3" pos="Max" offset="5"/>
+    <Anchor side="Left" relative="$sibling-4/TogglePulldown3" pos="Min" offset="-1"/>
+    <Anchor side="Right" relative="$sibling-4/TogglePulldown3" pos="Max" offset="30"/>
+    <Visible val="{$sibling-4/TogglePulldown3/@Toggled}"/>
+    <RenderPriority val="513"/>
+    <Height val="120" />
+    <Frame type="Frame" name="ContainerFrame">
+      <Anchor side="Bottom" relative="PulldownSubButton2" pos="Max" offset="#CustomPulldownBottomOffset" />
+      <Frame type="Button" name="PulldownSubButton1" template="SpazzoTemplates/FakePulldownSubButtonTemplateAttachment">
+        <Text val="@UI/Spazzo/HeroAttachment/Disabled" />
+        <Frame type="Image" name="AbilIcon">
+          <Texture val="{$ancestor[@name=ContainerFrame]/$parent/$sibling-4/Attachment3HeroIcon/@Texture}"/>
+        </Frame>
+        <Animation name="OnPress">
+          <Event event="OnMouseDown" action="Reset,Play" />
+          <Controller type="State" stateGroup="SelectedAttachmentStategroup" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-4/TogglePulldown3">
+            <Key type="Identifier" time="0" value="0" />
+          </Controller>
+          <Controller type="Property" property="Toggled" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-4/TogglePulldown3">
+              <Key type="Bool" time="0" value="False"/>
+          </Controller>
+        </Animation>
+      </Frame>
+      <Frame type="Button" name="PulldownSubButton2" template="SpazzoTemplates/FakePulldownSubButtonTemplateAttachment">
+        <Text val="@UI/Spazzo/Attachment/Slot1" />
+        <Animation name="OnPress">
+          <Event event="OnMouseDown" action="Reset,Play" />
+          <Controller type="State" stateGroup="SelectedAttachmentStategroup" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-4/TogglePulldown3">
+            <Key type="Identifier" time="0" value="1" />
+          </Controller>
+          <Controller type="Property" property="Toggled" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-4/TogglePulldown3">
+              <Key type="Bool" time="0" value="False"/>
+          </Controller>
+        </Animation>
+      </Frame>
+    </Frame>
+  </Frame>
+
   <Frame type="Frame" name="HeroAttachment2Template" template="SpazzoTemplates/HeroAttachment1Template">
     <Frame type="Button" name="TogglePulldown1">
       <StateGroup name="SelectedAttachmentStategroup">
@@ -3887,6 +3972,7 @@
           <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton3/AbilIcon/@Texture}" />
           <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton3/@Text}" />
           <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton3/AbilName/@Text}" />
+          <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton3/AbilName2/@Text}" />
           <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton3/TypeLabel/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton3/AbilChargeAbilName/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton3/AbilChargeName/@Text}" />
@@ -3921,6 +4007,7 @@
         <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton3/AbilIcon/@Texture}" />
         <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton3/@Text}" />
         <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton3/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton3/AbilName2/@Text}" />
         <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton3/TypeLabel/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton3/AbilChargeAbilName/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton3/AbilChargeName/@Text}" />
@@ -3947,6 +4034,40 @@
     </Frame>
   </Frame>
 
+  <Frame type="Button" name="ThirdButtonAttachmentPulldown2Template" template="SpazzoTemplates/ThirdButtonAttachmentPulldown1Template">
+    <StateGroup name="SelectedAttachmentStategroup">
+      <State name="2">
+        <Action type="SetProperty" frame="$this/AbilIcon" Visible="True" />
+        <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton3/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton3/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton3/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton3/AbilName2/@Text}" />
+        <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton3/TypeLabel/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton3/AbilChargeAbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton3/AbilChargeName/@Text}" />
+        <Action type="SetProperty" frame="$this/ChosenNumber" Text="2" />
+      </State>
+    </StateGroup>
+  </Frame>
+  <Frame type="ScrollableFrame" name="HeroAttachment2ThirdPulldownTemplate" template="SpazzoTemplates/HeroAttachment1ThirdPulldownTemplate">
+    <Height val="130" />
+    <Frame type="Frame" name="ContainerFrame">
+      <Anchor side="Bottom" relative="PulldownSubButton3" pos="Max" offset="#CustomPulldownBottomOffset" />
+      <Frame type="Button" name="PulldownSubButton3" template="SpazzoTemplates/FakePulldownSubButtonTemplateAttachment">
+        <Text val="@UI/Spazzo/Attachment/Slot2" />
+        <Animation name="OnPress">
+          <Event event="OnMouseDown" action="Reset,Play" />
+          <Controller type="State" stateGroup="SelectedAttachmentStategroup" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-4/TogglePulldown3">
+            <Key type="Identifier" time="0" value="2" />
+          </Controller>
+          <Controller type="Property" property="Toggled" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-4/TogglePulldown3">
+              <Key type="Bool" time="0" value="False"/>
+          </Controller>
+        </Animation>
+      </Frame>
+    </Frame>
+  </Frame>
+
   <Frame type="Frame" name="HeroAttachment3Template" template="SpazzoTemplates/HeroAttachment2Template">
     <Frame type="Button" name="TogglePulldown1">
       <StateGroup name="SelectedAttachmentStategroup">
@@ -3955,6 +4076,7 @@
           <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton4/AbilIcon/@Texture}" />
           <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton4/@Text}" />
           <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton4/AbilName/@Text}" />
+          <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton4/AbilName2/@Text}" />
           <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton4/TypeLabel/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton4/AbilChargeAbilName/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton4/AbilChargeName/@Text}" />
@@ -3989,6 +4111,7 @@
         <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton4/AbilIcon/@Texture}" />
         <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton4/@Text}" />
         <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton4/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton4/AbilName2/@Text}" />
         <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton4/TypeLabel/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton4/AbilChargeAbilName/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton4/AbilChargeName/@Text}" />
@@ -4015,6 +4138,40 @@
     </Frame>
   </Frame>
 
+  <Frame type="Button" name="ThirdButtonAttachmentPulldown3Template" template="SpazzoTemplates/ThirdButtonAttachmentPulldown2Template">
+    <StateGroup name="SelectedAttachmentStategroup">
+      <State name="3">
+        <Action type="SetProperty" frame="$this/AbilIcon" Visible="True" />
+        <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton4/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton4/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton4/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton4/AbilName2/@Text}" />
+        <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton4/TypeLabel/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton4/AbilChargeAbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton4/AbilChargeName/@Text}" />
+        <Action type="SetProperty" frame="$this/ChosenNumber" Text="3" />
+      </State>
+    </StateGroup>
+  </Frame>
+  <Frame type="ScrollableFrame" name="HeroAttachment3ThirdPulldownTemplate" template="SpazzoTemplates/HeroAttachment2ThirdPulldownTemplate">
+    <Height val="140" />
+    <Frame type="Frame" name="ContainerFrame">
+      <Anchor side="Bottom" relative="PulldownSubButton4" pos="Max" offset="#CustomPulldownBottomOffset" />
+      <Frame type="Button" name="PulldownSubButton4" template="SpazzoTemplates/FakePulldownSubButtonTemplateAttachment">
+        <Text val="@UI/Spazzo/Attachment/Slot3" />
+        <Animation name="OnPress">
+          <Event event="OnMouseDown" action="Reset,Play" />
+          <Controller type="State" stateGroup="SelectedAttachmentStategroup" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-4/TogglePulldown3">
+            <Key type="Identifier" time="0" value="3" />
+          </Controller>
+          <Controller type="Property" property="Toggled" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-4/TogglePulldown3">
+              <Key type="Bool" time="0" value="False"/>
+          </Controller>
+        </Animation>
+      </Frame>
+    </Frame>
+  </Frame>
+
   <Frame type="Frame" name="HeroAttachment4Template" template="SpazzoTemplates/HeroAttachment3Template">
     <Frame type="Button" name="TogglePulldown1">
       <StateGroup name="SelectedAttachmentStategroup">
@@ -4023,6 +4180,7 @@
           <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton5/AbilIcon/@Texture}" />
           <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton5/@Text}" />
           <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton5/AbilName/@Text}" />
+          <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton5/AbilName2/@Text}" />
           <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton5/TypeLabel/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton5/AbilChargeAbilName/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton5/AbilChargeName/@Text}" />
@@ -4057,6 +4215,7 @@
         <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton5/AbilIcon/@Texture}" />
         <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton5/@Text}" />
         <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton5/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton5/AbilName2/@Text}" />
         <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton5/TypeLabel/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton5/AbilChargeAbilName/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton5/AbilChargeName/@Text}" />
@@ -4083,6 +4242,40 @@
     </Frame>
   </Frame>
 
+  <Frame type="Button" name="ThirdButtonAttachmentPulldown4Template" template="SpazzoTemplates/ThirdButtonAttachmentPulldown3Template">
+    <StateGroup name="SelectedAttachmentStategroup">
+      <State name="4">
+        <Action type="SetProperty" frame="$this/AbilIcon" Visible="True" />
+        <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton5/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton5/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton5/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton5/AbilName2/@Text}" />
+        <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton5/TypeLabel/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton5/AbilChargeAbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton5/AbilChargeName/@Text}" />
+        <Action type="SetProperty" frame="$this/ChosenNumber" Text="4" />
+      </State>
+    </StateGroup>
+  </Frame>
+  <Frame type="ScrollableFrame" name="HeroAttachment4ThirdPulldownTemplate" template="SpazzoTemplates/HeroAttachment3ThirdPulldownTemplate">
+    <Height val="150" />
+    <Frame type="Frame" name="ContainerFrame">
+      <Anchor side="Bottom" relative="PulldownSubButton5" pos="Max" offset="#CustomPulldownBottomOffset" />
+      <Frame type="Button" name="PulldownSubButton5" template="SpazzoTemplates/FakePulldownSubButtonTemplateAttachment">
+        <Text val="@UI/Spazzo/Attachment/Slot4" />
+        <Animation name="OnPress">
+          <Event event="OnMouseDown" action="Reset,Play" />
+          <Controller type="State" stateGroup="SelectedAttachmentStategroup" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-4/TogglePulldown3">
+            <Key type="Identifier" time="0" value="4" />
+          </Controller>
+          <Controller type="Property" property="Toggled" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-4/TogglePulldown3">
+              <Key type="Bool" time="0" value="False"/>
+          </Controller>
+        </Animation>
+      </Frame>
+    </Frame>
+  </Frame>
+
   <Frame type="Frame" name="HeroAttachment5Template" template="SpazzoTemplates/HeroAttachment4Template">
     <Frame type="Button" name="TogglePulldown1">
       <StateGroup name="SelectedAttachmentStategroup">
@@ -4091,6 +4284,7 @@
           <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton6/AbilIcon/@Texture}" />
           <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton6/@Text}" />
           <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton6/AbilName/@Text}" />
+          <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton6/AbilName2/@Text}" />
           <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton6/TypeLabel/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton6/AbilChargeAbilName/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton6/AbilChargeName/@Text}" />
@@ -4125,6 +4319,7 @@
         <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton6/AbilIcon/@Texture}" />
         <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton6/@Text}" />
         <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton6/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton6/AbilName2/@Text}" />
         <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton6/TypeLabel/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton6/AbilChargeAbilName/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton6/AbilChargeName/@Text}" />
@@ -4151,6 +4346,40 @@
     </Frame>
   </Frame>
 
+  <Frame type="Button" name="ThirdButtonAttachmentPulldown5Template" template="SpazzoTemplates/ThirdButtonAttachmentPulldown4Template">
+    <StateGroup name="SelectedAttachmentStategroup">
+      <State name="5">
+        <Action type="SetProperty" frame="$this/AbilIcon" Visible="True" />
+        <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton6/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton6/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton6/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton6/AbilName2/@Text}" />
+        <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton6/TypeLabel/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton6/AbilChargeAbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+4/ContainerFrame/PulldownSubButton6/AbilChargeName/@Text}" />
+        <Action type="SetProperty" frame="$this/ChosenNumber" Text="5" />
+      </State>
+    </StateGroup>
+  </Frame>
+  <Frame type="ScrollableFrame" name="HeroAttachment5ThirdPulldownTemplate" template="SpazzoTemplates/HeroAttachment4ThirdPulldownTemplate">
+    <Height val="160" />
+    <Frame type="Frame" name="ContainerFrame">
+      <Anchor side="Bottom" relative="PulldownSubButton6" pos="Max" offset="#CustomPulldownBottomOffset" />
+      <Frame type="Button" name="PulldownSubButton6" template="SpazzoTemplates/FakePulldownSubButtonTemplateAttachment">
+        <Text val="@UI/Spazzo/Attachment/Slot5" />
+        <Animation name="OnPress">
+          <Event event="OnMouseDown" action="Reset,Play" />
+          <Controller type="State" stateGroup="SelectedAttachmentStategroup" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-4/TogglePulldown3">
+            <Key type="Identifier" time="0" value="5" />
+          </Controller>
+          <Controller type="Property" property="Toggled" end="Pause" frame="$ancestor[@type=ScrollableFrame]/$sibling-4/TogglePulldown3">
+              <Key type="Bool" time="0" value="False"/>
+          </Controller>
+        </Animation>
+      </Frame>
+    </Frame>
+  </Frame>
+
   <Frame type="Frame" name="HeroAttachment6Template" template="SpazzoTemplates/HeroAttachment5Template">
     <Frame type="Button" name="TogglePulldown1">
       <StateGroup name="SelectedAttachmentStategroup">
@@ -4159,6 +4388,7 @@
           <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton7/AbilIcon/@Texture}" />
           <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton7/@Text}" />
           <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton7/AbilName/@Text}" />
+          <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton7/AbilName2/@Text}" />
           <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton7/TypeLabel/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton7/AbilChargeAbilName/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton7/AbilChargeName/@Text}" />
@@ -4193,6 +4423,7 @@
         <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton7/AbilIcon/@Texture}" />
         <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton7/@Text}" />
         <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton7/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton7/AbilName2/@Text}" />
         <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton7/TypeLabel/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton7/AbilChargeAbilName/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton7/AbilChargeName/@Text}" />
@@ -4227,6 +4458,7 @@
           <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton8/AbilIcon/@Texture}" />
           <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton8/@Text}" />
           <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton8/AbilName/@Text}" />
+          <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton8/AbilName2/@Text}" />
           <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton8/TypeLabel/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton8/AbilChargeAbilName/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton8/AbilChargeName/@Text}" />
@@ -4261,6 +4493,7 @@
         <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton8/AbilIcon/@Texture}" />
         <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton8/@Text}" />
         <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton8/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton8/AbilName2/@Text}" />
         <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton8/TypeLabel/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton8/AbilChargeAbilName/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton8/AbilChargeName/@Text}" />
@@ -4295,6 +4528,7 @@
           <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton9/AbilIcon/@Texture}" />
           <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton9/@Text}" />
           <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton9/AbilName/@Text}" />
+          <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton9/AbilName2/@Text}" />
           <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton9/TypeLabel/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton9/AbilChargeAbilName/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton9/AbilChargeName/@Text}" />
@@ -4329,6 +4563,7 @@
         <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton9/AbilIcon/@Texture}" />
         <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton9/@Text}" />
         <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton9/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton9/AbilName2/@Text}" />
         <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton9/TypeLabel/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton9/AbilChargeAbilName/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton9/AbilChargeName/@Text}" />
@@ -4363,6 +4598,7 @@
           <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton10/AbilIcon/@Texture}" />
           <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton10/@Text}" />
           <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton10/AbilName/@Text}" />
+          <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton10/AbilName2/@Text}" />
           <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton10/TypeLabel/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton10/AbilChargeAbilName/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton10/AbilChargeName/@Text}" />
@@ -4397,6 +4633,7 @@
         <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton10/AbilIcon/@Texture}" />
         <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton10/@Text}" />
         <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton10/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton10/AbilName2/@Text}" />
         <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton10/TypeLabel/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton10/AbilChargeAbilName/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton10/AbilChargeName/@Text}" />
@@ -4431,6 +4668,7 @@
           <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton11/AbilIcon/@Texture}" />
           <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton11/@Text}" />
           <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton11/AbilName/@Text}" />
+          <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton11/AbilName2/@Text}" />
           <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton11/TypeLabel/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton11/AbilChargeAbilName/@Text}" />
           <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+2/ContainerFrame/PulldownSubButton11/AbilChargeName/@Text}" />
@@ -4465,6 +4703,7 @@
         <Action type="SetProperty" frame="$this/AbilIcon" Texture="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton11/AbilIcon/@Texture}" />
         <Action type="SetProperty" frame="$this/Label" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton11/@Text}" />
         <Action type="SetProperty" frame="$this/AbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton11/AbilName/@Text}" />
+        <Action type="SetProperty" frame="$this/AbilName2" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton11/AbilName2/@Text}" />
         <Action type="SetProperty" frame="$this/TypeLabel" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton11/TypeLabel/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeAbilName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton11/AbilChargeAbilName/@Text}" />
         <Action type="SetProperty" frame="$this/AbilChargeName" Text="{$parent/$parent/$sibling+3/ContainerFrame/PulldownSubButton11/AbilChargeName/@Text}" />
@@ -5037,6 +5276,11 @@
     <Anchor side="Top" relative="$sibling-1" pos="Max" offset="1"/>
     <Anchor side="Left" relative="$sibling-1" pos="Min" offset="0"/>
     <Style val="SpazzoHelpShortcutListing" />
+    <Text val="{$this/FormatFrame/@Text}"/>
+    <Frame type="TextFormatFrame" name="FormatFrame">
+      <Anchor relative="$parent" />
+      <ReplacedName index="0" val="hotkeyvalue" />
+    </Frame>
   </Frame>
   
   <Frame type="Label" name="ShortcutRight">

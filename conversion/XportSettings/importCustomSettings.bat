@@ -2,7 +2,7 @@
 
 set mpqdirectory=%~dp0
 
-if exist "%mpqdirectory%\CustomConfig.StormLayout" (
+if exist "%mpqdirectory%\_Config.StormLayout" (
     GOTO configfound
 ) else (
     GOTO confignotfound
@@ -14,9 +14,9 @@ echo Copying dragged file to folder
 
 copy "%~1" "%mpqdirectory%\file.storminterface"
 
-echo adding CustomConfig.StormLayout to file
+echo adding _Config.StormLayout to file
 
-"%mpqdirectory%"\..\"MPQEditor.exe" a "%mpqdirectory%\file.storminterface" "%mpqdirectory%\CustomConfig.StormLayout" "Base.StormData\UI\Layout\CustomConfig.StormLayout"
+"%mpqdirectory%"\..\"MPQEditor.exe" a "%mpqdirectory%\file.storminterface" "%mpqdirectory%\_Config.StormLayout" "_Config.StormLayout"
 
 echo renaming to %~n1%_CustomConfig.StormInterface
 
@@ -36,7 +36,7 @@ exit
 :confignotfound
 
 echo Unable to find config file
-echo please ensure a CustomConfig.StormLayout file exists in the same directory as the importCustomSettings.bat file.
+echo please ensure a _Config.StormLayout file exists in the same directory as the importCustomSettings.bat file.
 echo To get this file, open the options menu(Alt+L) with the observer interface, and click the Export Settings button, which will store your settings into the clipboard.
 echo To paste that from the clipboard, press Control+V into a blank text file, and save that file.
 echo and then drag that text file on to the renameDraggedFile.bat file that exists alongside this .bat file
