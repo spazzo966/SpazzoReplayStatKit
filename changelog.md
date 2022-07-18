@@ -1,4 +1,17 @@
-# v0.31 (**2022-06-29**)
+# v0.31a (**2022-07-18**)
+
+* Statistics
+  * Updated Alterac Pass to support the changes in the last version being rolled into the base game
+
+* UI
+  * Fixed an issue that caused Varian's talent number text to display incorrectly
+  * Fixed an issue that caused Tychus's Run and Gun charges to be displayed in the Top Bar while Odin was active if Bob and Weave was selected as a talent
+  * Fixed an issue that caused Garrosh's Indomitable Attachment to not be displayed
+  * Fixed an issue that caused Sgt. Hammer's Maelstrom Rounds Attachment to not be displayed
+  * Fixed an issue that caused Diablo's Black Soulstone Attachment to behave incorrectly
+  * Fixed an issue that caused Maiev's Attachment validators to break validators for select other Heroes
+
+## v0.31 (**2022-06-29**)
 
 * Statistics
   * Muradin now tracks the bonus damage from Perfect Storm, split into Heroic targets and non-Heroic targets

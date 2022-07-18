@@ -3305,10 +3305,10 @@
       <Alpha val="#TopBarAbilityAlpha"/>
     </Frame>
     <!-- <Frame type="Image" name="ImageBoundCheck">
-      <Anchor side="Top" relative="$parent/HeroSelectedTalentTreeFrame" pos="Min" offset="0"/>
-      <Anchor side="Left" relative="$parent/HeroSelectedTalentTreeFrame" pos="Min" offset="0"/>
-      <Anchor side="Right" relative="$this" pos="Min" offset="33"/>
-      <Anchor side="Bottom" relative="$this" pos="Min" offset="33"/>
+      <Anchor side="Top" relative="$parent/TalentNumberContainers/T2Label" pos="Min" offset="0"/>
+      <Anchor side="Left" relative="$parent/TalentNumberContainers/T2Label" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$parent/TalentNumberContainers/T2Label" pos="Max" offset="0"/>
+      <Anchor side="Bottom" relative="$parent/TalentNumberContainers/T2Label" pos="Max" offset="0"/>
       <Texture val="Assets\Textures\storm_ui_homescreenbackground_nexomania.dds"/>
       <RenderPriority val="999" />
       <Alpha val="90"/>
@@ -8569,325 +8569,381 @@
         </State>
       </StateGroup>
       <Frame type="Label" name="T1Label">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$parent/T1Border" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent/T1Border" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$parent/T1Border" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$parent/T1Border" pos="Max" offset="0"/>
         <Text val="1"/>
         <Unclipped val="False"/>
         <Style val="Spazzo_TopPanelTalentLabel"/>
-        <Color val="{$parent/$parent/PlayerColourFrame/@Color}" />
+        <Color val="{$ancestor[@name=TalentNumberContainers]/$parent/PlayerColourFrame/@Color}" />
         <RenderPriority val="600"/>
         <StateGroup name="TalentSelectState">
           <DefaultState val="TierNotAvailable"/>
+          <State name="OverrideFalse">
+            <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" operator="Equal" Visible="False"/>
+            <Action type="SetProperty" frame="$this" Visible="False" />
+            <Action type="SetProperty" frame="$this" Alpha="0" />
+          </State>
           <State name="Disabled">
             <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/T1AnchorFrame" operator="Equal" UseState="OutOfUse"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
           <State name="TierHidden">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierHidden"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierHidden"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
           <State name="TierAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierNotAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierNotAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierNotAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierSelected">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierSelected"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierSelected"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
         </StateGroup>
       </Frame>
       <Frame type="Frame" name="T1Border" template="SpazzoCustomTopBarQuests/TalentTreeBorderTemplate">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Max" offset="0"/>
         <Visible val="{$Talent1MasterSetting/ShowBorders/CheckBoxButton/@Toggled}"/>
       </Frame>
       <Frame type="Label" name="T2Label">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$parent/T2Border" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent/T2Border" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$parent/T2Border" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$parent/T2Border" pos="Max" offset="0"/>
         <Text val="4"/>
         <Unclipped val="False"/>
         <Style val="Spazzo_TopPanelTalentLabel"/>
-        <Color val="{$parent/$parent/PlayerColourFrame/@Color}" />
+        <Color val="{$ancestor[@name=TalentNumberContainers]/$parent/PlayerColourFrame/@Color}" />
         <RenderPriority val="600"/>
         <StateGroup name="TalentSelectState">
           <DefaultState val="TierNotAvailable"/>
-          <State name="Disabled">
+          <State name="OverrideFalse">
+            <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" operator="Equal" Visible="False"/>
+            <Action type="SetProperty" frame="$this" Visible="False" />
+            <Action type="SetProperty" frame="$this" Alpha="0" />
+          </State>
+          <State name="DisabledVarian">
+            <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame" operator="Equal" HeroicTier="4"/>
             <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/T2AnchorFrame" operator="Equal" UseState="OutOfUse"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
+          <State name="Disabled">
+            <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame" operator="NotEqual" HeroicTier="4"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroicAnchorFrame" operator="Equal" UseState="OutOfUse"/>
+            <Action type="SetProperty" frame="$this" Visible="False" />
+            <Action type="SetProperty" frame="$this" Alpha="0" />
+          </State>
           <State name="TierHidden">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" TextureState="TierHidden"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" TextureState="TierHidden"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
           <State name="TierAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" TextureState="TierAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" TextureState="TierAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierNotAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" TextureState="TierNotAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" TextureState="TierNotAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierSelected">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" TextureState="TierSelected"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" TextureState="TierSelected"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
         </StateGroup>
       </Frame>
       <Frame type="Frame" name="T2Border" template="SpazzoCustomTopBarQuests/TalentTreeBorderTemplate">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Max" offset="0"/>
         <Visible val="{$Talent2MasterSetting/ShowBorders/CheckBoxButton/@Toggled}"/>
       </Frame>
       <Frame type="Label" name="T3Label">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$parent/T3Border" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent/T3Border" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$parent/T3Border" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$parent/T3Border" pos="Max" offset="0"/>
         <Text val="7"/>
         <Unclipped val="False"/>
         <Style val="Spazzo_TopPanelTalentLabel"/>
-        <Color val="{$parent/$parent/PlayerColourFrame/@Color}" />
+        <Color val="{$ancestor[@name=TalentNumberContainers]/$parent/PlayerColourFrame/@Color}" />
         <RenderPriority val="600"/>
         <StateGroup name="TalentSelectState">
           <DefaultState val="TierNotAvailable"/>
-          <State name="Disabled">
+          <State name="OverrideFalse">
+            <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3" operator="Equal" Visible="False"/>
+            <Action type="SetProperty" frame="$this" Visible="False" />
+            <Action type="SetProperty" frame="$this" Alpha="0" />
+          </State>
+          <State name="DisabledNotVarian">
+            <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame" operator="Equal" HeroicTier="4"/>
             <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/T3AnchorFrame" operator="Equal" UseState="OutOfUse"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
+          <State name="DisabledVarian">
+            <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame" operator="NotEqual" HeroicTier="4"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/T2AnchorFrame" operator="Equal" UseState="OutOfUse"/>
+            <Action type="SetProperty" frame="$this" Visible="False" />
+            <Action type="SetProperty" frame="$this" Alpha="0" />
+          </State>
           <State name="TierHidden">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" TextureState="TierHidden"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" TextureState="TierHidden"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
           <State name="TierAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" TextureState="TierAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" TextureState="TierAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierNotAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" TextureState="TierNotAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" TextureState="TierNotAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierSelected">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" TextureState="TierSelected"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" TextureState="TierSelected"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
         </StateGroup>
       </Frame>
       <Frame type="Frame" name="T3Border" template="SpazzoCustomTopBarQuests/TalentTreeBorderTemplate">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3" pos="Max" offset="0"/>
         <Visible val="{$Talent3MasterSetting/ShowBorders/CheckBoxButton/@Toggled}"/>
       </Frame>
       <Frame type="Label" name="T4Label">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$parent/T4Border" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent/T4Border" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$parent/T4Border" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$parent/T4Border" pos="Max" offset="0"/>
         <Text val="10"/>
         <Unclipped val="False"/>
         <Style val="Spazzo_TopPanelTalentLabelHeroic"/>
-        <Color val="{$parent/$parent/PlayerColourFrame/@Color}" />
+        <Color val="{$ancestor[@name=TalentNumberContainers]/$parent/PlayerColourFrame/@Color}" />
         <RenderPriority val="600"/>
         <StateGroup name="TalentSelectState">
           <DefaultState val="TierNotAvailable"/>
-          <State name="Disabled">
+          <State name="OverrideFalse">
+            <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4" operator="Equal" Visible="False"/>
+            <Action type="SetProperty" frame="$this" Visible="False" />
+            <Action type="SetProperty" frame="$this" Alpha="0" />
+          </State>
+          <State name="DisabledVarian">
+            <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame" operator="Equal" HeroicTier="4"/>
             <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroicAnchorFrame" operator="Equal" UseState="OutOfUse"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
+          <State name="Disabled">
+            <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame" operator="NotEqual" HeroicTier="4"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/T2AnchorFrame" operator="Equal" UseState="OutOfUse"/>
+            <Action type="SetProperty" frame="$this" Visible="False" />
+            <Action type="SetProperty" frame="$this" Alpha="0" />
+          </State>
           <State name="TierHidden">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierHidden"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierHidden"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
           <State name="TierAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierNotAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierNotAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierNotAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierSelected">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
         </StateGroup>
       </Frame>
       <Frame type="Frame" name="T4Border" template="SpazzoCustomTopBarQuests/TalentTreeBorderTemplate">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4" pos="Max" offset="0"/>
         <Visible val="{$Talent4MasterSetting/ShowBorders/CheckBoxButton/@Toggled}"/>
       </Frame>
       <Frame type="Label" name="T5Label">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$parent/T5Border" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent/T5Border" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$parent/T5Border" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$parent/T5Border" pos="Max" offset="0"/>
         <Text val="13"/>
         <Unclipped val="False"/>
         <Style val="Spazzo_TopPanelTalentLabel"/>
-        <Color val="{$parent/$parent/PlayerColourFrame/@Color}" />
+        <Color val="{$ancestor[@name=TalentNumberContainers]/$parent/PlayerColourFrame/@Color}" />
         <RenderPriority val="600"/>
         <StateGroup name="TalentSelectState">
           <DefaultState val="TierNotAvailable"/>
+          <State name="OverrideFalse">
+            <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5" operator="Equal" Visible="False"/>
+            <Action type="SetProperty" frame="$this" Visible="False" />
+            <Action type="SetProperty" frame="$this" Alpha="0" />
+          </State>
           <State name="Disabled">
             <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/T5AnchorFrame" operator="Equal" UseState="OutOfUse"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
           <State name="TierHidden">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" TextureState="TierHidden"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" TextureState="TierHidden"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
           <State name="TierAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" TextureState="TierAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" TextureState="TierAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierNotAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" TextureState="TierNotAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" TextureState="TierNotAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierSelected">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" TextureState="TierSelected"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" TextureState="TierSelected"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
         </StateGroup>
       </Frame>
       <Frame type="Frame" name="T5Border" template="SpazzoCustomTopBarQuests/TalentTreeBorderTemplate">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon5" pos="Max" offset="0"/>
         <Visible val="{$Talent5MasterSetting/ShowBorders/CheckBoxButton/@Toggled}"/>
       </Frame>
       <Frame type="Label" name="T6Label">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$parent/T6Border" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent/T6Border" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$parent/T6Border" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$parent/T6Border" pos="Max" offset="0"/>
         <Text val="16"/>
         <Unclipped val="False"/>
         <Style val="Spazzo_TopPanelTalentLabel"/>
-        <Color val="{$parent/$parent/PlayerColourFrame/@Color}" />
+        <Color val="{$ancestor[@name=TalentNumberContainers]/$parent/PlayerColourFrame/@Color}" />
         <RenderPriority val="600"/>
         <StateGroup name="TalentSelectState">
           <DefaultState val="TierNotAvailable"/>
+          <State name="OverrideFalse">
+            <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6" operator="Equal" Visible="False"/>
+            <Action type="SetProperty" frame="$this" Visible="False" />
+            <Action type="SetProperty" frame="$this" Alpha="0" />
+          </State>
           <State name="Disabled">
             <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/T6AnchorFrame" operator="Equal" UseState="OutOfUse"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
           <State name="TierHidden">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" TextureState="TierHidden"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" TextureState="TierHidden"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
           <State name="TierAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" TextureState="TierAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" TextureState="TierAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierNotAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" TextureState="TierNotAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" TextureState="TierNotAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierSelected">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" TextureState="TierSelected"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" TextureState="TierSelected"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
         </StateGroup>
       </Frame>
       <Frame type="Frame" name="T6Border" template="SpazzoCustomTopBarQuests/TalentTreeBorderTemplate">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6" pos="Max" offset="0"/>
         <Visible val="{$Talent6MasterSetting/ShowBorders/CheckBoxButton/@Toggled}"/>
       </Frame>
       <Frame type="Label" name="T7Label">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$parent/T7Border" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent/T7Border" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$parent/T7Border" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$parent/T7Border" pos="Max" offset="0"/>
         <Text val="20"/>
         <Unclipped val="False"/>
         <Style val="Spazzo_TopPanelTalentLabel"/>
-        <Color val="{/$parent/$parent/PlayerColourFrame/@Color}" />
+        <Color val="{/$ancestor[@name=TalentNumberContainers]/$parent/PlayerColourFrame/@Color}" />
         <RenderPriority val="600"/>
         <StateGroup name="TalentSelectState">
           <DefaultState val="TierNotAvailable"/>
+          <State name="OverrideFalse">
+            <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" operator="Equal" Visible="False"/>
+            <Action type="SetProperty" frame="$this" Visible="False" />
+            <Action type="SetProperty" frame="$this" Alpha="0" />
+          </State>
           <State name="Disabled">
             <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/T7AnchorFrame" operator="Equal" UseState="OutOfUse"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
           <State name="TierHidden">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierHidden"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierHidden"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
           <State name="TierAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierNotAvailable">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierNotAvailable"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierNotAvailable"/>
             <Action type="SetProperty" frame="$this" Visible="True" />
             <Action type="SetProperty" frame="$this" Alpha="255" />
           </State>
           <State name="TierSelected">
-            <When type="StateGroup" frame="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
         </StateGroup>
       </Frame>
       <Frame type="Frame" name="T7Border" template="SpazzoCustomTopBarQuests/TalentTreeBorderTemplate">
-        <Anchor side="Top" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Max" offset="0"/>
+        <Anchor side="Top" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Max" offset="0"/>
         <Visible val="{$Talent7MasterSetting/ShowBorders/CheckBoxButton/@Toggled}"/>
       </Frame>
     </Frame>

@@ -1909,7 +1909,7 @@
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMaiev"/>
         <When type="StateGroup" frame="$MaievCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="7"/>
         <When type="StateGroup" frame="UnitStatusTalentValidator3" AnimState="MaievHasShadowOrbHuntressTalent"/>
-        <When type="StateGroup" frame="UnitStatusTalentValidator4" AnimState="MaievShadowOrbHuntressChargeIsMax"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator5" AnimState="MaievShadowOrbHuntressChargeIsMax"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="MaievShadowOrbHuntress" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
@@ -1926,7 +1926,7 @@
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMaiev"/>
         <When type="StateGroup" frame="$MaievCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="7"/>
         <When type="StateGroup" frame="UnitStatusTalentValidator3" AnimState="MaievHasShadowOrbHuntressTalent"/>
-        <When type="StateGroup" frame="UnitStatusTalentValidator4" operator="NotEqual" AnimState="MaievShadowOrbHuntressChargeIsMax"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator5" operator="NotEqual" AnimState="MaievShadowOrbHuntressChargeIsMax"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
@@ -1943,7 +1943,7 @@
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMaiev"/>
         <When type="StateGroup" frame="$MaievCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="7"/>
         <When type="StateGroup" frame="UnitStatusTalentValidator3" AnimState="MaievHasShadowOrbShadowStrikeTalent"/>
-        <When type="StateGroup" frame="UnitStatusTalentValidator4" AnimState="MaievShadowOrbShadowStrikeChargeIsMax"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator6" AnimState="MaievShadowOrbShadowStrikeChargeIsMax"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="MaievShadowOrbShadowStrike" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
@@ -1960,7 +1960,7 @@
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMaiev"/>
         <When type="StateGroup" frame="$MaievCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="7"/>
         <When type="StateGroup" frame="UnitStatusTalentValidator3" AnimState="MaievHasShadowOrbShadowStrikeTalent"/>
-        <When type="StateGroup" frame="UnitStatusTalentValidator4" operator="NotEqual" AnimState="MaievShadowOrbShadowStrikeChargeIsMax"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator6" operator="NotEqual" AnimState="MaievShadowOrbShadowStrikeChargeIsMax"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
@@ -2235,6 +2235,22 @@
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroGarrosh"/>
         <When type="StateGroup" frame="$GarroshCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="5"/>
         <When type="StateGroup" frame="UnitStatusTalentValidator2" AnimState="GarroshHasArmorUpBodyCheckTalent"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$GarroshCooldownSetting/TogglePulldown1/AbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$GarroshCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$GarroshCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+      </State>
+      <State name="HeroGarroshTalentIndomitable">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroGarrosh"/>
+        <When type="StateGroup" frame="$GarroshCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="6"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator" AnimState="GarroshHasIndomitableTalent"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$GarroshCooldownSetting/TogglePulldown1/AbilName/@Text}" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
@@ -5459,7 +5475,7 @@
       <State name="HeroDiabloBlackSoulstone">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroDiablo"/>
         <When type="StateGroup" frame="$DiabloCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="4"/>
-        <When type="StateGroup" frame="UnitStatusTalentValidator2" operator="NotEqual" AnimState="DiabloHasGTE100SoulstoneStacks"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator2" operator="NotEqual" AnimState="DiabloHasGTE100BlackSoulstoneTokens"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
@@ -8363,6 +8379,7 @@
       <State name="HeroSgtHammerTalentMaelstromRounds">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroSgtHammer"/>
         <When type="StateGroup" frame="$SgtHammerCooldownSetting/TogglePulldown1" SelectedAttachmentStategroup="5"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator2" AnimState="HasSgtHammerMaelstromRounds"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$SgtHammerCooldownSetting/TogglePulldown1/AbilName/@Text}" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="{$SgtHammerCooldownSetting/TogglePulldown1/AbilChargeAbilName/@Text}" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="{$SgtHammerCooldownSetting/TogglePulldown1/AbilChargeName/@Text}" />
@@ -10215,7 +10232,7 @@
       <Validator val="TassadarHasExecutorsWillTalent" />
       <Validator val="StukovHasControlledChaos" />
       <Validator val="GazloweHasXplodiumChargeBombToss" />
-      <Validator val="DiabloHasGTE100SoulstoneStacks" />
+      <Validator val="DiabloHasGTE100BlackSoulstoneTokens" />
       <Validator val="FenixHasUnconqueredSpirit" />
       <Validator val="GreymaneInnerBeastCasterHasBuff" />
       <Validator val="GuldanHasDemonicCircleControllerBehavior" />
@@ -10227,7 +10244,6 @@
       <Validator val="KelThuzadHasPhylacteryOfKelThuzad" />
       <Validator val="LeoricHasShroudoftheDeadKing" />
       <Validator val="LucioHasBoomboxBoomboxTalent" />
-      <Validator val="MaievFanOfKnivesNaishasMementoChargeIsMax" />
       <Validator val="MeiOWHasBackupBatteryTalent" />
       <Validator val="MephistoShadeOfMephistoShadeLordHasTalent" />
       <Validator val="HasMuradinPassiveStoneform" />
@@ -10235,10 +10251,11 @@
       <Validator val="RexxarHasSpiritBondPrimalIntimidation" />
       <Validator val="HasSgtHammerMaelstromRounds" />
       <Validator val="ThrallHasSpiritShieldTalent" />
-      <Validator val="TyrandeHasElunesChosen" />
       <Validator val="HasUtherHolyShock" />
       <Validator val="VarianHasVictoryRushTalent" />
       <Validator val="ZuljinHasVoodooShuffle" />
+      <Validator val="TyrandeHasElunesChosen" />
+      <Validator val="MaievFanOfKnivesNaishasMementoChargeIsMax" />
       <StateGroup name="AnimState">
         <DefaultState val="NoState" />
         <State name="GarroshHasArmorUpBodyCheckTalent">
@@ -10333,9 +10350,9 @@
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTinker"/>
           <When type="AnimationState" UnitStatusValidatorState="GazloweHasXplodiumChargeBombToss" />
         </State>
-        <State name="DiabloHasGTE100SoulstoneStacks">
+        <State name="DiabloHasGTE100BlackSoulstoneTokens">
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroDiablo"/>
-          <When type="AnimationState" UnitStatusValidatorState="DiabloHasGTE100SoulstoneStacks" />
+          <When type="AnimationState" UnitStatusValidatorState="DiabloHasGTE100BlackSoulstoneTokens" />
         </State>
         <State name="FenixHasUnconqueredSpirit">
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroFenix"/>
@@ -10381,10 +10398,6 @@
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroLucio"/>
           <When type="AnimationState" UnitStatusValidatorState="LucioHasBoomboxBoomboxTalent" />
         </State>
-        <State name="MaievFanOfKnivesNaishasMementoChargeIsMax">
-          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMaiev"/>
-          <When type="AnimationState" UnitStatusValidatorState="MaievFanOfKnivesNaishasMementoChargeIsMax" />
-        </State>
         <State name="MeiOWHasBackupBatteryTalent">
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMeiOW"/>
           <When type="AnimationState" UnitStatusValidatorState="MeiOWHasBackupBatteryTalent" />
@@ -10413,10 +10426,6 @@
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroThrall"/>
           <When type="AnimationState" UnitStatusValidatorState="ThrallHasSpiritShieldTalent" />
         </State>
-        <State name="TyrandeHasElunesChosen">
-          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTyrande"/>
-          <When type="AnimationState" UnitStatusValidatorState="TyrandeHasElunesChosen" />
-        </State>
         <State name="HasUtherHolyShock">
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroUther"/>
           <When type="AnimationState" UnitStatusValidatorState="HasUtherHolyShock" />
@@ -10428,6 +10437,14 @@
         <State name="ZuljinHasVoodooShuffle">
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroZuljin"/>
           <When type="AnimationState" UnitStatusValidatorState="ZuljinHasVoodooShuffle" />
+        </State>
+        <State name="TyrandeHasElunesChosen">
+          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroTyrande"/>
+          <When type="AnimationState" UnitStatusValidatorState="TyrandeHasElunesChosen" />
+        </State>
+        <State name="MaievFanOfKnivesNaishasMementoChargeIsMax">
+          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMaiev"/>
+          <When type="AnimationState" UnitStatusValidatorState="MaievFanOfKnivesNaishasMementoChargeIsMax" />
         </State>
         <State name="NoState">
           <When type="AnimationState" UnitStatusValidatorState="NoState" />
@@ -10641,11 +10658,9 @@
       <Validator val="JunkratHasSpreadVolleyActive" />
       <Validator val="KalethasManaAddictTargetHasTalent" />
       <Validator val="KelThuzadHasTheDamnedReturn" />
-      <Validator val="MaievSpiritOfVengeanceShadowOrbVengeanceChargeIsMax" />
-      <Validator val="MaievShadowOrbHuntressChargeIsMax" />
-      <Validator val="MaievShadowOrbShadowStrikeChargeIsMax" />
       <Validator val="UtherHasTalentArmorOfFaith" />
       <Validator val="HasUtherHandOfProtection" />
+      <Validator val="MaievSpiritOfVengeanceShadowOrbVengeanceChargeIsMax" />
       <StateGroup name="AnimState">
         <DefaultState val="NoState" />
         <State name="CrusaderHasCondemnBlessedHammer">
@@ -10680,14 +10695,6 @@
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroKelThuzad"/>
           <When type="AnimationState" UnitStatusValidatorState="KelThuzadHasTheDamnedReturn" />
         </State>
-        <State name="MaievSpiritOfVengeanceShadowOrbVengeanceChargeIsMax">
-          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMaiev"/>
-          <When type="AnimationState" UnitStatusValidatorState="MaievSpiritOfVengeanceShadowOrbVengeanceChargeIsMax" />
-        </State>
-        <State name="MaievShadowOrbHuntressChargeIsMax">
-          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMaiev"/>
-          <When type="AnimationState" UnitStatusValidatorState="MaievShadowOrbHuntressChargeIsMax" />
-        </State>
         <State name="UtherHasTalentArmorOfFaith">
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroUther"/>
           <When type="AnimationState" UnitStatusValidatorState="UtherHasTalentArmorOfFaith" />
@@ -10695,6 +10702,10 @@
         <State name="HasUtherHandOfProtection">
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroUther"/>
           <When type="AnimationState" UnitStatusValidatorState="HasUtherHandOfProtection" />
+        </State>
+        <State name="MaievSpiritOfVengeanceShadowOrbVengeanceChargeIsMax">
+          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMaiev"/>
+          <When type="AnimationState" UnitStatusValidatorState="MaievSpiritOfVengeanceShadowOrbVengeanceChargeIsMax" />
         </State>
         <State name="NoState">
           <When type="AnimationState" UnitStatusValidatorState="NoState" />
@@ -10705,6 +10716,7 @@
       <Anchor relative="$parent" />
       <Validator val="DeckardHasHoradricStaffTalent" />
       <Validator val="BarbarianHasNervesOfSteelTalent" />
+      <Validator val="MaievShadowOrbHuntressChargeIsMax" />
       <StateGroup name="AnimState">
         <DefaultState val="NoState" />
         <State name="DeckardHasHoradricStaffTalent">
@@ -10715,6 +10727,10 @@
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroBarbarian"/>
           <When type="AnimationState" UnitStatusValidatorState="BarbarianHasNervesOfSteelTalent" />
         </State>
+        <State name="MaievShadowOrbHuntressChargeIsMax">
+          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMaiev"/>
+          <When type="AnimationState" UnitStatusValidatorState="MaievShadowOrbHuntressChargeIsMax" />
+        </State>
         <State name="NoState">
           <When type="AnimationState" UnitStatusValidatorState="NoState" />
         </State>
@@ -10724,6 +10740,7 @@
       <Anchor relative="$parent" />
       <Validator val="DeckardHasMorenadosTalent" />
       <Validator val="BarbarianHasStridingGiantTalent" />
+      <Validator val="MaievShadowOrbShadowStrikeChargeIsMax" />
       <StateGroup name="AnimState">
         <DefaultState val="NoState" />
         <State name="DeckardHasMorenadosTalent">
@@ -10733,6 +10750,10 @@
         <State name="BarbarianHasStridingGiantTalent">
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroBarbarian"/>
           <When type="AnimationState" UnitStatusValidatorState="BarbarianHasStridingGiantTalent" />
+        </State>
+        <State name="MaievShadowOrbShadowStrikeChargeIsMax">
+          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMaiev"/>
+          <When type="AnimationState" UnitStatusValidatorState="MaievShadowOrbShadowStrikeChargeIsMax" />
         </State>
         <State name="NoState">
           <When type="AnimationState" UnitStatusValidatorState="NoState" />

@@ -4270,6 +4270,18 @@
       </State>
       <!-- Maybe look at inherited visible property of the other frames? -->
       <!-- TODO: Fix this -->
+      <State name="HeroTychusBobAndWeaveThrusters">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroTychus"/>
+        <When type="Property" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_tychus_runandgun.dds"/>
+        <When type="StateGroup" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroAbil3/BackupAbilFrame2" InheritedVisible="True"/>
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="True" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="TychusOdinThrusters" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/TychusOdinThrusters" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
+        <!-- TychusRunAndGunOverkill -->
+        <!-- TychusOdinThrusters -->
+      </State>
       <State name="HeroTychusBobAndWeave">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroTychus"/>
         <When type="Property" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_tychus_runandgun.dds"/>
