@@ -16620,15 +16620,24 @@
       </Frame>
       <StateGroup name="CustomTopBarVisibilityStateGroup">
         <DefaultState val="Visible"/>
+        <State name="EOGVisible">
+          <When type="Property" frame="$GameUI_EndOfGameAwards" Visible="true" />
+          <Action type="SetProperty" frame="$this" Alpha="0" />
+          <!-- <Action type="SetProperty" frame="$this" Visible="False" /> -->
+          <Action type="SetAnchor" frame="$this" side="Top" relative="$parent" pos="Min" offset="-500" />
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent" pos="Max" offset="-500" />
+        </State>
         <State name="Visible">
           <When type="StateGroup" frame="$ExportContainerFrame" CustomTopBarVisiblity="Visible" />
           <Action type="SetProperty" frame="$this" Alpha="255" />
+          <!-- <Action type="SetProperty" frame="$this" Visible="True" /> -->
           <Action type="SetAnchor" frame="$this" side="Top" relative="$parent" pos="Min" offset="0" />
           <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent" pos="Max" offset="0" />
         </State>
         <State name="NotVisible">
           <When type="StateGroup" frame="$ExportContainerFrame" CustomTopBarVisiblity="NotVisible" />
           <Action type="SetProperty" frame="$this" Alpha="0" />
+          <!-- <Action type="SetProperty" frame="$this" Visible="True" /> -->
           <Action type="SetAnchor" frame="$this" side="Top" relative="$parent" pos="Min" offset="-500" />
           <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent" pos="Max" offset="-500" />
         </State>

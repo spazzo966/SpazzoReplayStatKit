@@ -1,4 +1,12 @@
-# v0.31a (**2022-07-18**)
+# v0.31b (***2022-10-27*)
+
+* Statistics
+ * No changes
+
+* UI
+ * The Top Bar is now hidden while the end of game awards screen is displayed 
+
+## v0.31a (**2022-07-18**)
 
 * Statistics
   * Updated Alterac Pass to support the changes in the last version being rolled into the base game
