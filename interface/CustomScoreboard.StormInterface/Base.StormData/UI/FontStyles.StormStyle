@@ -83,6 +83,10 @@
   <Style name="SpazzoHelpShortcutListing" template="Storm_TabButton_Label_Modified" height="19" hjustify="Left" vjustify="Top"  />
   <Style name="SpazzoHelpShortcutListingRight" template="SpazzoHelpShortcutListing" hjustify="Right" />
   <Style name="SpazzoHelpShortcutListingMiddle" template="SpazzoHelpShortcutListing"  hjustify="Center" />
-  <Style name="Spazzo_TopBarTeamScore" template="Spazzo_TopPanelTalentLabel" height="30" textcolor="255,230,230,230" fontflags="Outline" styleflags="!Shadow|!Glow" outlinewidth="3" />
+  <Style name="Spazzo_TopBarTeamScore" template="Spazzo_TopPanelTalentLabel" height="29" textcolor="255,230,230,230" fontflags="Outline" styleflags="!Shadow|!Glow" outlinewidth="3" />
+  <Style name="Spazzo_TopBarTeamScoreCompact" template="Spazzo_TopBarTeamScore" height="14" outlinewidth="1"  />
+  <Style name="Spazzo_TopBarTeamScoreHover" template="Spazzo_TopBarTeamScore" height="11" outlinewidth="1" />
+  <Style name="Spazzo_TopBarTeamScoreHoverCompact" template="Spazzo_TopBarTeamScore" height="8" fontflags="!Outline" outlinewidth="0" />
+  
   
 </StyleFile>

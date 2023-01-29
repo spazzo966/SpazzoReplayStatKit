@@ -1,4 +1,4 @@
-﻿UI/Spazzo/UIVersion=v0.32
+﻿UI/Spazzo/UIVersion=v0.32a
 UI/Spazzo/UIWARNING=WARNING
 UI/Spazzo/UIWARNINGTOOLTIP=Game is detected as having ended, statistics may be incorrect, please rewind to after the core is destroyed, but before these images become visible!
 
@@ -200,14 +200,18 @@ UI/Spazzo/Blizzcut26=<k val="CameraView5"/> View Camera 6
 UI/Spazzo/Blizzcut27=<k val="CameraView6"/> View Camera 7
 UI/Spazzo/Blizzcut28=<k val="CameraView7"/> View Camera 8
 
-UI/Spazzo/HelpScoreShortcuts=Score Shortcuts
+UI/Spazzo/HelpScoreShortcuts=Score Hotkeys
 UI/Spazzo/Scorecut1=<c val="ffffff">%hotkeyvalue%</c>: Display Team Names
 UI/Spazzo/Scorecut2=<c val="ffffff">%hotkeyvalue%</c>: Display Team Scores
 UI/Spazzo/Scorecut3=<c val="ffffff">%hotkeyvalue%</c>: Team Score Position Toggle
-UI/Spazzo/Scorecut4=<c val="ffffff">%hotkeyvalue%</c>: Increase <c style="Primary" relation="Ally">Left-Side Team</c> Score
-UI/Spazzo/Scorecut5=<c val="ffffff">%hotkeyvalue%</c>: Decrease <c style="Primary" relation="Ally">Left-Side Team</c> Score
-UI/Spazzo/Scorecut6=<c val="ffffff">%hotkeyvalue%</c>: Increase <c style="Primary" relation="Enemy">Right-Side Team</c> Score
-UI/Spazzo/Scorecut7=<c val="ffffff">%hotkeyvalue%</c>: Decrease <c style="Primary" relation="Enemy">Right-Side Team</c> Score
+UI/Spazzo/Scorecut4=<c val="ffffff">%hotkeyvalue%</c>: Increase <c style="Primary" relation="Ally">Left-Side Team</c> Score by 1
+UI/Spazzo/Scorecut5=<c val="ffffff">%hotkeyvalue%</c>: Decrease <c style="Primary" relation="Ally">Left-Side Team</c> Score by 1
+UI/Spazzo/Scorecut6=<c val="ffffff">%hotkeyvalue%</c>: Increase <c style="Primary" relation="Ally">Left-Side Team</c> Score by 0.25
+UI/Spazzo/Scorecut7=<c val="ffffff">%hotkeyvalue%</c>: Decrease <c style="Primary" relation="Ally">Left-Side Team</c> Score by 0.25
+UI/Spazzo/Scorecut8=<c val="ffffff">%hotkeyvalue%</c>: Increase <c style="Primary" relation="Enemy">Right-Side Team</c> Score by 1
+UI/Spazzo/Scorecut9=<c val="ffffff">%hotkeyvalue%</c>: Decrease <c style="Primary" relation="Enemy">Right-Side Team</c> Score by 1
+UI/Spazzo/Scorecut10=<c val="ffffff">%hotkeyvalue%</c>: Increase <c style="Primary" relation="Enemy">Right-Side Team</c> Score by 0.25
+UI/Spazzo/Scorecut11=<c val="ffffff">%hotkeyvalue%</c>: Decrease <c style="Primary" relation="Enemy">Right-Side Team</c> Score by 0.25
 
 UI/Spazzo/CustomUnitSelectionUI=Selection UI
 UI/Spazzo/CustomUnitSelectionUITooltip=When untoggled, disable the selected unit UI entirely
@@ -220,6 +224,8 @@ UI/Spazzo/SelectionUI/Radius=<d ref="Unit,%unitname%,Radius" precision="4" playe
 UI/Spazzo/SelectionUI/RadiusTooltip=Unit Radius
 
 UI/Spazzo/ScoreTest=<d score="FractionalTeamLevel" player="3" precision="3"/>
+
+UI/Spazzo/ScoreController=%whole%%decimal%
 
 UI/Spazzo/SelectionUI/HeroXP1=<d ref="50 * [d ref='%veterancyvalue% + 5'] * %unitvalue%" />
 UI/Spazzo/SelectionUI/HeroXP=<d ref="50 * [d ref='%veterancyvalue% + 5'/] * %unitvalue%" precision="2" />
@@ -375,7 +381,7 @@ UI/Spazzo/ShowTeamNames=Show Team Names
 UI/Spazzo/ShowTeamNamesTooltip=When toggled on, a section for team names will be displayed below the hero portraits in the Top Bar. Use an external overlay program to add the team names.</n>Shortcut: <c val="ffffff">%hotkeyvalue%</c>
 
 UI/Spazzo/ShowTeamScores=Show Team Scores
-UI/Spazzo/ShowTeamScoresTooltip=When toggled on, a section for team scores will be displayed below the hero portraits in the Top Bar. This can be clicked to increase the value by 1, up to 9. Pressing it after this will reset it back to 0.</n>Shortcut: <c val="ffffff">%hotkeyvalue%</c>.</n>Left Side Hotkeys: Up: <c val="ffffff">%hotkeyvalueleftup%</c> Down: <c val="ffffff">%hotkeyvalueleftdown%</c>.</n>Right Side Hotkeys: Up: <c val="ffffff">%hotkeyvaluerightup%</c> Down: <c val="ffffff">%hotkeyvaluerightdown%</c>
+UI/Spazzo/ShowTeamScoresTooltip=When toggled on, a section for team scores will be displayed below the hero portraits in the Top Bar. This can be clicked to increase the value by 1, up to 9. Pressing it after this will reset it back to 0.</n>Shortcut: <c val="ffffff">%hotkeyvalue%</c>.</n>Left Side Hotkeys: Up 1: <c val="ffffff">%hotkeyvalueleftup%</c> Down 1: <c val="ffffff">%hotkeyvalueleftdown%</c> Up 0.25: <c val="ffffff">%hotkeyvalueleftupdecimal%</c> Down 0.25: <c val="ffffff">%hotkeyvalueleftdowndecimal%</c>.</n>Right Side Hotkeys: Up 1: <c val="ffffff">%hotkeyvaluerightup%</c> Down 1: <c val="ffffff">%hotkeyvaluerightdown%</c> Up 0.25: <c val="ffffff">%hotkeyvaluerightupdecimal%</c> Down 0.25: <c val="ffffff">%hotkeyvaluerightdowndecimal%</c>
 
 UI/Spazzo/TeamScorePosition=Team Scores Position
 UI/Spazzo/TeamScorePositionTooltip=When toggled on, Team Score will be positioned on the inside of the Top Bar, pushing the Core Health display to the outside, and when toggled off, it will position to the outside of the Core Health(meaning when the Core Health is not visible, it will still be positioned inside)</n>Shortcut: <c val="ffffff">%hotkeyvalue%</c>

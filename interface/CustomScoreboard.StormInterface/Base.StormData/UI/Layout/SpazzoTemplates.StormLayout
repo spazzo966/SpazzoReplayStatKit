@@ -5400,28 +5400,177 @@
     </Frame>
   </Frame>
 
+  <Frame type="Frame" name="TopBarScoreHoverTemplate">
+    <Visible val="False"/>
+    <AcceptsMouse val="True" />
+    <IgnoreParentColor val="True"/>
+    <Animation name="EnterMouse">
+      <Event event="OnMouseEnter" action="Reset,Play" />
+      <Controller type="Visibility" end="Pause" frame="$this">
+        <Key type="Bool" time="0" value="False"/>
+      </Controller>
+    </Animation>
+    <Animation name="DragStart">
+      <Event event="OnDragStart" frame="$parent/RadialDragButton" action="Reset,Play" />
+      <Controller type="Visibility" end="Pause" frame="$this">
+        <Key type="Bool" time="0" value="True"/>
+      </Controller>
+    </Animation>
+    <Animation name="DragEnd">
+      <Event event="OnDragEnd" frame="$parent/RadialDragButton" action="Reset,Play" />
+      <Controller type="Visibility" end="Pause" frame="$this">
+        <Key type="Bool" time="0" value="False"/>
+      </Controller>
+    </Animation>
+    <Frame type="Image" name="Background">
+      <Anchor relative="$parent" />
+      <Texture val="_Assets\UI\score_bg.dds" />
+      <Color val="{$parent/$parent/$sibling-1/@Color}" />
+    </Frame>
+    <Frame type="Image" name="Border">
+      <Anchor relative="$parent" />
+      <Texture val="_Assets\UI\score_border_bluropac.dds" />
+      <Color val="{$parent/$parent/$sibling-1/@Color}" />
+      <RenderPriority val="200" />
+    </Frame>
+    <Frame type="Label" name="Text">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="-4"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="4"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="-4"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="4"/>
+      <Style val="Spazzo_TopBarTeamScoreHover" />
+      <Options val="ScaleToPreventTruncation" />
+      <StateGroup name="CompactControlGroup">
+        <DefaultState val="NotCompact"/>
+        <State name="Compact">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
+          <Action type="SetProperty" frame="$this" Style="Spazzo_TopBarTeamScoreHoverCompact" />
+        </State>
+        <State name="Ultracompact">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+          <Action type="SetProperty" frame="$this" Style="Spazzo_TopBarTeamScoreHoverCompact" />
+        </State>
+        <State name="NotCompact">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
+          <Action type="SetProperty" frame="$this" Style="Spazzo_TopBarTeamScoreHover" />
+        </State>
+      </StateGroup>
+    </Frame>
+  </Frame>
   
   <Frame type="Frame" name="TopBarScoreTemplate">
     <RenderPriority val="530" />
     <Frame type="Button" name="IncreaseButton">
-      <Anchor side="Top" relative="$parent" pos="Min" offset="2"/>
-      <Anchor side="Bottom" relative="$parent" pos="Max" offset="-2"/>
-      <Anchor side="Left" relative="$parent" pos="Mid" offset="0"/>
-      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-      <AllowedButtons val="Left"/>
+      <Anchor relative="$INVALID" />
     </Frame>
     <Frame type="Button" name="DecreaseButton">
-      <Anchor side="Top" relative="$parent" pos="Min" offset="2"/>
-      <Anchor side="Bottom" relative="$parent" pos="Max" offset="-2"/>
-      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-      <Anchor side="Right" relative="$parent" pos="Mid" offset="0"/>
-      <AllowedButtons val="Left"/>
+      <Anchor relative="$INVALID" />
+    </Frame>
+    <Frame type="Button" name="DecimalIncreaseButton">
+      <Anchor relative="$INVALID" />
+    </Frame>
+    <Frame type="Button" name="DecimalDecreaseButton">
+      <Anchor relative="$INVALID" />
+    </Frame>
+    <Frame type="Button" name="RadialDragButton">
+      <Anchor side="Top" relative="$parent/$sibling-1" pos="Min" offset="0"/>
+      <Anchor side="Bottom" relative="$parent/$sibling-1" pos="Max" offset="0"/>
+      <Anchor side="Left" relative="$parent/$sibling-1" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$parent/$sibling-1" pos="Max" offset="0"/>
+      <RenderPriority val="690"/>
+    </Frame>
+    <Frame type="Frame" name="DecreaseHover1" template="SpazzoTemplates/TopBarScoreHoverTemplate">
+      <Anchor side="Top" relative="$parent/$sibling-1" pos="Min" offset="0"/>
+      <Anchor side="Left" relative="$parent/$sibling-1" pos="Min" offset="#SpazzoTeamScoreSizeHoverNeg"/>
+      <Anchor side="Right" relative="$parent/$sibling-1" pos="Min" offset="0"/>
+      <Anchor side="Bottom" relative="$parent/$sibling-1" pos="Min" offset="#SpazzoTeamScoreSizeHover"/>
+      <Texture val="Assets\Textures\storm_ui_homescreenbackground_nexomania.dds"/>
+      <Animation name="EnterMouse">
+        <Controller type="Visibility" end="Pause" frame="$sibling+1">
+          <Key type="Bool" time="0" value="False"/>
+        </Controller>
+        <Controller type="Visibility" end="Pause" frame="$parent/IncreaseHover1">
+          <Key type="Bool" time="0" value="False"/>
+        </Controller>
+        <Controller type="Visibility" end="Pause" frame="$parent/IncreaseHover2">
+          <Key type="Bool" time="0" value="False"/>
+        </Controller>
+      </Animation>
+      <Frame type="Label" name="Text">
+        <Text val="-1"/>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="DecreaseHover2" template="SpazzoTemplates/TopBarScoreHoverTemplate">
+      <Anchor side="Top" relative="$sibling-1" pos="Max" offset="0"/>
+      <Anchor side="Left" relative="$sibling-1" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$sibling-1" pos="Max" offset="0"/>
+      <Anchor side="Bottom" relative="$sibling-1" pos="Max" offset="#SpazzoTeamScoreSizeHover"/>
+      <Texture val="Assets\Textures\storm_ui_homescreenbackground_nexomania.dds"/>
+      <Animation name="EnterMouse">
+        <Controller type="Visibility" end="Pause" frame="$sibling-1">
+          <Key type="Bool" time="0" value="False"/>
+        </Controller>
+        <Controller type="Visibility" end="Pause" frame="$parent/IncreaseHover1">
+          <Key type="Bool" time="0" value="False"/>
+        </Controller>
+        <Controller type="Visibility" end="Pause" frame="$parent/IncreaseHover2">
+          <Key type="Bool" time="0" value="False"/>
+        </Controller>
+      </Animation>
+      <Frame type="Label" name="Text">
+        <Text val="-.25"/>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="IncreaseHover1" template="SpazzoTemplates/TopBarScoreHoverTemplate">
+      <Anchor side="Top" relative="$parent/$sibling-1" pos="Min" offset="0"/>
+      <Anchor side="Bottom" relative="$parent/$sibling-1" pos="Min" offset="#SpazzoTeamScoreSizeHover"/>
+      <Anchor side="Left" relative="$parent/$sibling-1" pos="Max" offset="0"/>
+      <Anchor side="Right" relative="$parent/$sibling-1" pos="Max" offset="#SpazzoTeamScoreSizeHover"/>
+      <Texture val="Assets\Textures\storm_ui_homescreenbackground_nexomania.dds"/>
+      <Animation name="EnterMouse">
+        <Controller type="Visibility" end="Pause" frame="$sibling+1">
+          <Key type="Bool" time="0" value="False"/>
+        </Controller>
+        <Controller type="Visibility" end="Pause" frame="$parent/DecreaseHover1">
+          <Key type="Bool" time="0" value="False"/>
+        </Controller>
+        <Controller type="Visibility" end="Pause" frame="$parent/DecreaseHover2">
+          <Key type="Bool" time="0" value="False"/>
+        </Controller>
+      </Animation>
+      <Frame type="Label" name="Text">
+        <Text val="+1"/>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="IncreaseHover2" template="SpazzoTemplates/TopBarScoreHoverTemplate">
+      <Anchor side="Top" relative="$sibling-1" pos="Max" offset="0"/>
+      <Anchor side="Left" relative="$sibling-1" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$sibling-1" pos="Max" offset="0"/>
+      <Anchor side="Bottom" relative="$sibling-1" pos="Max" offset="#SpazzoTeamScoreSizeHover"/>
+      <Texture val="Assets\Textures\storm_ui_homescreenbackground_nexomania.dds"/>
+      <Animation name="EnterMouse">
+        <Controller type="Visibility" end="Pause" frame="$sibling-1">
+          <Key type="Bool" time="0" value="False"/>
+        </Controller>
+        <Controller type="Visibility" end="Pause" frame="$parent/DecreaseHover1">
+          <Key type="Bool" time="0" value="False"/>
+        </Controller>
+        <Controller type="Visibility" end="Pause" frame="$parent/DecreaseHover2">
+          <Key type="Bool" time="0" value="False"/>
+        </Controller>
+      </Animation>
+      <Frame type="Label" name="Text">
+        <Text val="+.25"/>
+      </Frame>
     </Frame>
 		<Frame type="Frame" name="IncreaseMonitorFrame">
 			<Anchor relative="$parent"/>
 			<Visible val="False"/>
       <Animation name="Pressed">
         <Event event="OnClick" frame="$parent/IncreaseButton" action="Reset,Play" />
+        <Event event="OnMouseEnter" frame="$parent/IncreaseHover1" action="Reset,Play" />
+        <Event event="Proxyclick" frame="$this" action="Reset,Play" />
 				<Controller type="Visibility" end="Pause" frame="$this">
 					<Key type="Bool" time="0" value="True"/>
 				</Controller>
@@ -5438,6 +5587,8 @@
 			<Visible val="False"/>
       <Animation name="Pressed">
         <Event event="OnClick" frame="$parent/DecreaseButton" action="Reset,Play" />
+        <Event event="OnMouseEnter" frame="$parent/DecreaseHover1" action="Reset,Play" />
+        <Event event="Proxyclick" frame="$this" action="Reset,Play" />
 				<Controller type="Visibility" end="Pause" frame="$this">
 					<Key type="Bool" time="0" value="True"/>
 				</Controller>
@@ -5449,7 +5600,80 @@
 				</Controller>
 			</Animation>
 		</Frame>
-    <Frame type="Label" name="ScoreEntryLabel">
+		<Frame type="Frame" name="IncreaseDecimalMonitorFrame">
+			<Anchor relative="$parent"/>
+			<Visible val="False"/>
+      <Animation name="Pressed">
+        <Event event="OnClick" frame="$parent/DecimalIncreaseButton" action="Reset,Play" />
+        <Event event="OnMouseEnter" frame="$parent/IncreaseHover2" action="Reset,Play" />
+				<Controller type="Visibility" end="Pause" frame="$this">
+					<Key type="Bool" time="0" value="True"/>
+				</Controller>
+      </Animation>
+			<Animation name="Autohide">
+				<Event event="Autohide" action="Reset,Play"/>
+				<Controller type="Visibility" end="Pause" frame="$this">
+					<Key type="Bool" time="0" value="False"/>
+				</Controller>
+			</Animation>
+		</Frame>
+		<Frame type="Frame" name="DecreaseDecimalMonitorFrame">
+			<Anchor relative="$parent"/>
+			<Visible val="False"/>
+      <Animation name="Pressed">
+        <Event event="OnClick" frame="$parent/DecimalDecreaseButton" action="Reset,Play" />
+        <Event event="OnMouseEnter" frame="$parent/DecreaseHover2" action="Reset,Play" />
+				<Controller type="Visibility" end="Pause" frame="$this">
+					<Key type="Bool" time="0" value="True"/>
+				</Controller>
+      </Animation>
+			<Animation name="Autohide">
+				<Event event="Autohide" action="Reset,Play"/>
+				<Controller type="Visibility" end="Pause" frame="$this">
+					<Key type="Bool" time="0" value="False"/>
+				</Controller>
+			</Animation>
+		</Frame>
+    <Frame type="Label" name="ScoreEntry">
+      <Anchor side="Top" relative="$parent/$sibling-1" pos="Min" offset="-2"/>
+      <Anchor side="Bottom" relative="$parent/$sibling-1" pos="Max" offset="2"/>
+      <Anchor side="Left" relative="$parent/$sibling-1" pos="Min" offset="-2"/>
+      <Anchor side="Right" relative="$parent/$sibling-1" pos="Max" offset="2"/>
+      <Text val="{$this/FormatFrame/@Text}"/>
+      <Style val="Spazzo_TopBarTeamScore" />
+      <Options val="ScaleToPreventTruncation" />
+      <Frame type="TextFormatFrame" name="FormatFrame">
+        <Anchor relative="$parent" />
+        <FormatText val="@UI/Spazzo/ScoreController" />
+        <Replacement index="0" val="{$parent/$parent/ScoreEntryWhole/@Text}" />
+        <ReplacedName index="0" val="whole" />
+        <Replacement index="1" val="{$parent/$parent/ScoreEntryDecimal/@Text}" />
+        <ReplacedName index="1" val="decimal" />
+      </Frame>
+      <StateGroup name="CompactControlGroup">
+        <DefaultState val="NotCompact"/>
+        <State name="Compact">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
+          <Action type="SetProperty" frame="$this" Style="Spazzo_TopBarTeamScoreCompact" />
+          <Action type="SetAnchor" side="Left" relative="$parent/$sibling-1" pos="Min" offset="-4" />
+          <Action type="SetAnchor" side="Right" relative="$parent/$sibling-1" pos="Max" offset="4" />
+        </State>
+        <State name="Ultracompact">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+          <Action type="SetProperty" frame="$this" Style="Spazzo_TopBarTeamScoreCompact" />
+          <Action type="SetAnchor" side="Left" relative="$parent/$sibling-1" pos="Min" offset="-4" />
+          <Action type="SetAnchor" side="Right" relative="$parent/$sibling-1" pos="Max" offset="4" />
+        </State>
+        <State name="NotCompact">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
+          <Action type="SetProperty" frame="$this" Style="Spazzo_TopBarTeamScore" />
+          <Action type="SetAnchor" side="Left" relative="$parent/$sibling-1" pos="Min" offset="-2" />
+          <Action type="SetAnchor" side="Right" relative="$parent/$sibling-1" pos="Max" offset="2" />
+        </State>
+      </StateGroup>
+    </Frame>
+    <Frame type="Label" name="ScoreEntryWhole">
       <Anchor side="Top" relative="$parent" pos="Min" offset="2"/>
       <Anchor side="Bottom" relative="$parent" pos="Max" offset="-2"/>
       <Anchor side="Left" relative="$parent" pos="Min" offset="2"/>
@@ -5457,6 +5681,7 @@
       <Text val="0"/>
       <Style val="Spazzo_TopBarTeamScore" />
       <Options val="ScaleToPreventTruncation" />
+      <Visible val="False"/>
       <StateGroup name="NumberController">
         <State name="SetTo1FromInc">
           <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
@@ -5649,6 +5874,66 @@
           <When type="Property" frame="$this" Text="1"/>
           <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
           <Action type="SetProperty" frame="$this" Text="0" undo="False"/>
+        </State>
+      </StateGroup>
+    </Frame>
+    <Frame type="Label" name="ScoreEntryDecimal">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="2"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="-2"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="2"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="-2"/>
+      <Text val=""/>
+      <Visible val="False"/>
+      <StateGroup name="NumberController">
+        <State name="SetToDot25FromInc">
+          <When type="Property" frame="$parent/IncreaseDecimalMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text=""/>
+          <Action type="SendEvent" frame="$parent/IncreaseDecimalMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text=".25" undo="False"/>
+        </State>
+        <State name="SetToDot5FromInc">
+          <When type="Property" frame="$parent/IncreaseDecimalMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text=".25"/>
+          <Action type="SendEvent" frame="$parent/IncreaseDecimalMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text=".5" undo="False"/>
+        </State>
+        <State name="SetToDot75FromInc">
+          <When type="Property" frame="$parent/IncreaseDecimalMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text=".5"/>
+          <Action type="SendEvent" frame="$parent/IncreaseDecimalMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text=".75" undo="False"/>
+        </State>
+        <State name="SetToDot0FromInc">
+          <When type="Property" frame="$parent/IncreaseDecimalMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text=".75"/>
+          <Action type="SendEvent" frame="$parent/IncreaseDecimalMonitorFrame" event="Autohide"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Proxyclick"/>
+          <Action type="SetProperty" frame="$this" Text="" undo="False"/>
+        </State>
+        <State name="SetToDot75FromDec">
+          <When type="Property" frame="$parent/DecreaseDecimalMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text=""/>
+          <Action type="SendEvent" frame="$parent/DecreaseDecimalMonitorFrame" event="Autohide"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Proxyclick"/>
+          <Action type="SetProperty" frame="$this" Text=".75" undo="False"/>
+        </State>
+        <State name="SetToDot5FromDec">
+          <When type="Property" frame="$parent/DecreaseDecimalMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text=".75"/>
+          <Action type="SendEvent" frame="$parent/DecreaseDecimalMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text=".5" undo="False"/>
+        </State>
+        <State name="SetToDot25FromDec">
+          <When type="Property" frame="$parent/DecreaseDecimalMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text=".5"/>
+          <Action type="SendEvent" frame="$parent/DecreaseDecimalMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text=".25" undo="False"/>
+        </State>
+        <State name="SetToDot0FromDec">
+          <When type="Property" frame="$parent/DecreaseDecimalMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text=".25"/>
+          <Action type="SendEvent" frame="$parent/DecreaseDecimalMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="" undo="False"/>
         </State>
       </StateGroup>
     </Frame>

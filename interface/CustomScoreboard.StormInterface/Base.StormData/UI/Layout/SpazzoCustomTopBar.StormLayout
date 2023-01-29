@@ -8752,15 +8752,15 @@
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
-          <State name="DisabledVarian">
+          <State name="Disabled">
             <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame" operator="Equal" HeroicTier="4"/>
             <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroicAnchorFrame" operator="Equal" UseState="OutOfUse"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
-          <State name="Disabled">
+          <State name="DisabledVarian">
             <When type="Property" frame="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame" operator="NotEqual" HeroicTier="4"/>
-            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/T2AnchorFrame" operator="Equal" UseState="OutOfUse"/>
+            <When type="StateGroup" frame="$ancestor[@name=TalentNumberContainers]/$parent/T3AnchorFrame" operator="Equal" UseState="OutOfUse"/>
             <Action type="SetProperty" frame="$this" Visible="False" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>

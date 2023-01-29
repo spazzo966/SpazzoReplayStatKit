@@ -16009,7 +16009,7 @@
             </State>
           </StateGroup>
         </Frame>
-        <Frame type="Image" name="TopBarBackingOrderScore">
+        <Frame type="Image" name="TopBarBackingOrderScore1">
           <Anchor side="Top" relative="$Player1TalentContainer/$parent" pos="Max" offset="0"/>
           <Anchor side="Bottom" relative="$this" pos="Min" offset="44"/>
           <Anchor side="Left" relative="$parent/TopBarBacking" pos="Min" offset="-44"/>
@@ -16082,33 +16082,42 @@
           </StateGroup>
         </Frame>
         <Frame type="Image" name="TopBarBackingOrderScoreBorder">
-          <Anchor relative="$parent/TopBarBackingOrderScore" />
+          <Anchor relative="$parent/TopBarBackingOrderScore1" />
           <Texture val="_Assets\UI\score_border_bluropac.dds" />
           <Color val="{$SpazzoColours/OrderColours/@Color}" />
           <RenderPriority val="200" />
-          <Visible val="{$parent/TopBarBackingOrderScore/@Visible}"/>
+          <Visible val="{$parent/TopBarBackingOrderScore1/@Visible}"/>
         </Frame>
-        <Frame type="Frame" name="TopBarOrderScoreContainer" template="SpazzoTemplates/TopBarScoreTemplate">
-          <Anchor relative="$parent/TopBarBackingOrderScore" />
+        <Frame type="Frame" name="TopBarBackingOrderScore2" template="SpazzoTemplates/TopBarScoreTemplate">
+          <Anchor side="Top" relative="$sibling-1" pos="Min" offset="0"/>
+          <Anchor side="Left" relative="$sibling-1" pos="Min" offset="-44"/>
+          <Anchor side="Right" relative="$sibling-1" pos="Max" offset="44"/>
+          <Anchor side="Bottom" relative="$sibling-1" pos="Max" offset="44"/>
           <Color val="{$SpazzoColours/OrderColours/@Color}" />
-          <Visible val="{$parent/TopBarBackingOrderScore/@Visible}"/>
+          <Visible val="{$sibling-1/@Visible}"/>
           <Frame type="Button" name="IncreaseButton">
             <Shortcut val="#TopBarIncreaseLeftSideTeamScore" />
           </Frame>
           <Frame type="Button" name="DecreaseButton">
             <Shortcut val="#TopBarDecreaseLeftSideTeamScore" />
           </Frame>
+          <Frame type="Button" name="DecimalIncreaseButton">
+            <Shortcut val="#TopBarDecimalIncreaseLeftSideTeamScore" />
+          </Frame>
+          <Frame type="Button" name="DecimalDecreaseButton">
+            <Shortcut val="#TopBarDecimalDecreaseLeftSideTeamScore" />
+          </Frame>
         </Frame>
-        <Frame type="Image" name="TopBarBackingChaosScore">
+        <Frame type="Image" name="TopBarBackingChaosScore1">
           <Anchor side="Top" relative="$Player6TalentContainer/$parent" pos="Max" offset="0"/>
-          <Anchor side="Bottom" relative="$parent/TopBarBackingOrderScore" pos="Max" offset="0"/>
+          <Anchor side="Bottom" relative="$TopBarBackingOrderScore1" pos="Max" offset="0"/>
           <Anchor side="Left" relative="$parent/TopBarBacking" pos="Max" offset="0"/>
           <Anchor side="Right" relative="$parent/TopBarBacking" pos="Max" offset="44"/>
           <Texture val="_Assets\UI\score_bg.dds" />
           <Handle val="Team2ScoreController"/>
           <Color val="{$SpazzoColours/ChaosColours/@Color}" />
           <RenderPriority val="200" />
-          <Visible val="{$parent/TopBarBackingOrderScore/@Visible}"/>
+          <Visible val="{$parent/TopBarBackingOrderScore1/@Visible}"/>
           <StateGroup name="CompactStateGroup">
             <DefaultState val="Default"/>
             <State name="Compact">
@@ -16160,21 +16169,30 @@
           </StateGroup>
         </Frame>
         <Frame type="Image" name="TopBarBackingChaosScoreBorder">
-          <Anchor relative="$parent/TopBarBackingChaosScore" />
+          <Anchor relative="$parent/TopBarBackingChaosScore1" />
           <Texture val="_Assets\UI\score_border_bluropac.dds" />
           <Color val="{$SpazzoColours/ChaosColours/@Color}" />
           <RenderPriority val="200" />
-          <Visible val="{$parent/TopBarBackingChaosScore/@Visible}"/>
+          <Visible val="{$parent/TopBarBackingChaosScore1/@Visible}"/>
         </Frame>
-        <Frame type="Frame" name="TopBarChaosScoreContainer" template="SpazzoTemplates/TopBarScoreTemplate">
-          <Anchor relative="$parent/TopBarBackingChaosScore" />
+        <Frame type="Frame" name="TopBarBackingChaosScore2" template="SpazzoTemplates/TopBarScoreTemplate">
+          <Anchor side="Top" relative="$sibling-1" pos="Min" offset="0"/>
+          <Anchor side="Left" relative="$sibling-1" pos="Min" offset="-44"/>
+          <Anchor side="Right" relative="$sibling-1" pos="Max" offset="44"/>
+          <Anchor side="Bottom" relative="$sibling-1" pos="Max" offset="44"/>
           <Color val="{$SpazzoColours/ChaosColours/@Color}" />
-          <Visible val="{$parent/TopBarBackingChaosScore/@Visible}"/>
+          <Visible val="{$sibling-1/@Visible}"/>
           <Frame type="Button" name="IncreaseButton">
             <Shortcut val="#TopBarIncreaseRightSideTeamScore" />
           </Frame>
           <Frame type="Button" name="DecreaseButton">
             <Shortcut val="#TopBarDecreaseRightSideTeamScore" />
+          </Frame>
+          <Frame type="Button" name="DecimalIncreaseButton">
+            <Shortcut val="#TopBarDecimalIncreaseRightSideTeamScore" />
+          </Frame>
+          <Frame type="Button" name="DecimalDecreaseButton">
+            <Shortcut val="#TopBarDecimalDecreaseRightSideTeamScore" />
           </Frame>
         </Frame>
         <Frame type="Image" name="TopBarBackingOrderCore">
@@ -25466,7 +25484,7 @@
           <Anchor side="Top" relative="$parent/ShortcutListLeft" pos="Max" offset="0"/>
           <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
           <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-          <Anchor side="Bottom" relative="$this/Shortcut7" pos="Max" offset="0"/>
+          <Anchor side="Bottom" relative="$this/Shortcut11" pos="Max" offset="0"/>
           <Frame type="Label" name="Header">
             <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
             <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
@@ -25527,21 +25545,45 @@
               <Replacement index="0" val="#TopBarDecreaseLeftSideTeamScore" />
             </Frame>
           </Frame>
-          <Frame type="Label" name="Shortcut6">
-            <Anchor side="Top" relative="$sibling-3" pos="Max" offset="1"/>
-            <Anchor side="Left" relative="$parent" pos="Mid" offset="15"/>
-            <Style val="SpazzoHelpShortcutListing" />
-            <Text val="{$this/FormatFrame/@Text}"/>
+          <Frame type="Label" name="Shortcut6" template="SpazzoTemplates/ShortcutLeft">
             <Frame type="TextFormatFrame" name="FormatFrame">
               <FormatText val="@UI/Spazzo/Scorecut6" />
-              <ReplacedName index="0" val="hotkeyvalue" />
-              <Replacement index="0" val="#TopBarIncreaseRightSideTeamScore" />
+              <Replacement index="0" val="#TopBarDecimalIncreaseLeftSideTeamScore" />
             </Frame>
           </Frame>
           <Frame type="Label" name="Shortcut7" template="SpazzoTemplates/ShortcutLeft">
             <Frame type="TextFormatFrame" name="FormatFrame">
               <FormatText val="@UI/Spazzo/Scorecut7" />
+              <Replacement index="0" val="#TopBarDecimalDecreaseLeftSideTeamScore" />
+            </Frame>
+          </Frame>
+          <Frame type="Label" name="Shortcut8">
+            <Anchor side="Top" relative="$sibling-5" pos="Max" offset="1"/>
+            <Anchor side="Left" relative="$parent" pos="Mid" offset="15"/>
+            <Style val="SpazzoHelpShortcutListing" />
+            <Text val="{$this/FormatFrame/@Text}"/>
+            <Frame type="TextFormatFrame" name="FormatFrame">
+              <FormatText val="@UI/Spazzo/Scorecut8" />
+              <ReplacedName index="0" val="hotkeyvalue" />
+              <Replacement index="0" val="#TopBarIncreaseRightSideTeamScore" />
+            </Frame>
+          </Frame>
+          <Frame type="Label" name="Shortcut9" template="SpazzoTemplates/ShortcutLeft">
+            <Frame type="TextFormatFrame" name="FormatFrame">
+              <FormatText val="@UI/Spazzo/Scorecut9" />
               <Replacement index="0" val="#TopBarDecreaseRightSideTeamScore" />
+            </Frame>
+          </Frame>
+          <Frame type="Label" name="Shortcut10" template="SpazzoTemplates/ShortcutLeft">
+            <Frame type="TextFormatFrame" name="FormatFrame">
+              <FormatText val="@UI/Spazzo/Scorecut10" />
+              <Replacement index="0" val="#TopBarDecimalIncreaseRightSideTeamScore" />
+            </Frame>
+          </Frame>
+          <Frame type="Label" name="Shortcut11" template="SpazzoTemplates/ShortcutLeft">
+            <Frame type="TextFormatFrame" name="FormatFrame">
+              <FormatText val="@UI/Spazzo/Scorecut11" />
+              <Replacement index="0" val="#TopBarDecimalDecreaseRightSideTeamScore" />
             </Frame>
           </Frame>
         </Frame>
@@ -32977,6 +33019,14 @@
                 <ReplacedName index="3" val="hotkeyvaluerightup" />
                 <Replacement index="4" val="#TopBarDecreaseRightSideTeamScore" />
                 <ReplacedName index="4" val="hotkeyvaluerightdown" />
+                <Replacement index="5" val="#TopBarDecimalIncreaseLeftSideTeamScore" />
+                <ReplacedName index="5" val="hotkeyvalueleftupdecimal" />
+                <Replacement index="6" val="#TopBarDecimalDecreaseLeftSideTeamScore" />
+                <ReplacedName index="6" val="hotkeyvalueleftdowndecimal" />
+                <Replacement index="7" val="#TopBarDecimalIncreaseRightSideTeamScore" />
+                <ReplacedName index="7" val="hotkeyvaluerightupdecimal" />
+                <Replacement index="8" val="#TopBarDecimalDecreaseRightSideTeamScore" />
+                <ReplacedName index="8" val="hotkeyvaluerightdowndecimal" />
               </Frame>
             </Frame>
             <Frame type="Button" name="ShowTeamNamesToggle" template="SpazzoTemplates/ButtonNewTemplate">

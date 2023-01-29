@@ -1,4 +1,14 @@
-# v0.32 (**2023-01-29**)
+# v0.32a (**2023-01-29**)
+
+* Statistics
+ * No changes, the version shipped has not been increased since the previous version
+
+* UI
+ * The Team Score mouse functionality now instead features a radial dial menu, rather than pressing on the location of the score to increase it, holding the mouse button down will display four other buttons, which when hovered over, will increase or decrease the score by the value shown
+ * The Team Score now features the ability to increase or decrease the score in increments of 0.25
+ * Fixed an issue that caused Varian's talent number text to display incorrectly, again
+
+## v0.32 (**2023-01-29**)
 
 * Statistics
  * No changes, the version shipped has not been increased since the previous version

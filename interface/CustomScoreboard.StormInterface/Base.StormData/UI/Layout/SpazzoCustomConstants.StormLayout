@@ -170,4 +170,6 @@
   <Constant name="ScoreTabRevampButtonWidthOffsetLargeLabelPlusRightOffset" val="-82" />
   <Constant name="SpazzoTeamScoreSize" val="44" />
   <Constant name="SpazzoTeamScoreSizeNeg" val="-44" />
+  <Constant name="SpazzoTeamScoreSizeHover" val="32" />
+  <Constant name="SpazzoTeamScoreSizeHoverNeg" val="-32" />
 </Desc>

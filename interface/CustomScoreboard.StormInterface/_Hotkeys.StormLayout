@@ -30,6 +30,10 @@
   <Constant name="TopBarIncreaseLeftSideTeamScore" val="Alt+D" />
   <Constant name="TopBarDecreaseRightSideTeamScore" val="Shift+A" />
   <Constant name="TopBarIncreaseRightSideTeamScore" val="Shift+D" />
+  <Constant name="TopBarDecimalDecreaseLeftSideTeamScore" val="Control+Alt+A" />
+  <Constant name="TopBarDecimalIncreaseLeftSideTeamScore" val="Control+Alt+D" />
+  <Constant name="TopBarDecimalDecreaseRightSideTeamScore" val="Control+Shift+A" />
+  <Constant name="TopBarDecimalIncreaseRightSideTeamScore" val="Control+Shift+D" />
   <Constant name="CycleThroughTopBarLayoutsHotkey" val="Control+L" />
   <Constant name="DisplayLeftSideTeamHotkey" val="Shift+L" />
   <Constant name="DisplayRightSideTeamHotkey" val="Shift+R" />
@@ -154,6 +158,22 @@
   <!-- @Hotkey (	constant = "TopBarIncreaseRightSideTeamScore",
     default = "Shift+D",
     description = "Increase the score for the left side team by 1"
+  ) -->
+  <!-- @Hotkey (	constant = "TopBarDecimalDecreaseLeftSideTeamScore",
+    default = "Control+Alt+A",
+    description = "Decrease the score for the left side team by 0.25"
+  ) -->
+  <!-- @Hotkey (	constant = "TopBarDecimalIncreaseLeftSideTeamScore",
+    default = "Control+Alt+D",
+    description = "Increase the score for the left side team by 0.25"
+  ) -->
+  <!-- @Hotkey (	constant = "TopBarDecimalDecreaseRightSideTeamScore",
+    default = "Control+Shift+A",
+    description = "Decrease the score for the right side team by 0.25"
+  ) -->
+  <!-- @Hotkey (	constant = "TopBarDecimalIncreaseRightSideTeamScore",
+    default = "Control+Shift+D",
+    description = "Increase the score for the right side team by 0.25"
   ) -->
   <!-- @Hotkey (	constant = "CycleThroughTopBarLayoutsHotkey",
     default = "Control+L",
