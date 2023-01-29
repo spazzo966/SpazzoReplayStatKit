@@ -79,7 +79,10 @@
   <Style name="Spazzo_HeroRolloutLabelPlayerNameChaos" template="Spazzo_HeroRolloutLabelPlayerName" hjustify="Right" />
   <Style name="Spazzo_HeroRolloutLabelUnitNameChaos" template="Spazzo_HeroRolloutLabelUnitName" hjustify="Right" />
   <Style name="SpazzoXPDebug" template="ExpandoLabel" height="12" hjustify="Center" vjustify="Middle"  />
-  <Style name="SpazzoHelpHeader" template="HeaderExtendedTemplate" height="50" hjustify="Center" vjustify="Middle"  />
+  <Style name="SpazzoHelpHeader" template="HeaderExtendedTemplate" height="46" hjustify="Center" vjustify="Middle"  />
   <Style name="SpazzoHelpShortcutListing" template="Storm_TabButton_Label_Modified" height="19" hjustify="Left" vjustify="Top"  />
   <Style name="SpazzoHelpShortcutListingRight" template="SpazzoHelpShortcutListing" hjustify="Right" />
+  <Style name="SpazzoHelpShortcutListingMiddle" template="SpazzoHelpShortcutListing"  hjustify="Center" />
+  <Style name="Spazzo_TopBarTeamScore" template="Spazzo_TopPanelTalentLabel" height="30" textcolor="255,230,230,230" fontflags="Outline" styleflags="!Shadow|!Glow" outlinewidth="3" />
+  
 </StyleFile>

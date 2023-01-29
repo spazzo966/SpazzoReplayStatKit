@@ -1,4 +1,18 @@
-# v0.31b (**2022-10-27**)
+# v0.32 (**2023-01-29**)
+
+* Statistics
+ * No changes, the version shipped has not been increased since the previous version
+
+* UI
+ * The Team Name & Score options have now been separeted into two separate options - one for displaying a fixed location Team Name which is intended for use with external overlay software, and one for display an in-game score
+  * The in-game score can be clicked on the left of each team's score entry to decrease the value to a minimum of 0, and clicked on the right to increase the score to a maximum of 15, clicking to increase when at 15 reduces it to 0, and decreasing at 0 increases it to 15
+  * There is a third option to alter the location of the team score, by default it will position on the outside side of the Core Health for each team, and when toggled it will display on the inside side of the Core Health for each team.
+   * When the Core Health is not visible, the team score will position underneath the first player on each team's side, this location is identical to when it is set to display on the inside side of the Core Health
+  * Each of these new options features hotkeys, which are displayed in the Help Menu, which is accessible by pressing Alt+H
+ * Removed some redundant layout frames from the Top Bar, which should have a slight positive impact on performace
+ * Fixed an issue causing the first hotkey listed in the Help Menu on the left side to not display
+
+## v0.31b (**2022-10-27**)
 
 * Statistics
  * No changes

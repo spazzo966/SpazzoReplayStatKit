@@ -5400,4 +5400,258 @@
     </Frame>
   </Frame>
 
+  
+  <Frame type="Frame" name="TopBarScoreTemplate">
+    <RenderPriority val="530" />
+    <Frame type="Button" name="IncreaseButton">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="2"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="-2"/>
+      <Anchor side="Left" relative="$parent" pos="Mid" offset="0"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+      <AllowedButtons val="Left"/>
+    </Frame>
+    <Frame type="Button" name="DecreaseButton">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="2"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="-2"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$parent" pos="Mid" offset="0"/>
+      <AllowedButtons val="Left"/>
+    </Frame>
+		<Frame type="Frame" name="IncreaseMonitorFrame">
+			<Anchor relative="$parent"/>
+			<Visible val="False"/>
+      <Animation name="Pressed">
+        <Event event="OnClick" frame="$parent/IncreaseButton" action="Reset,Play" />
+				<Controller type="Visibility" end="Pause" frame="$this">
+					<Key type="Bool" time="0" value="True"/>
+				</Controller>
+      </Animation>
+			<Animation name="Autohide">
+				<Event event="Autohide" action="Reset,Play"/>
+				<Controller type="Visibility" end="Pause" frame="$this">
+					<Key type="Bool" time="0" value="False"/>
+				</Controller>
+			</Animation>
+		</Frame>
+		<Frame type="Frame" name="DecreaseMonitorFrame">
+			<Anchor relative="$parent"/>
+			<Visible val="False"/>
+      <Animation name="Pressed">
+        <Event event="OnClick" frame="$parent/DecreaseButton" action="Reset,Play" />
+				<Controller type="Visibility" end="Pause" frame="$this">
+					<Key type="Bool" time="0" value="True"/>
+				</Controller>
+      </Animation>
+			<Animation name="Autohide">
+				<Event event="Autohide" action="Reset,Play"/>
+				<Controller type="Visibility" end="Pause" frame="$this">
+					<Key type="Bool" time="0" value="False"/>
+				</Controller>
+			</Animation>
+		</Frame>
+    <Frame type="Label" name="ScoreEntryLabel">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="2"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="-2"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="2"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="-2"/>
+      <Text val="0"/>
+      <Style val="Spazzo_TopBarTeamScore" />
+      <Options val="ScaleToPreventTruncation" />
+      <StateGroup name="NumberController">
+        <State name="SetTo1FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="0"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="1" undo="False"/>
+        </State>
+        <State name="SetTo2FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="1"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="2" undo="False"/>
+        </State>
+        <State name="SetTo3FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="2"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="3" undo="False"/>
+        </State>
+        <State name="SetTo4FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="3"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="4" undo="False"/>
+        </State>
+        <State name="SetTo5FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="4"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="5" undo="False"/>
+        </State>
+        <State name="SetTo6FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="5"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="6" undo="False"/>
+        </State>
+        <State name="SetTo7FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="6"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="7" undo="False"/>
+        </State>
+        <State name="SetTo8FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="7"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="8" undo="False"/>
+        </State>
+        <State name="SetTo9FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="8"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="9" undo="False"/>
+        </State>
+        <State name="SetTo10FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="9"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="10" undo="False"/>
+        </State>
+        <State name="SetTo11FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="10"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="11" undo="False"/>
+        </State>
+        <State name="SetTo12FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="11"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="12" undo="False"/>
+        </State>
+        <State name="SetTo13FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="12"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="13" undo="False"/>
+        </State>
+        <State name="SetTo14FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="13"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="14" undo="False"/>
+        </State>
+        <State name="SetTo15FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="14"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="15" undo="False"/>
+        </State>
+        <State name="SetTo0FromInc">
+          <When type="Property" frame="$parent/IncreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="15"/>
+          <Action type="SendEvent" frame="$parent/IncreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="0" undo="False"/>
+        </State>
+        <State name="SetTo15FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="0"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="15" undo="False"/>
+        </State>
+        <State name="SetTo14FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="15"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="14" undo="False"/>
+        </State>
+        <State name="SetTo13FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="14"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="13" undo="False"/>
+        </State>
+        <State name="SetTo12FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="13"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="12" undo="False"/>
+        </State>
+        <State name="SetTo11FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="12"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="11" undo="False"/>
+        </State>
+        <State name="SetTo10FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="11"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="10" undo="False"/>
+        </State>
+        <State name="SetTo9FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="10"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="9" undo="False"/>
+        </State>
+        <State name="SetTo8FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="9"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="8" undo="False"/>
+        </State>
+        <State name="SetTo7FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="8"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="7" undo="False"/>
+        </State>
+        <State name="SetTo6FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="7"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="6" undo="False"/>
+        </State>
+        <State name="SetTo5FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="6"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="5" undo="False"/>
+        </State>
+        <State name="SetTo4FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="5"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="4" undo="False"/>
+        </State>
+        <State name="SetTo3FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="4"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="3" undo="False"/>
+        </State>
+        <State name="SetTo2FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="3"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="2" undo="False"/>
+        </State>
+        <State name="SetTo1FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="2"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="1" undo="False"/>
+        </State>
+        <State name="SetTo0FromDec">
+          <When type="Property" frame="$parent/DecreaseMonitorFrame" Visible="True"/>
+          <When type="Property" frame="$this" Text="1"/>
+          <Action type="SendEvent" frame="$parent/DecreaseMonitorFrame" event="Autohide"/>
+          <Action type="SetProperty" frame="$this" Text="0" undo="False"/>
+        </State>
+      </StateGroup>
+    </Frame>
+  </Frame>
+
 </Desc>

@@ -23,6 +23,13 @@
   <Constant name="ToggleHeroAttachmentsHotkey" val="Alt+I" />
   <Constant name="ToggleTopBarTooltipsHotkey" val="Alt+O" />
   <Constant name="ToggleTopBarBuffsHotkey" val="Alt+P" />
+  <Constant name="ToggleTopBarTeamNamesHotkey" val="Shift+S" />
+  <Constant name="ToggleTopBarTeamScoresHotkey" val="Alt+S" />
+  <Constant name="ToggleTopBarTeamNameScorePosition" val="Alt+X" />
+  <Constant name="TopBarDecreaseLeftSideTeamScore" val="Alt+A" />
+  <Constant name="TopBarIncreaseLeftSideTeamScore" val="Alt+D" />
+  <Constant name="TopBarDecreaseRightSideTeamScore" val="Shift+A" />
+  <Constant name="TopBarIncreaseRightSideTeamScore" val="Shift+D" />
   <Constant name="CycleThroughTopBarLayoutsHotkey" val="Control+L" />
   <Constant name="DisplayLeftSideTeamHotkey" val="Shift+L" />
   <Constant name="DisplayRightSideTeamHotkey" val="Shift+R" />
@@ -119,6 +126,34 @@
   <!-- @Hotkey (	constant = "ToggleTopBarBuffsHotkey",
     default = "Alt+P",
     description = "Toggle displaying buff duration & stacks in the custom Top Bar"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleTopBarTeamNamesHotkey",
+    default = "Shift+S",
+    description = "Toggle displaying team names in the custom Top Bar"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleTopBarTeamScoresHotkey",
+    default = "Alt+S",
+    description = "Toggle displaying team scores in the custom Top Bar"
+  ) -->
+  <!-- @Hotkey (	constant = "ToggleTopBarTeamNameScorePosition",
+    default = "Alt+X",
+    description = "Toggle displaying team scores on the inside of the Core Health or the outside of the Core Health"
+  ) -->
+  <!-- @Hotkey (	constant = "TopBarDecreaseLeftSideTeamScore",
+    default = "Alt+A",
+    description = "Decrease the score for the left side team by 1"
+  ) -->
+  <!-- @Hotkey (	constant = "TopBarIncreaseLeftSideTeamScore",
+    default = "Alt+D",
+    description = "Increase the score for the left side team by 1"
+  ) -->
+  <!-- @Hotkey (	constant = "TopBarDecreaseRightSideTeamScore",
+    default = "Shift+A",
+    description = "Decrease the score for the left side team by 1"
+  ) -->
+  <!-- @Hotkey (	constant = "TopBarIncreaseRightSideTeamScore",
+    default = "Shift+D",
+    description = "Increase the score for the left side team by 1"
   ) -->
   <!-- @Hotkey (	constant = "CycleThroughTopBarLayoutsHotkey",
     default = "Control+L",

@@ -16009,6 +16009,174 @@
             </State>
           </StateGroup>
         </Frame>
+        <Frame type="Image" name="TopBarBackingOrderScore">
+          <Anchor side="Top" relative="$Player1TalentContainer/$parent" pos="Max" offset="0"/>
+          <Anchor side="Bottom" relative="$this" pos="Min" offset="44"/>
+          <Anchor side="Left" relative="$parent/TopBarBacking" pos="Min" offset="-44"/>
+          <Anchor side="Right" relative="$this" pos="Min" offset="44"/>
+          <Texture val="_Assets\UI\score_bg.dds" />
+          <Color val="{$SpazzoColours/OrderColours/@Color}" />
+          <Visible val="{$TopBarSettingsFrame/ShowTeamScoresToggle/@Toggled}"/>
+          <Handle val="Team1ScoreController"/>
+          <RenderPriority val="200" />
+          <StateGroup name="CompactStateGroup">
+            <DefaultState val="Default"/>
+            <State name="Compact">
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
+              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="31" />
+              <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="31" />
+            </State>
+            <State name="Ultracompact">
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="31" />
+              <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="31" />
+            </State>
+            <State name="Default">
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
+              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="44" />
+              <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="44" />
+            </State>
+          </StateGroup>
+          <StateGroup name="SideAnchorPosition">
+            <DefaultState val="OutsideStandard"/>
+            <State name="OutsideStandard">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="False"/>
+              <When type="Property" frame="$Team1CoreUnitStatus" Visible="True"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$Player2TalentContainer/$parent" pos="Min" offset="0" />
+            </State>
+            <State name="OutsideCompactNotVisible">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="False"/>
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
+              <When type="Property" frame="$Core2HealthAnchor" operator="Equal" Visible="False"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/TopBarBacking" pos="Min" offset="-31" />
+            </State>
+            <State name="OutsideUCNotVisible">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="False"/>
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+              <When type="Property" frame="$Core2HealthAnchor" operator="Equal" Visible="False"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/TopBarBacking" pos="Min" offset="-31" />
+            </State>
+            <State name="OutsideNotVisible">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="False"/>
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
+              <When type="Property" frame="$Core2HealthAnchor" operator="Equal" Visible="False"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/TopBarBacking" pos="Min" offset="-44" />
+            </State>
+            <State name="InsideComp">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="True"/>
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/TopBarBacking" pos="Min" offset="-31" />
+            </State>
+            <State name="InsideUC">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="True"/>
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/TopBarBacking" pos="Min" offset="-31" />
+            </State>
+            <State name="InsideStandard">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="True"/>
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/TopBarBacking" pos="Min" offset="-44" />
+            </State>
+          </StateGroup>
+        </Frame>
+        <Frame type="Image" name="TopBarBackingOrderScoreBorder">
+          <Anchor relative="$parent/TopBarBackingOrderScore" />
+          <Texture val="_Assets\UI\score_border_bluropac.dds" />
+          <Color val="{$SpazzoColours/OrderColours/@Color}" />
+          <RenderPriority val="200" />
+          <Visible val="{$parent/TopBarBackingOrderScore/@Visible}"/>
+        </Frame>
+        <Frame type="Frame" name="TopBarOrderScoreContainer" template="SpazzoTemplates/TopBarScoreTemplate">
+          <Anchor relative="$parent/TopBarBackingOrderScore" />
+          <Color val="{$SpazzoColours/OrderColours/@Color}" />
+          <Visible val="{$parent/TopBarBackingOrderScore/@Visible}"/>
+          <Frame type="Button" name="IncreaseButton">
+            <Shortcut val="#TopBarIncreaseLeftSideTeamScore" />
+          </Frame>
+          <Frame type="Button" name="DecreaseButton">
+            <Shortcut val="#TopBarDecreaseLeftSideTeamScore" />
+          </Frame>
+        </Frame>
+        <Frame type="Image" name="TopBarBackingChaosScore">
+          <Anchor side="Top" relative="$Player6TalentContainer/$parent" pos="Max" offset="0"/>
+          <Anchor side="Bottom" relative="$parent/TopBarBackingOrderScore" pos="Max" offset="0"/>
+          <Anchor side="Left" relative="$parent/TopBarBacking" pos="Max" offset="0"/>
+          <Anchor side="Right" relative="$parent/TopBarBacking" pos="Max" offset="44"/>
+          <Texture val="_Assets\UI\score_bg.dds" />
+          <Handle val="Team2ScoreController"/>
+          <Color val="{$SpazzoColours/ChaosColours/@Color}" />
+          <RenderPriority val="200" />
+          <Visible val="{$parent/TopBarBackingOrderScore/@Visible}"/>
+          <StateGroup name="CompactStateGroup">
+            <DefaultState val="Default"/>
+            <State name="Compact">
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
+              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="31" />
+              <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="31" />
+            </State>
+            <State name="Ultracompact">
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="31" />
+              <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="31" />
+            </State>
+            <State name="Default">
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
+              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="44" />
+              <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="44" />
+            </State>
+          </StateGroup>
+          <StateGroup name="SideAnchorPosition">
+            <DefaultState val="OutsideStandard"/>
+            <State name="OutsideCompact">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="False"/>
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
+              <When type="Property" frame="$Team2CoreUnitStatus" Visible="True"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$Player7TalentContainer/$parent" pos="Max" offset="-31" />
+            </State>
+            <State name="OutsideUC">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="False"/>
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+              <When type="Property" frame="$Team2CoreUnitStatus" Visible="True"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$Player7TalentContainer/$parent" pos="Max" offset="-31" />
+            </State>
+            <State name="OutsideStandard">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="False"/>
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
+              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
+              <When type="Property" frame="$Team2CoreUnitStatus" Visible="True"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$Player7TalentContainer/$parent" pos="Max" offset="-44" />
+            </State>
+            <State name="OutsideNotVisible">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="False"/>
+              <When type="Property" frame="$Core2HealthAnchor" operator="Equal" Visible="False"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/TopBarBacking" pos="Max" offset="0" />
+            </State>
+            <State name="InsideStandard">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="True"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/TopBarBacking" pos="Max" offset="0" />
+            </State>
+          </StateGroup>
+        </Frame>
+        <Frame type="Image" name="TopBarBackingChaosScoreBorder">
+          <Anchor relative="$parent/TopBarBackingChaosScore" />
+          <Texture val="_Assets\UI\score_border_bluropac.dds" />
+          <Color val="{$SpazzoColours/ChaosColours/@Color}" />
+          <RenderPriority val="200" />
+          <Visible val="{$parent/TopBarBackingChaosScore/@Visible}"/>
+        </Frame>
+        <Frame type="Frame" name="TopBarChaosScoreContainer" template="SpazzoTemplates/TopBarScoreTemplate">
+          <Anchor relative="$parent/TopBarBackingChaosScore" />
+          <Color val="{$SpazzoColours/ChaosColours/@Color}" />
+          <Visible val="{$parent/TopBarBackingChaosScore/@Visible}"/>
+          <Frame type="Button" name="IncreaseButton">
+            <Shortcut val="#TopBarIncreaseRightSideTeamScore" />
+          </Frame>
+          <Frame type="Button" name="DecreaseButton">
+            <Shortcut val="#TopBarDecreaseRightSideTeamScore" />
+          </Frame>
+        </Frame>
         <Frame type="Image" name="TopBarBackingOrderCore">
           <Anchor side="Top" relative="$Player1TalentContainer/$parent" pos="Max" offset="0"/>
           <Anchor side="Bottom" relative="$this" pos="Min" offset="44"/>
@@ -16032,6 +16200,26 @@
             <State name="Default">
               <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
               <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="44" />
+            </State>
+          </StateGroup>
+          <StateGroup name="ScoreAnchor">
+            <DefaultState val="Disabled"/>
+            <State name="ScoreIsPresentInside">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="True"/>
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamScoresToggle" operator="Equal" Toggled="True"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$Player2TalentContainer/$parent" pos="Min" offset="0" />
+              <Action type="SetAnchor" frame="$this" side="Right" relative="$Team1ScoreController" pos="Min" offset="0" />
+            </State>
+            <State name="ScoreIsPresentOutside">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="False"/>
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamScoresToggle" operator="Equal" Toggled="True"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$Team1ScoreController" pos="Max" offset="0" />
+              <Action type="SetAnchor" frame="$this" side="Right" relative="$parent/TopBarBacking" pos="Min" offset="0" />
+            </State>
+            <State name="NoScore">
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamScoresToggle" operator="Equal" Toggled="False"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$Player2TalentContainer/$parent" pos="Min" offset="0" />
+              <Action type="SetAnchor" frame="$this" side="Right" relative="$parent/TopBarBacking" pos="Min" offset="0" />
             </State>
           </StateGroup>
         </Frame>
@@ -16070,6 +16258,26 @@
           <Color val="{$SpazzoColours/ChaosColours/@Color}" />
           <RenderPriority val="200" />
           <Visible val="{$Team2CoreUnitStatus/@Visible}"/>
+          <StateGroup name="ScoreAnchor">
+            <DefaultState val="Disabled"/>
+            <State name="ScoreIsPresentInside">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="True"/>
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamScoresToggle" operator="Equal" Toggled="True"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$Team2ScoreController" pos="Max" offset="0" />
+              <Action type="SetAnchor" frame="$this" side="Right" relative="$Player7TalentContainer/$parent" pos="Max" offset="0" />
+            </State>
+            <State name="ScoreIsPresentOutside">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" operator="Equal" Toggled="False"/>
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamScoresToggle" operator="Equal" Toggled="True"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/TopBarBacking" pos="Max" offset="0" />
+              <Action type="SetAnchor" frame="$this" side="Right" relative="$Team2ScoreController" pos="Min" offset="0" />
+            </State>
+            <State name="NoScore">
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamScoresToggle" operator="Equal" Toggled="False"/>
+              <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/TopBarBacking" pos="Max" offset="0" />
+              <Action type="SetAnchor" frame="$this" side="Right" relative="$Player7TalentContainer/$parent" pos="Max" offset="0" />
+            </State>
+          </StateGroup>
         </Frame>
         <Frame type="Image" name="TopBarBackingChaosCoreBorder">
           <Anchor relative="$parent/TopBarBackingChaosCore" />
@@ -16499,31 +16707,16 @@
           </StateGroup>
         </Frame>
         <Frame type="Image" name="TopBarBackingOrderTeamName">
-          <Anchor side="Top" relative="$Player5TalentContainer/$parent" pos="Max" offset="0"/>
-          <Anchor side="Bottom" relative="$this" pos="Min" offset="44"/>
+          <Anchor side="Top" relative="$Team1ScoreController" pos="Min" offset="0"/>
+          <Anchor side="Bottom" relative="$Team1ScoreController" pos="Max" offset="0"/>
           <Anchor side="Left" relative="$Player5TalentContainer/$parent" pos="Min" offset="0"/>
-          <Anchor side="Right" relative="$parent/TopBarBackingOrderTeamScore" pos="Min" offset="0"/>
+          <Anchor side="Right" relative="$Player2TalentContainer/$parent" pos="Min" offset="0"/>
           <Texture val="_Assets\UI\core_bg.dds" />
           <Color val="{$SpazzoColours/OrderColours/@Color}" />
           <RenderPriority val="200" />
           <Visible val="{$TopBarSettingsFrame/ShowTeamNamesToggle/@Toggled}"/>
-          <!-- Yes, this is unclipped because I'm too lazy -->
           <Unclipped val="True"/>
-          <StateGroup name="CompactStateGroup">
-            <DefaultState val="Default"/>
-            <State name="Compact">
-              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
-              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="31" />
-            </State>
-            <State name="Ultracompact">
-              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="31" />
-            </State>
-            <State name="Default">
-              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
-              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="44" />
-            </State>
-          </StateGroup>
+          <!-- Unclipped cause of Ultrawide -->
         </Frame>
         <Frame type="Image" name="TopBarBackingOrderTeamNameBorder">
           <Anchor relative="$parent/TopBarBackingOrderTeamName" />
@@ -16533,49 +16726,17 @@
           <Visible val="{$parent/TopBarBackingOrderTeamName/@Visible}"/>
           <Unclipped val="{$parent/TopBarBackingOrderTeamName/@Unclipped}"/>
         </Frame>
-        <Frame type="Image" name="TopBarBackingOrderTeamScore">
-          <Anchor side="Top" relative="$Player5TalentContainer/$parent" pos="Max" offset="0"/>
-          <Anchor side="Bottom" relative="$parent/TopBarBackingOrderTeamName" pos="Max" offset="0"/>
-          <Anchor side="Left" relative="$Player2TalentContainer/$parent" pos="Min" offset="#SpazzoTeamScoreSizeNeg"/>
-          <Anchor side="Right" relative="$Player2TalentContainer/$parent" pos="Min" offset="0"/>
-          <Texture val="_Assets\UI\core_bg_score.dds" />
-          <Color val="{$SpazzoColours/OrderColours/@Color}" />
-          <RenderPriority val="200" />
-          <Visible val="{$parent/TopBarBackingOrderTeamName/@Visible}"/>
-          <StateGroup name="CompactStateGroup">
-            <DefaultState val="Default"/>
-            <State name="Compact">
-              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
-              <Action type="SetAnchor" frame="$this" side="Left" relative="$Player2TalentContainer/$parent" pos="Min" offset="-31" />
-            </State>
-            <State name="Ultracompact">
-              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-              <Action type="SetAnchor" frame="$this" side="Left" relative="$Player2TalentContainer/$parent" pos="Min" offset="-31" />
-            </State>
-            <State name="Default">
-              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
-              <Action type="SetAnchor" frame="$this" side="Left" relative="$Player2TalentContainer/$parent" pos="Min" offset="#SpazzoTeamScoreSizeNeg" />
-            </State>
-          </StateGroup>
-        </Frame>
-        <Frame type="Image" name="TopBarBackingOrderTeamScoreBorder">
-          <Anchor relative="$parent/TopBarBackingOrderTeamScore" />
-          <Texture val="_Assets\UI\core_border_bluropac_score.dds" />
-          <Color val="{$SpazzoColours/OrderColours/@Color}" />
-          <RenderPriority val="200" />
-          <Visible val="{$parent/TopBarBackingOrderTeamName/@Visible}"/>
-        </Frame>
         <Frame type="Image" name="TopBarBackingChaosTeamName">
-          <Anchor side="Top" relative="$Player10TalentContainer/$parent" pos="Max" offset="0"/>
-          <Anchor side="Bottom" relative="$parent/TopBarBackingOrderTeamName" pos="Max" offset="0"/>
-          <Anchor side="Left" relative="$parent/TopBarBackingChaosTeamScore" pos="Max" offset="0"/>
+          <Anchor side="Top" relative="$Team2ScoreController" pos="Min" offset="0"/>
+          <Anchor side="Bottom" relative="$Team2ScoreController" pos="Max" offset="0"/>
+          <Anchor side="Left" relative="$Player7TalentContainer/$parent" pos="Max" offset="0"/>
           <Anchor side="Right" relative="$Player10TalentContainer/$parent" pos="Max" offset="0"/>
           <Texture val="_Assets\UI\core_bg.dds" />
           <Color val="{$SpazzoColours/ChaosColours/@Color}" />
           <RenderPriority val="200" />
           <Visible val="{$TopBarSettingsFrame/ShowTeamNamesToggle/@Toggled}"/>
-          <!-- Yes, this is unclipped because I'm too lazy -->
           <Unclipped val="True"/>
+          <!-- Unclipped cause of Ultrawide -->
         </Frame>
         <Frame type="Image" name="TopBarBackingChaosTeamNameBorder">
           <Anchor relative="$parent/TopBarBackingChaosTeamName" />
@@ -16584,38 +16745,6 @@
           <RenderPriority val="200" />
           <Visible val="{$parent/TopBarBackingChaosTeamName/@Visible}"/>
           <Unclipped val="{$parent/TopBarBackingChaosTeamName/@Unclipped}"/>
-        </Frame>
-        <Frame type="Image" name="TopBarBackingChaosTeamScore">
-          <Anchor side="Top" relative="$Player10TalentContainer/$parent" pos="Max" offset="0"/>
-          <Anchor side="Bottom" relative="$parent/TopBarBackingOrderTeamName" pos="Max" offset="0"/>
-          <Anchor side="Left" relative="$Player7TalentContainer/$parent" pos="Max" offset="0"/>
-          <Anchor side="Right" relative="$Player7TalentContainer/$parent" pos="Max" offset="#SpazzoTeamScoreSize"/>
-          <Texture val="_Assets\UI\core_bg_score.dds" />
-          <Color val="{$SpazzoColours/ChaosColours/@Color}" />
-          <RenderPriority val="200" />
-          <Visible val="{$parent/TopBarBackingChaosTeamName/@Visible}"/>
-          <StateGroup name="CompactStateGroup">
-            <DefaultState val="Default"/>
-            <State name="Compact">
-              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
-              <Action type="SetAnchor" frame="$this" side="Right" relative="$Player7TalentContainer/$parent" pos="Max" offset="31" />
-            </State>
-            <State name="Ultracompact">
-              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-              <Action type="SetAnchor" frame="$this" side="Right" relative="$Player7TalentContainer/$parent" pos="Max" offset="31" />
-            </State>
-            <State name="Default">
-              <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
-              <Action type="SetAnchor" frame="$this" side="Right" relative="$Player7TalentContainer/$parent" pos="Max" offset="#SpazzoTeamScoreSize" />
-            </State>
-          </StateGroup>
-        </Frame>
-        <Frame type="Image" name="TopBarBackingChaosTeamScoreBorder">
-          <Anchor relative="$parent/TopBarBackingChaosTeamScore" />
-          <Texture val="_Assets\UI\core_border_bluropac_score.dds" />
-          <Color val="{$SpazzoColours/ChaosColours/@Color}" />
-          <RenderPriority val="200" />
-          <Visible val="{$parent/TopBarBackingChaosTeamName/@Visible}"/>
         </Frame>
       </Frame>
       <StateGroup name="CustomTopBarVisibilityStateGroup">
@@ -23698,6 +23827,162 @@
             </State>
           </StateGroup>
         </Frame>
+        <Frame type="ToggleControl" name="ToggleScoreEntriesOn">
+          <Anchor relative="$parent"/>
+          <Shortcut val="#ToggleTopBarTeamScoresHotkey" />
+          <AcceptsMouse val="false"/>
+          <CollapseLayout val="true"/>
+          <Visible val="false"/>
+          <Enabled val="true"/>
+          <Animation name="ToggleSetting">
+            <Event event="OnShown" action="Reset,Play" />
+            <Event event="OnHidden" action="DirectionReverse,Play" />
+            <Controller type="Property" property="Toggled" end="Pause" frame="$TopBarSettingsFrame/ShowTeamScoresToggle">
+              <Key type="Property" time="0" value="True"/>
+            </Controller>
+          </Animation>
+          <StateGroup name="Enabler">
+            <DefaultState val="Enabled"/>
+            <State name="Enabled">
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamScoresToggle" Toggled="False" />
+              <Action type="SetProperty" frame="$this" Enabled="True" />
+            </State>
+            <State name="Disabled">
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamScoresToggle" Toggled="True" />
+              <Action type="SetProperty" frame="$this" Enabled="False" />
+            </State>
+          </StateGroup>
+        </Frame>
+        <Frame type="ToggleControl" name="ToggleScoreEntriesOff">
+          <Anchor relative="$parent"/>
+          <Shortcut val="#ToggleTopBarTeamScoresHotkey" />
+          <AcceptsMouse val="false"/>
+          <CollapseLayout val="true"/>
+          <Visible val="false"/>
+          <Enabled val="true"/>
+          <Animation name="ToggleSetting">
+            <Event event="OnShown" action="Reset,Play" />
+            <Event event="OnHidden" action="DirectionReverse,Play" />
+            <Controller type="Property" property="Toggled" end="Pause" frame="$TopBarSettingsFrame/ShowTeamScoresToggle">
+              <Key type="Property" time="0" value="false"/>
+            </Controller>
+          </Animation>
+          <StateGroup name="Enabler">
+            <DefaultState val="Disabled"/>
+            <State name="Enabled">
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamScoresToggle" Toggled="True" />
+              <Action type="SetProperty" frame="$this" Enabled="True" />
+            </State>
+            <State name="Disabled">
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamScoresToggle" Toggled="False" />
+              <Action type="SetProperty" frame="$this" Enabled="False" />
+            </State>
+          </StateGroup>
+        </Frame>
+        <Frame type="ToggleControl" name="ToggleTeamNameEntriesOn">
+          <Anchor relative="$parent"/>
+          <Shortcut val="#ToggleTopBarTeamNamesHotkey" />
+          <AcceptsMouse val="false"/>
+          <CollapseLayout val="true"/>
+          <Visible val="false"/>
+          <Enabled val="true"/>
+          <Animation name="ToggleSetting">
+            <Event event="OnShown" action="Reset,Play" />
+            <Event event="OnHidden" action="DirectionReverse,Play" />
+            <Controller type="Property" property="Toggled" end="Pause" frame="$TopBarSettingsFrame/ShowTeamNamesToggle">
+              <Key type="Property" time="0" value="true"/>
+            </Controller>
+          </Animation>
+          <StateGroup name="Enabler">
+            <DefaultState val="Enabled"/>
+            <State name="Enabled">
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamNamesToggle" Toggled="True" />
+              <Action type="SetProperty" frame="$this" Enabled="False" />
+            </State>
+            <State name="Disabled">
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamNamesToggle" Toggled="False" />
+              <Action type="SetProperty" frame="$this" Enabled="True" />
+            </State>
+          </StateGroup>
+        </Frame>
+        <Frame type="ToggleControl" name="ToggleTeamNameEntriesOff">
+          <Anchor relative="$parent"/>
+          <Shortcut val="#ToggleTopBarTeamNamesHotkey" />
+          <AcceptsMouse val="false"/>
+          <CollapseLayout val="true"/>
+          <Visible val="false"/>
+          <Enabled val="true"/>
+          <Animation name="ToggleSetting">
+            <Event event="OnShown" action="Reset,Play" />
+            <Event event="OnHidden" action="DirectionReverse,Play" />
+            <Controller type="Property" property="Toggled" end="Pause" frame="$TopBarSettingsFrame/ShowTeamNamesToggle">
+              <Key type="Property" time="0" value="false"/>
+            </Controller>
+          </Animation>
+          <StateGroup name="Enabler">
+            <DefaultState val="Disabled"/>
+            <State name="Enabled">
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamNamesToggle" Toggled="True" />
+              <Action type="SetProperty" frame="$this" Enabled="True" />
+            </State>
+            <State name="Disabled">
+              <When type="Property" frame="$TopBarSettingsFrame/ShowTeamNamesToggle" Toggled="False" />
+              <Action type="SetProperty" frame="$this" Enabled="False" />
+            </State>
+          </StateGroup>
+        </Frame>
+        <Frame type="ToggleControl" name="ToggleTeamNameScorePositionOn">
+          <Anchor relative="$parent"/>
+          <Shortcut val="#ToggleTopBarTeamNameScorePosition" />
+          <AcceptsMouse val="false"/>
+          <CollapseLayout val="true"/>
+          <Visible val="false"/>
+          <Enabled val="true"/>
+          <Animation name="ToggleSetting">
+            <Event event="OnShown" action="Reset,Play" />
+            <Event event="OnHidden" action="DirectionReverse,Play" />
+            <Controller type="Property" property="Toggled" end="Pause" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions">
+              <Key type="Property" time="0" value="true"/>
+            </Controller>
+          </Animation>
+          <StateGroup name="Enabler">
+            <DefaultState val="Enabled"/>
+            <State name="Enabled">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" Toggled="False" />
+              <Action type="SetProperty" frame="$this" Enabled="True" />
+            </State>
+            <State name="Disabled">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" Toggled="True" />
+              <Action type="SetProperty" frame="$this" Enabled="False" />
+            </State>
+          </StateGroup>
+        </Frame>
+        <Frame type="ToggleControl" name="ToggleTeamNameScorePositionOff">
+          <Anchor relative="$parent"/>
+          <Shortcut val="#ToggleTopBarTeamNameScorePosition" />
+          <AcceptsMouse val="false"/>
+          <CollapseLayout val="true"/>
+          <Visible val="false"/>
+          <Enabled val="true"/>
+          <Animation name="ToggleSetting">
+            <Event event="OnShown" action="Reset,Play" />
+            <Event event="OnHidden" action="DirectionReverse,Play" />
+            <Controller type="Property" property="Toggled" end="Pause" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions">
+              <Key type="Property" time="0" value="false"/>
+            </Controller>
+          </Animation>
+          <StateGroup name="Enabler">
+            <DefaultState val="Disabled"/>
+            <State name="Enabled">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" Toggled="True" />
+              <Action type="SetProperty" frame="$this" Enabled="True" />
+            </State>
+            <State name="Disabled">
+              <When type="Property" frame="$TopBarSettingsFrame/ToggleTeamNameScorePositions" Toggled="False" />
+              <Action type="SetProperty" frame="$this" Enabled="False" />
+            </State>
+          </StateGroup>
+        </Frame>
         <Frame type="ToggleControl" name="ToggleBottomPanel1Downfurl">
           <Anchor relative="$parent"/>
           <Shortcut val="#HeroTalentsHotkey" />
@@ -24863,7 +25148,7 @@
         <Anchor side="Top" relative="$parent" pos="Mid" offset="-482"/>
         <Anchor side="Left" relative="$parent" pos="Mid" offset="-585"/>
         <Anchor side="Right" relative="$parent" pos="Mid" offset="585"/>
-        <Anchor side="Bottom" relative="$this" pos="Min" offset="855"/>
+        <Anchor side="Bottom" relative="$this/ShortcutListBottom" pos="Max" offset="8"/>
         <Visible val="{$parent/ShowHelpFrame/@Visible}" />
         <StateGroup name="ButtonState">
           <DefaultState val="ButtonDisabled" />
@@ -24895,7 +25180,7 @@
           <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
           <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
           <Anchor side="Right" relative="$parent" pos="Mid" offset="0"/>
-          <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+          <Anchor side="Bottom" relative="$this/Shortcut28" pos="Max" offset="0"/>
           <Frame type="Label" name="Header">
             <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
             <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
@@ -24907,8 +25192,10 @@
             <Anchor side="Top" relative="$parent/Header" pos="Max" offset="-8"/>
             <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
             <Style val="SpazzoHelpShortcutListing" />
+            <Text val="{$this/FormatFrame/@Text}"/>
             <Frame type="TextFormatFrame" name="FormatFrame">
               <FormatText val="@UI/Spazzo/Shortcut1" />
+              <ReplacedName index="0" val="hotkeyvalue" />
               <Replacement index="0" val="#CasterModeHotkey" />
             </Frame>
           </Frame>
@@ -25079,7 +25366,7 @@
           <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
           <Anchor side="Left" relative="$parent" pos="Mid" offset="0"/>
           <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-          <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+          <Anchor side="Bottom" relative="$this/Blizzcut28" pos="Max" offset="0"/>
           <Frame type="Label" name="Header">
             <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
             <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
@@ -25173,6 +25460,89 @@
           </Frame>
           <Frame type="Label" name="Blizzcut28" template="SpazzoTemplates/ShortcutRight">
             <Text val="@UI/Spazzo/Blizzcut28"/>
+          </Frame>
+        </Frame>
+        <Frame type="Frame" name="ShortcutListBottom">
+          <Anchor side="Top" relative="$parent/ShortcutListLeft" pos="Max" offset="0"/>
+          <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+          <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+          <Anchor side="Bottom" relative="$this/Shortcut7" pos="Max" offset="0"/>
+          <Frame type="Label" name="Header">
+            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+            <Style val="SpazzoHelpHeader" />
+            <Text val="@UI/Spazzo/HelpScoreShortcuts"/>
+          </Frame>
+          <Frame type="Label" name="Shortcut1">
+            <Anchor side="Top" relative="$parent/Header" pos="Max" offset="-8"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+            <Anchor side="Right" relative="$parent" pos="0.33" offset="0"/>
+            <Style val="SpazzoHelpShortcutListingMiddle" />
+            <Text val="{$this/FormatFrame/@Text}"/>
+            <Frame type="TextFormatFrame" name="FormatFrame">
+              <FormatText val="@UI/Spazzo/Scorecut1" />
+              <ReplacedName index="0" val="hotkeyvalue" />
+              <Replacement index="0" val="#ToggleTopBarTeamNamesHotkey" />
+            </Frame>
+          </Frame>
+          <Frame type="Label" name="Shortcut2">
+            <Anchor side="Top" relative="$sibling-1" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="0.33" offset="0"/>
+            <Anchor side="Right" relative="$parent" pos="0.66" offset="0"/>
+            <Style val="SpazzoHelpShortcutListingMiddle" />
+            <Text val="{$this/FormatFrame/@Text}"/>
+            <Frame type="TextFormatFrame" name="FormatFrame">
+              <FormatText val="@UI/Spazzo/Scorecut3" />
+              <ReplacedName index="0" val="hotkeyvalue" />
+              <Replacement index="0" val="#ToggleTopBarTeamNameScorePosition" />
+            </Frame>
+          </Frame>
+          <Frame type="Label" name="Shortcut3">
+            <Anchor side="Top" relative="$sibling-1" pos="Min" offset="0"/>
+            <Anchor side="Left" relative="$parent" pos="0.66" offset="0"/>
+            <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+            <Style val="SpazzoHelpShortcutListingMiddle" />
+            <Text val="{$this/FormatFrame/@Text}"/>
+            <Frame type="TextFormatFrame" name="FormatFrame">
+              <FormatText val="@UI/Spazzo/Scorecut2" />
+              <ReplacedName index="0" val="hotkeyvalue" />
+              <Replacement index="0" val="#ToggleTopBarTeamScoresHotkey" />
+            </Frame>
+          </Frame>
+          <Frame type="Label" name="Shortcut4">
+            <Anchor side="Top" relative="$sibling-1" pos="Max" offset="1"/>
+            <Anchor side="Left" relative="$parent" pos="Min" offset="15"/>
+            <Style val="SpazzoHelpShortcutListing" />
+            <Text val="{$this/FormatFrame/@Text}"/>
+            <Frame type="TextFormatFrame" name="FormatFrame">
+              <FormatText val="@UI/Spazzo/Scorecut4" />
+              <ReplacedName index="0" val="hotkeyvalue" />
+              <Replacement index="0" val="#TopBarIncreaseLeftSideTeamScore" />
+            </Frame>
+          </Frame>
+          <Frame type="Label" name="Shortcut5" template="SpazzoTemplates/ShortcutLeft">
+            <Frame type="TextFormatFrame" name="FormatFrame">
+              <FormatText val="@UI/Spazzo/Scorecut5" />
+              <Replacement index="0" val="#TopBarDecreaseLeftSideTeamScore" />
+            </Frame>
+          </Frame>
+          <Frame type="Label" name="Shortcut6">
+            <Anchor side="Top" relative="$sibling-3" pos="Max" offset="1"/>
+            <Anchor side="Left" relative="$parent" pos="Mid" offset="15"/>
+            <Style val="SpazzoHelpShortcutListing" />
+            <Text val="{$this/FormatFrame/@Text}"/>
+            <Frame type="TextFormatFrame" name="FormatFrame">
+              <FormatText val="@UI/Spazzo/Scorecut6" />
+              <ReplacedName index="0" val="hotkeyvalue" />
+              <Replacement index="0" val="#TopBarIncreaseRightSideTeamScore" />
+            </Frame>
+          </Frame>
+          <Frame type="Label" name="Shortcut7" template="SpazzoTemplates/ShortcutLeft">
+            <Frame type="TextFormatFrame" name="FormatFrame">
+              <FormatText val="@UI/Spazzo/Scorecut7" />
+              <Replacement index="0" val="#TopBarDecreaseRightSideTeamScore" />
+            </Frame>
           </Frame>
         </Frame>
       </Frame>
@@ -32571,18 +32941,6 @@
                 <Text val="@UI/Spazzo/ShowTownTotal"/>
               </Frame>
             </Frame>
-            <Frame type="Button" name="ShowTeamNamesToggle" template="SpazzoTemplates/ButtonNewTemplate">
-              <Anchor side="Top" relative="$parent/ShowTownTotalToggle" pos="Min" offset="0"/>
-              <Anchor side="Left" relative="$parent/ShowTownTotalToggle" pos="Min" offset="#OptionsMenuRevampOffsetRightwards"/>
-              <Anchor side="Right" relative="$parent/ShowTownTotalToggle" pos="Max" offset="#OptionsMenuRevampOffsetRightwards"/>
-              <Anchor side="Bottom" relative="$parent/ShowTownTotalToggle" pos="Max" offset="0"/>
-              <Toggleable val="True" />
-              <Toggled val="#TopBarShowTeamNames"/>
-              <Tooltip val="@UI/Spazzo/ShowTeamNamesTooltip" />
-              <Frame type="Label" name="Label">
-                <Text val="@UI/Spazzo/ShowTeamNames"/>
-              </Frame>
-            </Frame>
             <Frame type="Button" name="UnitSelectionToggle" template="SpazzoTemplates/ButtonNewTemplate">
               <Anchor side="Top" relative="$parent/ShowTownTotalToggle" pos="Min" offset="#OptionsMenuRevampOffsetUpwards"/>
               <Anchor side="Left" relative="$parent/ShowTownTotalToggle" pos="Min" offset="0"/>
@@ -32593,6 +32951,68 @@
               <Tooltip val="@UI/Spazzo/TopBarUnitSelectionTooltip" />
               <Frame type="Label" name="Label">
                 <Text val="@UI/Spazzo/TopBarUnitSelection"/>
+              </Frame>
+            </Frame>
+            <Frame type="Button" name="ShowTeamScoresToggle" template="SpazzoTemplates/ButtonNewTemplate">
+              <Anchor side="Top" relative="$parent/ShowTownTotalToggle" pos="Min" offset="0"/>
+              <Anchor side="Left" relative="$parent/ShowTownTotalToggle" pos="Min" offset="#OptionsMenuRevampOffsetRightwards"/>
+              <Anchor side="Right" relative="$parent/ShowTownTotalToggle" pos="Max" offset="#OptionsMenuRevampOffsetRightwards"/>
+              <Anchor side="Bottom" relative="$parent/ShowTownTotalToggle" pos="Max" offset="0"/>
+              <Toggleable val="True" />
+              <Toggled val="#TopBarShowTeamScores"/>
+              <Frame type="Label" name="Label">
+                <Text val="@UI/Spazzo/ShowTeamScores"/>
+              </Frame>
+              <Tooltip val="{$this/FormatFrame/@Text}"/>
+              <Frame type="TextFormatFrame" name="FormatFrame">
+                <Anchor relative="$parent" />
+                <FormatText val="@UI/Spazzo/ShowTeamScoresTooltip" />
+                <Replacement index="0" val="#ToggleTopBarTeamScoresHotkey" />
+                <ReplacedName index="0" val="hotkeyvalue" />
+                <Replacement index="1" val="#TopBarIncreaseLeftSideTeamScore" />
+                <ReplacedName index="1" val="hotkeyvalueleftup" />
+                <Replacement index="2" val="#TopBarDecreaseLeftSideTeamScore" />
+                <ReplacedName index="2" val="hotkeyvalueleftdown" />
+                <Replacement index="3" val="#TopBarIncreaseRightSideTeamScore" />
+                <ReplacedName index="3" val="hotkeyvaluerightup" />
+                <Replacement index="4" val="#TopBarDecreaseRightSideTeamScore" />
+                <ReplacedName index="4" val="hotkeyvaluerightdown" />
+              </Frame>
+            </Frame>
+            <Frame type="Button" name="ShowTeamNamesToggle" template="SpazzoTemplates/ButtonNewTemplate">
+              <Anchor side="Top" relative="$parent/ShowTeamScoresToggle" pos="Min" offset="#OptionsMenuRevampOffsetUpwards"/>
+              <Anchor side="Left" relative="$parent/ShowTeamScoresToggle" pos="Min" offset="0"/>
+              <Anchor side="Right" relative="$parent/ShowTeamScoresToggle" pos="Max" offset="0"/>
+              <Anchor side="Bottom" relative="$parent/ShowTeamScoresToggle" pos="Max" offset="#OptionsMenuRevampOffsetUpwards"/> 
+              <Toggleable val="True" />
+              <Toggled val="#TopBarShowTeamNames"/>
+              <Frame type="Label" name="Label">
+                <Text val="@UI/Spazzo/ShowTeamNames"/>
+              </Frame>
+              <Tooltip val="{$this/FormatFrame/@Text}"/>
+              <Frame type="TextFormatFrame" name="FormatFrame">
+                <Anchor relative="$parent" />
+                <FormatText val="@UI/Spazzo/ShowTeamNamesTooltip" />
+                <Replacement index="0" val="#ToggleTopBarTeamNamesHotkey" />
+                <ReplacedName index="0" val="hotkeyvalue" />
+              </Frame>
+            </Frame>
+            <Frame type="Button" name="ToggleTeamNameScorePositions" template="SpazzoTemplates/ButtonNewTemplate">
+              <Anchor side="Top" relative="$parent/ShowTeamScoresToggle" pos="Min" offset="0"/>
+              <Anchor side="Left" relative="$parent/ShowTeamScoresToggle" pos="Min" offset="#OptionsMenuRevampOffsetRightwards"/>
+              <Anchor side="Right" relative="$parent/ShowTeamScoresToggle" pos="Max" offset="#OptionsMenuRevampOffsetRightwards"/>
+              <Anchor side="Bottom" relative="$parent/ShowTeamScoresToggle" pos="Max" offset="0"/>
+              <Toggleable val="True" />
+              <Toggled val="#TopBarInsideTeamNameScore"/>
+              <Frame type="Label" name="Label">
+                <Text val="@UI/Spazzo/TeamScorePosition"/>
+              </Frame>
+              <Tooltip val="{$this/FormatFrame/@Text}"/>
+              <Frame type="TextFormatFrame" name="FormatFrame">
+                <Anchor relative="$parent" />
+                <FormatText val="@UI/Spazzo/TeamScorePositionTooltip" />
+                <Replacement index="0" val="#ToggleTopBarTeamNameScorePosition" />
+                <ReplacedName index="0" val="hotkeyvalue" />
               </Frame>
             </Frame>
             <Frame type="Slider" name="TeamColourSlider" template="SpazzoTemplates/SliderTemplate">
@@ -33373,6 +33793,7 @@ encoding=%1%utf-8%1% standalone=%1%yes%1%?%16% %15%Desc%16%
 %15%Constant name=%1%TopBarTeamBorderSliderValue%1% val=%1%%190%%1% /%16%
 %15%Constant name=%1%TopBarShowHeroes%1% val=%1%%186%%1% /%16%
 %15%Constant name=%1%TopBarShowTeamNames%1% val=%1%%188%%1% /%16%
+%15%Constant name=%1%TopBarShowTeamScores%1% val=%1%%214%%1% /%16%
 %15%Constant name=%1%TopBarProxyTalents%1% val=%1%%182%%1% /%16%
 %15%Constant name=%1%DisplayObjWarning%1% val=%1%%92%%1% /%16%
 %15%Constant name=%1%DisplayAbilBackings%1% val=%1%%183%%1% /%16%
@@ -33751,6 +34172,7 @@ encoding=%1%utf-8%1% standalone=%1%yes%1%?%16% %15%Desc%16%
             <Replacement val="@UI/Spazzo/AhliSettings15" index="211" />
             <Replacement val="@UI/Spazzo/AhliSettings16" index="212" />
             <Replacement val="@UI/Spazzo/AhliSettings17" index="213" />
+            <Replacement val="{$parent/TopBarCustomSettingsFrame/ShowTeamScoresToggle/@Toggled}" index="214" />
           </Frame>
           <Handle val="ExportContainerFrame"/>
         </Frame>

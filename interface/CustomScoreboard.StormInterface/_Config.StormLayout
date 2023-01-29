@@ -33,6 +33,8 @@
   <Constant name="TopBarTeamBorderSliderValue" val="255" />
   <Constant name="TopBarShowHeroes" val="true" />
   <Constant name="TopBarShowTeamNames" val="false" />
+  <Constant name="TopBarShowTeamScores" val="false" />
+  <Constant name="TopBarInsideTeamNameScore" val="false" />
   <Constant name="TopBarProxyTalents" val="true" />
   <Constant name="DisplayObjWarning" val="true" />
   <Constant name="DisplayAbilBackings" val="true" />
@@ -362,6 +364,11 @@
   <!-- @Setting (	constant = "TopBarShowTeamNames",
     default = "false",
     description = "Set to true to display a section of the UI for team names. Team names must be managed through external overlay software",
+    type = "Boolean"
+  ) -->
+  <!-- @Setting (	constant = "TopBarShowTeamScores",
+    default = "false",
+    description = "Set to true to display a section of the UI for team scores.",
     type = "Boolean"
   ) -->
   <!-- @Setting (	constant = "TopBarProxyTalents",
