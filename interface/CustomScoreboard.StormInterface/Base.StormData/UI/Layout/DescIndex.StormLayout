@@ -15,5 +15,6 @@
     <Include path="UI/Layout/SpazzoCustomTimer.StormLayout"/>
     <Include path="UI/Layout/SpazzoCustomPlayerActive.StormLayout"/>
     <Include path="UI/Layout/SpazzoCustomTopBar.StormLayout"/>
+    <Include path="UI/Layout/ExportSettingsFrame.StormLayout"/>
     <Include path="UI/Layout/CustomPanelSpazzo.StormLayout"/>
 </Desc>

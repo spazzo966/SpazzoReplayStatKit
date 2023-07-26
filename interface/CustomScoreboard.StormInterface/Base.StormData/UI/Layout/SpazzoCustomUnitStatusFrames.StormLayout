@@ -4688,7 +4688,8 @@
       </State>
       <State name="HeroMephistoSkullMissileShowCharges">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMephisto"/>
-        <When type="StateGroup" frame="$MephistoCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="1"/>
+        <When type="StateGroup" frame="$MephistoCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="0"/>
+        <When type="StateGroup" frame="$MephistoCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="1"/>
         <When type="Property" frame="$this/ActiveAbilityReference/BehaviorIcon" operator="GreaterThanOrEqual" CurrentStackCount="40"/>
         <When type="StateGroup" frame="UnitStatusTalentValidator" AnimState="MephistoSkullMissileUnyieldingPowerHasTalent"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$MephistoCooldownSetting/TogglePulldown1/AbilName/@Text}" />
@@ -4723,7 +4724,7 @@
       </State>
       <State name="HeroMephistoHeroicConsumeSouls">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMephisto"/>
-        <When type="StateGroup" frame="$MephistoCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="4"/>
+        <When type="StateGroup" frame="$MephistoCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="4"/>
         <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate1Unlocked"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="MephistoConsumeSouls" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
@@ -4739,7 +4740,7 @@
       </State>
       <State name="HeroMephistoHeroicDuranceofHate">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMephisto"/>
-        <When type="StateGroup" frame="$MephistoCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="4"/>
+        <When type="StateGroup" frame="$MephistoCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="4"/>
         <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate2Unlocked"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="MephistoDuranceOfHate" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
@@ -5592,7 +5593,7 @@
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroGenji"/>
         <When type="StateGroup" frame="$GenjiCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="5"/>
         <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate1Unlocked"/>
-        <When type="StateGroup" frame="UnitStatusTalentValidator" AnimState="GenjiCasterHasDragonbladeActive"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator" operator="NotEqual" AnimState="GenjiCasterHasDragonbladeActive"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="GenjiDragonblade" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
@@ -13729,6 +13730,35 @@
       <SnapToDevicePixels val="true"/>
     </Frame>
   </Frame>
+  <Frame type="UnitStatusBehaviorIcon" name="UnitTrackingBehaviorTemplate">
+    <Anchor side="Top" relative="$parent/UnitStatusContainedHeroIcon" pos="Min" offset="0" />
+    <Anchor side="Left" relative="$parent/UnitStatusContainedHeroIcon" pos="Min" offset="0" />
+    <Anchor side="Right" relative="$parent/UnitStatusContainedHeroIcon" pos="Max" offset="0" />
+    <Anchor side="Bottom" relative="$parent/UnitStatusContainedHeroIcon" pos="Max" offset="0" />
+    <RenderPriority val="513" />
+    <Frame type="BehaviorIcon" name="BehaviorIcon">
+      <Anchor relative="$parent" />
+      <AcceptsMouse val="False" />
+      <Frame type="ProgressBar" name="CooldownBar">
+        <Anchor relative="$parent" />
+        <AcceptsMouse val="False" />
+        <Circular val="True" />
+        <CircularStart val="0" />
+        <CircularEndOffset val="360" />
+        <SnapToDevicePixels val="true"/>
+        <Frame type="Frame" name="FillImageContainer">
+          <Anchor relative="$parent" />
+          <SnapToDevicePixels val="true"/>
+          <Frame type="Image" name="FillImage">
+            <Anchor relative="$parent" />
+            <Texture val="@UI/Storm_UI_HeroUI_Greymane_CountDownCircleTalented" />
+            <TextureType val="Circular" />
+            <SnapToDevicePixels val="true"/>
+          </Frame>
+        </Frame>
+      </Frame>
+    </Frame>
+  </Frame>
   <Frame type="UnitStatusFrame" name="LordOrderUnitStatusFrameTemplate" file="UnitStatus">
     <Frame type="Frame" name="UnitStatusStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusCoreStateGroupControlTemplate" />
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
@@ -13939,6 +13969,100 @@
       <Anchor side="Left" relative="$parent/HeroFrameBackgroundContainer" pos="Min" offset="-105" />
       <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
       <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
+    </Frame>
+    <Frame type="ParentCenteredFrame" name="TrackingCenteringFrame">
+      <Frame type="UnitStatusUnitTrackingBehavior" name="UnitTrackingElement">
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame0" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame1" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame2" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame3" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame4" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame5" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame6" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame7" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame8" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame9" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame10" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame11" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame12" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame13" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+        <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame14" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+          <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
+            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+          </Frame>
+        </Frame>
+      </Frame>
     </Frame>
   </Frame>
   <Frame type="Frame" name="AurielUnitStatusFrameTemplate/HeroUnitStatusParentFrame" file="Auriel">
@@ -14522,4 +14646,10 @@
   <!-- <Frame type="UnitStatusUnitTrackingBehavior" name="CustomZagaraMawUnitStatusFrame/TrackingCenteringFrame/UnitTrackingElement" file="Zagara">
     <ShowValidator val="TargetIsHero" />
   </Frame> -->
+  <Frame type="UnitStatusFrame" name="CustomMaievContainmentDiscCrystalUnitStatusFrame/TrackingCenteringFrame/UnitTrackingElement/TrackedUnitStatusFrame0" file="Maiev">
+    <Frame type="UnitStatusBehaviorIcon" name="TimeStopDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+      <Behavior val="MaievContainmentDiscTimeStop"/>
+      <Visible val="{$MaievCooldownSetting/ContainmentDiscDisplay/@Checked}"/>
+    </Frame>
+  </Frame>
 </Desc>

@@ -189,6 +189,16 @@ if %ERRORLEVEL%==0 (
 	set battleground=SilverCity
 	GOTO found
 )
+if %isfound%==false (
+    echo looking for industrialdistrict, silvercity not found
+	findstr /c:"IndustrialDistrict" "%mpqdirectory%\replay.tracker.events"
+)
+if %ERRORLEVEL%==0 (
+    echo string found industrialdistrict
+    set isfound=true
+	set battleground=IndustrialDistrict
+	GOTO found
+)
 
 echo failed to discern battleground, please use the manual converter.
 

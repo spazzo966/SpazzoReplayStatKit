@@ -118,74 +118,6 @@
       </Frame>
     </Frame>
   </Frame>
-  
-  <Frame type="CopyClipboardButton" name="ClipboardButtonTemplate">
-    <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
-    <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
-    <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
-    <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
-    <ClipboardText val="{$this/@Tooltip}"/>
-    <DisplayType val="ImageLayer"/>
-    <ClickSound val="@UI_BNet_Generic_01" />
-    <Width val="58" />
-    <Height val="58" />
-    <HitTestTexture val="@UI/Storm_UI_DeathRecap_Talents_Button_HitArea" />
-    <Tooltip val="@UI/Spazzo/Clipboard/Var1" />
-    <Frame type="Image" name="NormalImage">
-      <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
-      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
-      <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
-      <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
-      <LayerCount val="4" />
-      <Texture val="@UI/Storm_Taskbar_SocialButton_Normal" layer="0" />
-      <Texture val="@UI/Storm_Taskbar_SocialButton_Normal" layer="1" />
-      <Texture val="@UI/Storm_Taskbar_SocialButton_Down" layer="2" />
-      <Texture val="@UI/Storm_Taskbar_SocialButton_Disabled" layer="3" />
-      <TextureType val="NineSlice" />
-      <Tiled val="false" />
-      <StateCount val="1" />
-      <DesaturateOnDisable val="false" />
-    </Frame>
-    <Frame type="Image" name="HoverImage">
-      <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
-      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
-      <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
-      <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
-      <LayerCount val="4" />
-      <Texture val="@UI/Storm_Taskbar_SocialButton_Hover" layer="0" />
-      <Texture val="@UI/Storm_Taskbar_SocialButton_Hover" layer="1" />
-      <Texture val="@UI/Storm_Taskbar_SocialButton_Down" layer="2" />
-      <Texture val="@UI/Storm_Taskbar_SocialButton_Disabled" layer="3" />
-      <TextureType val="NineSlice" />
-      <Tiled val="false" />
-      <StateCount val="1" />
-      <DesaturateOnDisable val="false" />
-    </Frame>
-    <Frame type="Image" name="IconImage">
-      <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
-      <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
-      <Anchor side="Left" relative="$parent" pos="Mid" offset="0" />
-      <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
-      <DesaturateOnDisable val="false" />
-      <Texture val="Assets/Textures/storm_ui_collection_filter_newlyacquired-on.dds" />
-    </Frame>
-    <Frame type="Image" name="IconImageHover">
-      <Anchor side="Top" relative="$parent" pos="Mid" offset="0" />
-      <Anchor side="Bottom" relative="$parent" pos="Mid" offset="0" />
-      <Anchor side="Left" relative="$parent" pos="Mid" offset="0" />
-      <Anchor side="Right" relative="$parent" pos="Mid" offset="0" />
-      <DesaturateOnDisable val="false" />
-      <Visible val="False" />
-      <Alpha val="0" />
-      <Texture val="Assets/Textures/storm_ui_collection_filter_newlyacquired-hover.dds" />
-    </Frame>
-    <Frame type="Frame" name="HitTestFrame">
-      <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-    </Frame>
-  </Frame>
 
   <Frame type="Button" name="ButtonTemplate">
     <DisplayType val="ImageLayer" />
@@ -1759,113 +1691,113 @@
             </State>
           </StateGroup>
         </Frame>
-        <Frame type="UnitStatusBehaviorIcon" name="QuestStackCounterT1" template="SpazzoCustomTopBarQuests/UnitStatusBehaviorIconTemplate">
+        <Frame type="Frame" name="QuestAndBuffContainerFrameT1">
           <Anchor side="Top" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Min" offset="-2"/>
           <Anchor side="Left" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Min" offset="-2"/>
           <Anchor side="Right" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Max" offset="2"/>
           <Anchor side="Bottom" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Max" offset="2"/>
-          <Frame type="BehaviorIcon" name="BehaviorIcon">
-            <Frame type="Label" name="StackLabel">
-              <Anchor side="Top" relative="$parent" pos="Min" offset="#SpazzoBottomPanelTalentReworkQuestTopOffset"/>
-              <Anchor side="Left" relative="$parent" pos="Min" offset="#SpazzoBottomPanelTalentReworkQuestLeftOffset"/>
-              <Anchor side="Right" relative="$parent" pos="Max" offset="#SpazzoBottomPanelTalentReworkQuestRightOffset"/>
-              <SnapToDevicePixels val="False"/>
-              <Style val="SpazzoBottomPanelQuestLabel" />
+          <Frame type="UnitStatusBehaviorIcon" name="QuestStackCounterT1" template="SpazzoCustomTopBarQuests/UnitStatusBehaviorIconTemplate">
+            <Anchor relative="$parent"/>
+            <Frame type="BehaviorIcon" name="BehaviorIcon">
+              <Frame type="Label" name="StackLabel">
+                <Anchor side="Top" relative="$parent" pos="Min" offset="#SpazzoBottomPanelTalentReworkQuestTopOffset"/>
+                <Anchor side="Left" relative="$parent" pos="Min" offset="#SpazzoBottomPanelTalentReworkQuestLeftOffset"/>
+                <Anchor side="Right" relative="$parent" pos="Max" offset="#SpazzoBottomPanelTalentReworkQuestRightOffset"/>
+                <SnapToDevicePixels val="False"/>
+                <Style val="SpazzoBottomPanelQuestLabel" />
+              </Frame>
             </Frame>
           </Frame>
+          <Frame type="UnitStatusBehaviorIcon" name="LoanStackCounterT1" template="SpazzoCustomTopBarQuests/UnitStatusBehaviorLoanIconTemplate">
+            <Anchor relative="$parent"/>
+          </Frame>
+          <Frame type="Image" name="LoanStackProgressBarDummyT1">
+            <Anchor relative="$INVALID" />
+            <Texture val="_Assets\UI\spaz_ui_talentborder_newer_quest.dds" />
+            <AdjustmentColor val="255,210,23,23" /> 
+            <Alpha val="130" /> 
+            <ColorAdjustMode val="Fill" /> 
+            <AcceptsMouse val="false" />
+            <StateGroup name="LoanState">
+              <DefaultState val="IsNotLoanTalent" />
+              <State name="IsNotLoanTalent">
+              </State>
+              <State name="IsLoanTalent">
+              </State>
+            </StateGroup>
+            <StateGroup name="VisibleState">
+              <DefaultState val="NoTalentSelected" />
+              <State name="NoTalentSelected">
+                <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierSelected" operator="NotEqual"/>
+                <Action type="SetProperty" frame="$this" Visible="False" />
+                <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
+                <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T1" /> -->
+              </State>
+              <State name="NoTalent">
+                <When type="StateGroup" frame="$parent/QuestStackCounterT1/StateControllerFrame" T1TalentState="NoState" operator="Equal" />
+                <Action type="SetProperty" frame="$this" Visible="False" />
+                <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
+                <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T2" /> -->
+              </State>
+              <State name="NoLoanTalent">
+                <When type="Property" frame="$parent/LoanStackCounterT1" Behavior="NULL" />
+                <Action type="SetProperty" frame="$this" Visible="False" />
+                <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
+                <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T3" /> -->
+              </State>
+              <State name="LoanTalentNotLost">
+                <When type="Property" frame="$parent/LoanStackCounterT1" Behavior="NULL" operator="NotEqual" />
+                <When type="Property" frame="$parent/LoanStackCounterT1" CurrentStackCount="0" operator="NotEqual" />
+                <Action type="SetProperty" frame="$this" Visible="False" />
+                <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
+                <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T4" /> -->
+              </State>
+              <State name="LoanTalentLost2">
+                <When type="Property" frame="$parent/LoanStackCounterT1" Behavior="NULL" operator="NotEqual" />
+                <When type="Property" frame="$parent/LoanStackCounterT1" InheritedVisible="False" operator="Equal" />
+                <When type="StateGroup" frame="$this" LoanState="IsLoanTalent" operator="Equal"/>
+                <Action type="SetProperty" frame="$this" Visible="True" />
+                <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/LoanStackCounterT1" pos="Min" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/LoanStackCounterT1" pos="Min" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Right" relative="$parent/LoanStackCounterT1" pos="Max" offset="0" />
+                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent/LoanStackCounterT1" pos="Max" offset="0" />
+                <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T5" /> -->
+              </State>
+            </StateGroup>
+          </Frame>
+          <Frame type="Label" name="T1LabelDummy">
+            <Anchor relative="$parent/QuestStackCounterT1/BehaviorIcon/StackLabel"/>
+            <SnapToDevicePixels val="true"/>
+            <Style val="{$parent/QuestStackCounterT1/BehaviorIcon/StackLabel/@Style}" />
+            <Options val="ScaleToPreventTruncation" />
+            <AcceptsMouse val="false" />
+            <Text val="0"/>
+            <Visible val="True"/>
+            <StateGroup name="TalentState">
+              <DefaultState val="NoState" />
+              <State name="TalentHasZeroAndUsesTokens">
+                <When type="StateGroup" frame="$parent/StateControllerFrame" UsesTokens="True" />
+                <When type="Property" frame="$parent/QuestStackCounterT1" operator="Equal" InheritedVisible="false" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
+              </State>
+              <State name="NoState">
+                <Action type="SetProperty" frame="$this" Visible="False" />
+              </State>
+            </StateGroup>
+          </Frame>
           <Frame type="Frame" name="StateControllerFrame" template="SpazzoCustomTopBarQuests/StateControllerFrameT1"/>
-        </Frame>
-        <Frame type="UnitStatusBehaviorIcon" name="LoanStackCounterT1" template="SpazzoCustomTopBarQuests/UnitStatusBehaviorLoanIconTemplate">
-          <Anchor side="Top" relative="$parent/QuestStackCounterT1" pos="Min" offset="0"/>
-          <Anchor side="Left" relative="$parent/QuestStackCounterT1" pos="Min" offset="0"/>
-          <Anchor side="Right" relative="$parent/QuestStackCounterT1" pos="Max" offset="0"/>
-          <Anchor side="Bottom" relative="$parent/QuestStackCounterT1" pos="Max" offset="0"/>
-        </Frame>
-        <Frame type="Image" name="LoanStackProgressBarDummyT1">
-          <Anchor relative="$INVALID" />
-          <Texture val="_Assets\UI\spaz_ui_talentborder_newer_quest.dds" />
-          <AdjustmentColor val="255,210,23,23" /> 
-          <Alpha val="130" /> 
-          <ColorAdjustMode val="Fill" /> 
-          <AcceptsMouse val="false" />
-          <StateGroup name="LoanState">
-            <DefaultState val="IsNotLoanTalent" />
-            <State name="IsNotLoanTalent">
-            </State>
-            <State name="IsLoanTalent">
-            </State>
-          </StateGroup>
-          <StateGroup name="VisibleState">
-            <DefaultState val="NoTalentSelected" />
-            <State name="NoTalentSelected">
-              <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierSelected" operator="NotEqual"/>
-              <Action type="SetProperty" frame="$this" Visible="False" />
-              <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
-              <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T1" /> -->
-            </State>
-            <State name="NoTalent">
-              <When type="StateGroup" frame="$parent/QuestStackCounterT1/StateControllerFrame" T1TalentState="NoState" operator="Equal" />
-              <Action type="SetProperty" frame="$this" Visible="False" />
-              <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
-              <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T2" /> -->
-            </State>
-            <State name="NoLoanTalent">
-              <When type="Property" frame="$parent/LoanStackCounterT1" Behavior="NULL" />
-              <Action type="SetProperty" frame="$this" Visible="False" />
-              <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
-              <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T3" /> -->
-            </State>
-            <State name="LoanTalentNotLost">
-              <When type="Property" frame="$parent/LoanStackCounterT1" Behavior="NULL" operator="NotEqual" />
-              <When type="Property" frame="$parent/LoanStackCounterT1" CurrentStackCount="0" operator="NotEqual" />
-              <Action type="SetProperty" frame="$this" Visible="False" />
-              <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
-              <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T4" /> -->
-            </State>
-            <State name="LoanTalentLost2">
-              <When type="Property" frame="$parent/LoanStackCounterT1" Behavior="NULL" operator="NotEqual" />
-              <When type="Property" frame="$parent/LoanStackCounterT1" InheritedVisible="False" operator="Equal" />
-              <When type="StateGroup" frame="$this" LoanState="IsLoanTalent" operator="Equal"/>
-              <Action type="SetProperty" frame="$this" Visible="True" />
-              <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/LoanStackCounterT1" pos="Min" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/LoanStackCounterT1" pos="Min" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Right" relative="$parent/LoanStackCounterT1" pos="Max" offset="0" />
-              <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent/LoanStackCounterT1" pos="Max" offset="0" />
-              <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T5" /> -->
-            </State>
-          </StateGroup>
-        </Frame>
-        <Frame type="Label" name="T1LabelDummy">
-          <Anchor relative="$parent/QuestStackCounterT1/BehaviorIcon/StackLabel"/>
-          <SnapToDevicePixels val="true"/>
-          <Style val="{$parent/QuestStackCounterT1/BehaviorIcon/StackLabel/@Style}" />
-          <Options val="ScaleToPreventTruncation" />
-          <AcceptsMouse val="false" />
-          <Text val="0"/>
-          <Visible val="True"/>
-          <StateGroup name="TalentState">
-            <DefaultState val="NoState" />
-            <State name="TalentHasZero">
-              <When type="StateGroup" frame="$parent/QuestStackCounterT1/StateControllerFrame" T1TalentState="NoState" operator="NotEqual" />
-              <When type="Property" frame="$parent/QuestStackCounterT1" InheritedVisible="false" operator="Equal" />
-              <Action type="SetProperty" frame="$this" Visible="True" />
-            </State>
-            <State name="NoState">
-              <Action type="SetProperty" frame="$this" Visible="False" />
-            </State>
-          </StateGroup>
         </Frame>
         <Frame type="Frame" name="QuestAndBuffContainerFrameT2">
           <Anchor side="Top" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Min" offset="0"/>
@@ -5402,24 +5334,35 @@
 
   <Frame type="Frame" name="TopBarScoreHoverTemplate">
     <Visible val="False"/>
-    <AcceptsMouse val="True" />
+    <AcceptsMouse val="False" />
     <IgnoreParentColor val="True"/>
     <Animation name="EnterMouse">
       <Event event="OnMouseEnter" action="Reset,Play" />
+      <Controller type="Property" property="AcceptsMouse" frame="$this" end="Pause">
+        <Key type="Property" time="0" value="False"/>
+      </Controller>
       <Controller type="Visibility" end="Pause" frame="$this">
-        <Key type="Bool" time="0" value="False"/>
+        <Key type="Bool" time="0" value="True"/>
+        <Key type="Bool" time="0.02" value="False"/>
       </Controller>
     </Animation>
     <Animation name="DragStart">
-      <Event event="OnDragStart" frame="$parent/RadialDragButton" action="Reset,Play" />
+      <Event event="OnMouseDown" frame="$parent/RadialDragButton" action="Reset,Play" />
+      <Controller type="Property" property="AcceptsMouse" frame="$this" end="Pause">
+        <Key type="Property" time="0" value="False"/>
+      </Controller>
       <Controller type="Visibility" end="Pause" frame="$this">
         <Key type="Bool" time="0" value="True"/>
       </Controller>
     </Animation>
     <Animation name="DragEnd">
-      <Event event="OnDragEnd" frame="$parent/RadialDragButton" action="Reset,Play" />
+      <Event event="OnMouseUp" frame="$parent/RadialDragButton" action="Reset,Play" />
+      <Controller type="Property" property="AcceptsMouse"  frame="$this" end="Pause">
+        <Key type="Property" time="0" value="True"/>
+      </Controller>
       <Controller type="Visibility" end="Pause" frame="$this">
-        <Key type="Bool" time="0" value="False"/>
+        <Key type="Bool" time="0" value="True"/>
+        <Key type="Bool" time="0.02" value="False"/>
       </Controller>
     </Animation>
     <Frame type="Image" name="Background">
@@ -5428,7 +5371,7 @@
       <Color val="{$parent/$parent/$sibling-1/@Color}" />
     </Frame>
     <Frame type="Image" name="Border">
-      <Anchor relative="$parent" />
+      <Anchor relative="$parent/Background" />
       <Texture val="_Assets\UI\score_border_bluropac.dds" />
       <Color val="{$parent/$parent/$sibling-1/@Color}" />
       <RenderPriority val="200" />
@@ -5440,6 +5383,7 @@
       <Anchor side="Right" relative="$parent" pos="Max" offset="4"/>
       <Style val="Spazzo_TopBarTeamScoreHover" />
       <Options val="ScaleToPreventTruncation" />
+      <IgnoreParentAlpha val="true" />
       <StateGroup name="CompactControlGroup">
         <DefaultState val="NotCompact"/>
         <State name="Compact">
@@ -5457,6 +5401,55 @@
         </State>
       </StateGroup>
     </Frame>
+  </Frame>
+  
+  <Frame type="Frame" name="TopBarScoreHoverColourController">
+    <Anchor side="Top" relative="$sibling-2" pos="Min" offset="0"/>
+    <Anchor side="Left" relative="$sibling-2" pos="Min" offset="0"/>
+    <Anchor side="Right" relative="$sibling-2" pos="Max" offset="0"/>
+    <Anchor side="Bottom" relative="$sibling-2" pos="Max" offset="0"/>
+    <Visible val="false"/>
+    <RenderPriority val="600" />
+    <AcceptsMouse val="True" />
+    <Animation name="EnterMouse">
+      <Event event="OnMouseEnter" action="DirectionForward,Play" />
+      <Event event="OnMouseExit" action="DirectionReverse,Play" />
+      <Controller type="Anchor" frame="$sibling-2/Background" end="Pause" side="Top" relative="true">
+        <Key type="Curve" time="0" value="0" inout="Slow" />
+        <Key type="Curve" time="0.1" value="3" inout="Slow" />
+      </Controller>
+      <Controller type="Anchor" frame="$sibling-2/Background" end="Pause" side="Left" relative="true">
+        <Key type="Curve" time="0" value="0" inout="Slow" />
+        <Key type="Curve" time="0.1" value="3" inout="Slow" />
+      </Controller>
+      <Controller type="Anchor" frame="$sibling-2/Background" end="Pause" side="Right" relative="true">
+        <Key type="Curve" time="0" value="0" inout="Slow" />
+        <Key type="Curve" time="0.1" value="-3" inout="Slow" />
+      </Controller>
+      <Controller type="Anchor" frame="$sibling-2/Background" end="Pause" side="Bottom" relative="true">
+        <Key type="Curve" time="0" value="0" inout="Slow" />
+        <Key type="Curve" time="0.1" value="-3" inout="Slow" />
+      </Controller>
+    </Animation>
+    <Animation name="DragStart">
+      <Event event="OnMouseDown" frame="$parent/RadialDragButton" action="Reset,Play" />
+      <Controller type="Property" property="AcceptsMouse" frame="$this" end="Pause">
+        <Key type="Property" time="0" value="True"/>
+      </Controller>
+      <Controller type="Visibility" end="Pause" frame="$this">
+        <Key type="Bool" time="0" value="True"/>
+      </Controller>
+    </Animation>
+    <Animation name="DragEnd">
+      <Event event="OnMouseUp" frame="$parent/RadialDragButton" action="Reset,Play" />
+      <Controller type="Property" property="AcceptsMouse"  frame="$this" end="Pause">
+        <Key type="Property" time="0" value="False"/>
+      </Controller>
+      <Controller type="Visibility" end="Pause" frame="$this">
+        <Key type="Bool" time="0" value="True"/>
+        <Key type="Bool" time="0.01" value="False"/>
+      </Controller>
+    </Animation>
   </Frame>
   
   <Frame type="Frame" name="TopBarScoreTemplate">
@@ -5485,7 +5478,6 @@
       <Anchor side="Left" relative="$parent/$sibling-1" pos="Min" offset="#SpazzoTeamScoreSizeHoverNeg"/>
       <Anchor side="Right" relative="$parent/$sibling-1" pos="Min" offset="0"/>
       <Anchor side="Bottom" relative="$parent/$sibling-1" pos="Min" offset="#SpazzoTeamScoreSizeHover"/>
-      <Texture val="Assets\Textures\storm_ui_homescreenbackground_nexomania.dds"/>
       <Animation name="EnterMouse">
         <Controller type="Visibility" end="Pause" frame="$sibling+1">
           <Key type="Bool" time="0" value="False"/>
@@ -5506,7 +5498,6 @@
       <Anchor side="Left" relative="$sibling-1" pos="Min" offset="0"/>
       <Anchor side="Right" relative="$sibling-1" pos="Max" offset="0"/>
       <Anchor side="Bottom" relative="$sibling-1" pos="Max" offset="#SpazzoTeamScoreSizeHover"/>
-      <Texture val="Assets\Textures\storm_ui_homescreenbackground_nexomania.dds"/>
       <Animation name="EnterMouse">
         <Controller type="Visibility" end="Pause" frame="$sibling-1">
           <Key type="Bool" time="0" value="False"/>
@@ -5522,6 +5513,8 @@
         <Text val="-.25"/>
       </Frame>
     </Frame>
+    <Frame type="Frame" name="DecreaseHover3" template="SpazzoTemplates/TopBarScoreHoverColourController"/>
+    <Frame type="Frame" name="DecreaseHover4" template="SpazzoTemplates/TopBarScoreHoverColourController"/>
     <Frame type="Frame" name="IncreaseHover1" template="SpazzoTemplates/TopBarScoreHoverTemplate">
       <Anchor side="Top" relative="$parent/$sibling-1" pos="Min" offset="0"/>
       <Anchor side="Bottom" relative="$parent/$sibling-1" pos="Min" offset="#SpazzoTeamScoreSizeHover"/>
@@ -5564,6 +5557,8 @@
         <Text val="+.25"/>
       </Frame>
     </Frame>
+    <Frame type="Frame" name="IncreaseHover3" template="SpazzoTemplates/TopBarScoreHoverColourController"/>
+    <Frame type="Frame" name="IncreaseHover4" template="SpazzoTemplates/TopBarScoreHoverColourController"/>
 		<Frame type="Frame" name="IncreaseMonitorFrame">
 			<Anchor relative="$parent"/>
 			<Visible val="False"/>

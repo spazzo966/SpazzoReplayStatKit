@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Desc>
-
-  
   <Frame type="UnitStatusTalentIcon" name="TalentTreeIconTemplate">
     <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
     <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
@@ -71,13 +69,13 @@
     <DurationMaxPrecision val="1"/>
     <AcceptsMouse val="False"/>
     <AcceptsMouseTooltip val="False"/>
-    <Unclipped val="false" />
     <Color val="{$parent/$parent/$parent/PlayerColourFrame/@Color}" />
     <StateGroup name="CompactControlGroup">
       <DefaultState val="Default"/>
       <State name="Ultracompact">
         <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-        <Action type="SetAnchor" frame="$this" side="Top" relative="$parent" pos="Min" offset="13" />
+        <Action type="SetAnchor" frame="$this" side="Top" relative="$parent" pos="Min" offset="0" />
+        <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent" pos="Max" offset="-10" />
         <Action type="SetAnchor" frame="$this" side="Left" relative="$parent" pos="Min" offset="20" />
         <Action type="SetProperty" frame="$this/DurationLabel" Style="Spazzo_TopPanelDeathLabel" />
       </State>
@@ -89,7 +87,7 @@
       <State name="WIIDE">
         <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="3"/>
         <Action type="SetAnchor" frame="$this" side="Left" relative="$parent" pos="Mid" offset="0" />
-        <Action type="SetProperty" frame="$this/DurationLabel" Style="Spazzo_TopPanelDeathLabel" />
+        <Action type="SetProperty" frame="$this/DurationLabel" Style="Spazzo_TopPanelDeathLabelWide" />
       </State>
       <State name="Default">
         <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
@@ -103,11 +101,26 @@
       <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
       <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
       <SubpixelRendering val="True"/>
-      <Unclipped val="false" />
       <Style val="Spazzo_TopPanelDeathLabel" />
       <AcceptsMouse val="False"/>
       <AcceptsMouseTooltip val="False"/>
+      <Visible val="False"/>
     </Frame>
+  </Frame>
+
+  <Frame type="Label" name="DeadTextTemplate">
+    <Anchor side="Top" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Min" offset="0" />
+    <Anchor side="Left" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Min" offset="0" />
+    <Anchor side="Right" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Max" offset="0" />
+    <Anchor side="Bottom" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Max" offset="0" />
+    <SubpixelRendering val="True"/>
+    <Style val="{$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel/@Style}" />
+    <AcceptsMouse val="False"/>
+    <AcceptsMouseTooltip val="False"/>
+    <ScaleText val="True"/>
+    <Visible val="False"/>
+    <Color val="{$parent/$parent/PlayerColourFrame/@Color}" />
+    <Text val="{$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel/@Text}"/>
   </Frame>
 
   <Frame type="UnitStatusBehaviorAnim" name="BehaviorAnimationTemplate" template="StandardHeroUITemplates/BehaviorAnimTemplate">
@@ -127,39 +140,33 @@
       </Controller>
       <Controller frame="$ancestor[@type=SelectionUnitStatusPanel]/$parent/PlayerHeroLoadingScreenImage" type="Property" property="DesaturationColor" end="Pause">
         <Key type="Property" time="0" value="255,255,255" />
-        <Key type="Property" time="0.1" value="240,240,240" />
-        <Key type="Property" time="0.2" value="225,225,225" />
-        <Key type="Property" time="0.3" value="210,210,210" />
-        <Key type="Property" time="0.4" value="195,195,195" />
-        <Key type="Property" time="0.5" value="180,180,180" />
-        <Key type="Property" time="0.6" value="165,165,165" />
-        <Key type="Property" time="0.7" value="150,150,150" />
-        <Key type="Property" time="0.8" value="135,135,135" />
-        <Key type="Property" time="0.9" value="120,120,120" />
+        <Key type="Property" time="0.1" value="235,235,235" />
+        <Key type="Property" time="0.2" value="215,215,215" />
+        <Key type="Property" time="0.3" value="190,190,190" />
+        <Key type="Property" time="0.4" value="165,165,165" />
+        <Key type="Property" time="0.5" value="130,130,130" />
+        <Key type="Property" time="0.6" value="100,100,100" />
+        <Key type="Property" time="0.7" value="75,75,75" />
       </Controller>
       <Controller frame="$ancestor[@type=SelectionUnitStatusPanel]/$parent/WideHeroLoadingContainerFrame/PlayerHeroLoadingScreenImageWIDE" type="Property" property="DesaturationColor" end="Pause">
         <Key type="Property" time="0" value="255,255,255" />
-        <Key type="Property" time="0.1" value="240,240,240" />
-        <Key type="Property" time="0.2" value="225,225,225" />
-        <Key type="Property" time="0.3" value="210,210,210" />
-        <Key type="Property" time="0.4" value="195,195,195" />
-        <Key type="Property" time="0.5" value="180,180,180" />
-        <Key type="Property" time="0.6" value="165,165,165" />
-        <Key type="Property" time="0.7" value="150,150,150" />
-        <Key type="Property" time="0.8" value="135,135,135" />
-        <Key type="Property" time="0.9" value="120,120,120" />
+        <Key type="Property" time="0.1" value="235,235,235" />
+        <Key type="Property" time="0.2" value="215,215,215" />
+        <Key type="Property" time="0.3" value="190,190,190" />
+        <Key type="Property" time="0.4" value="165,165,165" />
+        <Key type="Property" time="0.5" value="130,130,130" />
+        <Key type="Property" time="0.6" value="100,100,100" />
+        <Key type="Property" time="0.7" value="75,75,75" />
       </Controller>
       <Controller frame="$ancestor[@type=SelectionUnitStatusPanel]/$parent/CompactHeroLoadingContainerFrame/PlayerHeroLoadingScreenImageCompact" type="Property" property="DesaturationColor" end="Pause">
         <Key type="Property" time="0" value="255,255,255" />
-        <Key type="Property" time="0.1" value="240,240,240" />
-        <Key type="Property" time="0.2" value="225,225,225" />
-        <Key type="Property" time="0.3" value="210,210,210" />
-        <Key type="Property" time="0.4" value="195,195,195" />
-        <Key type="Property" time="0.5" value="180,180,180" />
-        <Key type="Property" time="0.6" value="165,165,165" />
-        <Key type="Property" time="0.7" value="150,150,150" />
-        <Key type="Property" time="0.8" value="135,135,135" />
-        <Key type="Property" time="0.9" value="120,120,120" />
+        <Key type="Property" time="0.1" value="235,235,235" />
+        <Key type="Property" time="0.2" value="215,215,215" />
+        <Key type="Property" time="0.3" value="190,190,190" />
+        <Key type="Property" time="0.4" value="165,165,165" />
+        <Key type="Property" time="0.5" value="130,130,130" />
+        <Key type="Property" time="0.6" value="100,100,100" />
+        <Key type="Property" time="0.7" value="75,75,75" />
       </Controller>
       <Controller type="Text" frame="$parent/DeadMonitor" end="Pause">
         <Key type="Text" time="0" text="True"/>
@@ -175,18 +182,18 @@
       </Controller>
       <Controller type="Fade" frame="$ancestor[@type=SelectionUnitStatusPanel]/$parent/SkullImage" end="Pause">
         <Key type="Curve" time="0" value="0" inout="Slow" />
-        <Key type="Curve" time="0.45" value="130" inout="Slow" />
-        <Key type="Curve" time="0.9" value="255" inout="Slow" />
+        <Key type="Curve" time="0.35" value="130" inout="Slow" />
+        <Key type="Curve" time="0.7" value="255" inout="Slow" />
       </Controller>
       <Controller type="Fade" frame="$ancestor[@type=SelectionUnitStatusPanel]/$parent/WideHeroLoadingContainerFrame/SkullImage" end="Pause">
         <Key type="Curve" time="0" value="0" inout="Slow" />
-        <Key type="Curve" time="0.45" value="130" inout="Slow" />
-        <Key type="Curve" time="0.9" value="255" inout="Slow" />
+        <Key type="Curve" time="0.35" value="130" inout="Slow" />
+        <Key type="Curve" time="0.7" value="255" inout="Slow" />
       </Controller>
       <Controller type="Fade" frame="$ancestor[@type=SelectionUnitStatusPanel]/$parent/CompactHeroLoadingContainerFrame/SkullImage" end="Pause">
         <Key type="Curve" time="0" value="0" inout="Slow" />
-        <Key type="Curve" time="0.45" value="130" inout="Slow" />
-        <Key type="Curve" time="0.9" value="255" inout="Slow" />
+        <Key type="Curve" time="0.35" value="130" inout="Slow" />
+        <Key type="Curve" time="0.7" value="255" inout="Slow" />
       </Controller>
     </Animation>
     <Animation name="Resaturate">
@@ -6513,6 +6520,7 @@
             <Action type="SetProperty" frame="EnergyBar" Segmented="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Visible="False" undo="false" />
+            <Action type="SetProperty" frame="DeadDescription" Behavior="NULL" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Visible="False" undo="false" />
           </State>
@@ -6530,6 +6538,7 @@
             <Action type="SetProperty" frame="EnergyBar" Segmented="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Visible="False" undo="false" />
+            <Action type="SetProperty" frame="DeadDescription" Behavior="NULL" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Visible="False" undo="false" />
           </State>
@@ -6547,6 +6556,7 @@
             <Action type="SetProperty" frame="EnergyBar" Segmented="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Visible="False" undo="false" />
+            <Action type="SetProperty" frame="DeadDescription" Behavior="NULL" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Visible="False" undo="false" />
           </State>
@@ -6564,6 +6574,7 @@
             <Action type="SetProperty" frame="EnergyBar" Segmented="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Visible="False" undo="false" />
+            <Action type="SetProperty" frame="DeadDescription" Behavior="NULL" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Visible="False" undo="false" />
           </State>
@@ -6581,6 +6592,7 @@
             <Action type="SetProperty" frame="EnergyBar" Segmented="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Visible="False" undo="false" />
+            <Action type="SetProperty" frame="DeadDescription" Behavior="NULL" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Visible="False" undo="false" />
           </State>
@@ -6598,6 +6610,7 @@
             <Action type="SetProperty" frame="EnergyBar" Segmented="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Visible="False" undo="false" />
+            <Action type="SetProperty" frame="DeadDescription" Behavior="NULL" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Visible="False" undo="false" />
           </State>
@@ -6615,6 +6628,7 @@
             <Action type="SetProperty" frame="EnergyBar" Segmented="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Visible="False" undo="false" />
+            <Action type="SetProperty" frame="DeadDescription" Behavior="NULL" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Visible="False" undo="false" />
           </State>
@@ -6632,6 +6646,7 @@
             <Action type="SetProperty" frame="EnergyBar" Segmented="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadLabel" Visible="False" undo="false" />
+            <Action type="SetProperty" frame="DeadDescription" Behavior="NULL" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Enabled="False" undo="false" />
             <Action type="SetProperty" frame="DeadDescription" Visible="False" undo="false" />
           </State>
@@ -7632,105 +7647,108 @@
               </State>
             </StateGroup>
           </Frame>
-          <Frame type="UnitStatusBehaviorIcon" name="QuestStackCounterT1" template="SpazzoCustomTopBarQuests/UnitStatusBehaviorIconTemplate">
+          <Frame type="Frame" name="QuestAndBuffContainerFrameT1">
             <Anchor side="Top" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Min" offset="0"/>
             <Anchor side="Left" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Min" offset="0"/>
             <Anchor side="Right" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Max" offset="0"/>
             <Anchor side="Bottom" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1" pos="Max" offset="0"/>
+            <Frame type="UnitStatusBehaviorIcon" name="QuestStackCounterT1" template="SpazzoCustomTopBarQuests/UnitStatusBehaviorIconTemplate">
+              <Anchor relative="$parent"/>
+            </Frame>
+            <Frame type="UnitStatusBehaviorIcon" name="LoanStackCounterT1" template="SpazzoCustomTopBarQuests/UnitStatusBehaviorLoanIconTemplate">
+              <Anchor relative="$parent"/>
+            </Frame>
+            <Frame type="UnitStatusBehaviorIcon" name="BuffDurationT1" template="SpazzoCustomTopBarQuests/UnitStatusBehaviorIconDurationTemplate">
+              <Anchor relative="$parent"/>
+            </Frame>
+            <Frame type="Image" name="LoanStackProgressBarDummyT1">
+              <Anchor relative="$INVALID" />
+              <Texture val="_Assets\UI\spaz_ui_talentborder_newer_quest.dds" />
+              <AdjustmentColor val="255,210,23,23" /> 
+              <Alpha val="130" /> 
+              <ColorAdjustMode val="Fill" /> 
+              <AcceptsMouse val="false" />
+              <StateGroup name="LoanState">
+                <DefaultState val="IsNotLoanTalent" />
+                <State name="IsNotLoanTalent">
+                </State>
+                <State name="IsLoanTalent">
+                </State>
+              </StateGroup>
+              <StateGroup name="VisibleState">
+                <DefaultState val="NoTalentSelected" />
+                <State name="NoTalentSelected">
+                  <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierSelected" operator="NotEqual"/>
+                  <Action type="SetProperty" frame="$this" Visible="False" />
+                  <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
+                  <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T1" /> -->
+                </State>
+                <State name="NoTalent">
+                  <When type="StateGroup" frame="$parent/QuestStackCounterT1/StateControllerFrame" T1TalentState="NoState" operator="Equal" />
+                  <Action type="SetProperty" frame="$this" Visible="False" />
+                  <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
+                  <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T2" /> -->
+                </State>
+                <State name="NoLoanTalent">
+                  <When type="Property" frame="$parent/LoanStackCounterT1" Behavior="NULL" />
+                  <Action type="SetProperty" frame="$this" Visible="False" />
+                  <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
+                  <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T3" /> -->
+                </State>
+                <State name="LoanTalentNotLost">
+                  <When type="Property" frame="$parent/LoanStackCounterT1" Behavior="NULL" operator="NotEqual" />
+                  <When type="Property" frame="$parent/LoanStackCounterT1" CurrentStackCount="0" operator="NotEqual" />
+                  <Action type="SetProperty" frame="$this" Visible="False" />
+                  <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
+                  <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T4" /> -->
+                </State>
+                <State name="LoanTalentLost2">
+                  <When type="Property" frame="$parent/LoanStackCounterT1" Behavior="NULL" operator="NotEqual" />
+                  <When type="Property" frame="$parent/LoanStackCounterT1" InheritedVisible="False" operator="Equal" />
+                  <When type="StateGroup" frame="$this" LoanState="IsLoanTalent" operator="Equal"/>
+                  <Action type="SetProperty" frame="$this" Visible="True" />
+                  <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/LoanStackCounterT1" pos="Min" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/LoanStackCounterT1" pos="Min" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Right" relative="$parent/LoanStackCounterT1" pos="Max" offset="0" />
+                  <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent/LoanStackCounterT1" pos="Max" offset="0" />
+                  <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T5" /> -->
+                </State>
+              </StateGroup>
+            </Frame>
+            <Frame type="Label" name="T1LabelDummy">
+              <Anchor relative="$parent/QuestStackCounterT1/BehaviorIcon/StackLabel"/>
+              <SnapToDevicePixels val="true"/>
+              <Style val="Spazzo_TopPanelQuestLabel" />
+              <Style val="{$parent/QuestStackCounterT1/BehaviorIcon/StackLabel/@Style}" />
+              <Options val="ScaleToPreventTruncation" />
+              <AcceptsMouse val="false" />
+              <Text val="0"/>
+              <Visible val="True"/>
+              <StateGroup name="TalentState">
+                <DefaultState val="NoState" />
+                <State name="TalentHasZeroAndUsesTokens">
+                  <When type="StateGroup" frame="$parent/StateControllerFrame" UsesTokens="True" />
+                  <When type="Property" frame="$parent/QuestStackCounterT1" operator="Equal" InheritedVisible="false" />
+                  <Action type="SetProperty" frame="$this" Visible="True" />
+                </State>
+                <State name="NoState">
+                  <Action type="SetProperty" frame="$this" Visible="False" />
+                </State>
+              </StateGroup>
+            </Frame>
             <Frame type="Frame" name="StateControllerFrame" template="SpazzoCustomTopBarQuests/StateControllerFrameT1"/>
-          </Frame>
-          <Frame type="UnitStatusBehaviorIcon" name="LoanStackCounterT1" template="SpazzoCustomTopBarQuests/UnitStatusBehaviorLoanIconTemplate">
-            <Anchor side="Top" relative="$parent/QuestStackCounterT1" pos="Min" offset="0"/>
-            <Anchor side="Left" relative="$parent/QuestStackCounterT1" pos="Min" offset="0"/>
-            <Anchor side="Right" relative="$parent/QuestStackCounterT1" pos="Max" offset="0"/>
-            <Anchor side="Bottom" relative="$parent/QuestStackCounterT1" pos="Max" offset="0"/>
-          </Frame>
-          <Frame type="Image" name="LoanStackProgressBarDummyT1">
-            <Anchor relative="$INVALID" />
-            <Texture val="_Assets\UI\spaz_ui_talentborder_newer_quest.dds" />
-            <AdjustmentColor val="255,210,23,23" /> 
-            <Alpha val="130" /> 
-            <ColorAdjustMode val="Fill" /> 
-            <AcceptsMouse val="false" />
-            <StateGroup name="LoanState">
-              <DefaultState val="IsNotLoanTalent" />
-              <State name="IsNotLoanTalent">
-              </State>
-              <State name="IsLoanTalent">
-              </State>
-            </StateGroup>
-            <StateGroup name="VisibleState">
-              <DefaultState val="NoTalentSelected" />
-              <State name="NoTalentSelected">
-                <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierSelected" operator="NotEqual"/>
-                <Action type="SetProperty" frame="$this" Visible="False" />
-                <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
-                <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T1" /> -->
-              </State>
-              <State name="NoTalent">
-                <When type="StateGroup" frame="$parent/QuestStackCounterT1/StateControllerFrame" T1TalentState="NoState" operator="Equal" />
-                <Action type="SetProperty" frame="$this" Visible="False" />
-                <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
-                <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T2" /> -->
-              </State>
-              <State name="NoLoanTalent">
-                <When type="Property" frame="$parent/LoanStackCounterT1" Behavior="NULL" />
-                <Action type="SetProperty" frame="$this" Visible="False" />
-                <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
-                <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T3" /> -->
-              </State>
-              <State name="LoanTalentNotLost">
-                <When type="Property" frame="$parent/LoanStackCounterT1" Behavior="NULL" operator="NotEqual" />
-                <When type="Property" frame="$parent/LoanStackCounterT1" CurrentStackCount="0" operator="NotEqual" />
-                <Action type="SetProperty" frame="$this" Visible="False" />
-                <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="Min" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="Min" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="Max" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="Max" offset="0" />
-                <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T4" /> -->
-              </State>
-              <State name="LoanTalentLost2">
-                <When type="Property" frame="$parent/LoanStackCounterT1" Behavior="NULL" operator="NotEqual" />
-                <When type="Property" frame="$parent/LoanStackCounterT1" InheritedVisible="False" operator="Equal" />
-                <When type="StateGroup" frame="$this" LoanState="IsLoanTalent" operator="Equal"/>
-                <Action type="SetProperty" frame="$this" Visible="True" />
-                <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/LoanStackCounterT1" pos="Min" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/LoanStackCounterT1" pos="Min" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Right" relative="$parent/LoanStackCounterT1" pos="Max" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent/LoanStackCounterT1" pos="Max" offset="0" />
-                <!-- <Action type="SetProperty" frame="$parent/LoanDebugT1" Text="T5" /> -->
-              </State>
-            </StateGroup>
-          </Frame>
-          <Frame type="Label" name="T1LabelDummy">
-            <Anchor relative="$parent/QuestStackCounterT1/BehaviorIcon/StackLabel"/>
-            <SnapToDevicePixels val="true"/>
-            <Style val="Spazzo_TopPanelQuestLabel" />
-            <Style val="{$parent/QuestStackCounterT1/BehaviorIcon/StackLabel/@Style}" />
-            <Options val="ScaleToPreventTruncation" />
-            <AcceptsMouse val="false" />
-            <Text val="0"/>
-            <Visible val="True"/>
-            <StateGroup name="TalentState">
-              <DefaultState val="NoState" />
-              <State name="TalentHasZero">
-                <When type="StateGroup" frame="$parent/QuestStackCounterT1/StateControllerFrame" T1TalentState="NoState" operator="NotEqual" />
-                <When type="Property" frame="$parent/QuestStackCounterT1" InheritedVisible="false" operator="Equal" />
-                <Action type="SetProperty" frame="$this" Visible="True" />
-              </State>
-              <State name="NoState">
-                <Action type="SetProperty" frame="$this" Visible="False" />
-              </State>
-            </StateGroup>
           </Frame>
           <Frame type="Frame" name="QuestAndBuffContainerFrameT2">
             <Anchor side="Top" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2" pos="Min" offset="0"/>
@@ -8945,6 +8963,165 @@
         <Anchor side="Right" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Max" offset="0"/>
         <Anchor side="Bottom" relative="$ancestor[@name=TalentNumberContainers]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7" pos="Max" offset="0"/>
         <Visible val="{$Talent7MasterSetting/ShowBorders/CheckBoxButton/@Toggled}"/>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="DeadTextContainer">
+      <Anchor relative="$parent" />
+      <RenderPriority val="990"/>
+      <StateGroup name="TalentSelectState">
+        <DefaultState val="NotDead"/>
+        <State name="TLV">
+          <When type="Property" frame="$parent/PlayerHeroIconFrame/HeroIconImage" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_lostvikings.dds"/>
+          <Action type="SetProperty" frame="$this/DeadText" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextCompact" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextMinimal" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextUltrawide" Visible="False" />
+        </State>
+        <State name="NotDead">
+          <When type="Property" frame="$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadMonitor" operator="Equal" Text="False"/>
+          <Action type="SetProperty" frame="$this/DeadText" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextCompact" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextMinimal" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextUltrawide" Visible="False" />
+        </State>
+        <State name="DeadStandard">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="3"/>
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
+          <When type="Property" frame="$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadMonitor" operator="Equal" Text="True"/>
+          <Action type="SetProperty" frame="$this/DeadText" Visible="True" />
+          <Action type="SetProperty" frame="$this/DeadTextCompact" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextMinimal" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextUltrawide" Visible="False" />
+        </State>
+        <State name="DeadCompact">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
+          <When type="Property" frame="$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadMonitor" operator="Equal" Text="True"/>
+          <Action type="SetProperty" frame="$this/DeadText" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextCompact" Visible="True" />
+          <Action type="SetProperty" frame="$this/DeadTextMinimal" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextUltrawide" Visible="False" />
+        </State>
+        <State name="DeadMinimal">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+          <When type="Property" frame="$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadMonitor" operator="Equal" Text="True"/>
+          <Action type="SetProperty" frame="$this/DeadText" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextCompact" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextMinimal" Visible="True" />
+          <Action type="SetProperty" frame="$this/DeadTextUltrawide" Visible="False" />
+        </State>
+        <State name="DeadUltrawide">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="3"/>
+          <When type="Property" frame="$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadMonitor" operator="Equal" Text="True"/>
+          <Action type="SetProperty" frame="$this/DeadText" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextCompact" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextMinimal" Visible="False" />
+          <Action type="SetProperty" frame="$this/DeadTextUltrawide" Visible="True" />
+        </State>
+      </StateGroup>
+      <Frame type="Label" name="DeadText" template="SpazzoCustomTopBar/DeadTextTemplate">
+        <!-- <Text val="Norm"/> -->
+        <Animation name="PopOut">
+          <Event event="OnShown" action="Reset, Play" frame="$this" />
+          <Event event="OnHidden" action="Reset" frame="$this" />
+          <Controller type="Anchor" end="Pause" side="Top" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="-30" />
+            <Key type="Curve" time="0.7" value="0" />
+          </Controller>
+          <Controller type="Anchor" end="Pause" side="Bottom" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="30" />
+            <Key type="Curve" time="0.7" value="0" />
+          </Controller>
+          <Controller type="Anchor" end="Pause" side="Left" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="-50" />
+            <Key type="Curve" time="0.7" value="0" />
+          </Controller>
+          <Controller type="Anchor" end="Pause" side="Right" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="50" />
+            <Key type="Curve" time="0.7" value="0" />
+          </Controller>
+        </Animation>
+      </Frame>
+      <Frame type="Label" name="DeadTextCompact" template="SpazzoCustomTopBar/DeadTextTemplate">
+        <Anchor side="Top" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Min" offset="0" />
+        <Anchor side="Left" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Min" offset="0" />
+        <Anchor side="Right" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Max" offset="0" />
+        <Anchor side="Bottom" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Max" offset="0" />
+        <!-- <Text val="UC"/> -->
+        <Animation name="PopOut">
+          <Event event="OnShown" action="Reset, Play" frame="$this" />
+          <Event event="OnHidden" action="Reset" frame="$this" />
+          <Controller type="Anchor" end="Pause" side="Top" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="-30" />
+            <Key type="Curve" time="0.7" value="-5" />
+          </Controller>
+          <Controller type="Anchor" end="Pause" side="Bottom" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="30" />
+            <Key type="Curve" time="0.7" value="5" />
+          </Controller>
+          <Controller type="Anchor" end="Pause" side="Left" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="-50" />
+            <Key type="Curve" time="0.7" value="0" />
+          </Controller>
+          <Controller type="Anchor" end="Pause" side="Right" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="50" />
+            <Key type="Curve" time="0.7" value="0" />
+          </Controller>
+        </Animation>
+      </Frame>
+      <Frame type="Label" name="DeadTextMinimal" template="SpazzoCustomTopBar/DeadTextTemplate">
+        <Anchor side="Top" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Min" offset="0" />
+        <Anchor side="Left" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Min" offset="0" />
+        <Anchor side="Right" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Max" offset="0" />
+        <Anchor side="Bottom" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Max" offset="0" />
+        <!-- <Text val="Mini"/> -->
+        <Animation name="PopOut">
+          <Event event="OnShown" action="Reset, Play" frame="$this" />
+          <Event event="OnHidden" action="Reset" frame="$this" />
+          <Controller type="Anchor" end="Pause" side="Top" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="-30" />
+            <Key type="Curve" time="0.7" value="-10" />
+          </Controller>
+          <Controller type="Anchor" end="Pause" side="Bottom" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="30" />
+            <Key type="Curve" time="0.7" value="10" />
+          </Controller>
+          <Controller type="Anchor" end="Pause" side="Left" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="-50" />
+            <Key type="Curve" time="0.7" value="0" />
+          </Controller>
+          <Controller type="Anchor" end="Pause" side="Right" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="50" />
+            <Key type="Curve" time="0.7" value="0" />
+          </Controller>
+        </Animation>
+      </Frame>
+      <Frame type="Label" name="DeadTextUltrawide" template="SpazzoCustomTopBar/DeadTextTemplate">
+        <Anchor side="Top" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Min" offset="-10" />
+        <Anchor side="Left" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Min" offset="-20" />
+        <Anchor side="Right" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Max" offset="-10" />
+        <Anchor side="Bottom" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/DeadLabel/DurationLabel" pos="Max" offset="10" />
+        <!-- <Text val="WIIDE"/> -->
+        <Animation name="PopOut">
+          <Event event="OnShown" action="Reset, Play" frame="$this" />
+          <Event event="OnHidden" action="Reset" frame="$this" />
+          <Controller type="Anchor" end="Pause" side="Top" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="-40" />
+            <Key type="Curve" time="0.7" value="0" />
+          </Controller>
+          <Controller type="Anchor" end="Pause" side="Bottom" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="40" />
+            <Key type="Curve" time="0.7" value="0" />
+          </Controller>
+          <Controller type="Anchor" end="Pause" side="Left" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="-65" />
+            <Key type="Curve" time="0.7" value="-5" />
+          </Controller>
+          <Controller type="Anchor" end="Pause" side="Right" relative="True" unclipped="True" frame="$this">
+            <Key type="Curve" time="0" value="65" />
+            <Key type="Curve" time="0.7" value="5" />
+          </Controller>
+        </Animation>
       </Frame>
     </Frame>
     <StateGroup name="Animating">

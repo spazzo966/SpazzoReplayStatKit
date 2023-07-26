@@ -1898,8 +1898,6 @@ fixed libGame_gv_DamageDealtFractionAbility(unit lp_contextUnit, string lp_damag
 void libGame_gv_TallyDamageDealtFraction(string lp_damageEffect, fixed lp_damageValue, unit lp_targetUnit, unit lp_casterUnit, int lp_targetPlayer, int lp_casterPlayer, fixed lp_damageModifier);
 void libGame_gv_TallyArmorModified(string lp_damageEffect, string lp_attackerType, fixed lp_damageValue, fixed lp_damageMitigated, fixed lp_damageAttempted, int lp_attackedPlayer, int lp_attackingPlayer, unit lp_attackedUnit);
 void libGame_gf_TeamDamageTracker (string lp_damageEffect, fixed lp_damageValue, unit lp_targetUnit, unit lp_casterUnit, int lp_targetPlayer, int lp_casterPlayer);
-void libGame_gf_exportStatsForPlayer (int lp_player);
-string libGame_gf_statsForPlayerHeroSpecificString (int lp_player);
 void libGame_gf_trackHeroCooldowns ();
 void libGame_gf_travelThroughTime ();
 fixed libGame_gf_FetchAbilityCooldownTime (unit lp_unit, string lp_ability, int lp_player, bool lp_displayDebug, fixed lp_oldValue);

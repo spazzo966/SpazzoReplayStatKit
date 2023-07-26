@@ -2536,7 +2536,7 @@
           <Frame type="Frame" name="BehaviorBarContainerFrame">
             <Anchor side="Top" relative="$parent/$parent/BuffBackgroundImage" pos="Min" offset="2"/>
             <Anchor side="Left" relative="$parent/$parent/BuffBackgroundImage" pos="Min" offset="57"/>
-            <Anchor side="Right" relative="$this" pos="Min" offset="200"/>
+            <Anchor side="Right" relative="$this/HeroBuffBar/BehaviorIcon5/ImageMaskContainer/IconImage" pos="Max" offset="20"/>
             <Anchor side="Bottom" relative="$this" pos="Min" offset="43"/>
             <Frame type="BehaviorBar" name="HeroBuffBar" template="BehaviorBar/BuffBehaviorBarTemplate">
               <Anchor side="Top" relative="$parent" pos="Min" offset="0" />

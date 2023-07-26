@@ -1,4 +1,60 @@
-# v0.32a (**2023-01-29**)
+# v0.33
+
+* Statistics
+ * Chromie now tracks the bonus damage from Bronze Talons, split into Heroic targets and non-Heroic targets
+ * The export statistics on a per-player basis has been removed due to the upkeep required to resolve issues with it
+ * Updates to included libraries support build 90670
+
+* UI
+ * The Top Bar no longer displays until Hero Selection has been completed
+ * The Top Bar Death Timer for non-Lost Vikings Hero now features text that starts overscaled when it first becomes visible to help it pop more
+ * The Team Score mouse radial dial menu now only accepts the input when releasing the button, instead of the instant an option is moused over, and when it is moused over, the button will visually shrink for improved feedback
+ * Stitches now features a setting to display the remaining Gorge duration on targets Gorged inside of his Healthplate. This is by default enabled
+ * Maiev now features a setting to display the remaining Containment Disc duration on the Containment Disc Healthplate. This is by default disabled
+ * Added a new hotkey to toggle displaying Player Names or Hero Names. This is by default set to Control+N
+ * Added Lt. Morales' Trauma Trigger cooldown to the Top Bar & Bottom Panel
+ * Top Bar
+  * Illidan's Battered Assault remaining duration is now displayed as a buff if selected
+  * Sylvanas's Might of the Banshee Queen now displays the remaining duration as the border, instead of the stack value. The stack value is still visible as text
+  * Tyrael's Ardent Restoration will now display as a buff and quest if selected, rather than exclusively as a quest. Disabling or enabling quests or buffs for this tier will disable whichever portion is desired to be affected
+  * Sonya's Tough as Nails charge timer and stack count is now displayed as a buff if selected
+  * Sonya's Furious Blows is now displayed as a stacking buff if selected
+  * Deckard's Field Study remaining duration and stack count are now displayed as a buff if selected
+  * Qhira's Finishing Touch remaining duration is now displayed as a buff if selected
+  * Li-Ming's Power Hungry remaining duration is now displayed as a buff if selected
+  * Yrel's Dauntless remaining duration is now displayed as a buff if selected
+  * Junkrat's Blow Em' Up remaining duration is now displayed as a buff if selected
+  * Valeera's Subtlety remaining duration is now displayed as a buff if selected
+  * Alexstrasza's Dragon Queen now displays its remaining duration
+  * Cassia's Avoidance now displays her Avoidance stacks as a buff around her Basic Abilities
+  * Chen's Keg Smash\Breath of Fire now displays the remaining window in which Chen can cast Breath of Fire around the shared ability entry
+  * Greymane's Inner Beast now displays its remaining duration as a buff
+  * Hanzo's Storm Bow now displays its charge duration as a buff
+  * Hogger's Hogg Wild now displays its remaining duration as a buff
+  * Illidan's Sweeping Strike now displays its charge duration as a buff. If Battered Assault is active, this does not display
+  * Johanna's Iron Skin now displays its remaining duration as a buff
+  * Kharazim's Deadly Reach now displays its remaining duration as a buff
+  * Lucio's Amp it Up now displays its remaining duration as a buff
+  * Samuro's Advancing Strikes movespeed now displays its remaining duration as a buff around the Critical Strike button
+  * Sylvanas's Black Arrows now displays its remaining duration as a buff
+  * Tyrael's El'druin's Might now displays the remaining duration that Tyrael can reactivate it as a buff
+  * Tychus's Minigun now displays its remaining duration as a buff
+  * Valeera now displays the remaining duration as a buff for her Stealth abilities to teleport her around her Basic Abilities
+  * Whitemane's Zeal now displays the remaining duration as a buff of the activateable Spell Power
+  * Xul's Cursed Strikes now displays its remaining duration as a buff
+  * Zeratul now displays Vorpal Blade's remaining duration as a buff
+ * Mercenary Damage is now hidden in the Team Scoreboard in the ARAM battlegrounds. This may be updated in the future to support them more completely.
+ * Fixed an issue causing Mephisto's attachment to display incorrectly if the Mephisto had selected and completed Unyielding Power
+ * Fixed an issue that caused Mephisto's attachment to not display his selected Heroic when the Heroic is the selected attachment
+ * Fixed an issue causing Genji's Dragonblade cooldown to not be displayed as an attachment
+ * Fixed an issue where the Selected Unit UI's Buff Bar would clip improperly when you have 5 or more buffs active at once
+ * Fixed an issue that caused Heroic Abilities that gained charges from a later talent to display charges in the Top Bar after the replay is rewound to before the latter talent was selected
+ * Fixed an issue causing the layout options displayed in Ahli's Observer UI Settings Editor to not match the in-game settings
+ * Fixed an issue causing Stitches Attachment settings to not be editable using Ahli's Observer UI Settings Editor
+ * Fixed a potential issue causing Blaze's Attachment settings to not be properly editable in Ahli's Observer UI Settings Editor
+ * Fixed an issue causing The Lost Vikings Top Bar to behave incorrectly if a dead Viking is selected
+
+## v0.32a (**2023-01-29**)
 
 * Statistics
  * No changes, the version shipped has not been increased since the previous version

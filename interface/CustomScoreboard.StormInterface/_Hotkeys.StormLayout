@@ -20,6 +20,7 @@
   <Constant name="ToggleHeroHealthPlateHealthDownHotkey" val="Alt+Y" />
   <Constant name="ToggleHeroHealthPlateHealthUpHotkey" val="Alt+U" />
   <Constant name="ToggleStructureHealthPlateHotkey" val="Alt+K" />
+  <Constant name="TogglePlayerNamesHotkey" val="Alt+N" />
   <Constant name="ToggleHeroAttachmentsHotkey" val="Alt+I" />
   <Constant name="ToggleTopBarTooltipsHotkey" val="Alt+O" />
   <Constant name="ToggleTopBarBuffsHotkey" val="Alt+P" />
@@ -118,6 +119,10 @@
   <!-- @Hotkey (	constant = "ToggleStructureHealthPlateHotkey",
     default = "Alt+K",
     description = "Toggle displaying health as text in Structure Healthplates"
+  ) -->
+  <!-- @Hotkey (	constant = "TogglePlayerNamesHotkey",
+    default = "Alt+N",
+    description = "Toggle displaying Hero Names instead of Player Names in Hero Healthplates"
   ) -->
   <!-- @Hotkey (	constant = "ToggleHeroAttachmentsHotkey",
     default = "Alt+I",

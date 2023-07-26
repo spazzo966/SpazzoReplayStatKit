@@ -108,6 +108,7 @@
   <Constant name="LucioCooldownDisplay" val="0" />
   <Constant name="DryadCooldownDisplay" val="0" />
   <Constant name="MaievCooldownDisplay" val="0" />
+  <Constant name="MaievContainmentDiscDisplayToggle" val="false" />
   <Constant name="MalGanisCooldownDisplay" val="0" />
   <Constant name="MalfurionCooldownDisplay" val="0" />
   <Constant name="MalthaelCooldownDisplay" val="0" />
@@ -134,6 +135,7 @@
   <Constant name="SgtHammerCooldownDisplay" val="0" />
   <Constant name="BarbarianCooldownDisplay" val="0" />
   <Constant name="StitchesCooldownDisplay" val="0" />
+  <Constant name="StitchesGorgeDisplayToggle" val="true" />
   <Constant name="StukovCooldownDisplay" val="0" />
   <Constant name="SylvanasCooldownDisplay" val="0" />
   <Constant name="TassadarCooldownDisplay" val="0" />
@@ -333,7 +335,7 @@
   <!-- @Setting (	constant = "DefaultLayoutOption",
     default = "0",
     description = "What layout option to use for the custom Top Bar",
-    values = "0"/"1"/"2"/"3"/"4",
+    values = "0"/"1"/"2"/"4"/"3",
     valuesDisplayNames = "Standard"/"Spaced"/"Compact"/"Minimal"/"Ultrawide"
   ) -->
   <!-- @Setting (	constant = "TopBarShowTownTotal",
@@ -515,7 +517,7 @@
   <!-- @Setting (	constant = "FirebatCooldownDisplay",
     default = "0",
     description = "Which Hero Attachment to display on Blaze's Healthplate",
-    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"
+    values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
     valuesDisplayNames = "Disabled"/"Flame Stream"/"Oil Spill"/"Jet Propulsion"/"Pyromania"/"Level 1 Talent"/"Heroic Ability"/"Juggernaut Plating"
   ) -->
   <!-- @Setting (	constant = "BrightwingCooldownDisplay",
@@ -792,6 +794,11 @@
     values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
     valuesDisplayNames = "Disabled"/"Fan of Knives"/"Umbral Bind"/"Spirit of Vengeance"/"Vault of the Wardens"/"Naisha's Memento"/"Heroic Ability"/"Level 20 Talent"
   ) -->
+  <!-- @Setting (	constant = "MaievContainmentDiscDisplayToggle",
+    default = "false",
+    description = "Display Containment Disc remaining duration in the tracked unit display in the Containment Disc Healthplate",
+    type = "Boolean"
+  ) -->
   <!-- @Setting (	constant = "MalGanisCooldownDisplay",
     default = "0",
     description = "Which Hero Attachment to display on Mal'Ganis' Healthplate",
@@ -931,6 +938,17 @@
     description = "Which Hero Attachment to display on Sonya's Healthplate",
     values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7"/"8"/"9"/"10",
     valuesDisplayNames = "Disabled"/"Ancient Spear"/"Seismic Slam"/"Whirlwind"/"Fury Movespeed"/"Level 1 Talent"/"Shot of Fury"/"Battle Rage"/"Heroic Ability"/"Nerves of Steel"/"Level 20 Talent"
+  ) -->
+  <!-- @Setting (	constant = "StitchesCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Stitches Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Hook"/"Slam"/"Devour"/"Shambling Horror"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "StitchesGorgeDisplayToggle",
+    default = "true",
+    description = "Display Gorge remaining duration in the tracked unit display in Stitches Healthplate",
+    type = "Boolean"
   ) -->
   <!-- @Setting (	constant = "StukovCooldownDisplay",
     default = "0",

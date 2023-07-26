@@ -16661,6 +16661,10 @@
               <When type="Property" frame="$this/BattlegroundVarRefFrame" StringValue="BraxisOutpost" />
               <Action type="SetProperty" frame="$this" Text="2" />
             </State>
+            <State name="IndustrialDistrict">
+              <When type="Property" frame="BattlegroundVarRef" StringValue="IndustrialDistrict" />
+              <Action type="SetProperty" frame="$this" Text="2" />
+            </State>
           </StateGroup>
         </Frame>
         <Frame type="TextFormatFrame" name="TeamTownKillsOrderFormatFrame">
@@ -16767,6 +16771,14 @@
       </Frame>
       <StateGroup name="CustomTopBarVisibilityStateGroup">
         <DefaultState val="Visible"/>
+        <!-- libGame_gv_heroPickDone -->
+        <State name="HeroSelectNotComplete">
+          <When type="Property" frame="HeroSelectDetector" StringValue="false" />
+          <Action type="SetProperty" frame="$this" Alpha="0" />
+          <!-- <Action type="SetProperty" frame="$this" Visible="False" /> -->
+          <Action type="SetAnchor" frame="$this" side="Top" relative="$parent" pos="Min" offset="-500" />
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent" pos="Max" offset="-500" />
+        </State>
         <State name="EOGVisible">
           <When type="Property" frame="$GameUI_EndOfGameAwards" Visible="true" />
           <Action type="SetProperty" frame="$this" Alpha="0" />
@@ -16789,6 +16801,9 @@
           <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent" pos="Max" offset="-500" />
         </State>
       </StateGroup>
+      <Frame type="DataRefFrame" name="HeroSelectDetector">
+        <Argument name="GalaxyVar" val="libGame_gv_heroPickDone"/>
+      </Frame>
       <!-- <Frame type="Image" name="ImageBoundCheck">
         <Anchor side="Top" relative="$parent/PlayerContainerFrame" pos="Min" offset="0"/>
         <Anchor side="Bottom" relative="$parent/PlayerContainerFrame" pos="Max" offset="0"/>
@@ -23845,6 +23860,70 @@
             </State>
           </StateGroup>
         </Frame>
+        <Frame type="ToggleControl" name="TogglePlayerNamesOn">
+          <Anchor relative="$parent"/>
+          <Shortcut val="#TogglePlayerNamesHotkey" />
+          <AcceptsMouse val="false"/>
+          <CollapseLayout val="true"/>
+          <Visible val="false"/>
+          <Enabled val="true"/>
+          <Animation name="ToggleSetting">
+            <Event event="OnShown" action="Reset,Play" />
+            <Event event="OnHidden" action="DirectionReverse,Play" />
+            <Controller type="Property" property="Toggled" end="Pause" frame="$TopBarSettingsFrame/$parent/UnitStatusPlayerNameSettingToggle">
+              <Key type="Property" time="0" value="True"/>
+            </Controller>
+            <Controller type="Property" property="Text" relative="true" end="Pause" frame="$ShortcutNotifier">
+              <Key type="Property" time="0" value="@UI/Spazzo/Shortcut/HeroDisplayNameToggledOff"/>
+            </Controller>
+            <Controller type="Event" end="pause" frame="$ShortcutNotifier">
+              <Key type="Event" time="0" event="ShortcutUsed"/>
+            </Controller>
+          </Animation>
+          <StateGroup name="Enabler">
+            <DefaultState val="Enabled"/>
+            <State name="Enabled">
+              <When type="Property" frame="$TopBarSettingsFrame/$parent/UnitStatusPlayerNameSettingToggle" Toggled="False" />
+              <Action type="SetProperty" frame="$this" Enabled="True" />
+            </State>
+            <State name="Disabled">
+              <When type="Property" frame="$TopBarSettingsFrame/$parent/UnitStatusPlayerNameSettingToggle" Toggled="True" />
+              <Action type="SetProperty" frame="$this" Enabled="False" />
+            </State>
+          </StateGroup>
+        </Frame>
+        <Frame type="ToggleControl" name="TogglePlayerNamesOff">
+          <Anchor relative="$parent"/>
+          <Shortcut val="#TogglePlayerNamesHotkey" />
+          <AcceptsMouse val="false"/>
+          <CollapseLayout val="true"/>
+          <Visible val="false"/>
+          <Enabled val="true"/>
+          <Animation name="ToggleSetting">
+            <Event event="OnShown" action="Reset,Play" />
+            <Event event="OnHidden" action="DirectionReverse,Play" />
+            <Controller type="Property" property="Toggled" end="Pause" frame="$TopBarSettingsFrame/$parent/UnitStatusPlayerNameSettingToggle">
+              <Key type="Property" time="0" value="false"/>
+            </Controller>
+            <Controller type="Property" property="Text" relative="true" end="Pause" frame="$ShortcutNotifier">
+              <Key type="Property" time="0" value="@UI/Spazzo/Shortcut/HeroDisplayNameToggledOn"/>
+            </Controller>
+            <Controller type="Event" end="pause" frame="$ShortcutNotifier">
+              <Key type="Event" time="0" event="ShortcutUsed"/>
+            </Controller>
+          </Animation>
+          <StateGroup name="Enabler">
+            <DefaultState val="Disabled"/>
+            <State name="Enabled">
+              <When type="Property" frame="$TopBarSettingsFrame/$parent/UnitStatusPlayerNameSettingToggle" Toggled="True" />
+              <Action type="SetProperty" frame="$this" Enabled="True" />
+            </State>
+            <State name="Disabled">
+              <When type="Property" frame="$TopBarSettingsFrame/$parent/UnitStatusPlayerNameSettingToggle" Toggled="False" />
+              <Action type="SetProperty" frame="$this" Enabled="False" />
+            </State>
+          </StateGroup>
+        </Frame>
         <Frame type="ToggleControl" name="ToggleScoreEntriesOn">
           <Anchor relative="$parent"/>
           <Shortcut val="#ToggleTopBarTeamScoresHotkey" />
@@ -26210,10 +26289,9 @@
             </Frame>
             <StateGroup name="BattlegroundController">
               <DefaultState val="NoState"/>
-              <State name="NoState">
-              </State>
               <State name="Alterac">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="AlteracPass" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Alterac/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Alterac/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Alterac/Siege1" />
@@ -26274,9 +26352,11 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Alterac/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Alterac/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Alterac/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
               <State name="Volskaya">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="Volskaya" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Volskaya/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Volskaya/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Volskaya/Siege1" />
@@ -26337,9 +26417,11 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Volskaya/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Volskaya/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Volskaya/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
               <State name="Hanamura">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="Hanamura" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Hanamura/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Hanamura/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Hanamura/Siege1" />
@@ -26400,9 +26482,11 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Hanamura/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Hanamura/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Hanamura/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
               <State name="BraxisHoldout">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="BraxisHoldout" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/BraxisHoldout/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/BraxisHoldout/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/BraxisHoldout/Siege1" />
@@ -26463,9 +26547,11 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/BraxisHoldout/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/BraxisHoldout/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/BraxisHoldout/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
               <State name="WarheadJunction">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="Warhead Junction" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/WarheadJunction/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/WarheadJunction/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/WarheadJunction/Siege1" />
@@ -26526,9 +26612,11 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/WarheadJunction/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/WarheadJunction/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/WarheadJunction/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
               <State name="TowersOfDoom">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="TowersOfDoom" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Towers/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Towers/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Towers/Siege1" />
@@ -26589,9 +26677,11 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Towers/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Towers/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Towers/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
               <State name="Shrines">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="Shrines" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Shrines/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Shrines/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Shrines/Siege1" />
@@ -26652,9 +26742,11 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Shrines/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Shrines/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Shrines/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
               <State name="BattlefieldOfEternity">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="BattlefieldOfEternity" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Shrines/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Shrines/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Shrines/Siege1" />
@@ -26715,9 +26807,11 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Shrines/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Shrines/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Shrines/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
               <State name="Tomb">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="Crypts" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Tomb/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Tomb/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Tomb/Siege1" />
@@ -26778,9 +26872,11 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Tomb/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Tomb/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Tomb/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
               <State name="ControlPoints">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="ControlPoints" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Tomb/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Tomb/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Tomb/Siege1" />
@@ -26841,9 +26937,11 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Tomb/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Tomb/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Tomb/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
               <State name="CursedHollow">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="CursedHollow" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/CursedHollow/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/CursedHollow/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/CursedHollow/Siege1" />
@@ -26904,9 +27002,11 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/CursedHollow/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/CursedHollow/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/CursedHollow/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
               <State name="BlackheartsBay">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="BlackheartsBay" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/CursedHollow/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/CursedHollow/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/CursedHollow/Siege1" />
@@ -26967,9 +27067,11 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/CursedHollow/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/CursedHollow/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/CursedHollow/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
               <State name="HauntedWoods">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="HauntedWoods" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Garden/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Garden/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Garden/Siege1" />
@@ -27030,9 +27132,11 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Garden/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Garden/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Garden/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
               <State name="DragonShire">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="DragonShire" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Dragon/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Dragon/Siege1" />
                 <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Dragon/Siege1" />
@@ -27093,6 +27197,26 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Dragon/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Dragon/Boss2" />
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Dragon/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
+              </State>
+              <State name="IndustrialDistrict">
+                <When type="Property" frame="BattlegroundVarRef" StringValue="IndustrialDistrict" />
+                <Action type="SetProperty" frame="$this" Visible="false" />
+              </State>
+              <State name="SilverCity">
+                <When type="Property" frame="BattlegroundVarRef" StringValue="SilverCity" />
+                <Action type="SetProperty" frame="$this" Visible="false" />
+              </State>
+              <State name="LostCavern">
+                <When type="Property" frame="BattlegroundVarRef" StringValue="LostCavern" />
+                <Action type="SetProperty" frame="$this" Visible="false" />
+              </State>
+              <State name="BraxisOutpost">
+                <When type="Property" frame="BattlegroundVarRef" StringValue="BraxisOutpost" />
+                <Action type="SetProperty" frame="$this" Visible="false" />
+              </State>
+              <State name="NoState">
+                <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
             </StateGroup>
             <Frame type="Frame" name="Player1ContainerFrame" template="CustomPanelSpazzo/PlayerCustomScoreboardMercValue">
@@ -30668,76 +30792,6 @@
             <Anchor side="Left" relative="$parent/PlayerNineHeroIconFrame" pos="Min" offset="#OptionsMenuRevampHeroIconLeftMinOffset"/>
             <PlayerId val="{$Player10TalentContainer/@PlayerId}" />
           </Frame>
-          <Frame type="CopyClipboardButton" name="PlayerOneClipboardButton" template="SpazzoTemplates/ClipboardButtonTemplate">
-            <Anchor side="Top" relative="$parent/PlayerOneHeroIconFrame" pos="Min" offset="#ClipboardVerticalOffset"/>
-            <Anchor side="Left" relative="$parent/PlayerOneHeroIconFrame" pos="Min" offset="#ClipboardHorizontalOffset"/>
-            <Anchor side="Right" relative="$parent/PlayerOneHeroIconFrame" pos="Max" offset="0"/>
-            <Anchor side="Bottom" relative="$parent/PlayerOneHeroIconFrame" pos="Max" offset="0"/>
-            <Visible val="{$CustomLogicRef/@Toggled}"/>
-          </Frame>
-          <Frame type="CopyClipboardButton" name="PlayerTwoClipboardButton" template="SpazzoTemplates/ClipboardButtonTemplate">
-            <Anchor side="Top" relative="$parent/PlayerTwoHeroIconFrame" pos="Min" offset="#ClipboardVerticalOffset"/>
-            <Anchor side="Left" relative="$parent/PlayerTwoHeroIconFrame" pos="Min" offset="#ClipboardHorizontalOffset"/>
-            <Anchor side="Right" relative="$parent/PlayerTwoHeroIconFrame" pos="Max" offset="0"/>
-            <Anchor side="Bottom" relative="$parent/PlayerTwoHeroIconFrame" pos="Max" offset="0"/>
-            <Visible val="{$CustomLogicRef/@Toggled}"/>
-          </Frame>
-          <Frame type="CopyClipboardButton" name="PlayerThreeClipboardButton" template="SpazzoTemplates/ClipboardButtonTemplate">
-            <Anchor side="Top" relative="$parent/PlayerThreeHeroIconFrame" pos="Min" offset="#ClipboardVerticalOffset"/>
-            <Anchor side="Left" relative="$parent/PlayerThreeHeroIconFrame" pos="Min" offset="#ClipboardHorizontalOffset"/>
-            <Anchor side="Right" relative="$parent/PlayerThreeHeroIconFrame" pos="Max" offset="0"/>
-            <Anchor side="Bottom" relative="$parent/PlayerThreeHeroIconFrame" pos="Max" offset="0"/>
-            <Visible val="{$CustomLogicRef/@Toggled}"/>
-          </Frame>
-          <Frame type="CopyClipboardButton" name="PlayerFourClipboardButton" template="SpazzoTemplates/ClipboardButtonTemplate">
-            <Anchor side="Top" relative="$parent/PlayerFourHeroIconFrame" pos="Min" offset="#ClipboardVerticalOffset"/>
-            <Anchor side="Left" relative="$parent/PlayerFourHeroIconFrame" pos="Min" offset="#ClipboardHorizontalOffset"/>
-            <Anchor side="Right" relative="$parent/PlayerFourHeroIconFrame" pos="Max" offset="0"/>
-            <Anchor side="Bottom" relative="$parent/PlayerFourHeroIconFrame" pos="Max" offset="0"/>
-            <Visible val="{$CustomLogicRef/@Toggled}"/>
-          </Frame>
-          <Frame type="CopyClipboardButton" name="PlayerFiveClipboardButton" template="SpazzoTemplates/ClipboardButtonTemplate">
-            <Anchor side="Top" relative="$parent/PlayerFiveHeroIconFrame" pos="Min" offset="#ClipboardVerticalOffset"/>
-            <Anchor side="Left" relative="$parent/PlayerFiveHeroIconFrame" pos="Min" offset="#ClipboardHorizontalOffset"/>
-            <Anchor side="Right" relative="$parent/PlayerFiveHeroIconFrame" pos="Max" offset="0"/>
-            <Anchor side="Bottom" relative="$parent/PlayerFiveHeroIconFrame" pos="Max" offset="0"/>
-            <Visible val="{$CustomLogicRef/@Toggled}"/>
-          </Frame>
-          <Frame type="CopyClipboardButton" name="PlayerSixClipboardButton" template="SpazzoTemplates/ClipboardButtonTemplate">
-            <Anchor side="Top" relative="$parent/PlayerSixHeroIconFrame" pos="Min" offset="#ClipboardVerticalOffset"/>
-            <Anchor side="Left" relative="$parent/PlayerSixHeroIconFrame" pos="Min" offset="#ClipboardHorizontalOffset"/>
-            <Anchor side="Right" relative="$parent/PlayerSixHeroIconFrame" pos="Max" offset="0"/>
-            <Anchor side="Bottom" relative="$parent/PlayerSixHeroIconFrame" pos="Max" offset="0"/>
-            <Visible val="{$CustomLogicRef/@Toggled}"/>
-          </Frame>
-          <Frame type="CopyClipboardButton" name="PlayerSevenClipboardButton" template="SpazzoTemplates/ClipboardButtonTemplate">
-            <Anchor side="Top" relative="$parent/PlayerSevenHeroIconFrame" pos="Min" offset="#ClipboardVerticalOffset"/>
-            <Anchor side="Left" relative="$parent/PlayerSevenHeroIconFrame" pos="Min" offset="#ClipboardHorizontalOffset"/>
-            <Anchor side="Right" relative="$parent/PlayerSevenHeroIconFrame" pos="Max" offset="0"/>
-            <Anchor side="Bottom" relative="$parent/PlayerSevenHeroIconFrame" pos="Max" offset="0"/>
-            <Visible val="{$CustomLogicRef/@Toggled}"/>
-          </Frame>
-          <Frame type="CopyClipboardButton" name="PlayerEightClipboardButton" template="SpazzoTemplates/ClipboardButtonTemplate">
-            <Anchor side="Top" relative="$parent/PlayerEightHeroIconFrame" pos="Min" offset="#ClipboardVerticalOffset"/>
-            <Anchor side="Left" relative="$parent/PlayerEightHeroIconFrame" pos="Min" offset="#ClipboardHorizontalOffset"/>
-            <Anchor side="Right" relative="$parent/PlayerEightHeroIconFrame" pos="Max" offset="0"/>
-            <Anchor side="Bottom" relative="$parent/PlayerEightHeroIconFrame" pos="Max" offset="0"/>
-            <Visible val="{$CustomLogicRef/@Toggled}"/>
-          </Frame>
-          <Frame type="CopyClipboardButton" name="PlayerNineClipboardButton" template="SpazzoTemplates/ClipboardButtonTemplate">
-            <Anchor side="Top" relative="$parent/PlayerNineHeroIconFrame" pos="Min" offset="#ClipboardVerticalOffset"/>
-            <Anchor side="Left" relative="$parent/PlayerNineHeroIconFrame" pos="Min" offset="#ClipboardHorizontalOffset"/>
-            <Anchor side="Right" relative="$parent/PlayerNineHeroIconFrame" pos="Max" offset="0"/>
-            <Anchor side="Bottom" relative="$parent/PlayerNineHeroIconFrame" pos="Max" offset="0"/>
-            <Visible val="{$CustomLogicRef/@Toggled}"/>
-          </Frame>
-          <Frame type="CopyClipboardButton" name="PlayerTenClipboardButton" template="SpazzoTemplates/ClipboardButtonTemplate">
-            <Anchor side="Top" relative="$parent/PlayerTenHeroIconFrame" pos="Min" offset="#ClipboardVerticalOffset"/>
-            <Anchor side="Left" relative="$parent/PlayerTenHeroIconFrame" pos="Min" offset="#ClipboardHorizontalOffset"/>
-            <Anchor side="Right" relative="$parent/PlayerTenHeroIconFrame" pos="Max" offset="0"/>
-            <Anchor side="Bottom" relative="$parent/PlayerTenHeroIconFrame" pos="Max" offset="0"/>
-            <Visible val="{$CustomLogicRef/@Toggled}"/>
-          </Frame>
           <Frame type="CopyClipboardButton" name="ChangelogClipboardButton" template="SpazzoTemplates/ButtonNewTemplate">
             <Anchor side="Bottom" relative="$OptionsMenuBackground" pos="Max" offset="#OptionsMenuRevampFromBottomMaxOffset"/>
             <Anchor side="Left" relative="$OptionsMenuBackground" pos="Min" offset="#OptionsMenuRevampFromLeftMinOffset"/>
@@ -32064,9 +32118,15 @@
             <Anchor side="Bottom" relative="$parent/UnitStatusStructureHealthLabelSettingToggle1" pos="Max" offset="0"/>
             <Toggleable val="true" />
             <Toggled val="#HeroUnitNameVisibility"/>
-            <Tooltip val="@UI/Spazzo/PlayerNameSettingTooltip" />
             <Frame type="Label" name="Label">
               <Text val="@UI/Spazzo/PlayerNameSetting"/>
+            </Frame>
+            <Tooltip val="{$this/FormatFrame/@Text}"/>
+            <Frame type="TextFormatFrame" name="FormatFrame">
+              <Anchor relative="$parent" />
+              <FormatText val="@UI/Spazzo/PlayerNameSettingTooltip" />
+              <Replacement index="0" val="#TogglePlayerNamesHotkey" />
+              <ReplacedName index="0" val="hotkeyvalue" />
             </Frame>
           </Frame>
           <Frame type="Button" name="UnitStatusHealthLabelSettingToggle1" template="SpazzoTemplates/FakePulldownButtonOpenTemplate">
@@ -33788,6 +33848,7 @@
             <Anchor side="Right" relative="$parent/UIShortcutVisibilityToggle" pos="Max" offset="0"/>
             <Anchor side="Bottom" relative="$parent/UIShortcutVisibilityToggle" pos="Max" offset="#OptionsMenuRevampOffsetUpwards"/>
             <ClipboardText val="{$parent/ExportOptionsTable/@Text}"/>
+            <!-- <ClipboardText val="asdfgh"/> -->
             <Tooltip val="@UI/Spazzo/ExportSettingsTooltip" />
             <Frame type="Label" name="Label">
               <Text val="@UI/Spazzo/ExportSettings"/>
@@ -33805,425 +33866,7 @@
               </Controller>
             </Animation>
           </Frame>
-          <Frame type="TextFormatFrame" name="ExportOptionsTable">
-            <Anchor relative="$parent" />
-            <Visible val="True" />
-            <FormatText val="%15%?xml version=%1%1.0%1%
-encoding=%1%utf-8%1% standalone=%1%yes%1%?%16% %15%Desc%16%
-%15%Constant name=%1%HeroHealthLabelVisibilityFraction%1% val=%1%%18%%1% /%16%
-%15%Constant name=%1%HeroNamePlateVisibility%1% val=%1%%20%%1% /%16%
-%15%Constant name=%1%HeroUnitNameVisibility%1% val=%1%%22%%1% /%16%
-%15%Constant name=%1%CoreUnitNameVisibility%1% val=%1%%24%%1% /%16%
-%15%Constant name=%1%CoreUnitHealthPlateVisibility%1% val=%1%%26%%1% /%16%
-%15%Constant name=%1%TownUnitNameVisibility%1% val=%1%%28%%1% /%16%
-%15%Constant name=%1%KeepFortVisibilitySettingToggle%1% val=%1%%30%%1% /%16%
-%15%Constant name=%1%TopBarCompleteVisibilityToggle%1% val=%1%%0%%1% /%16%
-%15%Constant name=%1%TopBarCustomVisibilityToggle%1% val=%1%%2%%1% /%16%
-%15%Constant name=%1%TopBarSeparationSlider%1% val=%1%%3%%1% /%16%
-%15%Constant name=%1%KillLogVisiblityToggle%1% val=%1%%4%%1% /%16%
-%15%Constant name=%1%NotificationVisibilityToggle%1% val=%1%%5%%1% /%16%
-%15%Constant name=%1%MercCampVisibilityToggle%1% val=%1%%6%%1% /%16%
-%15%Constant name=%1%MinionHealthPlateVisibilityToggle%1% val=%1%%7%%1% /%16%
-%15%Constant name=%1%TopBarAbilityDebug%1% val=%1%false%1% /%16%
-%15%Constant name=%1%TopBarAbilityAlpha%1% val=%1%170%1% /%16%
-%15%Constant name=%1%ReplayTimelineVisibilityToggle%1% val=%1%%8%%1% /%16%
-%15%Constant name=%1%UnitSelectionCustomOverride%1% val=%1%%108%%1% /%16%
-%15%Constant name=%1%UnitStatusGlobalVisibilityToggle%1% val=%1%%9%%1% /%16%
-%15%Constant name=%1%MinimapVisibilityToggle%1% val=%1%%10%%1% /%16%
-%15%Constant name=%1%UIShortcutVisibilityToggle%1% val=%1%%11%%1% /%16%
-%15%Constant name=%1%TopBarAllowUnitSelection%1% val=%1%%100%%1% /%16%
-%15%Constant name=%1%TopBarDisplayTooltips%1% val=%1%%14%%1% /%16%
-%15%Constant name=%1%TopBarShowBasicAbilities%1% val=%1%%21%%1% /%16%
-%15%Constant name=%1%TopBarAlignToLeft%1% val=%1%%85%%1% /%16%
-%15%Constant name=%1%TopBarShowVehiclePassengerHealth%1% val=%1%%23%%1% /%16%
-%15%Constant name=%1%DefaultLayoutOption%1% val=%1%%25%%1% /%16%
-%15%Constant name=%1%TopBarShowTownTotal%1% val=%1%%88%%1% /%16%
-%15%Constant name=%1%TopBarStormSliderValue%1% val=%1%%185%%1% /%16%
-%15%Constant name=%1%TopBarTeamSliderValue%1% val=%1%%189%%1% /%16%
-%15%Constant name=%1%TopBarTeamBorderSliderValue%1% val=%1%%190%%1% /%16%
-%15%Constant name=%1%TopBarShowHeroes%1% val=%1%%186%%1% /%16%
-%15%Constant name=%1%TopBarShowTeamNames%1% val=%1%%188%%1% /%16%
-%15%Constant name=%1%TopBarShowTeamScores%1% val=%1%%214%%1% /%16%
-%15%Constant name=%1%TopBarProxyTalents%1% val=%1%%182%%1% /%16%
-%15%Constant name=%1%DisplayObjWarning%1% val=%1%%92%%1% /%16%
-%15%Constant name=%1%DisplayAbilBackings%1% val=%1%%183%%1% /%16%
-%15%Constant name=%1%DisplayHealthBackings%1% val=%1%%163%%1% /%16%
-%15%Constant name=%1%DisplayFountainCD%1% val=%1%%79%%1% /%16%
-%15%Constant name=%1%DisplayHeldObjective%1% val=%1%%80%%1% /%16%
-%15%Constant name=%1%BottomPanelMirrorTalents%1% val=%1%%27%%1% /%16%
-%15%Constant name=%1%BottomPanelMirrorStats%1% val=%1%%29%%1% /%16%
-%15%Constant name=%1%BottomPanelShowActives%1% val=%1%%53%%1% /%16%
-%15%Constant name=%1%BottomPanelShowQuests%1% val=%1%%12%%1% /%16%
-%15%Constant name=%1%BottomPanelDisplayTooltips%1% val=%1%%93%%1% /%16%
-%15%Constant name=%1%BottomLeftDisplayUnitStats%1% val=%1%%109%%1% /%16%
-%15%Constant name=%1%HideAttachmentOnCD%1% val=%1%%55%%1% /%16%
-%15%Constant name=%1%AbathurCooldownDisplay%1% val=%1%%131%%1% /%16%
-%15%Constant name=%1%AbathurMonstrosityStacksToggle%1% val=%1%%132%%1% /%16%
-%15%Constant name=%1%AlarakCooldownDisplay%1% val=%1%%35%%1% /%16%
-%15%Constant name=%1%AlexstraszaHumanCooldownDisplay%1% val=%1%%89%%1% /%16%
-%15%Constant name=%1%AlexstraszaDragonCooldownDisplay%1% val=%1%%90%%1% /%16%
-%15%Constant name=%1%AnaCooldownDisplay%1% val=%1%%133%%1% /%16%
-%15%Constant name=%1%AnduinCooldownDisplay%1% val=%1%%36%%1% /%16%
-%15%Constant name=%1%AnubarakCooldownDisplay%1% val=%1%%65%%1% /%16%
-%15%Constant name=%1%ArtanisCooldownDisplay%1% val=%1%%39%%1% /%16%
-%15%Constant name=%1%ArthasCooldownDisplay%1% val=%1%%134%%1% /%16%
-%15%Constant name=%1%AurielCooldownDisplay%1% val=%1%%77%%1% /%16%
-%15%Constant name=%1%AzmodanCooldownDisplay%1% val=%1%%94%%1% /%16%
-%15%Constant name=%1%AzmodanDemonLieutenantSmite%1% val=%1%%142%%1% /%16%
-%15%Constant name=%1%FirebatCooldownDisplay%1% val=%1%%119%%1% /%16%
-%15%Constant name=%1%BrightwingCooldownDisplay%1% val=%1%%62%%1% /%16%
-%15%Constant name=%1%ButcherCooldownDisplay%1% val=%1%%126%%1% /%16%
-%15%Constant name=%1%AmazonCooldownDisplay%1% val=%1%%32%%1% /%16%
-%15%Constant name=%1%ChenCooldownDisplay%1% val=%1%%124%%1% /%16%
-%15%Constant name=%1%ChoCooldownDisplay%1% val=%1%%112%%1% /%16%
-%15%Constant name=%1%GallCooldownDisplay%1% val=%1%%111%%1% /%16%
-%15%Constant name=%1%ChromieCooldownDisplay%1% val=%1%%104%%1% /%16%
-%15%Constant name=%1%DeathwingCooldownDisplay%1% val=%1%%58%%1% /%16%
-%15%Constant name=%1%DeathwingChonkerSetting%1% val=%1%%59%%1% /%16%
-%15%Constant name=%1%DeckardCooldownDisplay%1% val=%1%%106%%1% /%16%
-%15%Constant name=%1%DehakaCooldownDisplay%1% val=%1%%49%%1% /%16%
-%15%Constant name=%1%DiabloCooldownDisplay%1% val=%1%%71%%1% /%16%
-%15%Constant name=%1%DVaMechCooldownDisplay%1% val=%1%%45%%1% /%16%
-%15%Constant name=%1%DVaPilotCooldownDisplay%1% val=%1%%46%%1% /%16%
-%15%Constant name=%1%L90ETCCooldownDisplay%1% val=%1%%74%%1% /%16%
-%15%Constant name=%1%FalstadCooldownDisplay%1% val=%1%%61%%1% /%16%
-%15%Constant name=%1%FenixCooldownDisplay%1% val=%1%%99%%1% /%16%
-%15%Constant name=%1%FenixWeaponDisplay%1% val=%1%%196%%1% /%16%
-%15%Constant name=%1%GarroshCooldownDisplay%1% val=%1%%105%%1% /%16%
-%15%Constant name=%1%TinkerCooldownDisplay%1% val=%1%%44%%1% /%16%
-%15%Constant name=%1%GenjiCooldownDisplay%1% val=%1%%87%%1% /%16%
-%15%Constant name=%1%GreymaneHumanCooldownDisplay%1% val=%1%%96%%1% /%16%
-%15%Constant name=%1%GreymaneWorgenCooldownDisplay%1% val=%1%%97%%1% /%16%
-%15%Constant name=%1%GuldanCooldownDisplay%1% val=%1%%103%%1% /%16%
-%15%Constant name=%1%HanzoCooldownDisplay%1% val=%1%%69%%1% /%16%
-%15%Constant name=%1%HoggerCooldownDisplay%1% val=%1%%72%%1% /%16%
-%15%Constant name=%1%IllidanCooldownDisplay%1% val=%1%%117%%1% /%16%
-%15%Constant name=%1%ImperiusCooldownDisplay%1% val=%1%%84%%1% /%16%
-%15%Constant name=%1%JainaCooldownDisplay%1% val=%1%%67%%1% /%16%
-%15%Constant name=%1%CrusaderCooldownDisplay%1% val=%1%%31%%1% /%16%
-%15%Constant name=%1%JunkratCooldownDisplay%1% val=%1%%135%%1% /%16%
-%15%Constant name=%1%KaelthasCooldownDisplay%1% val=%1%%127%%1% /%16%
-%15%Constant name=%1%KelThuzadCooldownDisplay%1% val=%1%%101%%1% /%16%
-%15%Constant name=%1%KerriganCooldownDisplay%1% val=%1%%68%%1% /%16%
-%15%Constant name=%1%MonkCooldownDisplay%1% val=%1%%86%%1% /%16%
-%15%Constant name=%1%LeoricCooldownDisplay%1% val=%1%%107%%1% /%16%
-%15%Constant name=%1%LeoricUndyingCooldownDisplay%1% val=%1%%197%%1% /%16%
-%15%Constant name=%1%LiLiCooldownDisplay%1% val=%1%%76%%1% /%16%
-%15%Constant name=%1%WizardCooldownDisplay%1% val=%1%%37%%1% /%16%
-%15%Constant name=%1%LostVikingsCooldownDisplay%1% val=%1%%47%%1% /%16%
-%15%Constant name=%1%LostVikingsBaleogCooldownDisplay%1% val=%1%%198%%1% /%16%
-%15%Constant name=%1%LostVikingsErikCooldownDisplay%1% val=%1%%199%%1% /%16%
-%15%Constant name=%1%MedicCooldownDisplay%1% val=%1%%136%%1% /%16%
-%15%Constant name=%1%LucioCooldownDisplay%1% val=%1%%54%%1% /%16%
-%15%Constant name=%1%DryadCooldownDisplay%1% val=%1%%125%%1% /%16%
-%15%Constant name=%1%MaievCooldownDisplay%1% val=%1%%63%%1% /%16%
-%15%Constant name=%1%MalGanisCooldownDisplay%1% val=%1%%130%%1% /%16%
-%15%Constant name=%1%MalfurionCooldownDisplay%1% val=%1%%81%%1% /%16%
-%15%Constant name=%1%MalthaelCooldownDisplay%1% val=%1%%83%%1% /%16%
-%15%Constant name=%1%MedivhCooldownDisplay%1% val=%1%%56%%1% /%16%
-%15%Constant name=%1%MedivhPortalDurationVisibility%1% val=%1%%57%%1% /%16%
-%15%Constant name=%1%MedivhRavenHealthplateOverride%1% val=%1%%181%%1% /%16%
-%15%Constant name=%1%MeiOWCooldownDisplay%1% val=%1%%98%%1% /%16%
-%15%Constant name=%1%MephistoCooldownDisplay%1% val=%1%%52%%1% /%16%
-%15%Constant name=%1%MuradinCooldownDisplay%1% val=%1%%51%%1% /%16%
-%15%Constant name=%1%MurkyCooldownDisplay%1% val=%1%%118%%1% /%16%
-%15%Constant name=%1%WitchDoctorCooldownDisplay%1% val=%1%%128%%1% /%16%
-%15%Constant name=%1%NovaCooldownDisplay%1% val=%1%%91%%1% /%16%
-%15%Constant name=%1%OrpheaCooldownDisplay%1% val=%1%%113%%1% /%16%
-%15%Constant name=%1%OrpheaOverwhelmingChaosToggle%1% val=%1%%114%%1% /%16%
-%15%Constant name=%1%ProbiusCooldownDisplay%1% val=%1%%138%%1% /%16%
-%15%Constant name=%1%NexusHunterCooldownDisplay%1% val=%1%%64%%1% /%16%
-%15%Constant name=%1%RagnarosCooldownDisplay%1% val=%1%%137%%1% /%16%
-%15%Constant name=%1%RagnarosBigRagCooldownDisplay%1% val=%1%%141%%1% /%16%
-%15%Constant name=%1%RaynorCooldownDisplay%1% val=%1%%82%%1% /%16%
-%15%Constant name=%1%RaynorGiveEmSomePepperToggle%1% val=%1%%115%%1% /%16%
-%15%Constant name=%1%RehgarCooldownDisplay%1% val=%1%%70%%1% /%16%
-%15%Constant name=%1%RexxarCooldownDisplay%1% val=%1%%102%%1% /%16%
-%15%Constant name=%1%SamuroCooldownDisplay%1% val=%1%%75%%1% /%16%
-%15%Constant name=%1%SgtHammerCooldownDisplay%1% val=%1%%122%%1% /%16%
-%15%Constant name=%1%BarbarianCooldownDisplay%1% val=%1%%34%%1% /%16%
-%15%Constant name=%1%StitchesCooldownDisplay%1% val=%1%%110%%1% /%16%
-%15%Constant name=%1%StukovCooldownDisplay%1% val=%1%%41%%1% /%16%
-%15%Constant name=%1%SylvanasCooldownDisplay%1% val=%1%%40%%1% /%16%
-%15%Constant name=%1%TassadarCooldownDisplay%1% val=%1%%42%%1% /%16%
-%15%Constant name=%1%ThrallCooldownDisplay%1% val=%1%%120%%1% /%16%
-%15%Constant name=%1%TracerCooldownDisplay%1% val=%1%%50%%1% /%16%
-%15%Constant name=%1%TychusCooldownDisplay%1% val=%1%%66%%1% /%16%
-%15%Constant name=%1%TychusOdinCooldownDisplay%1% val=%1%%200%%1% /%16%
-%15%Constant name=%1%TyraelCooldownDisplay%1% val=%1%%123%%1% /%16%
-%15%Constant name=%1%TyrandeCooldownDisplay%1% val=%1%%116%%1% /%16%
-%15%Constant name=%1%UtherCooldownDisplay%1% val=%1%%78%%1% /%16%
-%15%Constant name=%1%ValeeraCooldownDisplay%1% val=%1%%48%%1% /%16%
-%15%Constant name=%1%DemonHunterCooldownDisplay%1% val=%1%%38%%1% /%16%
-%15%Constant name=%1%VarianCooldownDisplay%1% val=%1%%73%%1% /%16%
-%15%Constant name=%1%WhitemaneCooldownDisplay%1% val=%1%%43%%1% /%16%
-%15%Constant name=%1%WhitemaneDesperationPreviewSetting%1% val=%1%%60%%1% /%16%
-%15%Constant name=%1%NecromancerCooldownDisplay%1% val=%1%%95%%1% /%16%
-%15%Constant name=%1%YrelCooldownDisplay%1% val=%1%%139%%1% /%16%
-%15%Constant name=%1%ZagaraCooldownDisplay%1% val=%1%%140%%1% /%16%
-%15%Constant name=%1%ZaryaCooldownDisplay%1% val=%1%%121%%1% /%16%
-%15%Constant name=%1%ZeratulCooldownDisplay%1% val=%1%%33%%1% /%16%
-%15%Constant name=%1%ZuljinCooldownDisplay%1% val=%1%%129%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent0ShowNonQuests%1% val=%1%%13%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent0ShowActives%1% val=%1%%17%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent0ShowQuests%1% val=%1%%19%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent1%1% val=%1%%143%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent1ShowNonQuests%1% val=%1%%144%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent1ShowQuests%1% val=%1%%145%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent1ShowActives%1% val=%1%%146%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent1ShowBorders%1% val=%1%%147%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent2%1% val=%1%%148%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent2Heroic%1% val=%1%%179%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent2ShowNonQuests%1% val=%1%%149%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent2ShowQuests%1% val=%1%%150%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent2ShowActives%1% val=%1%%151%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent2ShowBorders%1% val=%1%%152%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent3%1% val=%1%%153%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent3ShowNonQuests%1% val=%1%%154%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent3ShowQuests%1% val=%1%%155%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent3ShowActives%1% val=%1%%156%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent3ShowBorders%1% val=%1%%157%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent4%1% val=%1%%158%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent4Heroic%1% val=%1%%180%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent4ShowNonQuests%1% val=%1%%159%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent4ShowQuests%1% val=%1%%160%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent4ShowActives%1% val=%1%%161%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent4ShowBorders%1% val=%1%%162%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent4Ingress%1% val=%1%%184%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent5%1% val=%1%%164%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent5ShowNonQuests%1% val=%1%%165%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent5ShowQuests%1% val=%1%%166%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent5ShowActives%1% val=%1%%167%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent5ShowBorders%1% val=%1%%168%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent6%1% val=%1%%169%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent6ShowNonQuests%1% val=%1%%170%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent6ShowQuests%1% val=%1%%171%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent6ShowActives%1% val=%1%%172%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent6ShowBorders%1% val=%1%%173%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent7%1% val=%1%%174%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent7ShowNonQuests%1% val=%1%%175%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent7ShowQuests%1% val=%1%%176%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent7ShowActives%1% val=%1%%177%%1% /%16%
-%15%Constant name=%1%TopBarSettingTalent7ShowBorders%1% val=%1%%178%%1% /%16%
-%15%Constant name=%1%EnableTimestampedStatistics%1% val=%1%%187%%1% /%16%
-%191%%192%%193%%194%%195%%201%%202%%203%%204%%205%%206%%207%%208%%209%%210%%211%%212%%213%
-%15%/Desc%16%" />
-            <Replacement val="{$parent/TopBarCompleteVisibilityToggle/@Toggled}" index="0" />
-            <Replacement val="@UI/Spazzo/Quote" index="1" />
-            <Replacement val="{$parent/TopBarCustomVisibilityToggle/@Toggled}" index="2" />
-            <Replacement val="{$TopBarSlider/@Value}" index="3" />
-            <Replacement val="{$parent/KillLogVisibilityToggle/@Toggled}" index="4" />
-            <Replacement val="{$parent/NotificationVisibilityToggle/@Toggled}" index="5" />
-            <Replacement val="{$parent/MercCampVisibilityToggle/@Toggled}" index="6" />
-            <Replacement val="{$parent/MinionHealthPlateVisibilityToggle/@Toggled}" index="7" />
-            <Replacement val="{$parent/ReplayTimelineVisibilityToggle/@Toggled}" index="8" />
-            <Replacement val="{$parent/UnitStatusGlobalVisibilityToggle/@Toggled}" index="9" />
-            <Replacement val="{$parent/MinimapVisibilityToggle/@Toggled}" index="10" />
-            <Replacement val="{$parent/UIShortcutVisibilityToggle/@Toggled}" index="11" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/BottomPanelQuests/@Toggled}" index="12" />
-            <Replacement val="{$Talent0MasterSetting/ShowNonQuests/CheckBoxButton/@Toggled}" index="13" />
-            <Replacement val="{$Talent0MasterSetting/ShowTooltips/CheckBoxButton/@Toggled}" index="14" />
-            <Replacement val="@UI/Spazzo/LessThan" index="15" />
-            <Replacement val="@UI/Spazzo/GreaterThan" index="16" />
-            <Replacement val="{$Talent0MasterSetting/ShowActives/CheckBoxButton/@Toggled}" index="17" />
-            <Replacement val="{$parent/UnitStatusHealthLabelSettingToggle1/HPLabel/@Text}" index="18" />
-            <Replacement val="{$Talent0MasterSetting/ShowQuests/CheckBoxButton/@Toggled}" index="19" />
-            <Replacement val="{$parent/HeroNamePlateSettingToggle/@Toggled}" index="20" />
-            <Replacement val="{$Talent0MasterSetting/ShowBasics/CheckBoxButton/@Toggled}" index="21" />
-            <Replacement val="{$parent/UnitStatusPlayerNameSettingToggle/@Toggled}" index="22" />
-            <Replacement val="{$Talent0MasterSetting/ShowVehicleHP/CheckBoxButton/@Toggled}" index="23" />
-            <Replacement val="{$parent/UnitStatusCoreHealthLabelSettingToggle1/HPLabel/@Text}" index="24" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/LayoutPulldown1/Selected/@Text}" index="25" />
-            <Replacement val="{$parent/CoreStatusHealthPlateSettingToggle/@Toggled}" index="26" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/MirrorBottomPanel/@Toggled}" index="27" />
-            <Replacement val="{$parent/UnitStatusStructureHealthLabelSettingToggle1/HPLabel/@Text}" index="28" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/MirrorBottom2Panel/@Toggled}" index="29" />
-            <Replacement val="{$parent/KeepFortVisibilitySettingToggle/@Toggled}" index="30" />
-            <Replacement val="{$parent/CrusaderAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="31" />
-            <Replacement val="{$parent/AmazonAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="32" />
-            <Replacement val="{$parent/ZeratulAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="33" />
-            <Replacement val="{$parent/BarbarianAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="34" />
-            <Replacement val="{$parent/AlarakAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="35" />
-            <Replacement val="{$parent/AnduinAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="36" />
-            <Replacement val="{$parent/WizardAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="37" />
-            <Replacement val="{$parent/DemonHunterAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="38" />
-            <Replacement val="{$parent/ArtanisAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="39" />
-            <Replacement val="{$parent/SylvanasAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="40" />
-            <Replacement val="{$parent/StukovAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="41" />
-            <Replacement val="{$parent/TassadarAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="42" />
-            <Replacement val="{$parent/WhitemaneAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="43" />
-            <Replacement val="{$parent/TinkerAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="44" />
-            <Replacement val="{$parent/DVaAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="45" />
-            <Replacement val="{$parent/DVaAttachmentOption1/TogglePulldown2/ChosenNumber/@Text}" index="46" />
-            <Replacement val="{$parent/LostVikingsAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="47" />
-            <Replacement val="{$parent/ValeeraAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="48" />
-            <Replacement val="{$parent/DehakaAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="49" />
-            <Replacement val="{$parent/TracerAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="50" />
-            <Replacement val="{$parent/MuradinAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="51" />
-            <Replacement val="{$parent/MephistoAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="52" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/BottomPanelActive/@Toggled}" index="53" />
-            <Replacement val="{$parent/LucioAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="54" />
-            <Replacement val="{$parent/UnitStatusHideAbilOnCDSetting/@Toggled}" index="55" />
-            <Replacement val="{$parent/MedivhAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="56" />
-            <Replacement val="{$parent/MedivhAttachmentOption1/PortalTimerCheckbox/@Checked}" index="57" />
-            <Replacement val="{$parent/DeathwingAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="58" />
-            <Replacement val="{$parent/DeathwingAttachmentOption1/DeathwingChonker/@Checked}" index="59" />
-            <Replacement val="{$parent/WhitemaneAttachmentOption1/WhitemaneZealPreview/@Checked}" index="60" />
-            <Replacement val="{$parent/FalstadAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="61" />
-            <Replacement val="{$parent/FaerieDragonAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="62" />
-            <Replacement val="{$parent/MaievAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="63" />
-            <Replacement val="{$parent/NexusHunterAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="64" />
-            <Replacement val="{$parent/AnubarakAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="65" />
-            <Replacement val="{$parent/TychusAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="66" />
-            <Replacement val="{$parent/JainaAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="67" />
-            <Replacement val="{$parent/KerriganAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="68" />
-            <Replacement val="{$parent/HanzoAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="69" />
-            <Replacement val="{$parent/RehgarAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="70" />
-            <Replacement val="{$parent/DiabloAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="71" />
-            <Replacement val="{$parent/HoggerAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="72" />
-            <Replacement val="{$parent/VarianAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="73" />
-            <Replacement val="{$parent/L90ETCAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="74" />
-            <Replacement val="{$parent/SamuroAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="75" />
-            <Replacement val="{$parent/LiLiAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="76" />
-            <Replacement val="{$parent/AurielAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="77" />
-            <Replacement val="{$parent/UtherAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="78" />
-            <Replacement val="{$Talent0MasterSetting/ShowFountain/CheckBoxButton/@Toggled}" index="79" />
-            <Replacement val="{$Talent0MasterSetting/ShowObjectives/CheckBoxButton/@Toggled}" index="80" />
-            <Replacement val="{$parent/MalfurionAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="81" />
-            <Replacement val="{$parent/RaynorAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="82" />
-            <Replacement val="{$parent/MalthaelAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="83" />
-            <Replacement val="{$parent/ImperiusAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="84" />
-            <Replacement val="{$Talent0MasterSetting/AbilityAlign/CheckBoxButton/@Toggled}" index="85" />
-            <Replacement val="{$parent/MonkAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="86" />
-            <Replacement val="{$parent/GenjiAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="87" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/ShowTownTotalToggle/@Toggled}" index="88" />
-            <Replacement val="{$parent/AlexstraszaAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="89" />
-            <Replacement val="{$parent/AlexstraszaAttachmentOption1/TogglePulldown2/ChosenNumber/@Text}" index="90" />
-            <Replacement val="{$parent/NovaAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="91" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/DisplayObjective30SecondPreviewTimer/@Toggled}" index="92" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/DisplayBottomTooltips/@Toggled}" index="93" />
-            <Replacement val="{$parent/AzmodanAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="94" />
-            <Replacement val="{$parent/NecromancerAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="95" />
-            <Replacement val="{$parent/GreymaneAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="96" />
-            <Replacement val="{$parent/GreymaneAttachmentOption1/TogglePulldown2/ChosenNumber/@Text}" index="97" />
-            <Replacement val="{$parent/MeiOWAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="98" />
-            <Replacement val="{$parent/FenixAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="99" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/UnitSelectionToggle/@Toggled}" index="100" />
-            <Replacement val="{$parent/KelThuzadAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="101" />
-            <Replacement val="{$parent/RexxarAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="102" />
-            <Replacement val="{$parent/GuldanAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="103" />
-            <Replacement val="{$parent/ChromieAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="104" />
-            <Replacement val="{$parent/GarroshAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="105" />
-            <Replacement val="{$parent/DeckardAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="106" />
-            <Replacement val="{$parent/LeoricAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="107" />
-            <Replacement val="{$parent/UnitSelectionCustomOverride/@Toggled}" index="108" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/BottomLeftDisplayUnitStatistics/@Toggled}" index="109" />
-            <Replacement val="{$parent/StitchesAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="110" />
-            <Replacement val="{$parent/GallAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="111" />
-            <Replacement val="{$parent/ChoAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="112" />
-            <Replacement val="{$parent/OrpheaAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="113" />
-            <Replacement val="{$parent/OrpheaAttachmentOption1/OrpheaTraitDisplay/@Checked}" index="114" />
-            <Replacement val="{$parent/RaynorAttachmentOption1/RaynorTraitDisplay/@Checked}" index="115" />
-            <Replacement val="{$parent/TyrandeAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="116" />
-            <Replacement val="{$parent/IllidanAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="117" />
-            <Replacement val="{$parent/MurkyAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="118" />
-            <Replacement val="{$parent/FirebatAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="119" />
-            <Replacement val="{$parent/ThrallAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="120" />
-            <Replacement val="{$parent/ZaryaAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="121" />
-            <Replacement val="{$parent/SgtHammerAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="122" />
-            <Replacement val="{$parent/TyraelAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="123" />
-            <Replacement val="{$parent/ChenAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="124" />
-            <Replacement val="{$parent/DryadAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="125" />
-            <Replacement val="{$parent/ButcherAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="126" />
-            <Replacement val="{$parent/KaelthasAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="127" />
-            <Replacement val="{$parent/WitchDoctorAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="128" />
-            <Replacement val="{$parent/ZuljinAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="129" />
-            <Replacement val="{$parent/MalGanisAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="130" />
-            <Replacement val="{$parent/AbathurAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="131" />
-            <Replacement val="{$parent/AbathurAttachmentOption1/AbathurTraitDisplay/@Checked}" index="132" />
-            <Replacement val="{$parent/AnaAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="133" />
-            <Replacement val="{$parent/ArthasAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="134" />
-            <Replacement val="{$parent/JunkratAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="135" />
-            <Replacement val="{$parent/MedicAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="136" />
-            <Replacement val="{$parent/RagnarosAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="137" />
-            <Replacement val="{$parent/ProbiusAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="138" />
-            <Replacement val="{$parent/YrelAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="139" />
-            <Replacement val="{$parent/ZagaraAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="140" />
-            <Replacement val="{$parent/RagnarosAttachmentOption1/TogglePulldown2/ChosenNumber/@Text}" index="141" />
-            <Replacement val="{$parent/AzmodanAttachmentOption1/DemonLeiutenantSmite/@Checked}" index="142" />
-            <Replacement val="{$Talent1MasterSetting/TogglePulldown/Selected/@Text}" index="143" />
-            <Replacement val="{$Talent1MasterSetting/ShowNonQuests/CheckBoxButton/@Toggled}" index="144" />
-            <Replacement val="{$Talent1MasterSetting/ShowQuests/CheckBoxButton/@Toggled}" index="145" />
-            <Replacement val="{$Talent1MasterSetting/ShowActives/CheckBoxButton/@Toggled}" index="146" />
-            <Replacement val="{$Talent1MasterSetting/ShowBorders/CheckBoxButton/@Toggled}" index="147" />
-            <Replacement val="{$Talent2MasterSetting/TogglePulldown/Selected/@Text}" index="148" />
-            <Replacement val="{$Talent2MasterSetting/ShowNonQuests/CheckBoxButton/@Toggled}" index="149" />
-            <Replacement val="{$Talent2MasterSetting/ShowQuests/CheckBoxButton/@Toggled}" index="150" />
-            <Replacement val="{$Talent2MasterSetting/ShowActives/CheckBoxButton/@Toggled}" index="151" />
-            <Replacement val="{$Talent2MasterSetting/ShowBorders/CheckBoxButton/@Toggled}" index="152" />
-            <Replacement val="{$Talent3MasterSetting/TogglePulldown/Selected/@Text}" index="153" />
-            <Replacement val="{$Talent3MasterSetting/ShowNonQuests/CheckBoxButton/@Toggled}" index="154" />
-            <Replacement val="{$Talent3MasterSetting/ShowQuests/CheckBoxButton/@Toggled}" index="155" />
-            <Replacement val="{$Talent3MasterSetting/ShowActives/CheckBoxButton/@Toggled}" index="156" />
-            <Replacement val="{$Talent3MasterSetting/ShowBorders/CheckBoxButton/@Toggled}" index="157" />
-            <Replacement val="{$Talent4MasterSetting/TogglePulldown/Selected/@Text}" index="158" />
-            <Replacement val="{$Talent4MasterSetting/ShowNonQuests/CheckBoxButton/@Toggled}" index="159" />
-            <Replacement val="{$Talent4MasterSetting/ShowQuests/CheckBoxButton/@Toggled}" index="160" />
-            <Replacement val="{$Talent4MasterSetting/ShowActives/CheckBoxButton/@Toggled}" index="161" />
-            <Replacement val="{$Talent4MasterSetting/ShowBorders/CheckBoxButton/@Toggled}" index="162" />
-            <Replacement val="{$Talent0MasterSetting/ShowHealthBackings/CheckBoxButton/@Toggled}" index="163" />
-            <Replacement val="{$Talent5MasterSetting/TogglePulldown/Selected/@Text}" index="164" />
-            <Replacement val="{$Talent5MasterSetting/ShowNonQuests/CheckBoxButton/@Toggled}" index="165" />
-            <Replacement val="{$Talent5MasterSetting/ShowQuests/CheckBoxButton/@Toggled}" index="166" />
-            <Replacement val="{$Talent5MasterSetting/ShowActives/CheckBoxButton/@Toggled}" index="167" />
-            <Replacement val="{$Talent5MasterSetting/ShowBorders/CheckBoxButton/@Toggled}" index="168" />
-            <Replacement val="{$Talent6MasterSetting/TogglePulldown/Selected/@Text}" index="169" />
-            <Replacement val="{$Talent6MasterSetting/ShowNonQuests/CheckBoxButton/@Toggled}" index="170" />
-            <Replacement val="{$Talent6MasterSetting/ShowQuests/CheckBoxButton/@Toggled}" index="171" />
-            <Replacement val="{$Talent6MasterSetting/ShowActives/CheckBoxButton/@Toggled}" index="172" />
-            <Replacement val="{$Talent6MasterSetting/ShowBorders/CheckBoxButton/@Toggled}" index="173" />
-            <Replacement val="{$Talent7MasterSetting/TogglePulldown/Selected/@Text}" index="174" />
-            <Replacement val="{$Talent7MasterSetting/ShowNonQuests/CheckBoxButton/@Toggled}" index="175" />
-            <Replacement val="{$Talent7MasterSetting/ShowQuests/CheckBoxButton/@Toggled}" index="176" />
-            <Replacement val="{$Talent7MasterSetting/ShowActives/CheckBoxButton/@Toggled}" index="177" />
-            <Replacement val="{$Talent7MasterSetting/ShowBorders/CheckBoxButton/@Toggled}" index="178" />
-            <Replacement val="{$Talent2MasterSetting/TogglePulldown2/Selected/@Text}" index="179" />
-            <Replacement val="{$Talent4MasterSetting/TogglePulldown2/Selected/@Text}" index="180" />
-            <Replacement val="{$parent/MedivhAttachmentOption1/OverrideCheckbox/@Checked}" index="181" />
-            <Replacement val="{$Talent0MasterSetting/Proxy/CheckBoxButton/@Toggled}" index="182" />
-            <Replacement val="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" index="183" />
-            <Replacement val="{$Talent4MasterSetting/HeroicIngress/CheckBoxButton/@Toggled}" index="184" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/UnitBackgroundSlider/@Value}" index="185" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/BlanketHeroDisable/@Toggled}" index="186" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/TimestampedStatistics/@Toggled}" index="187" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/ShowTeamNamesToggle/@Toggled}" index="188" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/TeamColourSlider/@Value}" index="189" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/TeamColourBorderSlider/@Value}" index="190" />
-            <Replacement val="@UI/Spazzo/AhliSettings01" index="191" />
-            <Replacement val="@UI/Spazzo/AhliSettings01" index="192" />
-            <Replacement val="@UI/Spazzo/AhliSettings02" index="193" />
-            <Replacement val="@UI/Spazzo/AhliSettings03" index="194" />
-            <Replacement val="@UI/Spazzo/AhliSettings04" index="195" />
-            <Replacement val="{$parent/FenixAttachmentOption1/FenixWeaponDisplay/@Checked}" index="196" />
-            <Replacement val="{$parent/LeoricAttachmentOption1/TogglePulldown2/ChosenNumber/@Text}" index="197" />
-            <Replacement val="{$parent/LostVikingsAttachmentOption1/TogglePulldown2/ChosenNumber/@Text}" index="198" />
-            <Replacement val="{$parent/LostVikingsAttachmentOption1/TogglePulldown3/ChosenNumber/@Text}" index="199" />
-            <Replacement val="{$parent/TychusAttachmentOption1/TogglePulldown2/ChosenNumber/@Text}" index="200" />
-            <Replacement val="@UI/Spazzo/AhliSettings05" index="201" />
-            <Replacement val="@UI/Spazzo/AhliSettings06" index="202" />
-            <Replacement val="@UI/Spazzo/AhliSettings07" index="203" />
-            <Replacement val="@UI/Spazzo/AhliSettings08" index="204" />
-            <Replacement val="@UI/Spazzo/AhliSettings09" index="205" />
-            <Replacement val="@UI/Spazzo/AhliSettings10" index="206" />
-            <Replacement val="@UI/Spazzo/AhliSettings11" index="207" />
-            <Replacement val="@UI/Spazzo/AhliSettings12" index="208" />
-            <Replacement val="@UI/Spazzo/AhliSettings13" index="209" />
-            <Replacement val="@UI/Spazzo/AhliSettings14" index="210" />
-            <Replacement val="@UI/Spazzo/AhliSettings15" index="211" />
-            <Replacement val="@UI/Spazzo/AhliSettings16" index="212" />
-            <Replacement val="@UI/Spazzo/AhliSettings17" index="213" />
-            <Replacement val="{$parent/TopBarCustomSettingsFrame/ShowTeamScoresToggle/@Toggled}" index="214" />
-          </Frame>
+          <Frame type="TextFormatFrame" name="ExportOptionsTable" template="ExportSettingsFrame/ExportOptionsTableTemplate" />
           <Handle val="ExportContainerFrame"/>
         </Frame>
         <StateGroup name="CustomFrameCombinedState">
