@@ -1,4 +1,4 @@
-# v0.33
+# v0.33 (**2023-07-26**)
 
 * Statistics
  * Chromie now tracks the bonus damage from Bronze Talons, split into Heroic targets and non-Heroic targets
