@@ -42,7 +42,7 @@ fixed libHZAR_gv_heroZaryaBaseAttackPeriod;
 void libHZAR_gf_HeroZaryaHeroSpecificStatusFrameUpdate (int lp_player, fixed lp_damageBoost);
 void libHZAR_gf_HeroZaryaIncrementHeroCountFunction ();
 void libHZAR_gf_HeroZaryaDecrementHeroCountFunction ();
-void libHZAR_gf_HeroZaryaCustomFCT (unit lp_unit, int lp_player, fixed lp_amount, bool lp_isShield);
+void libHZAR_gf_HeroZaryaCustomFCT (unit lp_unit, int lp_player, fixed lp_amount, bool lp_isShield, bool lp_deepBurnOverride);
 
 // Trigger Declarations
 trigger libHZAR_gt_HeroZaryaPainIsTemporary;
@@ -66,6 +66,7 @@ trigger libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongRelease;
 trigger libHZAR_gt_HeroZaryaEnergyMaximumChargeFCT;
 trigger libHZAR_gt_HeroZaryaEnergyDecay;
 trigger libHZAR_gt_HeroZaryaEnergyGain;
+trigger libHZAR_gt_HeroZaryaDeepBurnTalentEnergyGain;
 trigger libHZAR_gt_HeroZaryaRefreshConversionRates;
 trigger libHZAR_gt_HeroZaryaHeroGainsAttackSpeedBuff;
 

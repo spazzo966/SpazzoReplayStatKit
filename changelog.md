@@ -1,4 +1,18 @@
-# v0.33 (**2023-07-26**)
+# v0.34
+
+* Statistics
+ * Chromie now tracks the hits from Sand Blast, Sand Echo Sand Blasts and Dragon's Breath
+ * Updates to support changes in build 91903
+
+* UI
+ * Dehaka now displays the remaining duration as a buff for Brushstalker's movement speed around Brushstalker in the Top Bar
+ * Kerrigan now displays the remaining duration of her Assimilation Shields as a buff in the Top Bar
+ * Lucio now displays the remaining duration of his Wall Ride as a buff in the Top Bar
+ * Zeratul's Vorpal Blade buff display in the Top Bar has been moved to the Vorpal Blade ability, from the Cleave ability
+ * Fixed an issue causing Medivh's Raven Form Healthplate to not obey Healthplate settings
+ * Fixed an issue where Johanna's Hero Icon on the Team Icons(Shift+R, Shift+L) was not using the correct game asset
+
+## v0.33 (**2023-07-26**)
 
 * Statistics
  * Chromie now tracks the bonus damage from Bronze Talons, split into Heroic targets and non-Heroic targets

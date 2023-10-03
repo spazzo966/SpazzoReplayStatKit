@@ -85,6 +85,7 @@ void libHZAR_gf_HeroZaryaIncrementHeroCountFunction () {
         TriggerEnable(libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerDestroy, true);
         TriggerEnable(libHZAR_gt_HeroZaryaHeroGainsAttackSpeedBuff, true);
         TriggerEnable(libHZAR_gt_HeroZaryaGravityKillsTalentSilenceDisplay, true);
+        TriggerEnable(libHZAR_gt_HeroZaryaDeepBurnTalentEnergyGain, true);
         libHZAR_gv_heroZaryaExpulsionZoneClearOutAmountPerStack = CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "ZaryaExpulsionZoneClearOut", "Modification.VitalMaxArray[" + IntToString(c_unitVitalEnergy) + "]", 0);
         libHZAR_gv_heroZaryaUnscaledDamagetoEnergyConversionRate = CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "ZaryaEnergyBoostDecay", "Period", 0);
     }
@@ -121,11 +122,12 @@ void libHZAR_gf_HeroZaryaDecrementHeroCountFunction () {
         TriggerEnable(libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerDestroy, false);
         TriggerEnable(libHZAR_gt_HeroZaryaHeroGainsAttackSpeedBuff, false);
         TriggerEnable(libHZAR_gt_HeroZaryaGravityKillsTalentSilenceDisplay, false);
+        TriggerEnable(libHZAR_gt_HeroZaryaDeepBurnTalentEnergyGain, false);
     }
 
 }
 
-void libHZAR_gf_HeroZaryaCustomFCT (unit lp_unit, int lp_player, fixed lp_amount, bool lp_isShield) {
+void libHZAR_gf_HeroZaryaCustomFCT (unit lp_unit, int lp_player, fixed lp_amount, bool lp_isShield, bool lp_deepBurnOverride) {
     // Automatic Variable Declarations
     // Implementation
     if ((lp_isShield == false) && (lp_amount > 1)) {
@@ -134,6 +136,10 @@ void libHZAR_gf_HeroZaryaCustomFCT (unit lp_unit, int lp_player, fixed lp_amount
 
     if ((lp_isShield == true) && (lp_amount > 1)) {
         FloatingCombatElementCreateNumberTextAtUnit(PlayerGroupSingle(lp_player), "FloatingCombatElements/FloatingCombatNormalAmountReceived", "ShieldState", lp_unit, FixedToInt(lp_amount), StringExternal("Param/Value/lib_HZAR_4C295DD1"), libNtve_gv_FloatingCombatTextAutoRandomSeed);
+    }
+
+    if ((lp_deepBurnOverride == true)) {
+        FloatingCombatElementCreateNumberTextAtUnit(PlayerGroupSingle(lp_player), "Zarya/ZaryaEnergyReceived", "", lp_unit, FixedToInt(lp_amount), StringExternal("Param/Value/lib_HZAR_1E1E8279"), libNtve_gv_FloatingCombatTextAutoRandomSeed);
     }
 
 }
@@ -388,12 +394,10 @@ bool libHZAR_gt_HeroZaryaShieldingFCT_Func (bool testConds, bool runActions) {
         lv_caster = UnitBehaviorEffectUnit(lv_shieldedUnit, EventUnitBehavior(), c_effectUnitCaster, 0);
         lv_ownerofShielded = UnitGetOwner(lv_shieldedUnit);
         libHZAR_gv_heroZaryaShieldCasterOwner[lv_ownerofShielded] = UnitGetOwner(lv_caster);
-        libHZAR_gf_HeroZaryaCustomFCT(lv_shieldedUnit, lv_ownerofShielded, libHZAR_gv_heroZaryaShieldNumbers[lv_ownerofShielded], true);
         libHZAR_gv_heroZaryaShieldNumbers[lv_ownerofShielded] = 0.0;
     }
     else if ((EventUnitBehaviorChange() == c_unitBehaviorChangeDeactivate)) {
         lv_ownerofShielded = UnitGetOwner(lv_shieldedUnit);
-        libHZAR_gf_HeroZaryaCustomFCT(lv_shieldedUnit, lv_ownerofShielded, libHZAR_gv_heroZaryaShieldNumbers[lv_ownerofShielded], true);
         libHZAR_gv_heroZaryaShieldNumbers[lv_ownerofShielded] = 0.0;
     }
     return true;
@@ -429,7 +433,6 @@ bool libHZAR_gt_HeroZaryaExpulsionZoneClearOutFCT_Func (bool testConds, bool run
 
     libHZAR_gv_heroZaryaExpulsionZoneClearOutNumbers[lv_zaryaPlayer] += libHZAR_gv_heroZaryaExpulsionZoneClearOutAmountPerStack;
     Wait(0.125, c_timeGame);
-    libHZAR_gf_HeroZaryaCustomFCT(EventUnit(), lv_zaryaPlayer, libHZAR_gv_heroZaryaExpulsionZoneClearOutNumbers[lv_zaryaPlayer], false);
     libHZAR_gv_heroZaryaExpulsionZoneClearOutNumbers[lv_zaryaPlayer] = 0.0;
     return true;
 }
@@ -738,7 +741,7 @@ bool libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerCreate_Func (bool testC
 void libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerCreate_Init () {
     libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerCreate = TriggerCreate("libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerCreate_Func");
     TriggerEnable(libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerCreate, false);
-    TriggerAddEventUnitBehaviorChange(libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerCreate, null, "ZaryaShieldAlly", c_unitBehaviorChangeCreate);
+    TriggerAddEventUnitBehaviorChange(libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerCreate, null, "ZaryaShieldAllyTogetherWeAreStrongTalentBuff", c_unitBehaviorChangeCreate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -784,7 +787,7 @@ bool libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerDestroy_Func (bool test
 void libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerDestroy_Init () {
     libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerDestroy = TriggerCreate("libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerDestroy_Func");
     TriggerEnable(libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerDestroy, false);
-    TriggerAddEventUnitBehaviorChange(libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerDestroy, null, "ZaryaShieldAlly", c_unitBehaviorChangeDestroy);
+    TriggerAddEventUnitBehaviorChange(libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongTriggerDestroy, null, "ZaryaShieldAllyTogetherWeAreStrongTalentBuff", c_unitBehaviorChangeDestroy);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -806,7 +809,7 @@ bool libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongGain_Func (bool testConds, boo
 
     // Conditions
     if (testConds) {
-        if (!((UnitHasBehavior2(EventUnitDamageSourceUnit(), "ZaryaShieldAlly") == true))) {
+        if (!((UnitHasBehavior2(EventUnitDamageSourceUnit(), "ZaryaShieldAllyTogetherWeAreStrongTalentBuff") == true))) {
             return false;
         }
 
@@ -814,7 +817,7 @@ bool libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongGain_Func (bool testConds, boo
             return false;
         }
 
-        if (!((PlayerHasTalent(UnitGetOwner(UnitBehaviorEffectUnit(EventUnitDamageSourceUnit(), "ZaryaShieldAlly", c_effectUnitCaster, 0)), "ZaryaShieldAllyTogetherWeAreStrong") == true))) {
+        if (!((PlayerHasTalent(UnitGetOwner(UnitBehaviorEffectUnit(EventUnitDamageSourceUnit(), "ZaryaShieldAllyTogetherWeAreStrongTalentBuff", c_effectUnitCaster, 0)), "ZaryaShieldAllyTogetherWeAreStrong") == true))) {
             return false;
         }
 
@@ -833,7 +836,7 @@ bool libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongGain_Func (bool testConds, boo
     if (((lv_allyOwner <= libCore_gv_bALMaxPlayers) && (lv_allyOwner >= 1) && (libHZAR_gv_heroZaryaEnergyTogetherWeAreStrongContributionRemaining[lv_allyOwner] <= 0.0))) {
     }
     else {
-        lv_zaryaUnit = UnitBehaviorEffectUnit(lv_allyUnit, "ZaryaShieldAlly", c_effectUnitCaster, 0);
+        lv_zaryaUnit = UnitBehaviorEffectUnit(lv_allyUnit, "ZaryaShieldAllyTogetherWeAreStrongTalentBuff", c_effectUnitCaster, 0);
         lv_zaryaOwner = UnitGetOwner(lv_zaryaUnit);
         lv_damageAmount = (EventUnitDamageAmount() + EventUnitDamageBehaviorShield());
         lv_currentBoost = UnitGetPropertyFixed(lv_zaryaUnit, c_unitPropEnergy, c_unitPropCurrent);
@@ -851,9 +854,6 @@ bool libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongGain_Func (bool testConds, boo
 
         lv_incomingBoost += lv_currentBoost;
         if ((UnitIsValid(lv_zaryaUnit) == true)) {
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Zarya gained charge with ") + StringToText(EventUnitDamageEffect()) + StringToText(" as part of libHZAR")));
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Zarya gained charge from ") + StringToText(UnitGetType(EventUnit())) + StringToText(" being damaged")));
-			libGame_gf_HeroSpecificStatTrackerOther(lv_incomingBoost, lv_zaryaOwner, lv_allyOwner, "ZaryaEnergyGainTogetherWeAreStrong", EventUnit(), "");
             UnitSetPropertyFixed(lv_zaryaUnit, c_unitPropEnergy, lv_incomingBoost);
             UnitBehaviorAdd(lv_zaryaUnit, "ZaryaEnergyDecayCountdown", lv_zaryaUnit, 1);
         }
@@ -903,7 +903,7 @@ bool libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongRelease_Func (bool testConds, 
 void libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongRelease_Init () {
     libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongRelease = TriggerCreate("libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongRelease_Func");
     TriggerEnable(libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongRelease, false);
-    TriggerAddEventUnitBehaviorChange(libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongRelease, null, "ZaryaShieldAlly", c_unitBehaviorChangeDeactivate);
+    TriggerAddEventUnitBehaviorChange(libHZAR_gt_HeroZaryaEnergyTogetherWeAreStrongRelease, null, "ZaryaShieldAllyTogetherWeAreStrongTalentBuff", c_unitBehaviorChangeDeactivate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1070,19 +1070,14 @@ bool libHZAR_gt_HeroZaryaEnergyGain_Func (bool testConds, bool runActions) {
 
     libHZAR_gv_heroZaryaShieldNumbers[lv_zaryaPlayer] += lv_damageAbsorbed;
     lv_incomingBoost /= libHZAR_gv_heroZaryaCurrentDamagetoEnergyConversionRate[lv_zaryaPlayer];
-    if ((PlayerHasTalent(lv_zaryaPlayer, "ZaryaEnergyHitMe") == true)) {
+    if ((PlayerHasTalent(lv_zaryaPlayer, "ZaryaPersonalBarrierIAmTheStrongest") == true)) {
         lv_incomingBoost *= libHZAR_gv_heroZaryaEnergyHitMeModifier;
     }
 
-    libHZAR_gf_HeroZaryaCustomFCT(lv_zaryaUnit, lv_zaryaPlayer, lv_incomingBoost, false);
+    libHZAR_gf_HeroZaryaCustomFCT(lv_zaryaUnit, lv_zaryaPlayer, lv_incomingBoost, false, false);
     lv_currentBoost = UnitGetPropertyFixed(lv_zaryaUnit, c_unitPropEnergy, c_unitPropCurrent);
     lv_incomingBoost += lv_currentBoost;
     if ((UnitIsValid(lv_zaryaUnit) == true)) {
-	    if (UnitGetType(libGame_gv_players[lv_zaryaPlayer].lv_heroUnit) == "HeroZarya") {
-			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Zarya prevented damage(zarya lib) with ") + StringToText(EventUnitBehavior()) + StringToText(" being damaged")));
-			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("zarya gained energy(zarya lib):") + FixedToText(lv_incomingBoost, 3)));
-            // libGame_gf_HeroSpecificStatTrackerOther(lv_incomingBoost, lv_zaryaPlayer, UnitGetOwner(EventUnitDamageSourceUnit()), "ZaryaEnergyGain", EventUnitDamageSourceUnit(), EventUnitBehavior());
-		}
         UnitSetPropertyFixed(lv_zaryaUnit, c_unitPropEnergy, lv_incomingBoost);
         UnitBehaviorAdd(lv_zaryaUnit, "ZaryaEnergyDecayCountdown", lv_zaryaUnit, 1);
     }
@@ -1099,6 +1094,53 @@ void libHZAR_gt_HeroZaryaEnergyGain_Init () {
     TriggerAddEventUnitDamageAbsorbed(libHZAR_gt_HeroZaryaEnergyGain, null, "ZaryaPersonalBarrierIAmTheStrongest");
     TriggerAddEventUnitDamageAbsorbed(libHZAR_gt_HeroZaryaEnergyGain, null, "ZaryaPainIsTemporary");
     TriggerAddEventUnitDamageAbsorbed(libHZAR_gt_HeroZaryaEnergyGain, null, "ZaryaShieldAllyGainTrain");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero - Zarya - Deep Burn Talent Energy Gain
+//--------------------------------------------------------------------------------------------------
+bool libHZAR_gt_HeroZaryaDeepBurnTalentEnergyGain_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_zaryaUnit;
+    int lv_zaryaPlayer;
+    fixed lv_energyGain;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_zaryaUnit = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    lv_zaryaPlayer = UnitGetOwner(lv_zaryaUnit);
+    lv_energyGain = 1.0;
+
+    // Conditions
+    if (testConds) {
+        if (!((lv_zaryaPlayer <= libCore_gv_bALMaxPlayers))) {
+            return false;
+        }
+
+        if (!((lv_zaryaPlayer != 0))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    libHZAR_gf_HeroZaryaCustomFCT(lv_zaryaUnit, lv_zaryaPlayer, lv_energyGain, false, true);
+    if ((UnitIsValid(lv_zaryaUnit) == true)) {
+        UnitBehaviorAdd(lv_zaryaUnit, "ZaryaEnergyDecayCountdown", lv_zaryaUnit, 1);
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libHZAR_gt_HeroZaryaDeepBurnTalentEnergyGain_Init () {
+    libHZAR_gt_HeroZaryaDeepBurnTalentEnergyGain = TriggerCreate("libHZAR_gt_HeroZaryaDeepBurnTalentEnergyGain_Func");
+    TriggerEnable(libHZAR_gt_HeroZaryaDeepBurnTalentEnergyGain, false);
+    TriggerAddEventPlayerEffectUsed(libHZAR_gt_HeroZaryaDeepBurnTalentEnergyGain, c_playerAny, "ZaryaParticleGrenadeDeepBurnTalentModifyUnit");
+    TriggerAddEventPlayerEffectUsed(libHZAR_gt_HeroZaryaDeepBurnTalentEnergyGain, c_playerAny, "ZaryaParticleGrenadeSplashDamageDeepBurnTalentModifyUnit");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1206,6 +1248,7 @@ void libHZAR_InitTriggers () {
     libHZAR_gt_HeroZaryaEnergyMaximumChargeFCT_Init();
     libHZAR_gt_HeroZaryaEnergyDecay_Init();
     libHZAR_gt_HeroZaryaEnergyGain_Init();
+    libHZAR_gt_HeroZaryaDeepBurnTalentEnergyGain_Init();
     libHZAR_gt_HeroZaryaRefreshConversionRates_Init();
     libHZAR_gt_HeroZaryaHeroGainsAttackSpeedBuff_Init();
 }

@@ -1186,6 +1186,7 @@ int libGame_gv_onFireWindowStage;
 bool libGame_gv_onFireEnabled;
 bool libGame_gv_onFirePrintingEnabled;
 bool libGame_gv_onFireUpdating;
+int[libCore_gv_bALMaxEnginePlayerCount + 1] libGame_gv_playerLeaveCheck;
 libGame_gs_Player[libCore_gv_bALMaxEnginePlayerCount + 1] libGame_gv_players;
 unitgroup libGame_gv_heroes;
 unitgroup[libCore_gv_bALMaxTeams + 1] libGame_gv_players_Heroes_AllTrackedHeroesForTeam;

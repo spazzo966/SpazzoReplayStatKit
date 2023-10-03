@@ -15731,7 +15731,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       if ((lp_healEffect == "AlexstraszaDragonConeWeaponCreateHealer")) {
         lv_primaryScoreString = "TalentTen";
       }
-      if ((lp_healEffect == "AlexstraszaFlameBuffetManaRefund")) {
+      if ((lp_healEffect == "AlexstraszaFlameBuffetManaRefund") || (lp_healEffect == "AlexstraszaFlamesOfFuryFlameBuffetManaRefund")) {
         lv_primaryScoreString = "TalentThirteen";
       }
       if ((lp_healEffect == "AlexstraszaLifebinderHoTCaster")) {
@@ -24124,6 +24124,9 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((lp_damageEffect == "SamuroAdvancingStrikesDeflectionBlockDummyDamage")) {
       lv_primaryScoreString = "Discard";
     }
+    if ((lp_damageEffect == "StormKillRemove")) {
+      lv_primaryScoreString = "Discard";
+    }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroOrphea")) {
     if ((lp_damageEffect == "OrpheaWeaponDamage")) {
@@ -26223,6 +26226,8 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((lp_damageEffect == "ChromieSandBlastDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreThree";
+        lv_tertiaryScoreString = "AccuracyNine";
+        lv_tertiaryScoreOverride = 1.0;
       }
       else {
         lv_primaryScoreString = "ScoreFour";
@@ -26231,6 +26236,8 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((lp_damageEffect == "ChromieDragonsBreathDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreFive";
+        lv_secondaryScoreString = "AccuracyEleven";
+        lv_secondaryScoreOverride = 1.0;
       }
       else {
         lv_primaryScoreString = "ScoreSix";
@@ -26247,6 +26254,8 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((lp_damageEffect == "ChromieSandBlastPastAndFutureMeDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreNine";
+        lv_secondaryScoreString = "AccuracyTen";
+        lv_secondaryScoreOverride = 1.0;
       }
       else {
         lv_primaryScoreString = "ScoreTen";
@@ -39739,7 +39748,7 @@ void libGame_gv_initializeOBSUI () {
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Mercenary Tracker"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.33 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.34 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
     // Well, I tried to add team coloured globes.
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamOrder, "11");
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Person", libCore_gv_cOMPUTER_TeamOrder, "Observer");

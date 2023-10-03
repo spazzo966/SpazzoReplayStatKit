@@ -1483,6 +1483,9 @@
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DehakaBurrow" />
         <Action type="SetProperty" frame="Label" Text="Dehaka" />
+        <Action type="SetProperty" frame="HeroBehavior/BehaviorDuration" Behavior="DehakaBrushstalkerShrubMoveSpeedBuff" />
+        <Action type="SetProperty" frame="HeroBehavior" Visible="{$Talent0MasterSetting/ShowNonQuests/CheckBoxButton/@Toggled}" />
+        <Action type="SetState" frame="HeroBehavior" Group="Anchor" State="Abil4"/>
       </State>
       <State name="Deckard">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroDeckard"/>
@@ -3132,7 +3135,7 @@
         <Action type="SetProperty" frame="Label" Text="Zeratul" />
         <Action type="SetProperty" frame="HeroBehavior/BehaviorDuration" Behavior="VorpalBladeActive" />
         <Action type="SetProperty" frame="HeroBehavior" Visible="{$Talent0MasterSetting/ShowNonQuests/CheckBoxButton/@Toggled}" />
-        <Action type="SetState" frame="HeroBehavior" Group="Anchor" State="Abil1"/>
+        <Action type="SetState" frame="HeroBehavior" Group="Anchor" State="Abil4"/>
       </State>
       <State name="Zuljin">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroZuljin"/>

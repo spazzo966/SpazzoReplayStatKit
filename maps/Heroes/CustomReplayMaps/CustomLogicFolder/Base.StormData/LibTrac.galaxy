@@ -1121,9 +1121,14 @@ bool libTrac_gt_HeroTracerRecallCast_Func (bool testConds, bool runActions) {
         UnitCreateEffectPoint(lv_tracer, "TracerRecallTeleportSet", libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_position);
         UnitCreateEffectPoint(lv_tracer, "TracerRecallVisualDummyFXCreateUnit", libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_position);
         UnitCreateEffectPoint(lv_tracer, "TracerRecallLaunchModelMissile", lv_castPoint);
+        CatalogFieldValueSetFixed(c_gameCatalogEffect, "TracerRecallTotalRecallHeal", "RechargeVitalRate", lv_player, (libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health - UnitGetPropertyFixed(lv_tracer, c_unitPropLife, c_unitPropCurrent)));
         if (((libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health + 0.2) > UnitGetPropertyFixed(lv_tracer, c_unitPropLife, c_unitPropCurrent)) && (PlayerHasTalent(lv_player, "TracerTotalRecallRecall") == true)) {
-            libGame_gf_HeroSpecificStatTrackerOther((libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health - UnitGetPropertyFixed(lv_tracer, c_unitPropLife, c_unitPropCurrent)), lv_player, lv_player, "TracerTotalRecallHeal", null, "TRAC");
-            UnitSetPropertyFixed(lv_tracer, c_unitPropLife, libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health);
+            // libGame_gf_HeroSpecificStatTrackerOther((libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health - UnitGetPropertyFixed(lv_tracer, c_unitPropLife, c_unitPropCurrent)), lv_player, lv_player, "TracerTotalRecallHeal", null, "TRAC");
+            // UnitSetPropertyFixed(lv_tracer, c_unitPropLife, libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health);
+            CatalogFieldValueSetFixed(c_gameCatalogEffect, "TracerRecallTotalRecallHeal", "Chance", lv_player, 1);
+        }
+        else {
+            CatalogFieldValueSetFixed(c_gameCatalogEffect, "TracerRecallTotalRecallHeal", "Chance", lv_player, 0);
         }
 
     }

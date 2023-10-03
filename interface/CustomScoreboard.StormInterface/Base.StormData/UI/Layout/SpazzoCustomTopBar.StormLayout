@@ -636,7 +636,7 @@
           <State name="Crusader">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_johanna.dds"/>
             <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="Assets/Textures/storm_ui_ingame_hero_loadingscreen_crusader.dds" />
-            <Action type="SetProperty" frame="$parent/$parent/PlayerIconRef" Texture="Assets/Textures/storm_ui_glues_draft_portrait_johanna.dds" />
+            <Action type="SetProperty" frame="$parent/$parent/PlayerIconRef" Texture="Assets/Textures/storm_ui_glues_draft_portrait_crusader.dds" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
           <State name="Junkrat">

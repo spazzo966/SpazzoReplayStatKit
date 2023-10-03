@@ -827,9 +827,12 @@ bool libHDVA_gt_HeroDVaMechDiesviaFatalDamage_Func (bool testConds, bool runActi
 
     // Variable Initialization
     lv_unit = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    // lv_unit = EventUnit();
     lv_targetPlayer = UnitGetOwner(lv_unit);
     lv_killingUnit = EventPlayerEffectUsedUnit(c_effectUnitTarget);
+    // lv_killingUnit = EventUnitDamageSourceUnit();
     lv_killingPlayer = UnitGetOwner(lv_killingUnit);
+    // lv_killingPlayer = EventUnitDamageSourcePlayer();
     lv_enemyPlayerGroup = PlayerGroupEmpty();
     lv_killingGroup = PlayerGroupEmpty();
 
@@ -860,6 +863,7 @@ bool libHDVA_gt_HeroDVaMechDiesviaFatalDamage_Func (bool testConds, bool runActi
         }
     }
 
+    // libGame_gf_DeathRecapPopulateDeathRecapDataForPlayer(lv_unit, lv_targetPlayer);
     libUIUI_gf_KillLogAnnounceKill(lv_killingPlayer, lv_unit);
     return true;
 }
@@ -869,6 +873,7 @@ void libHDVA_gt_HeroDVaMechDiesviaFatalDamage_Init () {
     libHDVA_gt_HeroDVaMechDiesviaFatalDamage = TriggerCreate("libHDVA_gt_HeroDVaMechDiesviaFatalDamage_Func");
     TriggerEnable(libHDVA_gt_HeroDVaMechDiesviaFatalDamage, false);
     TriggerAddEventPlayerEffectUsed(libHDVA_gt_HeroDVaMechDiesviaFatalDamage, c_playerAny, "DVaMechFatalDamageResponseHandledSet");
+    // TriggerAddEventUnitDamageAbsorbed(libHDVA_gt_HeroDVaMechDiesviaFatalDamage, null, "DVaMechFatalDamageResponse");
 }
 
 //--------------------------------------------------------------------------------------------------

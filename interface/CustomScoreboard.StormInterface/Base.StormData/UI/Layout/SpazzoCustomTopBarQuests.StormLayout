@@ -1040,6 +1040,44 @@
         <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/LostVikingsGoGoGo" />
         <Action type="SetState" frame="$this" Group="BaselineType" State="DoesNotHaveTokenDoesNotHaveDurationHasAbilityDoesNotHaveCharge"/>
       </State>
+      <State name="Kerrigan">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroKerrigan"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <Action type="SetProperty" frame="$this/UnitAbilFrame" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="NULL" /> 
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/DummyStackProgressBar" Visible="False" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_kerrigan_assimilation.dds" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/KerriganAssimilation" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar" Behavior="KerriganAssimilationShield" />
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" AdjustmentColor="255,200,200,200" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" Alpha="130" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" ColorAdjustMode="Fill" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="DoesNotHaveTokenHasDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="Lucio">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroLucio"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <Action type="SetProperty" frame="$this/UnitAbilFrame" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="NULL" /> 
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/DummyStackProgressBar" Visible="False" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_lucio_wallride.dds" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/LucioWallRide" />
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar" Behavior="LucioWallRideSpeed" />
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" AdjustmentColor="255,200,200,200" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" Alpha="130" /> 
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" ColorAdjustMode="Fill" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="DoesNotHaveTokenHasDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
       <State name="AzmodanForceDisplay">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroAzmodan"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="True" />

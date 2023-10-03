@@ -1580,7 +1580,6 @@ void libGDHL_gf_HeroLiLiIncrementHeroCountFunction () {
     // Implementation
     libGDHL_gv_heroLiLiTriggerRegistrationVariable += 1;
     if ((libGDHL_gv_heroLiLiTriggerRegistrationVariable == 1)) {
-        TriggerEnable(libGDHL_gt_HeroLiLiCloudSerpentStatTracking, true);
         TriggerEnable(libGDHL_gt_HeroLiLiCloudSerpentTurretSerpentSummonandSimplifiedAI, true);
         TriggerEnable(libGDHL_gt_HeroLiLiCloudSerpentSummonandSimplifiedAI, true);
         TriggerEnable(libGDHL_gt_HeroLiLiCloudSerpentAttackMimic, true);
@@ -1597,7 +1596,6 @@ void libGDHL_gf_HeroLiLiDecrementHeroCountFunction () {
     }
 
     if ((libGDHL_gv_heroLiLiTriggerRegistrationVariable == 0)) {
-        TriggerEnable(libGDHL_gt_HeroLiLiCloudSerpentStatTracking, false);
         TriggerEnable(libGDHL_gt_HeroLiLiCloudSerpentTurretSerpentSummonandSimplifiedAI, false);
         TriggerEnable(libGDHL_gt_HeroLiLiCloudSerpentSummonandSimplifiedAI, false);
         TriggerEnable(libGDHL_gt_HeroLiLiCloudSerpentAttackMimic, false);
@@ -11941,60 +11939,6 @@ void libGDHL_gt_HeroL90ETCMoshPitOn_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
-// Trigger: Hero - Li Li - Cloud Serpent Stat Tracking
-//--------------------------------------------------------------------------------------------------
-bool libGDHL_gt_HeroLiLiCloudSerpentStatTracking_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    int lv_itPlayer;
-    fixed lv_healingAmount;
-    int lv_hostPlayer;
-    int lv_liLiPlayer;
-    fixed lv_vertOffset;
-    fixed lv_horizOffset;
-
-    // Automatic Variable Declarations
-    playergroup auto8915D851_g;
-
-    // Variable Initialization
-
-    // Actions
-    if (!runActions) {
-        return true;
-    }
-
-    lv_hostPlayer = EventPlayerEffectUsedUnitOwner(c_effectPlayerCaster);
-    lv_healingAmount = EventPlayerEffectUsedAmountFixed(c_effectAmountHealed, false);
-    lv_vertOffset = 2.0;
-    lv_horizOffset = RandomFixed(-0.4, -0.6);
-    auto8915D851_g = libGame_gf_PlayersOnTeamHeroes(libGame_gf_TeamNumberOfPlayer(lv_hostPlayer), false);
-    lv_itPlayer = -1;
-    while (true) {
-        	lv_itPlayer = PlayerGroupNextPlayer(auto8915D851_g, lv_itPlayer);
-        	if (lv_itPlayer<0) { break; }
-        	if ((libGame_gv_players[lv_itPlayer].lv_heroIndex == libCore_gf_GetHeroIndexForUnitType("HeroLiLi"))) {
-            lv_liLiPlayer = lv_itPlayer;
-            break;
-        }
-
-    }
-    libGame_gf_ScoreValuesReportRealValueAndLog(lv_liLiPlayer, "Healing", (PlayerScoreValueGetAsFixed(lv_liLiPlayer, "Healing") + lv_healingAmount));
-    if ((lv_hostPlayer != lv_liLiPlayer)) {
-        FloatingCombatElementCreateTextAtUnit(PlayerGroupSingle(lv_liLiPlayer), "FloatingCombatElements/FloatingCombatNormalAmountReceived", "HealState", EventPlayerEffectUsedUnit(c_effectUnitTarget), FixedToText(lv_healingAmount, 0), libNtve_gv_FloatingCombatTextAutoRandomSeed);
-    }
-
-    return true;
-}
-
-//--------------------------------------------------------------------------------------------------
-void libGDHL_gt_HeroLiLiCloudSerpentStatTracking_Init () {
-    libGDHL_gt_HeroLiLiCloudSerpentStatTracking = TriggerCreate("libGDHL_gt_HeroLiLiCloudSerpentStatTracking_Func");
-    TriggerEnable(libGDHL_gt_HeroLiLiCloudSerpentStatTracking, false);
-    TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroLiLiCloudSerpentStatTracking, c_playerAny, "LiLiCloudSerpentCreateHealer");
-    TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroLiLiCloudSerpentStatTracking, c_playerAny, "LiLiCloudSerpentBlessingsOfYulonTalentCreateHealer");
-    TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroLiLiCloudSerpentStatTracking, c_playerAny, "LiLiCloudSerpentLightningSerpentCreateHealer");
-}
-
-//--------------------------------------------------------------------------------------------------
 // Trigger: Hero - Li Li - Cloud Serpent Turret Serpent Summon and Simplified AI
 //--------------------------------------------------------------------------------------------------
 bool libGDHL_gt_HeroLiLiCloudSerpentTurretSerpentSummonandSimplifiedAI_Func (bool testConds, bool runActions) {
@@ -15535,22 +15479,6 @@ bool libGDHL_gt_HeroLostVikingsAbathurClone_Func (bool testConds, bool runAction
     }
     UnitBehaviorAdd(EventUnit(), "LostVikings1VikingAlive", EventUnit(), 1);
     UnitBehaviorAdd(EventUnit(), "UltimateEvolutionAlternateHero", EventUnit(), 1);
-    if ((PlayerHasTalent(lv_lVPlayer, "LostVikingsMasteryJump") == true)) {
-        UnitBehaviorAdd(EventUnit(), "LostVikingsJumpEnabled", EventUnit(), 1);
-    }
-
-    if ((PlayerHasTalent(lv_lVPlayer, "LostVikingsMasterySpinToWin") == true)) {
-        UnitBehaviorAdd(EventUnit(), "LostVikingsSpinToWinCarry", EventUnit(), 1);
-    }
-
-    if ((PlayerHasTalent(lv_lVPlayer, "LostVikingsMasteryNordicAttackSquad") == true)) {
-        UnitBehaviorAdd(EventUnit(), "LostVikingsNordicAttackSquadCarry", EventUnit(), 1);
-    }
-
-    if ((PlayerHasTalent(lv_lVPlayer, "LostVikingsMasteryNorseForce") == true)) {
-        UnitBehaviorAdd(EventUnit(), "LostVikingsNorseForceEnabled", EventUnit(), 1);
-    }
-
     PlayerAddCooldown(UnitGetOwner(EventUnit()), CatalogFieldValueGet(c_gameCatalogAbil, "LostVikingsLongboatRaidNewer", "Cost[" + IntToString(0) + "].Cooldown.Link", UnitGetOwner(EventUnit())), 15.0);
     PlayerAddCooldown(UnitGetOwner(EventUnit()), CatalogFieldValueGet(c_gameCatalogAbil, "LostVikingsPlayAgain", "Cost[" + IntToString(0) + "].Cooldown.Link", UnitGetOwner(EventUnit())), 15.0);
     return true;
@@ -17361,7 +17289,7 @@ bool libGDHL_gt_HeroMuradinHaymakerGrandSlamTalentProc_Func (bool testConds, boo
             return false;
         }
         // if (!((PlayerHasTalent(lv_killingPlayer, "MuradinMasteryHaymakerGrandSlam") == true))) {
-            // return false;
+        //     return false;
         // }
     }
 
@@ -23979,7 +23907,7 @@ bool libGDHL_gt_HeroTychusThatsTheStuffOff_Func (bool testConds, bool runActions
 
     CatalogFieldValueSetFixed(c_gameCatalogEffect, "TychusMinigunThatsTheStuffTalentCreateHealer", "RechargeVitalRate", lv_itPlayer, lv_healAmount);
     CatalogFieldValueSet(c_gameCatalogEffect, "TychusMinigunThatsTheStuffTalentDummyHealer", "RechargeVitalRate", lv_itPlayer, "0");
-    UnitCreateEffectUnit(lv_itUnit, "TychusMinigunThatsTheStuffTalentCreateHealer", lv_itUnit);
+    UnitCreateEffectUnitWithSource(lv_itUnit, "TychusMinigunThatsTheStuffTalentCreateHealer", lv_itUnit, c_gameCatalogAbil, "TychusMinigunActive");
     libGDHL_gv_heroTychusThatsTheStuffCombinedHeal[lv_itPlayer] = 0.0;
     libGDHL_gv_heroTychusThatsTheStuffHealPreviewCombinedDamage[lv_itPlayer] = 0.0;
     return true;
@@ -26774,7 +26702,6 @@ void libGDHL_InitTriggers () {
     libGDHL_gt_HeroL90ETCStageDiveTeleportUnit_Init();
     libGDHL_gt_HeroL90ETCStageDiveFinalSet_Init();
     libGDHL_gt_HeroL90ETCMoshPitOn_Init();
-    libGDHL_gt_HeroLiLiCloudSerpentStatTracking_Init();
     libGDHL_gt_HeroLiLiCloudSerpentTurretSerpentSummonandSimplifiedAI_Init();
     libGDHL_gt_HeroLiLiCloudSerpentSummonandSimplifiedAI_Init();
     libGDHL_gt_HeroLiLiCloudSerpentAttackMimic_Init();
