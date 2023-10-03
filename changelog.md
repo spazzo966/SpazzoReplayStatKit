@@ -1,4 +1,4 @@
-# v0.34
+# v0.34 (**2023-10-03**)
 
 * Statistics
  * Chromie now tracks the hits from Sand Blast, Sand Echo Sand Blasts and Dragon's Breath
