@@ -14647,6 +14647,10 @@
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>
     <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
   </Frame>
+  <Frame type="Frame" name="HeroUnitStatusFrameNoNameNoEnergyShowDebuffs_PetTemplate/HeroUnitStatusParentFrame" file="UnitStatus">
+    <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>
+    <Frame type="Frame" name="UnitStatusValidatorContainerFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusValidatorContainerFrameTemplate" />
+  </Frame>
   <Frame type="Frame" name="VolskayaVehicleUnitStatusFrame/HeroUnitStatusParentFrame" file="VolskayaRobot">
     <Frame type="Frame" name="UnitStatusNameDisplayStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusVehicleStateGroupControlTemplate" />
     <Frame type="UnitStatusShieldedHealthLabel" name="UnitHealthAndShieldLabel" Template="SpazzoCustomUnitStatusFrames/UnitHealthAndShieldLabelTemplate"/>

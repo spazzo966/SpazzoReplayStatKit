@@ -1408,7 +1408,7 @@
       </State>
       <State name="Deathwing">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroDeathwing"/>
-        <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame" AbilityLink="DeathwingMoltenFlame" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame" AbilityLink="DeathwingMoltenFlameCancel" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame" AbilityLink="DeathwingIncinerate" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame" AbilityLink="DeathwingOnslaught" />
         <!-- <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame" AbilityLink="DeathwingFormSwitch" /> -->
@@ -1417,8 +1417,8 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
-        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="DeathwingMoltenFlameCancel" />
-        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame2" AbilityLink="DeathwingDestroyerForm" />
+        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="DeathwingDestroyerForm" />
+        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame2" AbilityLink="DeathwingMoltenFlame" />
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame" AbilityLink="DeathwingLavaBurst" />
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame2" AbilityLink="DeathwingWorldbreakerForm" />
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="DeathwingEarthShatter" />
@@ -1430,9 +1430,9 @@
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Texture="Assets\Textures\storm_ui_icon_deathwing_deathdrop.dds" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/OverrideImage" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
-        <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DeathwingMoltenFlame" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DeathwingMoltenFlameCancel" /> 
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
-        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DeathwingMoltenFlameCancel" />
+        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DeathwingDestroyer" />  
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DeathwingIncinerate" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
@@ -1446,7 +1446,7 @@
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DeathwingEarthShatter" />
         <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame2/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
-        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame2/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DeathwingDestroyer" />
+        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame2/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DeathwingMoltenFlame" /> 
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame2/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
         <Action type="SetProperty" frame="HeroAbil2/BackupAbilFrame2/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DeathwingWorldbreaker" />
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame2/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
