@@ -1,3 +1,12 @@
+# v0.35
+
+* Statistics
+ * Nothing
+
+* UI
+ * Misha now displays health labels
+ * Fixed an issue causing Deathwing's Molten Flame to always appear in the first ability slot in the Top Bar
+
 # v0.34 (**2023-10-03**)
 
 * Statistics
