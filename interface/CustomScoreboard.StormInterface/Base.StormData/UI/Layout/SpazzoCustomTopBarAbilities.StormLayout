@@ -5752,7 +5752,6 @@
         <When type="Property" frame="$this/T4ControllerFrame" Visible="True" />
         <Action type="SetProperty" frame="LabelT4" Text="AlexstraszaCleansingFlame" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="AlexstraszaCleansingFlame" />
-        <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrameBackup" AbilityLink="AlexstraszaCleansingFlameDragonqueen" />
       </State>
       <State name="AmazonBallLightning">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_cassia_balllightning.dds"/>
@@ -5819,7 +5818,6 @@
         <When type="Property" frame="$this/T4ControllerFrame" Visible="True" />
         <Action type="SetProperty" frame="LabelT4" Text="AurielResurrect" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="AurielResurrect" />
-        <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrameBackup" AbilityLink="AurielResurrectSelf" />
       </State>
       <State name="AurielHeroicCrystalAegis">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_auriel_ribboncocoon.dds"/>
