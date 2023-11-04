@@ -3064,6 +3064,8 @@
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/YrelRighteousHammer" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/YrelAvengingWrath" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/YrelDivinePurpose" />
         <Action type="SetProperty" frame="HeroAbil1/BackgroundImage" Tooltip="{$this/TFFrame/@Text}" />
         <Action type="SetProperty" frame="HeroAbil1/BackgroundImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/YrelVindication" />
         <Action type="SetProperty" frame="HeroAbil2/BackgroundImage" Tooltip="{$this/TFFrame/@Text}" />
