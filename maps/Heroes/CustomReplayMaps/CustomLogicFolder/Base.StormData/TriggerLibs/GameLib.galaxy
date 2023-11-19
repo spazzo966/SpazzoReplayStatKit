@@ -6473,6 +6473,7 @@ bool auto_libGame_gf_HeroDeathAwardXP_TriggerFunc (bool testConds, bool runActio
     }
     libUIUI_gf_UIFloatingCombatTextH16MidXP(lv_itPlayer, lp_deadHero, libCore_ge_FloatingTextType_XPLarge, FixedToInt(lv_xPGranted));
   }
+  // libUIUI_gf_UIFloatingCombatTextH16MidXP(lv_deadPlayer, lp_deadHero, libCore_ge_FloatingTextType_XPSelf, (0 - FixedToInt(lv_xPGranted)));
   return true;
 }
 
@@ -12535,6 +12536,18 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
         lv_leechFraction = 0.0;
       }
     }
+    else if ((CatalogFieldValueGet(c_gameCatalogEffect, lp_damageEffect, "LeechValidator[" + IntToString(c_unitVitalLife) + "]", lp_casterPlayer) == "CasterHasMurkyFistankTalent")) {
+      if ((PlayerHasTalent(lp_casterPlayer, "MurkyFishTank") == false)) {
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Leech Validator CasterHasMurkyFishtankTalent Failed!"));
+        lv_leechFraction = 0.0;
+      }
+    }
+    else if ((CatalogFieldValueGet(c_gameCatalogEffect, lp_damageEffect, "LeechValidator[" + IntToString(c_unitVitalLife) + "]", lp_casterPlayer) == "FirebatHasIgniteHeatTreatmentTalent")) {
+      if ((PlayerHasTalent(lp_casterPlayer, "MurkyFishTank") == false)) {
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Leech Validator FirebatHasIgniteHeatTreatmentTalent Failed!"));
+        lv_leechFraction = 0.0;
+      }
+    }
     else if ((lp_damageEffect == "NecromancerCursedStrikesDamage")) {
       if (!((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && (PlayerHasTalent(lp_casterPlayer, "NecromancerTalentHarvestVitality") == true))) {
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Leech Validator NecromancerTalentHarvestVitality Failed!"));
@@ -13565,6 +13578,14 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
       lv_primaryScoreString = "TalentSixteen";
     }
   }
+  
+  if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroFirebat")) {
+    if ((lp_damageEffect == "FirebatIgniteDamage")) {
+      lv_primaryScoreString = "SupportEleven";
+      lv_secondaryScoreOverride = 1.0;
+      lv_secondaryScoreString = "SupportTwelve";
+    }
+  }
 
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur")) {
     lv_primaryScoreString = "Discard";
@@ -14307,6 +14328,11 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Mech Absorbed Damage, already registered as dead"));
         // }
       }
+      if ((lp_behavior == "DVaMechFatalDamageDisabledTimeout")) {
+          lv_primaryScoreString = "Discard";
+          // lv_primaryScoreOverride = 1.0;
+      }
+      
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAnduin")) {
       if ((lp_behavior == "AnduinDivineStarPowerWordShieldShield") || (lp_behavior == "AnduinDivineStarPowerWordShieldTalentAllyShield")) {
@@ -17617,7 +17643,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroTracer")) {
-      if ((lp_healEffect == "TracerReloadModifyCharges")) {
+      if ((lp_healEffect == "TracerReloadModifyCharges") || (lp_healEffect == "TracerReloadManaRestore")) {
         lv_primaryScoreString = "TalentFour";
       }
       if ((lp_healEffect == "TracerPulseBombPulseGeneratorTalentCreateHealer")) {
@@ -17628,6 +17654,9 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       }
       if ((lp_healEffect == "TracerIsThataHealthPackMoonwellHealer")) {
         lv_primaryScoreString = "TalentTen";
+      }
+      if ((lp_healEffect == "TracerRecallTotalRecallHeal")) {
+        lv_primaryScoreString = "SupportTwelve";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroOrphea")) {
@@ -19679,6 +19708,10 @@ fixed libGame_gv_GetHealDealtAsFixed (unit lp_contextUnit) {
   }
 	if (((UnitHasBehavior2(lp_contextUnit, "RehgarEarthbindTotemGroundedTotemTalentSpellpowerDebuff") == true) && (UnitBehaviorEnabled(lp_contextUnit, "RehgarEarthbindTotemGroundedTotemTalentSpellpowerDebuff") == true) )) {
     lv_healDealtBehaviorName = "RehgarEarthbindTotemGroundedTotemTalentSpellpowerDebuff";
+    lv_healDealtModifier += CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, lv_healDealtBehaviorName, "Modification.HealDealtAdditiveMultiplier[" + IntToString(0) + "]", UnitBehaviorEffectPlayer(lp_contextUnit, lv_healDealtBehaviorName, c_effectPlayerCaster, 0));
+  }
+	if (((UnitHasBehavior2(lp_contextUnit, "TassadarExecutorsWillActiveBuff") == true) && (UnitBehaviorEnabled(lp_contextUnit, "TassadarExecutorsWillActiveBuff") == true) )) {
+    lv_healDealtBehaviorName = "TassadarExecutorsWillActiveBuff";
     lv_healDealtModifier += CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, lv_healDealtBehaviorName, "Modification.HealDealtAdditiveMultiplier[" + IntToString(0) + "]", UnitBehaviorEffectPlayer(lp_contextUnit, lv_healDealtBehaviorName, c_effectPlayerCaster, 0));
   }
 
@@ -24916,10 +24949,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         }
       }
     }
-    if ((lp_damageEffect == "JainaFrostboltSuicide")) {
-      lv_primaryScoreString = "Discard";
-    }
-    if ((lp_damageEffect == "JainaFrostboltFrostShardsSuicide")) {
+    if ((lp_damageEffect == "JainaFrostboltSuicide") || (lp_damageEffect == "JainaFrostboltSuicideRefactor") || (lp_damageEffect == "JainaFrostboltFrostShardsSuicide")) {
       lv_primaryScoreString = "Discard";
     }
   }
@@ -30120,12 +30150,13 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       lv_primaryScoreString = "ScoreThree";
       lv_secondaryScoreString = "AccuracyThirteen";
       lv_secondaryScoreOverride = 1.0;
+      if ((PlayerHasTalent(lv_casterPlayer, "StukovWeightedPustuleReactiveBallistospores") == true) && (PlayerGetCooldown(lv_casterPlayer, "Abil/StukovWeightedPustuleReactiveBallistospores") > 74.9875)) {
+        lv_primaryScoreString = "ScoreEight";
+        lv_secondaryScoreString = "Discard";
+      }
     }
     if ((lp_damageEffect == "StukovWeightedPustuleDamage")) {
       lv_primaryScoreString = "ScoreFour";
-      if ((UnitHasBehavior2(lp_targetUnit, "StukovWeightedPustuleDoT") == true) && (PlayerHasTalent(lv_casterPlayer, "StukovWeightedPustuleReactiveBallistospores") == true) && (PlayerGetCooldown(lv_casterPlayer, "Abil/StukovWeightedPustuleReactiveBallistospores") > 59.9875)) {
-        lv_primaryScoreString = "ScoreEight";
-      }
     }
     if ((lp_damageEffect == "StukovLurkingArmDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -34838,7 +34869,6 @@ void libGame_gf_trackHeroCooldowns () {
     }
     // if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroTracer")) {
     // lv_heroAbilCount[lv_playerIterator] += 1;
-    // lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "TracerTotalRecallDummy";
     // }
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroRagnaros")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
@@ -35284,15 +35314,6 @@ fixed libGame_gf_FetchAbilityCooldownTime (unit lp_unit, string lp_ability, int 
       lv_cooldownTime = UnitGetCooldown(lp_unit, lv_cooldownLink);
     }
     lv_method = "Triple Tap override";
-  }
-  if ((lp_ability == "TracerTotalRecallDummy")) {
-    // if (UnitGetCooldown(lp_unit, CatalogFieldValueGet(c_gameCatalogAbil, "TracerRecall", "Cost.Cooldown.Link", lp_player)) >= CatalogFieldValueGet(c_gameCatalogAbil, "TracerRecall", "Cost.Cooldown.TimeUse", lp_player)) {
-    lv_cooldownTime = UnitGetPropertyFixed(lp_unit, c_unitPropLife, c_unitPropCurrent);
-    // }
-    // else {
-    // lv_cooldownTime = 0.0;
-    // }
-    lv_method = "Total Recall Dummy";
   }
   if ((lp_ability == "ZaryaPainIsTemporary")) {
     lv_cooldownTime = UnitBehaviorDamageModifyLimit(lp_unit, "ZaryaPainIsTemporary");
@@ -37353,7 +37374,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
         lv_scoreString = "Discard";
       }
     }
-    if ((lp_abilityName == "MedicCellularReactor")) {
+    if ((lp_abilityName == "MedicCellularReactor") || (lp_abilityName == "MedicTraumaTriggerAbility")) {
       lv_scoreString = "AccuracyFive";
     }
     if ((lp_abilityName == "MedicStimDrone") || (lp_abilityName == "MedicMedivacDropship")) {
@@ -37906,20 +37927,6 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     }
     if ((lp_abilityName == "TracerRecall")) {
       lv_scoreString = "AccuracyThree";
-      if ((PlayerHasTalent(lv_casterPlayerOverride, "TracerTotalRecallRecall") == true)) {
-        libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride] += 0.5;
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Tracer Recall Detected At: ") + FixedToText(GameGetMissionTime(), 5) + StringToText(" Iterator: ") + FixedToText(libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride], 1)));
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Tracer Health(Recall): ") + FixedToText(UnitGetPropertyFixed(lp_casterUnit, c_unitPropLife, c_unitPropCurrent), 3)));
-      }
-    }
-    if ((lp_abilityName == "TracerTotalRecallDummy")) {
-      lv_scoreString = "Discard";
-      if ((libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride] > libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride])) {
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Tracer Heal Detected At: ") + FixedToText(GameGetMissionTime(), 5) + StringToText(" Iterator: ") + FixedToText(libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride], 1) + StringToText(" Old Iterator: ") + FixedToText(libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride], 1)));
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Tracer Health(Total): ") + FixedToText(UnitGetPropertyFixed(lp_casterUnit, c_unitPropLife, c_unitPropCurrent), 3)));
-        // libGame_gf_HeroSpecificStatTrackerOther((lp_cooldownNewValue - lp_cooldownOldValue), lv_casterPlayerOverride, lv_casterPlayerOverride, "TracerTotalRecallHeal", null, "CDR");
-      }
-      libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride] = libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride];
     }
     if ((lp_abilityName == "TracerReload")) {
       lv_scoreString = "AccuracyFour";
@@ -39748,7 +39755,7 @@ void libGame_gv_initializeOBSUI () {
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Mercenary Tracker"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.34 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.35 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
     // Well, I tried to add team coloured globes.
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamOrder, "11");
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Person", libCore_gv_cOMPUTER_TeamOrder, "Observer");
@@ -44362,7 +44369,7 @@ bool libGame_gt_AddCombatMedicHealing_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void libGame_gt_AddCombatMedicHealing_Init () {
   libGame_gt_AddCombatMedicHealing = TriggerCreate("libGame_gt_AddCombatMedicHealing_Func");
-  TriggerAddEventUnitHealed(libGame_gt_AddCombatMedicHealing, null, c_unitVitalAny, null);
+  TriggerAddEventUnitHealed(libGame_gt_AddCombatMedicHealing, null, c_unitVitalLife, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -44472,8 +44479,8 @@ bool libGame_gt_ProtectorDataCollection_Func (bool testConds, bool runActions) {
 
   // Conditions
   if (testConds) {
-    if (!((UnitBehaviorHasCategoryFlag(EventUnitBehavior(), c_behaviorCategoryBuffTempMaxHealth) == true))) {
-      return false;
+    if (!(((UnitBehaviorHasCategoryFlag(EventUnitBehavior(), c_behaviorCategoryBuffTempMaxHealth) == true) || (UnitBehaviorHasCategoryFlag(EventUnitBehavior(), c_behaviorCategoryProtected) == true)))) {
+        return false;
     }
 
     if (!((UnitGetOwner(lv_shieldedUnit) <= libCore_gv_bALMaxPlayers))) {
@@ -44499,7 +44506,6 @@ bool libGame_gt_ProtectorDataCollection_Func (bool testConds, bool runActions) {
   }
 
   libGame_gf_AddtoAwardValue(lv_casterPlayer, lv_damageAbsorbed, libGame_ge_SecondaryAwards_Protector);
-
   return true;
 }
 
@@ -44657,7 +44663,7 @@ bool libGame_gt_ClutchHealerIncrement_Func (bool testConds, bool runActions) {
 //--------------------------------------------------------------------------------------------------
 void libGame_gt_ClutchHealerIncrement_Init () {
   libGame_gt_ClutchHealerIncrement = TriggerCreate("libGame_gt_ClutchHealerIncrement_Func");
-  TriggerAddEventUnitHealed(libGame_gt_ClutchHealerIncrement, null, c_unitVitalAny, null);
+  TriggerAddEventUnitHealed(libGame_gt_ClutchHealerIncrement, null, c_unitVitalLife, null);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -44940,7 +44946,7 @@ bool libGame_gt_ExperienceGlobeGrantXP_Func (bool testConds, bool runActions) {
   }
 
   if ((EventPlayerEffectUsed() == "ExperienceGlobeDummyImpactSetLastHit")) {
-    libUIUI_gf_UIFloatingCombatTextH16MidXP(lv_targetPlayer, EventPlayerEffectUsedUnit(c_effectUnitSource), libCore_ge_FloatingTextType_XPSelf, FixedToInt(lv_xPAmount));
+    libUIUI_gf_UIFloatingCombatTextH16MidXP(lv_targetPlayer, EventPlayerEffectUsedUnit(c_effectUnitSource), libCore_ge_FloatingTextType_XPSmall, FixedToInt(lv_xPAmount));
   }
   else {
     libUIUI_gf_UIFloatingCombatTextH16MidXP(lv_targetPlayer, EventPlayerEffectUsedUnit(c_effectUnitSource), libCore_ge_FloatingTextType_XPSmall, FixedToInt(lv_xPAmount));
@@ -46731,7 +46737,7 @@ bool libGame_gt_HeroDeathDiabloDiabloDies_Func (bool testConds, bool runActions)
 
   lv_respawnDuration = FixedToInt(libCore_gf_HeroDeathTime(lv_deadPlayer, UnitLevel(lv_deadUnit)));
   if ((PlayerHasTalent(lv_deadPlayer, "DiabloMasteryDyingBreathApocalypse") == true)) {
-    UnitCreateEffectUnit(lv_deadUnit, "DiabloApocalypseEnumerateTrackedUnits", lv_deadUnit);
+    UnitCreateEffectUnitWithSource(lv_deadUnit, "DiabloApocalypseEnumerateTrackedUnits", lv_deadUnit, c_gameCatalogAbil, "DiabloApocalypse");
   }
 
   libGame_gv_players[lv_deadPlayer].lv_isDead = true;
@@ -47729,7 +47735,8 @@ bool libGame_gt_MinionSpawnCycle_Func (bool testConds, bool runActions) {
     }
 
     TimerStart(lv_waveTimer, libCore_gv_bALMinionWaveInterval, false, c_timeGame);
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Started Minion Wave Timer at ") + FixedToText(GameGetMissionTime(), 5)));
+    // TimerStart(lv_waveTimer, 10.0, false, c_timeGame);
+    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Started Minion Wave Timer at ") + FixedToText(GameGetMissionTime(), 4)));
     libGame_gv_minionWaveSpawnCounter += 1;
     auto2740E61A_ae = libGame_gv_laneCount;
     lv_lane = 1;
@@ -47762,7 +47769,7 @@ bool libGame_gt_MinionSpawnCycle_Func (bool testConds, bool runActions) {
           lv_paused = false;
         }
       }
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Timer has more than 0 seconds remaining, waiting 0.25s at ") + FixedToText(GameGetMissionTime(), 5)));
+      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Timer has ") + FixedToText(TimerGetRemaining(lv_waveTimer), 4) + StringToText(" seconds remaining, waiting 0.25s at ") + FixedToText(GameGetMissionTime(), 4)));
       Wait(0.25, c_timeGame);
     }
   }
@@ -48825,64 +48832,11 @@ bool libGame_gt_NPCUnitDies_Func (bool testConds, bool runActions) {
 
   if ((UnitTypeTestAttribute(lv_unitType, c_unitAttributeMinion) == true) && (UnitTestState(lv_unit, c_unitStateHallucination) == false) && (libGame_gv_minionSystemStarted == true)) {
     libGame_gf_MinionDies(lv_unit, libNtve_gf_KillingPlayer(), EventUnitDamageKillXP());
-    // if ((GameGetMissionTime() < 338.125)) {
-    // if ((UnitGetOwner(lv_unit) == libCore_gv_cOMPUTER_TeamChaos)) {
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanBombardmentTalentAnnihilation", (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanBombardmentTalentAnnihilation") + EventUnitDamageKillXP()));
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanMinionKillAnnihilation", libGame_gv_players[1].lv_xPRecievedFromMinions);
-    // }
-    // else {
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanBombardmentTalentAnnihilation", (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanBombardmentTalentAnnihilation") + EventUnitDamageKillXP()));
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanMinionKillAnnihilation", libGame_gv_players[6].lv_xPRecievedFromMinions);
-    // }
-    // }
-    // else if ((GameGetMissionTime() >= 338) && (GameGetMissionTime() < 638)) {
-    // if ((UnitGetOwner(lv_unit) == libCore_gv_cOMPUTER_TeamChaos)) {
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanMasterOfDestructionTalentAnnihilation", (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanMasterOfDestructionTalentAnnihilation") + EventUnitDamageKillXP()));
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanWrathTalentAnnihilation", (libGame_gv_players[1].lv_xPRecievedFromMinions) - PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanMinionKillAnnihilation"));
-    // }
-    // else {
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanMasterOfDestructionTalentAnnihilation", (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanMasterOfDestructionTalentAnnihilation") + EventUnitDamageKillXP()));
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanWrathTalentAnnihilation", (libGame_gv_players[6].lv_xPRecievedFromMinions) - PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanMinionKillAnnihilation"));
-    // }
-    // }
-    // else if ((GameGetMissionTime() >= 638) && (GameGetMissionTime() < 938)) {
-    // if ((UnitGetOwner(lv_unit) == libCore_gv_cOMPUTER_TeamChaos)) {
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanArtOfChaosTalentAnnihilation", (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanArtOfChaosTalentAnnihilation") + EventUnitDamageKillXP()));
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanHeroHitAnnihilation", (libGame_gv_players[1].lv_xPRecievedFromMinions) - (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanMinionKillAnnihilation") + PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanWrathTalentAnnihilation")));
-    // }
-    // else {
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanArtOfChaosTalentAnnihilation", (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanArtOfChaosTalentAnnihilation") + EventUnitDamageKillXP()));
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanHeroHitAnnihilation", (libGame_gv_players[6].lv_xPRecievedFromMinions) - (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanMinionKillAnnihilation") + PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanWrathTalentAnnihilation")));
-    // }
-    // }
-    // else if ((GameGetMissionTime() >= 938) && (GameGetMissionTime() < 1238)) {
-    // if ((UnitGetOwner(lv_unit) == libCore_gv_cOMPUTER_TeamChaos)) {
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamOrder, "UtherHolyLightSilverTouch", (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "UtherHolyLightSilverTouch") + EventUnitDamageKillXP()));
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamOrder, "TimeSpentDead", (libGame_gv_players[1].lv_xPRecievedFromMinions) - (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanMinionKillAnnihilation") + PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanWrathTalentAnnihilation") + PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanHeroHitAnnihilation")));
-    // }
-    // else {
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamChaos, "UtherHolyLightSilverTouch", (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "UtherHolyLightSilverTouch") + EventUnitDamageKillXP()));
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamChaos, "TimeSpentDead", (libGame_gv_players[6].lv_xPRecievedFromMinions) - (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanMinionKillAnnihilation") + PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanWrathTalentAnnihilation") + PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanHeroHitAnnihilation")));
-    // }
-    // }
-    // else if ((GameGetMissionTime() >= 1238)) {
-    // if ((UnitGetOwner(lv_unit) == libCore_gv_cOMPUTER_TeamChaos)) {
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamOrder, "ZuljinYouWantAxeScoreValue", (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "ZuljinYouWantAxeScoreValue") + EventUnitDamageKillXP()));
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamOrder, "Deaths", (libGame_gv_players[1].lv_xPRecievedFromMinions) - (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanMinionKillAnnihilation") + PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanWrathTalentAnnihilation") + PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "AzmodanHeroHitAnnihilation") + PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamOrder, "TimeSpentDead")));
-    // }
-    // else {
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamChaos, "ZuljinYouWantAxeScoreValue", (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "ZuljinYouWantAxeScoreValue") + EventUnitDamageKillXP()));
-    // PlayerScoreValueSetFromFixed(libCore_gv_cOMPUTER_TeamChaos, "Deaths", (libGame_gv_players[6].lv_xPRecievedFromMinions) - (PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanMinionKillAnnihilation") + PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanWrathTalentAnnihilation") + PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "AzmodanHeroHitAnnihilation") + PlayerScoreValueGetAsFixed(libCore_gv_cOMPUTER_TeamChaos, "TimeSpentDead")));
-    // }
-    // }
-
     return true;
   }
 
   return true;
 }
-
-// EARMARK SPAZZO
 
 //--------------------------------------------------------------------------------------------------
 void libGame_gt_NPCUnitDies_Init () {

@@ -1,4 +1,4 @@
-﻿UI/Spazzo/UIVersion=v0.34
+﻿UI/Spazzo/UIVersion=v0.35
 UI/Spazzo/UIWARNING=WARNING
 UI/Spazzo/UIWARNINGTOOLTIP=Game is detected as having ended, statistics may be incorrect, please rewind to after the core is destroyed, but before these images become visible!
 

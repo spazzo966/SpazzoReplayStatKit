@@ -2142,9 +2142,6 @@ bool auto_libGDHL_gf_VikingDownUpdateStatsAwardXPMakeAnnouncements_TriggerFunc (
         }
 
     }
-// xp track earmark
-    libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_deadPlayer, lp_killingPlayer, "DeathXP", lp_downedViking, "");
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("XP Value from ") + StringToText(UnitGetType(lp_downedViking)) + StringToText(" ") + FixedToText(libCore_gf_DataXPXPForHero(lp_killingPlayer, lp_downedViking), 2)));
     libGame_gf_HeroDeathAwardXP(lp_killingPlayer, lp_downedViking, lv_awardGroup, lv_killingGroup, true);
     libGame_gf_HeroDeathUpdatePlayerStats(lp_downedViking, lp_killingPlayer, lv_killingTeamGroup, lv_killingGroup);
     libGame_gf_HeroDeathDeadTeamAnnouncements(lp_downedViking, lv_deadPlayerTeamGroup, lv_killingFaction);
@@ -2620,56 +2617,55 @@ void libGDHL_gf_HeroMedicDecrementHeroCountFunction () {
 
 }
 
-
 string libGDHL_gf_HealingBeamGetPortraitPathforUnit (unit lp_unit) {
-  // Automatic Variable Declarations
-  string auto0CC21378_val;
+    // Automatic Variable Declarations
+    string auto0CC21378_val;
 
-  // Implementation
-  auto0CC21378_val = UnitGetType(lp_unit);
-  if (auto0CC21378_val == "HeroChenStorm") {
-      return "Assets\\Textures\\storm_ui_ingame_targetinfopanel_unit_chen_storm.dds";
-  }
-  else if (auto0CC21378_val == "HeroChenEarth") {
-      return "Assets\\Textures\\storm_ui_ingame_targetinfopanel_unit_chen_earth.dds";
-  }
-  else if (auto0CC21378_val == "HeroChenFire") {
-      return "Assets\\Textures\\storm_ui_ingame_targetinfopanel_unit_chen_fire.dds";
-  }
-  else {
-      return libUIUI_gf_KillLogGetPortraitPathforUnit(lp_unit);
-  }
+    // Implementation
+    auto0CC21378_val = UnitGetType(lp_unit);
+    if (auto0CC21378_val == "HeroChenStorm") {
+        return "Assets\\Textures\\storm_ui_ingame_targetinfopanel_unit_chen_storm.dds";
+    }
+    else if (auto0CC21378_val == "HeroChenEarth") {
+        return "Assets\\Textures\\storm_ui_ingame_targetinfopanel_unit_chen_earth.dds";
+    }
+    else if (auto0CC21378_val == "HeroChenFire") {
+        return "Assets\\Textures\\storm_ui_ingame_targetinfopanel_unit_chen_fire.dds";
+    }
+    else {
+        return libUIUI_gf_KillLogGetPortraitPathforUnit(lp_unit);
+    }
 }
 
 void libGDHL_gf_MedicUIHealingBeam (bool lp_reset, int lp_medicPlayer, unit lp_healingBeamTarget) {
-  // Automatic Variable Declarations
-  // Implementation
-  if ((lp_reset == true)) {
-      libNtve_gf_SetDialogItemImage(libGDHL_gv_healingBeamUI.lv_healingBeamTargetPortrait, "Assets\\Textures\\storm_ui_icon_medic_healingbeam.dds", PlayerGroupSingle(lp_medicPlayer));
-      DialogControlSetVisible(libGDHL_gv_healingBeamUI.lv_healingBeamTargetDisplayName, PlayerGroupSingle(lp_medicPlayer), false);
-  }
-  else {
-      DialogControlSetVisible(libGDHL_gv_healingBeamUI.lv_healingBeamTargetDisplayName, PlayerGroupSingle(lp_medicPlayer), true);
-      libNtve_gf_SetDialogItemText(libGDHL_gv_healingBeamUI.lv_healingBeamTargetDisplayName, libGDHL_gf_MedicUIUnitDisplayName(lp_healingBeamTarget), PlayerGroupSingle(lp_medicPlayer));
-      libNtve_gf_SetDialogItemImage(libGDHL_gv_healingBeamUI.lv_healingBeamTargetPortrait, libGDHL_gf_HealingBeamGetPortraitPathforUnit(lp_healingBeamTarget), PlayerGroupSingle(lp_medicPlayer));
-  }
+    // Automatic Variable Declarations
+    // Implementation
+    if ((lp_reset == true)) {
+        libNtve_gf_SetDialogItemImage(libGDHL_gv_healingBeamUI.lv_healingBeamTargetPortrait, "Assets\\Textures\\storm_ui_icon_medic_healingbeam.dds", PlayerGroupSingle(lp_medicPlayer));
+        DialogControlSetVisible(libGDHL_gv_healingBeamUI.lv_healingBeamTargetDisplayName, PlayerGroupSingle(lp_medicPlayer), false);
+    }
+    else {
+        DialogControlSetVisible(libGDHL_gv_healingBeamUI.lv_healingBeamTargetDisplayName, PlayerGroupSingle(lp_medicPlayer), true);
+        libNtve_gf_SetDialogItemText(libGDHL_gv_healingBeamUI.lv_healingBeamTargetDisplayName, libGDHL_gf_MedicUIUnitDisplayName(lp_healingBeamTarget), PlayerGroupSingle(lp_medicPlayer));
+        libNtve_gf_SetDialogItemImage(libGDHL_gv_healingBeamUI.lv_healingBeamTargetPortrait, libGDHL_gf_HealingBeamGetPortraitPathforUnit(lp_healingBeamTarget), PlayerGroupSingle(lp_medicPlayer));
+    }
 }
 
 text libGDHL_gf_MedicUIUnitDisplayName (unit lp_unit) {
-  // Variable Declarations
-  int lv_unitOwner;
+    // Variable Declarations
+    int lv_unitOwner;
 
-  // Automatic Variable Declarations
-  // Variable Initialization
-  lv_unitOwner = UnitGetOwner(lp_unit);
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_unitOwner = UnitGetOwner(lp_unit);
 
-  // Implementation
-  if ((UnitGetType(lp_unit) == "HeroCho")) {
-      return StringExternal("Param/Value/lib_GDHL_1F065CDD");
-  }
-  else {
-      return UnitGetName(lp_unit);
-  }
+    // Implementation
+    if ((UnitGetType(lp_unit) == "HeroCho")) {
+        return StringExternal("Param/Value/lib_GDHL_1F065CDD");
+    }
+    else {
+        return UnitGetName(lp_unit);
+    }
 }
 
 trigger auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger = null;
@@ -2677,31 +2673,31 @@ bool auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_showHide;
 int auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_player;
 
 void libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI (bool lp_showHide, int lp_player) {
-  auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_showHide = lp_showHide;
-  auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_player = lp_player;
+    auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_showHide = lp_showHide;
+    auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_player = lp_player;
 
-  if (auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger == null) {
-      auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger = TriggerCreate("auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_TriggerFunc");
-  }
+    if (auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger == null) {
+        auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger = TriggerCreate("auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_TriggerFunc");
+    }
 
-  TriggerExecute(auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger, false, false);
+    TriggerExecute(auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_Trigger, false, false);
 }
 
 bool auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_TriggerFunc (bool testConds, bool runActions) {
-  bool lp_showHide = auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_showHide;
-  int lp_player = auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_player;
+    bool lp_showHide = auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_showHide;
+    int lp_player = auto_libGDHL_gf_UIHeroSpecificStatusFrameShowHideMedivacUI_lp_player;
 
-  // Automatic Variable Declarations
-  // Implementation
-  if ((lp_showHide == true)) {
-      DialogControlSendAnimationEvent(libGDHL_gv_medicUI.lv_medivacAlert, libCore_gv_playerGroupFromPlayer[lp_player], "Begin");
-  }
-  else {
-      DialogControlSendAnimationEvent(libGDHL_gv_medicUI.lv_medivacAlert, libCore_gv_playerGroupFromPlayer[lp_player], "End");
-      Wait(0.5, c_timeGame);
-      DialogControlSendAnimationEvent(libGDHL_gv_medicUI.lv_medivacAlert, libCore_gv_playerGroupFromPlayer[lp_player], "End");
-  }
-  return true;
+    // Automatic Variable Declarations
+    // Implementation
+    if ((lp_showHide == true)) {
+        DialogControlSendAnimationEvent(libGDHL_gv_medicUI.lv_medivacAlert, libCore_gv_playerGroupFromPlayer[lp_player], "Begin");
+    }
+    else {
+        DialogControlSendAnimationEvent(libGDHL_gv_medicUI.lv_medivacAlert, libCore_gv_playerGroupFromPlayer[lp_player], "End");
+        Wait(0.5, c_timeGame);
+        DialogControlSendAnimationEvent(libGDHL_gv_medicUI.lv_medivacAlert, libCore_gv_playerGroupFromPlayer[lp_player], "End");
+    }
+    return true;
 }
 
 void libGDHL_gf_HeroMonkIncrementHeroCountFunction () {
@@ -4775,6 +4771,7 @@ bool libGDHL_gt_HearthstoneChannelingBuffOn_Func (bool testConds, bool runAction
         return true;
     }
 
+    // libUIUI_gf_PingPlayerStartsHearthStonePing(lv_hearthstonePlayer, UnitGetPosition(lv_hearthstoneUnit), lv_hearthstoneUnit);
     libUIUI_gf_PingPlayerStartsHearthStonePing(lv_hearthstonePlayer, UnitGetPosition(lv_hearthstoneUnit));
     libSond_gf_HeroVOHeroBeginsHearthing(lv_hearthstonePlayer);
     libUIUI_gf_UIPartyFrameHeroHearthstoneStart(lv_hearthstonePlayer, lv_hearthstoneUnit);
@@ -5078,9 +5075,18 @@ bool libGDHL_gt_HeroAbathurSymbiote_Func (bool testConds, bool runActions) {
                     UnitCreateEffectUnit(lv_abathur, "AbathurSymbioteRemoveAbilityDisabler", libGDHL_gv_heroAbathurSymbioteUnit[lv_abathurPlayer]);
                 }
 
+                // if ((UnitHasBehavior2(lv_symbioteHost, "DVaMechSelfDestructMechDetonationCountdown") == true) && (UnitGetType(libGame_gv_players[lv_symbioteHostPlayer].lv_heroUnit) == "HeroDVaPilot")) {
+                //     UnitCreateEffectUnit(lv_symbioteHost, "AbathurSymbioteDVaRemoveSymbioteHostDelay", lv_abathur);
+                //     lv_symbioteHost = libGame_gv_players[lv_symbioteHostPlayer].lv_heroUnit;
+                //     UnitBehaviorAdd(lv_symbioteHost, "AbathurSymbioteHostBehavior", lv_abathur, 1);
+                //     UnitCreateEffectUnit(lv_abathur, "AbathurSymbioteAddTargetToHostTracker", lv_symbioteHost);
+                //     UnitCreateEffectUnit(lv_symbioteHost, "SymbioteActorLink", libGDHL_gv_heroAbathurSymbioteUnit[lv_abathurPlayer]);
+                //     UnitCreateEffectUnit(lv_symbioteHost, "AbathurSymbioteApplySuperStealthController", libGDHL_gv_heroAbathurSymbioteUnit[lv_abathurPlayer]);
+                //     UnitCreateEffectUnit(lv_symbioteHost, "AbathurSymbioteApplyStealthController", libGDHL_gv_heroAbathurSymbioteUnit[lv_abathurPlayer]);
+                //     UnitCreateEffectUnit(libGDHL_gv_heroAbathurSymbioteUnit[lv_abathurPlayer], "SymbiotePropertyLink", lv_symbioteHost);
+                // }
+                // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Has Unit Tracker(") + IntToText(UnitGroupCount(UnitGetTrackedUnitGroup(lv_abathur, "AbathurSymbioteHostTracker"), c_unitCountAll)) + StringToText(" tracked): ") + StringToText(UnitGetType(UnitGroupUnit(UnitGetTrackedUnitGroup(lv_abathur, "AbathurSymbioteHostTracker"), 1)))));
             }
-			// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("(GDHL) Abathur Symbiote Cast on: ") + StringToText(UnitGetType(lv_symbioteHost))));
-			libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_abathurPlayer, lv_symbioteHostPlayer, "AbathurSymbioteUptime", lv_symbioteHost, "");
             Wait(0.0625, c_timeGame);
         }
         UnitModifyCooldown(lv_abathur, lv_symbioteAbilityCooldownLink, 4.0, c_cooldownOperationSet);
@@ -6297,7 +6303,6 @@ bool libGDHL_gt_HeroArtanisBladeDashPhasePrismCast_Func (bool testConds, bool ru
     }
 
     libGDHL_gv_heroArtanisPhasePrismBoolean[lv_player] = true;
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, StringToText("Phase Prism!"));
     UnitCreateEffectPointWithSource(lv_unit, "ArtanisPhasePrismInitialSet", OrderGetTargetPoint(EventUnitOrder()), c_gameCatalogAbil, "ArtanisPhasePrism");
     UnitCreateEffectUnitWithSource(lv_unit, "ArtanisBladeDashPhasePrismModifyCooldown", lv_unit, c_gameCatalogAbil, "ArtanisPhasePrism");
     UnitCreateEffectUnitWithSource(lv_unit, "ArtanisPhasePrismCancelOrder", lv_unit, c_gameCatalogAbil, "ArtanisPhasePrism");
@@ -9513,7 +9518,6 @@ bool libGDHL_gt_HeroDemonHunterVaultDamageBuff_Func (bool testConds, bool runAct
     lv_player = UnitGetOwner(lv_unit);
     lv_stacks = UnitBehaviorCount(lv_unit, "NewHatredStack");
     lv_stackMod = 0.06;
-    // lv_stackMod = CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "DemonHunterWeaponDamage", "MultiplicativeModifierArray[" + "Vault" + "].Modifier", lv_player);
 
     // Actions
     if (!runActions) {
@@ -9521,13 +9525,11 @@ bool libGDHL_gt_HeroDemonHunterVaultDamageBuff_Func (bool testConds, bool runAct
     }
 
     if ((PlayerHasTalent(lv_player, "DemonHunterDeathDealer") == true)) {
-		lv_stackMod = 0.15;
-        // lv_stackMod = CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "DemonHunterWeaponDamage", "MultiplicativeModifierArray[" + "DeathDealer" + "].Modifier", lv_player);
+        lv_stackMod = 0.15;
     }
 
     lv_finalMod = (lv_base + (lv_stackMod * lv_stacks));
     CatalogFieldValueSetFixed(c_gameCatalogBehavior, "DemonHunterVaultDamageBoost", "Modification.UnifiedDamageDealtFraction[" + IntToString(c_unitDamageTypeBasic) + "]", lv_player, lv_finalMod);
-    // CatalogFieldValueSetFixed(c_gameCatalogBehavior, "DemonHunterVaultDamageBoost", "Modification.DamageDealtFraction[" + IntToString(c_unitDamageTypeBasic) + "]", lv_player, lv_finalMod);
     return true;
 }
 
@@ -10480,7 +10482,7 @@ bool libGDHL_gt_HeroFalstadDishonorableDischargeHeroKillRefreshCooldown_Func (bo
         if (!((UnitHasBehavior2(lv_Falstad, "FalstadDishonorableDischargeQuestCompleteCarryBehavior") == true))) {
             return false;
         }
-		
+
         if (!(((UnitGetType(libGame_gv_players[libGame_gf_HeroParticipatedInTakedownKillingPlayer()].lv_heroUnit) == "HeroFalstad") || (UnitGetType(libGame_gv_players[libGame_gf_HeroParticipatedInTakedownKillingPlayer()].lv_activeVehicle) == "HeroFalstad")))) {
             return false;
         }
@@ -10507,7 +10509,6 @@ void libGDHL_gt_HeroFalstadDishonorableDischargeHeroKillRefreshCooldown_Init () 
     TriggerEnable(libGDHL_gt_HeroFalstadDishonorableDischargeHeroKillRefreshCooldown, false);
     libGame_gf_HeroParticipatedInTakedown(libGDHL_gt_HeroFalstadDishonorableDischargeHeroKillRefreshCooldown);
 }
-
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Hero - Falstad - Wingman Variables
@@ -11239,7 +11240,6 @@ bool libGDHL_gt_HeroJainaChilledDamageResponse_Func (bool testConds, bool runAct
 
     }
 
-//  Jaina Ice Barrier
     if ((PlayerHasTalent(lv_owner, "JainaFrostbiteIceBarrier") == true)) {
         if ((UnitHasBehavior2(libGame_gv_players[lv_owner].lv_heroUnit, "JainaFrostbiteIceBarrierShield") == true)) {
             lv_currentShields = UnitBehaviorDamageModifyRemaining(libGame_gv_players[lv_owner].lv_heroUnit, "JainaFrostbiteIceBarrierShield");
@@ -12527,7 +12527,6 @@ bool libGDHL_gt_HeroLeoricWraithWalkCast_Func (bool testConds, bool runActions) 
         libGame_gv_players[lv_player].lv_cameraPlayerUnitGroupToFocusOn = libGame_gv_players[lv_player].lv_heroUnitGroup;
     }
     UnitSelect(lv_wraithWalkUnit, lv_player, true);
-    // UnitOrderCopy(libGame_gv_players[lv_player].lv_heroUnit, lv_wraithWalkUnit, 32);
     libGDHL_gv_hero_Leoric_WraithWalk_Unit[lv_player] = lv_wraithWalkUnit;
     UnitSetFacing(lv_wraithWalkUnit, UnitGetFacing(lv_controllerUnit), 0.0);
     if ((libAIAI_gf_HeroAIIsAIEnabledForPlayer(lv_player) == true)) {
@@ -16070,39 +16069,38 @@ void libGDHL_gt_HeroMalfurionTenaciousRootsProc_Init () {
 // Trigger: Healing Beam UI Initialize
 //--------------------------------------------------------------------------------------------------
 bool libGDHL_gt_HealingBeamUIInitialize_Func (bool testConds, bool runActions) {
-  int init_i;
+    int init_i;
 
-  // Variable Declarations
-  int[6] lv_panels;
-  int lv_currentPanelLayer;
+    // Variable Declarations
+    int[6] lv_panels;
+    int lv_currentPanelLayer;
 
-  // Automatic Variable Declarations
-  // Variable Initialization
-  for (init_i = 0; init_i <= 5; init_i += 1) {
-      lv_panels[init_i] = c_invalidDialogControlId;
-  }
+    // Automatic Variable Declarations
+    // Variable Initialization
+    for (init_i = 0; init_i <= 5; init_i += 1) {
+        lv_panels[init_i] = c_invalidDialogControlId;
+    }
 
-  // Actions
-  if (!runActions) {
-      return true;
-  }
+    // Actions
+    if (!runActions) {
+        return true;
+    }
 
-  DialogControlHookup(libUIUI_gv_heroSpecificStatusContainer, c_triggerControlTypeImage, "MedicFrame/UnitStatusFrame0/MechanicTexture");
-  libGDHL_gv_healingBeamUI.lv_healingBeamTargetPortrait = DialogControlLastCreated();
-  DialogControlHookup(libUIUI_gv_heroSpecificStatusContainer, c_triggerControlTypeLabel, "MedicFrame/UnitStatusFrame0/MedicHealingBeamName");
-  libGDHL_gv_healingBeamUI.lv_healingBeamTargetDisplayName = DialogControlLastCreated();
-  lv_currentPanelLayer += 1;
-  lv_panels[lv_currentPanelLayer] = DialogControlLastCreated();
+    DialogControlHookup(libUIUI_gv_heroSpecificStatusContainer, c_triggerControlTypeImage, "MedicFrame/UnitStatusFrame0/MechanicTexture");
+    libGDHL_gv_healingBeamUI.lv_healingBeamTargetPortrait = DialogControlLastCreated();
+    DialogControlHookup(libUIUI_gv_heroSpecificStatusContainer, c_triggerControlTypeLabel, "MedicFrame/UnitStatusFrame0/MedicHealingBeamName");
+    libGDHL_gv_healingBeamUI.lv_healingBeamTargetDisplayName = DialogControlLastCreated();
+    lv_currentPanelLayer += 1;
+    lv_panels[lv_currentPanelLayer] = DialogControlLastCreated();
 
-  return true;
+    return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void libGDHL_gt_HealingBeamUIInitialize_Init () {
-  libGDHL_gt_HealingBeamUIInitialize = TriggerCreate("libGDHL_gt_HealingBeamUIInitialize_Func");
-  libCore_gf_IncludeModInitialization(libGDHL_gt_HealingBeamUIInitialize);
+    libGDHL_gt_HealingBeamUIInitialize = TriggerCreate("libGDHL_gt_HealingBeamUIInitialize_Func");
+    libCore_gf_IncludeModInitialization(libGDHL_gt_HealingBeamUIInitialize);
 }
-
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Medic UI Initialize
@@ -16721,74 +16719,74 @@ void libGDHL_gt_HeroMedicMedivacGameOverHide_Init () {
 // Trigger: Hero - Medic - Healing Beam Target Actions
 //--------------------------------------------------------------------------------------------------
 bool libGDHL_gt_HeroMedicHealingBeamTargetActions_Func (bool testConds, bool runActions) {
-  // Variable Declarations
-  unit lv_medic;
-  unit lv_target;
+    // Variable Declarations
+    unit lv_medic;
+    unit lv_target;
 
-  // Automatic Variable Declarations
-  // Variable Initialization
-  lv_medic = EventPlayerEffectUsedUnit(c_effectUnitCaster);
-  lv_target = EventPlayerEffectUsedUnit(c_effectUnitTarget);
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_medic = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    lv_target = EventPlayerEffectUsedUnit(c_effectUnitTarget);
 
-  // Actions
-  if (!runActions) {
-      return true;
-  }
+    // Actions
+    if (!runActions) {
+        return true;
+    }
 
-  if ((UnitFilterMatch(lv_target, UnitGetOwner(lv_target), UnitFilter((1 << c_targetFilterHeroic), 0, (1 << c_targetFilterEnemy) | (1 << c_targetFilterImmuneToFriendlyAbilities) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)))) == true)) {
-      libGDHL_gf_MedicUIHealingBeam(false, UnitGetOwner(lv_medic), lv_target);
-  }
-  else {
-      libGDHL_gf_MedicUIHealingBeam(true, UnitGetOwner(lv_medic), lv_target);
-  }
-  Wait(0.125, c_timeGame);
-  libNtve_gf_MakeUnitLookAtUnit(lv_medic, "RobotArmsOnly", lv_target, "Ref_Center");
-  while (!((UnitBehaviorCount(lv_medic, "MedicCastingHealingBeamBuff") == 0))) {
-      Wait(0.0625, c_timeGame);
-  }
-  libNtve_gf_SimpleLookAtStop(lv_medic, "RobotArmsOnly");
-  return true;
+    if ((UnitFilterMatch(lv_target, UnitGetOwner(lv_target), UnitFilter((1 << c_targetFilterHeroic), 0, (1 << c_targetFilterEnemy) | (1 << c_targetFilterImmuneToFriendlyAbilities) | (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)))) == true)) {
+        libGDHL_gf_MedicUIHealingBeam(false, UnitGetOwner(lv_medic), lv_target);
+    }
+    else {
+        libGDHL_gf_MedicUIHealingBeam(true, UnitGetOwner(lv_medic), lv_target);
+    }
+    Wait(0.125, c_timeGame);
+    libNtve_gf_MakeUnitLookAtUnit(lv_medic, "RobotArmsOnly", lv_target, "Ref_Center");
+    while (!((UnitBehaviorCount(lv_medic, "MedicCastingHealingBeamBuff") == 0))) {
+        Wait(0.0625, c_timeGame);
+    }
+    libNtve_gf_SimpleLookAtStop(lv_medic, "RobotArmsOnly");
+    return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void libGDHL_gt_HeroMedicHealingBeamTargetActions_Init () {
-  libGDHL_gt_HeroMedicHealingBeamTargetActions = TriggerCreate("libGDHL_gt_HeroMedicHealingBeamTargetActions_Func");
-  TriggerEnable(libGDHL_gt_HeroMedicHealingBeamTargetActions, false);
-  TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroMedicHealingBeamTargetActions, c_playerAny, "MedicHealingBeamCreatePersistent");
+    libGDHL_gt_HeroMedicHealingBeamTargetActions = TriggerCreate("libGDHL_gt_HeroMedicHealingBeamTargetActions_Func");
+    TriggerEnable(libGDHL_gt_HeroMedicHealingBeamTargetActions, false);
+    TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroMedicHealingBeamTargetActions, c_playerAny, "MedicHealingBeamCreatePersistent");
 }
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Hero - Medic - Healing Beam UI Reset
 //--------------------------------------------------------------------------------------------------
 bool libGDHL_gt_HeroMedicHealingBeamUIReset_Func (bool testConds, bool runActions) {
-  // Variable Declarations
-  unit lv_medic;
-  unit lv_target;
+    // Variable Declarations
+    unit lv_medic;
+    unit lv_target;
 
-  // Automatic Variable Declarations
-  // Variable Initialization
-  lv_medic = EventPlayerEffectUsedUnit(c_effectUnitCaster);
-  lv_target = EventPlayerEffectUsedUnit(c_effectUnitTarget);
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_medic = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    lv_target = EventPlayerEffectUsedUnit(c_effectUnitTarget);
 
-  // Actions
-  if (!runActions) {
-      return true;
-  }
+    // Actions
+    if (!runActions) {
+        return true;
+    }
 
-  Wait(0.0625, c_timeGame);
-  if ((UnitBehaviorCount(lv_medic, "MedicCastingHealingBeamBuff") == 1)) {
-  }
-  else {
-      libGDHL_gf_MedicUIHealingBeam(true, UnitGetOwner(lv_medic), lv_target);
-  }
-  return true;
+    Wait(0.0625, c_timeGame);
+    if ((UnitBehaviorCount(lv_medic, "MedicCastingHealingBeamBuff") == 1)) {
+    }
+    else {
+        libGDHL_gf_MedicUIHealingBeam(true, UnitGetOwner(lv_medic), lv_target);
+    }
+    return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void libGDHL_gt_HeroMedicHealingBeamUIReset_Init () {
-  libGDHL_gt_HeroMedicHealingBeamUIReset = TriggerCreate("libGDHL_gt_HeroMedicHealingBeamUIReset_Func");
-  TriggerEnable(libGDHL_gt_HeroMedicHealingBeamUIReset, false);
-  TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroMedicHealingBeamUIReset, c_playerAny, "MedicHealingBeamFinalSet");
+    libGDHL_gt_HeroMedicHealingBeamUIReset = TriggerCreate("libGDHL_gt_HeroMedicHealingBeamUIReset_Func");
+    TriggerEnable(libGDHL_gt_HeroMedicHealingBeamUIReset, false);
+    TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroMedicHealingBeamUIReset, c_playerAny, "MedicHealingBeamFinalSet");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -17285,12 +17283,13 @@ bool libGDHL_gt_HeroMuradinHaymakerGrandSlamTalentProc_Func (bool testConds, boo
 
     // Conditions
     if (testConds) {
+        if (!((PlayerHasTalent(lv_killingPlayer, "MuradinMasteryHaymakerGrandSlam") == true))) {
+            return false;
+        }
+
         if (!((UnitHasBehavior2(lv_killedUnit, "MuradinHaymakerGrandSlamTalentDeathMarker") == true))) {
             return false;
         }
-        // if (!((PlayerHasTalent(lv_killingPlayer, "MuradinMasteryHaymakerGrandSlam") == true))) {
-        //     return false;
-        // }
     }
 
     // Actions
@@ -17300,7 +17299,6 @@ bool libGDHL_gt_HeroMuradinHaymakerGrandSlamTalentProc_Func (bool testConds, boo
 
     lv_unit = UnitBehaviorEffectUnit(lv_killedUnit, "MuradinHaymakerGrandSlamTalentDeathMarker", c_effectUnitCaster, 0);
     UnitCreateEffectUnit(lv_unit, "MuradinHaymakerGrandSlamTalentModifyChargeCount", lv_unit);
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Performed Muradin Haymaker Refund for player ") + IntToText(lv_killingPlayer) + StringToText(" Refunding the charge for ") + IntToText(UnitGetOwner(lv_unit)) + StringToText(" from killing ") + IntToText(UnitGetOwner(lv_killedUnit))));
     return true;
 }
 
@@ -17371,106 +17369,106 @@ void libGDHL_gt_HeroMuradinItsHammerTimeOnDeathProc_Init () {
 // Trigger: Hero - Muradin - Free Piercing Stormbolt
 //--------------------------------------------------------------------------------------------------
 bool libGDHL_gt_HeroMuradinFreePiercingStormbolt_Func (bool testConds, bool runActions) {
-  // Variable Declarations
-  int lv_player;
-  unit lv_unit;
+    // Variable Declarations
+    int lv_player;
+    unit lv_unit;
 
-  // Automatic Variable Declarations
-  // Variable Initialization
-  lv_player = libGame_gf_HeroLevelUpPlayer();
-  lv_unit = libGame_gv_players[lv_player].lv_heroUnit;
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = libGame_gf_HeroLevelUpPlayer();
+    lv_unit = libGame_gv_players[lv_player].lv_heroUnit;
 
-  // Conditions
-  if (testConds) {
-      if (!((lv_player >= 1))) {
-          return false;
-      }
+    // Conditions
+    if (testConds) {
+        if (!((lv_player >= 1))) {
+            return false;
+        }
 
-      if (!((lv_player <= libCore_gv_bALMaxPlayers))) {
-          return false;
-      }
+        if (!((lv_player <= libCore_gv_bALMaxPlayers))) {
+            return false;
+        }
 
-      if (!((libGame_gf_HeroLevelUpLevel() >= 10))) {
-          return false;
-      }
+        if (!((libGame_gf_HeroLevelUpLevel() >= 10))) {
+            return false;
+        }
 
-      if (!((UnitGetType(lv_unit) == "HeroMuradin"))) {
-          return false;
-      }
+        if (!((UnitGetType(lv_unit) == "HeroMuradin"))) {
+            return false;
+        }
 
-      if (!((PlayerHasTalent(lv_player, "MuradinStormBoltIt'sHammerTime") == false))) {
-          return false;
-      }
-  }
+        if (!((PlayerHasTalent(lv_player, "MuradinStormBoltIt'sHammerTime") == false))) {
+            return false;
+        }
+    }
 
-  // Actions
-  if (!runActions) {
-      return true;
-  }
+    // Actions
+    if (!runActions) {
+        return true;
+    }
 
-  PlayerAddTalent(lv_player, "MuradinStormBoltIt'sHammerTime");
-  UnitCreateEffectUnit(lv_unit, "MuradinStormboltItsHammerTimeInstantComplete", lv_unit);
-  return true;
+    PlayerAddTalent(lv_player, "MuradinStormBoltIt'sHammerTime");
+    UnitCreateEffectUnit(lv_unit, "MuradinStormboltItsHammerTimeInstantComplete", lv_unit);
+    return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void libGDHL_gt_HeroMuradinFreePiercingStormbolt_Init () {
-  libGDHL_gt_HeroMuradinFreePiercingStormbolt = TriggerCreate("libGDHL_gt_HeroMuradinFreePiercingStormbolt_Func");
-  libGame_gf_HeroLevelUp(libGDHL_gt_HeroMuradinFreePiercingStormbolt);
+    libGDHL_gt_HeroMuradinFreePiercingStormbolt = TriggerCreate("libGDHL_gt_HeroMuradinFreePiercingStormbolt_Func");
+    libGame_gf_HeroLevelUp(libGDHL_gt_HeroMuradinFreePiercingStormbolt);
 }
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Hero - Muradin - Reset Free Piercing Stormbolt
 //--------------------------------------------------------------------------------------------------
 bool libGDHL_gt_HeroMuradinResetFreePiercingStormbolt_Func (bool testConds, bool runActions) {
-  // Variable Declarations
-  int lv_player;
-  unit lv_unit;
+    // Variable Declarations
+    int lv_player;
+    unit lv_unit;
 
-  // Automatic Variable Declarations
-  // Variable Initialization
-  lv_player = UnitGetOwner(EventUnit());
-  lv_unit = libGame_gv_players[lv_player].lv_heroUnit;
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_player = UnitGetOwner(EventUnit());
+    lv_unit = libGame_gv_players[lv_player].lv_heroUnit;
 
-  // Conditions
-  if (testConds) {
-      if (!((lv_player >= 1))) {
-          return false;
-      }
+    // Conditions
+    if (testConds) {
+        if (!((lv_player >= 1))) {
+            return false;
+        }
 
-      if (!((lv_player <= libCore_gv_bALMaxPlayers))) {
-          return false;
-      }
+        if (!((lv_player <= libCore_gv_bALMaxPlayers))) {
+            return false;
+        }
 
-      if (!((UnitGetType(lv_unit) == "HeroMuradin"))) {
-          return false;
-      }
+        if (!((UnitGetType(lv_unit) == "HeroMuradin"))) {
+            return false;
+        }
 
-      if (!((PlayerHasTalent(lv_player, "MuradinStormBoltIt'sHammerTime") == true))) {
-          return false;
-      }
-  }
+        if (!((PlayerHasTalent(lv_player, "MuradinStormBoltIt'sHammerTime") == true))) {
+            return false;
+        }
+    }
 
-  // Actions
-  if (!runActions) {
-      return true;
-  }
+    // Actions
+    if (!runActions) {
+        return true;
+    }
 
-  PlayerRemoveTalent(lv_player, "MuradinStormBoltIt'sHammerTime");
-  UnitCreateEffectUnit(lv_unit, "MuradinStormboltItsHammerTimeInstantReset", lv_unit);
-  Wait(0.125, c_timeGame);
-  if ((UnitBehaviorCount(EventUnit(), "HeroDummyVeterancy") >= 10)) {
-      PlayerAddTalent(lv_player, "MuradinStormBoltIt'sHammerTime");
-      UnitCreateEffectUnit(lv_unit, "MuradinStormboltItsHammerTimeInstantComplete", lv_unit);
-  }
+    PlayerRemoveTalent(lv_player, "MuradinStormBoltIt'sHammerTime");
+    UnitCreateEffectUnit(lv_unit, "MuradinStormboltItsHammerTimeInstantReset", lv_unit);
+    Wait(0.125, c_timeGame);
+    if ((UnitBehaviorCount(EventUnit(), "HeroDummyVeterancy") >= 10)) {
+        PlayerAddTalent(lv_player, "MuradinStormBoltIt'sHammerTime");
+        UnitCreateEffectUnit(lv_unit, "MuradinStormboltItsHammerTimeInstantComplete", lv_unit);
+    }
 
-  return true;
+    return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void libGDHL_gt_HeroMuradinResetFreePiercingStormbolt_Init () {
-  libGDHL_gt_HeroMuradinResetFreePiercingStormbolt = TriggerCreate("libGDHL_gt_HeroMuradinResetFreePiercingStormbolt_Func");
-  TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroMuradinResetFreePiercingStormbolt, null, "MuradinItsHammerTimeTokenCounter", c_unitBehaviorChangeCreate);
+    libGDHL_gt_HeroMuradinResetFreePiercingStormbolt = TriggerCreate("libGDHL_gt_HeroMuradinResetFreePiercingStormbolt_Func");
+    TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroMuradinResetFreePiercingStormbolt, null, "MuradinItsHammerTimeTokenCounter", c_unitBehaviorChangeCreate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -18652,34 +18650,34 @@ void libGDHL_gt_HeroNovaHoloCloneDamageDuplication_Init () {
 // Trigger: Hero - Nova - Anti-Armor Shells Attack Cooldown Controller
 //--------------------------------------------------------------------------------------------------
 bool libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController_Func (bool testConds, bool runActions) {
-  // Variable Declarations
-  unit lv_nova;
+    // Variable Declarations
+    unit lv_nova;
 
-  // Automatic Variable Declarations
-  fixed auto4121A5FF_at;
+    // Automatic Variable Declarations
+    fixed auto4121A5FF_at;
 
-  // Variable Initialization
-  lv_nova = EventUnit();
+    // Variable Initialization
+    lv_nova = EventUnit();
 
-  // Actions
-  if (!runActions) {
-      return true;
-  }
+    // Actions
+    if (!runActions) {
+        return true;
+    }
 
-  auto4121A5FF_at = 0;
-  while (!((UnitWeaponPeriodRemaining(lv_nova, 2) == 0.0)) && auto4121A5FF_at <= 3.0) {
-      Wait(0.0625, c_timeGame);
-      auto4121A5FF_at = auto4121A5FF_at + 0.0625;
-  }
-  UnitBehaviorRemove(lv_nova, "NovaAntiArmorShellsWeaponSuppression", 1);
-  return true;
+    auto4121A5FF_at = 0;
+    while (!((UnitWeaponPeriodRemaining(lv_nova, 2) == 0.0)) && auto4121A5FF_at <= 3.0) {
+        Wait(0.0625, c_timeGame);
+        auto4121A5FF_at = auto4121A5FF_at + 0.0625;
+    }
+    UnitBehaviorRemove(lv_nova, "NovaAntiArmorShellsWeaponSuppression", 1);
+    return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController_Init () {
-  libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController = TriggerCreate("libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController_Func");
-  TriggerEnable(libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController, false);
-  TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController, null, "NovaAntiArmorShellsWeaponSuppression", c_unitBehaviorChangeActivate);
+    libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController = TriggerCreate("libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController_Func");
+    TriggerEnable(libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController, false);
+    TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroNovaAntiArmorShellsAttackCooldownController, null, "NovaAntiArmorShellsWeaponSuppression", c_unitBehaviorChangeActivate);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -19855,6 +19853,10 @@ bool libGDHL_gt_HeroRexxarMishaSpawn_Func (bool testConds, bool runActions) {
             UnitCreateEffectUnit(lv_rexxar, "RexxarAnimalHusbandryDynamicModifyTokenCounter", lv_misha);
         }
 
+        if ((PlayerHasTalent(lv_rexxarPlayer, "RexxarSpiritBondPrimalIntimidation") == true)) {
+            UnitBehaviorAdd(lv_misha, "TalentImposingPresenceCarry", lv_misha, 1);
+        }
+
         if ((PlayerHasTalent(lv_rexxarPlayer, "RexxarDireBeast") == true)) {
             UnitBehaviorAdd(lv_misha, "RexxarDireBeastTokenCounter", lv_misha, 1);
         }
@@ -20127,7 +20129,6 @@ bool libGDHL_gt_HeroRexxarRexxarStasisStartIncludesFeignDeath_Func (bool testCon
     libGDHL_gv_rexxarIsInStasis[UnitGetOwner(EventUnit())] = true;
     libGDHL_gv_rexxarStasisOrderCount[UnitGetOwner(EventUnit())] = UnitOrderCount(EventUnit());
     libGDHL_gf_HeroRexxarMishaFocusOff(UnitGetOwner(EventUnit()));
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Rexxar Control Expanded to include Misha"));
     if ((UnitHasBehavior2(EventUnit(), "RexxarMishaAlive") == true)) {
         autoCFD1E677_g = libGame_gv_players[UnitGetOwner(EventUnit())].lv_heroUnitGroup;
         autoCFD1E677_u = UnitGroupCount(autoCFD1E677_g, c_unitCountAll);
@@ -20191,7 +20192,6 @@ bool libGDHL_gt_HeroRexxarRexxarStasisEndIncludedFeignDeath_Func (bool testConds
     libGDHL_gv_rexxarIsInStasis[UnitGetOwner(EventUnit())] = false;
     auto712D24ED_g = libGame_gv_players[UnitGetOwner(EventUnit())].lv_heroUnitGroup;
     auto712D24ED_u = UnitGroupCount(auto712D24ED_g, c_unitCountAll);
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Rexxar Control Misha Removed"));
     for (;; auto712D24ED_u -= 1) {
         auto712D24ED_var = UnitGroupUnitFromEnd(auto712D24ED_g, auto712D24ED_u);
         if (auto712D24ED_var == null) { break; }
@@ -20253,15 +20253,8 @@ bool libGDHL_gt_HeroRexxarMishaDies_Func (bool testConds, bool runActions) {
     libGDHL_gv_heroRexxarMishaLastKnownTargetLocation[lv_rexxarPlayer] = null;
     UnitBehaviorAdd(lv_misha, "Dead", lv_misha, 1);
     libGDHL_gf_HeroRexxarMishaFocusOff(lv_rexxarPlayer);
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("(GHDL)XP Value from ") + StringToText(UnitGetType(EventUnit())) + StringToText(" ") + FixedToText(libCore_gf_DataXPXPForHero(lv_killingPlayer, EventUnit()), 2)));
     if ((UnitGetType(libGame_gv_players[EventPlayer()].lv_heroUnit) != "HeroAbathur")) {
         lv_rexxarUnit = libGame_gv_players[lv_rexxarPlayer].lv_heroUnit;
-// xp track earmark
-        // libGame_gv_HeroSpecificStoredValue1[lv_rexxarPlayer] = libCore_gf_DataXPXPForHero(lv_killingPlayer, EventUnit());
-		// libGame_gv_HeroSpecificStoredUnit1[lv_rexxarPlayer] = EventUnit();
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("XP Value from ") + StringToText(UnitGetType(EventUnit())) + StringToText(" ") + FixedToText(libCore_gf_DataXPXPForHero(lv_killingPlayer, EventUnit()), 2)));
-        // libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_rexxarPlayer, lv_killingPlayer, "DeathXP", EventUnit(), "");
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("XP Value from ") + StringToText(UnitGetType(EventUnit())) + StringToText(" ") + FixedToText(libCore_gf_DataXPXPForHero(lv_killingPlayer, EventUnit()), 2)));
         lv_killingGroup = libGame_gf_HeroDeathGetKillingGroupFromKillingTeamGroupAndDeadUnit(lv_killingTeamGroup, libNtve_gf_KillingPlayer(), EventUnit());
         libGame_gf_HeroDeathAwardXP(lv_killingPlayer, EventUnit(), lv_killingTeamGroup, lv_killingGroup, true);
         if ((lv_killingPlayer == 16)) {
@@ -23116,7 +23109,10 @@ bool libGDHL_gt_HeroSylvanasPossessionRewire_Func (bool testConds, bool runActio
             libNtve_gf_CreateUnitsWithDefaultFacing(1, "RegenGlobe", c_unitCreateIgnorePlacement, lv_regenGlobeOwner, UnitGetPosition(lv_bribedUnit), null);
         }
         else {
-            UnitCreateEffectUnit(lv_bribedUnit, "ExperienceGlobeDummyImpactSetLastHit", lv_greedUnit);
+            if ((UnitHasBehavior2(lv_bribedUnit, "IsCatapultMinionOrCatapultReplacement") == false)) {
+                UnitCreateEffectUnit(lv_bribedUnit, "ExperienceGlobeDummyImpactSetLastHit", lv_greedUnit);
+            }
+
         }
     }
     libGame_gf_SendEventHeroMindControlsNPC(lv_bribedUnit, UnitGetOwner(lv_bribedUnit));
@@ -24099,6 +24095,7 @@ void libGDHL_gt_HeroTyraelArchangelsWrathSuppressCollision_Init () {
     TriggerEnable(libGDHL_gt_HeroTyraelArchangelsWrathSuppressCollision, false);
     TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroTyraelArchangelsWrathSuppressCollision, null, "TyraelArchangelsWrathDeathActiveBuff", c_unitBehaviorChangeActivate);
 }
+
 //--------------------------------------------------------------------------------------------------
 // Trigger: Hero - Tyrael - Archangel's Wrath Death Timer Modification
 //--------------------------------------------------------------------------------------------------
@@ -24264,7 +24261,7 @@ bool libGDHL_gt_HeroTyrandeElunesChosenDamageProc_Func (bool testConds, bool run
 
     // Automatic Variable Declarations
     // Variable Initialization
-    lv_damageDealt = EventUnitDamageAttempted();
+    lv_damageDealt = (EventUnitDamageAmount() + EventUnitDamageBehaviorShield());
     lv_damageScale = 1.75;
     lv_tyrande = EventUnitDamageSourceUnit();
     lv_tyrandePlayer = UnitGetOwner(lv_tyrande);
@@ -24602,44 +24599,44 @@ void libGDHL_gt_HeroWitchDoctorPassiveTarget_Init () {
 // Trigger: Hero - Witch Doctor - Blood Ritual - Hero Takedown Proc
 //--------------------------------------------------------------------------------------------------
 bool libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc_Func (bool testConds, bool runActions) {
-  // Variable Declarations
-  int lv_wDPlayer;
-  unit lv_wD;
+    // Variable Declarations
+    int lv_wDPlayer;
+    unit lv_wD;
 
-  // Automatic Variable Declarations
-  // Variable Initialization
-  lv_wDPlayer = libGame_gf_HeroParticipatedInTakedownKillingPlayer();
-  lv_wD = libGame_gv_players[lv_wDPlayer].lv_heroUnit;
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_wDPlayer = libGame_gf_HeroParticipatedInTakedownKillingPlayer();
+    lv_wD = libGame_gv_players[lv_wDPlayer].lv_heroUnit;
 
-  // Conditions
-  if (testConds) {
-      if (!((lv_wDPlayer >= 1))) {
-          return false;
-      }
+    // Conditions
+    if (testConds) {
+        if (!((lv_wDPlayer >= 1))) {
+            return false;
+        }
 
-      if (!((lv_wDPlayer <= libCore_gv_bALMaxPlayers))) {
-          return false;
-      }
+        if (!((lv_wDPlayer <= libCore_gv_bALMaxPlayers))) {
+            return false;
+        }
 
-      if (!((PlayerHasTalent(lv_wDPlayer, "WitchDoctorBloodRitual") == true))) {
-          return false;
-      }
-  }
+        if (!((PlayerHasTalent(lv_wDPlayer, "WitchDoctorBloodRitual") == true))) {
+            return false;
+        }
+    }
 
-  // Actions
-  if (!runActions) {
-      return true;
-  }
+    // Actions
+    if (!runActions) {
+        return true;
+    }
 
-  UnitCreateEffectUnit(lv_wD, "WitchDoctorVoodooRitualBloodRitualTalentTakedownProcPersistent", lv_wD);
-  return true;
+    UnitCreateEffectUnit(lv_wD, "WitchDoctorVoodooRitualBloodRitualTalentTakedownProcPersistent", lv_wD);
+    return true;
 }
 
 //--------------------------------------------------------------------------------------------------
 void libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc_Init () {
-  libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc = TriggerCreate("libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc_Func");
-  TriggerEnable(libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc, false);
-  libGame_gf_HeroParticipatedInTakedown(libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc);
+    libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc = TriggerCreate("libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc_Func");
+    TriggerEnable(libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc, false);
+    libGame_gf_HeroParticipatedInTakedown(libGDHL_gt_HeroWitchDoctorBloodRitualHeroTakedownProc);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -25601,6 +25598,7 @@ bool libGDHL_gt_HeroZagaraBanelingBarrage_Func (bool testConds, bool runActions)
 
     libNtve_gf_UnitCreateFacingPoint(1, "ZagaraBaneling", c_unitCreateIgnorePlacement, lv_triggeringPlayer, libNtve_gf_PointOffsetTowardsPoint(UnitGetPosition(lv_zagara), 0.75, lv_targetPoint), lv_targetPoint, lv_zagara);
     lv_baneling = UnitLastCreated();
+    UnitBehaviorAdd(lv_baneling, "ZagaraBanelingExplode", lv_zagara, 1);
     SoundPlayOnUnit(SoundLink("Zagara_BanelingEgg_Explode", -1), PlayerGroupAll(), lv_baneling, 0.0, 100.0, 0.0);
     lv_forwardPoint = libNtve_gf_PointOffsetTowardsPoint(UnitGetPosition(lv_baneling), lv_movementIncrement, lv_targetPoint);
     UnitIssueOrder(lv_baneling, OrderTargetingPoint(AbilityCommand("move", 0), lv_forwardPoint), c_orderQueueReplace);

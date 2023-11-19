@@ -1,11 +1,21 @@
 # v0.35
 
 * Statistics
- * Nothing
+ * Updates to support version 91368
+ * Lt. Morales' Trauma Trigger now has the activation count tracked
 
 * UI
+ * Caster Mode Fast Toggle now also toggles the Heroic Into Basic setting
+ * Top Bar
+  * Muradin's Dwarf Block remaining duration & stack token count is now displayed as a buff if selected as a talent
+  * Illidan's Reflexive Block remaining duration & stack token count is now displayed as a buff if selected as a talent
+  * The Lost Vikings will now display all Viking health bars, regardless of player selection
+  * Misha's health bar will now be displayed as a buff display. This may be updated in the future to add a pet display that will display Raynor's Raider, Jaina's Water Elemental, Misha, Abathur's Monstrosity, and other Pets that I'm not thinking of at the moment
+  * Health bar and abilities will now display the hero consistently, instead of the currently selected unit
+   * As a result of this, the passenger HP display option has been removed
  * Misha now displays health labels
  * Fixed an issue causing Deathwing's Molten Flame to always appear in the first ability slot in the Top Bar
+ * Fixed an issue causing Tracer and Deathwing's heroic replacement abilities to not display correctly with certain setting configurations in the Top Bar
 
 # v0.34 (**2023-10-03**)
 

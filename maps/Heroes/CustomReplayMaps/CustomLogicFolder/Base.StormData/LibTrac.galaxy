@@ -736,7 +736,6 @@ bool libTrac_gt_HeroTracerHeroWeaponApplyTargetingUnit_Func (bool testConds, boo
         UnitBehaviorAdd(lv_tracerUnit, "TracerHeroWeaponCasterTargetFinderDisabler", lv_tracerUnit, 1);
 		if ((libGame_gv_HeroSpecificStoredUnit1[lv_tracerPlayer] != lv_targetUnit) && (UnitGetType(libGame_gv_players[lv_tracerPlayer].lv_heroUnit) == "HeroTracer")) {
             libGame_gv_HeroSpecificStoredUnit1[lv_tracerPlayer] = lv_targetUnit;
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Tracer Weapon Target Updated: ") + StringToText(UnitGetType(lv_targetUnit))));
 		}
     }
     else {
@@ -829,7 +828,6 @@ bool libTrac_gt_HeroTracerTargetAcquired_Func (bool testConds, bool runActions) 
     libTrac_gv_heroTracerCurrentAttackTarget[lv_tracerPlayer] = lv_unit;
     if ((libGame_gv_HeroSpecificStoredUnit1[lv_tracerPlayer] != lv_unit) && (UnitGetType(libGame_gv_players[lv_tracerPlayer].lv_heroUnit) == "HeroTracer")) {
         libGame_gv_HeroSpecificStoredUnit1[lv_tracerPlayer] = lv_unit;
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Tracer Weapon Target Updated: ") + StringToText(UnitGetType(lv_unit))));
     }
     return true;
 }
@@ -1121,16 +1119,13 @@ bool libTrac_gt_HeroTracerRecallCast_Func (bool testConds, bool runActions) {
         UnitCreateEffectPoint(lv_tracer, "TracerRecallTeleportSet", libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_position);
         UnitCreateEffectPoint(lv_tracer, "TracerRecallVisualDummyFXCreateUnit", libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_position);
         UnitCreateEffectPoint(lv_tracer, "TracerRecallLaunchModelMissile", lv_castPoint);
-        CatalogFieldValueSetFixed(c_gameCatalogEffect, "TracerRecallTotalRecallHeal", "RechargeVitalRate", lv_player, (libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health - UnitGetPropertyFixed(lv_tracer, c_unitPropLife, c_unitPropCurrent)));
+        CatalogFieldValueSetFixed(c_gameCatalogEffect, "TracerRecallTotalRecallHeal", "RechargeVitalRate", lv_player, (libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health-UnitGetPropertyFixed(lv_tracer, c_unitPropLife, c_unitPropCurrent)));
         if (((libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health + 0.2) > UnitGetPropertyFixed(lv_tracer, c_unitPropLife, c_unitPropCurrent)) && (PlayerHasTalent(lv_player, "TracerTotalRecallRecall") == true)) {
-            // libGame_gf_HeroSpecificStatTrackerOther((libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health - UnitGetPropertyFixed(lv_tracer, c_unitPropLife, c_unitPropCurrent)), lv_player, lv_player, "TracerTotalRecallHeal", null, "TRAC");
-            // UnitSetPropertyFixed(lv_tracer, c_unitPropLife, libTrac_gv_tracerRecallRecordVariable[lv_player][lv_index].lv_health);
-            CatalogFieldValueSetFixed(c_gameCatalogEffect, "TracerRecallTotalRecallHeal", "Chance", lv_player, 1);
+            CatalogFieldValueSetFixed(c_gameCatalogEffect, "TracerRecallTotalRecallHeal", "Chance", lv_player, 1.0);
         }
         else {
-            CatalogFieldValueSetFixed(c_gameCatalogEffect, "TracerRecallTotalRecallHeal", "Chance", lv_player, 0);
+            CatalogFieldValueSetFixed(c_gameCatalogEffect, "TracerRecallTotalRecallHeal", "Chance", lv_player, 0.0);
         }
-
     }
     else {
         if ((libTrac_gv_tracerRecallDebugMode == true)) {

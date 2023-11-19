@@ -691,11 +691,11 @@
           </State>
           <State name="LostVikings">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_lostvikings.dds"/>
-            <Action type="SetProperty" frame="$parent/$parent/SelectionUnitStatusPanel" AlwaysShowHero="False" />
+            <Action type="SetProperty" frame="$parent/$parent/SelectionUnitStatusPanel" AlwaysShowHero="True" />
             <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="Assets/Textures/storm_ui_ingame_hero_loadingscreen_lostvikings.dds" />
             <Action type="SetProperty" frame="$parent/$parent/PlayerIconRef" Texture="Assets/Textures/storm_ui_glues_draft_portrait_lostvikings.dds" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
-            <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame" Visible="True" />
+            <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame" Visible="False" />
             <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame/OlafHealthBarBacking" Visible="{$Talent0MasterSetting/ShowHealthBackings/CheckBoxButton/@Toggled}" />
             <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame/BaleogHealthBarBacking" Visible="{$Talent0MasterSetting/ShowHealthBackings/CheckBoxButton/@Toggled}" />
             <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame/ErikHealthBarBacking" Visible="{$Talent0MasterSetting/ShowHealthBackings/CheckBoxButton/@Toggled}" />
