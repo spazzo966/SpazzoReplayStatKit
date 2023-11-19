@@ -22,7 +22,8 @@
   <Style name="Spazzo_TopPanelDeathLabel" template="DeathTimerLabel" height="25" vjustify="Middle" hjustify="Center" />
   <Style name="Spazzo_TopPanelDeathLabelWide" template="Spazzo_TopPanelDeathLabel" height="30" />
   <Style name="Spazzo_TopPanelDeathLabelCompact" template="Spazzo_TopPanelDeathLabel" height="22" />
-  <Style name="Spazzo_TopPanelVikingDeathLabel" template="Spazzo_TopPanelDeathLabel" height="14" hjustify="Left" />
+  <Style name="Spazzo_TopPanelVikingDeathLabel" template="Spazzo_TopPanelDeathLabel" height="15" hjustify="Left" />
+  <Style name="Spazzo_TopPanelVikingDeathLabelUltrawide" template="Spazzo_TopPanelVikingDeathLabel" vjustify="Top" />
   <Style name="Spazzo_TopPanelAbilCooldownLabel" template="Storm_AbilityTopBar_Modified" height="12" />
   <Style name="Spazzo_TopPanelAbilCooldownLabel_Heroic" template="Storm_AbilityTopBar_Modified" height="18" />
   <Style name="Spazzo_TopPanelAbilCooldownLabel_Debug" template="Spazzo_TopPanelAbilCooldownLabel_Heroic" height="8" />

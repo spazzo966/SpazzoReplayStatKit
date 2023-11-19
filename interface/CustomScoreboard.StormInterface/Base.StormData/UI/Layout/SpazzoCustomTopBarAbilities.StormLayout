@@ -3526,7 +3526,7 @@
       </State>
       <State name="HeroGarroshSeasonedSoldier">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroGarrosh"/>
-        <When type="Property" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" texture="Assets\Textures\storm_ui_icon_garrosh_armor_up.dds"/>
+        <When type="Property" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" texture="Assets\Textures\storm_ui_icon_garrosh_bloodthirst.dds"/>
         <When type="StateGroup" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" TextureState="TierSelected" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="GarroshBloodthirst" />
@@ -4294,7 +4294,7 @@
       </State>
       <State name="DiabloHasSoulShieldTalent">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroDiablo"/>
-        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" texture="Assets\Textures\storm_ui_icon_talent_spellshield.dds"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" texture="Assets\Textures\storm_ui_icon_Talent_HardenedShield.dds"/>
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierSelected" />
         <When type="Property" frame="$this/T1ControllerFrame" Visible="True"/>
         <Action type="SetProperty" frame="LabelT1" Text="SoulShield" />
@@ -4482,7 +4482,7 @@
         <Action type="SetProperty" frame="HeroActiveAbilT1/UnitAbilFrame" AbilityLink="TyrandeTrueshotAura" />
       </State>
       <State name="SgtHammerMaelstromRounds">
-        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" texture="Assets\Textures\storm_ui_icon_sgthammer_siegemode_var1.dds"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" texture="Assets\Textures\storm_ui_icon_sgthammer_siegemode_var2.dds"/>
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierSelected" />
         <When type="Property" frame="$this/T1ControllerFrame" Visible="True"/>
         <Action type="SetProperty" frame="LabelT1" Text="SgtHammerSiegeModeMaelstromRounds" />
@@ -7629,21 +7629,6 @@
         <AcceptsMouseTooltip val="False"/>
       </Frame>
       <Frame type="UnitStatusAbilIcon" name="UnitAbilFrame">
-        <AbilityLink val="NULL" />
-        <Frame type="AbilIcon" name="AbilIcon">
-          <Frame type="Image" name="IconImage">
-            <Alpha val="0" />
-            <Visible val="false" />
-            <Unclipped val="false"/>
-          </Frame>
-          <Frame type="Label" name="CooldownLabel">
-            <StateGroup name="LabelStateGroup">
-              <DefaultState val="Heroic" />
-            </StateGroup>
-          </Frame>
-        </Frame>
-      </Frame>
-      <Frame type="UnitStatusAbilIcon" name="UnitAbilFrameBackup" template="SpazzoCustomTopBarAbilities/AbilityTopBarTalentContainerTemplate/UnitAbilFrame">
         <AbilityLink val="NULL" />
         <Frame type="AbilIcon" name="AbilIcon">
           <Frame type="Image" name="IconImage">

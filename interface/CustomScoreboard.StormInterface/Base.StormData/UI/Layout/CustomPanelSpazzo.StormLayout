@@ -2590,13 +2590,13 @@
         <Action type="SetProperty" Frame="DamageTenTooltip" Text="@UI/SpazzoDamage/Stukov/ScoreTen/One"/>
       </State>
       <State name="C2">
-        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_stukov_weightedpustule_a.dds" />
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_stukov_lurkingarm.dds" />
         <Action type="SetProperty" Frame="DamageEightTooltip" Text="@UI/SpazzoDamage/Stukov/ScoreEight/Two"/>
         <Action type="SetProperty" Frame="DamageNineTooltip" Text="@UI/SpazzoDamage/Stukov/ScoreNine/Two"/>
         <Action type="SetProperty" Frame="DamageTenTooltip" Text="@UI/SpazzoDamage/Stukov/ScoreTen/Two"/>
       </State>
       <State name="C3">
-        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_stukov_lurkingarm.dds" />
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_stukov_bio-killswitch.dds" />
         <Action type="SetProperty" Frame="DamageEightTooltip" Text="@UI/SpazzoDamage/Stukov/ScoreEight/Three"/>
         <Action type="SetProperty" Frame="DamageNineTooltip" Text="@UI/SpazzoDamage/Stukov/ScoreNine/Three"/>
         <Action type="SetProperty" Frame="DamageTenTooltip" Text="@UI/SpazzoDamage/Stukov/ScoreTen/Three"/>
@@ -2710,7 +2710,7 @@
         <Action type="SetProperty" Frame="SupportFiveTooltip" Text="@UI/Spazzo/Stukov/TalentFour/One"/>
       </State>
       <State name="C2">
-        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="assets\textures\storm_ui_icon_stukov_healingpathogen_b.dds" />
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="assets\textures\storm_ui_icon_stukov_healingpathogen_a.dds" />
         <Action type="SetProperty" Frame="SupportFiveTooltip" Text="@UI/Spazzo/Stukov/TalentFour/Two"/>
       </State>
       <State name="C3">
@@ -2836,11 +2836,11 @@
         <Action type="SetProperty" Frame="AccuracyFiveTooltip" Text="@UI/SpazzoAccuracy/Stukov/AccuracyFive/One"/>
       </State>
       <State name="C2">
-        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_stukov_weightedpustule_a.dds" />
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_stukov_lurkingarm.dds" />
         <Action type="SetProperty" Frame="AccuracyFiveTooltip" Text="@UI/SpazzoAccuracy/Stukov/AccuracyFive/Two"/>
       </State>
       <State name="C3">
-        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_stukov_lurkingarm.dds" />
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_stukov_bio-killswitch.dds" />
         <Action type="SetProperty" Frame="AccuracyFiveTooltip" Text="@UI/SpazzoAccuracy/Stukov/AccuracyFive/Three"/>
       </State>
       <State name="C5"></State>
@@ -2851,7 +2851,7 @@
         <Action type="SetProperty" Frame="AccuracySixTooltip" Text="@UI/SpazzoAccuracy/Stukov/AccuracySix/One"/>
       </State>
       <State name="C2">
-        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="assets\textures\storm_ui_icon_stukov_healingpathogen_b.dds" />
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="assets\textures\storm_ui_icon_stukov_healingpathogen_a.dds" />
         <Action type="SetProperty" Frame="AccuracySixTooltip" Text="@UI/SpazzoAccuracy/Stukov/AccuracySix/Two"/>
       </State>
       <State name="C3">
@@ -4606,7 +4606,7 @@
         <Action type="SetProperty" Frame="SupportTwelveTooltip" Text="@UI/Spazzo/DemonHunter/SupportTwelve/Two"/>
       </State>
       <State name="C3">
-        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="assets\textures\storm_ui_icon_talent_autoattack_damage.dds" />
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="assets\textures\storm_ui_icon_talent_autoattack_searing.dds" />
         <Action type="SetProperty" Frame="SupportElevenTooltip" Text="@UI/Spazzo/DemonHunter/SupportEleven/Three"/>
         <Action type="SetProperty" Frame="SupportTwelveTooltip" Text="@UI/Spazzo/DemonHunter/SupportTwelve/Three"/>
       </State>
@@ -4760,7 +4760,7 @@
         <Action type="SetProperty" Frame="AccuracyThirteenTooltip" Text="@UI/SpazzoAccuracy/DemonHunter/AccuracyThirteen/Two"/>
       </State>
       <State name="C3">
-        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="assets\textures\storm_ui_icon_talent_autoattack_damage.dds" />
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="assets\textures\storm_ui_icon_talent_autoattack_searing.dds" />
         <Action type="SetProperty" Frame="AccuracyThirteenTooltip" Text="@UI/SpazzoAccuracy/DemonHunter/AccuracyThirteen/Three"/>
       </State>
       <State name="C4"></State>
@@ -5582,7 +5582,7 @@
         <Action type="SetProperty" Frame="DamageSixteenTooltip" Text="@UI/SpazzoDamage/Firebat/ScoreSixteen/Two"/>
       </State>
       <State name="C3">
-        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="assets\textures\storm_ui_icon_talent_autoattack_slow.dds" />
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="assets\textures\storm_ui_icon_talent_autoattack_building.dds" />
         <Action type="SetProperty" Frame="DamageSixteenTooltip" Text="@UI/SpazzoDamage/Firebat/ScoreSixteen/Three"/>
       </State>
       <State name="C4"></State>
@@ -5729,7 +5729,7 @@
         <Action type="SetProperty" Frame="SupportTwoTooltip" Text="@UI/Spazzo/Firebat/BaselineTwo/Two"/>
       </State>
       <State name="C3">
-        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="assets\textures\storm_ui_icon_talent_autoattack_slow.dds" />
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="assets\textures\storm_ui_icon_talent_autoattack_building.dds" />
         <Action type="SetProperty" Frame="SupportOneTooltip" Text="@UI/Spazzo/Firebat/BaselineOne/Three"/>
         <Action type="SetProperty" Frame="SupportTwoTooltip" Text="@UI/Spazzo/Firebat/BaselineTwo/Three"/>
       </State>
@@ -17285,19 +17285,14 @@
                 <Key type="Curve" time="0.5" value="-142" inout="Smooth"/>
             </Controller>
           </Animation>
-          <Frame type="Frame" name="HeroSpecificOverrideTemplaterFrame">
-            <Frame type="Label" name="OlafDeathTimerLabel">
-              <Text val="{$OlafDeathTimerPlayer1/@Text}"/>
-              <Visible val="{$OlafDeathTimerPlayer1/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="BaleogDeathTimerLabel">
-              <Text val="{$BaleogDeathTimerPlayer1/@Text}"/>
-              <Visible val="{$BaleogDeathTimerPlayer1/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="ErikDeathTimerLabel">
-              <Text val="{$ErikDeathTimerPlayer1/@Text}"/>
-              <Visible val="{$ErikDeathTimerPlayer1/@Visible}"/>
-            </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabel">
+            <Text val="{$OlafDeathTimerPlayer1/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame1/DeadLabel">
+            <Text val="{$BaleogDeathTimerPlayer1/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame2/DeadLabel">
+            <Text val="{$ErikDeathTimerPlayer1/@Text}"/>
           </Frame>
         </Frame>
         <Frame type="Frame" name="Player2ContainerFrame" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame">
@@ -17374,19 +17369,14 @@
                 <Key type="Animation" time="0" action="Pause"/>
             </Controller>
           </Animation>
-          <Frame type="Frame" name="HeroSpecificOverrideTemplaterFrame">
-            <Frame type="Label" name="OlafDeathTimerLabel">
-              <Text val="{$OlafDeathTimerPlayer2/@Text}"/>
-              <Visible val="{$OlafDeathTimerPlayer2/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="BaleogDeathTimerLabel">
-              <Text val="{$BaleogDeathTimerPlayer2/@Text}"/>
-              <Visible val="{$BaleogDeathTimerPlayer2/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="ErikDeathTimerLabel">
-              <Text val="{$ErikDeathTimerPlayer2/@Text}"/>
-              <Visible val="{$ErikDeathTimerPlayer2/@Visible}"/>
-            </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabel">
+            <Text val="{$OlafDeathTimerPlayer2/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame1/DeadLabel">
+            <Text val="{$BaleogDeathTimerPlayer2/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame2/DeadLabel">
+            <Text val="{$ErikDeathTimerPlayer2/@Text}"/>
           </Frame>
         </Frame>
         <Frame type="Frame" name="Player3ContainerFrame" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame">
@@ -17466,19 +17456,14 @@
                 <Key type="Animation" time="0" action="Pause"/>
             </Controller>
           </Animation>
-          <Frame type="Frame" name="HeroSpecificOverrideTemplaterFrame">
-            <Frame type="Label" name="OlafDeathTimerLabel">
-              <Text val="{$OlafDeathTimerPlayer3/@Text}"/>
-              <Visible val="{$OlafDeathTimerPlayer3/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="BaleogDeathTimerLabel">
-              <Text val="{$BaleogDeathTimerPlayer3/@Text}"/>
-              <Visible val="{$BaleogDeathTimerPlayer3/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="ErikDeathTimerLabel">
-              <Text val="{$ErikDeathTimerPlayer3/@Text}"/>
-              <Visible val="{$ErikDeathTimerPlayer3/@Visible}"/>
-            </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabel">
+            <Text val="{$OlafDeathTimerPlayer3/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame1/DeadLabel">
+            <Text val="{$BaleogDeathTimerPlayer3/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame2/DeadLabel">
+            <Text val="{$ErikDeathTimerPlayer3/@Text}"/>
           </Frame>
         </Frame>
         <Frame type="Frame" name="Player4ContainerFrame" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame">
@@ -17561,19 +17546,14 @@
                 <Key type="Animation" time="0" action="Pause"/>
             </Controller>
           </Animation>
-          <Frame type="Frame" name="HeroSpecificOverrideTemplaterFrame">
-            <Frame type="Label" name="OlafDeathTimerLabel">
-              <Text val="{$OlafDeathTimerPlayer4/@Text}"/>
-              <Visible val="{$OlafDeathTimerPlayer4/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="BaleogDeathTimerLabel">
-              <Text val="{$BaleogDeathTimerPlayer4/@Text}"/>
-              <Visible val="{$BaleogDeathTimerPlayer4/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="ErikDeathTimerLabel">
-              <Text val="{$ErikDeathTimerPlayer4/@Text}"/>
-              <Visible val="{$ErikDeathTimerPlayer4/@Visible}"/>
-            </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabel">
+            <Text val="{$OlafDeathTimerPlayer4/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame1/DeadLabel">
+            <Text val="{$BaleogDeathTimerPlayer4/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame2/DeadLabel">
+            <Text val="{$ErikDeathTimerPlayer4/@Text}"/>
           </Frame>
         </Frame>
         <Frame type="Frame" name="Player5ContainerFrame" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame">
@@ -17653,19 +17633,14 @@
                 <Key type="Animation" time="0" action="Pause"/>
             </Controller>
           </Animation>
-          <Frame type="Frame" name="HeroSpecificOverrideTemplaterFrame">
-            <Frame type="Label" name="OlafDeathTimerLabel">
-              <Text val="{$OlafDeathTimerPlayer5/@Text}"/>
-              <Visible val="{$OlafDeathTimerPlayer5/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="BaleogDeathTimerLabel">
-              <Text val="{$BaleogDeathTimerPlayer5/@Text}"/>
-              <Visible val="{$BaleogDeathTimerPlayer5/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="ErikDeathTimerLabel">
-              <Text val="{$ErikDeathTimerPlayer5/@Text}"/>
-              <Visible val="{$ErikDeathTimerPlayer5/@Visible}"/>
-            </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabel">
+            <Text val="{$OlafDeathTimerPlayer5/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame1/DeadLabel">
+            <Text val="{$BaleogDeathTimerPlayer5/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame2/DeadLabel">
+            <Text val="{$ErikDeathTimerPlayer5/@Text}"/>
           </Frame>
         </Frame>
         <Frame type="Frame" name="Player6ContainerFrame" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame">
@@ -17745,19 +17720,14 @@
                 <Key type="Curve" time="0.5" value="142" inout="Smooth"/>
             </Controller>
           </Animation>
-          <Frame type="Frame" name="HeroSpecificOverrideTemplaterFrame">
-            <Frame type="Label" name="OlafDeathTimerLabel">
-              <Text val="{$OlafDeathTimerPlayer6/@Text}"/>
-              <Visible val="{$OlafDeathTimerPlayer6/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="BaleogDeathTimerLabel">
-              <Text val="{$BaleogDeathTimerPlayer6/@Text}"/>
-              <Visible val="{$BaleogDeathTimerPlayer6/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="ErikDeathTimerLabel">
-              <Text val="{$ErikDeathTimerPlayer6/@Text}"/>
-              <Visible val="{$ErikDeathTimerPlayer6/@Visible}"/>
-            </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabel">
+            <Text val="{$OlafDeathTimerPlayer6/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame1/DeadLabel">
+            <Text val="{$BaleogDeathTimerPlayer6/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame2/DeadLabel">
+            <Text val="{$ErikDeathTimerPlayer6/@Text}"/>
           </Frame>
         </Frame>
         <Frame type="Frame" name="Player7ContainerFrame" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame">
@@ -17834,19 +17804,14 @@
                 <Key type="Animation" time="0" action="Pause"/>
             </Controller>
           </Animation>
-          <Frame type="Frame" name="HeroSpecificOverrideTemplaterFrame">
-            <Frame type="Label" name="OlafDeathTimerLabel">
-              <Text val="{$OlafDeathTimerPlayer7/@Text}"/>
-              <Visible val="{$OlafDeathTimerPlayer7/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="BaleogDeathTimerLabel">
-              <Text val="{$BaleogDeathTimerPlayer7/@Text}"/>
-              <Visible val="{$BaleogDeathTimerPlayer7/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="ErikDeathTimerLabel">
-              <Text val="{$ErikDeathTimerPlayer7/@Text}"/>
-              <Visible val="{$ErikDeathTimerPlayer7/@Visible}"/>
-            </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabel">
+            <Text val="{$OlafDeathTimerPlayer7/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame1/DeadLabel">
+            <Text val="{$BaleogDeathTimerPlayer7/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame2/DeadLabel">
+            <Text val="{$ErikDeathTimerPlayer7/@Text}"/>
           </Frame>
         </Frame>
         <Frame type="Frame" name="Player8ContainerFrame" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame">
@@ -17920,19 +17885,14 @@
                 <Key type="Curve" time="0.5" value="438" inout="Smooth"/>
             </Controller>
           </Animation>
-          <Frame type="Frame" name="HeroSpecificOverrideTemplaterFrame">
-            <Frame type="Label" name="OlafDeathTimerLabel">
-              <Text val="{$OlafDeathTimerPlayer8/@Text}"/>
-              <Visible val="{$OlafDeathTimerPlayer8/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="BaleogDeathTimerLabel">
-              <Text val="{$BaleogDeathTimerPlayer8/@Text}"/>
-              <Visible val="{$BaleogDeathTimerPlayer8/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="ErikDeathTimerLabel">
-              <Text val="{$ErikDeathTimerPlayer8/@Text}"/>
-              <Visible val="{$ErikDeathTimerPlayer8/@Visible}"/>
-            </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabel">
+            <Text val="{$OlafDeathTimerPlayer8/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame1/DeadLabel">
+            <Text val="{$BaleogDeathTimerPlayer8/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame2/DeadLabel">
+            <Text val="{$ErikDeathTimerPlayer8/@Text}"/>
           </Frame>
         </Frame>
         <Frame type="Frame" name="Player9ContainerFrame" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame">
@@ -18016,19 +17976,14 @@
                 <Key type="Animation" time="0" action="Pause"/>
             </Controller>
           </Animation>
-          <Frame type="Frame" name="HeroSpecificOverrideTemplaterFrame">
-            <Frame type="Label" name="OlafDeathTimerLabel">
-              <Text val="{$OlafDeathTimerPlayer9/@Text}"/>
-              <Visible val="{$OlafDeathTimerPlayer9/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="BaleogDeathTimerLabel">
-              <Text val="{$BaleogDeathTimerPlayer9/@Text}"/>
-              <Visible val="{$BaleogDeathTimerPlayer9/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="ErikDeathTimerLabel">
-              <Text val="{$ErikDeathTimerPlayer9/@Text}"/>
-              <Visible val="{$ErikDeathTimerPlayer9/@Visible}"/>
-            </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabel">
+            <Text val="{$OlafDeathTimerPlayer9/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame1/DeadLabel">
+            <Text val="{$BaleogDeathTimerPlayer9/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame2/DeadLabel">
+            <Text val="{$ErikDeathTimerPlayer9/@Text}"/>
           </Frame>
         </Frame>
         <Frame type="Frame" name="Player10ContainerFrame" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame">
@@ -18108,19 +18063,14 @@
                 <Key type="Animation" time="0" action="Pause"/>
             </Controller>
           </Animation>
-          <Frame type="Frame" name="HeroSpecificOverrideTemplaterFrame">
-            <Frame type="Label" name="OlafDeathTimerLabel">
-              <Text val="{$OlafDeathTimerPlayer10/@Text}"/>
-              <Visible val="{$OlafDeathTimerPlayer10/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="BaleogDeathTimerLabel">
-              <Text val="{$BaleogDeathTimerPlayer10/@Text}"/>
-              <Visible val="{$BaleogDeathTimerPlayer10/@Visible}"/>
-            </Frame>
-            <Frame type="Label" name="ErikDeathTimerLabel">
-              <Text val="{$ErikDeathTimerPlayer10/@Text}"/>
-              <Visible val="{$ErikDeathTimerPlayer10/@Visible}"/>
-            </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabel">
+            <Text val="{$OlafDeathTimerPlayer10/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame1/DeadLabel">
+            <Text val="{$BaleogDeathTimerPlayer10/@Text}"/>
+          </Frame>
+          <Frame type="Label" name="SelectionUnitStatusPanel/UnitStatusFrame0/TLVFrame/VikingUnitTracker/TrackedUnitStatusFrame2/DeadLabel">
+            <Text val="{$ErikDeathTimerPlayer10/@Text}"/>
           </Frame>
         </Frame>
         <!-- <Frame type="Label" name="PlayerVikingHPTestLabelOlaf">
@@ -22729,6 +22679,9 @@
               <Key type="Property" time="0" value="false"/>
               <Key type="Property" time="0.25" value="true"/>
             </Controller>
+            <Controller type="Property" property="Toggled" end="Pause"  frame="$Talent4MasterSetting/HeroicIngress/CheckBoxButton">
+              <Key type="Property" time="0" value="true" />
+            </Controller>
             <Controller type="State" stateGroup="SelectedValue" end="Pause" frame="$TopBarSettingsFrame/LayoutPulldown1">
               <Key type="Identifier" time="0" value="1" />
             </Controller>
@@ -22805,6 +22758,9 @@
               <Key type="Property" time="0" value="false"/>
               <Key type="Property" time="0.125" value="true"/>
               <Key type="Property" time="0.25" value="#TopBarProxyTalents"/>
+            </Controller>
+            <Controller type="Property" property="Toggled" end="Pause"  frame="$Talent4MasterSetting/HeroicIngress/CheckBoxButton">
+              <Key type="Property" time="0" value="false" />
             </Controller>
             <Controller type="State" stateGroup="SelectedValue" end="Pause" frame="$TopBarSettingsFrame/LayoutPulldown1">
               <Key type="Identifier" time="0" value="#DefaultLayoutOption" />

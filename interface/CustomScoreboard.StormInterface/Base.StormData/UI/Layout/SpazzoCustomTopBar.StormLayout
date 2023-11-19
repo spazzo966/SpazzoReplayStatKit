@@ -389,7 +389,7 @@
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_abathur.dds"/>
             <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="Assets/Textures/storm_ui_ingame_hero_loadingscreen_abathur.dds" />
             <Action type="SetProperty" frame="$parent/$parent/PlayerIconRef" Texture="Assets/Textures/storm_ui_glues_draft_portrait_abathur.dds" />
-            <Action type="SetProperty" frame="$parent/$parent/SelectionUnitStatusPanel" AlwaysShowHero="False" />
+            <Action type="SetProperty" frame="$parent/$parent/SelectionUnitStatusPanel" AlwaysShowHero="True" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
           <State name="Alarak">
@@ -487,11 +487,6 @@
             <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="Assets/Textures/storm_ui_ingame_hero_loadingscreen_chen.dds" />
             <Action type="SetProperty" frame="$parent/$parent/PlayerIconRef" Texture="Assets/Textures/storm_ui_glues_draft_portrait_chen.dds" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
-            <!-- How do we want to handle these? -->
-            <!-- <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame" Visible="True" />
-            <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame/StormHealthBarBacking" Visible="{$Talent0MasterSetting/ShowHealthBackings/CheckBoxButton/@Toggled}" />
-            <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame/EarthHealthBarBacking" Visible="{$Talent0MasterSetting/ShowHealthBackings/CheckBoxButton/@Toggled}" />
-            <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame/FireHealthBarBacking" Visible="{$Talent0MasterSetting/ShowHealthBackings/CheckBoxButton/@Toggled}" /> -->
           </State>
           <State name="Cho">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_cho.dds"/>
@@ -533,7 +528,7 @@
           </State>
           <State name="DVa">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_dva.dds"/>
-            <Action type="SetProperty" frame="$parent/$parent/SelectionUnitStatusPanel" AlwaysShowHero="False" />
+            <Action type="SetProperty" frame="$parent/$parent/SelectionUnitStatusPanel" AlwaysShowHero="True" />
             <Action type="SetProperty" frame="$parent/$parent/PlayerIconRef" Texture="Assets/Textures/storm_ui_glues_draft_portrait_dva.dds" />
             <!-- <Action type="SetProperty" frame="$parent/$parent/SelectionUnitStatusPanel" SpecificUnit="HeroDVaMech" />
             <Action type="SetProperty" frame="$parent/$parent/SelectionUnitStatusPanel" SpecificUnit="HeroDVaPilot" /> -->
@@ -695,12 +690,6 @@
             <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="Assets/Textures/storm_ui_ingame_hero_loadingscreen_lostvikings.dds" />
             <Action type="SetProperty" frame="$parent/$parent/PlayerIconRef" Texture="Assets/Textures/storm_ui_glues_draft_portrait_lostvikings.dds" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
-            <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame" Visible="False" />
-            <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame/OlafHealthBarBacking" Visible="{$Talent0MasterSetting/ShowHealthBackings/CheckBoxButton/@Toggled}" />
-            <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame/BaleogHealthBarBacking" Visible="{$Talent0MasterSetting/ShowHealthBackings/CheckBoxButton/@Toggled}" />
-            <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame/ErikHealthBarBacking" Visible="{$Talent0MasterSetting/ShowHealthBackings/CheckBoxButton/@Toggled}" />
-            <!-- <Action type="SetAnchor" frame="$parent/$parent/PlayerHeroLoadingScreenImage" side="Left" relative="$parent" pos="Min" offset="-47" /> -->
-            <!-- <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" ImageMaskTexture="_Assets/UI/spaz_ui_loadingscreenalphamask_stand_vikings.dds" /> -->
           </State>
           <State name="Lucio">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_lucio.dds"/>
@@ -812,7 +801,7 @@
           </State>
           <State name="Ragnaros">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_ragnaros.dds"/>
-             <Action type="SetProperty" frame="$parent/$parent/SelectionUnitStatusPanel" AlwaysShowHero="False" />
+             <Action type="SetProperty" frame="$parent/$parent/SelectionUnitStatusPanel" AlwaysShowHero="True" />
             <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="Assets/Textures/storm_ui_ingame_hero_loadingscreen_ragnaros.dds" />
             <Action type="SetProperty" frame="$parent/$parent/PlayerIconRef" Texture="Assets/Textures/storm_ui_glues_draft_portrait_ragnaros.dds" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
@@ -835,8 +824,6 @@
             <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="Assets/Textures/storm_ui_ingame_hero_loadingscreen_rexxar.dds" />
             <Action type="SetProperty" frame="$parent/$parent/PlayerIconRef" Texture="Assets/Textures/storm_ui_glues_draft_portrait_rexxar.dds" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
-            <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame" Visible="False" />
-            <Action type="SetProperty" frame="$parent/$parent/HeroSpecificOverrideTemplaterFrame/MishaPanel" Visible="False" />
           </State>
           <State name="Samuro">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_samuro.dds"/>
@@ -2380,6 +2367,56 @@
         <Action type="SetState" frame="$this/T5AnchorFrame" Group="LayoutState" State="WIIIDE"/>
         <Action type="SetState" frame="$this/T6AnchorFrame" Group="LayoutState" State="WIIIDE"/>
         <Action type="SetState" frame="$this/T7AnchorFrame" Group="LayoutState" State="WIIIDE"/>
+      </State>
+      <State name="UltracompactHeroicIntoBasicHeroicTracerCoreEnabled">
+        <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+        <When type="Property" frame="$Talent4MasterSetting/HeroicIngress/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowActives/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$this/PlayerHeroIconFrame/HeroIconImage" operator="Equal" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_tracer.dds"/>
+        <Action type="SetAnchor" frame="$this/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" side="Left" relative="$ancestor[@type=SelectionUnitStatusPanel]/$parent/HeroicAnchorFrame" pos="Max" offset="0" />
+        <Action type="SetAnchor" frame="$this/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" side="Top" relative="$parent" pos="Mid" offset="13" />
+        <Action type="SetProperty" frame="$this/HeroicAnchorFrame/Label" Text="UTCPAVTR" />
+        <Action type="SetState" frame="$this/T1AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/T2AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/T3AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/HeroicAnchorFrame" Group="LayoutState" State="UltracompactAlternate"/>
+        <Action type="SetState" frame="$this/T5AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/T6AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/T7AnchorFrame" Group="LayoutState" State="Disabled"/>
+      </State>
+      <State name="UltracompactHeroicIntoBasicHeroicDeathwingCoreEnabledHeroicAvailable">
+        <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+        <When type="Property" frame="$Talent4MasterSetting/HeroicIngress/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowActives/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$this/PlayerHeroIconFrame/HeroIconImage" operator="Equal" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_deathwing.dds"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" operator="Equal" TextureState="TierAvailable"/>
+        <Action type="SetAnchor" frame="$this/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" side="Left" relative="$ancestor[@type=SelectionUnitStatusPanel]/$parent/HeroicAnchorFrame" pos="Max" offset="0" />
+        <Action type="SetAnchor" frame="$this/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" side="Top" relative="$parent" pos="Mid" offset="13" />
+        <Action type="SetProperty" frame="$this/HeroicAnchorFrame/Label" Text="UTCPAVDW1" />
+        <Action type="SetState" frame="$this/T1AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/T2AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/T3AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/HeroicAnchorFrame" Group="LayoutState" State="UltracompactAlternate"/>
+        <Action type="SetState" frame="$this/T5AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/T6AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/T7AnchorFrame" Group="LayoutState" State="Disabled"/>
+      </State>
+      <State name="UltracompactHeroicIntoBasicHeroicDeathwingCoreEnabledHeroicNotSelected">
+        <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+        <When type="Property" frame="$Talent4MasterSetting/HeroicIngress/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowActives/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$this/PlayerHeroIconFrame/HeroIconImage" operator="Equal" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_deathwing.dds"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" operator="NotEqual" TextureState="TierSelected"/>
+        <Action type="SetAnchor" frame="$this/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" side="Left" relative="$ancestor[@type=SelectionUnitStatusPanel]/$parent/HeroicAnchorFrame" pos="Max" offset="0" />
+        <Action type="SetAnchor" frame="$this/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" side="Top" relative="$parent" pos="Mid" offset="13" />
+        <Action type="SetProperty" frame="$this/HeroicAnchorFrame/Label" Text="UTCPAVDW2" />
+        <Action type="SetState" frame="$this/T1AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/T2AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/T3AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/HeroicAnchorFrame" Group="LayoutState" State="UltracompactAlternate"/>
+        <Action type="SetState" frame="$this/T5AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/T6AnchorFrame" Group="LayoutState" State="Disabled"/>
+        <Action type="SetState" frame="$this/T7AnchorFrame" Group="LayoutState" State="Disabled"/>
       </State>
       <State name="UltracompactHeroicIntoBasicHeroicAlwaysVisible">
         <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
@@ -6317,8 +6354,8 @@
       <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
       <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
       <PlayerId val="{$parent/PlayerHeroNameFrameTemplate/@PlayerId}" />
-      <HeroesOnly val="False" />
-      <AlwaysShowHero val="False" />
+      <HeroesOnly val="True" />
+      <AlwaysShowHero val="True" />
       <CheckPassengers val="True" />
       <AcceptsMouse val="False"/>
       <AcceptsMouseTooltip val="False"/>
@@ -6339,17 +6376,11 @@
         </Frame>
         <Frame type="UnitStatusBehaviorLabel" name="DeadLabel" template="SpazzoCustomTopBar/BehaviorDescriptionTemplate"/>
         <Frame type="UnitStatusBehaviorAnim" name="DeadDescription" template="SpazzoCustomTopBar/BehaviorAnimationTemplate" />
-        <Frame type="Image" name="HealthBarBacking">
+        <Frame type="Image" name="HealthBarBacking" template="SpazzoTemplates/HealthBarBackingTemplate">
           <Anchor side="Top" relative="$parent" pos="Mid" offset="13" />
           <Anchor side="Left" relative="$ancestor[@type=SelectionUnitStatusPanel]/$parent/HeroBG" pos="Min" offset="2" />
           <Anchor side="Right" relative="$ancestor[@type=SelectionUnitStatusPanel]/$parent/HeroBG" pos="Max" offset="-3" />
           <Anchor side="Bottom" relative="$this" pos="Min" offset="9" />
-          <Texture val="@UI/Spazzo/HealthBarBacking" />
-          <TextureType val="Nineslice" />
-          <Unclipped val="False"/>
-          <AcceptsMouseTooltip val="False" />
-          <AcceptsMouse val="False" />
-          <Visible val="{$Talent0MasterSetting/ShowHealthBackings/CheckBoxButton/@Toggled}"/>
         </Frame>
         <Frame type="Image" name="ManaBarBacking">
           <Anchor side="Top" relative="$parent/HealthBarBacking" pos="Max" offset="0" />
@@ -6491,7 +6522,6 @@
           <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
           <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
         </Frame>
-        <Frame type="Frame" name="UnitVehicleTrackerFrame" template="SpazzoTemplates/VehicleTrackedUnitContainerFrame"/>
         <Frame type="Label" name="DeadMonitor">
           <Text val="False"/>
         </Frame>
@@ -6505,6 +6535,7 @@
           <AllowUnitClicks val="true" />
           <AllowCursorChanging val="true" />
         </Frame> -->
+        <Frame type="Frame" name="TLVFrame" template="SpazzoTemplates/VikingVikingHealthTemplate"/>
         <StateGroup name="CustomEnergyState">
           <DefaultState val="Vanilla"/>
           <State name="TLVRemove">
@@ -7269,61 +7300,31 @@
             <When type="Property" frame="$parent/$parent/PlayerHeroIconFrame/HeroIconImage" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_dva.dds"/>
             <When type="Property" frame="$this" Unit="HeroDVaMech"/>
             <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="_Assets/UI/spaz_ui_dvamech_fake.dds" />
-            <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="VehicleGenericHeroInsideUnitTracker" />
+            <!-- <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="VehicleGenericHeroInsideUnitTracker" /> -->
           </State>
           <State name="DVaPilot">
             <When type="Property" frame="$parent/$parent/PlayerHeroIconFrame/HeroIconImage" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_dva.dds"/>
             <When type="Property" frame="$this" Unit="HeroDVaPilot"/>
             <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="Assets/Textures/storm_ui_ingame_hero_loadingscreen_dva.dds" />
-            <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="VehicleGenericHeroInsideUnitTracker" />
+            <!-- <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="VehicleGenericHeroInsideUnitTracker" /> -->
           </State>
           <State name="Samuro">
             <When type="Property" frame="$parent/$parent/PlayerHeroIconFrame/HeroIconImage" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_samuro.dds"/>
             <When type="Property" frame="$this" Unit="HeroSamuro"/>
             <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="Assets/Textures/storm_ui_ingame_hero_loadingscreen_samuro.dds" />
-            <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="VehicleGenericHeroInsideUnitTracker" />
+            <!-- <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="VehicleGenericHeroInsideUnitTracker" /> -->
           </State>
           <State name="SamuroMirrorImage">
             <When type="Property" frame="$parent/$parent/PlayerHeroIconFrame/HeroIconImage" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_samuro.dds"/>
             <When type="Property" frame="$this" Unit="SamuroMirrorImage"/>
             <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="_Assets/UI/spaz_ui_samuromirror_fake.dds" />
-            <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="VehicleGenericHeroInsideUnitTracker" />
-            <Action type="SetProperty" frame="$parent/$parent/DummyAncestorRelationFrame/SelectionUnitStatusPanelTalentsFrame/UnitStatusFrame0/TrigGunnerIndicator" Visible="True" />
-          </State>
-          <State name="DragonKnight">
-            <When type="Property" frame="$this" Unit="VehicleDragon"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="_Assets/UI/spaz_ui_dk_fake.dds" />
-            <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="VehicleGenericHeroInsideUnitTracker" />
-          </State>
-          <State name="TriglavProtectorPilot">
-            <When type="Property" frame="$this" Unit="VolskayaVehicle"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="_Assets/UI/spaz_ui_trig_fake.dds" />
-            <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="VehicleGenericHeroInsideUnitTracker" />
-          </State>
-          <State name="TriglavProtectorGunner">
-            <When type="Property" frame="$this" Unit="VolskayaVehicleGunner"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="_Assets/UI/spaz_ui_triggun_fake.dds" />
-            <Action type="SetProperty" frame="$parent/$parent/DummyAncestorRelationFrame/SelectionUnitStatusPanelTalentsFrame/UnitStatusFrame0/TrigGunnerIndicator" Visible="True" />
-            <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="VehicleGenericHeroInsideUnitTracker" />
-            <!-- <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="AttachedVehicleGenericHeroInsideUnitTracker" /> -->
-          </State>
-          <State name="BlazeBunker">
-            <When type="Property" frame="$this" Unit="FirebatBunkerDropTurretUnit"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="_Assets/UI/spaz_ui_bunker_fake.dds" />
-            <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="FirebatBunkerDropTurretPassengerUnitTracker" />
+            <!-- <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="VehicleGenericHeroInsideUnitTracker" /> -->
             <!-- <Action type="SetProperty" frame="$parent/$parent/DummyAncestorRelationFrame/SelectionUnitStatusPanelTalentsFrame/UnitStatusFrame0/TrigGunnerIndicator" Visible="True" /> -->
-          </State>
-          <State name="Dropship">
-            <When type="Property" frame="$this" Unit="MedicMedivacDropship"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="_Assets/UI/spaz_ui_medivac_fake.dds" />
-            <!-- <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" Behavior="MedicMedivacUnitTracker" /> -->
-            <!-- <Action type="SetProperty" frame="UnitVehicleTrackerFrame/UnitTrackingElement" ShowValidator="FirebatIsFirebatUnit" /> -->
-            <Action type="SetProperty" frame="$parent/$parent/DummyAncestorRelationFrame/SelectionUnitStatusPanelTalentsFrame/UnitStatusFrame0/TrigGunnerIndicator" Visible="True" />
           </State>
           <State name="MoltenCore">
             <When type="Property" frame="$this" Unit="RagnarosBigRag"/>
             <!-- <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="_Assets/UI/spaz_ui_bigrag_fake.dds" /> -->
-            <Action type="SetProperty" frame="$parent/$parent/DummyAncestorRelationFrame/SelectionUnitStatusPanelTalentsFrame/UnitStatusFrame0/TrigGunnerIndicator" Visible="True" />
+            <!-- <Action type="SetProperty" frame="$parent/$parent/DummyAncestorRelationFrame/SelectionUnitStatusPanelTalentsFrame/UnitStatusFrame0/TrigGunnerIndicator" Visible="True" /> -->
           </State>
           <State name="NoCustom">
           </State>
@@ -7364,47 +7365,6 @@
             <Anchor side="Left" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/FountainAnchor" pos="Min" offset="0"/>
             <Anchor side="Right" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/FountainAnchor" pos="Max" offset="0"/>
             <Anchor side="Bottom" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/FountainAnchor" pos="Max" offset="0"/>
-          </Frame>
-          <Frame type="Frame" name="TrigGunnerIndicator">
-            <Visible val="false"/>
-            <StateGroup name="VehiclePassengerToggleStateGroup">
-              <DefaultState val="Enabled"/>
-              <State name="Ultracompact">
-                <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-                <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="0" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="0" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="0" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="0" offset="0" />
-              </State>
-              <State name="EnabledCompact">
-                <When type="Property" frame="$Talent0MasterSetting/ShowVehicleHP/CheckBoxButton" Toggled="True"/>
-                <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
-                <Action type="SetAnchor" frame="$this" side="Top" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/AbilityCooldownsContainerFrame/FarAnchor" pos="Min" offset="-35" />
-                <Action type="SetAnchor" frame="$this" side="Left" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/AbilityCooldownsContainerFrame/CloseAnchor" pos="Min" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Right" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/AbilityCooldownsContainerFrame/FarAnchor" pos="Max" offset="-23" />
-                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/AbilityCooldownsContainerFrame/FarAnchor" pos="Max" offset="-23" />
-              </State>
-              <State name="Enabled">
-                <When type="Property" frame="$Talent0MasterSetting/ShowVehicleHP/CheckBoxButton" Toggled="True"/>
-                <Action type="SetAnchor" frame="$this" side="Top" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/AbilityCooldownsContainerFrame/FarAnchor" pos="Min" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Left" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/AbilityCooldownsContainerFrame/FarAnchor" pos="Min" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Right" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/AbilityCooldownsContainerFrame/FarAnchor" pos="Max" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/AbilityCooldownsContainerFrame/FarAnchor" pos="Max" offset="0" />
-              </State>
-              <State name="Disabled">
-                <When type="Property" frame="$Talent0MasterSetting/ShowVehicleHP/CheckBoxButton" Toggled="False"/>
-                <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="0" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="0" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="0" offset="0" />
-                <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="0" offset="0" />
-              </State>
-            </StateGroup>
-            <Frame type="UnitStatusMinimapIcon" name="UnitStatusContainedHeroIcon" template="SpazzoTemplates/VehicleTrackedUnitContainerFrame/UnitTrackingElement/TrackedUnitStatusFrame0/UnitStatusContainedHeroIcon">
-              <Frame type="Image" name="BorderImage">
-                <AdjustmentColor val="{$ancestor[@name=DummyAncestorRelationFrame]/$parent/PlayerColourFrame/@Color}" />
-              </Frame>
-            </Frame>
-            <Frame type="UnitStatusShieldedHealthLabel" name="ContainedHeroHealthPercentLabel" template="SpazzoTemplates/VehicleTrackedUnitContainerFrame/UnitTrackingElement/TrackedUnitStatusFrame0/ContainedHeroHealthPercentLabel"/>
           </Frame>
           <Frame type="Frame" name="UnitMapMechanicCount" template="SpazzoTemplates/UnitMapMechanicContainerFrame">
             <Anchor side="Top" relative="$ancestor[@name=DummyAncestorRelationFrame]/$parent/FountainAnchor" pos="Min" offset="-3"/>
@@ -8050,457 +8010,6 @@
             <Anchor side="Left" relative="$parent/QuestStackCounterT0" pos="Min" offset="0"/>
             <Anchor side="Right" relative="$parent/QuestStackCounterT0" pos="Max" offset="0"/>
             <Anchor side="Bottom" relative="$parent/QuestStackCounterT0" pos="Max" offset="0"/>
-          </Frame>
-        </Frame>
-      </Frame>
-    </Frame>
-    <Frame type="Frame" name="HeroSpecificOverrideTemplaterFrame">
-      <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-      <Visible val="False"/>
-      <BatchImages val="True"/>
-      <BatchText val="True" />
-      <Batch val="True"/>
-      <Frame type="Image" name="OlafHealthBarBacking" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking">
-        <Anchor side="Top" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" pos="Min" offset="0" />
-        <Anchor side="Left" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" pos="Min" offset="0" />
-        <Anchor side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
-        <Anchor side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
-        <RenderPriority val="513"/>
-        <Visible val="False"/>
-        <StateGroup name="Size">
-          <DefaultState val="Default"/>
-          <State name="WIIDE">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="3"/>
-            <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" pos="Min" offset="0" />
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetWIDE" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffsetWIDE" />
-          </State>
-          <State name="Ultracompact">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-            <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" pos="Min" offset="0" />
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetUltracompact" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffsetUltracompact" />
-          </State>
-          <State name="Compact">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
-            <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" pos="Min" offset="-24" />
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetCompact" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffsetCompact" />
-          </State>
-          <State name="Ingress">
-            <When type="StateGroup" frame="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/HeroicAnchorFrame" operator="Equal" UseState="InUse"/>
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="1"/>
-            <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" pos="Min" offset="0" />
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetIngress" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
-          </State>
-          <State name="IngressNoHeroicInUse">
-            <When type="StateGroup" frame="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/HeroicAnchorFrame" operator="Equal" UseState="OutOfUse"/>
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="1"/>
-            <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" pos="Min" offset="0" />
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
-          </State>
-          <State name="Default">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="0"/>
-            <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/$parent/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking" pos="Min" offset="0" />
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
-          </State>
-        </StateGroup>
-      </Frame>
-      <Frame type="Image" name="BaleogHealthBarBacking" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking">
-        <Anchor side="Top" relative="$parent/OlafHealthBarBacking" pos="Min" offset="0" />
-        <Anchor side="Left" relative="$parent/OlafHealthBarBacking" pos="Max" offset="0" />
-        <Anchor side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
-        <Anchor side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
-        <RenderPriority val="513"/>
-        <Visible val="False"/>
-        <StateGroup name="Size">
-          <DefaultState val="Default"/>
-          <State name="WIIDE">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="3"/>
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetWIDE" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffsetWIDE" />
-          </State>
-          <State name="Ultracompact">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetUltracompact" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffsetUltracompact" />
-          </State>
-          <State name="Compact">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetCompact" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffsetCompact" />
-          </State>
-          <State name="Ingress">
-            <When type="StateGroup" frame="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/HeroicAnchorFrame" operator="Equal" UseState="InUse"/>
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="1"/>
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetIngress" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
-          </State>
-          <State name="IngressNoHeroicInUse">
-            <When type="StateGroup" frame="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/HeroicAnchorFrame" operator="Equal" UseState="OutOfUse"/>
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="1"/>
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
-          </State>
-          <State name="Default">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="0"/>
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
-          </State>
-        </StateGroup>
-      </Frame>
-      <Frame type="Image" name="ErikHealthBarBacking" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBarBacking">
-        <Anchor side="Top" relative="$parent/BaleogHealthBarBacking" pos="Min" offset="0" />
-        <Anchor side="Left" relative="$parent/BaleogHealthBarBacking" pos="Max" offset="0" />
-        <Anchor side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
-        <Anchor side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
-        <RenderPriority val="513"/>
-        <Visible val="False"/>
-        <StateGroup name="Size">
-          <DefaultState val="Default"/>
-          <State name="WIIDE">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="3"/>
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetWIDE" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffsetWIDE" />
-          </State>
-          <State name="Ultracompact">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetUltracompact" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffsetUltracompact" />
-          </State>
-          <State name="Compact">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetCompact" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffsetCompact" />
-          </State>
-          <State name="Ingress">
-            <When type="StateGroup" frame="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/HeroicAnchorFrame" operator="Equal" UseState="InUse"/>
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="1"/>
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetIngress" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
-          </State>
-          <State name="IngressNoHeroicInUse">
-            <When type="StateGroup" frame="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/HeroicAnchorFrame" operator="Equal" UseState="OutOfUse"/>
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="1"/>
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
-          </State>
-          <State name="Default">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="0"/>
-            <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
-            <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
-          </State>
-        </StateGroup>
-      </Frame>
-      <Frame type="Image" name="OlafIndicatorIcon">
-        <Anchor side="Right" relative="$parent/OlafHealthBarBacking" pos="Max" offset="#TLVIconOffset" />
-        <Anchor side="Bottom" relative="$parent/OlafHealthBarBacking" pos="Max" offset="#TLVIconOffset" />
-        <Height val="#TLVIconSize"/>
-        <Width val="#TLVIconSize"/>
-        <Texture val="Assets\Textures\storm_ui_hud_heromechanic_vikings_shield_small_off.dds"/>
-        <RenderPriority val="515"/>
-        <Visible val="{$parent/OlafHealthBarBacking/@Visible}"/>
-        <StateGroup name="Size">
-          <DefaultState val="Default"/>
-          <State name="Ultracompact">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-            <Action type="SetProperty" frame="$this" Height="#TLVIconSizeUltracompact" />
-            <Action type="SetProperty" frame="$this" Width="#TLVIconSizeUltracompact" />
-          </State>
-          <State name="Default">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
-            <Action type="SetProperty" frame="$this" Height="#TLVIconSize" />
-            <Action type="SetProperty" frame="$this" Width="#TLVIconSize" />
-          </State>
-        </StateGroup>
-      </Frame>
-      <Frame type="Image" name="BaleogIndicatorIcon">
-        <Anchor side="Right" relative="$parent/BaleogHealthBarBacking" pos="Max" offset="#TLVIconOffset" />
-        <Anchor side="Bottom" relative="$parent/BaleogHealthBarBacking" pos="Max" offset="#TLVIconOffset" />
-        <Height val="#TLVIconSize"/>
-        <Width val="#TLVIconSize"/>
-        <Texture val="Assets\Textures\storm_ui_hud_heromechanic_vikings_sword_small_off.dds"/>
-        <RenderPriority val="515"/>
-        <Visible val="{$parent/BaleogHealthBarBacking/@Visible}"/>
-        <StateGroup name="Size">
-          <DefaultState val="Default"/>
-          <State name="Ultracompact">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-            <Action type="SetProperty" frame="$this" Height="#TLVIconSizeUltracompact" />
-            <Action type="SetProperty" frame="$this" Width="#TLVIconSizeUltracompact" />
-          </State>
-          <State name="Default">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
-            <Action type="SetProperty" frame="$this" Height="#TLVIconSize" />
-            <Action type="SetProperty" frame="$this" Width="#TLVIconSize" />
-          </State>
-        </StateGroup>
-      </Frame>
-      <Frame type="Image" name="ErikIndicatorIcon">
-        <Anchor side="Right" relative="$parent/ErikHealthBarBacking" pos="Max" offset="#TLVIconOffset" />
-        <Anchor side="Bottom" relative="$parent/ErikHealthBarBacking" pos="Max" offset="#TLVIconOffset" />
-        <Height val="#TLVIconSize"/>
-        <Width val="#TLVIconSize"/>
-        <Texture val="Assets\Textures\storm_ui_hud_heromechanic_vikings_boot_small_off.dds"/>
-        <RenderPriority val="515"/>
-        <Visible val="{$parent/ErikHealthBarBacking/@Visible}"/>
-        <StateGroup name="Size">
-          <DefaultState val="Default"/>
-          <State name="Ultracompact">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-            <Action type="SetProperty" frame="$this" Height="#TLVIconSizeUltracompact" />
-            <Action type="SetProperty" frame="$this" Width="#TLVIconSizeUltracompact" />
-          </State>
-          <State name="Default">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
-            <Action type="SetProperty" frame="$this" Height="#TLVIconSize" />
-            <Action type="SetProperty" frame="$this" Width="#TLVIconSize" />
-          </State>
-        </StateGroup>
-      </Frame>
-      <Frame type="Label" name="OlafDeathTimerLabel">
-        <Anchor side="Top" relative="$parent/OlafHealthBarBacking" pos="Min" offset="0" />
-        <Anchor side="Left" relative="$parent/OlafHealthBarBacking" pos="Min" offset="1" />
-        <Style val="Spazzo_TopPanelVikingDeathLabel"/>
-        <Color val="{$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/PlayerColourFrame/@Color}" />
-        <RenderPriority val="515"/>
-        <StateGroup name="Position">
-          <DefaultState val="Default"/>
-          <State name="Ultracompact">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-            <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/OlafHealthBarBacking" pos="Min" offset="-1" />
-          </State>
-          <State name="Default">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
-            <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/OlafHealthBarBacking" pos="Min" offset="-1" />
-          </State>
-        </StateGroup>
-      </Frame>
-      <Frame type="Label" name="BaleogDeathTimerLabel">
-        <Anchor side="Top" relative="$parent/BaleogHealthBarBacking" pos="Min" offset="0" />
-        <Anchor side="Left" relative="$parent/BaleogHealthBarBacking" pos="Min" offset="1" />
-        <Style val="Spazzo_TopPanelVikingDeathLabel"/>
-        <Color val="{$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/PlayerColourFrame/@Color}" />
-        <RenderPriority val="515"/>
-        <StateGroup name="Position">
-          <DefaultState val="Default"/>
-          <State name="Ultracompact">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-            <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/BaleogHealthBarBacking" pos="Min" offset="-1" />
-          </State>
-          <State name="Default">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
-            <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/BaleogHealthBarBacking" pos="Min" offset="-1" />
-          </State>
-        </StateGroup>
-      </Frame>
-      <Frame type="Label" name="ErikDeathTimerLabel">
-        <Anchor side="Top" relative="$parent/ErikHealthBarBacking" pos="Min" offset="0" />
-        <Anchor side="Left" relative="$parent/ErikHealthBarBacking" pos="Min" offset="1" />
-        <Style val="Spazzo_TopPanelVikingDeathLabel"/>
-        <Color val="{$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/PlayerColourFrame/@Color}" />
-        <RenderPriority val="515"/>
-        <StateGroup name="Position">
-          <DefaultState val="Default"/>
-          <State name="Ultracompact">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-            <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/ErikHealthBarBacking" pos="Min" offset="-1" />
-          </State>
-          <State name="Default">
-            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
-            <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/ErikHealthBarBacking" pos="Min" offset="-1" />
-          </State>
-        </StateGroup>
-      </Frame>
-      <Frame type="SelectionUnitStatusPanel" name="OlafPanel">
-        <Anchor side="Top" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-        <PlayerId val="{$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/PlayerHeroNameFrameTemplate/@PlayerId}" />
-        <HeroesOnly val="False" />
-        <AlwaysShowHero val="False" />
-        <SpecificUnit val="HeroOlaf"/>
-        <CheckPassengers val="True" />
-        <AcceptsMouse val="False"/>
-        <AcceptsMouseTooltip val="False"/>
-        <RenderPriority val="514"/>
-        <Visible val="{$parent/OlafHealthBarBacking/@Visible}"/>
-        <Frame type="UnitStatusFrame" name="UnitStatusFrame0">
-          <Anchor side="Top" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-          <Anchor side="Left" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-          <Anchor side="Right" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-          <Anchor side="Bottom" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-          <AcceptsMouse val="False"/>
-          <AcceptsMouseTooltip val="False"/>
-          <Persistent val="true" />
-          <Frame type="UnitStatusShieldedHealthBar" name="HealthBar" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBar">
-            <Anchor side="Top" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/OlafHealthBarBacking" pos="Min" offset="1" />
-            <Anchor side="Left" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/OlafHealthBarBacking" pos="Min" offset="1" />
-            <Anchor side="Right" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/OlafHealthBarBacking" pos="Max" offset="-1" />
-            <Anchor side="Bottom" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/OlafHealthBarBacking" pos="Max" offset="-1" />
-            <Expansion val="Up" />
-          </Frame>
-        </Frame>
-        <Frame type="UnitStatusFrame" name="UnitStatusFrame1" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/HeroSpecificOverrideTemplaterFrame/OlafPanel/UnitStatusFrame0"/>
-        <Frame type="UnitStatusFrame" name="UnitStatusFrame2" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/HeroSpecificOverrideTemplaterFrame/OlafPanel/UnitStatusFrame0"/>
-        <Frame type="UnitStatusFrame" name="UnitStatusFrame3" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/HeroSpecificOverrideTemplaterFrame/OlafPanel/UnitStatusFrame0"/>
-      </Frame>
-      <Frame type="SelectionUnitStatusPanel" name="BaleogPanel">
-        <Anchor side="Top" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-        <PlayerId val="{$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/PlayerHeroNameFrameTemplate/@PlayerId}" />
-        <HeroesOnly val="False" />
-        <AlwaysShowHero val="False" />
-        <CheckPassengers val="True" />
-        <SpecificUnit val="HeroBaleog"/>
-        <AcceptsMouse val="False"/>
-        <AcceptsMouseTooltip val="False"/>
-        <RenderPriority val="514"/>
-        <Visible val="{$parent/BaleogHealthBarBacking/@Visible}"/>
-        <Frame type="UnitStatusFrame" name="UnitStatusFrame0">
-          <Anchor side="Top" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-          <Anchor side="Left" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-          <Anchor side="Right" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-          <Anchor side="Bottom" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-          <AcceptsMouse val="False"/>
-          <AcceptsMouseTooltip val="False"/>
-          <Persistent val="true" />
-          <Frame type="UnitStatusShieldedHealthBar" name="HealthBar" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBar">
-            <Anchor side="Top" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/BaleogHealthBarBacking" pos="Min" offset="1" />
-            <Anchor side="Left" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/BaleogHealthBarBacking" pos="Min" offset="1" />
-            <Anchor side="Right" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/BaleogHealthBarBacking" pos="Max" offset="-1" />
-            <Anchor side="Bottom" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/BaleogHealthBarBacking" pos="Max" offset="-1" />
-            <Anchor side="Bottom" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/OlafHealthBarBacking" pos="Max" offset="-1" />
-            <Expansion val="Up" />
-          </Frame>
-        </Frame>
-        <Frame type="UnitStatusFrame" name="UnitStatusFrame1" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/HeroSpecificOverrideTemplaterFrame/BaleogPanel/UnitStatusFrame0"/>
-        <Frame type="UnitStatusFrame" name="UnitStatusFrame2" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/HeroSpecificOverrideTemplaterFrame/BaleogPanel/UnitStatusFrame0"/>
-        <Frame type="UnitStatusFrame" name="UnitStatusFrame3" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/HeroSpecificOverrideTemplaterFrame/BaleogPanel/UnitStatusFrame0"/>
-      </Frame>
-      <Frame type="SelectionUnitStatusPanel" name="ErikPanel">
-        <Anchor side="Top" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-        <PlayerId val="{$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/PlayerHeroNameFrameTemplate/@PlayerId}" />
-        <HeroesOnly val="False" />
-        <AlwaysShowHero val="False" />
-        <CheckPassengers val="True" />
-        <SpecificUnit val="HeroErik"/>
-        <AcceptsMouse val="False"/>
-        <AcceptsMouseTooltip val="False"/>
-        <RenderPriority val="514"/>
-        <Visible val="{$parent/ErikHealthBarBacking/@Visible}"/>
-        <Frame type="UnitStatusFrame" name="UnitStatusFrame0">
-          <Anchor side="Top" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-          <Anchor side="Left" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-          <Anchor side="Right" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-          <Anchor side="Bottom" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-          <AcceptsMouse val="False"/>
-          <AcceptsMouseTooltip val="False"/>
-          <Persistent val="true" />
-          <Frame type="UnitStatusShieldedHealthBar" name="HealthBar" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/SelectionUnitStatusPanel/UnitStatusFrame0/HealthBar">
-            <Anchor side="Top" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/ErikHealthBarBacking" pos="Min" offset="1" />
-            <Anchor side="Left" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/ErikHealthBarBacking" pos="Min" offset="1" />
-            <Anchor side="Right" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/ErikHealthBarBacking" pos="Max" offset="-1" />
-            <Anchor side="Bottom" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/ErikHealthBarBacking" pos="Max" offset="-1" />
-            <Anchor side="Bottom" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/OlafHealthBarBacking" pos="Max" offset="-1" />
-            <Expansion val="Up" />
-          </Frame>
-        </Frame>
-        <Frame type="UnitStatusFrame" name="UnitStatusFrame1" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/HeroSpecificOverrideTemplaterFrame/ErikPanel/UnitStatusFrame0"/>
-        <Frame type="UnitStatusFrame" name="UnitStatusFrame2" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/HeroSpecificOverrideTemplaterFrame/ErikPanel/UnitStatusFrame0"/>
-        <Frame type="UnitStatusFrame" name="UnitStatusFrame3" template="SpazzoCustomTopBar/PlayerCustomTalentTreeReferenceFrame/HeroSpecificOverrideTemplaterFrame/ErikPanel/UnitStatusFrame0"/>
-      </Frame>
-      <Frame type="SelectionUnitStatusPanel" name="MishaPanel">
-        <Anchor side="Top" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent" pos="Max" offset="0"/>
-        <PlayerId val="{$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/PlayerHeroNameFrameTemplate/@PlayerId}" />
-        <HeroesOnly val="False" />
-        <AlwaysShowHero val="False" />
-        <CheckPassengers val="True" />
-        <SpecificUnit val="RexxarMisha"/>
-        <AcceptsMouse val="False"/>
-        <AcceptsMouseTooltip val="False"/>
-        <Height val="200"/>
-        <Width val="150"/>
-        <AlwaysShowHero val="True" />
-        <CheckPassengers val="True" />
-        <!-- <AllowObserverLocalSelection val="True" /> -->
-        <AcceptsMouse val="False"/>
-        <AcceptsMouseTooltip val="False"/>
-        <Height val="200"/>
-        <Width val="150"/>
-        <Visible val="False"/>
-        <Frame type="UnitStatusFrame" name="UnitStatusFrame0">
-          <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-          <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-          <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-          <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-          <Width val="200" />
-          <Height val="170" />
-          <AcceptsMouse val="False"/>
-          <AcceptsMouseTooltip val="False"/>
-          <RenderPriority val="999"/>
-          <Frame type="Frame" name="MishaHealth">
-            <Anchor side="Top" relative="$parent" pos="Min" offset="53"/>
-            <Anchor side="Bottom" relative="$parent" pos="Min" offset="83"/>
-            <Anchor side="Left" relative="$parent" pos="Min" offset="50"/>
-            <Anchor side="Right" relative="$parent" pos="Min" offset="120"/>
-            <Frame type="UnitStatusMinimapIcon" name="UnitStatusContainedHeroIcon">
-              <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-              <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-              <Anchor side="Right" relative="$parent" pos="Max" offset="-34"/>
-              <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-              <ColorStyle val="Primary" />
-              <AdditionalColorStyle val="PrimaryLight" index="0" />
-              <Frame type="Image" name="IconImage">
-                <Anchor relative="$parent" offset="-2" />
-                <Texture val="{$parent/@MinimapIcon}" />
-              </Frame>
-              <Frame type="Image" name="BorderImage">
-                <Anchor relative="$parent" offset="0" />
-                <RenderPriority val="513" />
-                <Texture val="Assets\Textures\storm_ui_hud_vehicle_unitstatus_medivac_green.dds" />
-                <AdjustmentColor val="{$ancestor[@name=HeroSpecificOverrideTemplaterFrame]/$parent/PlayerColourFrame/@Color}" />
-                <ColorAdjustMode val="Fill" />
-                <!-- <ColorAdjustMode val="None" />
-                <LightAdjustColor val="{$parent/@AdditionalColor[0]}" />
-                <DarkAdjustColor val="{$parent/@Color[0]}" /> -->
-              </Frame>
-            </Frame>
-            <Frame type="UnitStatusShieldedHealthLabel" name="ContainedHeroHealthPercentLabel" >
-              <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-              <Anchor side="Left" relative="$parent" pos="Min" offset="26"/>
-              <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-              <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-              <FractionDigits val="0"/>
-              <RoundMode val="up"/>
-              <HideMax val="true"/>
-              <ShowPercent val="true"/>
-              <ShowWhileInvulnerable val="true"/>
-              <Frame type="Label" name="StatusLabel">
-                <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-                <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-                <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-                <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-                <RenderPriority val="999" />
-                <Style val="Storm_VitalsLabel_Modified"/>
-                <SnapToDevicePixels val="true"/>
-              </Frame>
-            </Frame>
           </Frame>
         </Frame>
       </Frame>

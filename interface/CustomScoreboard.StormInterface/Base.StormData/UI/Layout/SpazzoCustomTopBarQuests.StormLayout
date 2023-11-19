@@ -771,6 +771,19 @@
         <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="False" /> 
         <Action type="SetState" frame="$this" Group="BaselineType" State="HasNone"/>
       </State>
+      <State name="RexxarDummyState">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroRexxar"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$Talent0MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <Action type="SetProperty" frame="$this/UnitAbilFrame" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="NULL" />
+        <Action type="SetProperty" frame="$this/UnitChargeFrame" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="$this/UnitChargeFrame" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="$this/UnitChargeFrame" ChargeLocation="Unit" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="False" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="False" /> 
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasNone"/>
+      </State>
       <State name="DeathwingHeroicAvailableForChoice">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroDeathwing"/>
         <When type="Property" frame="$Talent0MasterSetting/ShowActives/CheckBoxButton" Toggled="True"/>
@@ -2458,6 +2471,17 @@
         <Action type="SetProperty" frame="$parent/BuffDurationT1" Behavior="JunkratConcussionMineBlowEmUpBonusDamageBehavior" />
         <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
       </State>
+      <State name="DwarfBlock">
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMuradin"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" texture="Assets\Textures\storm_ui_icon_Muradin_Dwarftoss.dds"/>
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]/T1QuestControllerFrame" Visible="False"/>
+        <When type="Property" frame="$Talent1MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT1" Behavior="NULL" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT1" Behavior="TalentBucketBlock" />
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="False"/>
+      </State>
       <State name="NoState">
         <Action type="SetProperty" frame="$parent/QuestStackCounterT1" Behavior="NULL" />
         <Action type="SetProperty" frame="$parent/QuestStackCounterT1" Visible="False" />
@@ -2842,6 +2866,20 @@
         <Action type="SetState" frame="$this" Group="UsesTokens" State="True"/>
         <Action type="ApplyTemplate" frame="$parent/VisiblityControllerFrame" template="SpazzoCustomTopBarQuests/VisibityControllerFrameDontHideAtCompletion"/>
       </State>
+      <State name="ReflexiveBlock">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroIllidan"/>
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" TextureState="TierSelected"/>
+        <When type="Property" frame="$Talent2MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" texture="Assets\Textures\storm_ui_icon_illidan_dive.dds"/>
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT2" Behavior="TalentBucketBlock" />
+        <Action type="SetProperty" frame="$parent/BuffDurationT2" Behavior="TalentBucketBlock" />
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT2/BehaviorIcon/StackLabel" Style="Spazzo_TopPanelQuestLabel_NotQuest" /> 
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT2/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" AdjustmentColor="255,200,200,200" /> 
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT2/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" Alpha="130" /> 
+        <Action type="SetProperty" frame="$parent/QuestStackCounterT2/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" ColorAdjustMode="Fill" /> 
+        <Action type="SetState" frame="$this" Group="UsesTokens" State="True"/>
+      </State>
       <State name="NoState">
         <Action type="SetProperty" frame="$parent/QuestStackCounterT2" Behavior="NULL" />
         <Action type="SetProperty" frame="$parent/QuestStackCounterT2" Visible="False" />
@@ -2868,7 +2906,7 @@
       </State>
       <State name="MaelstromWeapon">
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" TextureState="TierSelected"/>
-        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" texture="Assets\Textures\storm_ui_icon_thrall_windfury_var1.dds"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" texture="Assets\Textures\storm_ui_icon_thrall_windfury.dds"/>
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]/T3QuestControllerFrame" Visible="True"/>
         <Action type="SetProperty" frame="$parent" Behavior="ThrallMaelstromWeaponTokenCounter" />
         <Action type="ApplyTemplate" frame="$parent/VisiblityControllerFrame" template="SpazzoCustomTopBarQuests/VisibityControllerFrameDontHideAtCompletion"/>
@@ -3718,7 +3756,7 @@
       <DefaultState val="NoState" />
       <State name="Zanshin">
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected"/>
-        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_genji_deflect_b.dds"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_genji_deflect.dds"/>
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]/T7QuestControllerFrame" Visible="True"/>
         <Action type="SetProperty" frame="$parent" Behavior="GenjiDeflectZanshin" /> 
       </State> 
@@ -3738,7 +3776,7 @@
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected"/>
         <When type="Property" frame="$Talent7MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
-        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_malfurion_moonfire_a.dds"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_malfurion_moonfire.dds"/>
         <Action type="SetProperty" frame="$parent" Behavior="MalfurionMoonfireLunarShowerTokenCounter" /> 
         <Action type="SetProperty" frame="$parent/BehaviorIcon/StackLabel" Style="Spazzo_TopPanelQuestLabel_NotQuest" /> 
         <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" AdjustmentColor="255,200,200,200" /> 

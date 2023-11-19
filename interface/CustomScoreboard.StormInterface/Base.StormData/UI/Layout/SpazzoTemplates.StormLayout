@@ -24,6 +24,73 @@
   <Constant name="SpazzoCommandDynamicButtonLeftAnchor" val="-8" />
   <Constant name="SpazzoCommandFButtonLeftAnchor" val="-5" />
 
+
+  <Frame type="Image" name="HealthBarBackingTemplate">
+    <Texture val="@UI/Spazzo/HealthBarBacking" />
+    <TextureType val="Nineslice" />
+    <Unclipped val="False"/>
+    <AcceptsMouseTooltip val="False" />
+    <AcceptsMouse val="False" />
+    <Visible val="{$Talent0MasterSetting/ShowHealthBackings/CheckBoxButton/@Toggled}"/>
+  </Frame>
+
+  <Frame type="UnitStatusShieldedHealthBar" name="VikingHealthBar">
+    <Anchor side="Top" relative="$parent" pos="Mid" offset="8"/>
+    <Anchor side="Left" relative="$parent" pos="Min" offset="5"/>
+    <Anchor side="Right" relative="$this" pos="Min" offset="31"/>
+    <Anchor side="Bottom" relative="$this" pos="Min" offset="31"/>
+    <Texture val="Assets/Textures/storm_ui_targetinfopanel_statusbar.dds" />
+    <BarCount val="5" />
+    <ColorStyle val="Primary" index="0" />
+    <Tiled val="True" index="0" />
+    <ApplyToTotal val="True" index="0" />
+    <ColorStyle val="DoT" index="1" />
+    <Tiled val="True" index="1" />
+    <ReductionShown val="True" index="1" />
+    <IncreaseDuration val="0" index="1" />
+    <ApplyToTotal val="False" index="1" />
+    <ColorStyle val="Shields" index="2" />
+    <Tiled val="True" index="2" />
+    <ReductionShown val="true" index="2" />
+    <IncreaseDuration val="1000" index="2" />
+    <DecreaseDuration val="2000" index="2" />
+    <ApplyToTotal val="False" index="2" />
+    <ReductionColor val="109, 255, 255" index="2" />
+    <ColorStyle val="ShieldsDoT" index="3" />
+    <Tiled val="True" index="3" />
+    <ReductionShown val="True" index="3" />
+    <IncreaseDuration val="0" index="3" />
+    <ApplyToTotal val="False" index="3" />
+    <ColorStyle val="HoT" index="4" />
+    <Tiled val="True" index="4" />
+    <ReductionShown val="true" index="4" />
+    <IncreaseDuration val="0" index="4" />
+    <ApplyToTotal val="False" index="4" />
+    <Unclipped val="False"/>
+    <AcceptsMouseTooltip val="False" />
+    <AcceptsMouse val="False" />
+    <BackgroundShown val="true" />
+    <BackgroundColor val="125, 0, 0, 0" />
+    <BarInsetRect top="0" left="0" bottom="0" right="0" />
+    <BackgroundInsetRect top="0" left="0" bottom="0" right="0" />
+    <Expansion val="Up" />
+  </Frame>
+  
+  <Frame type="Image" name="VikingFakeHealthBar">
+    <Anchor side="Top" relative="$parent" pos="Mid" offset="8"/>
+    <Anchor side="Left" relative="$parent" pos="Min" offset="5"/>
+    <Anchor side="Right" relative="$this" pos="Min" offset="31"/>
+    <Anchor side="Bottom" relative="$this" pos="Min" offset="31"/>
+    <Texture val="Assets/Textures/storm_ui_targetinfopanel_statusbar.dds" />
+    <Color val="AllWhite" />
+    <Alpha val="70"/>
+    <Unclipped val="False"/>
+    <AcceptsMouseTooltip val="False" />
+    <AcceptsMouse val="False" />
+  </Frame>
+
+  
+  
   <Frame type="UnitStatusFrame" name="UnitStatusFrameTemplate">
     <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
     <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
@@ -420,120 +487,6 @@
       </Frame>
     </Frame>
   </Frame>
-  <Frame type="Frame" name="VehicleTrackedUnitContainerFrame">
-    <StateGroup name="VehiclePassengerToggleStateGroup">
-      <DefaultState val="Enabled"/>
-      <State name="Ultracompact">
-        <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
-        <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="0" offset="0" />
-        <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="0" offset="0" />
-        <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="0" offset="0" />
-        <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="0" offset="0" />
-      </State>
-      <State name="EnabledCompact">
-        <When type="Property" frame="$Talent0MasterSetting/ShowVehicleHP/CheckBoxButton" Toggled="True"/>
-        <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
-        <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/AbilityCooldownsContainerFrame/FarAnchor" pos="Min" offset="-35" />
-        <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/AbilityCooldownsContainerFrame/CloseAnchor" pos="Min" offset="0" />
-        <Action type="SetAnchor" frame="$this" side="Right" relative="$parent/AbilityCooldownsContainerFrame/FarAnchor" pos="Max" offset="-23" />
-        <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent/AbilityCooldownsContainerFrame/FarAnchor" pos="Max" offset="-23" />
-      </State>
-      <State name="Enabled">
-        <When type="Property" frame="$Talent0MasterSetting/ShowVehicleHP/CheckBoxButton" Toggled="True"/>
-        <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/AbilityCooldownsContainerFrame/FarAnchor" pos="Min" offset="0" />
-        <Action type="SetAnchor" frame="$this" side="Left" relative="$parent/AbilityCooldownsContainerFrame/FarAnchor" pos="Min" offset="0" />
-        <Action type="SetAnchor" frame="$this" side="Right" relative="$parent/AbilityCooldownsContainerFrame/FarAnchor" pos="Max" offset="0" />
-        <Action type="SetAnchor" frame="$this" side="Bottom" relative="$parent/AbilityCooldownsContainerFrame/FarAnchor" pos="Max" offset="0" />
-      </State>
-      <State name="Disabled">
-        <When type="Property" frame="$Talent0MasterSetting/ShowVehicleHP/CheckBoxButton" Toggled="False"/>
-        <Action type="SetAnchor" frame="$this" side="Top" relative="$INVALID" pos="0" offset="0" />
-        <Action type="SetAnchor" frame="$this" side="Left" relative="$INVALID" pos="0" offset="0" />
-        <Action type="SetAnchor" frame="$this" side="Right" relative="$INVALID" pos="0" offset="0" />
-        <Action type="SetAnchor" frame="$this" side="Bottom" relative="$INVALID" pos="0" offset="0" />
-      </State>
-    </StateGroup>
-    <Frame type="UnitStatusUnitTrackingBehavior" name="UnitTrackingElement">
-      <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-      <Behavior val="VehicleGenericHeroInsideUnitTracker" />
-      <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame0">
-        <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-        <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-        <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-        <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-        <Frame type="UnitStatusMinimapIcon" name="UnitStatusContainedHeroIcon">
-          <Anchor side="Top" relative="$parent" pos="Min" offset="1"/>
-          <Anchor side="Left" relative="$parent" pos="Max" offset="#SpazzoVehicleSizeNegOffset"/>
-          <Anchor side="Right" relative="$parent" pos="Max" offset="-5"/>
-          <Anchor side="Bottom" relative="$this" pos="Min" offset="#SpazzoVehicleSize"/>
-          <ColorStyle val="Primary" />
-          <AdditionalColorStyle val="PrimaryLight" index="0" />
-          <Frame type="Image" name="IconImage">
-            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-            <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-            <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-            <Texture val="{$parent/@MinimapIcon}" />
-          </Frame>
-          <Frame type="Image" name="BorderImage">
-            <Anchor side="Top" relative="$parent/IconImage" pos="Min" offset="-2"/>
-            <Anchor side="Left" relative="$parent/IconImage" pos="Min" offset="-2"/>
-            <Anchor side="Right" relative="$parent/IconImage" pos="Max" offset="2"/>
-            <Anchor side="Bottom" relative="$parent/IconImage" pos="Max" offset="2"/>
-            <RenderPriority val="513" />
-            <Texture val="Assets\Textures\storm_ui_hud_vehicle_unitstatus_medivac_green.dds" />
-            <AdjustmentColor val="{$ancestor[@type=SelectionUnitStatusPanel]/$parent/PlayerColourFrame/@Color}" />
-            <ColorAdjustMode val="Fill" />
-          </Frame>
-        </Frame>
-        <Frame type="UnitStatusShieldedHealthLabel" name="ContainedHeroHealthPercentLabel" >
-          <Anchor side="Top" relative="$parent/UnitStatusContainedHeroIcon" pos="Min" offset="7"/>
-          <Anchor side="Left" relative="$parent/UnitStatusContainedHeroIcon" pos="Min" offset="-10"/>
-          <Anchor side="Right" relative="$parent/UnitStatusContainedHeroIcon" pos="Max" offset="10"/>
-          <Anchor side="Bottom" relative="$parent/UnitStatusContainedHeroIcon" pos="Max" offset="7"/>
-          <Visible val="True"/>
-          <FractionDigits val="0"/>
-          <RoundMode val="up"/>
-          <HideMax val="true"/>
-          <ShowPercent val="true"/>
-          <ShowWhileInvulnerable val="true"/>
-          <Frame type="Label" name="StatusLabel">
-            <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
-            <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
-            <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
-            <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
-            <RenderPriority val="999" />
-            <Style val="SpazzoVehicleHealthLabel"/>
-            <StateGroup name="Size">
-              <DefaultState val="Default"/>
-              <State name="Wide">
-                <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="3"/>
-                <Action type="SetProperty" frame="$this" Style="SpazzoVehicleHealthLabel" />
-                <Action type="SetAnchor" frame="$parent" side="Top" relative="$parent/UnitStatusContainedHeroIcon" pos="Min" offset="11" />
-                <Action type="SetAnchor" frame="$parent" side="Bottom" relative="$parent/UnitStatusContainedHeroIcon" pos="Max" offset="11" />
-              </State>
-              <State name="Compact">
-                <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
-                <Action type="SetProperty" frame="$this" Style="SpazzoVehicleHealthLabelCompact" />
-                <Action type="SetAnchor" frame="$parent" side="Top" relative="$parent/UnitStatusContainedHeroIcon" pos="Min" offset="7" />
-                <Action type="SetAnchor" frame="$parent" side="Bottom" relative="$parent/UnitStatusContainedHeroIcon" pos="Max" offset="7" />
-              </State>
-              <State name="Default">
-                <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
-                <Action type="SetProperty" frame="$this" Style="SpazzoVehicleHealthLabel" />
-                <Action type="SetAnchor" frame="$parent" side="Top" relative="$parent/UnitStatusContainedHeroIcon" pos="Min" offset="7" />
-                <Action type="SetAnchor" frame="$parent" side="Bottom" relative="$parent/UnitStatusContainedHeroIcon" pos="Max" offset="7" />
-              </State>
-            </StateGroup>
-            <SnapToDevicePixels val="true"/>
-          </Frame>
-        </Frame>
-      </Frame>
-    </Frame>
-  </Frame>
   <Frame type="Frame" name="SamuroRexxarTrackedSubUnitsFrame">
     <StateGroup name="UnitTypeFrame">
       <DefaultState val="NoState"/>
@@ -543,6 +496,8 @@
         <Action type="SetProperty" frame="SamuroTrackingElement" Visible="True" />
         <Action type="SetProperty" frame="SamuroTrackingElement" Behavior="SamuroMirrorImageUnitTracker" />
         <Action type="SetProperty" frame="SamuroBackgroundImage" Visible="True" />
+        <Action type="SetProperty" frame="RexxarTrackingElement" Visible="False" />
+        <Action type="SetProperty" frame="RexxarBackgroundImage" Visible="False" />
         <Action type="SetProperty" frame="BorderImage" Visible="True" />
       </State>
       <State name="Rexxar">
@@ -550,12 +505,16 @@
         <Action type="SetProperty" frame="SamuroTrackingElement" Visible="False" />
         <Action type="SetProperty" frame="SamuroTrackingElement" Behavior="NULL" />
         <Action type="SetProperty" frame="SamuroBackgroundImage" Visible="False" />
-        <Action type="SetProperty" frame="BorderImage" Visible="False" />
+        <Action type="SetProperty" frame="RexxarTrackingElement" Visible="True" />
+        <Action type="SetProperty" frame="RexxarBackgroundImage" Visible="True" />
+        <Action type="SetProperty" frame="BorderImage" Visible="True" />
       </State>
       <State name="NoState">
         <Action type="SetProperty" frame="SamuroTrackingElement" Visible="False" />
         <Action type="SetProperty" frame="SamuroTrackingElement" Behavior="NULL" />
         <Action type="SetProperty" frame="SamuroBackgroundImage" Visible="False" />
+        <Action type="SetProperty" frame="RexxarTrackingElement" Visible="False" />
+        <Action type="SetProperty" frame="RexxarTrackingElement" Visible="False" />
         <Action type="SetProperty" frame="BorderImage" Visible="False" />
       </State>
     </StateGroup>
@@ -576,7 +535,7 @@
       <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
       <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
       <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
-      <RenderPriority val="499" />
+      <RenderPriority val="540" />
       <Visible val="False"/>
       <Texture val="_Assets\UI\spaz_ui_talentborder_newer.dds" />
     </Frame>
@@ -619,15 +578,6 @@
                 </Frame>
               </Frame>
             </Frame>
-            <!-- <Frame type="Label" name="CooldownLabel">
-              <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
-              <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
-              <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
-              <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
-              <RenderPriority val="513" />
-              <Text val="000" />
-              <Style val="Spazzo_SamuroLabel" />
-            </Frame> -->
           </Frame>
         </Frame>
         <Frame type="UnitStatusShieldedHealthBar" name="HealthBar">
@@ -707,15 +657,6 @@
                 </Frame>
               </Frame>
             </Frame>
-            <!-- <Frame type="Label" name="CooldownLabel">
-              <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
-              <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
-              <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
-              <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
-              <RenderPriority val="513" />
-              <Text val="000" />
-              <Style val="Spazzo_SamuroLabelBottom" />
-            </Frame> -->
           </Frame>
         </Frame>
         <Frame type="UnitStatusShieldedHealthBar" name="HealthBar">
@@ -756,6 +697,54 @@
           <ColorAdjustMode val="Fill" />
           <ImageMaskTexture val="_Assets\UI\spaz_ui_samuromirror_icon_mask2.dds" />
           <AlphaMaskTexture val="_Assets\UI\spaz_ui_samuromirror_icon_mask2.dds" />
+        </Frame>
+      </Frame>
+    </Frame>
+    <Frame type="Image" name="RexxarBackgroundImage">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="2" />
+      <Anchor side="Left" relative="$parent" pos="Min" offset="2" />
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="-2" />
+      <Anchor side="Right" relative="$parent" pos="Max" offset="-2" />
+      <RenderPriority val="498" />
+      <Visible val="False"/>
+      <Texture val="Assets\Textures\ui_targetportrait_hero_misha.dds" />
+      <ColorAdjustMode val="None" />
+      <Desaturated val="True" />
+      <DesaturationColor val="494B83" />
+    </Frame>
+    <Frame type="UnitStatusUnitTrackingBehavior" name="RexxarTrackingElement">
+      <Anchor relative="$parent" />
+      <Visible val="False"/>
+      <Behavior val="RexxarMishaTracker" />
+      <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame0">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="0" />
+        <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+        <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
+        <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+        <Frame type="Image" name="HealthBarBacking" template="SpazzoTemplates/HealthBarBackingTemplate">
+          <Anchor side="Top" relative="$parent" pos="Mid" offset="5" />
+          <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
+          <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
+          <Anchor side="Bottom" relative="$parent" pos="Max" offset="0" />
+          <RenderPriority val="500" />
+        </Frame>
+        <Frame type="UnitStatusShieldedHealthBar" name="HealthBar" template="SpazzoTemplates/VikingHealthBar">
+          <Anchor side="Top" relative="$parent/HealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Left" relative="$parent/HealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Right" relative="$parent/HealthBarBacking" pos="Max" offset="-1" />
+          <Anchor side="Bottom" relative="$parent/HealthBarBacking" pos="Max" offset="-1" />
+          <RenderPriority val="515" />
+          <Expansion val="Right" />
+        </Frame>
+        <Frame type="Image" name="RexxarBackgroundImage">
+          <Anchor side="Top" relative="$parent" pos="Min" offset="2" />
+          <Anchor side="Left" relative="$parent" pos="Min" offset="2" />
+          <Anchor side="Bottom" relative="$parent" pos="Max" offset="-2" />
+          <Anchor side="Right" relative="$parent" pos="Max" offset="-2" />
+          <RenderPriority val="498" />
+          <Visible val="True"/>
+          <Texture val="Assets\Textures\ui_targetportrait_hero_misha.dds" />
+          <ColorAdjustMode val="None" />
         </Frame>
       </Frame>
     </Frame>
@@ -2522,36 +2511,7 @@
         </Frame>
         <Animation name="FadeAway">
           <Event event="OnMouseEnter" action="DirectionForward,Play" frame="$parent/ShowTooltips/CheckBoxButton" />
-          <Event event="OnMouseEnter" action="DirectionForward,Play" frame="$parent/ShowVehicleHP/CheckBoxButton" />
           <Event event="OnMouseExit" action="DirectionReverse,Play" frame="$parent/ShowTooltips/CheckBoxButton" />
-          <Event event="OnMouseExit" action="DirectionReverse,Play" frame="$parent/ShowVehicleHP/CheckBoxButton" />
-          <Controller type="Fade" frame="$this" end="Pause">
-            <Key type="Curve" time="0" value="255" inout="Slow" />
-            <Key type="Curve" time="0.125" value="255" inout="Slow" />
-            <Key type="Curve" time="0.25" value="0" inout="Slow" />
-          </Controller>
-        </Animation>
-      </Frame>
-      <Frame type="Frame" name="ShowVehicleHP" template="SpazzoTemplates/ExpandoCheckboxMiddle">
-        <Anchor side="Bottom" relative="$parent/ShowQuests" pos="Min" offset="#OptionsMenuRevampTalentOptionsDistance" />
-        <Frame type="Button" name="CheckBoxButton">
-          <Toggled val="#TopBarShowVehiclePassengerHealth"/>
-          <Tooltip val="{$this/FormatFrame/@Text}"/>
-          <Frame type="TextFormatFrame" name="FormatFrame">
-            <Anchor relative="$parent" />
-            <FormatText val="@UI/Spazzo/Baseline/Vehicle" />
-            <Replacement index="0" val="#ToggleTopBarBasicAbilitiesVehicleHealthHotkey" />
-            <ReplacedName index="0" val="hotkeyvalue" />
-          </Frame>
-        </Frame>
-        <Frame type="Label" name="Label">
-          <Text val="@UI/Spazzo/Baseline/VehicleShort"/>
-        </Frame>
-        <Animation name="FadeAway">
-          <Event event="OnMouseEnter" action="DirectionForward,Play" frame="$parent/ShowTooltips/CheckBoxButton" />
-          <Event event="OnMouseEnter" action="DirectionForward,Play" frame="$parent/ShowBasics/CheckBoxButton" />
-          <Event event="OnMouseExit" action="DirectionReverse,Play" frame="$parent/ShowTooltips/CheckBoxButton" />
-          <Event event="OnMouseExit" action="DirectionReverse,Play" frame="$parent/ShowBasics/CheckBoxButton" />
           <Controller type="Fade" frame="$this" end="Pause">
             <Key type="Curve" time="0" value="255" inout="Slow" />
             <Key type="Curve" time="0.125" value="255" inout="Slow" />
@@ -2577,9 +2537,7 @@
         </Frame>
         <Animation name="FadeAway">
           <Event event="OnMouseEnter" action="DirectionForward,Play" frame="$parent/ShowBasics/CheckBoxButton" />
-          <Event event="OnMouseEnter" action="DirectionForward,Play" frame="$parent/ShowVehicleHP/CheckBoxButton" />
           <Event event="OnMouseExit" action="DirectionReverse,Play" frame="$parent/ShowBasics/CheckBoxButton" />
-          <Event event="OnMouseExit" action="DirectionReverse,Play" frame="$parent/ShowVehicleHP/CheckBoxButton" />
           <Controller type="Fade" frame="$this" end="Pause">
             <Key type="Curve" time="0" value="255" inout="Slow" />
             <Key type="Curve" time="0.125" value="255" inout="Slow" />
@@ -2610,7 +2568,7 @@
         </Animation>
       </Frame>
       <Frame type="Frame" name="ShowObjectives" template="SpazzoTemplates/ExpandoCheckboxMiddle">
-        <Anchor side="Bottom" relative="$parent/ShowVehicleHP" pos="Min" offset="#OptionsMenuRevampTalentOptionsDistance" />
+        <Anchor side="Bottom" relative="$parent/ShowTooltips" pos="Min" offset="#OptionsMenuRevampTalentOptionsDistance" />
         <Frame type="Button" name="CheckBoxButton">
           <Toggled val="#DisplayHeldObjective"/>
           <Tooltip val="@UI/Spazzo/Baseline/HeldObjectives" />
@@ -3492,9 +3450,7 @@
         </Frame>
         <!-- <Animation name="FadeAway">
           <Event event="OnMouseEnter" action="DirectionForward,Play" frame="$parent/ShowTooltips/CheckBoxButton" />
-          <Event event="OnMouseEnter" action="DirectionForward,Play" frame="$parent/ShowVehicleHP/CheckBoxButton" />
           <Event event="OnMouseExit" action="DirectionReverse,Play" frame="$parent/ShowTooltips/CheckBoxButton" />
-          <Event event="OnMouseExit" action="DirectionReverse,Play" frame="$parent/ShowVehicleHP/CheckBoxButton" />
           <Controller type="Fade" frame="$this" end="Pause">
             <Key type="Curve" time="0" value="255" inout="Slow" />
             <Key type="Curve" time="0.125" value="0" inout="Slow" />
@@ -5929,6 +5885,622 @@
           <When type="Property" frame="$this" Text=".25"/>
           <Action type="SendEvent" frame="$parent/DecreaseDecimalMonitorFrame" event="Autohide"/>
           <Action type="SetProperty" frame="$this" Text="" undo="False"/>
+        </State>
+      </StateGroup>
+    </Frame>
+  </Frame>
+  
+
+  <Frame type="UnitStatusBehaviorIcon" name="VikingDeadRefTemplate">
+    <Anchor relative="$parent" />
+    <Behavior val="Dead" />
+    <AcceptsMouse val="False"/>
+    <AcceptsMouseTooltip val="False"/>
+    <Frame type="BehaviorIcon" name="BehaviorIcon">
+      <Anchor relative="$parent" />
+      <MinStackCountDisplayed val="1" />
+    </Frame>
+  </Frame>
+
+  <Frame type="Label" name="VikingDeadTextTemplate">
+    <SubpixelRendering val="True"/>
+    <Style val="Spazzo_TopPanelVikingDeathLabel" />
+    <AcceptsMouse val="False"/>
+    <AcceptsMouseTooltip val="False"/>
+    <ScaleText val="True"/>
+    <Visible val="False"/>
+    <Color val="{$ancestor[@name=SelectionUnitStatusPanel]/$parent/PlayerColourFrame/@Color}" />
+    <Text val="REPLACEME"/>
+  </Frame>
+  
+  <Frame type="Frame" name="VikingVikingHealthTemplate">
+    <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+    <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+    <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+    <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+    <StateGroup name="Visibility">
+      <DefaultState val="NotTLV"/>
+      <State name="NotTLV">
+        <Action type="SetProperty" frame="$this" Visible="False" />
+      </State>
+      <State name="TLV">
+        <When type="Property" frame="$parent" Unit="HeroLostVikingsController"/>
+        <Action type="SetProperty" frame="$this" Visible="True" />
+      </State>
+    </StateGroup>
+    <Frame type="Image" name="OlafHealthBarBacking" template="SpazzoTemplates/HealthBarBackingTemplate">
+      <Anchor side="Top" relative="$parent/$parent/HealthBarBacking" pos="Min" offset="0" />
+      <Anchor side="Left" relative="$parent/$parent/HealthBarBacking" pos="Min" offset="0" />
+      <Anchor side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
+      <Anchor side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
+      <RenderPriority val="513"/>
+      <Visible val="{$Talent0MasterSetting/ShowHealthBackings/CheckBoxButton/@Toggled}"/>
+      <StateGroup name="Size">
+        <DefaultState val="Default"/>
+        <State name="WIIDE">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="3"/>
+          <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/$parent/HealthBarBacking" pos="Min" offset="0" />
+          <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetWIDE" />
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffsetWIDE" />
+        </State>
+        <State name="Ultracompact">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+          <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/$parent/HealthBarBacking" pos="Min" offset="0" />
+          <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetUltracompact" />
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffsetUltracompact" />
+        </State>
+        <State name="Compact">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
+          <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/$parent/HealthBarBacking" pos="Min" offset="-24" />
+          <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetCompact" />
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffsetCompact" />
+        </State>
+        <State name="Ingress">
+          <When type="StateGroup" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/HeroicAnchorFrame" operator="Equal" UseState="InUse"/>
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="1"/>
+          <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/$parent/HealthBarBacking" pos="Min" offset="0" />
+          <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffsetIngress" />
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
+        </State>
+        <State name="IngressNoHeroicInUse">
+          <When type="StateGroup" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/HeroicAnchorFrame" operator="Equal" UseState="OutOfUse"/>
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="1"/>
+          <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/$parent/HealthBarBacking" pos="Min" offset="0" />
+          <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
+        </State>
+        <State name="Default">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="0"/>
+          <Action type="SetAnchor" frame="$this" side="Top" relative="$parent/$parent/HealthBarBacking" pos="Min" offset="0" />
+          <Action type="SetAnchor" frame="$this" side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
+          <Action type="SetAnchor" frame="$this" side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
+        </State>
+      </StateGroup>
+    </Frame>
+    <Frame type="Image" name="BaleogHealthBarBacking" template="SpazzoTemplates/VikingVikingHealthTemplate/OlafHealthBarBacking">
+      <Anchor side="Top" relative="$parent/OlafHealthBarBacking" pos="Min" offset="0" />
+      <Anchor side="Left" relative="$parent/OlafHealthBarBacking" pos="Max" offset="0" />
+      <Anchor side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
+      <Anchor side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
+    </Frame>
+    <Frame type="Image" name="ErikHealthBarBacking" template="SpazzoTemplates/VikingVikingHealthTemplate/OlafHealthBarBacking">
+      <Anchor side="Top" relative="$parent/BaleogHealthBarBacking" pos="Min" offset="0" />
+      <Anchor side="Left" relative="$parent/BaleogHealthBarBacking" pos="Max" offset="0" />
+      <Anchor side="Right" relative="$this" pos="Min" offset="#TLVHealthBarRightOffset" />
+      <Anchor side="Bottom" relative="$this" pos="Min" offset="#TLVHealthBarBottomOffset" />
+    </Frame>
+    <Frame type="UnitStatusUnitTrackingBehavior" name="VikingUnitTracker">
+      <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+      <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+      <Behavior val="LostVikingsVikingTracker" />
+      <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame0">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+        <Frame type="UnitStatusShieldedHealthBar" name="HealthBar" template="SpazzoTemplates/VikingHealthBar">
+          <Anchor side="Top" relative="$ancestor[@name=VikingUnitTracker]/$parent/OlafHealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Left" relative="$ancestor[@name=VikingUnitTracker]/$parent/OlafHealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Right" relative="$ancestor[@name=VikingUnitTracker]/$parent/OlafHealthBarBacking" pos="Max" offset="-1" />
+          <Anchor side="Bottom" relative="$ancestor[@name=VikingUnitTracker]/$parent/OlafHealthBarBacking" pos="Max" offset="-1" />
+        </Frame>
+        <Frame type="Image" name="FakeDeadHealthBar" template="SpazzoTemplates/VikingFakeHealthBar">
+          <Anchor side="Top" relative="$ancestor[@name=VikingUnitTracker]/$parent/OlafHealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Left" relative="$ancestor[@name=VikingUnitTracker]/$parent/OlafHealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Right" relative="$ancestor[@name=VikingUnitTracker]/$parent/OlafHealthBarBacking" pos="Max" offset="-1" />
+          <Anchor side="Bottom" relative="$ancestor[@name=VikingUnitTracker]/$parent/OlafHealthBarBacking" pos="Max" offset="-1" />
+          <Visible val="False"/>
+        </Frame>
+        <Frame type="Image" name="ImageBoundCheck">
+          <Anchor relative="$parent/DeadTextDisplay" />
+          <Texture val="Assets\Textures\storm_ui_homescreenbackground_nexomania.dds"/>
+          <RenderPriority val="999" />
+          <Alpha val="120"/>
+          <Unclipped val="True"/>
+        </Frame>
+        <StateGroup name="DeadState">
+          <DefaultState val="NotDead"/>
+          <State name="NotDead">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="False"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="False" />
+            <Action type="SetProperty" frame="DeadText" Visible="False" />
+            <Action type="SetProperty" frame="DeadTextCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadTextMinimal" Visible="False" />
+            <Action type="SetProperty" frame="DeadTextUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="Primary" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="255" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="Dead">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="1"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="3"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="True" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="DeadSpaced">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="1"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="True" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="DeadCompact">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="True" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="DeadUltrawide">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="3"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="True" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="DeadMinimal">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="True" />
+          </State>
+        </StateGroup>
+        <Frame type="UnitStatusBehaviorIcon" name="VikingDeadRef" template="SpazzoTemplates/VikingDeadRefTemplate"/>
+        <Frame type="Label" name="DeadLabel" template="SpazzoTemplates/VikingDeadTextTemplate">
+          <Anchor side="Top" relative="$parent/HealthBar" pos="Min" offset="0"/>
+          <Anchor side="Left" relative="$parent/HealthBar" pos="Min" offset="0"/>
+          <Anchor side="Right" relative="$parent/HealthBar" pos="Max" offset="0"/>
+          <Anchor side="Bottom" relative="$parent/HealthBar" pos="Max" offset="0"/>
+          <Animation name="PopOut">
+            <Event event="OnShown" action="Reset, Play" frame="$this" />
+            <Event event="OnHidden" action="Reset" frame="$this" />
+            <Controller type="Anchor" end="Pause" side="Top" relative="True" unclipped="True" frame="$this">
+              <Key type="Curve" time="0" value="-30" />
+              <Key type="Curve" time="0.7" value="0" />
+            </Controller>
+            <Controller type="Anchor" end="Pause" side="Bottom" relative="True" unclipped="True" frame="$this">
+              <Key type="Curve" time="0" value="30" />
+              <Key type="Curve" time="0.7" value="0" />
+            </Controller>
+            <Controller type="Anchor" end="Pause" side="Right" relative="True" unclipped="True" frame="$this">
+              <Key type="Curve" time="0" value="55" />
+              <Key type="Curve" time="0.7" value="0" />
+            </Controller>
+          </Animation>
+        </Frame>
+        <Frame type="Label" name="DeadLabelSpaced" template="SpazzoTemplates/VikingDeadTextTemplate">
+          <Anchor side="Top" relative="$parent/HealthBar" pos="Min" offset="0"/>
+          <Anchor side="Left" relative="$parent/HealthBar" pos="Min" offset="5"/>
+          <Anchor side="Right" relative="$parent/HealthBar" pos="Max" offset="0"/>
+          <Anchor side="Bottom" relative="$parent/HealthBar" pos="Max" offset="0"/>
+          <Text val="{$parent/DeadLabel/@Text}"/>
+          <Style val="Spazzo_TopPanelVikingDeathLabelUltrawide"/>
+          <Animation name="PopOut">
+            <Event event="OnShown" action="Reset, Play" frame="$this" />
+            <Event event="OnHidden" action="Reset" frame="$this" />
+            <Controller type="Anchor" end="Pause" side="Bottom" relative="True" unclipped="True" frame="$this">
+              <Key type="Curve" time="0" value="30" />
+              <Key type="Curve" time="0.7" value="0" />
+            </Controller>
+            <Controller type="Anchor" end="Pause" side="Right" relative="True" unclipped="True" frame="$this">
+              <Key type="Curve" time="0" value="30" />
+              <Key type="Curve" time="0.7" value="0" />
+            </Controller>
+          </Animation>
+        </Frame>
+        <Frame type="Label" name="DeadLabelCompact" template="SpazzoTemplates/VikingDeadTextTemplate">
+          <Anchor side="Top" relative="$parent/HealthBar" pos="Mid" offset="0"/>
+          <Anchor side="Left" relative="$parent/HealthBar" pos="Min" offset="0"/>
+          <Anchor side="Right" relative="$parent/HealthBar" pos="Max" offset="0"/>
+          <Anchor side="Bottom" relative="$parent/HealthBar" pos="Max" offset="0"/>
+          <Text val="{$parent/DeadLabel/@Text}"/>
+          <Animation name="PopOut">
+            <Event event="OnShown" action="Reset, Play" frame="$this" />
+            <Event event="OnHidden" action="Reset" frame="$this" />
+            <Controller type="Anchor" end="Pause" side="Top" relative="True" unclipped="True" frame="$this">
+              <Key type="Curve" time="0" value="-30" />
+              <Key type="Curve" time="0.7" value="0" />
+            </Controller>
+            <Controller type="Anchor" end="Pause" side="Right" relative="True" unclipped="True" frame="$this">
+              <Key type="Curve" time="0" value="40" />
+              <Key type="Curve" time="0.7" value="0" />
+            </Controller>
+          </Animation>
+        </Frame>
+        <Frame type="Label" name="DeadLabelUltrawide" template="SpazzoTemplates/VikingDeadTextTemplate">
+          <Anchor side="Top" relative="$parent/HealthBar" pos="Min" offset="0"/>
+          <Anchor side="Left" relative="$parent/HealthBar" pos="Min" offset="2"/>
+          <Anchor side="Right" relative="$parent/HealthBar" pos="Max" offset="0"/>
+          <Anchor side="Bottom" relative="$parent/HealthBar" pos="Max" offset="0"/>
+          <Text val="{$parent/DeadLabel/@Text}"/>
+          <Style val="Spazzo_TopPanelVikingDeathLabelUltrawide"/>
+          <Animation name="PopOut">
+            <Event event="OnShown" action="Reset, Play" frame="$this" />
+            <Event event="OnHidden" action="Reset" frame="$this" />
+            <Controller type="Anchor" end="Pause" side="Bottom" relative="True" unclipped="True" frame="$this">
+              <Key type="Curve" time="0" value="30" />
+              <Key type="Curve" time="0.7" value="0" />
+            </Controller>
+            <Controller type="Anchor" end="Pause" side="Right" relative="True" unclipped="True" frame="$this">
+              <Key type="Curve" time="0" value="30" />
+              <Key type="Curve" time="0.7" value="0" />
+            </Controller>
+          </Animation>
+        </Frame>
+        <Frame type="Label" name="DeadLabelMinimal" template="SpazzoTemplates/VikingDeadTextTemplate">
+          <Anchor side="Top" relative="$parent/HealthBar" pos="Min" offset="-17"/>
+          <Anchor side="Left" relative="$parent/HealthBar" pos="Min" offset="0"/>
+          <Anchor side="Right" relative="$parent/HealthBar" pos="Mid" offset="0"/>
+          <Anchor side="Bottom" relative="$parent/HealthBar" pos="Max" offset="17"/>
+          <Text val="{$parent/DeadLabel/@Text}"/>
+          <Animation name="PopOut">
+            <Event event="OnShown" action="Reset, Play" frame="$this" />
+            <Event event="OnHidden" action="Reset" frame="$this" />
+            <Controller type="Anchor" end="Pause" side="Top" relative="True" unclipped="True" frame="$this">
+              <Key type="Curve" time="0" value="-15" />
+              <Key type="Curve" time="0.7" value="0" />
+            </Controller>
+            <Controller type="Anchor" end="Pause" side="Bottom" relative="True" unclipped="True" frame="$this">
+              <Key type="Curve" time="0" value="15" />
+              <Key type="Curve" time="0.7" value="0" />
+            </Controller>
+            <Controller type="Anchor" end="Pause" side="Right" relative="True" unclipped="True" frame="$this">
+              <Key type="Curve" time="0" value="20" />
+              <Key type="Curve" time="0.7" value="0" />
+            </Controller>
+          </Animation>
+        </Frame>
+      </Frame>
+      <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame1">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+        <Frame type="UnitStatusShieldedHealthBar" name="HealthBar" template="SpazzoTemplates/VikingHealthBar">
+          <Anchor side="Top" relative="$ancestor[@name=VikingUnitTracker]/$parent/BaleogHealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Left" relative="$ancestor[@name=VikingUnitTracker]/$parent/BaleogHealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Right" relative="$ancestor[@name=VikingUnitTracker]/$parent/BaleogHealthBarBacking" pos="Max" offset="-1" />
+          <Anchor side="Bottom" relative="$ancestor[@name=VikingUnitTracker]/$parent/BaleogHealthBarBacking" pos="Max" offset="-1" />
+        </Frame>
+        <Frame type="Image" name="FakeDeadHealthBar" template="SpazzoTemplates/VikingFakeHealthBar">
+          <Anchor side="Top" relative="$ancestor[@name=VikingUnitTracker]/$parent/BaleogHealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Left" relative="$ancestor[@name=VikingUnitTracker]/$parent/BaleogHealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Right" relative="$ancestor[@name=VikingUnitTracker]/$parent/BaleogHealthBarBacking" pos="Max" offset="-1" />
+          <Anchor side="Bottom" relative="$ancestor[@name=VikingUnitTracker]/$parent/BaleogHealthBarBacking" pos="Max" offset="-1" />
+          <Visible val="False"/>
+        </Frame>
+        <StateGroup name="DeadState">
+          <DefaultState val="NotDead"/>
+          <State name="NotDead">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="False"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="False" />
+            <Action type="SetProperty" frame="DeadText" Visible="False" />
+            <Action type="SetProperty" frame="DeadTextCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadTextMinimal" Visible="False" />
+            <Action type="SetProperty" frame="DeadTextUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="Primary" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="255" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="Dead">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="1"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="3"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="True" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="DeadSpaced">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="1"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="True" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="DeadCompact">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="True" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="DeadUltrawide">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="3"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="True" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="DeadMinimal">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="True" />
+          </State>
+        </StateGroup>
+        <Frame type="UnitStatusBehaviorIcon" name="VikingDeadRef" template="SpazzoTemplates/VikingDeadRefTemplate"/>
+        <Frame type="Label" name="DeadLabel" template="SpazzoTemplates/VikingVikingHealthTemplate/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabel"/>
+        <Frame type="Label" name="DeadLabelSpaced" template="SpazzoTemplates/VikingVikingHealthTemplate/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabelSpaced"/>
+        <Frame type="Label" name="DeadLabelCompact" template="SpazzoTemplates/VikingVikingHealthTemplate/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabelCompact"/>
+        <Frame type="Label" name="DeadLabelUltrawide" template="SpazzoTemplates/VikingVikingHealthTemplate/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabelUltrawide"/>
+        <Frame type="Label" name="DeadLabelMinimal" template="SpazzoTemplates/VikingVikingHealthTemplate/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabelMinimal"/>
+      </Frame>
+      <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame2">
+        <Anchor side="Top" relative="$parent" pos="Min" offset="0"/>
+        <Anchor side="Left" relative="$parent" pos="Min" offset="0"/>
+        <Anchor side="Right" relative="$parent" pos="Max" offset="0"/>
+        <Anchor side="Bottom" relative="$parent" pos="Max" offset="0"/>
+        <Frame type="UnitStatusShieldedHealthBar" name="HealthBar" template="SpazzoTemplates/VikingHealthBar">
+          <Anchor side="Top" relative="$ancestor[@name=VikingUnitTracker]/$parent/ErikHealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Left" relative="$ancestor[@name=VikingUnitTracker]/$parent/ErikHealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Right" relative="$ancestor[@name=VikingUnitTracker]/$parent/ErikHealthBarBacking" pos="Max" offset="-1" />
+          <Anchor side="Bottom" relative="$ancestor[@name=VikingUnitTracker]/$parent/ErikHealthBarBacking" pos="Max" offset="-1" />
+        </Frame>
+        <Frame type="Image" name="FakeDeadHealthBar" template="SpazzoTemplates/VikingFakeHealthBar">
+          <Anchor side="Top" relative="$ancestor[@name=VikingUnitTracker]/$parent/ErikHealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Left" relative="$ancestor[@name=VikingUnitTracker]/$parent/ErikHealthBarBacking" pos="Min" offset="1" />
+          <Anchor side="Right" relative="$ancestor[@name=VikingUnitTracker]/$parent/ErikHealthBarBacking" pos="Max" offset="-1" />
+          <Anchor side="Bottom" relative="$ancestor[@name=VikingUnitTracker]/$parent/ErikHealthBarBacking" pos="Max" offset="-1" />
+          <Visible val="False"/>
+        </Frame>
+        <StateGroup name="DeadState">
+          <DefaultState val="NotDead"/>
+          <State name="NotDead">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="False"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="False" />
+            <Action type="SetProperty" frame="DeadText" Visible="False" />
+            <Action type="SetProperty" frame="DeadTextCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadTextMinimal" Visible="False" />
+            <Action type="SetProperty" frame="DeadTextUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="Primary" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="255" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="Dead">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="1"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="2"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="3"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="True" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="DeadSpaced">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="1"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="True" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="DeadCompact">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="True" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="DeadUltrawide">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="3"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="True" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="False" />
+          </State>
+          <State name="DeadMinimal">
+            <When type="Property" frame="VikingDeadRef/BehaviorIcon" InheritedVisible="True"/>
+            <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+            <Action type="SetProperty" frame="FakeDeadHealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" Visible="True" />
+            <Action type="SetProperty" frame="HealthBar" ColorStyle="AllWhite" />
+            <Action type="SetProperty" frame="HealthBar" Alpha="70" />
+            <Action type="SetProperty" frame="DeadLabel" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelSpaced" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelCompact" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelUltrawide" Visible="False" />
+            <Action type="SetProperty" frame="DeadLabelMinimal" Visible="True" />
+          </State>
+        </StateGroup>
+        <Frame type="UnitStatusBehaviorIcon" name="VikingDeadRef" template="SpazzoTemplates/VikingDeadRefTemplate"/>
+        <Frame type="Label" name="DeadLabel" template="SpazzoTemplates/VikingVikingHealthTemplate/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabel"/>
+        <Frame type="Label" name="DeadLabelSpaced" template="SpazzoTemplates/VikingVikingHealthTemplate/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabelSpaced"/>
+        <Frame type="Label" name="DeadLabelCompact" template="SpazzoTemplates/VikingVikingHealthTemplate/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabelCompact"/>
+        <Frame type="Label" name="DeadLabelUltrawide" template="SpazzoTemplates/VikingVikingHealthTemplate/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabelUltrawide"/>
+        <Frame type="Label" name="DeadLabelMinimal" template="SpazzoTemplates/VikingVikingHealthTemplate/VikingUnitTracker/TrackedUnitStatusFrame0/DeadLabelMinimal"/>
+      </Frame>
+    </Frame>
+    <Frame type="Image" name="OlafIndicatorIcon">
+      <Anchor side="Right" relative="$parent/OlafHealthBarBacking" pos="Max" offset="#TLVIconOffset" />
+      <Anchor side="Bottom" relative="$parent/OlafHealthBarBacking" pos="Max" offset="#TLVIconOffset" />
+      <Height val="#TLVIconSize"/>
+      <Width val="#TLVIconSize"/>
+      <Texture val="Assets\Textures\storm_ui_hud_heromechanic_vikings_shield_small_off.dds"/>
+      <RenderPriority val="515"/>
+      <Visible val="{$parent/OlafHealthBarBacking/@Visible}"/>
+      <StateGroup name="Size">
+        <DefaultState val="Default"/>
+        <State name="Ultracompact">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+          <Action type="SetProperty" frame="$this" Height="#TLVIconSizeUltracompact" />
+          <Action type="SetProperty" frame="$this" Width="#TLVIconSizeUltracompact" />
+        </State>
+        <State name="Default">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
+          <Action type="SetProperty" frame="$this" Height="#TLVIconSize" />
+          <Action type="SetProperty" frame="$this" Width="#TLVIconSize" />
+        </State>
+      </StateGroup>
+    </Frame>
+    <Frame type="Image" name="BaleogIndicatorIcon">
+      <Anchor side="Right" relative="$parent/BaleogHealthBarBacking" pos="Max" offset="#TLVIconOffset" />
+      <Anchor side="Bottom" relative="$parent/BaleogHealthBarBacking" pos="Max" offset="#TLVIconOffset" />
+      <Height val="#TLVIconSize"/>
+      <Width val="#TLVIconSize"/>
+      <Texture val="Assets\Textures\storm_ui_hud_heromechanic_vikings_sword_small_off.dds"/>
+      <RenderPriority val="515"/>
+      <Visible val="{$parent/BaleogHealthBarBacking/@Visible}"/>
+      <StateGroup name="Size">
+        <DefaultState val="Default"/>
+        <State name="Ultracompact">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+          <Action type="SetProperty" frame="$this" Height="#TLVIconSizeUltracompact" />
+          <Action type="SetProperty" frame="$this" Width="#TLVIconSizeUltracompact" />
+        </State>
+        <State name="Default">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
+          <Action type="SetProperty" frame="$this" Height="#TLVIconSize" />
+          <Action type="SetProperty" frame="$this" Width="#TLVIconSize" />
+        </State>
+      </StateGroup>
+    </Frame>
+    <Frame type="Image" name="ErikIndicatorIcon">
+      <Anchor side="Right" relative="$parent/ErikHealthBarBacking" pos="Max" offset="#TLVIconOffset" />
+      <Anchor side="Bottom" relative="$parent/ErikHealthBarBacking" pos="Max" offset="#TLVIconOffset" />
+      <Height val="#TLVIconSize"/>
+      <Width val="#TLVIconSize"/>
+      <Texture val="Assets\Textures\storm_ui_hud_heromechanic_vikings_boot_small_off.dds"/>
+      <RenderPriority val="515"/>
+      <Visible val="{$parent/ErikHealthBarBacking/@Visible}"/>
+      <StateGroup name="Size">
+        <DefaultState val="Default"/>
+        <State name="Ultracompact">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="4"/>
+          <Action type="SetProperty" frame="$this" Height="#TLVIconSizeUltracompact" />
+          <Action type="SetProperty" frame="$this" Width="#TLVIconSizeUltracompact" />
+        </State>
+        <State name="Default">
+          <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="NotEqual" SelectedValue="4"/>
+          <Action type="SetProperty" frame="$this" Height="#TLVIconSize" />
+          <Action type="SetProperty" frame="$this" Width="#TLVIconSize" />
         </State>
       </StateGroup>
     </Frame>

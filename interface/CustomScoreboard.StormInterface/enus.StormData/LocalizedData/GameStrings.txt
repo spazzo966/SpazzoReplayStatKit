@@ -1334,7 +1334,7 @@ UI/SpazzoAccuracy/LiLi/ScoreNine=Unused
 UI/SpazzoAccuracy/LiLi/ScoreTen=Unused
 UI/SpazzoAccuracy/LiLi/ScoreEleven=Unused
 UI/SpazzoAccuracy/LiLi/ScoreTwelve=Unused
-Spazzo/Button/Tooltip/LiLiHealingBrew=<s val="StandardTooltipHeader">Healing Brew</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,LiLiHealingBrew,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,LiLiHealingBrew,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Heal lowest Health Allied Health Hero within <c val="#TooltipNumbers"><d ref="Effect,HealingBrewSearchArea,AreaArray[0].Radius" player="%playernum%"/></c> range for <c val="#TooltipNumbers"><d ref="Effect,LiLiHealingBrewCreateHealer,RechargeVitalRate" player="%playernum%"/></c> Health.
+Spazzo/Button/Tooltip/LiLiHealingBrew=<s val="StandardTooltipHeader">Healing Brew</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,LiLiHealingBrew,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,LiLiHealingBrew,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Heal the lowest Health allied Health Hero within <c val="#TooltipNumbers"><d ref="Effect,HealingBrewSearchArea,AreaArray[0].Radius" player="%playernum%"/></c> range for <c val="#TooltipNumbers"><d ref="Effect,LiLiHealingBrewCreateHealer,RechargeVitalRate" player="%playernum%"/></c> Health.
 Spazzo/Button/Tooltip/LiLiCloudSerpent=<s val="StandardTooltipHeader">Cloud Serpent</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,LiLiCloudSerpent,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,LiLiCloudSerpent,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Summon a Cloud Serpent on an allied Hero that attacks nearby enemies every second. Each attack deals <c val="#TooltipNumbers"><d ref="Effect,CloudSerpentWeaponDamage,Amount" player="%playernum%"/></c> damage and heals the ally for <c val="#TooltipNumbers"><d ref="Effect,LiLiCloudSerpentCreateHealer,RechargeVitalRate" player="%playernum%"/></c>. Lasts for <c val="#TooltipNumbers"><d ref="Behavior,CloudSerpentOwnerBehavior,Duration" player="0"/></c> seconds.
 Spazzo/Button/Tooltip/LiLiBlindingWind=<s val="StandardTooltipHeader">Blinding Wind</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,LiLiBlindingWind,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,LiLiBlindingWind,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Throw a cloud of wind at the <c val="#TooltipNumbers"><d ref="Effect,BlindingWindSearchArea,AreaArray[0].MaxCount"player="0"/></c> nearest enemies (prioritizing Heroes), dealing <c val="#TooltipNumbers"><d ref="Effect,LiLiBlindingWindDamage,Amount" player="%playernum%"/></c> damage. Heroes hit are Blinded and Slowed by <c val="#TooltipNumbers"><d ref="-100*Behavior,LiLiBlindingWindSlow,Modification.UnifiedMoveSpeedFactor"player="0"/>%</c> for <c val="#TooltipNumbers"><d ref="Behavior,LiLiBlindingWindBlindBuff,Duration" player="0" precision="1"/></c> seconds.
 
@@ -1870,7 +1870,7 @@ UI/SpazzoAccuracy/Monk/ScoreEleven=Unused
 UI/SpazzoAccuracy/Monk/ScoreTwelve=Unused
 Spazzo/Button/Tooltip/MonkRadiantDash=<s val="StandardTooltipHeader">Radiant Dash</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,MonkRadiantDash,Cost.Vital[Energy]" player="0"/><n/>Charge Cooldown: <d ref="Abil,MonkRadiantDash,Cost.Charge.TimeUse" player="0"/> seconds</s><n/>Jump to an allied or enemy unit. Enemies are immediately hit with a Basic Attack.<n/><n/>Stores up to <c val="#TooltipNumbers"><d ref="Abil,MonkRadiantDash,Cost[0].Charge.CountMax"player="0"/></c> charges.
 Spazzo/Button/Tooltip/MonkBreathOfHeaven=<s val="StandardTooltipHeader">Breath of Heaven</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,MonkBreathOfHeaven,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,MonkBreathOfHeaven,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Heal nearby Heroes for <c val="#TooltipNumbers"><d ref="Effect,MonkBreathOfHeavenCreateHealerExecute,RechargeVitalRate" player="%playernum%"/></c> and give them <c val="#TooltipNumbers"><d ref="Behavior,MonkBreathofHeavenMoveSpeedBuff,Modification.UnifiedMoveSpeedFactor*100"player="0"/>%</c> Movement Speed for <c val="#TooltipNumbers"><d ref="Behavior,MonkBreathofHeavenMoveSpeedBuff,Duration" player="0"/></c> seconds.
-Spazzo/Button/Tooltip/MonkDeadlyReach=<s val="StandardTooltipHeader">Deadly Reach</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,RehgarChainHeal,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,MonkDeadlyReach,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Kharazim's next Basic Attack increases his Attack Speed and Attack Range by <c val="#TooltipNumbers"><d ref="Behavior,MonkDeadlyReachCasterBehavior,Modification.UnifiedAttackSpeedFactor*100"/>%</c> for <c val="#TooltipNumbers"><d ref="Behavior,MonkDeadlyReachCasterBehavior,Duration" player="0" precision="2"/></c> seconds.
+Spazzo/Button/Tooltip/MonkDeadlyReach=<s val="StandardTooltipHeader">Deadly Reach</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,RehgarChainHeal,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,MonkDeadlyReach,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Kharazim's next Basic Attack increases his Attack Speed and Attack Range by <c val="#TooltipNumbers"><d ref="Behavior,MonkDeadlyReachCasterBehavior,Modification.AdditiveAttackSpeedFactor*100"/>%</c> for <c val="#TooltipNumbers"><d ref="Behavior,MonkDeadlyReachCasterBehavior,Duration" player="0" precision="2"/></c> seconds.
 
 UI/Spazzo/Tracer/BaselineOne=Basic Attack Damage to non-Heroes
 UI/Spazzo/Tracer/BaselineTwo=Melee Damage to non-Heroes
@@ -3920,7 +3920,7 @@ UI/SpazzoAccuracy/Medic/ScoreOne=Healing Beam Casts & Redirects
 UI/SpazzoAccuracy/Medic/ScoreTwo=Safeguard Casts
 UI/SpazzoAccuracy/Medic/ScoreThree=Displacment Grenade Casts
 UI/SpazzoAccuracy/Medic/ScoreFour=Displacement Grenade Manual Detonations
-UI/SpazzoAccuracy/Medic/ScoreFive=Cellular Reactor Casts
+UI/SpazzoAccuracy/Medic/ScoreFive=Cellular Reactor Casts, Trauma Trigger Activations
 UI/SpazzoAccuracy/Medic/ScoreSix=Stim Drone, Medivac Casts
 UI/SpazzoAccuracy/Medic/ScoreSeven=Reinfocements Casts
 UI/SpazzoAccuracy/Medic/ScoreEight=Displacement Grenades that hit 1+ Hero
@@ -4867,10 +4867,10 @@ UI/SpazzoDamage/Stukov/ScoreFour=Weighted Pustule Expiration Damage
 UI/SpazzoDamage/Stukov/ScoreFive=Lurking Arm Damage to Heroes
 UI/SpazzoDamage/Stukov/ScoreSix=Lurking Arm Damage to non-Heroes
 UI/SpazzoDamage/Stukov/ScoreSeven=Bio-Kill Switch Damage
-UI/SpazzoDamage/Stukov/ScoreEight=Reactive Ballistospore Damage to Heroes(Application), Low Blow Bonus Damage to to Low Health Heroes
+UI/SpazzoDamage/Stukov/ScoreEight=Low Blow Bonus Damage to to Low Health Heroes, Reactive Ballistospore Damage to Heroes(Application)
 UI/SpazzoDamage/Stukov/ScoreEight/One=Unused
-UI/SpazzoDamage/Stukov/ScoreEight/Two=Reactive Ballistospore Damage to Heroes(Application)
-UI/SpazzoDamage/Stukov/ScoreEight/Three=Low Blow Bonus Damage to to Low Health Heroes
+UI/SpazzoDamage/Stukov/ScoreEight/Two=Low Blow Bonus Damage to to Low Health Heroes
+UI/SpazzoDamage/Stukov/ScoreEight/Three=Reactive Ballistospore Damage to Heroes(Application)
 UI/SpazzoDamage/Stukov/ScoreNine=Low Blow Persisting Lurking Arm Damage to Heroes
 UI/SpazzoDamage/Stukov/ScoreNine/One=Unused
 UI/SpazzoDamage/Stukov/ScoreNine/Two=Unused
@@ -4938,8 +4938,8 @@ UI/SpazzoAccuracy/Stukov/AccuracyThree=Lurking Arm Casts
 UI/SpazzoAccuracy/Stukov/AccuracyFour=Bio Kill Switch Casts
 UI/SpazzoAccuracy/Stukov/AccuracyFive=Reactive Ballistospore Casts
 UI/SpazzoAccuracy/Stukov/AccuracyFive/One=Unused
-UI/SpazzoAccuracy/Stukov/AccuracyFive/Two=Reactive Ballistospore Casts
-UI/SpazzoAccuracy/Stukov/AccuracyFive/Three=Unused
+UI/SpazzoAccuracy/Stukov/AccuracyFive/Two=Unused
+UI/SpazzoAccuracy/Stukov/AccuracyFive/Three=Reactive Ballistospore Casts
 UI/SpazzoAccuracy/Stukov/AccuracySix=One Good Spread Activation Count
 UI/SpazzoAccuracy/Stukov/AccuracySix/One=One Good Spread Activation Count
 UI/SpazzoAccuracy/Stukov/AccuracySix/Two=Unused
