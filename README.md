@@ -28,7 +28,7 @@ It is also possible to export your settings and to override the existing default
 
 * **Shortcuts**
 
-You can display a complete list of Shortcuts by pressing Alt+H, as seen in ![this image](https://cdn.discordapp.com/attachments/640710837140455434/1076026880047726663/image.png)
+You can display a complete list of Shortcuts by pressing Alt+H, as seen in ![this image](readme_images/0.1-help-menu.png)
 
 This can also be opened by pressing the Nexus Icon in the middle of the Top Bar
 
@@ -36,15 +36,15 @@ This can also be opened by pressing the Nexus Icon in the middle of the Top Bar
 
 * Observer and Replay Interface Installation, step-by-step:
 
-  * Step 1: Click on the latest release, as seen here: ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100593006178324/1.1_github_latest_release.png)
+  * Step 1: Click on the latest release, as seen here: ![this image](readme_images/1.4-go-back-five-folders.png)
 
-  * Step 2: Download the desired files, as seen here: ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100614627794964/1.2_github_files_to_download.png)  
+  * Step 2: Download the desired files, as seen here: ![this image](readme_images/1.2-github-files-to-download.png)  
   Only downloading the files desired, if you just want the interface without the ability to change settings, just grab the .StormInterface file, if you want to be able to export your settings to override the defaults, also download the conversion.zip file, and if you want to use the custom stat replay utility, then also download conversion.zip and maps.zip
 
-  * Step 3: To navigate to where to place the .StormInterface file, open your Heroes of the Storm directory, click on the Watch tab, and then return to the base replay directory(if you aren't there), and then press the show in folder button, as seen here: ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100645074243624/1.3_open_replays_folder.png)  
-  From there, navigate back to the Heroes of the Storm folder from there, as seen here: ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100652229746708/1.4_go_back_five_folders.png)  
-  Where you will either already see an Interfaces folder, or you can create one, it should then look something like this ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100671754215484/1.5_open_interfaces_folder.png)  
-  Then inside that Heroes of the Storm folder, place that .StormInterface file inside that Interfaces folder, as seen here: ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100682856542218/1.6_place_storminterface_file_in_interfaces.png)
+  * Step 3: To navigate to where to place the .StormInterface file, open your Heroes of the Storm directory, click on the Watch tab, and then return to the base replay directory(if you aren't there), and then press the show in folder button, as seen here: ![this image](readme_images/1.3-open-replays-folder.png)  
+  From there, navigate back to the Heroes of the Storm folder from there, as seen here: ![this image](readme_images/1.6-place-storminterface-file-in-interfaces.png)  
+  Where you will either already see an Interfaces folder, or you can create one, it should then look something like this ![this image](readme_images/1.5-open-interfaces-folder.png)  
+  Then inside that Heroes of the Storm folder, place that .StormInterface file inside that Interfaces folder, as seen here: ![this image](readme_images/1.6-place-storminterface-file-in-interfaces.png)
 
   * Step 4: Open the options menu in Heroes of the Storm, and then in the Observer and Replay tab, select the desired Observer Interface and Replay Interface, and click accept
 
@@ -52,25 +52,25 @@ This can also be opened by pressing the Nexus Icon in the middle of the Top Bar
 
   * Step 1: Extract the conversion.zip file to your desired location, and inside of that extracted folder structure, navigate to conversion/XportSettings, and leave this folder open for now
 
-  * Step 2: Load up a replay, and make the desired changes to the settings to how you want them to be by default, and then press the Export Settings button, as seen here: ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100719502168144/2.1_export_settings.png)
+  * Step 2: Load up a replay, and make the desired changes to the settings to how you want them to be by default, and then press the Export Settings button, as seen here: ![this image](readme_images/2.1-export-settings.png)
 
-  * Step 3: Create a new text document in that XportSettings folder you left open, naming it whatever you desire, and then open that file, and paste the contents from your clipboard. This should look something like this ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100728138248242/2.2_paste_settings.png)  
+  * Step 3: Create a new text document in that XportSettings folder you left open, naming it whatever you desire, and then open that file, and paste the contents from your clipboard. This should look something like this ![this image](readme_images/2.2-paste-settings.png)  
   Then save that file
 
-  * Step 4: Drag that newly created file ontop of renameDraggedFile.bat, as seen here ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100754348453988/2.3_drag_settings.png)  
+  * Step 4: Drag that newly created file ontop of renameDraggedFile.bat, as seen here ![this image](readme_images/2.3-drag-settings.png)  
   This will rename the file to the appropriate file name
 
-  * Step 5: Navigate to where you placed the original .StormInterface file back during the installation of it, and drag and drop it on top of the importCustomSettings.bat file, as seen here ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100769879973918/2.4_drag_interface.png)
+  * Step 5: Navigate to where you placed the original .StormInterface file back during the installation of it, and drag and drop it on top of the importCustomSettings.bat file, as seen here ![this image](readme_images/2.4-drag-interface.png)
 
-  * Step 6: Select the newly created interface in your game options, as seen here ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100808056508507/2.6_select_interface.png)
+  * Step 6: Select the newly created interface in your game options, as seen here ![this image](readme_images/2.6-select-interface.png)
 
 * Installing and using the expanded replay statistics, step-by-step:
 
-  * Step 1: Extract the maps.zip file to your Heroes of the Storm installation folder(meaning the one located in your Program Files folder), making note that the folder structure inside looks like this ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100839056638072/3.2_confirm_file_structure.png)
+  * Step 1: Extract the maps.zip file to your Heroes of the Storm installation folder(meaning the one located in your Program Files folder), making note that the folder structure inside looks like this ![this image](readme_images/3.2-confirm-file-structure.png)
 
-  * Step 2: Drag the replay you desire to watch with the expanded replay statistics on top of the dragAll_details.bat file, contained in the conversion.zip file(after having extracted that to your desired location), as seen here ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100853354991646/3.3_drag_replay.png)
+  * Step 2: Drag the replay you desire to watch with the expanded replay statistics on top of the dragAll_details.bat file, contained in the conversion.zip file(after having extracted that to your desired location), as seen here ![this image](readme_images/3.3-drag-replay.png)
 
-  * Step 3: This will create a copy of that replay with affix of _stats, and you can open that as a standard replay in the Heroes of the Storm game client for offline replay use, as seen here ![this image](https://cdn.discordapp.com/attachments/640710837140455434/920100870459371530/3.4_open__stats_replay.png)
+  * Step 3: This will create a copy of that replay with affix of _stats, and you can open that as a standard replay in the Heroes of the Storm game client for offline replay use, as seen here ![this image](readme_images/3.4-open-_stats-replay.png)
 
 outside software included in this repository:
 
