@@ -1012,6 +1012,7 @@ struct libGame_gs_HeroSpecificScoreValues {
   fixed lv_percentLifeLostHeroes;
   fixed lv_percentLifeLostOther;
   fixed lv_percentLifeTaken;
+  fixed lv_timeCouldAttack;
 };
 
 struct libGame_gs_timeTravelValues {

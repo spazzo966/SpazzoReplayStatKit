@@ -685,15 +685,21 @@ bool libHAUR_gt_HeroAurielBestowHopeHealingStoredFromProxyDamageTaken_Func (bool
     unit lv_aurielProxy;
     unit lv_auriel;
     int lv_proxyPlayer;
+    int lv_damagingPlayer;
 
     // Automatic Variable Declarations
     // Variable Initialization
     lv_aurielProxy = EventUnit();
     lv_proxyPlayer = UnitGetOwner(lv_aurielProxy);
+    lv_damagingPlayer = UnitGetOwner(EventUnitDamageSourceUnit());
 
     // Conditions
     if (testConds) {
         if (!((UnitBehaviorCount(lv_aurielProxy, "AurielBestowHopeProxyBehavior") > 0))) {
+            return false;
+        }
+
+        if (!((lv_proxyPlayer != lv_damagingPlayer))) {
             return false;
         }
     }
