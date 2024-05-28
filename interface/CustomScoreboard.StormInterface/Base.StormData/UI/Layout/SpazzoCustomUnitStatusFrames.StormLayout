@@ -13916,6 +13916,15 @@
     <Anchor side="Right" relative="$parent/UnitStatusContainedHeroIcon" pos="Max" offset="0" />
     <Anchor side="Bottom" relative="$parent/UnitStatusContainedHeroIcon" pos="Max" offset="0" />
     <RenderPriority val="513" />
+    <StateGroup name="VisState">
+      <DefaultState val="NotVis" />
+      <State name="Vis">
+        <Action type="SetProperty" frame="$this" Behavior="NULL" />
+      </State>
+      <State name="NotVis">
+        <Action type="SetProperty" frame="$this" Behavior="NULL" />
+      </State>
+    </StateGroup>
     <Frame type="BehaviorIcon" name="BehaviorIcon">
       <Anchor relative="$parent" />
       <AcceptsMouse val="False" />
@@ -14154,92 +14163,152 @@
       <Frame type="UnitStatusUnitTrackingBehavior" name="UnitTrackingElement">
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame0" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame1" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame2" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame3" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame4" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame5" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame6" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame7" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame8" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame9" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame10" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame11" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame12" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame13" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
         <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame14" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
           <Frame type="UnitStatusBehaviorIcon" name="GorgeDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-            <Behavior val="StitchesGorgeInitialTargetBehavior"/>
-            <Visible val="{$StitchesCooldownSetting/StitchesGorgeDisplay/@Checked}"/>
+            <StateGroup name="VisState">
+              <State name="Vis">
+                <When type="Property" frame="$StitchesCooldownSetting/StitchesGorgeDisplay" Checked="True"/>
+                <Action type="SetProperty" frame="$this" Behavior="StitchesGorgeInitialTargetBehavior" />
+              </State>
+            </StateGroup>
           </Frame>
         </Frame>
       </Frame>
@@ -14834,13 +14903,188 @@
   <Frame type="UnitStatusFrame" name="MedivhPortalDurationBar" file="Medivh">
     <Frame type="Frame" name="UnitStatusMedivhPortalStateGroupControlFrame" Template="SpazzoCustomUnitStatusFrames/UnitStatusMedivhPortalPlateVisibilityStateGroupControlTemplate" />
   </Frame>
-  <!-- <Frame type="UnitStatusUnitTrackingBehavior" name="CustomZagaraMawUnitStatusFrame/TrackingCenteringFrame/UnitTrackingElement" file="Zagara">
-    <ShowValidator val="TargetIsHero" />
-  </Frame> -->
+  <Frame type="UnitStatusUnitTrackingBehavior" name="CustomZagaraMawUnitStatusFrame/TrackingCenteringFrame/UnitTrackingElement" file="Zagara">
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame0" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame1" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame2" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame3" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame4" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame5" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame6" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame7" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame8" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame9" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame10" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame11" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame12" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame13" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame14" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="MawDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ZagaraCooldownSetting/ZagaraMawDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="DevouringMawTargetBehavior" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+  </Frame>
   <Frame type="UnitStatusFrame" name="CustomMaievContainmentDiscCrystalUnitStatusFrame/TrackingCenteringFrame/UnitTrackingElement/TrackedUnitStatusFrame0" file="Maiev">
     <Frame type="UnitStatusBehaviorIcon" name="TimeStopDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
-      <Behavior val="MaievContainmentDiscTimeStop"/>
-      <Visible val="{$MaievCooldownSetting/ContainmentDiscDisplay/@Checked}"/>
+      <StateGroup name="VisState">
+        <State name="Vis">
+          <When type="Property" frame="$MaievCooldownSetting/ContainmentDiscDisplay" Checked="True"/>
+          <Action type="SetProperty" frame="$this" Behavior="MaievContainmentDiscTimeStop" />
+        </State>
+      </StateGroup>
+    </Frame>
+  </Frame>
+  <Frame type="UnitStatusFrame" name="ImperiusWrathOfTheAngirisCustomUnitStatusFrame/TrackingCenteringFrame/UnitTrackingElement" file="Imperius">
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame0" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="WrathfAngirisDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ImperiusCooldownSetting/ImperiusWrathDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="ImperiusWrathOfTheAngirisCasterRemovedStasis" />
+          </State>
+        </StateGroup>
+      </Frame>
+    </Frame>
+    <Frame type="UnitStatusFrame" name="TrackedUnitStatusFrame1" template="UnitStatusUnitTracking/BottomRowTrackedUnitStatusFrameTemplate">
+      <Frame type="UnitStatusBehaviorIcon" name="WrathfAngirisDuration" template="SpazzoCustomUnitStatusFrames/UnitTrackingBehaviorTemplate">
+        <StateGroup name="VisState">
+          <State name="Vis">
+            <When type="Property" frame="$ImperiusCooldownSetting/ImperiusWrathDisplay" Checked="True"/>
+            <Action type="SetProperty" frame="$this" Behavior="ImperiusWrathOfTheAngirisTargetRemovedStasis" />
+          </State>
+        </StateGroup>
+      </Frame>
     </Frame>
   </Frame>
 </Desc>

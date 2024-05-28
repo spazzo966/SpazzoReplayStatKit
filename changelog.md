@@ -1,3 +1,17 @@
+# v0.36
+
+* Statistics
+ * Updates to support version 92264
+ * Hanzo now tracks Giant Slayer damage from Basic Attacks and Scatter Arrow separately
+
+* UI
+ * Added duration indicator to Zagara's Maw
+ * Added duration indicator to Maiev's Containment Disc
+ * Added duration indicator to Imperius's Wrath of Angiris
+ * Adjusted Yrel alignment in Top Bar when displaying in Compact mode
+ * Fixed an issue causing some hero container settings to not display correctly
+
+
 # v0.35
 
 * Statistics

@@ -13049,6 +13049,7 @@ bool libGDHL_gt_HeroLostVikingsVikingHoard_Func (bool testConds, bool runActions
                 lv_itVikingPerPlayer = UnitGroupUnitFromEnd(autoE5826E76_g, autoE5826E76_u);
                 if (lv_itVikingPerPlayer == null) { break; }
                 UnitCreateEffectUnit(lv_itVikingPerPlayer, "LostVikingsVikingHoardIncrementTokenCounter", lv_itVikingPerPlayer);
+                // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Viking Hoard Added to ") + UnitGetName(lv_itVikingPerPlayer)));
             }
         }
     }
@@ -18899,7 +18900,7 @@ bool libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate_Func (bool testConds, boo
     // Variable Declarations
     unit lv_raynor;
     point lv_targetPoint;
-
+  
     // Automatic Variable Declarations
     // Variable Initialization
     lv_raynor = EventPlayerEffectUsedUnit(c_effectUnitCaster);
@@ -18909,14 +18910,14 @@ bool libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate_Func (bool testConds, boo
     if (!runActions) {
         return true;
     }
-
+  
     UnitCreateEffectPointWithSource(lv_raynor, "HyperionInitialCreatePersistent", lv_targetPoint, c_gameCatalogAbil, "RaynorHyperionExecuteOrders");
     return true;
 }
-
+  
 //--------------------------------------------------------------------------------------------------
 void libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate_Init () {
-    libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate = TriggerCreate("libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate_Func");
+libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate = TriggerCreate("libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate_Func");
     TriggerEnable(libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate, false);
     TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate, c_playerAny, "RaynorExecuteOrdersDummyEffect");
 }
@@ -21834,27 +21835,28 @@ void libGDHL_gt_HeroSgtHammerBluntForceGunCheckForLocation_Init () {
 // Trigger: Hero - SgtHammer - Blunt Force Gun Apply Orbital Scan
 //--------------------------------------------------------------------------------------------------
 bool libGDHL_gt_HeroSgtHammerBluntForceGunApplyOrbitalScan_Func (bool testConds, bool runActions) {
-    // Variable Declarations
-    unit lv_sourceUnit;
+  // Variable Declarations
+  unit lv_sourceUnit;
 
-    // Automatic Variable Declarations
-    // Variable Initialization
-    lv_sourceUnit = EventPlayerEffectUsedUnit(c_effectUnitSource);
+  // Automatic Variable Declarations
+  // Variable Initialization
+  lv_sourceUnit = EventPlayerEffectUsedUnit(c_effectUnitSource);
 
-    // Conditions
-    if (testConds) {
-        if (!((UnitGetType(lv_sourceUnit) == "SgtHammerBluntForceGunMissileOrbital"))) {
-            return false;
-        }
+  // Conditions
+  if (testConds) {
+    if (!((UnitGetType(lv_sourceUnit) == "SgtHammerBluntForceGunMissileOrbital"))) {
+        return false;
     }
+  }
 
-    // Actions
-    if (!runActions) {
-        return true;
-    }
+  // Actions
+  if (!runActions) {
+      return true;
+  }
 
-    UnitCreateEffectUnitWithSource(libGame_gv_players[UnitGetOwner(lv_sourceUnit)].lv_heroUnit, "BluntForceGunApplyMissileScanOrbital", lv_sourceUnit, c_gameCatalogAbil, "SgtHammerOrbitalBFGBluntForceGun");
-    return true;
+  UnitCreateEffectUnitWithSource(libGame_gv_players[UnitGetOwner(lv_sourceUnit)].lv_heroUnit, "BluntForceGunApplyMissileScanOrbital", lv_sourceUnit, c_gameCatalogAbil, "SgtHammerOrbitalBFGBluntForceGun");
+
+  return true;
 }
 
 //--------------------------------------------------------------------------------------------------

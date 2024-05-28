@@ -6148,6 +6148,12 @@
         <DefaultState val="#ImperiusCooldownDisplay"/>
       </StateGroup>
     </Frame>
+    <Frame type="CheckBox" name="ImperiusWrathDisplay" template="StandardTemplates/StandardCheckBoxTemplate">
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="-1" />
+      <Anchor side="Right" relative="$parent" pos="Max" offset="-1" />
+      <Tooltip val="@UI/Spazzo/ImperiusWrathDisplayTooltip" />
+      <Checked val="#ImperiusWrathDisplayToggle" />
+    </Frame>
     <StateGroup name="PlayerGroup">
       <DefaultState val="PlayerNotFound"/>
       <State name="Player1IsHero">
@@ -15205,6 +15211,12 @@
       <StateGroup name="SelectedAttachmentStategroup">
         <DefaultState val="#ZagaraCooldownDisplay"/>
       </StateGroup>
+    </Frame>
+    <Frame type="CheckBox" name="ZagaraMawDisplay" template="StandardTemplates/StandardCheckBoxTemplate">
+      <Anchor side="Bottom" relative="$parent" pos="Max" offset="-1" />
+      <Anchor side="Right" relative="$parent" pos="Max" offset="-1" />
+      <Tooltip val="@UI/Spazzo/ZagaraMawDisplayTooltip" />
+      <Checked val="#ZagaraMawDisplayToggle" />
     </Frame>
     <StateGroup name="PlayerGroup">
       <DefaultState val="PlayerNotFound"/>

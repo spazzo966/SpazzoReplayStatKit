@@ -90,6 +90,7 @@
   <Constant name="HoggerCooldownDisplay" val="0" />
   <Constant name="IllidanCooldownDisplay" val="0" />
   <Constant name="ImperiusCooldownDisplay" val="0" />
+  <Constant name="ImperiusWrathDisplayToggle" val="true" />
   <Constant name="JainaCooldownDisplay" val="0" />
   <Constant name="CrusaderCooldownDisplay" val="0" />
   <Constant name="JunkratCooldownDisplay" val="0" />
@@ -154,6 +155,7 @@
   <Constant name="NecromancerCooldownDisplay" val="0" />
   <Constant name="YrelCooldownDisplay" val="0" />
   <Constant name="ZagaraCooldownDisplay" val="0" />
+  <Constant name="ZagaraMawDisplayToggle" val="true" />
   <Constant name="ZaryaCooldownDisplay" val="0" />
   <Constant name="ZeratulCooldownDisplay" val="0" />
   <Constant name="ZuljinCooldownDisplay" val="0" />
@@ -686,6 +688,11 @@
     values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
     valuesDisplayNames = "Disabled"/"Celestial Charge"/"Molten Armor"/"Solarion's Fire"/"Holy Fervor"/"Heroic Ability"/"Impervious"
   ) -->
+  <!-- @Setting (	constant = "ImperiusWrathDisplayToggle",
+    default = "false",
+    description = "Display Wrath of the Angiris remaining duration in the tracked unit display in the Wrath of Angiris Cursor Healthplate",
+    type = "Boolean"
+  ) -->
   <!-- @Setting (	constant = "JainaCooldownDisplay",
     default = "0",
     description = "Which Hero Attachment to display on Jaina's Healthplate",
@@ -1051,6 +1058,11 @@
     description = "Which Hero Attachment to display on Zagara's Healthplate",
     values = "0"/"1"/"2"/"3"/"4"/"5"/"6",
     valuesDisplayNames = "Disabled"/"Baneling Barrage"/"Hunter Killer"/"Infested Drop"/"Creep Tumor"/"Envenomed Spines"/"Heroic Ability"
+  ) -->
+  <!-- @Setting (	constant = "ZagaraMawDisplayToggle",
+    default = "true",
+    description = "Display Devouring Maw remaining duration in the tracked unit display in Devouring Maw Healthplate",
+    type = "Boolean"
   ) -->
   <!-- @Setting (	constant = "ZaryaCooldownDisplay",
     default = "0",

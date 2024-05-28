@@ -95,6 +95,7 @@ encoding=%1%utf-8%1% standalone=%1%yes%1%?%16% %15%Desc%16%
 %15%Constant name=%1%HoggerCooldownDisplay%1% val=%1%%72%%1% /%16%
 %15%Constant name=%1%IllidanCooldownDisplay%1% val=%1%%117%%1% /%16%
 %15%Constant name=%1%ImperiusCooldownDisplay%1% val=%1%%84%%1% /%16%
+%15%Constant name=%1%ImperiusWrathDisplayToggle%1% val=%1%%219%%1% /%16%
 %15%Constant name=%1%JainaCooldownDisplay%1% val=%1%%67%%1% /%16%
 %15%Constant name=%1%CrusaderCooldownDisplay%1% val=%1%%31%%1% /%16%
 %15%Constant name=%1%JunkratCooldownDisplay%1% val=%1%%135%%1% /%16%
@@ -159,6 +160,7 @@ encoding=%1%utf-8%1% standalone=%1%yes%1%?%16% %15%Desc%16%
 %15%Constant name=%1%NecromancerCooldownDisplay%1% val=%1%%95%%1% /%16%
 %15%Constant name=%1%YrelCooldownDisplay%1% val=%1%%139%%1% /%16%
 %15%Constant name=%1%ZagaraCooldownDisplay%1% val=%1%%140%%1% /%16%
+%15%Constant name=%1%ZagaraMawDisplayToggle%1% val=%1%%218%%1% /%16%
 %15%Constant name=%1%ZaryaCooldownDisplay%1% val=%1%%121%%1% /%16%
 %15%Constant name=%1%ZeratulCooldownDisplay%1% val=%1%%33%%1% /%16%
 %15%Constant name=%1%ZuljinCooldownDisplay%1% val=%1%%129%%1% /%16%
@@ -424,5 +426,7 @@ encoding=%1%utf-8%1% standalone=%1%yes%1%?%16% %15%Desc%16%
     <Replacement val="{$parent/TopBarCustomSettingsFrame/ToggleTeamNameScorePositions/@Toggled}" index="215" />
     <Replacement val="{$parent/MaievAttachmentOption1/ContainmentDiscDisplay/@Checked}" index="216" />
     <Replacement val="{$parent/StitchesAttachmentOption1/StitchesGorgeDisplay/@Checked}" index="217" />
+    <Replacement val="{$parent/ZagaraAttachmentOption1/ZagaraMawDisplay/@Checked}" index="218" />
+    <Replacement val="{$parent/ImperiusAttachmentOption1/ImperiusWrathDisplay/@Checked}" index="219" />
   </Frame>
 </Desc>

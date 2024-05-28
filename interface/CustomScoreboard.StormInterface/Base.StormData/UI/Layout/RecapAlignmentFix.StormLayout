@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Desc>
+
+
+
+  <Frame type="Frame" name="GameUI/UIContainer/FullscreenUpperContainer/HeroLeaderPanel/HeroLeaderPanelContainer/TabControl/DeathRecapContainerFrame/DeathRecapPanel" file="GameUI">
+    <Frame type="Frame" name="HighestDamagersPanel">
+      <Frame type="Frame" name="HighestDamage1">
+        <Frame type="Label" name="HighestDamagerPlayerNameLabel">
+          <Anchor side="Top" relative="$parent/HighestDamagerHeroNameLabel" pos="Max" offset="-3" />
+        </Frame>
+        <Frame type="Frame" name="HighestDamagerAbilityFrame1">
+          <Anchor side="Top" relative="$parent/HighestDamagerPlayerNameLabel" pos="Max" offset="3" />
+        </Frame>
+      </Frame>
+      <Frame type="Frame" name="HighestDamage2">
+        <Frame type="Label" name="HighestDamagerPlayerNameLabel">
+          <Anchor side="Top" relative="$parent/HighestDamagerHeroNameLabel" pos="Max" offset="-3" />
+        </Frame>
+        <Frame type="Frame" name="HighestDamagerAbilityFrame1">
+          <Anchor side="Top" relative="$parent/HighestDamagerPlayerNameLabel" pos="Max" offset="3" />
+        </Frame>
+      </Frame>
+      <Frame type="Frame" name="HighestDamage3">
+        <Frame type="Label" name="HighestDamagerPlayerNameLabel">
+          <Anchor side="Top" relative="$parent/HighestDamagerHeroNameLabel" pos="Max" offset="-3" />
+        </Frame>
+        <Frame type="Frame" name="HighestDamagerAbilityFrame1">
+          <Anchor side="Top" relative="$parent/HighestDamagerPlayerNameLabel" pos="Max" offset="3" />
+        </Frame>
+      </Frame>
+    </Frame>
+  </Frame>
+
+</Desc>
