@@ -17,5 +17,4 @@
     <Include path="UI/Layout/SpazzoCustomTopBar.StormLayout"/>
     <Include path="UI/Layout/ExportSettingsFrame.StormLayout"/>
     <Include path="UI/Layout/CustomPanelSpazzo.StormLayout"/>
-    <Include path="UI/Layout/RecapAlignmentFix.StormLayout"/>
 </Desc>

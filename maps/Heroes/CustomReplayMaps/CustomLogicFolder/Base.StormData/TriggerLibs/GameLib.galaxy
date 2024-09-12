@@ -1652,6 +1652,7 @@ void libGame_gf_DeathRecapAddEffectInstanceForPlayer (int lp_deadPlayer, string 
   int lv_itEffect;
   int lv_itMaxDamagerIndex;
   int lv_postEffectHealth;
+  int lv_overkillOverride;
 
   // Automatic Variable Declarations
   int auto11913262_ae;
@@ -1664,6 +1665,13 @@ void libGame_gf_DeathRecapAddEffectInstanceForPlayer (int lp_deadPlayer, string 
   // Implementation
     if ((libGame_gv_deathRecap_DeathData[lp_deadPlayer].lv_effectEventCount <= 0) && (lp_effectIsHeal == true)) {
         return ;
+  }
+
+  if (((UnitGetType(libGame_gv_players[lp_deadPlayer].lv_heroUnit) == "HeroDVaPilot") || (UnitGetType(libGame_gv_players[lp_deadPlayer].lv_heroUnit) == "HeroUther") || (UnitGetType(libGame_gv_players[lp_deadPlayer].lv_heroUnit) == "HeroTyrael") || (UnitGetType(libGame_gv_players[lp_deadPlayer].lv_heroUnit) == "HeroLeoric"))) {
+    lv_overkillOverride = PlayerScoreValueGetAsInt(lp_deadPlayer, "DeadHeroDamagePreventedByAbsorb");
+  }
+  else {
+    lv_overkillOverride = 0;
   }
 
   lv_effectingPlayer = lp_effectingPlayer;
@@ -1694,7 +1702,7 @@ void libGame_gf_DeathRecapAddEffectInstanceForPlayer (int lp_deadPlayer, string 
     libGame_gv_deathRecap_DeathData[lp_deadPlayer].lv_effectBars[lv_effectEventTimeIndex].lv_amount = lp_effectAmount;
     libGame_gv_deathRecap_DeathData[lp_deadPlayer].lv_effectBars[lv_effectEventTimeIndex].lv_amountAttempted = lp_effectAmountAttempted;
     libGame_gv_deathRecap_DeathData[lp_deadPlayer].lv_effectBars[lv_effectEventTimeIndex].lv_amountShielded = lp_effectAmountShielded;
-    libGame_gv_deathRecap_DeathData[lp_deadPlayer].lv_effectBars[lv_effectEventTimeIndex].lv_amountOverkill = (lp_effectAmountAttempted - (lp_effectAmount + lp_effectAmountShielded));
+    libGame_gv_deathRecap_DeathData[lp_deadPlayer].lv_effectBars[lv_effectEventTimeIndex].lv_amountOverkill = ((lp_effectAmountAttempted - (lp_effectAmount + lp_effectAmountShielded)) + lv_overkillOverride);
     libGame_gv_deathRecap_DeathData[lp_deadPlayer].lv_effectBars[lv_effectEventTimeIndex].lv_abilityLink = lp_effectingAbility;
     libGame_gv_deathRecap_DeathData[lp_deadPlayer].lv_effectBars[lv_effectEventTimeIndex].lv_button = lp_sourceButton;
     libGame_gv_deathRecap_DeathData[lp_deadPlayer].lv_effectBars[lv_effectEventTimeIndex].lv_unitType = (CatalogFieldValueGet(c_gameCatalogUnit, lp_effectingUnitType, "LeaderAlias", 0));
@@ -1996,6 +2004,7 @@ void libGame_gf_DeathRecapPopulateDeathRecapDataForPlayer (unit lp_playerHero, i
   if ((libGame_gv_deathRecap_DeathData[lp_deadPlayer].lv_effectEventCount >= 1)) {
       libUIUI_gf_DeathRecapPopulateHighestDamagersForPlayer(lp_deadPlayer);
       libUIUI_gf_DeathRecapPopulateEffectInstancesForAbilitiesPanel(lp_deadPlayer);
+      PlayerScoreValueSetFromInt(lp_deadPlayer, "DeadHeroDamagePreventedByAbsorb", 0);
   }
   else {
       TriggerDebugOutput(1, StringExternal("Param/Value/lib_Game_A143D762"), true);
@@ -12684,6 +12693,11 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
         lv_leechFraction += CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_damageEffect, "LeechFlatModifierArray[" + "BrandedHero" + "].Modifier", lp_casterPlayer);
       }
     }
+    else if ((CatalogFieldValueGet(c_gameCatalogEffect, lp_damageEffect, "LeechValidator[" + IntToString(c_unitVitalLife) + "]", lp_casterPlayer) == "HasIllidanCombatStyleHuntersOnslaught")) {
+      if (!(PlayerHasTalent(lp_casterPlayer, "IllidanCombatStyleHuntersOnslaught") == true)) {
+        lv_leechFraction = 0.0;
+      }
+    }
   }
   if (((lp_damageEffect == "FireStompSoulsToTheFlameDamage") || (lp_damageEffect == "FireStompReturnSoulsToTheFlameDamage"))) {
     // libGame_gv_HeroSpecificStoredValue1[lp_casterPlayer] += 1;
@@ -13478,7 +13492,7 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
       lv_tertiaryScoreString = "TalentSeven";
       lv_tertiaryScoreOverride = ((lp_damageValue * lv_leechFraction) * lp_healTakenModifier);
     }
-    if (((PlayerHasTalent(lp_casterPlayer, "IllidanCombatStyleHuntersOnslaught") == true) && ((lp_damageEffect == "IllidanDiveDamage") || (lp_damageEffect == "IllidanDiveMarkedForDeathTalentDamage") || (lp_damageEffect == "IllidanSweepingStrikeDamage")))) {
+    if (((PlayerHasTalent(lp_casterPlayer, "IllidanCombatStyleHuntersOnslaught") == true) && ((lp_damageEffect == "IllidanDiveDamage") || (lp_damageEffect == "IllidanDiveMarkedForDeathTalentDamage") || (lp_damageEffect == "IllidanSweepingStrikeDamage") || (lp_damageEffect == "IllidanSweepingStrikesImmolationDamage")))) {
       lv_leechFraction = CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "IllidanHuntersOnslaughtLifeLeech", "Modification.VitalDamageLeechArray[" + IntToString(c_unitVitalLife) + "].KindArray[" + IntToString(c_unitDamageTypeAbility) + "]", lp_casterPlayer);
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_leechFraction = CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "IllidanHuntersOnslaughtLifeLeechHero", "Modification.VitalDamageLeechArray[" + IntToString(c_unitVitalLife) + "].KindArray[" + IntToString(c_unitDamageTypeAbility) + "]", lp_casterPlayer);
@@ -13572,7 +13586,7 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAlarak")) {
     if ((lp_damageEffect == "AlarakHeroWeaponDamage")) {
-      lv_primaryScoreString = "BaselineThree";
+      lv_primaryScoreString = "BaselineTwo";
     }
   }
 
@@ -13610,6 +13624,9 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
       lv_primaryScoreString = "TalentSixteen";
     }
     if ((lp_damageEffect == "HoggerHoggWildDamage")) {
+      lv_primaryScoreString = "TalentSixteen";
+    }
+    if ((lp_damageEffect == "HoggerStaggeringBlowHeadbangerTalentDamage")) {
       lv_primaryScoreString = "TalentSixteen";
     }
   }
@@ -13664,7 +13681,7 @@ fixed libGame_gv_GetLeechFractionFromCasterBehaviors (string lp_damageEffect, un
     if (((UnitHasBehavior2(lp_casterUnit, "KelThuzadPhylacterySpellVamp") == true))) {
       lv_leechFraction = CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "KelThuzadPhylacterySpellVamp", "Modification.VitalDamageLeechArray[" + IntToString(c_unitVitalLife) + "].KindArray[" + IntToString(c_unitDamageTypeAbility) + "]", lp_casterPlayer);
     }
-    if (((PlayerHasTalent(lp_casterPlayer, "IllidanCombatStyleHuntersOnslaught") == true) && ((lp_damageEffect == "IllidanDiveDamage") || (lp_damageEffect == "IllidanDiveMarkedForDeathTalentDamage") || (lp_damageEffect == "IllidanSweepingStrikeDamage")))) {
+    if (((PlayerHasTalent(lp_casterPlayer, "IllidanCombatStyleHuntersOnslaught") == true) && ((lp_damageEffect == "IllidanDiveDamage") || (lp_damageEffect == "IllidanDiveMarkedForDeathTalentDamage") || (lp_damageEffect == "IllidanSweepingStrikeDamage") || (lp_damageEffect == "IllidanSweepingStrikesImmolationDamage")))) {
       lv_leechFraction = CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "IllidanHuntersOnslaughtLifeLeech", "Modification.VitalDamageLeechArray[" + IntToString(c_unitVitalLife) + "].KindArray[" + IntToString(c_unitDamageTypeAbility) + "]", lp_casterPlayer);
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_leechFraction = CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "IllidanHuntersOnslaughtLifeLeechHero", "Modification.VitalDamageLeechArray[" + IntToString(c_unitVitalLife) + "].KindArray[" + IntToString(c_unitDamageTypeAbility) + "]", lp_casterPlayer);
@@ -14276,7 +14293,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
           lv_primaryScoreString = "Discard";
         }
       }
-      if (((lp_behavior == "ValeeraCheapShotBlind") || (lp_behavior == "ValeeraCheapShotBlindNonHeroes")) && (UnitTypeTestAttribute(UnitGetType(lp_externalUnit), c_unitAttributeHeroic) == false)) {
+      if (((lp_behavior == "ValeeraCheapShotBlind") || (lp_behavior == "ValeeraCheapShotNonHeroesBlind")) && (UnitTypeTestAttribute(UnitGetType(lp_externalUnit), c_unitAttributeHeroic) == false)) {
         lv_primaryScoreString = "BaselineThree";
       }
     }
@@ -15737,6 +15754,9 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       else if ((lp_healEffect == "AbathurSymbioteSpikeBurstSomaTransferenceCreateHealer")) {
         lv_primaryScoreString = "TalentThirteen";
       }
+      else if ((lp_healEffect == "AbathurHivemindSpikeBurstSomaTransferenceCreateHealer")) {
+        lv_primaryScoreString = "TalentSixteen";
+      }
       else if ((lp_healEffect == "MULERepairHealth")) {
         lv_primaryScoreString = "TalentSeven";
       }
@@ -15750,9 +15770,6 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAlarak")) {
       if ((lp_healEffect == "AlarakLightningSurgeHeroDamageCreateHealer")) {
         lv_primaryScoreString = "BaselineOne";
-      }
-      if ((lp_healEffect == "AlarakLightningSurgeHeroTargetCreateHealer")) {
-        lv_primaryScoreString = "BaselineTwo";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAlexstrasza") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAlexstraszaDragon")) {
@@ -16526,6 +16543,9 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       if ((lp_healEffect == "ValeeraThistleTeaModify")) {
         lv_primaryScoreString = "TalentSixteen";
       }
+      if ((lp_healEffect == "ValeeraHearthstoneEnergyRestore")) {
+        lv_primaryScoreString = "Discard";
+      }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroNecromancer")) {
       if ((lp_healEffect == "NecromancerRaiseSkeletonTragOulsEssenceCreateHealerMana")) {
@@ -16613,17 +16633,17 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMalthael")) {
-      if ((lp_healEffect == "MalthaelLastRitesAngelOfDeathCreateHealer")) {
-        lv_primaryScoreString = "TalentTwenty";
-      }
       if ((lp_healEffect == "MalthaelSoulRipCreateHealer")) {
+        lv_primaryScoreString = "BaselineOne";
+      }
+      if ((lp_healEffect == "MalthaelSoulRipHeroPercentageCreateHealer")) {
         lv_primaryScoreString = "BaselineTwo";
       }
       if ((lp_healEffect == "MalthaelSoulRipSoulSiphonHeroPercentageCreateHealer")) {
-        lv_primaryScoreString = "TalentThirteen";
+        lv_primaryScoreString = "BaselineThree";
       }
-      if ((lp_healEffect == "MalthaelSoulRipHeroPercentageCreateHealer")) {
-        lv_primaryScoreString = "BaselineOne";
+      if ((lp_healEffect == "MalthaelLastRitesAngelOfDeathCreateHealer")) {
+        lv_primaryScoreString = "TalentOne";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMalfurion")) {
@@ -17007,6 +17027,9 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       }
       if ((lp_healEffect == "L90ETCPowerSlideCrowdSurferCooldownReduction")) {
         lv_primaryScoreString = "TalentFour";
+      }
+      if ((lp_healEffect == "L90ETCPowerslideCrowdSurferRefundCheck")) {
+        lv_primaryScoreString = "Discard";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMephisto")) {
@@ -17765,6 +17788,9 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       }
       if ((lp_healEffect == "LostVikingsPlayAgainCreateHealer")) {
         lv_primaryScoreString = "TalentTen";
+      }
+      if ((lp_healEffect == "LostVikingsCheckpointReachedCreateHealer")) {
+        lv_primaryScoreString = "TalentThirteen";
       }
       if ((lp_healEffect == "LostVikingsOlafStoutnessCreateHealer")) {
         lv_primaryScoreString = "BaselineOne";
@@ -20631,6 +20657,9 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     lv_primaryScoreString = "Discard";
   }
   if ((lp_damageEffect == "BlockDummyDamageTarget")) {
+    lv_primaryScoreString = "Discard";
+  }
+  if ((lp_damageEffect == "StormSummonedWeaponPhysicalDamageDummy")) {
     lv_primaryScoreString = "Discard";
   }
 
@@ -29600,49 +29629,38 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_secondaryScoreString = "AccuracyThirteen";
       }
     }
-    if (PlayerHasTalent(lv_casterPlayer, "RaynorHeroicAbilityHyperion") == true) {
-      if ((lp_damageEffect == "HyperionWeaponDamage")) {
-        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_primaryScoreString = "BaselineTwo";
-          lv_secondaryScoreOverride = 1.0;
-          lv_secondaryScoreString = "AccuracyTwelve";
-          if ((UnitHasBehavior2(lp_targetUnit, "RaynorGiveEmSomePepperCavalrysArrivedBehavior") == true)) {
-            lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "RaynorCavalrysArrived");
-            lv_tertiaryScoreString = "SupportThirteen";
-            lv_quaternaryScoreOverride = 1.0;
-            lv_quaternaryScoreString = "SupportFourteen";
-          }
-        }
-        else {
-          lv_primaryScoreString = "BaselineThree";
-          lv_secondaryScoreOverride = 1.0;
-          lv_secondaryScoreString = "AccuracyThirteen";
+    if ((lp_damageEffect == "HyperionWeaponDamage")) {
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_primaryScoreString = "BaselineTwo";
+        lv_secondaryScoreOverride = 1.0;
+        lv_secondaryScoreString = "AccuracyTwelve";
+        if ((UnitHasBehavior2(lp_targetUnit, "RaynorGiveEmSomePepperCavalrysArrivedBehavior") == true)) {
+          lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "RaynorCavalrysArrived");
+          lv_tertiaryScoreString = "SupportThirteen";
+          lv_quaternaryScoreOverride = 1.0;
+          lv_quaternaryScoreString = "SupportFourteen";
         }
       }
-      if ((lp_damageEffect == "RaynorHyperionYamatoDamage")) {
-        lv_primaryScoreString = "TalentOne";
+      else {
+        lv_primaryScoreString = "BaselineThree";
         lv_secondaryScoreOverride = 1.0;
-        lv_secondaryScoreString = "AccuracyFourteen";
+        lv_secondaryScoreString = "AccuracyThirteen";
       }
     }
-    else {
-      if ((lp_damageEffect == "HyperionWeaponDamage")) {
-        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_primaryScoreString = "SupportEleven";
-          lv_secondaryScoreOverride = 1.0;
-          lv_secondaryScoreString = "SupportThirteen";
-        }
-        else {
-          lv_primaryScoreString = "SupportTwelve";
-          lv_secondaryScoreOverride = 1.0;
-          lv_secondaryScoreString = "SupportFourteen";
-        }
-      }
-      if ((lp_damageEffect == "RaynorHyperionYamatoDamage")) {
-        lv_primaryScoreString = "SupportFifteen";
-        lv_secondaryScoreOverride = 1.0;
-        lv_secondaryScoreString = "SupportSixteen";
-      }
+    if ((lp_damageEffect == "RaynorHyperionYamatoDamage")) {
+      lv_primaryScoreString = "TalentOne";
+      lv_secondaryScoreOverride = 1.0;
+      lv_secondaryScoreString = "AccuracyFourteen";
+    }
+    if ((lp_damageEffect == "HyperionWeaponExecuteOrdersDamage")) {
+      lv_primaryScoreString = "SupportEleven";
+      lv_secondaryScoreOverride = 1.0;
+      lv_secondaryScoreString = "SupportThirteen";
+    }
+    if ((lp_damageEffect == "RaynorHyperionExecuteOrdersYamatoDamage")) {
+      lv_primaryScoreString = "SupportTwelve";
+      lv_secondaryScoreOverride = 1.0;
+      lv_secondaryScoreString = "SupportFourteen";
     }
     if ((lp_damageEffect == "RaynorBountyHunterDamage")) {
       lv_primaryScoreString = "TalentTen";
@@ -39877,7 +39895,7 @@ void libGame_gv_initializeOBSUI () {
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Mercenary Tracker"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.36 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.37 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
     // Well, I tried to add team coloured globes.
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamOrder, "11");
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Person", libCore_gv_cOMPUTER_TeamOrder, "Observer");
@@ -47239,6 +47257,10 @@ bool libGame_gt_PlayerLeavesGameIsHumanPlayer_Func (bool testConds, bool runActi
     if (!((libGame_gv_gameOver == false))) {
       return false;
     }
+
+    if (!((libGame_gv_playerLeaveCheck[EventPlayer()] != 1))) {
+        return false;
+    }
   }
 
   // Actions
@@ -47247,6 +47269,7 @@ bool libGame_gt_PlayerLeavesGameIsHumanPlayer_Func (bool testConds, bool runActi
   }
 
   if ((UnitGroupCount(libGame_gv_players[EventPlayer()].lv_heroUnitGroup, c_unitCountAll) == 0)) {
+        libGame_gv_playerLeaveCheck[EventPlayer()] = 1;
     Wait(5.0, c_timeGame);
     auto9C0B1166_g = libGame_gv_players[EventPlayer()].lv_heroUnitGroup;
     auto9C0B1166_u = UnitGroupCount(auto9C0B1166_g, c_unitCountAll);
@@ -47255,6 +47278,7 @@ bool libGame_gt_PlayerLeavesGameIsHumanPlayer_Func (bool testConds, bool runActi
             if (lv_itUnit == null) { break; }
       UnitBehaviorAdd(lv_itUnit, "IsHumanPlayer", lv_itUnit, 1);
     }
+    libGame_gv_playerLeaveCheck[EventPlayer()] = 0;
   }
   else {
     auto534FCED5_g = libGame_gv_players[EventPlayer()].lv_heroUnitGroup;

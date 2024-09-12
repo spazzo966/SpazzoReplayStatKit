@@ -1636,6 +1636,7 @@ void libGDHL_gf_HeroLeoricIncrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_LeoricFealtyUntoDeathAlliedNPCProcListener, true);
         TriggerEnable(libGDHL_gt_HeroLeoricOsseinRenewalTalentGlobeProc, true);
         TriggerEnable(libGDHL_gt_HeroLeoricEntombForcedDestruction, true);
+        TriggerEnable(libGDHL_gt_HeroLeoricShroudOfTheDeadKingFloatingText, true);
     }
 
 }
@@ -1659,6 +1660,7 @@ void libGDHL_gf_HeroLeoricDecrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_LeoricFealtyUntoDeathAlliedNPCProcListener, false);
         TriggerEnable(libGDHL_gt_HeroLeoricOsseinRenewalTalentGlobeProc, false);
         TriggerEnable(libGDHL_gt_HeroLeoricEntombForcedDestruction, false);
+        TriggerEnable(libGDHL_gt_HeroLeoricShroudOfTheDeadKingFloatingText, false);
     }
 
 }
@@ -4777,7 +4779,6 @@ bool libGDHL_gt_HearthstoneChannelingBuffOn_Func (bool testConds, bool runAction
         return true;
     }
 
-    // libUIUI_gf_PingPlayerStartsHearthStonePing(lv_hearthstonePlayer, UnitGetPosition(lv_hearthstoneUnit), lv_hearthstoneUnit);
     libUIUI_gf_PingPlayerStartsHearthStonePing(lv_hearthstonePlayer, UnitGetPosition(lv_hearthstoneUnit));
     libSond_gf_HeroVOHeroBeginsHearthing(lv_hearthstonePlayer);
     libUIUI_gf_UIPartyFrameHeroHearthstoneStart(lv_hearthstonePlayer, lv_hearthstoneUnit);
@@ -5081,17 +5082,6 @@ bool libGDHL_gt_HeroAbathurSymbiote_Func (bool testConds, bool runActions) {
                     UnitCreateEffectUnit(lv_abathur, "AbathurSymbioteRemoveAbilityDisabler", libGDHL_gv_heroAbathurSymbioteUnit[lv_abathurPlayer]);
                 }
 
-                // if ((UnitHasBehavior2(lv_symbioteHost, "DVaMechSelfDestructMechDetonationCountdown") == true) && (UnitGetType(libGame_gv_players[lv_symbioteHostPlayer].lv_heroUnit) == "HeroDVaPilot")) {
-                //     UnitCreateEffectUnit(lv_symbioteHost, "AbathurSymbioteDVaRemoveSymbioteHostDelay", lv_abathur);
-                //     lv_symbioteHost = libGame_gv_players[lv_symbioteHostPlayer].lv_heroUnit;
-                //     UnitBehaviorAdd(lv_symbioteHost, "AbathurSymbioteHostBehavior", lv_abathur, 1);
-                //     UnitCreateEffectUnit(lv_abathur, "AbathurSymbioteAddTargetToHostTracker", lv_symbioteHost);
-                //     UnitCreateEffectUnit(lv_symbioteHost, "SymbioteActorLink", libGDHL_gv_heroAbathurSymbioteUnit[lv_abathurPlayer]);
-                //     UnitCreateEffectUnit(lv_symbioteHost, "AbathurSymbioteApplySuperStealthController", libGDHL_gv_heroAbathurSymbioteUnit[lv_abathurPlayer]);
-                //     UnitCreateEffectUnit(lv_symbioteHost, "AbathurSymbioteApplyStealthController", libGDHL_gv_heroAbathurSymbioteUnit[lv_abathurPlayer]);
-                //     UnitCreateEffectUnit(libGDHL_gv_heroAbathurSymbioteUnit[lv_abathurPlayer], "SymbiotePropertyLink", lv_symbioteHost);
-                // }
-                // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Has Unit Tracker(") + IntToText(UnitGroupCount(UnitGetTrackedUnitGroup(lv_abathur, "AbathurSymbioteHostTracker"), c_unitCountAll)) + StringToText(" tracked): ") + StringToText(UnitGetType(UnitGroupUnit(UnitGetTrackedUnitGroup(lv_abathur, "AbathurSymbioteHostTracker"), 1)))));
             }
             Wait(0.0625, c_timeGame);
         }
@@ -12866,6 +12856,41 @@ void libGDHL_gt_HeroLeoricOsseinRenewalTalentGlobeProc_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Hero - Leoric - Shroud of the Dead King Floating Text
+//--------------------------------------------------------------------------------------------------
+bool libGDHL_gt_HeroLeoricShroudOfTheDeadKingFloatingText_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    int lv_triggeringUnitOwner;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_triggeringUnitOwner = UnitGetOwner(EventUnit());
+
+    // Conditions
+    if (testConds) {
+        if (!((EventUnitBehaviorCumulativeDamageModification() >= 0.0))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    FloatingCombatElementCreateNumberTextAtUnit(PlayerGroupSingle(lv_triggeringUnitOwner), "FloatingCombatElements/FloatingCombatAmountReadable", "", EventUnit(), FixedToInt(EventUnitBehaviorCumulativeDamageModification()), StringExternal("Param/Value/lib_HVAR_D90A4267"), libNtve_gv_FloatingCombatTextAutoRandomSeed);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libGDHL_gt_HeroLeoricShroudOfTheDeadKingFloatingText_Init () {
+    libGDHL_gt_HeroLeoricShroudOfTheDeadKingFloatingText = TriggerCreate("libGDHL_gt_HeroLeoricShroudOfTheDeadKingFloatingText_Func");
+    TriggerEnable(libGDHL_gt_HeroLeoricShroudOfTheDeadKingFloatingText, false);
+    TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroLeoricShroudOfTheDeadKingFloatingText, null, "LeoricShroudoftheDeadKingProtectedBuff", c_unitBehaviorChangeRefresh);
+    TriggerAddEventUnitBehaviorChange(libGDHL_gt_HeroLeoricShroudOfTheDeadKingFloatingText, null, "LeoricShroudoftheDeadKingProtectedBuff", c_unitBehaviorChangeDecrease);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Hero - Lost Vikings - Viking Bribery NPC Proc Listener
 //--------------------------------------------------------------------------------------------------
 bool libGDHL_gt_HeroLostVikingsVikingBriberyNPCProcListener_Func (bool testConds, bool runActions) {
@@ -14913,7 +14938,7 @@ bool libGDHL_gt_HeroLostVikingsCheckpointReachTimerExpires_Func (bool testConds,
                     UnitSelect(autoF6B97AA2_var, lv_itPlayer, true);
                 }
 
-                UnitCreateEffectUnit(autoF6B97AA2_var, "LostVikingsPlayAgainHeal", autoF6B97AA2_var);
+                UnitCreateEffectUnit(autoF6B97AA2_var, "LostVikingsCheckpointReachedCreateHealer", autoF6B97AA2_var);
             }
             TimerPause(libGDHL_gv_lostVikingsPlayer[lv_itPlayer].lv_olafDeathTimer, true);
             TimerPause(libGDHL_gv_lostVikingsPlayer[lv_itPlayer].lv_erikDeathTimer, true);
@@ -18911,7 +18936,7 @@ bool libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate_Func (bool testConds, boo
         return true;
     }
   
-    UnitCreateEffectPointWithSource(lv_raynor, "HyperionInitialCreatePersistent", lv_targetPoint, c_gameCatalogAbil, "RaynorHyperionExecuteOrders");
+    UnitCreateEffectPointWithSource(lv_raynor, "ExecuteOrdersInitialCreatePersistent", lv_targetPoint, c_gameCatalogAbil, "RaynorHyperionExecuteOrders");
     return true;
 }
   
@@ -26665,6 +26690,7 @@ void libGDHL_InitTriggers () {
     libGDHL_gt_LeoricFealtyUntoDeathEnemyNPCProcListener_Init();
     libGDHL_gt_LeoricFealtyUntoDeathAlliedNPCProcListener_Init();
     libGDHL_gt_HeroLeoricOsseinRenewalTalentGlobeProc_Init();
+    libGDHL_gt_HeroLeoricShroudOfTheDeadKingFloatingText_Init();
     libGDHL_gt_HeroLostVikingsVikingBriberyNPCProcListener_Init();
     libGDHL_gt_HeroLostVikingsVikingBriberyUsed_Init();
     libGDHL_gt_HeroLostVikingsVikingBriberyScoreReset_Init();
