@@ -1,3 +1,17 @@
+# v0.37
+
+* Statistics
+ * Updates to support version 92665
+ * Abathur's Soma Transference is now also tracked for Healing dealt to the Hivemind target
+ * Alarak's Lightning Surge no longer tracks the amount of healing from middle target hits, as that is no longer possible
+ * Malthael's Soul Rip now tracks healing from different target types more thoroughly
+ * Raynor's Hyperion and Execute Orders are now tracked completely separately
+ * The Lost Viking's Checkpoint Reached healing is now tracked
+ * Fixed an issue causing Valeera to display error messages if she completed her Hearthstone while missing Energy
+
+* UI
+ * Version up
+
 # v0.36
 
 * Statistics
