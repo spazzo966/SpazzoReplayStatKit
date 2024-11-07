@@ -1237,6 +1237,7 @@ fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroWButtonTimestamp;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroEButtonTimestamp;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroRButtonTimestamp;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroDButtonTimestamp;
+unitgroup[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroOtherUserTracker;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredDamageMitigated;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_HeroSpecificStoredDamageMitigatedTimestamp;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_TimeSpentInVision;

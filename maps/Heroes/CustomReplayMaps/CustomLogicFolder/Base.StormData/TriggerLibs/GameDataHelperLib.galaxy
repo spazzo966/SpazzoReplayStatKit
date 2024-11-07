@@ -3008,6 +3008,8 @@ void libGDHL_gf_HeroRehgarIncrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroRehgarTotemicProjectionResetOnRewindUse, true);
         TriggerEnable(libGDHL_gt_HeroRehgarTidalWavesModifyCooldown, true);
         TriggerEnable(libGDHL_gt_HeroRehgarEarthlivingEnchantHotApply, true);
+        TriggerEnable(libGDHL_gt_HeroRehgarElectricChargeAddLeech, true);
+        TriggerEnable(libGDHL_gt_HeroRehgarElectricChargeLeechProc, true);
     }
 
 }
@@ -3028,6 +3030,8 @@ void libGDHL_gf_HeroRehgarDecrementHeroCountFunction () {
         TriggerEnable(libGDHL_gt_HeroRehgarTotemicProjectionResetOnRewindUse, false);
         TriggerEnable(libGDHL_gt_HeroRehgarTidalWavesModifyCooldown, false);
         TriggerEnable(libGDHL_gt_HeroRehgarEarthlivingEnchantHotApply, false);
+        TriggerEnable(libGDHL_gt_HeroRehgarElectricChargeAddLeech, false);
+        TriggerEnable(libGDHL_gt_HeroRehgarElectricChargeLeechProc, false);
     }
 
 }
@@ -5146,6 +5150,7 @@ void libGDHL_gt_HeroAbathurCarapaceRegenerativeMicrobes_Init () {
     TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroAbathurCarapaceRegenerativeMicrobes, c_playerAny, "CarapaceEvolutionApplyShield");
     TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroAbathurCarapaceRegenerativeMicrobes, c_playerAny, "CarapaceEvolutionApplyShieldHivemind");
     TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroAbathurCarapaceRegenerativeMicrobes, c_playerAny, "AbathurSymbioteApplyCarapaceNetworkedCarapaceTalentShield");
+    TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroAbathurCarapaceRegenerativeMicrobes, c_playerAny, "AbathurSymbioteApplyCarapaceNetworkedCarapaceHivemindTalentShield");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -18745,7 +18750,10 @@ bool libGDHL_gt_HeroRaynorBansheeTeleport_Func (bool testConds, bool runActions)
         if (autoD0FD4CB9_var == null) { break; }
         if ((UnitGetType(autoD0FD4CB9_var) == "RaynorRaynorsBanshee")) {
             UnitSetPosition(autoD0FD4CB9_var, UnitGetPosition(libGame_gv_players[lv_player].lv_heroUnit), false);
-            UnitCreateEffectUnit(autoD0FD4CB9_var, "HearthstoneHealthCreateHealer", autoD0FD4CB9_var);
+            if ((EventPlayerEffectUsed() == "HearthstoneTeleport")) {
+                UnitCreateEffectUnit(autoD0FD4CB9_var, "HearthstoneHealthCreateHealer", autoD0FD4CB9_var);
+            }
+
             UnitCreateEffectUnit(lv_unit, "RaynorRaynorsRaidersLeashTrackedUnits", lv_unit);
         }
 
@@ -19165,6 +19173,107 @@ void libGDHL_gt_HeroRehgarGhostWolfMountingSpecialCase_Init () {
     TriggerEnable(libGDHL_gt_HeroRehgarGhostWolfMountingSpecialCase, false);
     libGame_gf_HeroSpecialCaseMounting(libGDHL_gt_HeroRehgarGhostWolfMountingSpecialCase);
 }
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero - Rehgar - Electric Charge - Add Leech
+//--------------------------------------------------------------------------------------------------
+bool libGDHL_gt_HeroRehgarElectricChargeAddLeech_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    fixed lv_damageAmount;
+    unit lv_rehgarUnit;
+    int lv_rehgarPlayer;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_rehgarUnit = EventUnitDamageSourceUnit();
+    lv_rehgarPlayer = UnitGetOwner(EventUnitDamageSourceUnit());
+
+    // Conditions
+    if (testConds) {
+        if (!((UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeHeroic) == true))) {
+            return false;
+        }
+
+        if (!((PlayerHasTalent(lv_rehgarPlayer, "RehgarLightningShieldElectricCharge") == true))) {
+            return false;
+        }
+
+        if (!((lv_rehgarPlayer >= 1))) {
+            return false;
+        }
+
+        if (!((lv_rehgarPlayer <= libCore_gv_bALMaxPlayers))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    lv_damageAmount = ((EventUnitDamageAmount() + EventUnitDamageBehaviorShield()) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, EventUnitDamageEffect(), "LeechFraction[" + IntToString(c_unitVitalLife) + "]", lv_rehgarPlayer));
+    libGDHL_gv_heroRehgarElecrtricChargeLeechCombined[lv_rehgarPlayer] = (libGDHL_gv_heroRehgarElecrtricChargeLeechCombined[lv_rehgarPlayer] + lv_damageAmount);
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libGDHL_gt_HeroRehgarElectricChargeAddLeech_Init () {
+    libGDHL_gt_HeroRehgarElectricChargeAddLeech = TriggerCreate("libGDHL_gt_HeroRehgarElectricChargeAddLeech_Func");
+    TriggerEnable(libGDHL_gt_HeroRehgarElectricChargeAddLeech, false);
+    TriggerAddDamageEvent(libGDHL_gt_HeroRehgarElectricChargeAddLeech, "HeroRehgar", null, c_unitDamageTypeAbility, c_unitDamageEither, "RehgarLightningShieldDamage");
+    TriggerAddDamageEvent(libGDHL_gt_HeroRehgarElectricChargeAddLeech, "HeroRehgar", null, c_unitDamageTypeAbility, c_unitDamageEither, "RehgarLightningShieldElectricChargeTalentDamage");
+}
+
+//--------------------------------------------------------------------------------------------------
+// Trigger: Hero - Rehgar - Electric Charge - Leech Proc
+//--------------------------------------------------------------------------------------------------
+bool libGDHL_gt_HeroRehgarElectricChargeLeechProc_Func (bool testConds, bool runActions) {
+    // Variable Declarations
+    unit lv_rehgarUnit;
+    unit lv_sourceUnit;
+    int lv_rehgarPlayer;
+
+    // Automatic Variable Declarations
+    // Variable Initialization
+    lv_rehgarUnit = EventPlayerEffectUsedUnit(c_effectUnitCaster);
+    lv_sourceUnit = EventPlayerEffectUsedUnit(c_effectUnitSource);
+    lv_rehgarPlayer = UnitGetOwner(lv_rehgarUnit);
+
+    // Conditions
+    if (testConds) {
+        if (!((libGDHL_gv_heroRehgarElecrtricChargeLeechCombined[lv_rehgarPlayer] > 0.0))) {
+            return false;
+        }
+
+        if (!((lv_rehgarPlayer >= 1))) {
+            return false;
+        }
+
+        if (!((lv_rehgarPlayer <= libCore_gv_bALMaxPlayers))) {
+            return false;
+        }
+    }
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    CatalogFieldValueSetFixed(c_gameCatalogEffect, "RehgarElectricChargeCreateHealer", "RechargeVitalRate", lv_rehgarPlayer, libGDHL_gv_heroRehgarElecrtricChargeLeechCombined[lv_rehgarPlayer]);
+    UnitCreateEffectUnit(lv_rehgarUnit, "RehgarElectricChargeCreateHealerSet", lv_sourceUnit);
+    libGDHL_gv_heroRehgarElecrtricChargeLeechCombined[lv_rehgarPlayer] = 0.0;
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libGDHL_gt_HeroRehgarElectricChargeLeechProc_Init () {
+    libGDHL_gt_HeroRehgarElectricChargeLeechProc = TriggerCreate("libGDHL_gt_HeroRehgarElectricChargeLeechProc_Func");
+    TriggerEnable(libGDHL_gt_HeroRehgarElectricChargeLeechProc, false);
+    TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroRehgarElectricChargeLeechProc, c_playerAny, "RehgarLightningShieldLeechProcDummy");
+}
+
+
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: Rexxar UI Initialize
@@ -20367,7 +20476,10 @@ bool libGDHL_gt_HeroRexxarMishaTeleport_Func (bool testConds, bool runActions) {
         if ((UnitGetType(autoFF82D22F_var) == "RexxarMisha")) {
             UnitCreateEffectUnit(autoFF82D22F_var, "RexxarMishaHoldIssueStopOrder", autoFF82D22F_var);
             UnitSetPosition(autoFF82D22F_var, UnitGetPosition(libGame_gv_players[lv_player].lv_heroUnit), false);
-            UnitCreateEffectUnit(autoFF82D22F_var, "HearthstoneHealthCreateHealer", autoFF82D22F_var);
+            if ((EventPlayerEffectUsed() == "HearthstoneTeleport")) {
+                UnitCreateEffectUnit(autoFF82D22F_var, "HearthstoneHealthCreateHealer", autoFF82D22F_var);
+            }
+
             Wait(0.0625, c_timeGame);
             libGDHL_gf_HeroRexxarMishaStopMishaandResetThink(autoFF82D22F_var);
         }
@@ -26812,6 +26924,8 @@ void libGDHL_InitTriggers () {
     libGDHL_gt_HeroRehgarTotemicProjectionResetOnRewindUse_Init();
     libGDHL_gt_HeroRehgarGhostWolfAfterPortToTown_Init();
     libGDHL_gt_HeroRehgarGhostWolfMountingSpecialCase_Init();
+    libGDHL_gt_HeroRehgarElectricChargeAddLeech_Init();
+    libGDHL_gt_HeroRehgarElectricChargeLeechProc_Init();
     libGDHL_gt_RexxarUIInitialize_Init();
     libGDHL_gt_RexxarUICleanupForHeroSwap_Init();
     libGDHL_gt_HeroRexxarCleanUpForAbathurUltimateEvolutionClone_Init();

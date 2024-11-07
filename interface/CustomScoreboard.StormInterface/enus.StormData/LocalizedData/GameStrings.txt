@@ -1,4 +1,4 @@
-﻿UI/Spazzo/UIVersion=v0.37
+﻿UI/Spazzo/UIVersion=v0.38
 UI/Spazzo/UIWARNING=WARNING
 UI/Spazzo/UIWARNINGTOOLTIP=Game is detected as having ended, statistics may be incorrect, please rewind to after the core is destroyed, but before these images become visible!
 
@@ -1944,12 +1944,12 @@ UI/SpazzoDamage/Medivh/ScoreTwelve=Unused
 UI/SpazzoAccuracy/Medivh/ScoreOne=Arcane Rift Casts
 UI/SpazzoAccuracy/Medivh/ScoreTwo=Force of Will Casts
 UI/SpazzoAccuracy/Medivh/ScoreThree=Portal Casts
-UI/SpazzoAccuracy/Medivh/ScoreFour=Dust of Appearance Casts, Raven Familiar Attacks
+UI/SpazzoAccuracy/Medivh/ScoreFour=Dust of Appearance Casts, Raven Familiar Attacks(From Medivh)
 UI/SpazzoAccuracy/Medivh/ScoreFive=Force of Magic Activation Count
 UI/SpazzoAccuracy/Medivh/ScoreSix=Ley Line Seal, Poly Bomb Casts
 UI/SpazzoAccuracy/Medivh/ScoreSeven=Enduring Will Activation Count
 UI/SpazzoAccuracy/Medivh/ScoreEight=Force of Will Casts after selecting Enduring Will
-UI/SpazzoAccuracy/Medivh/ScoreNine=Medivh Cheats, Arcane Brilliance, Dust of Disappearance Casts, Minions Killed with Guardain of Tirisfal
+UI/SpazzoAccuracy/Medivh/ScoreNine=Medivh Cheats, Arcane Brilliance, Dust of Disappearance Casts, Minions Killed with Guardian of Tirisfal
 UI/SpazzoAccuracy/Medivh/ScoreTen=Unused
 UI/SpazzoAccuracy/Medivh/ScoreEleven=Unused
 UI/SpazzoAccuracy/Medivh/ScoreTwelve=Unused

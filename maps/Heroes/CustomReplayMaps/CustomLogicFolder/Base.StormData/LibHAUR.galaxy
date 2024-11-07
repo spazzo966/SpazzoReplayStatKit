@@ -1545,7 +1545,7 @@ bool libHAUR_gt_HeroAurielResurrectRevivePlayer_Func (bool testConds, bool runAc
         }
     }
     UnitBehaviorRemove(libGame_gv_players[lv_targetPlayer].lv_heroUnit, "AurielResurrectPendingResurrect", 1);
-    if ((PlayerHasTalent(lv_aurielPlayer, "AurielLightSpeedResurrectTalent") == true)) {
+    if (((PlayerHasTalent(lv_aurielPlayer, "AurielLightSpeedResurrectTalent") == true) && (UnitHasBehavior2(lv_targetHero, "LeoricUndying") == false))) {
         UnitCreateEffectUnit(lv_auriel, "AurielResurrectLightSpeedApplyControllerBehavior", lv_targetHero);
         UnitCreateEffectUnit(lv_auriel, "AurielResurrectLightSpeedApplySpeedBehavior", lv_targetHero);
     }
@@ -1570,6 +1570,10 @@ bool libHAUR_gt_HeroAurielResurrectRevivePlayer_Func (bool testConds, bool runAc
         UnitBehaviorRemove(lv_targetHero, "LeoricUndying", 1);
         UnitSetPropertyFixed(lv_targetHero, c_unitPropLifePercent, libHAUR_gv_heroAurielResurrectVitalScale);
         UnitSetPropertyFixed(lv_targetHero, c_unitPropEnergyPercent, libHAUR_gv_heroAurielResurrectEnergyPercentage);
+        if ((PlayerHasTalent(lv_aurielPlayer, "AurielLightSpeedResurrectTalent") == true)) {
+            UnitCreateEffectUnit(lv_auriel, "AurielResurrectLightSpeedApplyControllerBehavior", lv_targetHero);
+            UnitCreateEffectUnit(lv_auriel, "AurielResurrectLightSpeedApplySpeedBehavior", lv_targetHero);
+        }
     }
 
     libHAUR_gv_heroAurielResurrectTotalActiveResurrectActions -= 1;

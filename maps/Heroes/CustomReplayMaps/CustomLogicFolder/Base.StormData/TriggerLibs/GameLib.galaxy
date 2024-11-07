@@ -12688,15 +12688,18 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
       if (!(UnitHasBehavior2(lp_targetUnit, "ButchersBrand") == true)) {
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Leech Validator TargetHasButchersBrandTargetBehavior Failed!"));
         lv_leechFraction = 0.0;
-      }
-      if (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) {
-        lv_leechFraction += CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_damageEffect, "LeechFlatModifierArray[" + "BrandedHero" + "].Modifier", lp_casterPlayer);
+        if (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) {
+          lv_leechFraction += CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_damageEffect, "LeechFlatModifierArray[" + "BrandedHero" + "].Modifier", lp_casterPlayer);
+        }
       }
     }
     else if ((CatalogFieldValueGet(c_gameCatalogEffect, lp_damageEffect, "LeechValidator[" + IntToString(c_unitVitalLife) + "]", lp_casterPlayer) == "HasIllidanCombatStyleHuntersOnslaught")) {
       if (!(PlayerHasTalent(lp_casterPlayer, "IllidanCombatStyleHuntersOnslaught") == true)) {
         lv_leechFraction = 0.0;
       }
+    }
+    else if ((CatalogFieldValueGet(c_gameCatalogEffect, lp_damageEffect, "LeechValidator[" + IntToString(c_unitVitalLife) + "]", lp_casterPlayer) == "AlwaysReturnsFalse")) {
+      lv_leechFraction = 0.0;
     }
   }
   if (((lp_damageEffect == "FireStompSoulsToTheFlameDamage") || (lp_damageEffect == "FireStompReturnSoulsToTheFlameDamage"))) {
@@ -13173,12 +13176,12 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
 	
 
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroRehgar")) {
-    if ((lp_damageEffect == "RehgarLightningShieldDamage")) {
-      lv_primaryScoreString = "TalentFour";
-    }
-    if ((lp_damageEffect == "RehgarLightningShieldElectricChargeTalentDamage")) {
-      lv_primaryScoreString = "TalentSeven";
-    }
+    // if ((lp_damageEffect == "RehgarLightningShieldDamage")) {
+    //   lv_primaryScoreString = "TalentFour";
+    // }
+    // if ((lp_damageEffect == "RehgarLightningShieldElectricChargeTalentDamage")) {
+    //   lv_primaryScoreString = "TalentSeven";
+    // }
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroButcher")) {
     if ((lp_damageEffect == "ButcherHeroWeaponDamage")) {
@@ -14801,7 +14804,13 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
       if ((lp_behavior == "AbathurSymbioteCarapaceNetworkedCarapaceTalent")) {
         lv_primaryScoreString = "TalentSeven";
       }
+      if ((lp_behavior == "AbathurSymbioteCarapaceNetworkedCarapaceHivemindTalent")) {
+        lv_primaryScoreString = "TalentSeven";
+      }
       else if ((lp_behavior == "CarapaceEvolutionShield")) {
+        lv_primaryScoreString = "BaselineOne";
+      }
+      else if ((lp_behavior == "CarapaceEvolutionShieldHivemind")) {
         lv_primaryScoreString = "BaselineOne";
       }
       else if ((lp_behavior == "AbathurUltimateEvolutionEvolutionaryLinkShield")) {
@@ -15492,6 +15501,9 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur")) {
       if ((lp_behavior == "AbathurSymbioteCarapaceNetworkedCarapaceTalent")) {
+        lv_primaryScoreString = "BaselineThree";
+      }
+      if ((lp_behavior == "AbathurSymbioteCarapaceNetworkedCarapaceHivemindTalent")) {
         lv_primaryScoreString = "BaselineThree";
       }
       else if ((lp_behavior == "CarapaceEvolutionShield")) {
@@ -16715,6 +16727,14 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       }
       if ((lp_healEffect == "RehgarLightningShieldManaRestore")) {
         lv_primaryScoreString = "TalentOne";
+      }
+      if ((lp_healEffect == "RehgarElectricChargeCreateHealer")) {
+        if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
+          lv_primaryScoreString = "TalentFour";
+        }
+        else {
+          lv_primaryScoreString = "TalentSeven";
+        }
       }
       if ((lp_healEffect == "RehgarChainHealEarthlivingEnchantHealer")) {
         if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
@@ -18235,11 +18255,11 @@ void libGame_gf_HeroSpecificStatTrackerOther (fixed lp_scoreValue, int lp_caster
     else if ((libGame_gv_players[lp_targetPlayer].lv_rosterSlot == 10)) {
       lv_scoreString = "DamageToTen";
     }
-    if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur")) {
+    if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) != "HeroMedivh")) {
       lv_scoreString = "Discard";
     }
     if ((libGame_gv_heroSpecificDebug == true) && ((libGame_gv_heroSpecificDebugString == "PortalUse"))) {
-      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Portal Use Detected, Source: ") + StringToText(lp_extraDataString)));
+      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Portal Use Detected, Teleported: ") + StringToText(lp_extraDataString)));
     }
   }
 
@@ -20947,6 +20967,11 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if (PlayerHasTalent(lv_primaryPlayerOverride, "DeckardAncientBlessings") == false) {
       UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Determined Deckard Player doesn't have Ancient Blessings: ") + IntToText(lv_primaryPlayerOverride)));
     }
+  }
+  if ((lp_damageEffect == "MedivhPortalRavenFamiliarImpactDamage") && (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) != "HeroMedivh")) {
+    lv_primaryPlayerOverride = UnitGetOwner(UnitGroupUnit(libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition("HeroMedivh", "HeroMedivhRaven", "", lv_casterPlayer, c_unitAllianceAlly, RegionEntireMap(), libCore_gv_filtersHeroicAllyandnotHallucination, 1), 1));
+    // lv_primaryPlayerOverride = UnitBehaviorEffectPlayer(lp_casterUnit, "DeckardAncientBlessingsAllyBuff", c_effectPlayerCaster, 0);
+    lv_primaryScoreString = "ScoreFive";
   }
 
   // if ((CatalogFieldValueGet(c_gameCatalogEffect, lp_damageEffect, "Kind", lv_casterPlayer) == "Basic") && (UnitHasBehavior2(lp_casterUnit, "ProbiusWarpInPylonAggressiveMatrixAttackDamageBuff") == true)) {
@@ -26700,7 +26725,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
     }
     if ((lp_damageEffect == "ApocalypseDamage")) {
-      if (((GameGetMissionTime() - libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer]) == 1.75) || ((PlayerHasTalent(lv_casterPlayer, "DiabloHellgate") == false) && (PlayerHasTalent(lv_casterPlayer, "DiabloMasteryDyingBreathApocalypse") == false))) {
+      if ((((GameGetMissionTime() - libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer]) == 2.0) || ((GameGetMissionTime() - libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer]) == 2.0625)) || ((PlayerHasTalent(lv_casterPlayer, "DiabloHellgate") == false) && (PlayerHasTalent(lv_casterPlayer, "DiabloMasteryDyingBreathApocalypse") == false))) {
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
           lv_primaryScoreString = "ScoreEight";
           lv_secondaryScoreString = "AccuracyTwelve";
@@ -35395,27 +35420,48 @@ fixed libGame_gf_FetchAbilityCooldownTime (unit lp_unit, string lp_ability, int 
     lv_method = "Pain Is Temporary override";
   }
   if ((lp_ability == "MedivhPortalDetector")) {
+    libGame_gv_HeroOtherUserTracker[lp_player] = UnitGroupEmpty();
     if ((UnitGetType(lp_unit) == "HeroLostVikingsController")) {
-      lv_cooldownTime += UnitBehaviorCount(libGDHL_gv_lostVikingsPlayer[lp_player].lv_olaf, "MedivhPortalTeleportSickness");
-      lv_cooldownTime += UnitBehaviorCount(libGDHL_gv_lostVikingsPlayer[lp_player].lv_baleog, "MedivhPortalTeleportSickness");
-      lv_cooldownTime += UnitBehaviorCount(libGDHL_gv_lostVikingsPlayer[lp_player].lv_erik, "MedivhPortalTeleportSickness");
+      if (UnitBehaviorCount(libGDHL_gv_lostVikingsPlayer[lp_player].lv_olaf, "MedivhPortalTeleportSickness") != 0) {
+        UnitGroupAdd(libGame_gv_HeroOtherUserTracker[lp_player], libGDHL_gv_lostVikingsPlayer[lp_player].lv_olaf);
+        lv_cooldownTime += 1;
+      }
+      if (UnitBehaviorCount(libGDHL_gv_lostVikingsPlayer[lp_player].lv_baleog, "MedivhPortalTeleportSickness") != 0) {
+        UnitGroupAdd(libGame_gv_HeroOtherUserTracker[lp_player], libGDHL_gv_lostVikingsPlayer[lp_player].lv_baleog);
+        lv_cooldownTime += 1;
+      }
+      if (UnitBehaviorCount(libGDHL_gv_lostVikingsPlayer[lp_player].lv_erik, "MedivhPortalTeleportSickness") != 0) {
+        UnitGroupAdd(libGame_gv_HeroOtherUserTracker[lp_player], libGDHL_gv_lostVikingsPlayer[lp_player].lv_erik);
+        lv_cooldownTime += 1;
+      }
     }
     else if ((UnitGetType(lp_unit) == "HeroSamuro")) {
-      lv_cooldownTime += UnitBehaviorCount(lp_unit, "MedivhPortalTeleportSickness");
-      // lv_cooldownTime += UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 0), "MedivhPortalTeleportSickness");
-      lv_cooldownTime += UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 1), "MedivhPortalTeleportSickness");
-      lv_cooldownTime += UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 2), "MedivhPortalTeleportSickness");
-      lv_cooldownTime += UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 3), "MedivhPortalTeleportSickness");
-      lv_cooldownTime += UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 4), "MedivhPortalTeleportSickness");
-      lv_cooldownTime += UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 5), "MedivhPortalTeleportSickness");
-      lv_cooldownTime += UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 6), "MedivhPortalTeleportSickness");
-      lv_cooldownTime += UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 7), "MedivhPortalTeleportSickness");
-      lv_cooldownTime += UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 8), "MedivhPortalTeleportSickness");
-      lv_cooldownTime += UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 9), "MedivhPortalTeleportSickness");
-      lv_cooldownTime += UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 10), "MedivhPortalTeleportSickness");
+      if (UnitBehaviorCount(lp_unit, "MedivhPortalTeleportSickness") != 0) {
+        UnitGroupAdd(libGame_gv_HeroOtherUserTracker[lp_player], lp_unit);
+        lv_cooldownTime += 1;
+      }
+      if (UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 1), "MedivhPortalTeleportSickness") != 0) {
+        UnitGroupAdd(libGame_gv_HeroOtherUserTracker[lp_player], UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 1));
+        lv_cooldownTime += 1;
+      }
+      if (UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 2), "MedivhPortalTeleportSickness") != 0) {
+        UnitGroupAdd(libGame_gv_HeroOtherUserTracker[lp_player], UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 2));
+        lv_cooldownTime += 1;
+      }
+      if (UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 3), "MedivhPortalTeleportSickness") != 0) {
+        UnitGroupAdd(libGame_gv_HeroOtherUserTracker[lp_player], UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 3));
+        lv_cooldownTime += 1;
+      }
+      if (UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 4), "MedivhPortalTeleportSickness") != 0) {
+        UnitGroupAdd(libGame_gv_HeroOtherUserTracker[lp_player], UnitGroupUnit(UnitGetTrackedUnitGroup(lp_unit, "SamuroMirrorImageUnitTracker"), 4));
+        lv_cooldownTime += 1;
+      }
     }
     else {
-      lv_cooldownTime = UnitBehaviorCount(lp_unit, "MedivhPortalTeleportSickness");
+      if (UnitBehaviorCount(lp_unit, "MedivhPortalTeleportSickness") != 0) {
+        UnitGroupAdd(libGame_gv_HeroOtherUserTracker[lp_player], lp_unit);
+        lv_cooldownTime += 1;
+      }
     }
     lv_method = "Portal Detector override";
   }
@@ -35619,9 +35665,13 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
   fixed lv_quaternaryScoreValueOverride;
   int lv_iterator;
   unit lv_tempUnit;
+  unit lv_tempUnit2;
+  int lv_tempInt;
+  int lv_tempInt2;
   string lv_tempString;
   bool lv_tempBool;
   fixed lv_tempFixed;
+  const int lv_one = 1;
 
   lv_casterPlayerOverride = UnitGetOwner(lp_casterUnit);
   lv_heroUnitType = UnitGetType(lp_casterUnit);
@@ -35634,6 +35684,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
   lv_quaternaryScoreValueOverride = 1.0;
   lv_iterator = 0;
   lv_tempUnit = null;
+  lv_tempUnit2 = null;
   lv_tempString = "";
   lv_tempBool = false;
   lv_tempFixed = 0.0;
@@ -39579,88 +39630,22 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
   }
   if ((lp_abilityName == "MedivhPortalDetector")) {
     lv_scoreString = "Discard";
-    lv_tempUnit = lp_casterUnit;
-    lv_iterator = (FixedToInt(lp_cooldownNewValue) - FixedToInt(lp_cooldownOldValue));
-    while (lv_iterator > 0) {
-      if ((lv_heroUnitType == "HeroLostVikingsController") || (lv_heroUnitType == "HeroSamuro")) {
-        if ((lv_heroUnitType == "HeroLostVikingsController")) {
-					if ((UnitBehaviorCount(libGDHL_gv_lostVikingsPlayer[lv_casterPlayerOverride].lv_olaf, "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = libGDHL_gv_lostVikingsPlayer[lv_casterPlayerOverride].lv_olaf;
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
-					if ((UnitBehaviorCount(libGDHL_gv_lostVikingsPlayer[lv_casterPlayerOverride].lv_baleog, "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = libGDHL_gv_lostVikingsPlayer[lv_casterPlayerOverride].lv_baleog;
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
-					if ((UnitBehaviorCount(libGDHL_gv_lostVikingsPlayer[lv_casterPlayerOverride].lv_erik, "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = libGDHL_gv_lostVikingsPlayer[lv_casterPlayerOverride].lv_erik;
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
+    lv_tempInt = UnitGroupCount(libGame_gv_HeroOtherUserTracker[lv_casterPlayerOverride], c_unitCountAll);
+    if (lv_tempInt != 0) {
+      lv_iterator = 1;
+      for ( ; ( (lv_one >= 0 && lv_iterator <= lv_tempInt) || (lv_one < 0 && lv_iterator >= lv_tempInt) ) ; lv_iterator += lv_one ) {
+        lv_tempUnit = UnitGroupUnit(libGame_gv_HeroOtherUserTracker[lv_casterPlayerOverride], lv_iterator);
+        lv_tempUnit2 = UnitGroupUnit(libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition("MedivhPortal", "", "", UnitGetOwner(lv_tempUnit), c_unitAllianceAlly, RegionCircle(UnitGetPosition(lv_tempUnit), 7.0), UnitFilter(0, 0, 0, 0), 1), 1);
+        lv_tempInt2 = UnitGetOwner(lv_tempUnit2);
+        if ((lv_tempInt2 > 0) && (lv_tempInt2 <= 10) && (lv_tempUnit2 != null) && ((UnitGetType(libGame_gv_players[lv_tempInt2].lv_heroUnit) == "HeroMedivh") || (UnitGetType(libGame_gv_players[lv_tempInt2].lv_heroUnit) == "HeroMedivhRaven"))) {
+          libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_tempInt2, UnitGetOwner(lv_tempUnit), "MedivhPortalUse", null, UnitGetType(lv_tempUnit));
         }
-        else {
-					if ((UnitBehaviorCount(lp_casterUnit, "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = lp_casterUnit;
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
-					if ((UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 1), "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 1);
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
-					if ((UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 2), "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 2);
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
-					if ((UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 3), "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 3);
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
-					if ((UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 4), "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 4);
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
-					if ((UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 5), "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 5);
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
-					if ((UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 6), "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 6);
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
-					if ((UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 7), "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 7);
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
-					if ((UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 8), "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 8);
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
-					if ((UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 9), "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 9);
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
-					if ((UnitBehaviorCount(UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 10), "MedivhPortalTeleportSickness") == 1) && (lv_iterator > 0)) {
-            lv_tempUnit = UnitGroupUnit(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), 10);
-            libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-            lv_iterator -= 1;
-          }
-        }
-      }
-      else {
-        libGame_gf_HeroSpecificStatTrackerOther(1.0, UnitBehaviorEffectPlayer(lv_tempUnit, "MedivhPortalTeleportSickness", c_effectPlayerCaster, 0), lv_casterPlayerOverride, "MedivhPortalUse", null, "CDR");
-        lv_iterator -= 1;
+        // if (lv_tempUnit2 != null) {
+        //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Portal Iteration ") + IntToText(lv_iterator) + StringToText(" Medivh Roster: ") + IntToText(libGame_gv_players[lv_tempInt2].lv_rosterSlot) + StringToText(" Team: ") + IntToText((libGame_gf_TeamNumberOfPlayer(lv_tempInt2))) + StringToText(" Portal Unit: ") + StringToText(UnitGetType(lv_tempUnit2))));
+        // }
+        // else {
+        //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Couldn't determine Portal unit")));
+        // }
       }
     }
   }
@@ -39895,7 +39880,7 @@ void libGame_gv_initializeOBSUI () {
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Mercenary Tracker"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.37 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.38 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
     // Well, I tried to add team coloured globes.
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamOrder, "11");
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Person", libCore_gv_cOMPUTER_TeamOrder, "Observer");
@@ -49820,9 +49805,9 @@ bool libGame_gt_HeroDamageTracking_Func (bool testConds, bool runActions) {
     // PlayerScoreValueSetFromInt(lv_eventUnitDamageSourcePlayer, "TeamWinsFemale", (PlayerScoreValueGetAsInt(lv_eventUnitDamageSourcePlayer, "TeamWinsFemale") + (FixedToInt(EventUnitDamageVitalsLeeched(c_unitVitalLife)))));
     // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, FixedToText(EventUnitDamageVitalsLeeched(c_unitVitalLife), 2));
     libGame_gf_CalculateLeechDamage(EventUnitDamageEffect(), (EventUnitDamageAmount() + EventUnitDamageBehaviorShield()), (EventUnitDamageAttemptedVitals() + EventUnitDamageBehaviorShield()), EventUnitDamageVitalsLeeched(c_unitVitalLife), EventUnit(), EventUnitDamageSourceUnit(), lv_eventUnitDamageSourcePlayer);
-    if ((EventUnitDamageEffect() != "RehgarLightningShieldDamage") || (PlayerHasTalent(lv_eventUnitDamageSourcePlayer, "RehgarLightningShieldElectricCharge") == false)) {
+    // if ((EventUnitDamageEffect() != "RehgarLightningShieldDamage") || (PlayerHasTalent(lv_eventUnitDamageSourcePlayer, "RehgarLightningShieldElectricCharge") == false)) {
       libGame_gf_HeroSpecificStatTrackerOther(EventUnitDamageVitalsLeeched(c_unitVitalLife), lv_eventUnitDamageSourcePlayer, lv_eventUnitDamageSourcePlayer, "LeechTaken", EventUnitDamageSourceUnit(), "");
-    }
+    // }
   }
   // Bookmark Auriel's Own Leech Track
   if ((EventUnitDamageVitalsLeeched(c_unitVitalEnergy) > 0.0) && (UnitGetType(libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_heroUnit) == "HeroAuriel")) {

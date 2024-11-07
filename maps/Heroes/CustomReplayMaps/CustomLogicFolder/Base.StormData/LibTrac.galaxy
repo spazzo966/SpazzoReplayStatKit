@@ -628,10 +628,10 @@ bool libTrac_gt_HeroTracerFocusFireSetTarget_Func (bool testConds, bool runActio
     }
     if ((libTrac_gv_heroTracerFocusFireTargetInteger[lv_ownerOfCaster] == 10)) {
         if ((UnitFilterMatch(lv_target, lv_ownerOfCaster, UnitFilter((1 << c_targetFilterHeroic), 0, (1 << c_targetFilterPlayer) | (1 << c_targetFilterAlly), 0)) == true)) {
-            UnitCreateEffectUnitWithSource(lv_caster, "TracerHeroWeaponFocusFireMasteryDamageHero", lv_target, c_gameCatalogBehavior, "TracerFocusFireFinalShot");
+            UnitCreateEffectUnitWithSource(lv_caster, "TracerFocusFireHeroImpactSet", lv_target, c_gameCatalogBehavior, "TracerFocusFireFinalShot");
         }
         else {
-            UnitCreateEffectUnitWithSource(lv_caster, "TracerHeroWeaponFocusFireMasteryDamage", lv_target, c_gameCatalogBehavior, "TracerFocusFireFinalShot");
+            UnitCreateEffectUnitWithSource(lv_caster, "TracerFocusFireNonHeroImpactSet", lv_target, c_gameCatalogBehavior, "TracerFocusFireFinalShot");
         }
         libTrac_gv_heroTracerFocusFireTargetInteger[lv_ownerOfCaster] = 0;
     }
