@@ -4292,12 +4292,13 @@ void libGame_gf_HeroUnitSwappedForPlayer (trigger t) {
   TriggerAddEventGeneric(t, libGame_gv_eventID_HeroUnitSwappedForPlayer_C);
 }
 
-void libGame_gf_SendEventHeroUnitSwappedForPlayer (unit lp_oldUnit, unit lp_newUnit, int lp_playerNumber) {
+void libGame_gf_SendEventHeroUnitSwappedForPlayer (unit lp_oldUnit, unit lp_newUnit, int lp_playerNumber, bool lp_preserveOnOld) {
   // Automatic Variable Declarations
   // Implementation
   DataTableSetUnit(false, TriggerEventParamName(libGame_gv_eventID_HeroUnitSwappedForPlayer_C, libGame_gv_eventParam_HeroUnitSwappedForPlayer_OldUnit_C), lp_oldUnit);
   DataTableSetUnit(false, TriggerEventParamName(libGame_gv_eventID_HeroUnitSwappedForPlayer_C, libGame_gv_eventParam_HeroUnitSwappedForPlayer_NewUnit_C), lp_newUnit);
   DataTableSetInt(false, TriggerEventParamName(libGame_gv_eventID_HeroUnitSwappedForPlayer_C, libGame_gv_eventParam_HeroUnitSwappedForPlayer_PlayerNumber_C), lp_playerNumber);
+  DataTableSetBool(false, TriggerEventParamName(libGame_gv_eventID_HeroUnitSwappedForPlayer_C, libGame_gv_eventParam_HeroUnitSwappedForPlayer_PreserveOnOld_C), lp_preserveOnOld);
   TriggerSendEvent(libGame_gv_eventID_HeroUnitSwappedForPlayer_C);
 }
 
@@ -4317,6 +4318,12 @@ int libGame_gf_HeroUnitSwappedForPlayerPlayerNumber () {
   // Automatic Variable Declarations
   // Implementation
   return DataTableGetInt(false, TriggerEventParamName(libGame_gv_eventID_HeroUnitSwappedForPlayer_C, libGame_gv_eventParam_HeroUnitSwappedForPlayer_PlayerNumber_C));
+}
+
+bool libGame_gf_HeroUnitSwappedForPlayerPreserveOnOld () {
+  // Automatic Variable Declarations
+  // Implementation
+  return DataTableGetBool(false, TriggerEventParamName(libGame_gv_eventID_HeroUnitSwappedForPlayer_C, libGame_gv_eventParam_HeroUnitSwappedForPlayer_PreserveOnOld_C));
 }
 
 void libGame_gf_JungleCampSpawning (trigger t) {
@@ -14460,17 +14467,8 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroSamuro")) {
-      if ((lp_behavior == "SamuroWindwalkHarshWindsVulnerabilityBehavior")) {
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Samuro Harsh: ") + FixedToText(AbsF(lp_preventedValue), 3)));
-        lv_primaryScoreOverride = AbsF(lp_preventedValue);
-        lv_primaryScoreString = "ScoreTen";
-      }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroProbius")) {
-      // if ((lp_behavior == "ProbiusWarpRiftRiftShockVulnerabilityBehavior")) {
-      //   lv_primaryScoreOverride = AbsF(lp_preventedValue);
-      //   lv_primaryScoreString = "ScoreNine";
-      // }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMedic")) {
       if ((lp_behavior == "MedicMedivacDropshipSafeZoneTalentProtectedBuff")) {
@@ -16156,6 +16154,12 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       if ((lp_healEffect == "MurkySafetyBubbleCreateRejuvenatingBubbleMasteryHealer")) {
         lv_primaryScoreString = "TalentThirteen";
       }
+      if ((lp_healEffect == "MurkyEggShellCreateShieldSpawnEggHealer")) {
+        lv_primaryScoreString = "Discard";
+      }
+      if ((lp_healEffect == "MurkyEggShellCreateShieldRespawnEggHealer")) {
+        lv_primaryScoreString = "Discard";
+      }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZarya")) {
       if ((lp_healEffect == "ZaryaEnergyMaximumChargeCreateHealer")) {
@@ -17109,6 +17113,12 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       }
       if ((lp_healEffect == "SamuroWindWalkWayOfTheWindCreateHealer")) {
         lv_primaryScoreString = "SupportTwelve";
+      }
+      if ((lp_healEffect == "SamuroIllusionMasterReduceMirrorImageLife")) {
+        lv_primaryScoreString = "Discard";
+      }
+      if ((lp_healEffect == "SamuroIllusionMasterIncreaseMirrorImageLife")) {
+        lv_primaryScoreString = "Discard";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroGarrosh")) {
@@ -24025,199 +24035,78 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreOne";
       }
-      // else if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeCreep) == true)) {
-      // lv_primaryScoreString = "ScoreTwo";
-      // }
       else {
         lv_primaryScoreString = "ScoreTwo";
       }
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Samuro Basic Damage: ") + FixedToText(lp_damageValue, 2)));
-      if ((PlayerHasTalent(lv_casterPlayer, "SamuroMercilessStrikes") == true) && ((UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategorySlow) == true) || (UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategoryStun) == true) || (UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategoryDebuffRoot) == true))) {
-        if ((UnitBehaviorCount(lp_casterUnit, "SamuroCriticalStrikeCounterBehavior") == 0.0)) {
-          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Merciless Megacrit"));
+      lv_secondaryScoreOverride = 0.0;
+      if ((UnitHasBehavior2(lp_casterUnit, "SamuroMercilessStrikesCasterMarker") == true)) {
+        lv_tempBool = true;
+        lv_secondaryScoreOverride = 1.0;
+        lv_secondaryScoreString = "AccuracySeven";
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_tertiaryScoreString = "ScoreTen";
+        }
+        else {
+          lv_tertiaryScoreString = "ScoreEleven";
+        }
+      }
+      if ((UnitGetTokenCount(lp_casterUnit, "SamuroCriticalStrikeTokenCounter") == 0.0) && ((GameGetMissionTime() - libGame_gv_HeroWButtonTimestamp[lp_casterPlayer]) < CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "SamuroCriticalStrikeTimed", "Duration", lv_casterPlayer)) && (lv_secondaryScoreOverride == 0.0)) {
+        lv_tempBool = true;
+        lv_secondaryScoreOverride = 1.0;
+        lv_secondaryScoreString = "AccuracyThree";
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_tertiaryScoreString = "ScoreThree";
+        }
+        else {
+          lv_tertiaryScoreString = "ScoreFour";
+        }
+      }
+      if (((UnitGetTokenCount(lp_casterUnit, "SamuroCriticalStrikeTokenCounter") == 0.0) || ((UnitGetTokenCount(lp_casterUnit, "SamuroCriticalStrikeTokenCounter") == 1.0) && ((PlayerHasTalent(lv_casterPlayer, "SamuroMirrorImageWayOfTheBlade") == true)))) && (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] == 3.0) && (lv_secondaryScoreOverride == 0.0)) {
+        lv_tempBool = true;
+        lv_secondaryScoreOverride = 1.0;
+        lv_secondaryScoreString = "AccuracyFour";
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_tertiaryScoreString = "ScoreFive";
+        }
+        else {
+          lv_tertiaryScoreString = "ScoreSix";
+        }
+      }
+      if (lv_tempBool == true) {
+        lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SamuroCriticalStrike");
+        if ((UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAlive) != 0) && (PlayerHasTalent(lv_casterPlayer, "SamuroPhantomPain") == 0)) {
+          lv_quaternaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "PhantomPainCrit");
           if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-            lv_secondaryScoreString = "ScoreTen";
-            lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "MercilessCrit");
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Merciless caused:") + FixedToText(lv_secondaryScoreOverride, 2)));
-            // lv_tertiaryScoreString = "ScoreTwelve";
-            // lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "MercilessMegacrit");
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Merciless Megacrit caused:") + FixedToText(lv_tertiaryScoreOverride, 2)));
-						if ((UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll) >= 1) && (PlayerHasTalent(lv_casterPlayer, "SamuroPhantomPain") == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-              lv_quaternaryScoreString = "ScoreSix";
-              lv_quaternaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "PhantomPainMercilessMegacrit");
-              // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Phantom Pain Megacrit caused:") + FixedToText(lv_quaternaryScoreOverride, 2)));
-            }
+            lv_quaternaryScoreString = "ScoreSeven";
           }
-        }
-        else if ((UnitBehaviorCount(lp_casterUnit, "SamuroCriticalStrikeCounterBehavior") == 3.0)) {
-          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Merciless Crit"));
-                    if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-            lv_secondaryScoreString = "ScoreTen";
-            lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "MercilessCrit");
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Merciless caused:") + FixedToText(lv_secondaryScoreOverride, 2)));
-            // if ((UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll) >= 1) && (PlayerHasTalent(lv_casterPlayer, "SamuroPhantomPain")) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-            // lv_tertiaryScoreString = "ScoreSix";
-            // lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "PhantomPainMercilessCrit");
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Phantom Pain Caused:") + FixedToText(lv_tertiaryScoreOverride, 2)));
-            // }
+          else {
+            lv_tertiaryScoreString = "ScoreEight";
           }
-					else {
-            lv_secondaryScoreString = "ScoreEleven";
-            lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "MercilessCrit");
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Merciless caused:") + FixedToText(lv_secondaryScoreOverride, 2)));
-            // if ((UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll) >= 1) && (PlayerHasTalent(lv_casterPlayer, "SamuroPhantomPain")) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-            // lv_tertiaryScoreString = "ScoreSeven";
-            // lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "PhantomPainMercilessCrit");
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Phantom Pain Caused:") + FixedToText(lv_tertiaryScoreOverride, 2)));
-            // }
-          }
-        }
-        else {
-          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Merciless Unknown"));
         }
       }
-      else {
-        if ((PlayerHasTalent(lv_casterPlayer, "SamuroMirrorImageWayOfTheBlade") == true)) {
-				    if ((UnitBehaviorCount(lp_casterUnit, "SamuroCriticalStrikeCounterBehavior") == 3) && (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] == 2)) {
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Passive Way of Blade Crit"));
-            lv_quaternaryScoreOverride = 1.0;
-            lv_quaternaryScoreString = "AccuracyThree";
-            if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-              lv_secondaryScoreString = "ScoreThree";
-              lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SamuroCriticalStrike");
-              if ((UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll) >= 1) && (PlayerHasTalent(lv_casterPlayer, "SamuroPhantomPain") == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_tertiaryScoreString = "ScoreSix";
-                lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "PhantomPainCrit");
-                // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Phantom Pain Caused:") + FixedToText(lv_tertiaryScoreOverride, 2)));
-              }
-            }
-            // else {
-            // if ((UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll) >= 1) && (PlayerHasTalent(lv_casterPlayer, "SamuroPhantomPain")) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-            // lv_tertiaryScoreString = "ScoreSeven";
-            // lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "PhantomPainCrit");
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Phantom Pain Caused:") + FixedToText(lv_tertiaryScoreOverride, 2)));
-            // }
-            // }
-          }
-					if ((UnitBehaviorCount(lp_casterUnit, "SamuroCriticalStrikeCounterBehavior") == 0)) {
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Pressed Way of Blade Crit"));
-                        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-              lv_secondaryScoreString = "ScoreFour";
-              lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SamuroCriticalStrike");
-              if ((UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll) >= 1) && (PlayerHasTalent(lv_casterPlayer, "SamuroPhantomPain") == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_tertiaryScoreString = "ScoreSix";
-                lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "PhantomPainCrit");
-                // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Phantom Pain Caused:") + FixedToText(lv_tertiaryScoreOverride, 2)));
-              }
-            }
-            // else {
-            // if ((UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll) >= 1) && (PlayerHasTalent(lv_casterPlayer, "SamuroPhantomPain")) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-            // lv_tertiaryScoreString = "ScoreSeven";
-            // lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "PhantomPainCrit");
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Phantom Pain Caused:") + FixedToText(lv_tertiaryScoreOverride, 2)));
-            // }
-            // }
-          }
-        }
-        else {
-				    if ((UnitBehaviorCount(lp_casterUnit, "SamuroCriticalStrikeCounterBehavior") == 3) && (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] == 3)) {
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Passive non-Way of Blade Crit"));
-            lv_quaternaryScoreOverride = 1.0;
-            lv_quaternaryScoreString = "AccuracyThree";
-                        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-              lv_secondaryScoreString = "ScoreThree";
-              lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SamuroCriticalStrike");
-                            if ((UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll) >= 1) && (PlayerHasTalent(lv_casterPlayer, "SamuroPhantomPain") == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_tertiaryScoreString = "ScoreSix";
-                lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "PhantomPainCrit");
-                // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Phantom Pain Caused:") + FixedToText(lv_tertiaryScoreOverride, 2)));
-              }
-            }
-            // else {
-            // if ((UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll) >= 1) && (PlayerHasTalent(lv_casterPlayer, "SamuroPhantomPain")) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-            // lv_tertiaryScoreString = "ScoreSeven";
-            // lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "PhantomPainCrit");
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Phantom Pain Caused:") + FixedToText(lv_tertiaryScoreOverride, 2)));
-            // }
-            // }
-          }
-					if ((UnitBehaviorCount(lp_casterUnit, "SamuroCriticalStrikeCounterBehavior") == 0)) {
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Pressed non-Way of Blade Crit"));
-                        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-              lv_secondaryScoreString = "ScoreFour";
-              lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SamuroCriticalStrike");
-                            if ((UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll) >= 1) && (PlayerHasTalent(lv_casterPlayer, "SamuroPhantomPain") == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-                lv_tertiaryScoreString = "ScoreSix";
-                lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "PhantomPainCrit");
-                // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Phantom Pain Caused:") + FixedToText(lv_tertiaryScoreOverride, 2)));
-              }
-            }
-            // else {
-            // if ((UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll) >= 1) && (PlayerHasTalent(lv_casterPlayer, "SamuroPhantomPain")) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-            // lv_tertiaryScoreString = "ScoreSeven";
-            // lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "PhantomPainCrit");
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Phantom Pain Caused:") + FixedToText(lv_tertiaryScoreOverride, 2)));
-            // }
-            // }
-          }
-        }
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Read Progress: ") + FixedToText(UnitBehaviorCount(lp_casterUnit, "SamuroCriticalStrikeCounterBehavior"), 0)));
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored Progress: ") + FixedToText(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer], 0)));
+      if ((UnitHasBehavior2(lp_targetUnit, "SamuroWindwalkHarshWindsVulnerabilityBehavior") == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && (PlayerHasTalent(lv_casterPlayer, "SamuroHarshWinds") == true)) {
+        lv_quinaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "HarshWinds");
+        lv_quinaryScoreString = "ScoreEleven";
       }
-      libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = UnitBehaviorCount(lp_casterUnit, "SamuroCriticalStrikeCounterBehavior");
+      libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = UnitGetTokenCount(lp_casterUnit, "SamuroCriticalStrikeTokenCounter");
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Tracked Mirror Count: ") + FixedToText(UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll), 0)));
     }
-    // if ((lp_damageEffect == "WayOfIllusion")) {
-    // if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-    // lv_primaryScoreString = "ScoreFour";
-    // }
-    // else {
-    // lv_primaryScoreString = "ScoreFive";
-    // }
-    // }
-    // if ((lp_damageEffect == "PhantomPain")) {
-    // if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-    // lv_primaryScoreString = "ScoreSix";
-    // }
-    // else {
-    // lv_primaryScoreString = "ScoreSeven";
-    // }
-    // }
     if ((lp_damageEffect == "SamuroCriticalStrikeBurningBladeSplashDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreSix";
+        lv_primaryScoreString = "ScoreSeven";
       }
       else {
-        lv_primaryScoreString = "ScoreSeven";
+        lv_primaryScoreString = "ScoreEight";
       }
     }
     if ((lp_damageEffect == "SamuroBladestormDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEight";
-      }
-      else {
         lv_primaryScoreString = "ScoreNine";
       }
+      else {
+        lv_primaryScoreString = "ScoreTen";
+      }
     }
-    // if ((lp_damageEffect == "MercilessStrikes")) {
-    // if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-    // lv_primaryScoreString = "ScoreTen";
-    // }
-    // else {
-    // lv_primaryScoreString = "ScoreEleven";
-    // }
-    // else {
-    // lv_primaryScoreString = "ScoreTwelve";
-    // }
-    // }
-    // if ((lp_damageEffect == "HarshWindsUseAbsorbed")) {
-    // if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-    // lv_primaryScoreString = "ScoreTen";
-    // }
-    // else {
-    // lv_primaryScoreString = "ScoreEleven";
-    // }
-    // }
     if ((lp_damageEffect == "SamuroMirrorImageCriticalStrikeBurningBladeSplashDamage")) {
       lv_primaryScoreString = "TalentSixteen";
     }
@@ -24244,6 +24133,12 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       lv_primaryScoreString = "Discard";
     }
     if ((lp_damageEffect == "SamuroAdvancingStrikesDeflectionBlockDummyDamage")) {
+      lv_primaryScoreString = "Discard";
+    }
+    if ((lp_damageEffect == "SamuroIllusionMasterReduceMirrorImageLife")) {
+      lv_primaryScoreString = "Discard";
+    }
+    if ((lp_damageEffect == "SamuroIllusionMasterIncreaseMirrorImageLife")) {
       lv_primaryScoreString = "Discard";
     }
     if ((lp_damageEffect == "StormKillRemove")) {
@@ -24555,7 +24450,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((lp_damageEffect == "OrpheaBondOfAnguishDamage")) {
       lv_primaryScoreString = "ScoreEleven";
     }
-    if ((lp_damageEffect == "OrpheaDeadMagicDamage")) {
+    if ((lp_damageEffect == "OrpheaDeadMagicDamage") || (lp_damageEffect == "OrpheaWeaponOverflowingChaosDeadMagicDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreEleven";
       }
@@ -26129,7 +26024,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroAmazon")) {
-    if ((lp_damageEffect == "AmazonHeroWeaponDamage")) {
+    if ((lp_damageEffect == "AmazonHeroWeaponDamage") || (lp_damageEffect == "AmazonHeroWeaponDamageTitansRevenge")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreOne";
       }
@@ -26173,7 +26068,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_primaryScoreString = "TalentThirteen";
       }
     }
-    if ((lp_damageEffect == "AmazonChargedStrikesWeaponDamage")) {
+    if ((lp_damageEffect == "AmazonChargedStrikesWeaponDamage") || (lp_damageEffect == "AmazonChargedStrikesWeaponDamageTitansRevenge")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreSix";
       }
@@ -37812,6 +37707,9 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
       // lv_scoreString = "Discard";
       // }
     }
+    if ((lp_abilityName == "MedivhPolyBombGlyphOfPolyBomb")) {
+      lv_scoreString = "Discard";
+    }
   }
   else if ((lv_heroUnitType == "HeroMephisto")) {
     if ((lp_abilityName == "MephistoSkullMissile")) {
@@ -38969,6 +38867,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     }
     if ((lp_abilityName == "SamuroCriticalStrike")) {
       lv_scoreString = "AccuracyTwo";
+      libGame_gv_HeroWButtonTimestamp[lv_casterPlayerOverride] = GameGetMissionTime();
     }
     if ((lp_abilityName == "SamuroCriticalStrikeDummy")) {
       lv_scoreString = "Discard";
@@ -39640,12 +39539,6 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
         if ((lv_tempInt2 > 0) && (lv_tempInt2 <= 10) && (lv_tempUnit2 != null) && ((UnitGetType(libGame_gv_players[lv_tempInt2].lv_heroUnit) == "HeroMedivh") || (UnitGetType(libGame_gv_players[lv_tempInt2].lv_heroUnit) == "HeroMedivhRaven"))) {
           libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_tempInt2, UnitGetOwner(lv_tempUnit), "MedivhPortalUse", null, UnitGetType(lv_tempUnit));
         }
-        // if (lv_tempUnit2 != null) {
-        //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Portal Iteration ") + IntToText(lv_iterator) + StringToText(" Medivh Roster: ") + IntToText(libGame_gv_players[lv_tempInt2].lv_rosterSlot) + StringToText(" Team: ") + IntToText((libGame_gf_TeamNumberOfPlayer(lv_tempInt2))) + StringToText(" Portal Unit: ") + StringToText(UnitGetType(lv_tempUnit2))));
-        // }
-        // else {
-        //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Couldn't determine Portal unit")));
-        // }
       }
     }
   }
@@ -39880,7 +39773,7 @@ void libGame_gv_initializeOBSUI () {
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Mercenary Tracker"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.38 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.39 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
     // Well, I tried to add team coloured globes.
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamOrder, "11");
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Person", libCore_gv_cOMPUTER_TeamOrder, "Observer");
@@ -41119,67 +41012,18 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
   if ((lp_inputData == "SamuroCriticalStrike")) {
     if ((lp_damageEffect == "SamuroWeaponDamage")) {
       lv_flatDamageModifier = (UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "SamuroMirrorImageWayOfIllusionAttackDamageAccumulator", "Scale", lv_casterPlayer));
-      // if ((UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) >= 40.0)) {
-      // lv_flatDamageModifier += CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroMirrorImageWayOfIllusionQuestCompleteModifyPlayer", "EffectArray[" + IntToString(0) + "].Value", lv_casterPlayer);
-      // }
     }
 
-    lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "SamuroCriticalStrikeActivated", "Modification.DamageDealtFraction[" + IntToString(c_unitDamageTypeBasic) + "]", c_playerAny))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
-  }
-
-  if ((lp_inputData == "MercilessCrit")) {
-    if ((lp_damageEffect == "SamuroWeaponDamage")) {
-      lv_flatDamageModifier = (UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "SamuroMirrorImageWayOfIllusionAttackDamageAccumulator", "Scale", lv_casterPlayer));
-      // if ((UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) >= 40.0)) {
-      // lv_flatDamageModifier += CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroMirrorImageWayOfIllusionQuestCompleteModifyPlayer", "EffectArray[" + IntToString(0) + "].Value", lv_casterPlayer);
-      // }
-    }
-
-    lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "SamuroCriticalStrikeActivated", "Modification.DamageDealtFraction[" + IntToString(c_unitDamageTypeBasic) + "]", c_playerAny))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
-  }
-
-  if ((lp_inputData == "MercilessMegacrit")) {
-    if ((lp_damageEffect == "SamuroWeaponDamage")) {
-      lv_flatDamageModifier = (UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "SamuroMirrorImageWayOfIllusionAttackDamageAccumulator", "Scale", lv_casterPlayer));
-      // if ((UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) >= 40.0)) {
-      // lv_flatDamageModifier += CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroMirrorImageWayOfIllusionQuestCompleteModifyPlayer", "EffectArray[" + IntToString(0) + "].Value", lv_casterPlayer);
-      // }
-    }
-
-    lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "SamuroCriticalStrikeActivated", "Modification.DamageDealtFraction[" + IntToString(c_unitDamageTypeBasic) + "]", c_playerAny))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
-  }
-
-  if ((lp_inputData == "PhantomPainMercilessMegacrit")) {
-    if ((lp_damageEffect == "SamuroWeaponDamage")) {
-      lv_flatDamageModifier = (UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "SamuroMirrorImageWayOfIllusionAttackDamageAccumulator", "Scale", lv_casterPlayer));
-      // if ((UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) >= 40.0)) {
-      // lv_flatDamageModifier += CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroMirrorImageWayOfIllusionQuestCompleteModifyPlayer", "EffectArray[" + IntToString(0) + "].Value", lv_casterPlayer);
-      // }
-    }
-
-    lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + (CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroCriticalStrikePhantomPainAddDamageModifyEffect", "EffectArray[" + IntToString(0) + "].Value", lv_casterPlayer) * UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll)))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
-    lv_damageResult += lv_damageResult;
-  }
-  if ((lp_inputData == "PhantomPainMercilessCrit")) {
-    if ((lp_damageEffect == "SamuroWeaponDamage")) {
-      lv_flatDamageModifier = (UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "SamuroMirrorImageWayOfIllusionAttackDamageAccumulator", "Scale", lv_casterPlayer));
-      // if ((UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) >= 40.0)) {
-      // lv_flatDamageModifier += CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroMirrorImageWayOfIllusionQuestCompleteModifyPlayer", "EffectArray[" + IntToString(0) + "].Value", lv_casterPlayer);
-      // }
-    }
-
-    lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + (CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroCriticalStrikePhantomPainAddDamageModifyEffect", "EffectArray[" + IntToString(0) + "].Value", lv_casterPlayer) * UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll)))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
+    lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroWeaponDamage", "MultiplicativeModifierArray[" + "CriticalStrike" + "].Modifier", c_playerAny))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
   }
 
   if ((lp_inputData == "PhantomPainCrit")) {
     if ((lp_damageEffect == "SamuroWeaponDamage")) {
       lv_flatDamageModifier = (UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "SamuroMirrorImageWayOfIllusionAttackDamageAccumulator", "Scale", lv_casterPlayer));
-      // if ((UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) >= 40.0)) {
-      // lv_flatDamageModifier += CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroMirrorImageWayOfIllusionQuestCompleteModifyPlayer", "EffectArray[" + IntToString(0) + "].Value", lv_casterPlayer);
-      // }
+
     }
 
-    lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + (CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroCriticalStrikePhantomPainAddDamageModifyEffect", "EffectArray[" + IntToString(0) + "].Value", lv_casterPlayer) * UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll)))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
+    lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + (CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroWeaponDamage", "MultiplicativeModifierArray[" + "PhantomPain1" + "].Modifier", lv_casterPlayer) * UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll)))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
   }
 
   if ((lp_inputData == "SamuroMirrorImageIllusionMaster")) {
@@ -41188,6 +41032,15 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
     }
 
     lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroMirrorImageWeaponDamage", "MultiplicativeModifierArray[" + "IllusionMaster" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
+  }
+
+  if ((lp_inputData == "HarshWinds")) {
+    if ((lp_damageEffect == "SamuroWeaponDamage")) {
+      lv_flatDamageModifier = (UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "SamuroMirrorImageWayOfIllusionAttackDamageAccumulator", "Scale", lv_casterPlayer));
+
+    }
+
+    lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroWeaponDamage", "MultiplicativeModifierArray[" + "HarshWinds" + "].Modifier", c_playerAny))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
   }
 
   if ((lp_inputData == "GFFTUnleashed")) {
@@ -42932,7 +42785,7 @@ bool libGame_gt_CapturePointLogic_Func (bool testConds, bool runActions) {
     for (;; autoC5905908_u -= 1) {
       lv_itUnit = UnitGroupUnitFromEnd(autoC5905908_g, autoC5905908_u);
             if (lv_itUnit == null) { break; }
-      if (((UnitFilterMatch(lv_itUnit, UnitGetOwner(lv_itUnit), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterBenign - 32)))) == true) || (UnitHasBehavior2(lv_itUnit, "CapturePointAllowed") == true)) && (((UnitBehaviorCount(lv_itUnit, "UltimateEvolutionBuff") == 1) && (UnitBehaviorCount(lv_itUnit, "CapturePointAllowed") == 1)) || ((UnitTestState(lv_itUnit, c_unitStateHallucination) == false)))) {
+      if (((UnitFilterMatch(lv_itUnit, UnitGetOwner(lv_itUnit), UnitFilter(0, 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32)) | (1 << (c_targetFilterBenign - 32)))) == true) || (UnitHasBehavior2(lv_itUnit, "CapturePointAllowed") == true)) && (((UnitBehaviorCount(lv_itUnit, "UltimateEvolutionBuff") == 1) && (UnitBehaviorCount(lv_itUnit, "CapturePointAllowed") == 1)) || ((UnitBehaviorCount(lv_itUnit, "StormEarthFireTimedLife") == 1) && (UnitBehaviorCount(lv_itUnit, "CapturePointAllowed") == 1)) || ((UnitTestState(lv_itUnit, c_unitStateHallucination) == false)))) {
         UnitBehaviorAdd(lv_itUnit, "HeroGenericHeroOnCapturePoint", lv_itUnit, 1);
         if ((libGame_gv_players[UnitGetOwner(lv_itUnit)].lv_faction == libGame_ge_Faction_Order)) {
           lv_orderTeamHeroes += 1;
@@ -43867,13 +43720,6 @@ bool libGame_gt_CCRecognitionTimeStopOn_Func (bool testConds, bool runActions) {
 
   PlayerPauseAllCooldowns(lv_timeStopVictimPlayer, true);
   PlayerPauseAllCharges(lv_timeStopVictimPlayer, true);
-  // libGame_gv_HeroSpecificStoredTimeStop[lv_timeStopVictimPlayer] = GameGetMissionTime();
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(UnitGetType(libGame_gv_players[lv_timeStopVictimPlayer].lv_heroUnit)) + StringToText(" Has been stopped at: ") + FixedToText(GameGetMissionTime(), 4)));
-  if ((lv_timeStopVictim == libGame_gv_players[lv_timeStopVictimPlayer].lv_heroUnit)) {
-    // libGame_gf_HeroTimeStopTracker(lv_timeStopVictim, lv_timeStopVictimPlayer, EventUnitBehavior());
-  }
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(UnitGetType(libGame_gv_players[lv_timeStopVictimPlayer].lv_heroUnit)) + StringToText(" is no longer stopped at: ") + FixedToText(GameGetMissionTime(), 4)));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(UnitGetType(libGame_gv_players[lv_timeStopVictimPlayer].lv_heroUnit)) + StringToText(" Has been stopped at: ") + FixedToText(GameGetMissionTime(), 4)));
   return true;
 }
 
@@ -43921,10 +43767,6 @@ bool libGame_gt_CCRecognitionTimeStopOffResumeCooldowns_Func (bool testConds, bo
   }
   PlayerPauseAllCooldowns(lv_timeStopVictimPlayer, false);
   PlayerPauseAllCharges(lv_timeStopVictimPlayer, false);
-  // if ((libGame_gv_HeroSpecificStoredTimeStop[lv_timeStopVictimPlayer] != 0.0)) {
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(UnitGetType(lv_timeStopVictim)) + StringToText(" Stopped for: ") + FixedToText((GameGetMissionTime() - libGame_gv_HeroSpecificStoredTimeStop[lv_timeStopVictimPlayer]), 4)));
-  // libGame_gv_HeroSpecificStoredTimeStop[lv_timeStopVictimPlayer] = 0.0;
-  // }
   return true;
 }
 
@@ -44667,7 +44509,6 @@ bool libGame_gt_StunnerDataCollection_Func (bool testConds, bool runActions) {
   }
 
   lv_duration = UnitBehaviorDurationTotal(lv_triggeringUnit, EventUnitBehavior());
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(UnitGetType(lv_triggeringUnit)) + StringToText(" Stunned by: ") + IntToText(lv_caster) + StringToText(" with ") + StringToText(EventUnitBehavior())));
   if ((lv_duration < 10.0)) {
     libGame_gf_AddtoAwardValue(lv_caster, lv_duration, libGame_ge_SecondaryAwards_Stunner);
   }
@@ -45047,7 +44888,6 @@ bool libGame_gt_ExperienceGlobeGrantXP_Func (bool testConds, bool runActions) {
   else {
     libGame_gf_HeroSpecificStatTrackerOther(lv_xPAmount, lv_targetPlayer, lv_targetPlayer, "GlobeXP", EventPlayerEffectUsedUnit(c_effectUnitTarget), IntToString(EventPlayerEffectUsedUnitOwner(c_effectUnitCaster)));
   }
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (FixedToText(lv_xPAmount, 0) + StringToText(" XP Soaked At: ") + FixedToText(TimerGetElapsed(libGame_gv_gameTimer), 3) + StringToText(" by: ") + StringToText(UnitGetType(libGame_gv_players[lv_targetPlayer].lv_heroUnit))));
   if (libGame_gf_ComputerPlayerInTeam(libGame_gf_TeamNumberOfPlayer(lv_targetPlayer)) != 0) {
     // if ((libGame_gf_ComputerPlayerInTeam(libGame_gf_TeamNumberOfPlayer(lv_targetPlayer)) == 11)) {
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (IntToText(libGame_gf_ComputerPlayerInTeam(libGame_gf_TeamNumberOfPlayer(lv_targetPlayer))) + StringToText(" got ") + FixedToText(lv_xPAmount, 1) + StringToText(" xp at ") + FixedToText(TimerGetElapsed(libGame_gv_gameTimer), 3) + StringToText(" (Gathered) ")));
@@ -45226,9 +45066,6 @@ bool libGame_gt_StartGame_Func (bool testConds, bool runActions) {
 
   TriggerExecute(libStEx_gt_TrainingModeInit, true, false);
   TriggerExecute(libSprt_gt_DEBUGStatTrackingStartTrackingforAllPlayers, true, false);
-  // So these cause desyncs bwsad
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Intro Text: Galaxy!"));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringExternal("UI/Spazzo/Intro"));
   return true;
 }
 
@@ -45618,35 +45455,6 @@ bool libGame_gt_OpenTheGatesOpenTheGatesTimerExpires_Func (bool testConds, bool 
   libNtve_gf_AddPlayerGroupToPlayerGroup(libGame_gf_PlayersOnTeamHeroes(libGame_gv_teamChaosIndex_C, false), lv_chaosVOGroup);
   libGame_gf_AnnouncementAddItemForPlayerGroup(lv_orderVOGroup, libGame_ge_AnnouncementPriorities_Normal, libCore_ge_AnnouncerVOEvents_LetTheBattleBegin, "BattleBegin", StringExternal("Param/Value/lib_Game_CD24FF66"), null, null, null, null, libGame_gv_announcement_QuickSoundOnlyTimerDuration_C, false);
   libGame_gf_AnnouncementAddItemForPlayerGroup(lv_chaosVOGroup, libGame_ge_AnnouncementPriorities_Normal, libCore_ge_AnnouncerVOEvents_LetTheBattleBegin, "BattleBegin", StringExternal("Param/Value/lib_Game_79C9784F"), null, null, null, null, libGame_gv_announcement_QuickSoundOnlyTimerDuration_C, false);
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Gate Open Time: ") + FixedToText(GameGetMissionTime(), 3)));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Intro Text: Galaxy!"));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringExternal("UI/Spazzo/Intro"));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringExternal("UI/Spazzo/Intro"));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Player 1 Name: ") + PlayerName(1) + StringToText(" Player 2 Handle: ") + StringToText(PlayerHandle(2)) + StringToText(" Player 3 Handle: ") + StringToText(PlayerHandle(3)) + StringToText(" Player 4 Handle: ")	+ StringToText(PlayerHandle(5)) + StringToText(" Player 6 Handle: ") + StringToText(PlayerHandle(6)) + StringToText(" Player 7 Handle: ") + StringToText(PlayerHandle(7)) + StringToText(" Player 8 Handle: ") + StringToText(PlayerHandle(8)) + StringToText(" Player 9 Handle: ") + StringToText(PlayerHandle(9)) + StringToText(" Player 10 Handle: ") + StringToText(PlayerHandle(10)) + StringToText(" Player 11 Handle: ") + StringToText(PlayerHandle(11)) + StringToText(" Player 12 Handle: ") + StringToText(PlayerHandle(12)) + StringToText(" Player 13 Handle: ") + StringToText(PlayerHandle(13)) + StringToText(" Player 14 Handle: ") + StringToText(PlayerHandle(14)) + StringToText(" Player 15 Handle: ") + StringToText(PlayerHandle(15)) + StringToText(" Player 16 Handle: ") + StringToText(PlayerHandle(16))));
-  // UIDisplayMessage(libCore_gv_playerGroupFromPlayer[libCore_gv_oBSERVER_ObserverUIPlayer], c_messageAreaDebug, (StringToText("Observer Group Count: ") + IntToText(PlayerGroupCount(libCore_gv_playerGroupFromPlayer[libCore_gv_oBSERVER_ObserverUIPlayer]))));
-  // UIDisplayMessage(libCore_gv_playerGroupFromPlayer[libCore_gv_oBSERVER_ObserverUIPlayer], c_messageAreaDebug, (StringToText("Observer Player Handle: ") + StringToText(PlayerHandle(libCore_gv_oBSERVER_ObserverUIPlayer))));
-  // UIDisplayMessage(libCore_gv_playerGroupFromPlayer[libCore_gv_oBSERVER_ObserverUIPlayer], c_messageAreaDebug, (StringToText("Observer Group Count: ") + IntToText(PlayerGroupCount(PlayerGroupAll()))));
-  // UIDisplayMessage(PlayerGroupSingle(1), c_messageAreaDebug, StringToText("Message for Player 1"));
-  // UIDisplayMessage(PlayerGroupSingle(2), c_messageAreaDebug, StringToText("Message for Player 2"));
-  // UIDisplayMessage(PlayerGroupSingle(3), c_messageAreaDebug, StringToText("Message for Player 3"));
-  // UIDisplayMessage(PlayerGroupSingle(4), c_messageAreaDebug, StringToText("Message for Player 4"));
-  // UIDisplayMessage(PlayerGroupSingle(5), c_messageAreaDebug, StringToText("Message for Player 5"));
-  // UIDisplayMessage(PlayerGroupSingle(6), c_messageAreaDebug, StringToText("Message for Player 6"));
-  // UIDisplayMessage(PlayerGroupSingle(7), c_messageAreaDebug, StringToText("Message for Player 7"));
-  // UIDisplayMessage(PlayerGroupSingle(8), c_messageAreaDebug, StringToText("Message for Player 8"));
-  // UIDisplayMessage(PlayerGroupSingle(9), c_messageAreaDebug, StringToText("Message for Player 9"));
-  // UIDisplayMessage(PlayerGroupSingle(10), c_messageAreaDebug, StringToText("Message for Player 10"));
-  // UIDisplayMessage(PlayerGroupSingle(11), c_messageAreaDebug, StringToText("Message for Player 11"));
-  // UIDisplayMessage(PlayerGroupSingle(12), c_messageAreaDebug, StringToText("Message for Player 12"));
-  // UIDisplayMessage(PlayerGroupSingle(13), c_messageAreaDebug, StringToText("Message for Player 13"));
-  // UIDisplayMessage(PlayerGroupSingle(14), c_messageAreaDebug, StringToText("Message for Player 14"));
-  // UIDisplayMessage(PlayerGroupSingle(15), c_messageAreaDebug, StringToText("Message for Player 15"));
-  // UIDisplayMessage(PlayerGroupSingle(16), c_messageAreaDebug, StringToText("Message for Player 16"));
-  // UIDisplayMessage(PlayerGroupSingle(0), c_messageAreaDebug, StringToText("Message for Player 0"));
-  // BankLoad("PlayerSettings", 6);
-  // UIDisplayMessage(PlayerGroupSingle(0), c_messageAreaDebug, (StringToText("Map Play Count for Player 0: ") + IntToText(BankValueGetAsInt(BankLastCreated(), "MapPlayCounts", libCore_gv_mAPMapStringID))));
-  // BankValueSetFromFixed(BankLastCreated(), "testReplaySettings", "replayTestFixed", 3403);
-  // BankSave(BankLastCreated());
   return true;
 }
 
@@ -45924,14 +45732,10 @@ bool libGame_gt_ConfineCreatedUnitsToBaseUntilCountdownEnds_Func (bool testConds
     if (!runActions) {
         return true;
   }
-  // if ((TimerGetRemaining(libGame_gv_openTheGatesTimer) > 0.0)) {
+
   if (((UnitTypeTestAttribute(UnitGetType(lv_createdUnit), c_unitAttributeHeroic) == false) || (UnitTestState(lv_createdUnit, c_unitStateHallucination) == true) || (UnitHasBehavior2(lv_createdUnit, "Precursor") == true)) && (UnitFilterMatch(lv_createdUnit, 0, UnitFilter((1 << c_targetFilterItem), 0, 0, 0)) == false) && (UnitGetType(lv_createdUnit) != "StitchesHookMissile") && (UnitGetType(lv_createdUnit) != "StitchesHookMissedReturnMissile") && (UnitGetType(lv_createdUnit) != "AbathurSymbiote") && (UnitGetType(lv_createdUnit) != "MurkyPufferfishMissile") && (UnitGetType(lv_createdUnit) != "MurkyPufferfishNoBounceMissile")) {
     UnitKill(lv_createdUnit);
   }
-  // }
-  // else {
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("UnitCreated"));
-  // }
 
   return true;
 }
@@ -46209,7 +46013,6 @@ bool libGame_gt_HeroDeathUpdateStatsAwardXPMakeAnnouccementsCORE_Func (bool test
 
 // xp track earmark
   libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_deadPlayer, lv_killingPlayer, "DeathXP", lv_deadHero, "");
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("XP Value from(GameLib Hero Killed) ") + StringToText(UnitGetType(lv_deadHero)) + StringToText(" ") + FixedToText(libCore_gf_DataXPXPForHero(lv_killingPlayer, lv_deadHero), 2)));
   libGame_gf_HeroDeathAwardXP(lv_killingPlayer, lv_deadHero, lv_awardGroup, lv_killingGroup, true);
   libGame_gf_HeroDeathUpdatePlayerStats(lv_deadHero, lv_killingPlayer, lv_killingTeamGroup, lv_killingGroup);
   libGame_gf_HeroDeathDeadTeamAnnouncements(lv_deadHero, lv_deadPlayerTeamGroup, lv_killingFaction);
@@ -46238,6 +46041,7 @@ bool libGame_gt_HeroDeathUpdateStatsAwardXPMakeAnnouccementsCORE_Func (bool test
   else {
     StatEventAddDataInt(StatEventLastCreated(), "KillingPlayer", 0);
   }
+
   StatEventSend(StatEventLastCreated());
   return true;
 }
@@ -47461,7 +47265,6 @@ bool libGame_gt_InitializeLootContent_Func (bool testConds, bool runActions) {
 
   TriggerExecute(libGame_gt_InitializeWheelCommand, true, false);
   TriggerExecute(libGame_gt_InitializeWheelUI, true, false);
-  // libGame_gf_trackHeroCooldowns();
   return true;
 }
 
@@ -47865,8 +47668,6 @@ bool libGame_gt_MinionSpawnCycle_Func (bool testConds, bool runActions) {
     }
 
     TimerStart(lv_waveTimer, libCore_gv_bALMinionWaveInterval, false, c_timeGame);
-    // TimerStart(lv_waveTimer, 10.0, false, c_timeGame);
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Started Minion Wave Timer at ") + FixedToText(GameGetMissionTime(), 4)));
     libGame_gv_minionWaveSpawnCounter += 1;
     auto2740E61A_ae = libGame_gv_laneCount;
     lv_lane = 1;
@@ -47882,7 +47683,6 @@ bool libGame_gt_MinionSpawnCycle_Func (bool testConds, bool runActions) {
           libGame_gf_MinionSpawnWave(lv_lane, libCore_gv_cOMPUTER_TeamChaos, lv_waveComposition);
         }
 
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Spawned Minions for ") + libGame_gv_laneData[lv_lane].lv_laneName + StringToText(" lane at ") + FixedToText(GameGetMissionTime(), 5)));
         Wait(0.1875, c_timeGame);
       }
     }
@@ -47899,7 +47699,6 @@ bool libGame_gt_MinionSpawnCycle_Func (bool testConds, bool runActions) {
           lv_paused = false;
         }
       }
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Timer has ") + FixedToText(TimerGetRemaining(lv_waveTimer), 4) + StringToText(" seconds remaining, waiting 0.25s at ") + FixedToText(GameGetMissionTime(), 4)));
       Wait(0.25, c_timeGame);
     }
   }
@@ -48808,6 +48607,13 @@ bool libGame_gt_CabooseFollowLogic_Func (bool testConds, bool runActions) {
   lv_cabooseOwner = UnitGetOwner(lv_cabooseUnit);
   lv_engine = UnitGetOwner(lv_engineUnit);
 
+  // Conditions
+  if (testConds) {
+    if (!((UnitHasBehavior2(lv_cabooseUnit, "MountCaboose") == true))) {
+        return false;
+    }
+  }
+
   // Actions
     if (!runActions) {
         return true;
@@ -49032,7 +48838,7 @@ bool libGame_gt_TownStructureDies_Func (bool testConds, bool runActions) {
   lv_townIndex = libGame_gf_TownGetTownForUnit(lv_dyingStructureUnit);
   lv_structureType = libGame_gf_TownGetTownStructurePresetFromUnit(lv_dyingStructureUnit);
   lv_victimTeam = libGame_gf_TeamNumberOfPlayer(UnitGetOwner(lv_dyingStructureUnit));
-  if ((libGame_gf_TownGetTownStructurePresetFromUnit(lv_dyingStructureUnit) == libGame_ge_TownStructureTypes_TownHall) && (libGame_gv_minionMapNeverSpawnsCatapults == false)) {
+  if ((libGame_gf_TownGetTownStructurePresetFromUnit(lv_dyingStructureUnit) == libGame_ge_TownStructureTypes_TownHall) && (libGame_gv_minionMapNeverSpawnsCatapults == false) && (libCore_gv_sYSMinionSpawningOn == true)) {
     if ((libGame_gf_TownsAliveinLane(lv_victimTeam, libGame_gv_townTownData[lv_townIndex].lv_lane) == 1)) {
       libUIUI_gf_UIFloatingCombatTextPeriodicCatapults(StringExternal("Param/Value/lib_Game_CA15EA74"), UnitGetPosition(lv_dyingStructureUnit));
       if ((libGame_gv_minion_PeriodicCatapultsFirstWave == 0)) {
@@ -49393,19 +49199,7 @@ bool libGame_gt_OnFireDisableMessaging_Func (bool testConds, bool runActions) {
     }
   }
   else {
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Absorbed Info: Behavior Owner: ") + IntToText(UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0)) + StringToText(" prevented ") + FixedToText(EventUnitDamageAbsorbed(), 2) + StringToText(" damage against ") +  StringToText(UnitGetType(EventUnitDamageSourceUnit())) + StringToText(" from ") +  StringToText(UnitGetType(EventUnit())) + StringToText(" with ") + StringToText(EventUnitBehavior()) + StringToText(" from effect: ") + StringToText(EventUnitDamageEffect())));
-
-    // if (!((EventUnitBehavior() == "ChenStaggerProtectedBuff") || (EventUnitBehavior() == "DVaMechSelfDestructMechDetonationCountdown") || (EventUnitBehavior() == "DamageTakenNone") || (EventUnitBehavior() == "TyraelArchangelsWrath")
-    // || (EventUnitBehavior() == "VolskayaVehicleTShield") || (EventUnitBehavior() == "NovaHoloDecoyTimedLife") || (EventUnitBehavior() == "RubbleMakerDamageReduction")
-    // || (EventUnitBehavior() == "UtherEternalVanguard") || (EventUnitBehavior() == "LeoricUndyingDontDie") || (EventUnitBehavior() == "SgtHammerSiegeDamageSplashDamage") || (EventUnitBehavior() == "TownCannonTowerNoDeath")
-    // || (EventUnitBehavior() == "JungleCreepSoftLeashingNoHeal") || (EventUnitBehavior() == "KnightTowerDamageReductionBuff") || (EventUnitBehavior() == "DryadWispClampDamage")
-    // || (EventUnitBehavior() == "ScoutingDroneClampDamage")|| (EventUnitBehavior() == "WitchDoctorGargantuanTimedLife") || (EventUnitBehavior() == "LostVikingsBaleogSplashDamageController") || (EventUnitBehavior() == "NecromancerRaiseSkeletonTimedLife")
-    // || (EventUnitBehavior() == "DocksTreasureChestClampDamage") || (EventUnitBehavior() == "CavalryStructureMinionDamageMitigation") || (EventUnitBehavior() == "DVaPilotInsideMech") || (EventUnitBehavior() == "BossDuelBossDeathPrevention")
-    // || (EventUnitBehavior() == "ZergTakeDoubleDamageStructure") || (EventUnitBehavior() == "NecromancerRaiseSkeletonJailorsTalentTimedLife") || (EventUnitBehavior() == "SgtHammerSpiderMinesArming") || (EventUnitBehavior() == "AnubarakCocoonTimedLife")
-    // || (EventUnitBehavior() == "SoulEaterTowerHalfDamage"))) {
-    // libGame_gf_HeroSpecificStatTrackerAbsorbed(EventUnitDamageAbsorbed(), EventUnitBehavior(), EventUnit(), EventUnitDamageSourceUnit(), UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0), EventUnitDamageEffect());
     libGame_gf_HeroSpecificStatTrackerAbsorbed(EventUnitDamageAbsorbed(), EventUnitBehavior(), EventUnit(), EventUnitDamageSourceUnit(), UnitGetOwner(EventUnitBehaviorCasterUnit()), EventUnitDamageEffect());
-    // }
     if ((CatalogFieldValueGet(c_gameCatalogBehavior, EventUnitBehavior(), "DamageResponse.Location", UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0)) == "Attacker")) {
       if ((((EventUnitBehavior() == "DVaMechDefenseMatrixDebuff") || (UnitBehaviorHasCategoryFlag(EventUnitBehavior(), c_behaviorCategoryDebuffBlind) == true)) && (UnitTypeTestAttribute(UnitGetType(EventUnitDamageSourceUnit()), c_unitAttributeHeroic) == true) && (UnitTestState(EventUnitDamageSourceUnit(), c_unitStateHallucination) == false) && (UnitHasBehavior2(EventUnitDamageSourceUnit(), "GenericVehicleBehaviorEmpty") == false))) {
         if (libGame_gf_TeamNumberOfPlayer(UnitBehaviorEffectPlayer(EventUnit(), EventUnitBehavior(), c_effectPlayerCaster, 0)) == libGame_gf_TeamNumberOfPlayer(UnitGetOwner(EventUnitDamageSourceUnit()))) {
@@ -49421,7 +49215,6 @@ bool libGame_gt_OnFireDisableMessaging_Func (bool testConds, bool runActions) {
       return true;
     }
     if ((UnitIsValid(EventUnitBehaviorCasterUnit()) == true) && (UnitGetType(libGame_gv_players[UnitGetOwner(EventUnitBehaviorCasterUnit())].lv_heroUnit) == "HeroZarya") && ((EventUnitBehavior() == "ZaryaPersonalBarrier") || (EventUnitBehavior() == "ZaryaShieldAlly") || (EventUnitBehavior() == "ZaryaPersonalBarrierIAmTheStrongest") || (EventUnitBehavior() == "ZaryaPainIsTemporary") || (EventUnitBehavior() == "ZaryaShieldAllyGainTrain"))) {
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Zarya prevented damage(gamelib) with ") + StringToText(EventUnitBehavior()) + StringToText(" being damaged")));
       libGame_gf_HeroSpecificStatTrackerOther(EventUnitDamageAbsorbed(), UnitGetOwner(EventUnitBehaviorCasterUnit()), UnitGetOwner(EventUnitDamageSourceUnit()), "ZaryaEnergyGainManual", EventUnitDamageSourceUnit(), EventUnitBehavior());
     }
     if (((UnitBehaviorHasCategoryFlag(EventUnitBehavior(), c_behaviorCategoryBuffTempMaxHealth) == true) || (UnitBehaviorHasCategoryFlag(EventUnitBehavior(), c_behaviorCategoryEvasion) == true) || (UnitBehaviorHasCategoryFlag(EventUnitBehavior(), c_behaviorCategoryProtected) == true) || (UnitBehaviorHasCategoryFlag(EventUnitBehavior(), c_behaviorCategoryAbsorbing) == true) || (EventUnitBehavior() == "ZuljinTazdingoUnkillable") || (EventUnitBehavior() == "TracerRecallTelefragTalentUnkillable") || (EventUnitBehavior() == "StitchesHookMasterHookerUnkillableBehavior") || (EventUnitBehavior() == "LucioSummerAnthemUnkillableBehavior"))) {
@@ -49475,12 +49268,7 @@ void libGame_gt_OnFireDisableMessaging_Init () {
 //--------------------------------------------------------------------------------------------------
 void libGame_gt_HeroSpecificAbsorbed_Init () {
   TriggerAddEventUnitDamageAbsorbed(libGame_gt_OnFireDisableMessaging, null, null);
-  // TriggerAddEventUnitHealed(libGame_gt_OnFireDisableMessaging, null, c_unitVitalAny, null);
 }
-
-// void libGame_gt_HeroAbilUsed_Init () {
-    // TriggerAddEventUnitAbility(libGame_gt_OnFireDisableMessaging, null, null, c_unitAbilStageComplete, false);
-// }
 
 //--------------------------------------------------------------------------------------------------
 // Trigger: On Fire Start
@@ -49752,7 +49540,6 @@ bool libGame_gt_HeroDamageTracking_Func (bool testConds, bool runActions) {
       libGame_gf_AddScrapperDamage(lv_damageTaken, lv_eventUnitDamageSourcePlayer);
       libGame_gf_ScoreValuesReportIntegerValueAndLog(lv_eventPlayer, "DamageTaken", libGame_gv_scoreValues[lv_eventPlayer].lv_damageTaken);
       libGame_gf_ScoreValuesReportIntegerValueAndLog(lv_eventPlayer, "DamageSoaked", libGame_gv_scoreValues[lv_eventPlayer].lv_damageSoaked);
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Damage Taken Increased By: ") + FixedToText(EventUnitDamageAbsorbed(), 2)));
     }
 
     if ((UnitTypeTestAttribute(lv_damagingUnitType, c_unitAttributeHeroic) == true) && (UnitTestState(EventUnitDamageSourceUnit(), c_unitStateHallucination) == false)) {
@@ -49888,11 +49675,6 @@ bool libGame_gt_HeroDamageTracking_Func (bool testConds, bool runActions) {
       }
     }
   }
-  // if (UnitGetType(EventUnit()) == "HeroFenix") {
-  //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Taken: ") + FixedToText(EventUnitDamageAmount(), 2)));
-  //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Shielded: ") + FixedToText(EventUnitDamageBehaviorShield(), 2)));
-  //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Absorbed: ") + FixedToText(EventUnitDamageAbsorbed(), 2)));
-  // }
 
   if (libGame_gv_HeroSpecificStoredDamageMitigated[UnitGetOwner(EventUnit())] != 0.0) {
     libGame_gv_TallyArmorModified(EventUnitDamageEffect(), UnitGetType(EventUnit()), (EventUnitDamageAmount() + EventUnitDamageBehaviorShield()), libGame_gv_HeroSpecificStoredDamageMitigated[UnitGetOwner(EventUnit())], (EventUnitDamageAttemptedVitals() + EventUnitDamageBehaviorShield()), EventPlayer(), lv_eventUnitDamageSourcePlayer, EventUnit());
@@ -50224,8 +50006,6 @@ bool libGame_gt_PlayerHomeShieldProtectionOn_Func (bool testConds, bool runActio
   if (((libGame_gv_players[lv_heroUnitOwner].lv_heroUnit == lv_heroUnit) || (libGame_gv_players[lv_heroUnitOwner].lv_activeVehicle == lv_heroUnit))) {
     libGame_gf_PlayerTurnMountCostsOnOffForPlayer(lv_heroUnitOwner, false);
   }
-
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Hall of Storms activate"));
 
   return true;
 }
@@ -51188,59 +50968,6 @@ bool libGame_gt_TownMidLateGamePowerTransitionOn_Func (bool testConds, bool runA
     }
   }
   else {
-    // if ((EventUnitProperty() == c_unitPropLife)) {
-    // if ((EventUnitPropertyChangeFixed() != (UnitGetPropertyFixed(EventUnit(), c_unitPropLifeRegen, c_unitPropCurrent) / 16))) {
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Unit(Prop): ") + UnitGetName(EventUnit()) + StringToText(" Life: ") + FixedToText(EventUnitPropertyChangeFixed(), 7) + StringToText(" Time: ") + FixedToText(GameGetMissionTime(), 4)));
-    // }
-    // }
-    // if ((EventUnitProperty() == c_unitPropEnergy)) {
-    // if ((EventUnitPropertyChangeFixed() != (UnitGetPropertyFixed(EventUnit(), c_unitPropEnergyRegen, c_unitPropCurrent) / 16))) {
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Unit: ") + UnitGetName(EventUnit()) + StringToText(" Energy: ") + FixedToText(EventUnitPropertyChangeFixed(), 7) + StringToText(" Time: ") + FixedToText(GameGetMissionTime(), 4)));
-    // }
-    // }
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("UnitRemoved: ") + StringToText(UnitGetType(EventUnit()))));
-    // DialogControlHookupStandard(c_triggerControlTypeButton, "UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\ShowBlizzardStatsButton");
-    // libNtve_gf_SetDialogItemTooltip(DialogControlLastCreated(), StringExternal("Param/Value/lib_Sprt_15C84FDB"), PlayerGroupAll());
-    // if ((UnitGetOwner(EventUnit()) < 11) && (UnitGetOwner(EventUnit()) > 0)) {
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("SamuroMirrorImageTimedLife: ") + FixedToText(CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "SamuroMirrorImageTimedLife", "Duration", UnitGetOwner(EventUnit())), 1)));
-    // CatalogFieldValueSetFixed(c_gameCatalogBehavior, "SamuroMirrorImageTimedLife", "Duration", UnitGetOwner(EventUnit()), (5.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "SamuroMirrorImageTimedLife", "Duration", UnitGetOwner(EventUnit()))));
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("SamuroMirrorImageTimedLife: ") + FixedToText(CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "SamuroMirrorImageTimedLife", "Duration", UnitGetOwner(EventUnit())), 1)));
-    // }
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("EventUnitTokenContextUnit: ") + StringToText(UnitGetType(EventUnitTokenContextUnit()))));
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("EventUnitTokenBehavior: ") + StringToText(EventUnitTokenBehavior())));
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("EventUnitTokenCurrentTokenCount: ") + FixedToText(EventUnitTokenCurrentTokenCount(), 2)));
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("EventUnitTokenPrevTokenCount: ") + FixedToText(EventUnitTokenPrevTokenCount(), 2)));
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("EventUnitTokenMinTokenCount: ") + FixedToText(EventUnitTokenMinTokenCount(), 2)));
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("EventUnitTokenMaxTokenCount: ") + FixedToText(EventUnitTokenMaxTokenCount(), 2)));
-    // else if ((UnitGetType(EventUnitTarget()) != "")) {
-    // if (UnitGetType(libGame_gv_players[UnitGetOwner(EventUnitTarget())].lv_heroUnit) == "HeroAbathur") {
-    // }
-    // else if (UnitGetType(libGame_gv_players[UnitGetOwner(EventUnitTarget())].lv_heroUnit) == "HeroZuljin") {
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("EventUnitTarget: ") + StringToText(UnitGetType(EventUnitTarget()))));
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("EventUnitTargetUnit: ") + StringToText(UnitGetType(EventUnitTargetUnit()))));
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("EventUnitVictimUnit: ") + StringToText(UnitGetType(EventUnitVictimUnit()))));
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("EventUnit: ") + StringToText(UnitGetType(EventUnit()))));
-    // }
-    // }
-    // if (EventUnitBehavior() != "") {
-    // if (UnitGetType(libGame_gv_players[UnitGetOwner(EventUnit())].lv_heroUnit) == "HeroAbathur") {
-    // }
-    // else if (UnitGetType(libGame_gv_players[UnitGetOwner(EventUnit())].lv_heroUnit) == "HeroHanzo") {
-    // if ((EventUnitBehavior() == "HanzoScatterArrowMarkedTargets") || (EventUnitBehavior() == "HanzoScatterArrowTargetsRemainingCounter") || (EventUnitBehavior() == "HanzoScatterArrowBounceCounter")) {
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Behavior Detected: ") + StringToText(EventUnitBehavior()) + StringToText(" on unit: ") + StringToText(UnitGetType(EventUnit()))));
-    // if ((UnitGetType(EventUnit()) == "HanzoScatterArrowInitialMissile")) {
-    // libGame_gv_HeroSpecificStoredValue1[UnitGetOwner(EventUnit())] = 1.0;
-    // }
-    // else {
-    // libGame_gv_HeroSpecificStoredValue1[UnitGetOwner(EventUnit())] = 2.0;
-    // }
-    // }
-    // }
-    // else if (UnitGetType(libGame_gv_players[UnitGetOwner(EventUnit())].lv_heroUnit) == "HeroZuljin") {
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Behavior Detected: ") + StringToText(EventUnitBehavior()) + StringToText(" on unit: ") + StringToText(UnitGetType(EventUnit()))));
-    // }
-    // }
-    // else {
     if (libGame_gv_initializedOBSUI == false) {
       libGame_gv_initializeOBSUI();
     }
@@ -51250,7 +50977,6 @@ bool libGame_gt_TownMidLateGamePowerTransitionOn_Func (bool testConds, bool runA
     if ((libGame_gv_timeTravelling == false) && (libGame_gv_gameOver == false) && (libGame_gv_trackingHeroCooldowns == true)) {
       libGame_gf_travelThroughTime();
     }
-    // }
   }
   return true;
 }
@@ -51259,62 +50985,7 @@ bool libGame_gt_TownMidLateGamePowerTransitionOn_Func (bool testConds, bool runA
 void libGame_gt_TownMidLateGamePowerTransitionOn_Init () {
   libGame_gt_TownMidLateGamePowerTransitionOn = TriggerCreate("libGame_gt_TownMidLateGamePowerTransitionOn_Func");
   TriggerAddEventChatMessage(libGame_gt_TownMidLateGamePowerTransitionOn, c_playerAny, "-morecore", true);
-  // TriggerAddEventUnitHealed(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_unitVitalAny, null);
-  // // TriggerAddEventPlayerEffectUsed(libGame_gt_TownMidLateGamePowerTransitionOn, c_playerAny, "GenjiDeflectImpactSet");
-  // // TriggerAddEventUnitCreated(libGame_gt_TownMidLateGamePowerTransitionOn, null, null, null);
-  // TriggerAddEventUnitRemoved(libGame_gt_TownMidLateGamePowerTransitionOn, null);
-  // // TriggerAddEventUnitAbility(libGame_gt_TownMidLateGamePowerTransitionOn, null, AbilityCommand("WizardArcaneOrb", 0), c_unitAbilStageAll, false);
-  // // TriggerAddEventUnitOrder(libGame_gt_TownMidLateGamePowerTransitionOn, null, AbilityCommand("WizardArcaneOrb", 0));
-  // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_unitPropLife);
-  // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_unitPropEnergy);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[1].lv_heroUnit"), c_unitPropLife);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[2].lv_heroUnit"), c_unitPropLife);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[3].lv_heroUnit"), c_unitPropLife);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[4].lv_heroUnit"), c_unitPropLife);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[5].lv_heroUnit"), c_unitPropLife);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[6].lv_heroUnit"), c_unitPropLife);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[7].lv_heroUnit"), c_unitPropLife);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[8].lv_heroUnit"), c_unitPropLife);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[9].lv_heroUnit"), c_unitPropLife);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[10].lv_heroUnit"), c_unitPropEnergy);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[1].lv_heroUnit"), c_unitPropEnergy);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[2].lv_heroUnit"), c_unitPropEnergy);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[3].lv_heroUnit"), c_unitPropEnergy);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[4].lv_heroUnit"), c_unitPropEnergy);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[5].lv_heroUnit"), c_unitPropEnergy);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[6].lv_heroUnit"), c_unitPropEnergy);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[7].lv_heroUnit"), c_unitPropEnergy);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[8].lv_heroUnit"), c_unitPropEnergy);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[9].lv_heroUnit"), c_unitPropEnergy);
-  // // TriggerAddEventUnitProperty(libGame_gt_TownMidLateGamePowerTransitionOn, UnitRefFromVariable("libGame_gv_players[10].lv_heroUnit"), c_unitPropEnergy);
-  // // libGame_gf_TimeStop(libGame_gt_TownMidLateGamePowerTransitionOn);
-  // TriggerAddEventUnitAbility(libGame_gt_TownMidLateGamePowerTransitionOn, null, null, c_unitAbilStageComplete, false);
-  // TriggerAddEventPlayerEffectUsedFromScope(libGame_gt_TownMidLateGamePowerTransitionOn, c_playerAny, "CEffectDamage");
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategoryStun, c_unitBehaviorChangeRefresh);
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategoryStun, c_unitBehaviorChangeIncrease);
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategorySlow, c_unitBehaviorChangeRefresh);
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategorySlow, c_unitBehaviorChangeIncrease);
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategoryDebuffBlind, c_unitBehaviorChangeRefresh);
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategoryDebuffBlind, c_unitBehaviorChangeIncrease);
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategoryDebuffRoot, c_unitBehaviorChangeRefresh);
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategoryDebuffRoot, c_unitBehaviorChangeIncrease);
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategoryDebuffSilence, c_unitBehaviorChangeRefresh);
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategoryDebuffSilence, c_unitBehaviorChangeIncrease);
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategoryDebuffStasis, c_unitBehaviorChangeRefresh);
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategoryDebuffStasis, c_unitBehaviorChangeIncrease);
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategoryTimeStop, c_unitBehaviorChangeRefresh);
-  // TriggerAddEventUnitBehaviorChangeFromCategory(libGame_gt_TownMidLateGamePowerTransitionOn, null, c_behaviorCategoryTimeStop, c_unitBehaviorChangeIncrease);
   TriggerAddEventHeroTalentTreeSelected(libGame_gt_TownMidLateGamePowerTransitionOn, c_playerAny);
-  // TriggerAddEventUnitBehaviorChange(libGame_gt_TownMidLateGamePowerTransitionOn, null, "HanzoScatterArrowMarkedTargets", c_unitBehaviorChangeCreate);
-  // TriggerAddEventUnitAttacked2(libGame_gt_TownMidLateGamePowerTransitionOn, null, "ZuljinHeroWeapon");
-  // TriggerAddEventUnitBehaviorChange(libGame_gt_TownMidLateGamePowerTransitionOn, null, "ZuljinYouWantAxeQuestMainToken", c_unitBehaviorChangeIncrease);
-  // TriggerAddEventUnitBehaviorChange(libGame_gt_TownMidLateGamePowerTransitionOn, null, "ZuljinYouWantAxeQuestMiniProgressToken", c_unitBehaviorChangeIncrease);
-  // TriggerAddEventUnitToken(libGame_gt_TownMidLateGamePowerTransitionOn, EventUnitTokenEventId(), null, "ZuljinYouWantAxeQuestMiniProgressToken");
-  // TriggerAddEventUnitToken(libGame_gt_TownMidLateGamePowerTransitionOn, EventUnitTokenEventId(), null, "ZuljinYouWantAxeQuestMainToken");
-  // TriggerAddEventUnitToken(libGame_gt_TownMidLateGamePowerTransitionOn, "", null, "ZuljinYouWantAxeQuestMiniProgressToken");
-  // TriggerAddEventUnitBehaviorChange(libGame_gt_TownMidLateGamePowerTransitionOn, null, "HanzoScatterArrowTargetsRemainingCounter", c_unitBehaviorChangeCreate);
-  // TriggerAddEventUnitBehaviorChange(libGame_gt_TownMidLateGamePowerTransitionOn, null, "HanzoScatterArrowBounceCounter", c_unitBehaviorChangeCreate);
-    
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -51626,7 +51297,6 @@ bool libGame_gt_UnitSelectionOnUnitDeselected_Func (bool testConds, bool runActi
             if (autoB7484277_var == null) { break; }
       if (true) {
         UnitSelect(autoB7484277_var, lv_player, true);
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("forced reselction to ") + StringToText(UnitGetType(autoB7484277_var))));
       }
       else {
         return true;
@@ -52295,7 +51965,6 @@ void libGame_InitTriggers () {
   libGame_gt_InitializeWatchTowers_Init();
   libGame_gt_WatchTowersOwnershipChanges_Init();
   libGame_gt_HealthPackGeneratorHealthPackCreated_Init();
-  // libGame_gf_trackHeroCooldowns();
 }
 
 //--------------------------------------------------------------------------------------------------

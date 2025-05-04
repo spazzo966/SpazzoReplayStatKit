@@ -670,7 +670,7 @@ bool libHDVA_gt_DVaCargoUnloadedSelectionControl_Func (bool testConds, bool runA
     libGame_gf_CameraUpdateCameraForPlayer(lv_dVaPlayer);
     libUIUI_gf_UIHeroConsoleSetUpForPlayer(lv_dVaPilot, lv_dVaPlayer);
     libUIUI_gf_HeroConsoleUnitStatusBarsSetUnitForBars(lv_dVaPilot, lv_dVaPlayer);
-    libGame_gf_SendEventHeroUnitSwappedForPlayer(lv_dVaMech, lv_dVaPilot, lv_dVaPlayer);
+    libGame_gf_SendEventHeroUnitSwappedForPlayer(lv_dVaMech, lv_dVaPilot, lv_dVaPlayer, false);
     libGame_gf_SendEventCheckUnitForAbilityRedirect(lv_dVaMech, lv_dVaPilot, false, UnitGetPosition(lv_dVaMech));
     libUIUI_gf_InitPathingLines(lv_dVaPilot, lv_dVaPlayer);
     libAIAI_gv_aIHeroes[lv_dVaPlayer].lv_currentHeroUnit = lv_dVaPilot;
@@ -1099,7 +1099,7 @@ bool libHDVA_gt_DVaDamageTakenSelfDestructCharge_Func (bool testConds, bool runA
         if ((CatalogFieldValueGet(c_gameCatalogEffect, EventUnitDamageEffect(), "Aliases[" + IntToString(0) + "]", c_playerAny) == "PercentDamage")) {
         }
         else {
-			lv_incomingDamageAmount /= 0.5;
+			lv_incomingDamageAmount /= 0.4;
 		}
     }
 
@@ -1264,7 +1264,7 @@ bool libHDVA_gt_DVaCallMechMEKAfallCompleted_Func (bool testConds, bool runActio
     libUIUI_gf_UIHeroConsoleSetUpForPlayer(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], lv_dVaPlayer);
     libUIUI_gf_HeroConsoleUnitStatusBarsSetUnitForBars(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], lv_dVaPlayer);
     UnitSetPropertyFixed(lv_dVaMechUnit, c_unitPropEnergy, (UnitGetPropertyFixed(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], c_unitPropEnergyMax, c_unitPropCurrent) - PlayerGetChargeUsed(lv_dVaPlayer, "Abil/DVaMechSelfDestruct")));
-    libGame_gf_SendEventHeroUnitSwappedForPlayer(lv_dVaPilotUnit, libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], lv_dVaPlayer);
+    libGame_gf_SendEventHeroUnitSwappedForPlayer(lv_dVaPilotUnit, libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], lv_dVaPlayer, false);
     libGame_gf_SendEventCheckUnitForAbilityRedirect(lv_dVaPilotUnit, libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], false, UnitGetPosition(lv_dVaPilotUnit));
     libUIUI_gf_InitPathingLines(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], lv_dVaPlayer);
     libNtve_gf_MakeUnitUncommandable(libHDVA_gv_dVaCallMechMechBeingSummoned[lv_dVaPlayer], false);

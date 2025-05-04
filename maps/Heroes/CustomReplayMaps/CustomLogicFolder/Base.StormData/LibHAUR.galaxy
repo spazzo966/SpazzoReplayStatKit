@@ -635,16 +635,10 @@ bool libHAUR_gt_HeroAurielBestowHopeHealingStoredFromProxyDamageDealt_Func (bool
         if ((UnitTypeTestAttribute(UnitGetType(lv_target), c_unitAttributeHeroic) == true)) {
 		    if ((lv_aurielPlayer >= 1) && (lv_aurielPlayer <= libCore_gv_bALMaxPlayers) && (UnitGetType(libGame_gv_players[lv_aurielPlayer].lv_heroUnit) == "HeroAuriel")) {
                 if (((UnitGetPropertyFixed(lv_auriel, c_unitPropEnergy, c_unitPropCurrent) + (lv_damageDealt * libHAUR_gv_heroAurielBestowHopeHeroicDamageStoredFraction)) >= UnitGetPropertyFixed(lv_auriel, c_unitPropEnergyMax, c_unitPropCurrent))) {
-                    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Auriel's energy is full!: ") + StringToText(EventUnitDamageEffect()) + FixedToText((lv_damageDealt * libHAUR_gv_heroAurielBestowHopeHeroicDamageStoredFraction), 1) + StringToText(" Auriel Hero:") + StringToText(UnitGetType(libGame_gv_players[lv_aurielPlayer].lv_heroUnit))));
-                    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Overheal: ") + FixedToText(((UnitGetPropertyFixed(lv_auriel, c_unitPropEnergy, c_unitPropCurrent) + (lv_damageDealt * libHAUR_gv_heroAurielBestowHopeHeroicDamageStoredFraction)) - UnitGetPropertyFixed(lv_auriel, c_unitPropEnergyMax, c_unitPropCurrent)), 1) + StringToText(" Player: ") + IntToText(lv_aurielPlayer)));
-                    // libGame_gf_TallyDamageToPlayer(FixedToInt((lv_damageDealt * libHAUR_gv_heroAurielBestowHopeHeroicDamageStoredFraction) - ((UnitGetPropertyFixed(lv_auriel, c_unitPropEnergy, c_unitPropCurrent) + (lv_damageDealt * libHAUR_gv_heroAurielBestowHopeHeroicDamageStoredFraction)) - UnitGetPropertyFixed(lv_auriel, c_unitPropEnergyMax, c_unitPropCurrent))), lv_proxyPlayer, lv_aurielPlayer);
                     libGame_gf_HeroSpecificStatTrackerOther((lv_damageDealt * libHAUR_gv_heroAurielBestowHopeHeroicDamageStoredFraction) - ((UnitGetPropertyFixed(lv_auriel, c_unitPropEnergy, c_unitPropCurrent) + (lv_damageDealt * libHAUR_gv_heroAurielBestowHopeHeroicDamageStoredFraction)) - UnitGetPropertyFixed(lv_auriel, c_unitPropEnergyMax, c_unitPropCurrent)), lv_aurielPlayer, lv_proxyPlayer, "AurielEnergyGain", null, "");
                 }
                 else {
-                    // libGame_gf_TallyDamageToPlayer(FixedToInt(lv_damageDealt * libHAUR_gv_heroAurielBestowHopeHeroicDamageStoredFraction), lv_proxyPlayer, lv_aurielPlayer);
                     libGame_gf_HeroSpecificStatTrackerOther((lv_damageDealt * libHAUR_gv_heroAurielBestowHopeHeroicDamageStoredFraction), lv_aurielPlayer, lv_proxyPlayer, "AurielEnergyGain", null, "");
-                    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Auriel's energy increased to non-full value!: ") + StringToText(EventUnitDamageEffect()) + FixedToText((lv_damageDealt * libHAUR_gv_heroAurielBestowHopeHeroicDamageStoredFraction), 1) + StringToText(" Auriel Hero:") + StringToText(UnitGetType(libGame_gv_players[lv_aurielPlayer].lv_heroUnit))));
-                    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Auriel Got Energy!: ") + StringToText(EventUnitDamageEffect()) + StringToText(" Amount: ") + FixedToText((lv_damageDealt * libHAUR_gv_heroAurielBestowHopeHeroicDamageStoredFraction), 1) + StringToText(" Caster Hero:") + StringToText(UnitGetType(libGame_gv_players[lv_proxyPlayer].lv_heroUnit))));
 			    }
 			}
             UnitSetPropertyFixed(lv_auriel, c_unitPropEnergy, (UnitGetPropertyFixed(lv_auriel, c_unitPropEnergy, c_unitPropCurrent) + (lv_damageDealt * libHAUR_gv_heroAurielBestowHopeHeroicDamageStoredFraction)));
@@ -652,15 +646,10 @@ bool libHAUR_gt_HeroAurielBestowHopeHealingStoredFromProxyDamageDealt_Func (bool
         else {
 		    if ((lv_aurielPlayer >= 1) && (lv_aurielPlayer <= libCore_gv_bALMaxPlayers) && (UnitGetType(libGame_gv_players[lv_aurielPlayer].lv_heroUnit) == "HeroAuriel")) {
                 if (((UnitGetPropertyFixed(lv_auriel, c_unitPropEnergy, c_unitPropCurrent) + (lv_damageDealt * libHAUR_gv_heroAurielBestowHopeNonHeroicDamageStoredFraction)) >= UnitGetPropertyFixed(lv_auriel, c_unitPropEnergyMax, c_unitPropCurrent))) {
-                    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Auriel's energy is full!: ") + StringToText(EventUnitDamageEffect()) + FixedToText((lv_damageDealt * libHAUR_gv_heroAurielBestowHopeNonHeroicDamageStoredFraction), 1) + StringToText(" Auriel Hero:") + StringToText(UnitGetType(libGame_gv_players[lv_aurielPlayer].lv_heroUnit))));
-                    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Overheal: ") + FixedToText(((UnitGetPropertyFixed(lv_auriel, c_unitPropEnergy, c_unitPropCurrent) + (lv_damageDealt * libHAUR_gv_heroAurielBestowHopeNonHeroicDamageStoredFraction)) - UnitGetPropertyFixed(lv_auriel, c_unitPropEnergyMax, c_unitPropCurrent)), 1) + StringToText(" Player: ") + IntToText(lv_aurielPlayer)));
-                    // libGame_gf_TallyDamageToPlayer(FixedToInt((lv_damageDealt * libHAUR_gv_heroAurielBestowHopeNonHeroicDamageStoredFraction) - ((UnitGetPropertyFixed(lv_auriel, c_unitPropEnergy, c_unitPropCurrent) + (lv_damageDealt * libHAUR_gv_heroAurielBestowHopeNonHeroicDamageStoredFraction)) - UnitGetPropertyFixed(lv_auriel, c_unitPropEnergyMax, c_unitPropCurrent))), lv_proxyPlayer, lv_proxyPlayer);
                     libGame_gf_HeroSpecificStatTrackerOther((lv_damageDealt * libHAUR_gv_heroAurielBestowHopeNonHeroicDamageStoredFraction) - ((UnitGetPropertyFixed(lv_auriel, c_unitPropEnergy, c_unitPropCurrent) + (lv_damageDealt * libHAUR_gv_heroAurielBestowHopeNonHeroicDamageStoredFraction)) - UnitGetPropertyFixed(lv_auriel, c_unitPropEnergyMax, c_unitPropCurrent)), lv_aurielPlayer, lv_proxyPlayer, "AurielEnergyGain", null, "");
                 }
                 else {
-                    // libGame_gf_TallyDamageToPlayer(FixedToInt(lv_damageDealt * libHAUR_gv_heroAurielBestowHopeNonHeroicDamageStoredFraction), lv_proxyPlayer, lv_aurielPlayer);
                     libGame_gf_HeroSpecificStatTrackerOther((lv_damageDealt * libHAUR_gv_heroAurielBestowHopeNonHeroicDamageStoredFraction), lv_aurielPlayer, lv_proxyPlayer, "AurielEnergyGain", null, "");
-                    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Auriel's energy increased to non-full value!: ") + StringToText(EventUnitDamageEffect()) + FixedToText((lv_damageDealt * libHAUR_gv_heroAurielBestowHopeNonHeroicDamageStoredFraction), 1) + StringToText(" Auriel Hero:") + StringToText(UnitGetType(libGame_gv_players[lv_aurielPlayer].lv_heroUnit))));
 			    }
 			}
             UnitSetPropertyFixed(lv_auriel, c_unitPropEnergy, (UnitGetPropertyFixed(lv_auriel, c_unitPropEnergy, c_unitPropCurrent) + (lv_damageDealt * libHAUR_gv_heroAurielBestowHopeNonHeroicDamageStoredFraction)));
@@ -746,6 +735,7 @@ bool libHAUR_gt_HeroAurielBestowHopeProxyUnitSwapped_Func (bool testConds, bool 
     unit lv_oldUnit;
     unit lv_newUnit;
     unit lv_aurielUnit;
+    bool lv_preserveOnOld;
 
     // Automatic Variable Declarations
     const int auto9EA897AF_ae = libCore_gv_bALMaxPlayers;
@@ -754,6 +744,14 @@ bool libHAUR_gt_HeroAurielBestowHopeProxyUnitSwapped_Func (bool testConds, bool 
     // Variable Initialization
     lv_oldUnit = libGame_gf_HeroUnitSwappedForPlayerOldUnit();
     lv_newUnit = libGame_gf_HeroUnitSwappedForPlayerNewUnit();
+    lv_preserveOnOld = libGame_gf_HeroUnitSwappedForPlayerPreserveOnOld();
+
+    // Conditions
+    if (testConds) {
+        if (!((lv_preserveOnOld == false))) {
+            return false;
+        }
+    }
 
     // Actions
     if (!runActions) {
@@ -820,10 +818,6 @@ bool libHAUR_gt_HeroAurielRayofHeavenAbilityUsed_Func (bool testConds, bool runA
 		libGame_gv_HeroSpecificStoredValue3[lv_aurielPlayer] = 0;
 		if ((lv_aurielCurrentEnergy_Raw > lv_aurielBaseEnergyCap)) {
 			libGame_gv_HeroSpecificStoredValue3[lv_aurielPlayer] = (lv_aurielCurrentEnergy_Raw - lv_aurielBaseEnergyCap);
-			// if ((UnitGroupCount(UnitGroupAlliance(lv_aurielPlayer, c_unitAllianceAlly, RegionCircle(EventUnitTargetPoint(), 3.5), libCore_gv_filtersHeroic, libCore_gv_bALMaxPlayersOnATeam), c_unitCountAlive) >= 1)) {
-				// UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Reservoir of Hope Bonus: ") + FixedToText((UnitGroupCount(UnitGroupAlliance(lv_aurielPlayer, c_unitAllianceAlly, RegionCircle(EventUnitTargetPoint(), 3.5), libCore_gv_filtersHeroic, libCore_gv_bALMaxPlayersOnATeam), c_unitCountAlive) * (lv_aurielCurrentEnergy_Raw - lv_aurielBaseEnergyCap)), 1)));
-				// libNtve_gf_UnitsInRegionWithAllianceToPlayerMatchingCondition(null, "", "", lv_aurielPlayer, c_unitAllianceAlly, RegionCircle(EventUnitTargetPoint(), 3.5), libCore_gv_filtersHeroicAllyandnotImmuneToFriendlyAbilitiesorBenign, 0);
-			// }
 		}
 	}
     CatalogFieldValueSetFixed(c_gameCatalogEffect, "AurielRayOfHeavenCreateHealer", "RechargeVitalRate", lv_aurielPlayer, lv_aurielCurrentEnergy_Raw);

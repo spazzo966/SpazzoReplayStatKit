@@ -11853,6 +11853,7 @@ bool libGDHL_gt_HeroLiLiCloudSerpentTurretSerpentSummonandSimplifiedAI_Func (boo
     UnitBehaviorAdd(lv_cloudSerpent, "CloudSerpentMinionBehavior", lv_caster, 1);
     UnitBehaviorAdd(lv_cloudSerpent, "LiLiCloudSerpentBlessingsOfYulon", lv_caster, 1);
     UnitBehaviorAdd(lv_cloudSerpent, "CloudSerpentLightningSerpentBehavior", lv_caster, 1);
+    UnitBehaviorAdd(lv_cloudSerpent, "LiLiCloudSerpentAbilityController", lv_caster, 1);
     if ((PlayerHasTalent(lv_liLiPlayer, "LiLiMasteryCloudSerpentSerpentSidekick") == true) && (lv_liLiPlayer == UnitGetOwner(EventPlayerEffectUsedUnit(c_effectUnitTarget)))) {
         UnitBehaviorAdd(lv_cloudSerpent, "LiLiCloudSerpentSerpentSidekickOwnerBehavior", lv_owningUnit, 1);
     }
@@ -18950,7 +18951,7 @@ bool libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate_Func (bool testConds, boo
   
 //--------------------------------------------------------------------------------------------------
 void libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate_Init () {
-libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate = TriggerCreate("libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate_Func");
+    libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate = TriggerCreate("libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate_Func");
     TriggerEnable(libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate, false);
     TriggerAddEventPlayerEffectUsed(libGDHL_gt_HeroRaynorExecuteOrderHyperionActivate, c_playerAny, "RaynorExecuteOrdersDummyEffect");
 }
