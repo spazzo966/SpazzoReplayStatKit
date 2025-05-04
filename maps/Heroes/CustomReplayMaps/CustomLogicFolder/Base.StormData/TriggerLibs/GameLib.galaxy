@@ -13528,7 +13528,7 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroLucio")) {
     if ((UnitHasBehavior2(lp_casterUnit, "LucioSmoothMovesLeechBehavior") == true) && (UnitBehaviorEnabled(lp_casterUnit, "LucioSmoothMovesLeechBehavior") == true) && (UnitHasBehavior2(lp_casterUnit, "LucioWallRideSpeed") == true) && (CatalogFieldValueGet(c_gameCatalogEffect, lp_damageEffect, "Kind", lp_casterPlayer) == "Basic")) {
-      lv_primaryScoreString = "TalentSeven";
+      lv_primaryScoreString = "SupportTwelve";
     }
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAnduin")) {
@@ -15102,67 +15102,68 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroLucio")) {
       if ((lp_behavior == "LucioSoundwaveGoodVibrationsShield")) {
-        // lv_primaryScoreString = "TalentSeven";
         if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
-          lv_primaryScoreString = "TalentTen";
+          lv_primaryScoreString = "ScoreThree";
         }
         else {
-          lv_primaryScoreString = "TalentThirteen";
+          lv_primaryScoreString = "ScoreFour";
         }
       }
       if ((lp_behavior == "LucioSoundBarrierShield")) {
-        // lv_primaryScoreString = "TalentTen";
+        // Heroic Damage prevented
         if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
 					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "TalentSixteen";
+            lv_primaryScoreString = "ScoreFive";
           }
 					else {
-            lv_primaryScoreString = "SupportEleven";
+            lv_primaryScoreString = "ScoreSeven";
           }
         }
+        // Non-Heroic damage prevented
         else {
 					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "TalentTwenty";
+            lv_primaryScoreString = "ScoreSix";
           }
 					else {
-            lv_primaryScoreString = "SupportTwelve";
+            lv_primaryScoreString = "ScoreEight";
           }
         }
       }
       if ((lp_behavior == "LucioSoundBarrierBossaNovaShield")) {
-        // lv_primaryScoreString = "TalentTwenty";
+        // Heroic Damage prevented
         if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
 					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "TalentSixteen";
+            lv_primaryScoreString = "ScoreFive";
           }
 					else {
-            lv_primaryScoreString = "SupportEleven";
+            lv_primaryScoreString = "ScoreSeven";
           }
         }
+        // Non-Heroic damage prevented
         else {
 					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "TalentTwenty";
+            lv_primaryScoreString = "ScoreSix";
           }
 					else {
-            lv_primaryScoreString = "SupportTwelve";
+            lv_primaryScoreString = "ScoreEight";
           }
         }
       }
       if ((lp_behavior == "LucioSummerAnthemUnkillableBehavior")) {
         if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
 					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "ScoreEight";
+            lv_primaryScoreString = "ScoreNine";
           }
 					else {
-            lv_primaryScoreString = "ScoreNine";
+            lv_primaryScoreString = "ScoreTen";
           }
         }
         else {
 					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "ScoreEight";
+            lv_primaryScoreString = "ScoreNine";
           }
 					else {
-            lv_primaryScoreString = "ScoreNine";
+            lv_primaryScoreString = "ScoreTen";
           }
         }
       }
@@ -17168,7 +17169,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
         lv_primaryScoreString = "TalentTwenty";
       }
       if ((lp_healEffect == "GreymaneGoForTheThroatUnleashedManaRefund")) {
-        lv_primaryScoreString = "TalentTen";
+        lv_primaryScoreString = "TalentThirteen";
         lv_secondaryScoreString = "SupportEleven";
         lv_secondaryScoreOverride = 1.0;
       }
@@ -17296,10 +17297,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       if ((lp_healEffect == "LiLiLetsGoCreateHealer")) {
         lv_primaryScoreString = "TalentTen";
       }
-      if ((lp_healEffect == "LiLiHealingBrewTheGoodStuffTalentProcCreateHealer")) {
-        lv_primaryScoreString = "TalentTen";
-      }
-      if ((lp_healEffect == "LiLiHealingBrewTheGoodStuffTalentCreateHealer")) {
+      if ((lp_healEffect == "LiLiHealingBrewTheGoodStuffTalentCreateHealer") || (lp_healEffect == "LiLiHealingBrewTheGoodStuffTalentProcCreateHealer")) {
         lv_primaryScoreString = "TalentTen";
       }
       if ((lp_healEffect == "LiLiCloudSerpentLightningSerpentCreateHealer")) {
@@ -17546,7 +17544,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroLucio")) {
       if ((lp_healEffect == "LucioHighFiveCreateHealer")) {
-        lv_primaryScoreString = "TalentSixteen";
+        lv_primaryScoreString = "ScoreFive";
         lv_secondaryScoreOverride = 1.0;
         if ((libGame_gv_players[UnitGetOwner(lp_targetUnit)].lv_rosterSlot == 1)) {
           lv_secondaryScoreString = "DamageToOne";
@@ -17580,26 +17578,29 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
         }
       }
       if ((lp_healEffect == "LucioHighFiveSelfHealCreateHealer")) {
-        lv_primaryScoreString = "TalentTwenty";
+        lv_primaryScoreString = "ScoreSix";
       }
       if ((lp_healEffect == "LucioCrossfadeHealingBoostHeal")) {
         if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
-          lv_primaryScoreString = "BaselineOne";
+          lv_primaryScoreString = "TalentTen";
         }
         else {
-          lv_primaryScoreString = "BaselineThree";
+          lv_primaryScoreString = "TalentSixteen";
         }
       }
       if ((lp_healEffect == "LucioAmpItUpCrossfadeHealingBoostHeal")) {
         if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
-          lv_primaryScoreString = "BaselineTwo";
+          lv_primaryScoreString = "TalentThirteen";
         }
         else {
-          lv_primaryScoreString = "TalentOne";
+          lv_primaryScoreString = "TalentTwenty";
         }
       }
       if ((lp_healEffect == "LucioSmoothMovesCreateManaHealer")) {
-        lv_primaryScoreString = "TalentFour";
+        lv_primaryScoreString = "SupportEleven";
+      }
+      if ((lp_healEffect == "LucioSoundwaveOffTheWallRefundMana")) {
+        lv_primaryScoreString = "ScoreOne";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMuradin")) {
@@ -22662,6 +22663,10 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       else {
         lv_primaryScoreString = "ScoreFour";
       }
+      if ((UnitHasBehavior2(lp_targetUnit, "ArthasFrostmourneHungersFrostStrikeSilence") == true) && (PlayerHasTalent(lv_casterPlayer, "ArthasMasteryFrostStrikeFrostmourneHungers") == true)) {
+        lv_secondaryScoreOverride = 1.0;       
+        lv_secondaryScoreString = "AccuracySeven";
+      }
     }
     if ((lp_damageEffect == "ArthasHowlingBlastDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -24086,10 +24091,9 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
       if ((UnitHasBehavior2(lp_targetUnit, "SamuroWindwalkHarshWindsVulnerabilityBehavior") == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && (PlayerHasTalent(lv_casterPlayer, "SamuroHarshWinds") == true)) {
         lv_quinaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "HarshWinds");
-        lv_quinaryScoreString = "ScoreEleven";
+        lv_quinaryScoreString = "ScoreTen";
       }
       libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = UnitGetTokenCount(lp_casterUnit, "SamuroCriticalStrikeTokenCounter");
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Tracked Mirror Count: ") + FixedToText(UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll), 0)));
     }
     if ((lp_damageEffect == "SamuroCriticalStrikeBurningBladeSplashDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -25673,14 +25677,14 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((lp_damageEffect == "AurielRayOfHeavenSearingLightHeroDamage")) {
       lv_primaryScoreString = "ScoreSeven";
     }
-    if ((lp_damageEffect == "AurielRayOfHeavenSearingLightNonHeroDamage")) {
+    // if ((lp_damageEffect == "AurielRayOfHeavenSearingLightNonHeroDamage")) {
+    //   lv_primaryScoreString = "ScoreEight";
+    // }
+    if ((lp_damageEffect == "AurielCrystalAegisHeroExplosionDamage")) {
       lv_primaryScoreString = "ScoreEight";
     }
-    if ((lp_damageEffect == "AurielCrystalAegisHeroExplosionDamage")) {
-      lv_primaryScoreString = "ScoreNine";
-    }
     if ((lp_damageEffect == "AurielCrystalAegisNonHeroExplosionDamage")) {
-      lv_primaryScoreString = "ScoreTen";
+      lv_primaryScoreString = "ScoreNine";
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroAzmodan")) {
@@ -26416,7 +26420,26 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_primaryScoreString = "ScoreSeven";
         lv_secondaryScoreOverride = 1.0;
         lv_secondaryScoreString = "SupportTwelve";
-        if ((PlayerHasTalent(lv_casterPlayer, "DehakaEssenceCollectionTalentHeroStalker") == true) && (UnitAbilityChargeInfo(lp_casterUnit, AbilityCommand("DehakaEssenceCollection", 0), c_unitAbilChargeCountLeft) != UnitAbilityChargeInfo(lp_casterUnit, AbilityCommand("DehakaEssenceCollection", 0), c_unitAbilChargeCountMax))) {
+        if (libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] != GameGetMissionTime()) {
+          libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = 1.0;
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Dark Swarm has hit 1"));
+        }
+        else {
+          if (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] == 3.0) {
+            libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = 4.0;
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Dark Swarm has hit 4+"));
+          }
+          else if (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] == 2.0) {
+            libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = 3.0;
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Dark Swarm has hit 3"));
+          }
+          else if (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] == 1.0) {
+            libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = 2.0;
+            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Dark Swarm has hit 2"));
+          }
+        }
+        libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] = GameGetMissionTime();
+        if ((PlayerHasTalent(lv_casterPlayer, "DehakaEssenceCollectionTalentHeroStalker") == true) && (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] != 4.0) && (UnitAbilityChargeInfo(lp_casterUnit, AbilityCommand("DehakaEssenceCollection", 0), c_unitAbilChargeCountLeft) != UnitAbilityChargeInfo(lp_casterUnit, AbilityCommand("DehakaEssenceCollection", 0), c_unitAbilChargeCountMax))) {
           lv_tertiaryScoreString = "ScoreTwelve";
           lv_tertiaryScoreOverride = 1.0;
         }
@@ -27270,6 +27293,15 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       else {
         lv_primaryScoreString = "BaselineOne";
       }
+      if ((PlayerHasTalent(lv_casterPlayer, "GreymaneLordofHisPack") == true) && (UnitHasBehavior2(lp_casterUnit, "GreymaneLordofHisPackDamageBuff") == true)) {
+        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "LordofHisPack");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_secondaryScoreOverride = "ScoreEight";
+        }
+        else {
+          lv_secondaryScoreOverride = "TalentTen";
+        }
+      }
     }
     if ((lp_damageEffect == "GreymaneGilneanCocktailDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -27308,6 +27340,15 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       else {
         lv_primaryScoreString = "TalentFour";
       }
+      if ((PlayerHasTalent(lv_casterPlayer, "GreymaneLordofHisPack") == true) && (UnitHasBehavior2(lp_casterUnit, "GreymaneLordofHisPackDamageBuff") == true)) {
+        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "LordofHisPack");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_secondaryScoreOverride = "ScoreEight";
+        }
+        else {
+          lv_secondaryScoreOverride = "TalentTen";
+        }
+      }
     }
     if ((lp_damageEffect == "GreymaneRazorSwipeDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -27339,7 +27380,16 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_primaryScoreString = "ScoreNine";
       }
       else {
-        lv_primaryScoreString = "TalentTen";
+        lv_primaryScoreString = "TalentThirteen";
+      }
+      if ((PlayerHasTalent(lv_casterPlayer, "GreymaneLordofHisPack") == true) && (UnitHasBehavior2(lp_casterUnit, "GreymaneLordofHisPackDamageBuff") == true)) {
+        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "LordofHisPack");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_secondaryScoreOverride = "ScoreEight";
+        }
+        else {
+          lv_secondaryScoreOverride = "TalentTen";
+        }
       }
     }
     if ((lp_damageEffect == "GreymaneToothAndClawDamage")) {
@@ -27347,7 +27397,16 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_primaryScoreString = "ScoreNine";
       }
       else {
-        lv_primaryScoreString = "TalentTen";
+        lv_primaryScoreString = "TalentThirteen";
+      }
+      if ((PlayerHasTalent(lv_casterPlayer, "GreymaneLordofHisPack") == true) && (UnitHasBehavior2(lp_casterUnit, "GreymaneLordofHisPackDamageBuff") == true)) {
+        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "LordofHisPack");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_secondaryScoreOverride = "ScoreEight";
+        }
+        else {
+          lv_secondaryScoreOverride = "TalentTen";
+        }
       }
     }
     if ((lp_damageEffect == "GreymaneThickSkinBlockDummyDamageTarget")) {
@@ -28439,33 +28498,37 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroLucio")) {
     if ((lp_damageEffect == "LucioWeaponDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreOne";
+        lv_primaryScoreString = "BaselineOne";
       }
       else {
-        lv_primaryScoreString = "ScoreTwo";
+        lv_primaryScoreString = "BaselineTwo";
       }
     }
     if ((lp_damageEffect == "LucioSoundwaveDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreThree";
+        lv_primaryScoreString = "BaselineThree";
       }
       else {
-        lv_primaryScoreString = "ScoreFour";
+        lv_primaryScoreString = "TalentOne";
       }
     }
     if ((lp_damageEffect == "LucioPushOffDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
+        lv_primaryScoreString = "TalentFour";
+        if ((PlayerHasTalent(lp_casterPlayer, "LucioPushOffHeavyCasters") == true) && (UnitHasBehavior2(lp_targetUnit, "LucioPushOffHeavyCastersStun") == true)) {
+          lv_secondaryScoreOverride = 1.0;
+          lv_secondaryScoreString = "AccuracyEight";
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreSix";
+        lv_primaryScoreString = "TalentSeven";
       }
     }
     if ((lp_damageEffect == "LucioReverseAmpDamage")) {
-      lv_primaryScoreString = "ScoreSeven";
+      lv_primaryScoreString = "ScoreTwo";
     }
     if ((lp_damageEffect == "LucioHighFiveMixingFireDamage")) {
-      lv_primaryScoreString = "ScoreEight";
+      lv_primaryScoreString = "ScoreNine";
       lv_secondaryScoreOverride = 1.0;
       if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 1)) {
         lv_secondaryScoreString = "HealingToOne";
@@ -29686,9 +29749,6 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
     }
     if ((lp_damageEffect == "RexxarUnleashTheBoarsDamage")) {
-      lv_primaryScoreString = "ScoreNine";
-    }
-    if ((lp_damageEffect == "RexxarUnleashTheBoarsKillCommandDamage")) {
       lv_primaryScoreString = "ScoreNine";
     }
     if ((lp_damageEffect == "RexxarSpiritBondWildfireBearDamage")) {
@@ -35998,7 +36058,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     // lv_scoreString = "AccuracyFive";
     // }
     if ((lp_abilityName == "ArthasDeathsAdvance") || (lp_abilityName == "ArthasAntiMagicShell")) {
-      lv_scoreString = "AccuracyNine";
+      lv_scoreString = "AccuracyTen";
     }
   }
   else if ((lv_heroUnitType == "HeroAuriel")) {
@@ -37443,6 +37503,9 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     }
     if ((lp_abilityName == "LucioPushOff")) {
       lv_scoreString = "AccuracyFour";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "LucioPushOffHeavyCasters") == true)) {
+        lv_secondaryScoreString = "AccuracySeven";
+      }
     }
     if ((lp_abilityName == "LucioBoombox")) {
       lv_scoreString = "AccuracyFive";
@@ -37454,11 +37517,8 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
         lv_scoreString = "Discard";
       }
     }
-    if ((lp_abilityName == "LucioAmpItUpUpToEleven")) {
-      lv_scoreString = "AccuracySeven";
-    }
     if ((lp_abilityName == "LucioSummerAnthem")) {
-      lv_scoreString = "AccuracyEight";
+      lv_scoreString = "AccuracyNine";
     }
     // LucioReverseAmp
     // LucioHighFive
@@ -41016,7 +41076,6 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
 
     lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroWeaponDamage", "MultiplicativeModifierArray[" + "CriticalStrike" + "].Modifier", c_playerAny))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
   }
-
   if ((lp_inputData == "PhantomPainCrit")) {
     if ((lp_damageEffect == "SamuroWeaponDamage")) {
       lv_flatDamageModifier = (UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "SamuroMirrorImageWayOfIllusionAttackDamageAccumulator", "Scale", lv_casterPlayer));
@@ -41025,7 +41084,6 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
 
     lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + (CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroWeaponDamage", "MultiplicativeModifierArray[" + "PhantomPain1" + "].Modifier", lv_casterPlayer) * UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "SamuroMirrorImageUnitTracker"), c_unitCountAll)))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
   }
-
   if ((lp_inputData == "SamuroMirrorImageIllusionMaster")) {
     if ((lp_damageEffect == "SamuroMirrorImageWeaponDamage")) {
       lv_flatDamageModifier = 0.0;
@@ -41033,7 +41091,6 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
 
     lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroMirrorImageWeaponDamage", "MultiplicativeModifierArray[" + "IllusionMaster" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
   }
-
   if ((lp_inputData == "HarshWinds")) {
     if ((lp_damageEffect == "SamuroWeaponDamage")) {
       lv_flatDamageModifier = (UnitGetTokenCount(lp_casterUnit, ("SamuroMirrorImageWayOfIllusionQuestToken")) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "SamuroMirrorImageWayOfIllusionAttackDamageAccumulator", "Scale", lv_casterPlayer));
@@ -41043,6 +41100,11 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
     lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "SamuroWeaponDamage", "MultiplicativeModifierArray[" + "HarshWinds" + "].Modifier", c_playerAny))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
   }
 
+  
+  if ((lp_inputData == "LordofHisPack")) {
+    lv_flatDamageModifier = 0.0;
+    lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_damageEffect, "MultiplicativeModifierArray[" + "LordofHisPack" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
+  }
   if ((lp_inputData == "GFFTUnleashed")) {
     if ((lp_damageEffect == "GreymaneGoForTheThroatDamage")) {
       lv_flatDamageModifier = 0.0;
