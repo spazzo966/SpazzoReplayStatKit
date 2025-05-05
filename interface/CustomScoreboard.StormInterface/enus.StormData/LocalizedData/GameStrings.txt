@@ -1,4 +1,4 @@
-﻿UI/Spazzo/UIVersion=v0.38
+﻿UI/Spazzo/UIVersion=v0.39
 UI/Spazzo/UIWARNING=WARNING
 UI/Spazzo/UIWARNINGTOOLTIP=Game is detected as having ended, statistics may be incorrect, please rewind to after the core is destroyed, but before these images become visible!
 
@@ -1435,7 +1435,7 @@ UI/SpazzoAccuracy/Lucio/AccuracySix=Unused
 UI/SpazzoAccuracy/Lucio/AccuracySeven=Unused
 UI/SpazzoAccuracy/Lucio/AccuracyEight=Unused
 UI/SpazzoAccuracy/Lucio/AccuracyNine=Unused
-UI/SpazzoAccuracy/Lucio/ScorAccuracyTen=Unused
+UI/SpazzoAccuracy/Lucio/AccuracyTen=Unused
 UI/SpazzoAccuracy/Lucio/AccuracyEleven=Unused
 UI/SpazzoAccuracy/Lucio/AccuracyTwelve=Unused
 UI/SpazzoAccuracy/Lucio/AccuracyThirteen=Unused
