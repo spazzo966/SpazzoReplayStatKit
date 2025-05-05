@@ -15103,29 +15103,29 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroLucio")) {
       if ((lp_behavior == "LucioSoundwaveGoodVibrationsShield")) {
         if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
-          lv_primaryScoreString = "ScoreThree";
+          lv_primaryScoreString = "ScoreTwo";
         }
         else {
-          lv_primaryScoreString = "ScoreFour";
+          lv_primaryScoreString = "ScoreThree";
         }
       }
       if ((lp_behavior == "LucioSoundBarrierShield")) {
         // Heroic Damage prevented
         if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
 					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "ScoreFive";
+            lv_primaryScoreString = "ScoreFour";
           }
 					else {
-            lv_primaryScoreString = "ScoreSeven";
+            lv_primaryScoreString = "ScoreSix";
           }
         }
         // Non-Heroic damage prevented
         else {
 					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "ScoreSix";
+            lv_primaryScoreString = "ScoreFive";
           }
 					else {
-            lv_primaryScoreString = "ScoreEight";
+            lv_primaryScoreString = "ScoreSeven";
           }
         }
       }
@@ -15133,37 +15133,37 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
         // Heroic Damage prevented
         if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
 					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
+            lv_primaryScoreString = "ScoreFour";
+          }
+					else {
+            lv_primaryScoreString = "ScoreSix";
+          }
+        }
+        // Non-Heroic damage prevented
+        else {
+					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
             lv_primaryScoreString = "ScoreFive";
           }
 					else {
             lv_primaryScoreString = "ScoreSeven";
           }
         }
-        // Non-Heroic damage prevented
-        else {
-					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "ScoreSix";
-          }
-					else {
-            lv_primaryScoreString = "ScoreEight";
-          }
-        }
       }
       if ((lp_behavior == "LucioSummerAnthemUnkillableBehavior")) {
         if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
 					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "ScoreNine";
+            lv_primaryScoreString = "ScoreEight";
           }
 					else {
-            lv_primaryScoreString = "ScoreTen";
+            lv_primaryScoreString = "ScoreNine";
           }
         }
         else {
 					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "ScoreNine";
+            lv_primaryScoreString = "ScoreEight";
           }
 					else {
-            lv_primaryScoreString = "ScoreTen";
+            lv_primaryScoreString = "ScoreNine";
           }
         }
       }
@@ -17546,35 +17546,8 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       if ((lp_healEffect == "LucioHighFiveCreateHealer")) {
         lv_primaryScoreString = "ScoreFive";
         lv_secondaryScoreOverride = 1.0;
-        if ((libGame_gv_players[UnitGetOwner(lp_targetUnit)].lv_rosterSlot == 1)) {
-          lv_secondaryScoreString = "DamageToOne";
-        }
-        if ((libGame_gv_players[UnitGetOwner(lp_targetUnit)].lv_rosterSlot == 2)) {
-          lv_secondaryScoreString = "DamageToTwo";
-        }
-        if ((libGame_gv_players[UnitGetOwner(lp_targetUnit)].lv_rosterSlot == 3)) {
-          lv_secondaryScoreString = "DamageToThree";
-        }
-        if ((libGame_gv_players[UnitGetOwner(lp_targetUnit)].lv_rosterSlot == 4)) {
-          lv_secondaryScoreString = "DamageToFour";
-        }
-        if ((libGame_gv_players[UnitGetOwner(lp_targetUnit)].lv_rosterSlot == 5)) {
-          lv_secondaryScoreString = "DamageToFive";
-        }
-        if ((libGame_gv_players[UnitGetOwner(lp_targetUnit)].lv_rosterSlot == 6)) {
-          lv_secondaryScoreString = "DamageToSix";
-        }
-        if ((libGame_gv_players[UnitGetOwner(lp_targetUnit)].lv_rosterSlot == 7)) {
-          lv_secondaryScoreString = "DamageToSeven";
-        }
-        if ((libGame_gv_players[UnitGetOwner(lp_targetUnit)].lv_rosterSlot == 8)) {
-          lv_secondaryScoreString = "DamageToEight";
-        }
-        if ((libGame_gv_players[UnitGetOwner(lp_targetUnit)].lv_rosterSlot == 9)) {
-          lv_secondaryScoreString = "DamageToNine";
-        }
-        if ((libGame_gv_players[UnitGetOwner(lp_targetUnit)].lv_rosterSlot == 10)) {
-          lv_secondaryScoreString = "DamageToTen";
+        if ((UnitGetOwner(lp_targetUnit) >= 1) && (UnitGetOwner(lp_targetUnit) > libCore_gv_bALMaxPlayers)) {
+          lv_secondaryScoreString = ("DamageTo" + IntToString(libGame_gv_players[UnitGetOwner(lp_targetUnit)].lv_rosterSlot));
         }
       }
       if ((lp_healEffect == "LucioHighFiveSelfHealCreateHealer")) {
@@ -18973,52 +18946,52 @@ void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterP
   //
   // StatScoreValue
   //
-  if ((lp_scoreString == "BaselineOne")) {
+  if ((lp_scoreString == "BaselineOne") || (lp_scoreString == "SupportOne")) {
     lv_scoreToIncrease = "WinsSupport";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportOne += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportOne;
   }
-  else if ((lp_scoreString == "BaselineTwo")) {
+  else if ((lp_scoreString == "BaselineTwo") || (lp_scoreString == "SupportTwo")) {
     lv_scoreToIncrease = "PlaysWarCraft";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportTwo += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportTwo;
   }
-  else if ((lp_scoreString == "BaselineThree")) {
+  else if ((lp_scoreString == "BaselineThree") || (lp_scoreString == "SupportThree")) {
     lv_scoreToIncrease = "WinsWarcraft";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportThree += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportThree;
   }
-  else if ((lp_scoreString == "TalentOne")) {
+  else if ((lp_scoreString == "TalentOne") || (lp_scoreString == "SupportFour")) {
     lv_scoreToIncrease = "PlaysStarCraft";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportFour += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportFour;
   }
-  else if ((lp_scoreString == "TalentFour")) {
+  else if ((lp_scoreString == "TalentFour") || (lp_scoreString == "SupportFive")) {
     lv_scoreToIncrease = "WinsStarCraft";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportFive += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportFive;
   }
-  else if ((lp_scoreString == "TalentSeven")) {
+  else if ((lp_scoreString == "TalentSeven") || (lp_scoreString == "SupportSix")) {
     lv_scoreToIncrease = "PlaysDiablo";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportSix += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportSix;
   }
-  else if ((lp_scoreString == "TalentTen")) {
+  else if ((lp_scoreString == "TalentTen") || (lp_scoreString == "SupportSeven")) {
     lv_scoreToIncrease = "WinsDiablo";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportSeven += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportSeven;
   }
-  else if ((lp_scoreString == "TalentThirteen")) {
+  else if ((lp_scoreString == "TalentThirteen") || (lp_scoreString == "SupportEight")) {
     lv_scoreToIncrease = "PlaysOverwatch";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportEight += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportEight;
   }
-  else if ((lp_scoreString == "TalentSixteen")) {
+  else if ((lp_scoreString == "TalentSixteen") || (lp_scoreString == "SupportNine")) {
     lv_scoreToIncrease = "PlaysMale";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportNine += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportNine;
   }
-  else if ((lp_scoreString == "TalentTwenty")) {
+  else if ((lp_scoreString == "TalentTwenty") || (lp_scoreString == "SupportTen")) {
     lv_scoreToIncrease = "WinsMale";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportTen += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_supportTen;
@@ -19148,185 +19121,185 @@ void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterP
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreSixteen;
   }
   else if ((lp_scoreString == "AccuracyOne")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAwardMostEscapesBoolean";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyOne += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyOne;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyOne += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyOne;
   }
   else if ((lp_scoreString == "AccuracyTwo")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAwardMostXPContributionBoolean";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyTwo += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyTwo;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyTwo += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyTwo;
   }
   else if ((lp_scoreString == "AccuracyThree")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAwardMostHeroDamageDoneBoolean";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyThree += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyThree;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyThree += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyThree;
   }
   else if ((lp_scoreString == "AccuracyFour")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAwardMostKillsBoolean";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyFour += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyFour;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyFour += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyFour;
   }
   else if ((lp_scoreString == "AccuracyFive")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAwardHatTrickBoolean";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyFive += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyFive;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyFive += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyFive;
   }
   else if ((lp_scoreString == "AccuracySix")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAwardClutchHealerBoolean";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracySix += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracySix;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracySix += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracySix;
   }
   else if ((lp_scoreString == "AccuracySeven")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAwardMostProtectionBoolean";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracySeven += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracySeven;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracySeven += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracySeven;
   }
   else if ((lp_scoreString == "AccuracyEight")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAward0DeathsBoolean";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyEight += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyEight;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyEight += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyEight;
   }
   else if ((lp_scoreString == "AccuracyNine")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAwardMostSiegeDamageDoneBoolean";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyNine += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyNine;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyNine += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyNine;
   }
   else if ((lp_scoreString == "AccuracyTen")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAwardMostDamageTakenBoolean";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyTen += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyTen;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyTen += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyTen;
   }
   else if ((lp_scoreString == "AccuracyEleven")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAward0OutnumberedDeathsBoolean";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyEleven += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyEleven;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyEleven += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyEleven;
   }
   else if ((lp_scoreString == "AccuracyTwelve")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "EndOfMatchAwardMostHealingBoolean";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyTwelve += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyTwelve;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyTwelve += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyTwelve;
   }
   else if ((lp_scoreString == "AccuracyThirteen")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "ExperienceFromMinionsAndCreeps";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyThirteen += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyThirteen;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyThirteen += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyThirteen;
   }
   else if ((lp_scoreString == "AccuracyFourteen")) {
-    lv_scorevalueIsInteger = true;
+    // lv_scorevalueIsInteger = true;
     lv_scoreToIncrease = "JunkratTargetBombsCarried";
-    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyFourteen += FixedToInt(lp_scoreValue);
-    lv_integerScoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyFourteen;
+    libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyFourteen += (lp_scoreValue);
+    lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_accuracyFourteen;
   }
-  else if ((lp_scoreString == "HealingToOne")) {
+  else if ((lp_scoreString == "HealingToOne") || (lp_scoreString == "HealingTo1")) {
     lv_scoreToIncrease = "VengeancesPerformed";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToOne += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToOne;
   }
-  else if ((lp_scoreString == "HealingToTwo")) {
+  else if ((lp_scoreString == "HealingToTwo") || (lp_scoreString == "HealingTo2")) {
     lv_scoreToIncrease = "OutnumberedDeaths";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToTwo += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToTwo;
   }
-  else if ((lp_scoreString == "HealingToThree")) {
+  else if ((lp_scoreString == "HealingToThree") || (lp_scoreString == "HealingTo3")) {
     lv_scoreToIncrease = "TeamLevel";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToThree += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToThree;
   }
-  else if ((lp_scoreString == "HealingToFour")) {
+  else if ((lp_scoreString == "HealingToFour") || (lp_scoreString == "HealingTo4")) {
     lv_scoreToIncrease = "StarcraftDailyEventCompleted";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToFour += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToFour;
   }
-  else if ((lp_scoreString == "HealingToFive")) {
+  else if ((lp_scoreString == "HealingToFive") || (lp_scoreString == "HealingTo5")) {
     lv_scoreToIncrease = "StarcraftPiecesCollected";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToFive += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToFive;
   }
-  else if ((lp_scoreString == "HealingToSix")) {
+  else if ((lp_scoreString == "HealingToSix") || (lp_scoreString == "HealingTo6")) {
     lv_scoreToIncrease = "PlaysWarrior";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToSix += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToSix;
   }
-  else if ((lp_scoreString == "HealingToSeven")) {
+  else if ((lp_scoreString == "HealingToSeven") || (lp_scoreString == "HealingTo7")) {
     lv_scoreToIncrease = "WinsWarrior";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToSeven += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToSeven;
   }
-  else if ((lp_scoreString == "HealingToEight")) {
+  else if ((lp_scoreString == "HealingToEight") || (lp_scoreString == "HealingTo8")) {
     lv_scoreToIncrease = "PlaysAssassin";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToEight += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToEight;
   }
-  else if ((lp_scoreString == "HealingToNine")) {
+  else if ((lp_scoreString == "HealingToNine") || (lp_scoreString == "HealingTo9")) {
     lv_scoreToIncrease = "WinsAssassin";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToNine += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToNine;
   }
-  else if ((lp_scoreString == "HealingToTen")) {
+  else if ((lp_scoreString == "HealingToTen") || (lp_scoreString == "HealingTo10")) {
     lv_scoreToIncrease = "PlaysSupport";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToTen += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreHealingToTen;
   }
-  else if ((lp_scoreString == "DamageToOne")) {
+  else if ((lp_scoreString == "DamageToOne") || (lp_scoreString == "DamageTo1")) {
     lv_scoreToIncrease = "ClutchHealsPerformed";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToOne += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToOne;
   }
-  else if ((lp_scoreString == "DamageToTwo")) {
+  else if ((lp_scoreString == "DamageToTwo") || (lp_scoreString == "DamageTo2")) {
     lv_scoreToIncrease = "TimeStunningEnemyHeroes";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToTwo += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToTwo;
   }
-  else if ((lp_scoreString == "DamageToThree")) {
+  else if ((lp_scoreString == "DamageToThree") || (lp_scoreString == "DamageTo3")) {
     lv_scoreToIncrease = "TimeRootingEnemyHeroes";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToThree += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToThree;
   }
-  else if ((lp_scoreString == "DamageToFour")) {
+  else if ((lp_scoreString == "DamageToFour") || (lp_scoreString == "DamageTo4")) {
     lv_scoreToIncrease = "ProtectionGivenToAllies";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToFour += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToFour;
   }
-  else if ((lp_scoreString == "DamageToFive")) {
+  else if ((lp_scoreString == "DamageToFive") || (lp_scoreString == "DamageTo5")) {
     lv_scoreToIncrease = "TimeSilencingEnemyHeroes";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToFive += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToFive;
   }
-  else if ((lp_scoreString == "DamageToSix")) {
+  else if ((lp_scoreString == "DamageToSix") || (lp_scoreString == "DamageTo6")) {
     lv_scoreToIncrease = "TeamfightDamageTaken";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToSix += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToSix;
   }
-  else if ((lp_scoreString == "DamageToSeven")) {
+  else if ((lp_scoreString == "DamageToSeven") || (lp_scoreString == "DamageTo7")) {
     lv_scoreToIncrease = "TeamfightHealingDone";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToSeven += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToSeven;
   }
-  else if ((lp_scoreString == "DamageToEight")) {
+  else if ((lp_scoreString == "DamageToEight") || (lp_scoreString == "DamageTo8")) {
     lv_scoreToIncrease = "EscapesPerformed";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToEight += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToEight;
   }
-  else if ((lp_scoreString == "DamageToNine")) {
+  else if ((lp_scoreString == "DamageToNine") || (lp_scoreString == "DamageTo9")) {
     lv_scoreToIncrease = "TeamfightEscapesPerformed";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToNine += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToNine;
   }
-  else if ((lp_scoreString == "DamageToTen")) {
+  else if ((lp_scoreString == "DamageToTen") || (lp_scoreString == "DamageTo10")) {
     lv_scoreToIncrease = "TeamfightHeroDamage";
     libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToTen += lp_scoreValue;
     lv_scoreValue = libGame_gv_heroSpecificScoreValues[lp_casterPlayer].lv_scoreDamageToTen;
@@ -27296,10 +27269,10 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       if ((PlayerHasTalent(lv_casterPlayer, "GreymaneLordofHisPack") == true) && (UnitHasBehavior2(lp_casterUnit, "GreymaneLordofHisPackDamageBuff") == true)) {
         lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "LordofHisPack");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreOverride = "ScoreEight";
+          lv_secondaryScoreString = "ScoreEight";
         }
         else {
-          lv_secondaryScoreOverride = "TalentTen";
+          lv_secondaryScoreString = "TalentTen";
         }
       }
     }
@@ -27343,10 +27316,10 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       if ((PlayerHasTalent(lv_casterPlayer, "GreymaneLordofHisPack") == true) && (UnitHasBehavior2(lp_casterUnit, "GreymaneLordofHisPackDamageBuff") == true)) {
         lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "LordofHisPack");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreOverride = "ScoreEight";
+          lv_secondaryScoreString = "ScoreEight";
         }
         else {
-          lv_secondaryScoreOverride = "TalentTen";
+          lv_secondaryScoreString = "TalentTen";
         }
       }
     }
@@ -27385,10 +27358,10 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       if ((PlayerHasTalent(lv_casterPlayer, "GreymaneLordofHisPack") == true) && (UnitHasBehavior2(lp_casterUnit, "GreymaneLordofHisPackDamageBuff") == true)) {
         lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "LordofHisPack");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreOverride = "ScoreEight";
+          lv_secondaryScoreString = "ScoreEight";
         }
         else {
-          lv_secondaryScoreOverride = "TalentTen";
+          lv_secondaryScoreString = "TalentTen";
         }
       }
     }
@@ -27402,10 +27375,10 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       if ((PlayerHasTalent(lv_casterPlayer, "GreymaneLordofHisPack") == true) && (UnitHasBehavior2(lp_casterUnit, "GreymaneLordofHisPackDamageBuff") == true)) {
         lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "LordofHisPack");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreOverride = "ScoreEight";
+          lv_secondaryScoreString = "ScoreEight";
         }
         else {
-          lv_secondaryScoreOverride = "TalentTen";
+          lv_secondaryScoreString = "TalentTen";
         }
       }
     }
@@ -28528,37 +28501,10 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       lv_primaryScoreString = "ScoreTwo";
     }
     if ((lp_damageEffect == "LucioHighFiveMixingFireDamage")) {
-      lv_primaryScoreString = "ScoreNine";
+      lv_primaryScoreString = "ScoreEight";
       lv_secondaryScoreOverride = 1.0;
-      if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 1)) {
-        lv_secondaryScoreString = "HealingToOne";
-      }
-      if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 2)) {
-        lv_secondaryScoreString = "HealingToTwo";
-      }
-      if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 3)) {
-        lv_secondaryScoreString = "HealingToThree";
-      }
-      if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 4)) {
-        lv_secondaryScoreString = "HealingToFour";
-      }
-      if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 5)) {
-        lv_secondaryScoreString = "HealingToFive";
-      }
-      if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 6)) {
-        lv_secondaryScoreString = "HealingToSix";
-      }
-      if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 7)) {
-        lv_secondaryScoreString = "HealingToSeven";
-      }
-      if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 8)) {
-        lv_secondaryScoreString = "HealingToEight";
-      }
-      if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 9)) {
-        lv_secondaryScoreString = "HealingToNine";
-      }
-      if ((libGame_gv_players[lv_targetPlayer].lv_rosterSlot == 10)) {
-        lv_secondaryScoreString = "HealingToTen";
+      if ((lv_targetPlayer >= 1) && (lv_targetPlayer > libCore_gv_bALMaxPlayers)) {
+        lv_secondaryScoreString = ("HealingTo" + IntToString(libGame_gv_players[lv_targetPlayer].lv_rosterSlot));
       }
     }
     if ((lp_damageEffect == "LucioBoomboxSuicide")) {
@@ -35043,6 +34989,13 @@ void libGame_gf_trackHeroCooldowns () {
       }
       lv_abilityChargeCount[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = libGame_gf_FetchAbilityCooldownTime(libGame_gv_players[lv_playerIterator].lv_heroUnit, "DehakaBrushstalkerDetector", lv_playerIterator, false, 0);
     }
+    if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroLucio")) {
+      lv_heroAbilCount[lv_playerIterator] += 1;
+      lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "LucioAmpItUpDetector";
+      if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
+      }
+    }
     
     lv_heroAbilCount[lv_playerIterator] += 1;
     lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "MedivhPortalDetector";
@@ -35537,6 +35490,10 @@ fixed libGame_gf_FetchAbilityCooldownTime (unit lp_unit, string lp_ability, int 
   if ((lp_ability == "FalstadTailwindDetector")) {
     lv_cooldownTime = GameGetMissionTime();
     lv_method = "TailwindDetector";
+  }
+  if ((lp_ability == "LucioAmpItUpDetector")) {
+    lv_cooldownTime = GameGetMissionTime();
+    lv_method = "AmpItUpDetector";
   }
   if ((lp_ability == "Generic3Template")) {
     lv_cooldownTime = GameGetMissionTime();
@@ -37500,6 +37457,10 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     }
     if ((lp_abilityName == "LucioAmpItUp")) {
       lv_scoreString = "AccuracyThree";
+      libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride] = (CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "LucioAmpItUp", "Duration", lv_casterPlayerOverride) + ((UnitGetTokenCount(lp_casterUnit, "LucioAmpItUpUpToElevenReservoirTokenCounter") * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "LucioAmpItUpUpToElevenModfifyBehaviorDuration", "Value", lv_casterPlayerOverride))));
+      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Amp It Up reservoir count: ") + FixedToText(UnitGetTokenCount(lp_casterUnit, "LucioAmpItUpUpToElevenReservoirTokenCounter"), 3)));
+      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Amp It Up duration: ") + FixedToText(UnitBehaviorDurationTotal(lp_casterUnit, "LucioAmpItUp"), 4)));
+      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Amp It Up Start Duration: ") + FixedToText(libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride], 4)));
     }
     if ((lp_abilityName == "LucioPushOff")) {
       lv_scoreString = "AccuracyFour";
@@ -37518,7 +37479,60 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
       }
     }
     if ((lp_abilityName == "LucioSummerAnthem")) {
-      lv_scoreString = "AccuracyNine";
+      lv_scoreString = "AccuracyTwelve";
+    }
+    if (lp_abilityName == "LucioAmpItUpDetector") {
+      lv_scoreString = "Discard";
+      if ((UnitIsAlive(lp_casterUnit) == true) && (UnitBehaviorCount(lp_casterUnit, "LucioAmpItUp") >= 1.0)) {
+          if (UnitBehaviorDurationTotal(lp_casterUnit, "LucioAmpItUp") > libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride]) {
+          }
+          libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride] += 0.0625;
+          if (UnitHasBehavior2(lp_casterUnit, "LucioCrossfadeHealingBoostApplier") == true) {
+            libGame_gv_HeroSpecificStoredValue4[lv_casterPlayerOverride] += 0.0625;
+          }
+          else {
+            libGame_gv_HeroSpecificStoredValue5[lv_casterPlayerOverride] += 0.0625;
+          }
+          libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride] = 1.0;
+      }
+      else {
+        libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride] -= 0.0625;
+        if (UnitHasBehavior2(lp_casterUnit, "LucioCrossfadeHealingBoostApplier") == true) {
+          libGame_gv_HeroSpecificStoredValue4[lv_casterPlayerOverride] -= 0.0625;
+        }
+        else {
+          libGame_gv_HeroSpecificStoredValue5[lv_casterPlayerOverride] -= 0.0625;
+        }
+        if (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride] == 1.0) {
+          // if (PlayerHasTalent(lv_casterPlayerOverride, "LucioAmpItUpUpToEleven") == true) {
+          //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Up To Eleven Reservoir Bonus: ") + FixedToText((libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride] - CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "LucioAmpItUp", "Duration", lv_casterPlayerOverride)), 4)));
+          //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Up To Eleven Procc'd Bonus: ") + FixedToText((libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride] - libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride]), 4)));
+          // }
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Amp It Up Total Lasted Duration: ") + FixedToText(libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride], 4)));
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Healing Boosted Duration: ") + FixedToText(libGame_gv_HeroSpecificStoredValue4[lv_casterPlayerOverride], 4)));
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Speed Boosted Duration: ") + FixedToText(libGame_gv_HeroSpecificStoredValue5[lv_casterPlayerOverride], 4)));
+          if ((libGame_gv_HeroSpecificStoredValue4[lv_casterPlayerOverride] > 0.0)) {
+            libGame_gf_HeroSpecificStatTrackerOther(libGame_gv_HeroSpecificStoredValue4[lv_casterPlayerOverride], lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "ScoreTen");
+          }
+          if ((libGame_gv_HeroSpecificStoredValue5[lv_casterPlayerOverride] > 0.0)) {
+            libGame_gf_HeroSpecificStatTrackerOther(libGame_gv_HeroSpecificStoredValue5[lv_casterPlayerOverride], lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "ScoreEleven");
+          }
+          if ((libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride] > 0.0) && (PlayerHasTalent(lv_casterPlayerOverride, "LucioAmpItUpUpToEleven") == true)) {
+            libGame_gf_HeroSpecificStatTrackerOther(libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride], lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "AccuracyNine");
+          }
+          if (((libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride] - CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "LucioAmpItUp", "Duration", lv_casterPlayerOverride)) > 0.0) && (PlayerHasTalent(lv_casterPlayerOverride, "LucioAmpItUpUpToEleven") == true)) {
+            libGame_gf_HeroSpecificStatTrackerOther((libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride] - CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "LucioAmpItUp", "Duration", lv_casterPlayerOverride)), lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "AccuracyTen");
+          }
+          if (((libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride] - libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride]) > 0.0) && (PlayerHasTalent(lv_casterPlayerOverride, "LucioAmpItUpUpToEleven") == true)) {
+            libGame_gf_HeroSpecificStatTrackerOther((libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride] - libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride]), lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "AccuracyEleven");
+          }
+        }
+        libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride] = 0.0;
+        libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride] = 0.0;
+        libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride] = 0.0;
+        libGame_gv_HeroSpecificStoredValue4[lv_casterPlayerOverride] = 0.0;
+        libGame_gv_HeroSpecificStoredValue5[lv_casterPlayerOverride] = 0.0;
+      }
     }
     // LucioReverseAmp
     // LucioHighFive
