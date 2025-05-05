@@ -6809,15 +6809,15 @@
     <StateGroup name="T2TalentStateGroup">
       <State name="C1">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_Soundwave.dds" />
-        <Action type="SetProperty" Frame="DamageThirteenTooltip" Text="@UI/Spazzo/Lucio/ScoreThirteen/One"/>
+        <Action type="SetProperty" Frame="DamageThirteenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreThirteen/One"/>
       </State>
       <State name="C2">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_Soundwave_A.dds" />
-        <Action type="SetProperty" Frame="DamageThirteenTooltip" Text="@UI/Spazzo/Lucio/ScoreThirteen/Two"/>
+        <Action type="SetProperty" Frame="DamageThirteenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreThirteen/Two"/>
       </State>
       <State name="C3">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_accelerando.dds" />
-        <Action type="SetProperty" Frame="DamageThirteenTooltip" Text="@UI/Spazzo/Lucio/ScoreThirteen/Three"/>
+        <Action type="SetProperty" Frame="DamageThirteenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreThirteen/Three"/>
       </State>
       <State name="C4"></State>
       <State name="C5"></State>
@@ -6825,18 +6825,18 @@
     <StateGroup name="T3TalentStateGroup">
       <State name="C1">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon3/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_soundwave.dds" />
-        <Action type="SetProperty" Frame="DamageFourteenTooltip" Text="@UI/Spazzo/Lucio/ScoreFourteen/One"/>
-        <Action type="SetProperty" Frame="DamageFifteenTooltip" Text="@UI/Spazzo/Lucio/ScoreFifteen/One"/>
+        <Action type="SetProperty" Frame="DamageFourteenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreFourteen/One"/>
+        <Action type="SetProperty" Frame="DamageFifteenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreFifteen/One"/>
       </State>
       <State name="C2">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon3/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_crossfade_all.dds" />
-        <Action type="SetProperty" Frame="DamageFourteenTooltip" Text="@UI/Spazzo/Lucio/ScoreFourteen/Two"/>
-        <Action type="SetProperty" Frame="DamageFifteenTooltip" Text="@UI/Spazzo/Lucio/ScoreFifteen/Two"/>
+        <Action type="SetProperty" Frame="DamageFourteenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreFourteen/Two"/>
+        <Action type="SetProperty" Frame="DamageFifteenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreFifteen/Two"/>
       </State>
       <State name="C3">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon3/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_Fineshrine.dds" />
-        <Action type="SetProperty" Frame="DamageFourteenTooltip" Text="@UI/Spazzo/Lucio/ScoreFourteen/Three"/>
-        <Action type="SetProperty" Frame="DamageFifteenTooltip" Text="@UI/Spazzo/Lucio/ScoreFifteen/Three"/>
+        <Action type="SetProperty" Frame="DamageFourteenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreFourteen/Three"/>
+        <Action type="SetProperty" Frame="DamageFifteenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreFifteen/Three"/>
       </State>
       <State name="C4"></State>
       <State name="C5"></State>
@@ -6844,11 +6844,11 @@
     <StateGroup name="T4TalentStateGroup">
       <State name="C1">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon4/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_SoundBarrier.dds" />
-        <Action type="SetProperty" Frame="DamageSixteenTooltip" Text="@UI/Spazzo/Lucio/ScoreSixteen/One"/>
+        <Action type="SetProperty" Frame="DamageSixteenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreSixteen/One"/>
       </State>
       <State name="C2">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon4/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_highfive.dds" />
-        <Action type="SetProperty" Frame="DamageSixteenTooltip" Text="@UI/Spazzo/Lucio/ScoreSixteen/Two"/>
+        <Action type="SetProperty" Frame="DamageSixteenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreSixteen/Two"/>
       </State>
       <State name="C3">
       </State>
