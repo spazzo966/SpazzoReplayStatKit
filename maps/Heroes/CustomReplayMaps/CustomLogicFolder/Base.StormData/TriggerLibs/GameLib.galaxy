@@ -15116,16 +15116,16 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
             lv_primaryScoreString = "ScoreSixteen";
           }
 					else {
-            lv_primaryScoreString = "BaselineTwo";
+            lv_primaryScoreString = "SupportTwo";
           }
         }
         // Non-Heroic damage prevented
         else {
 					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "BaselineOne";
+            lv_primaryScoreString = "SupportOne";
           }
 					else {
-            lv_primaryScoreString = "BaselineThree";
+            lv_primaryScoreString = "SupportThree";
           }
         }
       }
@@ -15136,34 +15136,34 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
             lv_primaryScoreString = "ScoreSixteen";
           }
 					else {
-            lv_primaryScoreString = "BaselineTwo";
+            lv_primaryScoreString = "SupportTwo";
           }
         }
         // Non-Heroic damage prevented
         else {
 					if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "BaselineOne";
+            lv_primaryScoreString = "SupportOne";
           }
 					else {
-            lv_primaryScoreString = "BaselineThree";
+            lv_primaryScoreString = "SupportThree";
           }
         }
       }
       if ((lp_behavior == "LucioSummerAnthemUnkillableBehavior")) {
         if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
           if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "TalentSeven";
+            lv_primaryScoreString = "SupportSix";
           }
           else {
-            lv_primaryScoreString = "TalentSeven";
+            lv_primaryScoreString = "SupportSix";
           }
         }
         else {
           if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
-            lv_primaryScoreString = "TalentSeven";
+            lv_primaryScoreString = "SupportSix";
           }
           else {
-            lv_primaryScoreString = "TalentSeven";
+            lv_primaryScoreString = "SupportSix";
           }
         }
       }
@@ -17551,7 +17551,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
         }
       }
       if ((lp_healEffect == "LucioHighFiveSelfHealCreateHealer")) {
-        lv_primaryScoreString = "BaselineOne";
+        lv_primaryScoreString = "SupportOne";
       }
       if ((lp_healEffect == "LucioCrossfadeHealingBoostHeal")) {
         if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
@@ -17565,13 +17565,13 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
         if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
           lv_primaryScoreString = "ScoreEight";
           if ((PlayerHasTalent(lp_casterPlayer, "LucioAmpItUpUpToEleven") == true) && (libGame_gv_HeroSpecificStoredValue3[lp_casterPlayer] > CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "LucioAmpItUp", "Duration", c_playerAny))) {
-            lv_secondaryScoreString = "TalentOne";
+            lv_secondaryScoreString = "SupportFour";
           }
         }
         else {
           lv_primaryScoreString = "ScoreTen";
           if ((PlayerHasTalent(lp_casterPlayer, "LucioAmpItUpUpToEleven") == true) && (libGame_gv_HeroSpecificStoredValue3[lp_casterPlayer] > CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "LucioAmpItUp", "Duration", c_playerAny))) {
-            lv_secondaryScoreString = "TalentFour";
+            lv_secondaryScoreString = "SupportFive";
           }
         }
       }
@@ -20670,6 +20670,9 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     lv_primaryScoreString = "Discard";
   }
   if ((lp_damageEffect == "StormSummonedWeaponPhysicalDamageDummy")) {
+    lv_primaryScoreString = "Discard";
+  }
+  if ((lp_damageEffect == "StormSummonedUnitRevealDummy")) {
     lv_primaryScoreString = "Discard";
   }
 
@@ -28510,7 +28513,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
     }
     if ((lp_damageEffect == "LucioHighFiveMixingFireDamage")) {
-      lv_primaryScoreString = "TalentSeven";
+      lv_primaryScoreString = "SupportSix";
       lv_secondaryScoreOverride = 1.0;
       if ((lv_targetPlayer >= 1) && (lv_targetPlayer > libCore_gv_bALMaxPlayers)) {
         lv_secondaryScoreString = ("HealingTo" + IntToString(libGame_gv_players[lv_targetPlayer].lv_rosterSlot));
@@ -37459,20 +37462,20 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
   }
   else if ((lv_heroUnitType == "HeroLucio")) {
     if ((lp_abilityName == "LucioSoundwave")) {
-      lv_scoreString = "TalentThirteen";
+      lv_scoreString = "SupportNine";
     }
     if ((lp_abilityName == "LucioCrossfade")) {
-      lv_scoreString = "TalentSixteen";
+      lv_scoreString = "SupportTen";
     }
     if ((lp_abilityName == "LucioAmpItUp")) {
-      lv_scoreString = "TalentTwenty";
+      lv_scoreString = "SupportEleven";
       libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride] = (CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "LucioAmpItUp", "Duration", lv_casterPlayerOverride) + ((UnitGetTokenCount(lp_casterUnit, "LucioAmpItUpUpToElevenReservoirTokenCounter") * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "LucioAmpItUpUpToElevenModfifyBehaviorDuration", "Value", lv_casterPlayerOverride))));
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Amp It Up reservoir count: ") + FixedToText(UnitGetTokenCount(lp_casterUnit, "LucioAmpItUpUpToElevenReservoirTokenCounter"), 3)));
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Amp It Up duration: ") + FixedToText(UnitBehaviorDurationTotal(lp_casterUnit, "LucioAmpItUp"), 4)));
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Amp It Up Start Duration: ") + FixedToText(libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride], 4)));
     }
     if ((lp_abilityName == "LucioPushOff")) {
-      lv_scoreString = "SupportEleven";
+      lv_scoreString = "SupportTwelve";
       if ((PlayerHasTalent(lv_casterPlayerOverride, "LucioPushOffHeavyCasters") == true)) {
         lv_secondaryScoreString = "SupportFifteen";
       }
@@ -37521,10 +37524,10 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
           // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Healing Boosted Duration: ") + FixedToText(libGame_gv_HeroSpecificStoredValue4[lv_casterPlayerOverride], 4)));
           // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Speed Boosted Duration: ") + FixedToText(libGame_gv_HeroSpecificStoredValue5[lv_casterPlayerOverride], 4)));
           if ((libGame_gv_HeroSpecificStoredValue4[lv_casterPlayerOverride] > 0.0)) {
-            libGame_gf_HeroSpecificStatTrackerOther(libGame_gv_HeroSpecificStoredValue4[lv_casterPlayerOverride], lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "TalentTen");
+            libGame_gf_HeroSpecificStatTrackerOther(libGame_gv_HeroSpecificStoredValue4[lv_casterPlayerOverride], lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "SupportSeven");
           }
           if ((libGame_gv_HeroSpecificStoredValue5[lv_casterPlayerOverride] > 0.0)) {
-            libGame_gf_HeroSpecificStatTrackerOther(libGame_gv_HeroSpecificStoredValue5[lv_casterPlayerOverride], lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "TalentThirteen");
+            libGame_gf_HeroSpecificStatTrackerOther(libGame_gv_HeroSpecificStoredValue5[lv_casterPlayerOverride], lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "SupportEight");
           }
           if ((libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride] > 0.0) && (PlayerHasTalent(lv_casterPlayerOverride, "LucioAmpItUpUpToEleven") == true)) {
             libGame_gf_HeroSpecificStatTrackerOther(libGame_gv_HeroSpecificStoredValue3[lv_casterPlayerOverride], lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "AccuracyOne");

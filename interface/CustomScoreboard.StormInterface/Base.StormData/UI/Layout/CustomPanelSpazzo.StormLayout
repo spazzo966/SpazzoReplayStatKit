@@ -6924,15 +6924,15 @@
     <StateGroup name="T4TalentStateGroup">
       <State name="C1">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon4/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_SoundBarrier.dds" />
-        <Action type="SetProperty" Frame="SupportOneTooltip" Text="@UI/Spazzo/Lucio/BaselineOne/One"/>
-        <Action type="SetProperty" Frame="SupportTwoTooltip" Text="@UI/Spazzo/Lucio/BaselineTwo/One"/>
+        <Action type="SetProperty" Frame="SupportOneTooltip" Text="@UI/Spazzo/Lucio/SupportOne/One"/>
+        <Action type="SetProperty" Frame="SupportTwoTooltip" Text="@UI/Spazzo/Lucio/SupportTwo/One"/>
         <Action type="SetProperty" Frame="SupportThreeTooltip" Text="@UI/Spazzo/Lucio/BaselineThree/One"/>
       </State>
       <State name="C2">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon4/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_highfive.dds" />
-        <Action type="SetProperty" Frame="SupportOneTooltip" Text="@UI/Spazzo/Lucio/BaselineOne/Two"/>
-        <Action type="SetProperty" Frame="SupportTwoTooltip" Text="@UI/Spazzo/Lucio/BaselineTwo/Two"/>
-        <Action type="SetProperty" Frame="SupportThreeTooltip" Text="@UI/Spazzo/Lucio/BaselineThree/Two"/>
+        <Action type="SetProperty" Frame="SupportOneTooltip" Text="@UI/Spazzo/Lucio/SupportOne/Two"/>
+        <Action type="SetProperty" Frame="SupportTwoTooltip" Text="@UI/Spazzo/Lucio/SupportTwo/Two"/>
+        <Action type="SetProperty" Frame="SupportThreeTooltip" Text="@UI/Spazzo/Lucio/SupportThree/Two"/>
       </State>
       <State name="C3">
       </State>
@@ -6961,18 +6961,18 @@
     <StateGroup name="T6TalentStateGroup">
       <State name="C1">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_AmpItUp.dds" />
-        <Action type="SetProperty" Frame="SupportThreeTooltip" Text="@UI/Spazzo/Lucio/TalentOne/One"/>
-        <Action type="SetProperty" Frame="SupportFourTooltip" Text="@UI/Spazzo/Lucio/TalentFour/One"/>
+        <Action type="SetProperty" Frame="SupportFourTooltip" Text="@UI/Spazzo/Lucio/SupportFour/One"/>
+        <Action type="SetProperty" Frame="SupportFiveTooltip" Text="@UI/Spazzo/Lucio/SupportFive/One"/>
       </State>
       <State name="C2">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_AmpItUp_B.dds" />
-        <Action type="SetProperty" Frame="SupportThreeTooltip" Text="@UI/Spazzo/Lucio/TalentOne/Two"/>
-        <Action type="SetProperty" Frame="SupportFourTooltip" Text="@UI/Spazzo/Lucio/TalentFour/Two"/>
+        <Action type="SetProperty" Frame="SupportFourTooltip" Text="@UI/Spazzo/Lucio/SupportFour/Two"/>
+        <Action type="SetProperty" Frame="SupportFiveTooltip" Text="@UI/Spazzo/Lucio/SupportFive/Two"/>
       </State>
       <State name="C3">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_ampitup_a.dds" />
-        <Action type="SetProperty" Frame="SupportThreeTooltip" Text="@UI/Spazzo/Lucio/TalentOne/Three"/>
-        <Action type="SetProperty" Frame="SupportFourTooltip" Text="@UI/Spazzo/Lucio/TalentFour/Three"/>
+        <Action type="SetProperty" Frame="SupportFourTooltip" Text="@UI/Spazzo/Lucio/SupportFour/Three"/>
+        <Action type="SetProperty" Frame="SupportFiveTooltip" Text="@UI/Spazzo/Lucio/SupportFive/Three"/>
       </State>
       <State name="C4"></State>
       <State name="C5"></State>
@@ -6980,61 +6980,61 @@
     <StateGroup name="T7TalentStateGroup">
       <State name="C1">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_SoundBarrier.dds" />
-        <Action type="SetProperty" Frame="SupportSixTooltip" Text="@UI/Spazzo/Lucio/TalentSeven/One"/>
+        <Action type="SetProperty" Frame="SupportSixTooltip" Text="@UI/Spazzo/Lucio/SupportSix/One"/>
       </State>
       <State name="C2">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_highfive.dds" />
-        <Action type="SetProperty" Frame="SupportSixTooltip" Text="@UI/Spazzo/Lucio/TalentSeven/Two"/>
+        <Action type="SetProperty" Frame="SupportSixTooltip" Text="@UI/Spazzo/Lucio/SupportSix/Two"/>
       </State>
       <State name="C3">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_crossfade_all.dds" />
-        <Action type="SetProperty" Frame="SupportSixTooltip" Text="@UI/Spazzo/Lucio/TalentSeven/Three"/>
+        <Action type="SetProperty" Frame="SupportSixTooltip" Text="@UI/Spazzo/Lucio/SupportSix/Three"/>
       </State>
       <State name="C4">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_crossfade_a.dds" />
-        <Action type="SetProperty" Frame="SupportSixTooltip" Text="@UI/Spazzo/Lucio/TalentSeven/Four"/>
+        <Action type="SetProperty" Frame="SupportSixTooltip" Text="@UI/Spazzo/Lucio/SupportSix/Four"/>
       </State>
       <State name="C5"></State>
     </StateGroup>
     <Frame type="Label" name="SupportOneTooltip">
       <Visible val="False"/>
-      <Text val="@UI/Spazzo/Lucio/BaselineOne"/>
+      <Text val="@UI/Spazzo/Lucio/SupportOne"/>
     </Frame>
     <Frame type="Label" name="SupportTwoTooltip">
       <Visible val="False"/>
-      <Text val="@UI/Spazzo/Lucio/BaselineTwo"/>
+      <Text val="@UI/Spazzo/Lucio/SupportTwo"/>
     </Frame>
     <Frame type="Label" name="SupportThreeTooltip">
       <Visible val="False"/>
-      <Text val="@UI/Spazzo/Lucio/BaselineThree"/>
+      <Text val="@UI/Spazzo/Lucio/SupportThree"/>
     </Frame>
     <Frame type="Label" name="SupportFourTooltip">
       <Visible val="False"/>
-      <Text val="@UI/Spazzo/Lucio/TalentOne"/>
+      <Text val="@UI/Spazzo/Lucio/SupportFour"/>
     </Frame>
     <Frame type="Label" name="SupportFiveTooltip">
       <Visible val="False"/>
-      <Text val="@UI/Spazzo/Lucio/TalentFour"/>
+      <Text val="@UI/Spazzo/Lucio/SupportFive"/>
     </Frame>
     <Frame type="Label" name="SupportSixTooltip">
       <Visible val="False"/>
-      <Text val="@UI/Spazzo/Lucio/TalentSeven"/>
+      <Text val="@UI/Spazzo/Lucio/SupportSix"/>
     </Frame>
     <Frame type="Label" name="SupportSevenTooltip">
       <Visible val="False"/>
-      <Text val="@UI/Spazzo/Lucio/TalentTen"/>
+      <Text val="@UI/Spazzo/Lucio/SupportSeven"/>
     </Frame>
     <Frame type="Label" name="SupportEightTooltip">
       <Visible val="False"/>
-      <Text val="@UI/Spazzo/Lucio/TalentThirteen"/>
+      <Text val="@UI/Spazzo/Lucio/SupportEight"/>
     </Frame>
     <Frame type="Label" name="SupportNineTooltip">
       <Visible val="False"/>
-      <Text val="@UI/Spazzo/Lucio/TalentSixteen"/>
+      <Text val="@UI/Spazzo/Lucio/SupportNine"/>
     </Frame>
     <Frame type="Label" name="SupportTenTooltip">
       <Visible val="False"/>
-      <Text val="@UI/Spazzo/Lucio/TalentTwenty"/>
+      <Text val="@UI/Spazzo/Lucio/SupportTen"/>
     </Frame>
     <Frame type="Label" name="SupportElevenTooltip">
       <Visible val="False"/>
