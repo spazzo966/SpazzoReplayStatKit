@@ -6786,6 +6786,369 @@
       <Text val="@UI/SpazzoAccuracy/Falstad/AccuracyFourteen"/>
     </Frame>
   </Frame>
+  <Frame type="Frame" name="LucioDamageStateGroupTalentController" template="CustomPanelSpazzo/PlayerTalentFrameDamage">
+    <StateGroup name="T1TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_Crossfade_All.dds" />
+        <Action type="SetProperty" Frame="DamageElevenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreEleven/One"/>
+        <Action type="SetProperty" Frame="DamageTwelveTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreTwelve/One"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_wallride.dds" />
+        <Action type="SetProperty" Frame="DamageElevenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreEleven/Two"/>
+        <Action type="SetProperty" Frame="DamageTwelveTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreTwelve/Two"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_wallride_a.dds" />
+        <Action type="SetProperty" Frame="DamageElevenTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreEleven/Three"/>
+        <Action type="SetProperty" Frame="DamageTwelveTooltip" Text="@UI/SpazzoDamage/Lucio/ScoreTwelve/Three"/>
+      </State>
+      <State name="C4"></State>
+      <State name="C5"></State>
+    </StateGroup>
+    <StateGroup name="T2TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_Soundwave.dds" />
+        <Action type="SetProperty" Frame="DamageThirteenTooltip" Text="@UI/Spazzo/Lucio/ScoreThirteen/One"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_Soundwave_A.dds" />
+        <Action type="SetProperty" Frame="DamageThirteenTooltip" Text="@UI/Spazzo/Lucio/ScoreThirteen/Two"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_accelerando.dds" />
+        <Action type="SetProperty" Frame="DamageThirteenTooltip" Text="@UI/Spazzo/Lucio/ScoreThirteen/Three"/>
+      </State>
+      <State name="C4"></State>
+      <State name="C5"></State>
+    </StateGroup>
+    <StateGroup name="T3TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon3/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_soundwave.dds" />
+        <Action type="SetProperty" Frame="DamageFourteenTooltip" Text="@UI/Spazzo/Lucio/ScoreFourteen/One"/>
+        <Action type="SetProperty" Frame="DamageFifteenTooltip" Text="@UI/Spazzo/Lucio/ScoreFifteen/One"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon3/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_crossfade_all.dds" />
+        <Action type="SetProperty" Frame="DamageFourteenTooltip" Text="@UI/Spazzo/Lucio/ScoreFourteen/Two"/>
+        <Action type="SetProperty" Frame="DamageFifteenTooltip" Text="@UI/Spazzo/Lucio/ScoreFifteen/Two"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon3/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_Fineshrine.dds" />
+        <Action type="SetProperty" Frame="DamageFourteenTooltip" Text="@UI/Spazzo/Lucio/ScoreFourteen/Three"/>
+        <Action type="SetProperty" Frame="DamageFifteenTooltip" Text="@UI/Spazzo/Lucio/ScoreFifteen/Three"/>
+      </State>
+      <State name="C4"></State>
+      <State name="C5"></State>
+    </StateGroup>
+    <StateGroup name="T4TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon4/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_SoundBarrier.dds" />
+        <Action type="SetProperty" Frame="DamageSixteenTooltip" Text="@UI/Spazzo/Lucio/ScoreSixteen/One"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon4/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_highfive.dds" />
+        <Action type="SetProperty" Frame="DamageSixteenTooltip" Text="@UI/Spazzo/Lucio/ScoreSixteen/Two"/>
+      </State>
+      <State name="C3">
+      </State>
+      <State name="C4"></State>
+      <State name="C5"></State>
+    </StateGroup>
+    <Frame type="Label" name="DamageOneTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreOne"/>
+    </Frame>
+    <Frame type="Label" name="DamageTwoTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreTwo"/>
+    </Frame>
+    <Frame type="Label" name="DamageThreeTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreThree"/>
+    </Frame>
+    <Frame type="Label" name="DamageFourTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreFour"/>
+    </Frame>
+    <Frame type="Label" name="DamageFiveTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreFive"/>
+    </Frame>
+    <Frame type="Label" name="DamageSixTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreSix"/>
+    </Frame>
+    <Frame type="Label" name="DamageSevenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreSeven"/>
+    </Frame>
+    <Frame type="Label" name="DamageEightTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreEight"/>
+    </Frame>
+    <Frame type="Label" name="DamageNineTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreNine"/>
+    </Frame>
+    <Frame type="Label" name="DamageTenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreTen"/>
+    </Frame>
+    <Frame type="Label" name="DamageElevenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreEleven"/>
+    </Frame>
+    <Frame type="Label" name="DamageTwelveTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreTwelve"/>
+    </Frame>
+    <Frame type="Label" name="DamageThirteenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreThirteen"/>
+    </Frame>
+    <Frame type="Label" name="DamageFourteenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreFourteen"/>
+    </Frame>
+    <Frame type="Label" name="DamageFifteenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreFifteen"/>
+    </Frame>
+    <Frame type="Label" name="DamageSixteenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/SpazzoDamage/Lucio/ScoreSixteen"/>
+    </Frame>
+  </Frame>
+  <Frame type="Frame" name="LucioSupportStateGroupTalentController" template="CustomPanelSpazzo/PlayerTalentFrameSupport">
+    <StateGroup name="T4TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon4/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_SoundBarrier.dds" />
+        <Action type="SetProperty" Frame="SupportOneTooltip" Text="@UI/Spazzo/Lucio/BaselineOne/One"/>
+        <Action type="SetProperty" Frame="SupportTwoTooltip" Text="@UI/Spazzo/Lucio/BaselineTwo/One"/>
+        <Action type="SetProperty" Frame="SupportThreeTooltip" Text="@UI/Spazzo/Lucio/BaselineThree/One"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon4/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_highfive.dds" />
+        <Action type="SetProperty" Frame="SupportOneTooltip" Text="@UI/Spazzo/Lucio/BaselineOne/Two"/>
+        <Action type="SetProperty" Frame="SupportTwoTooltip" Text="@UI/Spazzo/Lucio/BaselineTwo/Two"/>
+        <Action type="SetProperty" Frame="SupportThreeTooltip" Text="@UI/Spazzo/Lucio/BaselineThree/Two"/>
+      </State>
+      <State name="C3">
+      </State>
+      <State name="C4"></State>
+      <State name="C5"></State>
+    </StateGroup>
+    <StateGroup name="T5TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon5/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_crossfade_all.dds" />
+        <Action type="SetProperty" Frame="SupportFifteenTooltip" Text="@UI/Spazzo/Lucio/SupportFifteen/One"/>
+        <Action type="SetProperty" Frame="SupportSixteenTooltip" Text="@UI/Spazzo/Lucio/SupportSixteen/One"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon5/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_accelerando.dds" />
+        <Action type="SetProperty" Frame="SupportFifteenTooltip" Text="@UI/Spazzo/Lucio/SupportFifteen/Two"/>
+        <Action type="SetProperty" Frame="SupportSixteenTooltip" Text="@UI/Spazzo/Lucio/SupportSixteen/Two"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon5/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_wallride.dds" />
+        <Action type="SetProperty" Frame="SupportFifteenTooltip" Text="@UI/Spazzo/Lucio/SupportFifteen/Three"/>
+        <Action type="SetProperty" Frame="SupportSixteenTooltip" Text="@UI/Spazzo/Lucio/SupportSixteen/Three"/>
+      </State>
+      <State name="C4"></State>
+      <State name="C5"></State>
+    </StateGroup>
+    <StateGroup name="T6TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_AmpItUp.dds" />
+        <Action type="SetProperty" Frame="SupportThreeTooltip" Text="@UI/Spazzo/Lucio/TalentOne/One"/>
+        <Action type="SetProperty" Frame="SupportFourTooltip" Text="@UI/Spazzo/Lucio/TalentFour/One"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_AmpItUp_B.dds" />
+        <Action type="SetProperty" Frame="SupportThreeTooltip" Text="@UI/Spazzo/Lucio/TalentOne/Two"/>
+        <Action type="SetProperty" Frame="SupportFourTooltip" Text="@UI/Spazzo/Lucio/TalentFour/Two"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_ampitup_a.dds" />
+        <Action type="SetProperty" Frame="SupportThreeTooltip" Text="@UI/Spazzo/Lucio/TalentOne/Three"/>
+        <Action type="SetProperty" Frame="SupportFourTooltip" Text="@UI/Spazzo/Lucio/TalentFour/Three"/>
+      </State>
+      <State name="C4"></State>
+      <State name="C5"></State>
+    </StateGroup>
+    <StateGroup name="T7TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_SoundBarrier.dds" />
+        <Action type="SetProperty" Frame="SupportSixTooltip" Text="@UI/Spazzo/Lucio/TalentSeven/One"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_highfive.dds" />
+        <Action type="SetProperty" Frame="SupportSixTooltip" Text="@UI/Spazzo/Lucio/TalentSeven/Two"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_crossfade_all.dds" />
+        <Action type="SetProperty" Frame="SupportSixTooltip" Text="@UI/Spazzo/Lucio/TalentSeven/Three"/>
+      </State>
+      <State name="C4">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_crossfade_a.dds" />
+        <Action type="SetProperty" Frame="SupportSixTooltip" Text="@UI/Spazzo/Lucio/TalentSeven/Four"/>
+      </State>
+      <State name="C5"></State>
+    </StateGroup>
+    <Frame type="Label" name="SupportOneTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/BaselineOne"/>
+    </Frame>
+    <Frame type="Label" name="SupportTwoTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/BaselineTwo"/>
+    </Frame>
+    <Frame type="Label" name="SupportThreeTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/BaselineThree"/>
+    </Frame>
+    <Frame type="Label" name="SupportFourTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/TalentOne"/>
+    </Frame>
+    <Frame type="Label" name="SupportFiveTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/TalentFour"/>
+    </Frame>
+    <Frame type="Label" name="SupportSixTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/TalentSeven"/>
+    </Frame>
+    <Frame type="Label" name="SupportSevenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/TalentTen"/>
+    </Frame>
+    <Frame type="Label" name="SupportEightTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/TalentThirteen"/>
+    </Frame>
+    <Frame type="Label" name="SupportNineTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/TalentSixteen"/>
+    </Frame>
+    <Frame type="Label" name="SupportTenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/TalentTwenty"/>
+    </Frame>
+    <Frame type="Label" name="SupportElevenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/SupportEleven"/>
+    </Frame>
+    <Frame type="Label" name="SupportTwelveTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/SupportTwelve"/>
+    </Frame>
+    <Frame type="Label" name="SupportThirteenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/SupportThirteen"/>
+    </Frame>
+    <Frame type="Label" name="SupportFourteenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/SupportFourteen"/>
+    </Frame>
+    <Frame type="Label" name="SupportFifteenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/SupportFifteen"/>
+    </Frame>
+    <Frame type="Label" name="SupportSixteenTooltip">
+      <Visible val="False"/>
+      <Text val="@UI/Spazzo/Lucio/SupportSixteen"/>
+    </Frame>
+  </Frame>
+  <Frame type="Frame" name="LucioAccuracyStateGroupTalentController" template="CustomPanelSpazzo/PlayerTalentFrameAccuracy">
+    <StateGroup name="T6TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_AmpItUp.dds" />
+        <Action type="SetProperty" Frame="AccuracyOneTooltip" Text="@UI/SpazzoAccuracy/Lucio/AccuracyOne/One"/>
+        <Action type="SetProperty" Frame="AccuracyTwoTooltip" Text="@UI/SpazzoAccuracy/Lucio/AccuracyTwo/One"/>
+        <Action type="SetProperty" Frame="AccuracyThreeTooltip" Text="@UI/SpazzoAccuracy/Lucio/AccuracyThree/One"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_AmpItUp_B.dds" />
+        <Action type="SetProperty" Frame="AccuracyOneTooltip" Text="@UI/SpazzoAccuracy/Lucio/AccuracyOne/Two"/>
+        <Action type="SetProperty" Frame="AccuracyTwoTooltip" Text="@UI/SpazzoAccuracy/Lucio/AccuracyTwo/Two"/>
+        <Action type="SetProperty" Frame="AccuracyThreeTooltip" Text="@UI/SpazzoAccuracy/Lucio/AccuracyThree/Two"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_ampitup_a.dds" />
+        <Action type="SetProperty" Frame="AccuracyOneTooltip" Text="@UI/SpazzoAccuracy/Lucio/AccuracyOne/Three"/>
+        <Action type="SetProperty" Frame="AccuracyTwoTooltip" Text="@UI/SpazzoAccuracy/Lucio/AccuracyTwo/Three"/>
+        <Action type="SetProperty" Frame="AccuracyThreeTooltip" Text="@UI/SpazzoAccuracy/Lucio/AccuracyThree/Three"/>
+        <Action type="SetProperty" Frame="$parent/PlayerScoreContainerFrameAccuracyOne/ScoreValueLabel" Text="{$parent/TimerLabel/@Text}"/>
+        <Action type="SetProperty" Frame="$parent/PlayerScoreContainerFrameAccuracyTwo/ScoreValueLabel" Text="{$parent/TimerLabel/@Text}"/>
+        <Action type="SetProperty" Frame="$parent/PlayerScoreContainerFrameAccuracyThree/ScoreValueLabel" Text="{$parent/TimerLabel/@Text}"/>
+      </State>
+      <State name="C4"></State>
+      <State name="C5"></State>
+    </StateGroup>
+    <StateGroup name="T7TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="assets\textures\storm_ui_icon_Lucio_SoundBarrier.dds" />
+        <Action type="SetProperty" Frame="AccuracyFourTooltip" Text="@UI/SpazzoAccuracy/Lucio/AccuracyFour/One"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_highfive.dds" />
+        <Action type="SetProperty" Frame="AccuracyFourTooltip" Text="@UI/SpazzoAccuracy/Lucio/AccuracyFour/Two"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_crossfade_all.dds" />
+        <Action type="SetProperty" Frame="AccuracyFourTooltip" Text="@UI/SpazzoAccuracy/Lucio/AccuracyFour/Three"/>
+      </State>
+      <State name="C4">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="assets\textures\storm_ui_icon_lucio_crossfade_a.dds" />
+        <Action type="SetProperty" Frame="AccuracyFourTooltip" Text="@UI/SpazzoAccuracy/Lucio/AccuracyFour/Four"/>
+      </State>
+      <State name="C5"></State>
+    </StateGroup>
+    <Frame type="Label" name="AccuracyOneTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracyOne"/>
+    </Frame>
+    <Frame type="Label" name="AccuracyTwoTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracyTwo"/>
+    </Frame>
+    <Frame type="Label" name="AccuracyThreeTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracyThree"/>
+    </Frame>
+    <Frame type="Label" name="AccuracyFourTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracyFour"/>
+    </Frame>
+    <Frame type="Label" name="AccuracyFiveTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracyFive"/>
+    </Frame>
+    <Frame type="Label" name="AccuracySixTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracySix"/>
+    </Frame>
+    <Frame type="Label" name="AccuracySevenTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracySeven"/>
+    </Frame>
+    <Frame type="Label" name="AccuracyEightTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracyEight"/>
+    </Frame>
+    <Frame type="Label" name="AccuracyNineTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracyNine"/>
+    </Frame>
+    <Frame type="Label" name="AccuracyTenTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracyTen"/>
+    </Frame>
+    <Frame type="Label" name="AccuracyElevenTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracyEleven"/>
+    </Frame>
+    <Frame type="Label" name="AccuracyTwelveTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracyTwelve"/>
+    </Frame>
+    <Frame type="Label" name="AccuracyThirteenTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracyThirteen"/>
+    </Frame>
+    <Frame type="Label" name="AccuracyFourteenTooltip">
+      <Text val="@UI/SpazzoAccuracy/Lucio/AccuracyFourteen"/>
+    </Frame>
+  </Frame>
   <Frame type="TextFormatFrame" name="HealingToTextFormatTemplate">
     <Anchor relative="$parent" />
     <FormatText val="@UI/Spazzo/HealingToAlliedPlayer" />
@@ -7663,18 +8026,9 @@
           </State>
           <State name="Lúcio">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_lucio.dds"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportOne/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Lucio/BaselineOne"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportTwo/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Lucio/BaselineTwo"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportThree/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Lucio/BaselineThree"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportFour/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Lucio/TalentOne"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportFive/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Lucio/TalentFour"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportSix/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Lucio/TalentSeven"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportSeven/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Lucio/TalentTen"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportEight/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Lucio/TalentThirteen"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportNine/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Lucio/TalentSixteen"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportTen/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Lucio/TalentTwenty"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportEleven/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Lucio/SupportEleven"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportTwelve/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Lucio/SupportTwelve"/>
+            <Action type="ApplyTemplate" frame="$parent/$parent/PlayerTalentFrame" template="CustomPanelSpazzo/LucioSupportStateGroupTalentController"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportSeven/ScoreValueLabel" Text="{$parent/TimerLabel/@Text}"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportEight/ScoreValueLabel" Text="{$parent/TimerLabel/@Text}"/>
           </State>
           <State name="Uther">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_uther.dds"/>
@@ -9340,18 +9694,7 @@
           </State>
           <State name="Lúcio">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_lucio.dds"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreOne/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Lucio/ScoreOne"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreTwo/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Lucio/ScoreTwo"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreThree/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Lucio/ScoreThree"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreFour/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Lucio/ScoreFour"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreFive/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Lucio/ScoreFive"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreSix/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Lucio/ScoreSix"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreSeven/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Lucio/ScoreSeven"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreEight/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Lucio/ScoreEight"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreNine/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Lucio/ScoreNine"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreTen/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Lucio/ScoreTen"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreEleven/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Lucio/ScoreEleven"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreTwelve/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Lucio/ScoreTwelve"/>
+            <Action type="ApplyTemplate" frame="$parent/$parent/PlayerTalentFrame" template="CustomPanelSpazzo/LucioDamageStateGroupTalentController"/>
           </State>
           <State name="Uther">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_uther.dds"/>
@@ -10984,18 +11327,7 @@
           </State>
           <State name="Lúcio">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_lucio.dds"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracyOne/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Lucio/ScoreOne"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracyTwo/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Lucio/ScoreTwo"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracyThree/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Lucio/ScoreThree"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracyFour/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Lucio/ScoreFour"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracyFive/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Lucio/ScoreFive"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracySix/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Lucio/ScoreSix"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracySeven/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Lucio/ScoreSeven"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracyEight/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Lucio/ScoreEight"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracyNine/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Lucio/ScoreNine"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracyTen/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Lucio/ScoreTen"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracyEleven/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Lucio/ScoreEleven"/>
-            <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracyTwelve/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Lucio/ScoreTwelve"/>
+            <Action type="ApplyTemplate" frame="$parent/$parent/PlayerTalentFrame" template="CustomPanelSpazzo/LucioAccuracyStateGroupTalentController"/>
           </State>
           <State name="Uther">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_uther.dds"/>
