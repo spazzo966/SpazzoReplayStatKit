@@ -28505,6 +28505,9 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
     if ((lp_damageEffect == "LucioReverseAmpDamage")) {
       lv_primaryScoreString = "ScoreFourteen";
+      if ((PlayerHasTalent(lp_casterPlayer, "LucioAmpItUpUpToEleven") == true) && (libGame_gv_HeroSpecificStoredValue3[lp_casterPlayer] > CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "LucioAmpItUp", "Duration", c_playerAny))) {
+        lv_secondaryScoreString = "ScoreFifteen";
+      }
     }
     if ((lp_damageEffect == "LucioHighFiveMixingFireDamage")) {
       lv_primaryScoreString = "TalentSeven";
