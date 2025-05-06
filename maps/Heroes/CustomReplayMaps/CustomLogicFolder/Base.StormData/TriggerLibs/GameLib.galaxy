@@ -13450,7 +13450,7 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
     }
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroOrphea")) {
-    if ((lp_damageEffect == "OrpheaWeaponOverflowingChaosDamage")) {
+    if ((lp_damageEffect == "OrpheaWeaponOverflowingChaosDamage")  || (lp_damageEffect == "OrpheaWeaponOverflowingChaosDeadMagicDamage")) {
       lv_primaryScoreString = "TalentFour";
     }
     if ((lp_damageEffect == "OrpheaBondOfAnguishDamage")) {
@@ -24149,7 +24149,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaDetermination");
       }
     }
-    if ((lp_damageEffect == "OrpheaWeaponOverflowingChaosDamage")) {
+    if ((lp_damageEffect == "OrpheaWeaponOverflowingChaosDamage") || (lp_damageEffect == "OrpheaWeaponOverflowingChaosDeadMagicDamage")) {
       lv_primaryScoreString = "ScoreOne";
       lv_secondaryScoreString = "ScoreTwo";
       if ((libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] >= 3.0)) {
@@ -24436,7 +24436,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((lp_damageEffect == "OrpheaBondOfAnguishDamage")) {
       lv_primaryScoreString = "ScoreEleven";
     }
-    if ((lp_damageEffect == "OrpheaDeadMagicDamage") || (lp_damageEffect == "OrpheaWeaponOverflowingChaosDeadMagicDamage")) {
+    if ((lp_damageEffect == "OrpheaDeadMagicDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreEleven";
       }
@@ -40316,7 +40316,7 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
 		|| (lp_damageEffect == "MalGanisWeaponDamage") || (lp_damageEffect == "RangedAttackMalfurionDamage") || (lp_damageEffect == "MalthaelWeaponDamage") || (lp_damageEffect == "MedivhWeaponDamage") || (lp_damageEffect == "MephistoWeaponShardOfHateDamage")
 		|| (lp_damageEffect == "MephistoWeaponDamage") || (lp_damageEffect == "MuradinWeaponDamage") || (lp_damageEffect == "HeroMuradinSkullcrackerDamage") || (lp_damageEffect == "MurkyWeaponDamage") || (lp_damageEffect == "WitchDoctorHeroWeaponDamage")
 		|| (lp_damageEffect == "NovaHoloDecoyWeaponRelicAntiArmorShellsDamage") || (lp_damageEffect == "NovaRangedAttackNovaAntiArmorShellsDamage") || (lp_damageEffect == "HoloDecoyWeaponRelicDamage") || (lp_damageEffect == "RangedAttackNovaDamage")
-		|| (lp_damageEffect == "OrpheaWeaponDamage") || (lp_damageEffect == "OrpheaWeaponOverflowingChaosDamage") || (lp_damageEffect == "ProbiusWeaponDamage") || (lp_damageEffect == "NexusHunterWeaponDamage") || (lp_damageEffect == "TracerHeroWeaponDamageHero")
+		|| (lp_damageEffect == "OrpheaWeaponDamage") || (lp_damageEffect == "OrpheaWeaponOverflowingChaosDamage") || (lp_damageEffect == "OrpheaWeaponOverflowingChaosDeadMagicDamage") || (lp_damageEffect == "ProbiusWeaponDamage") || (lp_damageEffect == "NexusHunterWeaponDamage") || (lp_damageEffect == "TracerHeroWeaponDamageHero")
 		|| (lp_damageEffect == "NexusHunterPureStrikesWeaponDamage") || (lp_damageEffect == "RagnarosWeaponDamage") || (lp_damageEffect == "RaynorHeroWeaponDamage") || (lp_damageEffect == "RaynorGiveEmSomePepperWeaponDamage")
 		|| (lp_damageEffect == "RehgarWeaponDamage") || (lp_damageEffect == "SiegeWeaponBaseDamage") || (lp_damageEffect == "SamuroMirrorImageWeaponDamage") || (lp_damageEffect == "SgtHammerTankAttackDamage") || (lp_damageEffect == "BarbarianHeroWeaponDamage")
 		|| (lp_damageEffect == "StitchesHeroWeaponDamage") || (lp_damageEffect == "StukovWeaponDamage") || (lp_damageEffect == "StukovSpineLauncherWeaponDamage") || (lp_damageEffect == "SylvanasWeaponDamage") || (lp_damageEffect == "SylvanasWeaponWitheringFireDamage")
@@ -41202,7 +41202,7 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
     if ((lp_damageEffect == "OrpheaWeaponDamage")) {
       lv_flatDamageModifier = 0.0;
     }
-    if ((lp_damageEffect == "OrpheaWeaponOverflowingChaosDamage")) {
+    if ((lp_damageEffect == "OrpheaWeaponOverflowingChaosDamage")  || (lp_damageEffect == "OrpheaWeaponOverflowingChaosDeadMagicDamage")) {
       lv_flatDamageModifier = (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] * (CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "OrpheaWeaponOverflowingChaosDamage", "Amount", lv_casterPlayer) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "OrpheaOverflowingChaosDamageAccumulator", "Scale", lv_casterPlayer)));
       if (((PlayerHasTalent(lv_casterPlayer, "OrpheaChaoticAssault") == true) && (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer]) >= 3)) {
         lv_flatDamageModifier += (1.0 * (CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "OrpheaWeaponOverflowingChaosDamage", "Amount", lv_casterPlayer) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "OrpheaOverflowingChaosChaoticAssaultTalentDamageAccumulator", "Scale", lv_casterPlayer)));
