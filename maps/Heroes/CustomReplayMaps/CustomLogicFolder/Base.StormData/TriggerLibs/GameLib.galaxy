@@ -16506,9 +16506,9 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
         }
       }
       if ((lp_healEffect == "WhitemaneInquisitionCreateHealer")) {
-        lv_primaryScoreString = "ScoreTwentyThree";
+        lv_primaryScoreString = "ScoreTwentyEight";
         lv_secondaryScoreOverride = 1.0;
-        lv_secondaryScoreString = "ScoreTwentyFour";
+        lv_secondaryScoreString = "ScoreTwentyNine";
       }
       if ((lp_healEffect == "WhitemaneScarletAegisCreateHealer")) {
         lv_primaryScoreString = "ScoreThirtyTwo";
@@ -38468,7 +38468,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
         lv_scoreString = "ScoreThree";
       }
       else if ((UnitHasBehavior2(lp_casterUnit, "WhitemaneInquisitionClemencyCasterChannelBehavior"))) {
-        lv_scoreString = "ScoreTwentyTwo";
+        lv_scoreString = "ScoreTwentySeven";
       }
       // if (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride] != 0.0) {
       //   libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride] -= 1.0;
@@ -38502,19 +38502,19 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
         lv_tempInt = UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "WhitemaneZealUnitTracker"), c_unitCountAll);
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Whitemane Tracked Zeal Count: ") + IntToText(lv_tempInt)));
         if (lv_tempInt == 0) {
-          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "ScoreTwentyFive");
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "ScoreTwentyTwo");
         }
         else if (lv_tempInt == 1) {
-          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "ScoreTwentySix");
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "ScoreTwentyThree");
         }
         else if (lv_tempInt == 2) {
-          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "ScoreTwentySeven");
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "ScoreTwentyFour");
         }
         else if (lv_tempInt == 3) {
-          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "ScoreTwentyEight");
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "ScoreTwentyFive");
         }
         else if (lv_tempInt >= 4) {
-          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "ScoreTwentyNine");
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "ScoreTwentySix");
         }
         if (UnitHasBehavior2(lp_casterUnit, "WhitemaneGuidingLightUnitTracker") == true) {
           if (UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "WhitemaneGuidingLightUnitTracker"), c_unitCountAll) == 0) {
