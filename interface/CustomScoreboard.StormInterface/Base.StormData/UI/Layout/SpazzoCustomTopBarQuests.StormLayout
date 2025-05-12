@@ -2963,13 +2963,13 @@
         <Action type="SetProperty" frame="$parent/$parent/LoanStackCounterT3" Behavior="StitchesDevourSecondHelpingTalentTokenCounter" />
         <Action type="SetState" frame="$parent/$parent/LoanStackProgressBarDummyT3" Group="LoanState" State="IsLoanTalent"/>
       </State>
-      <State name="ParalyzingEnyzmesLoan">
+      <State name="DehakaFeedingFrenzyLoan">
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" TextureState="TierSelected"/>
-        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" texture="Assets\Textures\storm_ui_icon_dehaka_drag_var1.dds"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" texture="Assets\Textures\storm_ui_icon_dehaka_drag.dds"/>
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]/T3QuestControllerFrame" Visible="True"/>
-        <Action type="SetProperty" frame="$parent" Behavior="DehakaDragParalyzingEnzymesTalentTokenCounter" />
+        <Action type="SetProperty" frame="$parent" Behavior="DehakaFeedingFrenzyTalentTokenCounter" />
         <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar" Visible="False" />
-        <Action type="SetProperty" frame="$parent/$parent/LoanStackCounterT3" Behavior="DehakaDragParalyzingEnzymesTalentTokenCounter" />
+        <Action type="SetProperty" frame="$parent/$parent/LoanStackCounterT3" Behavior="DehakaFeedingFrenzyTalentTokenCounter" />
         <Action type="SetState" frame="$parent/$parent/LoanStackProgressBarDummyT3" Group="LoanState" State="IsLoanTalent"/>
       </State>
       <State name="DragonHungers">
