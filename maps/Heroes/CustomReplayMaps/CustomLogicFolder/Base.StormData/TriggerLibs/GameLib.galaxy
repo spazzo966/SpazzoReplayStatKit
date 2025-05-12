@@ -16484,10 +16484,10 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroWhitemane")) {
       if ((lp_healEffect == "WhitemaneDesperatePleaCreateHealer")) {
         if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
-          lv_primaryScoreString = "ScoreSeventeen";
+          lv_primaryScoreString = "ScoreSeven";
         }
         else {
-          lv_primaryScoreString = "ScoreEighteen";
+          lv_primaryScoreString = "ScoreEight";
         }
       }
       if ((lp_healEffect == "WhitemaneZealCreateHealer")) {
@@ -31070,28 +31070,28 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
     }
     if ((lp_damageEffect == "WhitemaneInquisitionDamage")) {
-      lv_primaryScoreString = "ScoreFour";
+      lv_primaryScoreString = "ScoreTen";
       lv_secondaryScoreOverride = 1.0;
-      lv_secondaryScoreString = "ScoreFive";
+      lv_secondaryScoreString = "ScoreEleven";
     }
     if ((lp_damageEffect == "WhitemaneSearingLashDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreSeven";
-        lv_secondaryScoreString = "ScoreEleven";
+        lv_primaryScoreString = "ScoreThirteen";
+        lv_secondaryScoreString = "ScoreSeventeen";
         lv_secondaryScoreOverride = 1.0;
       }
       else {
-        lv_primaryScoreString = "ScoreEight";
+        lv_primaryScoreString = "ScoreFourteen";
       }
     }
     if ((lp_damageEffect == "WhitemaneSearingLashSecondStrikeDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreNine";
-        lv_secondaryScoreString = "ScoreTwelve";
+        lv_primaryScoreString = "ScoreFifteen";
+        lv_secondaryScoreString = "ScoreEighteen";
         lv_secondaryScoreOverride = 1.0;
       }
       else {
-        lv_primaryScoreString = "ScoreTen";
+        lv_primaryScoreString = "ScoreSixteen";
       }
     }
     if ((lp_damageEffect == "WhitemaneSearingLashSaintlyGreatstaffDamage")) {
@@ -38445,16 +38445,16 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Desperation Forced Stacks: ") + FixedToText(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride], 1)));
       }
       if (FixedToInt(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride]) == 0) {
-        lv_scoreString = "ScoreThirteen";
+        lv_scoreString = "ScoreThree";
       }
       else if (FixedToInt(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride]) == 1) {
-        lv_scoreString = "ScoreFourteen";
+        lv_scoreString = "ScoreFour";
       }
       else if (FixedToInt(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride]) == 2) {
-        lv_scoreString = "ScoreFifteen";
+        lv_scoreString = "ScoreFive";
       }
       else if (FixedToInt(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride]) == 3) {
-        lv_scoreString = "ScoreSixteen";
+        lv_scoreString = "ScoreSix";
       }
       else {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Whitemane Desperation undetectable, stored as being cast at ") + IntToText(FixedToInt(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride])) + StringToText(" or ") + IntToText(FixedToInt(libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride]))));
