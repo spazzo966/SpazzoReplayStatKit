@@ -27620,9 +27620,9 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "Score1";
         if (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] == GameGetMissionTime()) {
-          lv_primaryScoreString = "Score31";
-          lv_secondaryScoreOverride = 1.0;
-          lv_secondaryScoreString = "Score33";
+          lv_tertiaryScoreString = "Score31";
+          lv_quaternaryScoreOverride = 1.0;
+          lv_quaternaryScoreString = "Score33";
         }
         if ((PlayerHasTalent(lv_casterPlayer, "ImperiusCelestialChargeImpalingLight") == true)) {
           lv_secondaryScoreString = "Score26";
@@ -27632,7 +27632,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       else {
         lv_primaryScoreString = "Score2";
         if (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] == GameGetMissionTime()) {
-          lv_primaryScoreString = "Score32";
+          lv_tertiaryScoreString = "Score32";
         }
       }
       libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = GameGetMissionTime();
@@ -27686,12 +27686,18 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_primaryScoreString = "Score16";
         lv_secondaryScoreOverride = 1.0;
         lv_secondaryScoreString = "Score18";
+        if (libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] == GameGetMissionTime()) {
+          lv_tertiaryScoreString = "Score44";
+          lv_quaternaryScoreOverride = 1.0;
+          lv_quaternaryScoreString = "Score45";
+        }
       }
       else {
         lv_primaryScoreString = "Score17";
         lv_secondaryScoreOverride = 1.0;
         lv_secondaryScoreString = "Score19";
       }
+      libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] = GameGetMissionTime();
     }
     if ((lp_damageEffect == "ImperiusValorousBrandBurnTheImpureDamage")) {
       lv_primaryScoreString = "Score26";
