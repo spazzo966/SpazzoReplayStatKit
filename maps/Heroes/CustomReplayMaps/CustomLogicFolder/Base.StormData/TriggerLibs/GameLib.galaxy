@@ -13977,6 +13977,10 @@ fixed libGame_gv_GetHealTakenAsFixed (unit lp_contextUnit) {
     lv_healTakenBehaviorName = "RehgarPurgePurificationTalentHealingReduction";
     lv_healTakenModifier += CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, lv_healTakenBehaviorName, "Modification.HealTakenAdditiveMultiplier[" + IntToString(0) + "]", UnitBehaviorEffectPlayer(lp_contextUnit, lv_healTakenBehaviorName, c_effectPlayerCaster, 0));
   }
+	if (((UnitHasBehavior2(lp_contextUnit, "DehakaDragParalyzingEnzymesHealingReduction") == true) && (UnitBehaviorEnabled(lp_contextUnit, "DehakaDragParalyzingEnzymesHealingReduction") == true))) {
+    lv_healTakenBehaviorName = "DehakaDragParalyzingEnzymesHealingReduction";
+    lv_healTakenModifier += CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, lv_healTakenBehaviorName, "Modification.HealTakenAdditiveMultiplier[" + IntToString(0) + "]", UnitBehaviorEffectPlayer(lp_contextUnit, lv_healTakenBehaviorName, c_effectPlayerCaster, 0));
+  }
   if ((lv_healTakenModifier < 0.0)) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Heal Taken is less than 0 on ") + StringToText(UnitGetType(lp_contextUnit))));
     return 0.0;
@@ -34683,42 +34687,50 @@ void libGame_gf_HeroSpecificStatTrackerHealModified (fixed lp_healedValue, strin
     lv_healTakenPlayer = UnitBehaviorEffectPlayer(lp_targetUnit, "VarianMortalStrikeDebuff", c_effectPlayerCaster, 0);
     lv_healTakenSpecific = (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "VarianMortalStrikeDebuff", "Modification.HealTakenAdditiveMultiplier[" + IntToString(0) + "]", UnitBehaviorEffectPlayer(lp_targetUnit, "VarianMortalStrikeDebuff", c_effectPlayerCaster, 0)));
     lv_healPrevented = ((lv_healedValueUmodified * (1.0 / lv_healTakenSpecific)) - lv_healedValueUmodified);
+    // HeroVarian
     libGame_gf_HeroSpecificStatTrackerOther(lv_healPrevented, lv_healTakenPlayer, lv_healTakenPlayer, "HealModified", null, "ScoreEleven");
   }
   if ((UnitHasBehavior2(lp_targetUnit, "NecromancerSpectralScytheMasteryMortalWoundDebuff") == true)) {
     lv_healTakenPlayer = UnitBehaviorEffectPlayer(lp_targetUnit, "NecromancerSpectralScytheMasteryMortalWoundDebuff", c_effectPlayerCaster, 0);
     lv_healTakenSpecific = (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "NecromancerSpectralScytheMasteryMortalWoundDebuff", "Modification.HealTakenAdditiveMultiplier[" + IntToString(0) + "]", UnitBehaviorEffectPlayer(lp_targetUnit, "NecromancerSpectralScytheMasteryMortalWoundDebuff", c_effectPlayerCaster, 0)));
     lv_healPrevented = ((lv_healedValueUmodified * (1.0 / lv_healTakenSpecific)) - lv_healedValueUmodified);
+    // HeroNecromancer
     libGame_gf_HeroSpecificStatTrackerOther(lv_healPrevented, lv_healTakenPlayer, lv_healTakenPlayer, "HealModified", null, "SupportEleven");
   }
   if ((UnitHasBehavior2(lp_targetUnit, "DeckardGemEmeraldHealingReduction") == true)) {
     lv_healTakenPlayer = UnitBehaviorEffectPlayer(lp_targetUnit, "DeckardGemEmeraldHealingReduction", c_effectPlayerCaster, 0);
     lv_healTakenSpecific = (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "DeckardGemEmeraldHealingReduction", "Modification.HealTakenAdditiveMultiplier[" + IntToString(0) + "]", UnitBehaviorEffectPlayer(lp_targetUnit, "DeckardGemEmeraldHealingReduction", c_effectPlayerCaster, 0)));
     lv_healPrevented = ((lv_healedValueUmodified * (1.0 / lv_healTakenSpecific)) - lv_healedValueUmodified);
+    // HeroDeckard
     libGame_gf_HeroSpecificStatTrackerOther(lv_healPrevented, lv_healTakenPlayer, lv_healTakenPlayer, "HealModified", null, "ScoreSeven");
   }
   if ((UnitHasBehavior2(lp_targetUnit, "DVaDefenseMatrixAggressionMatrixTalentHealingReductionDebuff") == true)) {
     lv_healTakenPlayer = UnitBehaviorEffectPlayer(lp_targetUnit, "DVaDefenseMatrixAggressionMatrixTalentHealingReductionDebuff", c_effectPlayerCaster, 0);
     lv_healTakenSpecific = (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "DVaDefenseMatrixAggressionMatrixTalentHealingReductionDebuff", "Modification.HealTakenAdditiveMultiplier[" + IntToString(0) + "]", UnitBehaviorEffectPlayer(lp_targetUnit, "DVaDefenseMatrixAggressionMatrixTalentHealingReductionDebuff", c_effectPlayerCaster, 0)));
     lv_healPrevented = ((lv_healedValueUmodified * (1.0 / lv_healTakenSpecific)) - lv_healedValueUmodified);
+    // HeroDVaMech
+    // HeroDVaPilot
     libGame_gf_HeroSpecificStatTrackerOther(lv_healPrevented, lv_healTakenPlayer, lv_healTakenPlayer, "HealModified", null, "ScoreNine");
   }
   if ((UnitHasBehavior2(lp_targetUnit, "VarianGloryToTheAllianceAmplifiedHealing") == true)) {
     lv_healTakenPlayer = UnitBehaviorEffectPlayer(lp_targetUnit, "VarianGloryToTheAllianceAmplifiedHealing", c_effectPlayerCaster, 0);
     lv_healTakenSpecific = (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "VarianGloryToTheAllianceAmplifiedHealing", "Modification.HealTakenAdditiveMultiplier[" + IntToString(0) + "]", UnitBehaviorEffectPlayer(lp_targetUnit, "VarianGloryToTheAllianceAmplifiedHealing", c_effectPlayerCaster, 0)));
     lv_healPrevented = AbsF((lv_healedValueUmodified * (1.0 / lv_healTakenSpecific)) - lv_healedValueUmodified);
+    // HeroVarian
     libGame_gf_HeroSpecificStatTrackerOther(lv_healPrevented, lv_healTakenPlayer, lv_healTakenPlayer, "HealModified", null, "TalentSixteen");
   }
   if ((UnitHasBehavior2(lp_targetUnit, "StitchesPatchworkCreationCarry") == true)) {
     lv_healTakenPlayer = UnitBehaviorEffectPlayer(lp_targetUnit, "StitchesPatchworkCreationCarry", c_effectPlayerCaster, 0);
     lv_healTakenSpecific = (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "StitchesPatchworkCreationCarry", "Modification.HealTakenAdditiveMultiplier[" + IntToString(0) + "]", UnitBehaviorEffectPlayer(lp_targetUnit, "StitchesPatchworkCreationCarry", c_effectPlayerCaster, 0)));
     lv_healPrevented = AbsF((lv_healedValueUmodified * (1.0 / lv_healTakenSpecific)) - lv_healedValueUmodified);
+    // HeroStitches
     libGame_gf_HeroSpecificStatTrackerOther(lv_healPrevented, lv_healTakenPlayer, lv_healTakenPlayer, "HealModified", null, "ScoreFourteen");
   }
   if ((UnitHasBehavior2(lp_targetUnit, "StitchesVileGasPutrefactionTalentDebuff") == true) && (UnitHasBehavior2(UnitBehaviorEffectUnit(lp_targetUnit, "StitchesVileGasPutrefactionTalentDebuff", c_effectPlayerCaster, 0), "StitchesShamblingHorrorBuff") == true) && (PlayerHasTalent(UnitBehaviorEffectPlayer(lp_targetUnit, "StitchesVileGasPutrefactionTalentDebuff", c_effectPlayerCaster, 0), "StitchesPutrefaction") == true)) {
     lv_healTakenPlayer = UnitBehaviorEffectPlayer(lp_targetUnit, "StitchesVileGasPutrefactionTalentDebuff", c_effectPlayerCaster, 0);
     lv_healTakenSpecific = (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "StitchesVileGasPutrefactionTalentDebuff", "Modification.HealTakenAdditiveMultiplier[" + IntToString(0) + "]", UnitBehaviorEffectPlayer(lp_targetUnit, "StitchesVileGasPutrefactionTalentDebuff", c_effectPlayerCaster, 0)));
     lv_healPrevented = ((lv_healedValueUmodified * (1.0 / lv_healTakenSpecific)) - lv_healedValueUmodified);
+    // HeroStitches
     libGame_gf_HeroSpecificStatTrackerOther(lv_healPrevented, lv_healTakenPlayer, lv_healTakenPlayer, "HealModified", null, "BaselineThree");
     libGame_gf_HeroSpecificStatTrackerOther(1.0, lv_healTakenPlayer, lv_healTakenPlayer, "Passthrough", null, "TalentOne");
   }
@@ -34726,6 +34738,7 @@ void libGame_gf_HeroSpecificStatTrackerHealModified (fixed lp_healedValue, strin
     lv_healTakenPlayer = UnitBehaviorEffectPlayer(lp_targetUnit, "CrusaderPunishSinsExposedHealingReductionBehavior", c_effectPlayerCaster, 0);
     lv_healTakenSpecific = (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "CrusaderPunishSinsExposedHealingReductionBehavior", "Modification.HealTakenAdditiveMultiplier[" + IntToString(0) + "]", UnitBehaviorEffectPlayer(lp_targetUnit, "CrusaderPunishSinsExposedHealingReductionBehavior", c_effectPlayerCaster, 0)));
     lv_healPrevented = ((lv_healedValueUmodified * (1.0 / lv_healTakenSpecific)) - lv_healedValueUmodified);
+    // HeroCrusader
     libGame_gf_HeroSpecificStatTrackerOther(lv_healPrevented, lv_healTakenPlayer, lv_healTakenPlayer, "HealModified", null, "BaselineTwo");
   }
 }
