@@ -22,7 +22,6 @@ UI/Spazzo/AhliSettings16=<!-- @Setting (	constant = "VarianCooldownDisplay", def
 UI/Spazzo/AhliSettings17=<!-- @Setting (	constant = "ZuljinCooldownDisplay", default = "0", description = "Which Hero Attachment to display on Zul'jin's Healthplate", values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7", valuesDisplayNames = "Disabled"/"Grevious Throw"/"Twin Cleave"/"Regeneration"/"Amani Rage"/"Voodoo Shuffle"/"Heroic Ability"/"Ensnare"  ) -->
 UI/Spazzo/AhliSettings18= 
 
-
 UI/Spazzo/Unused=Unused
 
 UI/Spazzo/Score01=Stat 01
@@ -1167,8 +1166,8 @@ UI/Spazzo/Whitemane/Score13=Searing Lash First Strike Damage to Heroes
 UI/Spazzo/Whitemane/Score14=Searing Lash First Strike Damage to non-Heroes
 UI/Spazzo/Whitemane/Score15=Searing Lash Second Strike Damage to Heroes
 UI/Spazzo/Whitemane/Score16=Searing Lash Second Strike Damage to non-Heroes
-UI/Spazzo/Whitemane/Score17=Enemy Heroes hit with Searing Lash First Strike
-UI/Spazzo/Whitemane/Score18=Enemy Heroes hit with Searing Lash Second Strike
+UI/Spazzo/Whitemane/Score17=Heroes hit with Searing Lash First Strike
+UI/Spazzo/Whitemane/Score18=Heroes hit with Searing Lash Second Strike
 UI/Spazzo/Whitemane/Score19=Fanatical Power Casts
 UI/Spazzo/Whitemane/Score20=Amount healed to Allied Heroes with Zeal
 UI/Spazzo/Whitemane/Score21=Amount healed to Self with Zeal
@@ -3806,42 +3805,52 @@ Spazzo/Button/Tooltip/IllidanDive=<s val="StandardTooltipHeader">Dive</s><n/><s 
 Spazzo/Button/Tooltip/IllidanSweepingStrike=<s val="StandardTooltipHeader">Sweeping Strike</s><n/><s val="StandardTooltipDetails">Cooldown: 8 seconds</s><n/>Dash towards target point, dealing <c val="#TooltipNumbers"><d ref="Effect,IllidanSweepingStrikeDamage,Amount" player="%playernum%"/></c> damage to enemies along the way. Hitting an enemy increases Illidan's Basic Attack damage by <c val="#TooltipNumbers"><d ref="Behavior,IllidanSweepingStrikesDamageBuffNoStacking,Modification.DamageDealtFraction[Basic]*100" player="0"/>%</c> for <c val="#TooltipNumbers"><d ref="Behavior,IllidanSweepingStrikesDamageBuffNoStacking,Duration" player="0"/></c> seconds.
 Spazzo/Button/Tooltip/IllidanEvasion=<s val="StandardTooltipHeader">Evasion</s><n/><s val="StandardTooltipDetails">Cooldown: <d ref="Abil,IllidanEvasion,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Evade enemy Basic Attacks for <c val="#TooltipNumbers"><d ref="Behavior,IllidanEvasion,Duration" player="0" precision="2"/></c> seconds.
 
-UI/Spazzo/Imperius/BaselineOne=Leech from Molten Armor
-UI/Spazzo/Imperius/BaselineTwo=Healing from Valorous Brand
-UI/Spazzo/Imperius/BaselineThree=Unused
-UI/Spazzo/Imperius/TalentOne=Mana restored from Consuming Flame
-UI/Spazzo/Imperius/TalentFour=Unused
-UI/Spazzo/Imperius/TalentSeven=Damage prevented with Flash of Anger Shields
-UI/Spazzo/Imperius/TalentTen=Damage prevented with Angelic Armaments Shields
-UI/Spazzo/Imperius/TalentThirteen=Leech bonus from Heat of Battle
-UI/Spazzo/Imperius/TalentSixteen=Unused
-UI/Spazzo/Imperius/TalentTwenty=Heroic Damage prevented to Allied Heroes with Heavenly Host Shields, Healing from Unrelenting Descent
-UI/Spazzo/Imperius/SupportEleven=non-Heroic Damage prevented to Allied Heroes with Heavenly Host Shields, Mana restored from Unrelenting Descent
-UI/Spazzo/Imperius/SupportTwelve=Unused
-UI/SpazzoDamage/Imperius/ScoreOne=Basic Attack Damage to Heroes
-UI/SpazzoDamage/Imperius/ScoreTwo=Basic Attack Damage to non-Heroes
-UI/SpazzoDamage/Imperius/ScoreThree=Celestial Charge Damage to Heroes
-UI/SpazzoDamage/Imperius/ScoreFour=Celestial Charge Damage to non-Heroes
-UI/SpazzoDamage/Imperius/ScoreFive=Solarion's Fire Damage to Heroes
-UI/SpazzoDamage/Imperius/ScoreSix=Solarion's Fire Damage to non-Heroes
-UI/SpazzoDamage/Imperius/ScoreSeven=Molten Armor Damage to Heroes
-UI/SpazzoDamage/Imperius/ScoreEight=Molten Armor Damage to non-Heroes
-UI/SpazzoDamage/Imperius/ScoreNine=Burn the Impure Damage
-UI/SpazzoDamage/Imperius/ScoreTen=Flash of Anger, Blaze of Glory Damage
-UI/SpazzoDamage/Imperius/ScoreEleven=Wrath of the Angiris, Angelic Armanents Damage
-UI/SpazzoDamage/Imperius/ScoreTwelve=Heavenly Host Damage
-UI/SpazzoAccuracy/Imperius/ScoreOne=Celestial Charge Casts
-UI/SpazzoAccuracy/Imperius/ScoreTwo=Solarion's Fire Casts
-UI/SpazzoAccuracy/Imperius/ScoreThree=Molten Armor
-UI/SpazzoAccuracy/Imperius/ScoreFour=Holy Fervor Casts
-UI/SpazzoAccuracy/Imperius/ScoreFive=Angelic Armanents, Wrath of the Angiris Casts
-UI/SpazzoAccuracy/Imperius/ScoreSix=Angelic Armanents Activation Casts
-UI/SpazzoAccuracy/Imperius/ScoreSeven=Valorous Pursuit Casts
-UI/SpazzoAccuracy/Imperius/ScoreEight=Impervious Casts
-UI/SpazzoAccuracy/Imperius/ScoreNine=Unused
-UI/SpazzoAccuracy/Imperius/ScoreTen=Unused
-UI/SpazzoAccuracy/Imperius/ScoreEleven=Unused
-UI/SpazzoAccuracy/Imperius/ScoreTwelve=Unused
+UI/Spazzo/Imperius/Score1=Basic Attack Damage to Heroes
+UI/Spazzo/Imperius/Score2=Basic Attack Damage to non-Heroes
+UI/Spazzo/Imperius/Score3=Celestial Charge Casts
+UI/Spazzo/Imperius/Score4=Celestial Charge damage to Heroes
+UI/Spazzo/Imperius/Score5=Heroes impaled with Celestial Charge
+UI/Spazzo/Imperius/Score6=Heroes finished impaling with Celestial Charge
+UI/Spazzo/Imperius/Score7=Celestial Charge Damage to non-Heroes
+UI/Spazzo/Imperius/Score8=Solarion's Fire Casts
+UI/Spazzo/Imperius/Score9=Solarion's Fire inner damage to Heroes
+UI/Spazzo/Imperius/Score10=Solarion's Fire outer damage to Heroes
+UI/Spazzo/Imperius/Score11=Solarion's Fire inner damage to non-Heroes
+UI/Spazzo/Imperius/Score12=Solarion's Fire outer damage to non-Heroes
+UI/Spazzo/Imperius/Score13=Heroes hit with Solarion's Fire inner area
+UI/Spazzo/Imperius/Score14=Heroes hit with Solarion's Fire outer area
+UI/Spazzo/Imperius/Score15=Molten Armor Casts
+UI/Spazzo/Imperius/Score16=Molten Armor damage to Heroes
+UI/Spazzo/Imperius/Score17=Molten Armor damage to non-Heroes
+UI/Spazzo/Imperius/Score18=Heroes hit with Molten Armor
+UI/Spazzo/Imperius/Score19=non-Heroes hit with Molten Armor
+UI/Spazzo/Imperius/Score20=Healing from Molten Armor against Heroes
+UI/Spazzo/Imperius/Score21=Healing from Molten Armor against non-Heroes
+UI/Spazzo/Imperius/Score22=Celestial Charge Brands consumed
+UI/Spazzo/Imperius/Score23=Solarion's Fire Brands consumed
+UI/Spazzo/Imperius/Score24=Molten Armor Brands consumed
+UI/Spazzo/Imperius/Score25=Valorous Brand Healing
+UI/Spazzo/Imperius/Score26=Impaling Light bonus damage, Consuming Flame bonus damage, Burn the Impure damage
+UI/Spazzo/Imperius/Score27=Mana restored with Consuming Flame
+UI/Spazzo/Imperius/Score28=Molten Armor Casts after selecting Sovereign Armor
+UI/Spazzo/Imperius/Score29=Time with Sovereign Armor active
+UI/Spazzo/Imperius/Score30=Celestial Charge Casts after selecting Flash of Anger, Solarion's Fire Casts after selecting Blaze of Glory, Holy Fervor Casts
+UI/Spazzo/Imperius/Score31=Flash of Anger damage to Heroes, Blaze of Glory damage to Heroes, Holy Fervor damage to Heroes
+UI/Spazzo/Imperius/Score32=Flash of Anger damage to non-Heroes, Blaze of Glory damage to non-Heroes, Holy Fervor damage to non-Heroes
+UI/Spazzo/Imperius/Score33=Damage absorbed with Flash of Anger Shield, Heroes hit with Blaze of Glory, Heroes hit with Holy Fervor
+UI/Spazzo/Imperius/Score34=Angelic Armaments, Wrath of the Angiris Casts
+UI/Spazzo/Imperius/Score35=Damage absorbed with Angelic Armaments, Wrath of the Angiris damage
+UI/Spazzo/Imperius/Score36=Angelic Armaments Reactiavtion Casts, Wrath of the Angiris hits
+UI/Spazzo/Imperius/Score37=Angelic Armaments damage to Heroes
+UI/Spazzo/Imperius/Score38=Angelic Armaments damage to non-Heroes
+UI/Spazzo/Imperius/Score39=Celestial Charge Casts after selecting Pathetic Mortals, Molten Armor Brands consumed after selecting Divine Rage while Molten Armor is on cooldown, Heat of Battle bonus healing
+UI/Spazzo/Imperius/Score40=Enemy Heroes Stunned with Celestial Charge after selecting Pathetic Mortals, Molten Armor Casts in the window provided by cooldown reduction from Divine Rage
+UI/Spazzo/Imperius/Score41=Celestial Charge Casts after selecting Celestial Swiftness, Molten Armor Brands consumed after selecting Melting Touch, Valorous Pursuit Casts
+UI/Spazzo/Imperius/Score42=Enemy Heroes Stunned with Celestial Charge after selecting Celestial Swiftness, time with Valorous Pursuit off cooldown and enemy Heroes Branded
+UI/Spazzo/Imperius/Score43=Angelic Armaments Casts after selecting Heavenly Hosts, Wrath of the Angiris Casts after selecting Unrelenting Descent, Molten Armor Casts after selecting Molten Wrath, Celestial Charge Brands triggered after selecting Brand of Solarion, Impervious Casts
+UI/Spazzo/Imperius/Score44=Damage absorbed with Heavenly Host Shields, Healing from Unrelenting Descent, Damage to enemy Heroes by Molten Wrath additional strikes, Solarion's Fire Brands triggered after selecting Brand of Solarion, Heroes hit with Solarion's Fire's inner area while Impervious is on cooldown
+UI/Spazzo/Imperius/Score45=Damage to Heroes with Heavenly Host Swords, Mana restored with Unrelenting Descent, Number of additional Heroes hit with Molten Wrath, Molten Armor Brands consumed after selecting Brand of Solarion
+UI/Spazzo/Imperius/Score46=Damage to non-Heroes with Heavenly Host Swords, Valorous Brands consumed while Wrath of Angiris is on cooldown after selecting Unrelenting Descent, Molten Armor Brands consumed after selecting Molten Wrath, Valorous Brand healing after selecting Brand of Solarion
 Spazzo/Button/Tooltip/ImperiusCelestialCharge=<s val="StandardTooltipHeader">Celestial Charge</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,ImperiusCelestialCharge,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,ImperiusCelestialCharge,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Lunge towards a targeted direction and stab, dealing <c val="#TooltipNumbers"><d ref="Effect,ImperiusCelestialChargePreImpactDamage,Amount" player="%playernum%"/></c> damage. If an enemy Hero is hit, Channel to Stun for <c val="#TooltipNumbers"><d ref="Behavior,ImperiusCelestialChargeChannelStunDebuff,Duration" precision="2" player="0"/></c> second and deal <c val="#TooltipNumbers"><d ref="Effect,ImperiusCelestialChargePostImpactDamage,Amount" player="%playernum%"/></c> additional damage when it fully finishes.</n></n><s val="StandardTooltipHeader">Valorous Brand</s></n>Each Basic Ability marks enemy Heroes hit for <c val="#TooltipNumbers"><d ref="Behavior,ImperiusValorousBrandCelestialChargeComboPointBehavior,Duration" precision="2" player="0"/></c> seconds. Basic Attacks consume the target's marks, dealing <c val="#TooltipNumbers"><d ref="100*Effect,ImperiusWeaponDamage,MultiplicativeModifierArray[ValorousBrandCelestialCharge].Modifier" precision="2" player="0"/>%</c> bonus damage per mark and healing for <c val="#TooltipNumbers"><d ref="Effect,ImperiusValorousBrandCreateHealer,RechargeVitalRate" player="%playernum%"/></c> per mark.
 Spazzo/Button/Tooltip/ImperiusSolarionsFire=<s val="StandardTooltipHeader">Solarion's Fire</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,ImperiusSolarionsFire,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,ImperiusSolarionsFire,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Release a fiery wave that deals <c val="#TooltipNumbers"><d ref="Effect,ImperiusSolarionsFireDamageOuter,Amount" player="%playernum%"/></c> damage. Enemies hit by the center take <c val="#TooltipNumbers"><d ref="Effect,ImperiusSolarionsFireDamageCenter,MultiplicativeModifierArray[CenterBonusDamage].Modifier*100"/>%</c> bonus damage and are Slowed by <c val="#TooltipNumbers"><d ref="Behavior,ImperiusSolarionsFireSlow,.Modification.UnifiedMoveSpeedFactor*(-100)" player="0"/>%</c></c> for <c val="#TooltipNumbers"><d ref="Behavior,ImperiusSolarionsFireSlow,Duration" precision="2" player="0"/></c> seconds.</n></n><s val="StandardTooltipHeader">Valorous Brand</s></n>Each Basic Ability marks enemy Heroes hit for <c val="#TooltipNumbers"><d ref="Behavior,ImperiusValorousBrandCelestialChargeComboPointBehavior,Duration" precision="2" player="0"/></c> seconds. Basic Attacks consume the target's marks, dealing <c val="#TooltipNumbers"><d ref="100*Effect,ImperiusWeaponDamage,MultiplicativeModifierArray[ValorousBrandCelestialCharge].Modifier" precision="2" player="0"/>%</c> bonus damage per mark and healing for <c val="#TooltipNumbers"><d ref="Effect,ImperiusValorousBrandCreateHealer,RechargeVitalRate" player="%playernum%"/></c> per mark.
 Spazzo/Button/Tooltip/ImperiusMoltenArmor=<s val="StandardTooltipHeader">Molten Armor</s><n/><s val="StandardTooltipDetails">Mana: <d ref="Abil,ImperiusMoltenArmor,Cost.Vital[Energy]" player="0"/><n/>Cooldown: <d ref="Abil,ImperiusMoltenArmor,Cost.Cooldown.TimeUse" player="0"/> seconds</s><n/>Shroud Imperius in flames for <c val="#TooltipNumbers"><d ref="Behavior,ImperiusMoltenArmorCasterBehavior,Duration"/></c> seconds, striking a nearby enemy for <c val="#TooltipNumbers"><d ref="Effect,ImperiusMoltenArmorDamage,Amount" player="%playernum%"/></c> damage every <c val="#TooltipNumbers"><d ref="Behavior,ImperiusMoltenArmorCasterBehavior,Period" precision="2" player="0"/></c> seconds. Imperius heals for <c val="#TooltipNumbers"><d ref="Effect,ImperiusMoltenArmorDamage,LeechFraction[Life]*100"/>%</c> of the damage dealt, increased to <c val="#TooltipNumbers"><d ref="(Effect,ImperiusMoltenArmorDamage,LeechFraction[Life]+Effect,ImperiusMoltenArmorDamage,LeechFlatModifierArray[ImperiusMoltenArmorHero].Modifier)*100"/>%</c> against Heroes.</n></n><s val="StandardTooltipHeader">Valorous Brand</s></n>Each Basic Ability marks enemy Heroes hit for <c val="#TooltipNumbers"><d ref="Behavior,ImperiusValorousBrandCelestialChargeComboPointBehavior,Duration" precision="2" player="0"/></c> seconds. Basic Attacks consume the target's marks, dealing <c val="#TooltipNumbers"><d ref="100*Effect,ImperiusWeaponDamage,MultiplicativeModifierArray[ValorousBrandCelestialCharge].Modifier" precision="2" player="0"/>%</c> bonus damage per mark and healing for <c val="#TooltipNumbers"><d ref="Effect,ImperiusValorousBrandCreateHealer,RechargeVitalRate" player="%playernum%"/></c> per mark.
