@@ -41554,14 +41554,14 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
       lv_flatDamageModifier = 0.0;
     }
 
-    lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + ((UnitGetTokenCount(lp_casterUnit, "RaynorGiveEmSomePepperVeteranMarksmanDamageAccumulator") - 1.0) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "RaynorGiveEmSomePepperVeteranMarksmanDamageAccumulator", "Scale", lv_casterPlayer)))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
+    lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + ((UnitGetTokenCount(lp_casterUnit, "RaynorGiveEmSomePepperVeteranMarksmanQuestToken") - 1.0) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "RaynorGiveEmSomePepperVeteranMarksmanDamageAccumulator", "Scale", lv_casterPlayer)))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
   }
   if ((lp_inputData == "RaynorVeteranMarksmanCombined")) {
     if ((lp_damageEffect == "RaynorHeroWeaponDamage") || (lp_damageEffect == "RaynorGiveEmSomePepperWeaponDamage")) {
       lv_flatDamageModifier = 0.0;
     }
     lv_damageResult = (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + (UnitGetTokenCount(lp_casterUnit, "RaynorGiveEmSomePepperVeteranMarksmanLoanToken") * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "RaynorGiveEmSomePepperVeteranMarksmanLoanAccumulator", "Scale", lv_casterPlayer)))) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
-    lv_damageResult = (lv_damageResult + (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + (UnitGetTokenCount(lp_casterUnit, "RaynorGiveEmSomePepperVeteranMarksmanDamageAccumulator") * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "RaynorGiveEmSomePepperVeteranMarksmanDamageAccumulator", "Scale", lv_casterPlayer)))) - (lv_damageValuePerCatalog + lv_flatDamageModifier)));
+    lv_damageResult = (lv_damageResult + (((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + (UnitGetTokenCount(lp_casterUnit, "RaynorGiveEmSomePepperVeteranMarksmanQuestToken") * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "RaynorGiveEmSomePepperVeteranMarksmanDamageAccumulator", "Scale", lv_casterPlayer)))) - (lv_damageValuePerCatalog + lv_flatDamageModifier)));
   }
   
   
