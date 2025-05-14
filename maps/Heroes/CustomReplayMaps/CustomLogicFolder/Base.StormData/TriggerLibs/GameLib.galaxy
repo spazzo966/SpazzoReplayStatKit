@@ -27671,8 +27671,8 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_primaryScoreString = "Score11";
       }
       if ((PlayerHasTalent(lv_casterPlayer, "ImperiusSolarionsFireConsumingFlame") == true)) {
-        lv_secondaryScoreString = "Score26";
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ImperiusConsumingFlame");
+        lv_tertiaryScoreString = "Score26";
+        lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ImperiusConsumingFlame");
       }
     }
     if ((lp_damageEffect == "ImperiusSolarionsFireDamageOuter")) {
