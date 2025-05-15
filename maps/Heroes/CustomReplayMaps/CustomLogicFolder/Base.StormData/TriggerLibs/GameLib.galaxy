@@ -14219,7 +14219,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroDeckard")) {
-      if (((lp_behavior == "DeckardRespectTheElderlyBlind") || (lp_behavior == "DeckardRespectTheElderlyBlindNonHeroes")) && (UnitTypeTestAttribute(UnitGetType(lp_externalUnit), c_unitAttributeHeroic) == true)) {
+      if (((lp_behavior == "DeckardRespectTheElderlyBlind") || (lp_behavior == "DeckardRespectTheElderlyNonHeroesBlind")) && (UnitTypeTestAttribute(UnitGetType(lp_externalUnit), c_unitAttributeHeroic) == true)) {
         if ((lv_externalPlayer != lp_casterPlayer)) {
           lv_primaryScoreString = "TalentTwenty";
         }
@@ -14227,7 +14227,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
           lv_primaryScoreString = "TalentSixteen";
         }
       }
-      if (((lp_behavior == "DeckardRespectTheElderlyBlind") || (lp_behavior == "DeckardRespectTheElderlyBlindNonHeroes")) && (UnitTypeTestAttribute(UnitGetType(lp_externalUnit), c_unitAttributeHeroic) == false)) {
+      if (((lp_behavior == "DeckardRespectTheElderlyBlind") || (lp_behavior == "DeckardRespectTheElderlyNonHeroesBlind")) && (UnitTypeTestAttribute(UnitGetType(lp_externalUnit), c_unitAttributeHeroic) == false)) {
         lv_primaryScoreString = "SupportEleven";
       }
     }
