@@ -30624,37 +30624,8 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroTracer")) {
-    if ((lp_damageEffect == "TracerHeroWeaponDamageHero")) {
+    if ((lp_damageEffect == "TracerHeroWeaponDamageHero") || (lp_damageEffect == "TracerHeroWeaponRicochetDamageHero")) {
       lv_primaryScoreString = "ScoreOne";
-      // This is determined as part of the tracer library - there's currently a bug where the first attack against a target with attackmove won't know they are the primary target
-      if ((libGame_gv_HeroSpecificStoredUnit1[lv_casterPlayer] != lp_targetUnit) && (PlayerHasTalent(lv_casterPlayer, "TracerRicochetHeroWeapon"))) {
-        lv_primaryScoreString = "ScoreTen";
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Target is Ricochet: ") + StringToText(UnitGetType(lp_targetUnit))));
-      }
-      // else {
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Target is Primary: ") + StringToText(UnitGetType(lp_targetUnit))));
-      // }
-      // if ((libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] == GameGetMissionTime())) {
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Target is Ricochet: ") + StringToText(UnitGetType(lp_targetUnit))));
-      // }
-      // else {
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Target is Primary: ") + StringToText(UnitGetType(lp_targetUnit))));
-      // }
-      // libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = GameGetMissionTime();
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Target Behavior Count: ") + FixedToText(UnitBehaviorCount(lp_targetUnit, "TracerHeroWeaponTargeting"), 0)));
-      // if ((UnitBehaviorCount(lp_targetUnit, "TracerHeroWeaponTargeting") == 0)) {
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Target is Ricochet!"));
-      // }
-      // else if ((UnitBehaviorCount(lp_targetUnit, "TracerHeroWeaponTargeting") == 2)) {
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Target is Ricochet!"));
-      // }
-      // else if ((UnitBehaviorEffectPlayer(lp_targetUnit, "TracerHeroWeaponTargeting", c_effectPlayerCaster, 0) == lv_casterPlayer) || (UnitBehaviorEffectPlayer(lp_targetUnit, "TracerHeroWeaponTargeting", c_effectPlayerCaster, 1) != lv_casterPlayer)) {
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Target is Ricochet!"));
-      // }
-      // else if ((UnitBehaviorEffectPlayer(lp_targetUnit, "TracerHeroWeaponTargeting", c_effectPlayerCaster, 1) != lv_casterPlayer) || (UnitBehaviorEffectPlayer(lp_targetUnit, "TracerHeroWeaponTargeting", c_effectPlayerCaster, 1) == lv_casterPlayer)) {
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Target is Ricochet!"));
-      // }
-      // Fuck Abathur tho
       if ((PlayerHasTalent(lv_casterPlayer, "TracerLockedandLoaded"))) {
         if ((UnitHasBehavior2(lp_casterUnit, "TracerLockedandLoadedActive") == true)) {
           lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "TracerLockedAndLoaded");
@@ -30666,7 +30637,6 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
           }
         }
         else {
-          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Locked and Loaded Inactive"));
         }
       }
       if ((PlayerHasTalent(lv_casterPlayer, "TracerUntouchable"))) {
@@ -30701,16 +30671,12 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
           }
         }
       }
-    }
-    if ((lp_damageEffect == "TracerHeroWeaponDamage")) {
-      lv_primaryScoreString = "BaselineOne";
-      if ((libGame_gv_HeroSpecificStoredUnit1[lv_casterPlayer] != lp_targetUnit) && (PlayerHasTalent(lv_casterPlayer, "TracerRicochetHeroWeapon"))) {
-        lv_primaryScoreString = "SupportEleven";
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Target is Ricochet: ") + StringToText(UnitGetType(lp_targetUnit))));
+      if (lp_damageEffect == "TracerHeroWeaponRicochetDamageHero") {
+        lv_senaryScoreString ="ScoreTen";
       }
-      // else {
-      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Target is Primary: ") + StringToText(UnitGetType(lp_targetUnit))));
-      // }
+    }
+    if ((lp_damageEffect == "TracerHeroWeaponDamage") || (lp_damageEffect == "TracerHeroWeaponRicochetDamage")) {
+      lv_primaryScoreString = "BaselineOne";
       if ((PlayerHasTalent(lv_casterPlayer, "TracerUntouchable"))) {
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Untouchable Count: ") + FixedToText(UnitGetTokenCount(lp_casterUnit, "TracerUntouchableQuestToken"), 1)));
         lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "TracerUntouchable");
@@ -30746,6 +30712,9 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
           lv_quaternaryScoreString = "AccuracyTen";
           lv_quaternaryScoreOverride = 1.0;
         }
+      }
+      if (lp_damageEffect == "TracerHeroWeaponRicochetDamage") {
+        lv_quinaryScoreString ="SupportEleven";
       }
     }
     if ((lp_damageEffect == "TracerMeleeDamage")) {
