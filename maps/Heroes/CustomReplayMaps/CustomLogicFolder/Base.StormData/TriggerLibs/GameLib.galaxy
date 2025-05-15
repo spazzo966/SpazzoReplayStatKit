@@ -19555,6 +19555,7 @@ void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterP
   else {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Score Increase combined failed: Score string: ") + StringToText(lp_scoreString) + StringToText(" player: ") + IntToText(lp_casterPlayer) + StringToText(" score increase amount: ") + FixedToText(lp_scoreValue, 1)));
   }
+  // Unused Scores List
   // Score Value Ancestor
   // EndOfMatchAwardMostMercCampsCapturedBoolean
   // EndOfMatchAwardMostAltarDamageDone
@@ -19562,6 +19563,12 @@ void libGame_gf_TallyHeroSpecificStatShared (fixed lp_scoreValue, int lp_casterP
   // EndOfMatchAwardMostTeamfightDamageTakenBoolean
   // EndOfMatchAwardMostTeamfightHealingDoneBoolean
   // EndOfMatchAwardMostTeamfightHeroDamageDoneBoolean
+
+  // Maybe unused?
+  // TeamTownKills
+  // TeamMercCampCaptures
+  // MetaExperience
+  // ExperienceFromTrickle
 
   if ((lv_scorevalueIsInteger == false)) {
     PlayerScoreValueSetFromInt(lp_casterPlayer, lv_scoreToIncrease, FixedToInt(lv_scoreValue));
