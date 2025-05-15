@@ -31248,8 +31248,8 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
     if ((lp_damageEffect == "WhitemaneInquisitionSharedPunishmentDamage")) {
       lv_primaryScoreString = "ScoreThirtySeven";
-        lv_secondaryScoreString = "ScoreThirtyEight";
-        lv_secondaryScoreOverride = 1.0;
+      lv_secondaryScoreString = "ScoreThirtyEight";
+      lv_secondaryScoreOverride = 1.0;
     }
     if ((lp_damageEffect == "WhitemanePurgeTheWickedInitialDamage")) {
       lv_primaryScoreString = "ScoreForty";
@@ -38622,7 +38622,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Desperation Expected Stacks: ") + FixedToText((MinF(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride], 2.0) + 1.0), 1)));
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Desperation Actual Stacks: ") + FixedToText(UnitGetTokenCount(lp_casterUnit, "WhitemaneDesperatePleaDesperationTokenCounter"), 1)));
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Desperation Stacks Before: ") + FixedToText(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride], 1)));
-        libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride] = libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride];
+      libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride] = libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride];
       if ((FixedToInt(MinF(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride], 2.0) + 1.0)) != FixedToInt(UnitGetTokenCount(lp_casterUnit, "WhitemaneDesperatePleaDesperationTokenCounter"))) {
         libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride] = (UnitGetTokenCount(lp_casterUnit, "WhitemaneDesperatePleaDesperationTokenCounter") - 1.0);
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Desperation Forced Stacks: ") + FixedToText(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride], 1)));
