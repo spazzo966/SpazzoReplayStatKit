@@ -13455,10 +13455,10 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroOrphea")) {
     if ((lp_damageEffect == "OrpheaWeaponOverflowingChaosDamage")  || (lp_damageEffect == "OrpheaWeaponOverflowingChaosDeadMagicDamage")) {
-      lv_primaryScoreString = "TalentFour";
+      lv_primaryScoreString = "Score19";
     }
     if ((lp_damageEffect == "OrpheaBondOfAnguishDamage")) {
-      lv_primaryScoreString = "SupportEleven";
+      lv_primaryScoreString = "Score42";
     }
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroRagnaros")) {
@@ -15046,10 +15046,10 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroOrphea")) {
       if ((lp_behavior == "OrpheaChompAbyssalSymbiosisShield")) {
         if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
-          lv_primaryScoreString = "TalentSixteen";
+          lv_primaryScoreString = "Score40";
         }
         else {
-          lv_primaryScoreString = "TalentTwenty";
+          lv_primaryScoreString = "Score40";
         }
       }
     }
@@ -17742,19 +17742,19 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroOrphea")) {
       if ((lp_healEffect == "OrpheaRavenousHungerHeroHeal")) {
-        lv_primaryScoreString = "TalentThirteen";
+        lv_primaryScoreString = "Score32";
       }
       if ((lp_healEffect == "OrpheaRavenousHungerHeal")) {
-        lv_primaryScoreString = "TalentTen";
+        lv_primaryScoreString = "Score33";
       }
       if ((lp_healEffect == "OrpheaShadowWaltzRefundMana")) {
-        lv_primaryScoreString = "TalentSeven";
+        lv_primaryScoreString = "Score6";
       }
       if ((lp_healEffect == "OrpheaMindDevourerRefundMana")) {
-        lv_primaryScoreString = "TalentThirteen";
+        lv_primaryScoreString = "Score33";
       }
       if ((lp_healEffect == "OrpheaInvasiveMiasmaHeal")) {
-        lv_primaryScoreString = "TalentTwenty";
+        lv_primaryScoreString = "Score40";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroRagnaros")) {
@@ -20564,6 +20564,7 @@ void libGame_gv_TallyArmorModified (string lp_damageEffect, string lp_attackerTy
 
 void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_damageValue, fixed lp_damageAttempted, unit lp_targetUnit, unit lp_casterUnit, int lp_casterPlayer, int lp_targetPlayer) {
 
+  const int lv_scoreMaxCount = 10;
   fixed lv_primaryScoreOverride;
   fixed lv_secondaryScoreOverride;
   fixed lv_tertiaryScoreOverride;
@@ -20575,11 +20576,13 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
   fixed lv_nonaryScoreOverride;
   fixed lv_denaryScoreOverride;
   fixed lv_onodenaryScoreOverride;
+  fixed[lv_scoreMaxCount + 1] lv_scoreOverride;
 
   bool lv_tempBool;
   unit lv_tempUnit;
   fixed lv_tempFixed;
   int lv_tempInt;
+  bool lv_usesArray;
 
   string lv_primaryScoreString;
   string lv_secondaryScoreString;
@@ -20592,6 +20595,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
   string lv_nonaryScoreString;
   string lv_denaryScoreString;
   string lv_onodenaryScoreString;
+  string[lv_scoreMaxCount + 1] lv_scoreString;
 
   int lv_primaryPlayerOverride;
   int lv_secondaryPlayerOverride;
@@ -20604,9 +20608,11 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
   int lv_nonaryPlayerOverride;
   int lv_denaryPlayerOverride;
   int lv_onodenaryPlayerOverride;
+  int[lv_scoreMaxCount + 1] lv_scorePlayer;
 
   int lv_casterPlayer;
   int lv_targetPlayer;
+  int lv_numScores;
 
   lv_casterPlayer = UnitGetOwner(lp_casterUnit);
   lv_targetPlayer = UnitGetOwner(lp_targetUnit);
@@ -20652,6 +20658,13 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
   lv_nonaryPlayerOverride = lv_casterPlayer;
   lv_denaryPlayerOverride = lv_casterPlayer;
   lv_onodenaryPlayerOverride = lv_casterPlayer;
+
+  while ((lv_tempInt < (lv_scoreMaxCount + 1))) {
+    lv_tempInt += 1;
+    lv_scoreString[lv_tempInt] = "Discard";
+    lv_scoreOverride[lv_tempInt] = lp_damageValue;
+    lv_scorePlayer[lv_tempInt] = lv_casterPlayer;
+  }
 
   if ((lp_damageEffect == "BlockDummyDamage")) {
     lv_primaryScoreString = "Discard";
@@ -24122,30 +24135,37 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroOrphea")) {
+    lv_usesArray = true;
     if ((lp_damageEffect == "OrpheaWeaponDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreOne";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score1";
       }
       else {
-        lv_primaryScoreString = "Discard";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score2";
       }
       if ((UnitHasBehavior2(lp_casterUnit, "OrpheaDeterminationDamage") == true)) {
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_primaryScoreString = "ScoreTen";
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score39";
         }
         else {
-          lv_primaryScoreString = "TalentSixteen";
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score40";
         }
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaDetermination");
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaDetermination");
       }
     }
     if ((lp_damageEffect == "OrpheaWeaponOverflowingChaosDamage") || (lp_damageEffect == "OrpheaWeaponOverflowingChaosDeadMagicDamage")) {
-      lv_primaryScoreString = "ScoreOne";
-      lv_secondaryScoreString = "ScoreTwo";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score1";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score18";
       if ((libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] >= 3.0)) {
         libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = 3.0;
       }
-      lv_secondaryScoreOverride = libGame_gv_DamageCalculateDifferentEntryOrAccumulator(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaOverflowingChaosDamage");
+      lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateDifferentEntryOrAccumulator(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaOverflowingChaosDamage");
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (PlayerHasTalent(lv_casterPlayer, "OrpheaDeadMagic") == true)) {
         libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] = libGame_gv_HeroSpecificStoredValue4[lv_casterPlayer];
         if ((libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] > UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit"))) {
@@ -24157,254 +24177,293 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         }
       }
       if ((UnitHasBehavior2(lp_casterUnit, "OrpheaDeterminationDamage") == true)) {
+        lv_numScores += 1;
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaDetermination");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_primaryScoreString = "ScoreTen";
+          lv_scoreString[lv_numScores] = "Score39";
         }
         else {
-          lv_primaryScoreString = "TalentSixteen";
+          lv_scoreString[lv_numScores] = "Score40";
         }
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaDetermination");
       }
       libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = 0.0;
     }
     if ((lp_damageEffect == "OrpheaShadowWaltzDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreThree";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score4";
         libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = UnitGetTokenCount(lp_casterUnit, "OrpheaOverflowingChaosToken");
         if ((UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") == 0)) {
           libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] = 0.0;
         }
-        if (libGame_gv_HeroSpecificStoredValue8[lv_casterPlayer] != GameGetMissionTime()) {
-          lv_tertiaryScoreOverride = 1.0;
-          lv_tertiaryScoreString = "AccuracyEight";
-        }
-        libGame_gv_HeroSpecificStoredValue8[lv_casterPlayer] = GameGetMissionTime();
+        // if (libGame_gv_HeroSpecificStoredValue8[lv_casterPlayer] != GameGetMissionTime()) {
+        //   lv_tertiaryScoreOverride = 1.0;
+        //   lv_tertiaryScoreString = "Score6";
+        // }
+        // libGame_gv_HeroSpecificStoredValue8[lv_casterPlayer] = GameGetMissionTime();
       }
       else {
-        lv_primaryScoreString = "BaselineOne";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score5";
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") >= 1.0)) {
-        lv_quinaryScoreString = "ScoreTwelve";
-        lv_quinaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduitEmpowered") >= 1.0)) {
-        lv_senaryScoreString = "ScoreTwelve";
-        lv_senaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitFull");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduOrpheaEldritchConduitFullitStacks");
       }
     }
     if ((lp_damageEffect == "OrpheaEnPointeDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreThree";
-        lv_secondaryScoreString = "ScoreSeven";
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "EnPointe");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score4";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score24";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "EnPointe");
         libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = UnitGetTokenCount(lp_casterUnit, "OrpheaOverflowingChaosToken");
         if ((UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") == 0)) {
           libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] = 0.0;
         }
-        if (libGame_gv_HeroSpecificStoredValue8[lv_casterPlayer] != GameGetMissionTime()) {
-          lv_tertiaryScoreOverride = 1.0;
-          lv_tertiaryScoreString = "AccuracyEight";
-        }
-        libGame_gv_HeroSpecificStoredValue8[lv_casterPlayer] = GameGetMissionTime();
+        // if (libGame_gv_HeroSpecificStoredValue8[lv_casterPlayer] != GameGetMissionTime()) {
+        //   lv_tertiaryScoreOverride = 1.0;
+        //   lv_tertiaryScoreString = "Score6";
+        // }
+        // libGame_gv_HeroSpecificStoredValue8[lv_casterPlayer] = GameGetMissionTime();
       }
       else {
-        lv_primaryScoreString = "BaselineOne";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score5";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score25";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "EnPointe");
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") >= 1.0)) {
-        lv_quinaryScoreString = "ScoreTwelve";
-        lv_quinaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduitEmpowered") >= 1.0)) {
-        lv_senaryScoreString = "ScoreTwelve";
-        lv_senaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitFull");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduOrpheaEldritchConduitFullitStacks");
       }
     }
     if ((lp_damageEffect == "OrpheaChompDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFour";
-        if ((PlayerHasTalent(lv_casterPlayer, "OrpheaBackbiter") == true)) {
-				    if ((UnitHasBehavior2(lp_casterUnit, "OrpheaChompKnockback") == true)) {
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Backbiter Dash Present"));
-          }
-					else {
-            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Backbiter Dash Not Present"));
-          }
-        }
-        else {
-          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Distance Between Caster and Target: ") + FixedToText(DistanceBetweenPoints(UnitGetPosition(lp_casterUnit), UnitGetPosition(lp_targetUnit)), 5)));
-        }
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("LockFacingDuration: ") + FixedToText(UnitBehaviorDuration(lp_casterUnit, "LockFacingPoint"), 4)));
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score9";
         libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = UnitGetTokenCount(lp_casterUnit, "OrpheaOverflowingChaosToken");
         if ((UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") == 0)) {
           libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] = 0.0;
         }
         if ((UnitHasBehavior2(lp_targetUnit, "OrpheaLurkingTerrorSlow") == true)) {
-          lv_secondaryScoreString = "ScoreEleven";
+          // Orphea TODO: can we do the same check as with Lurking Terror cast?
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score42";
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score43";
+          lv_scoreOverride[lv_numScores] = 1.0;
         }
-        lv_quaternaryScoreOverride = 1.0;
-        lv_quaternaryScoreString = "AccuracyNine";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score11";
+        lv_scoreOverride[lv_numScores] = 1.0;
+        // Chomp single target hero hit bookmark
         if (libGame_gv_HeroSpecificStoredValue9[lv_casterPlayer] != GameGetMissionTime()) {
-          lv_tertiaryScoreOverride = 1.0;
-          lv_tertiaryScoreString = "AccuracyTen";
+          if ((PlayerHasTalent(lv_casterPlayer, "OrpheaBackbiter") == true)) {
+            lv_numScores += 1;
+            lv_scoreString[lv_numScores] = "Score28";
+            lv_scoreOverride[lv_numScores] = 1.0;
+          }
+          if ((PlayerHasTalent(lv_casterPlayer, "OrpheaInsatiable") == true)) {
+            lv_numScores += 1;
+            lv_scoreString[lv_numScores] = "Score31";
+            lv_scoreOverride[lv_numScores] = 1.0;
+          }
         }
         libGame_gv_HeroSpecificStoredValue9[lv_casterPlayer] = GameGetMissionTime();
       }
       else {
-        lv_primaryScoreString = "BaselineTwo";
-        if ((UnitHasBehavior2(lp_targetUnit, "OrpheaLurkingTerrorSlow") == true)) {
-          lv_secondaryScoreString = "SupportEleven";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score10";
+        // if ((UnitHasBehavior2(lp_targetUnit, "OrpheaLurkingTerrorSlow") == true)) {
+          // lv_numScores += 1;
+          // lv_scoreString[lv_numScores] = "SupportEleven";
           // thx for doing the implementation wrong here blizz, too bad this won't work against dead enemies
-        }
+        // }
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") >= 1.0)) {
-        lv_quinaryScoreString = "ScoreTwelve";
-        lv_quinaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduitEmpowered") >= 1.0)) {
-        lv_senaryScoreString = "ScoreTwelve";
-        lv_senaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitFull");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduOrpheaEldritchConduitFullitStacks");
       }
       // if ((PlayerHasTalent(lv_casterPlayer, "OrpheaRavenousHunger"))) {
       // libGame_gv_HeroSpecificStoredValue6[lv_casterPlayer] = UnitGetTokenCount(lp_casterUnit, "OrpheaRavenousHungerToken");
       // }
     }
+    if ((lp_damageEffect == "OrpheaDreadLineDamage")) {
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score13";
+        libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = UnitGetTokenCount(lp_casterUnit, "OrpheaOverflowingChaosToken");
+        if ((UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") == 0)) {
+          libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] = 0.0;
+        }
+      }
+      else {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score15";
+      }
+      if ((PlayerHasTalent(lv_casterPlayer, "OrpheaGrowingNightmare") == true)) {
+        lv_numScores += 1;
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GrowingNightmarePassive");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_scoreString[lv_numScores] = "Score24";
+        }
+        else {
+          lv_scoreString[lv_numScores] = "Score25";
+        }
+      }
+      if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") >= 1.0)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
+      }
+      if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduitEmpowered") >= 1.0)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduOrpheaEldritchConduitFullitStacks");
+      }
+      if ((PlayerHasTalent(lv_casterPlayer, "OrpheaMindDevourer") == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && (libGame_gv_HeroSpecificStoredValue6[lv_casterPlayer] < CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "OrpheaMindDevourerToken", "Max", lv_casterPlayer))) {
+        libGame_gv_HeroSpecificStoredValue6[lv_casterPlayer] += 1.0;
+      }
+    }
     if ((lp_damageEffect == "OrpheaDreadFinalDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score14";
         if ((PlayerHasTalent(lv_casterPlayer, "OrpheaGrowingNightmare") == true)) {
 					if ((UnitBehaviorCount(lp_casterUnit, "OrpheaDreadGrowingNightmareQuestCompleteTokenCounter") != 0)) {
 						if (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] != 1.0) {
               libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = 1.0;
             }
 						else {
-              lv_secondaryScoreString = "ScoreSeven";
-              lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GrowingNightmareQuest");
-              // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Growing Nightmare Quest Bonus: ") + FixedToText(lv_secondaryScoreOverride, 2)));
+              lv_numScores += 1;
+              lv_scoreString[lv_numScores] = "Score24";
+              lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GrowingNightmareQuest");
             }
           }
-          lv_tertiaryScoreString = "ScoreSeven";
-          lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GrowingNightmarePassive");
-          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Growing Nightmare Passive Bonus: ") + FixedToText(lv_tertiaryScoreOverride, 2)));
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score24";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GrowingNightmarePassive");
         }
         libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = UnitGetTokenCount(lp_casterUnit, "OrpheaOverflowingChaosToken");
         if ((UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") == 0)) {
           libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] = 0.0;
         }
-        if (libGame_gv_HeroSpecificStoredValue10[lv_casterPlayer] != GameGetMissionTime()) {
-          lv_quaternaryScoreOverride = 1.0;
-          lv_quaternaryScoreString = "AccuracyEleven";
-        }
-        libGame_gv_HeroSpecificStoredValue10[lv_casterPlayer] = GameGetMissionTime();
-      }
-      else {
-        lv_primaryScoreString = "BaselineThree";
-        // if ((PlayerHasTalent(lv_casterPlayer, "OrpheaGrowingNightmare"))) {
-			// if ((UnitBehaviorCount(lp_casterUnit, "OrpheaDreadGrowingNightmareQuestCompleteTokenCounter") != 0)) {
-				// if (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] != 1.0) {
-              // libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = 1.0;
-            // }
-			// else {
-              // lv_secondaryScoreString = "ScoreSeven";
-              // lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GrowingNightmareQuest");
-            // }
-          // }
-          // lv_tertiaryScoreString = "ScoreSeven";
-          // lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GrowingNightmarePassive");
+        // Orphea Dread Eruption single target hit
+        // if (libGame_gv_HeroSpecificStoredValue10[lv_casterPlayer] != GameGetMissionTime()) {
+        //   lv_quaternaryScoreOverride = 1.0;
+        //   lv_quaternaryScoreString = "AccuracyEleven";
         // }
-      }
-      if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") >= 1.0)) {
-        lv_quinaryScoreString = "ScoreTwelve";
-        lv_quinaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
-      }
-      if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduitEmpowered") >= 1.0)) {
-        lv_senaryScoreString = "ScoreTwelve";
-        lv_senaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitFull");
-      }
-      if ((PlayerHasTalent(lv_casterPlayer, "OrpheaMindDevourer") == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && (libGame_gv_HeroSpecificStoredValue6[lv_casterPlayer] < CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "OrpheaMindDevourerToken", "Max", lv_casterPlayer))) {
-        libGame_gv_HeroSpecificStoredValue6[lv_casterPlayer] += 1.0;
-      }
-      if ((PlayerHasTalent(lv_casterPlayer, "OrpheaFright") == true)) {
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Slow Duration: ") + FixedToText(UnitBehaviorDuration(lp_targetUnit, "OrpheaDreadFinalSlow"), 2)));
-      }
-    }
-    if ((lp_damageEffect == "OrpheaDreadLineDamage")) {
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreSix";
-        libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = UnitGetTokenCount(lp_casterUnit, "OrpheaOverflowingChaosToken");
-        if ((UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") == 0)) {
-          libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] = 0.0;
-        }
+        // libGame_gv_HeroSpecificStoredValue10[lv_casterPlayer] = GameGetMissionTime();
       }
       else {
-        lv_primaryScoreString = "BaselineThree";
-      }
-      if ((PlayerHasTalent(lv_casterPlayer, "OrpheaGrowingNightmare") == true)) {
-        lv_tertiaryScoreString = "ScoreSeven";
-        lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GrowingNightmarePassive");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score15";
+        if ((PlayerHasTalent(lv_casterPlayer, "OrpheaGrowingNightmare"))) {
+          if ((UnitBehaviorCount(lp_casterUnit, "OrpheaDreadGrowingNightmareQuestCompleteTokenCounter") != 0)) {
+            if (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] != 1.0) {
+              libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = 1.0;
+            }
+            else {
+              lv_numScores += 1;
+              lv_scoreString[lv_numScores] = "Score25";
+              lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GrowingNightmareQuest");
+            }
+          }
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score25";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GrowingNightmarePassive");
+        }
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") >= 1.0)) {
-        lv_quinaryScoreString = "ScoreTwelve";
-        lv_quinaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduitEmpowered") >= 1.0)) {
-        lv_senaryScoreString = "ScoreTwelve";
-        lv_senaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitFull");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduOrpheaEldritchConduitFullitStacks");
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaMindDevourer") == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && (libGame_gv_HeroSpecificStoredValue6[lv_casterPlayer] < CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "OrpheaMindDevourerToken", "Max", lv_casterPlayer))) {
         libGame_gv_HeroSpecificStoredValue6[lv_casterPlayer] += 1.0;
       }
-      if ((PlayerHasTalent(lv_casterPlayer, "OrpheaFright") == true)) {
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Slow Duration: ") + FixedToText(UnitBehaviorDuration(lp_targetUnit, "OrpheaDreadFinalSlow"), 2)));
-      }
     }
-    // if ((lp_damageEffect == "Level1Tier")) {
-    // lv_primaryScoreString = "ScoreSeven";
-    // }
-    // if ((lp_damageEffect == "Talent7Tier")) {
-    // lv_primaryScoreString = "ScoreEight";
-    // }
     if ((lp_damageEffect == "OrpheaEternalFeastDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreNine";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score35";
         if ((PlayerHasTalent(lv_casterPlayer, "OrpheaMonsterWithin") == true)) {
           libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = UnitGetTokenCount(lp_casterUnit, "OrpheaOverflowingChaosToken");
         }
         if (libGame_gv_HeroSpecificStoredValue7[lv_casterPlayer] != GameGetMissionTime()) {
-          lv_secondaryScoreOverride = 1.0;
-          lv_secondaryScoreString = "AccuracyTwelve";
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score37";
+          lv_scoreOverride[lv_numScores] = 1.0;
         }
         libGame_gv_HeroSpecificStoredValue7[lv_casterPlayer] = GameGetMissionTime();
       }
       else {
-        lv_primaryScoreString = "TalentOne";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score36";
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") >= 1.0)) {
-        lv_quinaryScoreString = "ScoreTwelve";
-        lv_quinaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduitEmpowered") >= 1.0)) {
-        lv_senaryScoreString = "ScoreTwelve";
-        lv_senaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitFull");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduOrpheaEldritchConduitFullitStacks");
       }
     }
     if ((lp_damageEffect == "OrpheaCrushingJawsDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreNine";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score35";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score37";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
       else {
-        lv_primaryScoreString = "TalentOne";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score36";
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") >= 1.0)) {
-        lv_quinaryScoreString = "ScoreTwelve";
-        lv_quinaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduitEmpowered") >= 1.0)) {
-        lv_senaryScoreString = "ScoreTwelve";
-        lv_senaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitFull");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduOrpheaEldritchConduitFullitStacks");
       }
     }
     if ((lp_damageEffect == "OrpheaInvasiveMiasmaDamage")) {
-      lv_primaryScoreString = "ScoreTen";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score39";
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = UnitGetTokenCount(lp_casterUnit, "OrpheaOverflowingChaosToken");
         if ((UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") == 0)) {
@@ -24412,26 +24471,33 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         }
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduit") >= 1.0)) {
-        lv_quinaryScoreString = "ScoreTwelve";
-        lv_quinaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitStacks");
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit") == true) && (UnitBehaviorCount(lp_casterUnit, "OrpheaEldritchConduitEmpowered") >= 1.0)) {
-        lv_senaryScoreString = "ScoreTwelve";
-        lv_senaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduitFull");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "OrpheaEldritchConduOrpheaEldritchConduitFullitStacks");
       }
     }
     // if ((lp_damageEffect == "DeterminationBonus")) {
     // lv_primaryScoreString = "ScoreTen";
     // }
     if ((lp_damageEffect == "OrpheaBondOfAnguishDamage")) {
-      lv_primaryScoreString = "ScoreEleven";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score41";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score43";
+      lv_scoreOverride[lv_numScores] = 1.0;
     }
     if ((lp_damageEffect == "OrpheaDeadMagicDamage")) {
+      lv_numScores += 1;
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEleven";
+        lv_scoreString[lv_numScores] = "Score42";
       }
       else {
-        lv_primaryScoreString = "SupportEleven";
+        lv_scoreString[lv_numScores] = "Score43";
       }
       if ((PlayerHasTalent(lv_casterPlayer, "OrpheaEldritchConduit"))) {
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Eldritch Conduit Old: ") + FixedToText(libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer], 0)));
@@ -32323,46 +32389,57 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroZenyatta") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroIsendra") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroPaladin") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroDoomfist")) {
     lv_primaryScoreString = "Discard";
   }
-  if ((lv_primaryScoreString != "Discard") && (lv_primaryScoreString != "")) {
-    libGame_gf_TallyHeroSpecificStatShared(lv_primaryScoreOverride, lv_primaryPlayerOverride, lv_primaryScoreString, ("HeroCombinedDamageTracker casterplayer: " + IntToString(lv_casterPlayer) + (" effect: " + lp_damageEffect)));
-  }
-  else if ((lv_primaryScoreString == "Discard")) {
-    if ((libGame_gv_heroSpecificDebug == true) && ((libGame_gv_heroSpecificDebugString == "Discard") || (libGame_gv_heroSpecificDebugString == "All"))) {
-      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Discarded Damage Specific Check for ") + StringToText(lp_damageEffect)));
+  if (lv_usesArray == true) {
+    lv_tempInt = 0;
+    while ((lv_tempInt < (lv_scoreMaxCount + 1))) {
+      lv_tempInt += 1;
+      if (lv_scoreString[lv_tempInt] != "Discard") {
+      libGame_gf_TallyHeroSpecificStatShared(lv_scoreOverride[lv_tempInt], lv_scorePlayer[lv_tempInt], lv_scoreString[lv_tempInt], ("HeroCombinedDamageTracker" + IntToString(lv_tempInt) + " casterplayer: " + IntToString(lv_casterPlayer) + (" effect: " + lp_damageEffect)));
+      }
     }
   }
-  else if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Damage Specific Tracker failed: ") + StringToText(lp_damageEffect) + StringToText(" against: ") + StringToText(UnitGetType(lp_targetUnit)) + StringToText(" from Caster: ") + StringToText(UnitGetType(lp_casterUnit)) + StringToText(" from Hero: ") + StringToText(UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit)) + StringToText(" for: ") + FixedToText(lp_damageValue, 1)));
-  }
-  if ((lv_secondaryScoreString != "Discard")) {
-    libGame_gf_TallyHeroSpecificStatShared(lv_secondaryScoreOverride, lv_secondaryPlayerOverride, lv_secondaryScoreString, ("HeroCombinedDamageTrackerSecondary casterplayer: " + IntToString(lv_casterPlayer) + (" effect: " + lp_damageEffect)));
-  }
-  if ((lv_tertiaryScoreString != "Discard")) {
-    libGame_gf_TallyHeroSpecificStatShared(lv_tertiaryScoreOverride, lv_tertiaryPlayerOverride, lv_tertiaryScoreString, "HeroCombinedDamageTrackerTertiary");
-  }
-  if ((lv_quaternaryScoreString != "Discard")) {
-    libGame_gf_TallyHeroSpecificStatShared(lv_quaternaryScoreOverride, lv_quaternaryPlayerOverride, lv_quaternaryScoreString, "HeroCombinedDamageTrackerQuaternary");
-  }
-  if ((lv_quinaryScoreString != "Discard")) {
-    libGame_gf_TallyHeroSpecificStatShared(lv_quinaryScoreOverride, lv_quinaryPlayerOverride, lv_quinaryScoreString, "HeroCombinedDamageTrackerQuinary");
-  }
-  if ((lv_senaryScoreString != "Discard")) {
-    libGame_gf_TallyHeroSpecificStatShared(lv_senaryScoreOverride, lv_senaryPlayerOverride, lv_senaryScoreString, "HeroCombinedDamageTrackerSenary");
-  }
-  if ((lv_septenaryScoreString != "Discard")) {
-    libGame_gf_TallyHeroSpecificStatShared(lv_septenaryScoreOverride, lv_septenaryPlayerOverride, lv_septenaryScoreString, "HeroCombinedDamageTrackerSeptenary");
-  }
-  if ((lv_octonaryScoreString != "Discard")) {
-    libGame_gf_TallyHeroSpecificStatShared(lv_octonaryScoreOverride, lv_octonaryPlayerOverride, lv_octonaryScoreString, "HeroCombinedDamageTrackerOctonary");
-  }
-  if ((lv_nonaryScoreString != "Discard")) {
-    libGame_gf_TallyHeroSpecificStatShared(lv_nonaryScoreOverride, lv_nonaryPlayerOverride, lv_nonaryScoreString, "HeroCombinedDamageTrackerNonary");
-  }
-  if ((lv_denaryScoreString != "Discard")) {
-    libGame_gf_TallyHeroSpecificStatShared(lv_denaryScoreOverride, lv_denaryPlayerOverride, lv_denaryScoreString, "HeroCombinedDamageTrackerDenary");
-  }
-  if ((lv_onodenaryScoreString != "Discard")) {
-    libGame_gf_TallyHeroSpecificStatShared(lv_onodenaryScoreOverride, lv_onodenaryPlayerOverride, lv_onodenaryScoreString, "HeroCombinedDamageTrackerOnodenary");
+  else {
+    if ((lv_primaryScoreString != "Discard") && (lv_primaryScoreString != "")) {
+      libGame_gf_TallyHeroSpecificStatShared(lv_primaryScoreOverride, lv_primaryPlayerOverride, lv_primaryScoreString, ("HeroCombinedDamageTracker casterplayer: " + IntToString(lv_casterPlayer) + (" effect: " + lp_damageEffect)));
+    }
+    else if ((lv_primaryScoreString == "Discard")) {
+      if ((libGame_gv_heroSpecificDebug == true) && ((libGame_gv_heroSpecificDebugString == "Discard") || (libGame_gv_heroSpecificDebugString == "All"))) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Discarded Damage Specific Check for ") + StringToText(lp_damageEffect)));
+      }
+    }
+    else if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
+      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Damage Specific Tracker failed: ") + StringToText(lp_damageEffect) + StringToText(" against: ") + StringToText(UnitGetType(lp_targetUnit)) + StringToText(" from Caster: ") + StringToText(UnitGetType(lp_casterUnit)) + StringToText(" from Hero: ") + StringToText(UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit)) + StringToText(" for: ") + FixedToText(lp_damageValue, 1)));
+    }
+    if ((lv_secondaryScoreString != "Discard")) {
+      libGame_gf_TallyHeroSpecificStatShared(lv_secondaryScoreOverride, lv_secondaryPlayerOverride, lv_secondaryScoreString, ("HeroCombinedDamageTrackerSecondary casterplayer: " + IntToString(lv_casterPlayer) + (" effect: " + lp_damageEffect)));
+    }
+    if ((lv_tertiaryScoreString != "Discard")) {
+      libGame_gf_TallyHeroSpecificStatShared(lv_tertiaryScoreOverride, lv_tertiaryPlayerOverride, lv_tertiaryScoreString, "HeroCombinedDamageTrackerTertiary");
+    }
+    if ((lv_quaternaryScoreString != "Discard")) {
+      libGame_gf_TallyHeroSpecificStatShared(lv_quaternaryScoreOverride, lv_quaternaryPlayerOverride, lv_quaternaryScoreString, "HeroCombinedDamageTrackerQuaternary");
+    }
+    if ((lv_quinaryScoreString != "Discard")) {
+      libGame_gf_TallyHeroSpecificStatShared(lv_quinaryScoreOverride, lv_quinaryPlayerOverride, lv_quinaryScoreString, "HeroCombinedDamageTrackerQuinary");
+    }
+    if ((lv_senaryScoreString != "Discard")) {
+      libGame_gf_TallyHeroSpecificStatShared(lv_senaryScoreOverride, lv_senaryPlayerOverride, lv_senaryScoreString, "HeroCombinedDamageTrackerSenary");
+    }
+    if ((lv_septenaryScoreString != "Discard")) {
+      libGame_gf_TallyHeroSpecificStatShared(lv_septenaryScoreOverride, lv_septenaryPlayerOverride, lv_septenaryScoreString, "HeroCombinedDamageTrackerSeptenary");
+    }
+    if ((lv_octonaryScoreString != "Discard")) {
+      libGame_gf_TallyHeroSpecificStatShared(lv_octonaryScoreOverride, lv_octonaryPlayerOverride, lv_octonaryScoreString, "HeroCombinedDamageTrackerOctonary");
+    }
+    if ((lv_nonaryScoreString != "Discard")) {
+      libGame_gf_TallyHeroSpecificStatShared(lv_nonaryScoreOverride, lv_nonaryPlayerOverride, lv_nonaryScoreString, "HeroCombinedDamageTrackerNonary");
+    }
+    if ((lv_denaryScoreString != "Discard")) {
+      libGame_gf_TallyHeroSpecificStatShared(lv_denaryScoreOverride, lv_denaryPlayerOverride, lv_denaryScoreString, "HeroCombinedDamageTrackerDenary");
+    }
+    if ((lv_onodenaryScoreString != "Discard")) {
+      libGame_gf_TallyHeroSpecificStatShared(lv_onodenaryScoreOverride, lv_onodenaryPlayerOverride, lv_onodenaryScoreString, "HeroCombinedDamageTrackerOnodenary");
+    }
   }
 }
 
@@ -38990,23 +39067,32 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
   }
   else if ((lv_heroUnitType == "HeroOrphea")) {
     if ((lp_abilityName == "OrpheaShadowWaltz")) {
-      lv_scoreString = "AccuracyOne";
+      lv_scoreString = "Score3";
+      if (PlayerHasTalent(lv_casterPlayerOverride, "OrpheaEnPointe") == true) {
+        lv_secondaryScoreString = "Score23";
+      }
+      if (PlayerHasTalent(lv_casterPlayerOverride, "OrpheaAllegrissimo") == true) {
+        lv_tertiaryScoreString = "Score27";
+      }
+      if ((UnitHasBehavior2(lp_casterUnit, "OrpheaFinalToccata") == true)) {
+        lv_quaternaryScoreString = "Score45";
+      }
     }
     if ((lp_abilityName == "OrpheaChomp")) {
-      lv_scoreString = "AccuracyTwo";
+      lv_scoreString = "Score8";
       if ((UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "OrpheaLurkingTerrorTracker"), c_unitCountAlive) == 1) && (UnitBehaviorCount(lp_casterUnit, "OrpheaLurkingTerrorCasterBehavior") == 0)) {
-        lv_scoreString = "AccuracySix";
+        lv_secondaryScoreString = "Score41";
         // libGame_gv_HeroSpecificStoredValue7[lv_casterPlayerOverride] = 1.0;
       }
     }
     if ((lp_abilityName == "OrpheaDread")) {
-      lv_scoreString = "AccuracyThree";
+      lv_scoreString = "Score12";
     }
     if ((lp_abilityName == "OrpheaCrushingJaws") || (lp_abilityName == "OrpheaEternalFeast")) {
-      lv_scoreString = "AccuracyFour";
+      lv_scoreString = "Score34";
     }
     if ((lp_abilityName == "OrpheaOverflowingChaosInvasiveMiasma")) {
-      lv_scoreString = "AccuracyFive";
+      lv_scoreString = "Score38";
     }
     if ((lp_abilityName == "OrpheaLurkingTerror")) {
       lv_scoreString = "Discard";
@@ -39014,8 +39100,9 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Orphea Lurking Terror Tracked Unit Group: ") + IntToText(UnitGroupCount(UnitGetTrackedUnitGroup(lp_casterUnit, "OrpheaLurkingTerrorTracker"), c_unitCountAlive))));
     }
     if ((lp_abilityName == "OrpheaFinalToccata")) {
-      lv_scoreString = "AccuracySeven";
+      lv_scoreString = "Score44";
     }
+    // OrpheaShadowWaltzDashAttackSuppress
   }
   else if ((lv_heroUnitType == "HeroProbius")) {
     if ((lp_abilityName == "ProbiusDisruptionPulse")) {
