@@ -406,7 +406,8 @@ string libGame_ge_BehaviorCategoriesStorm_Ident (int lp_val) {
   else if (lp_val == c_behaviorCategoryImmuneToAllyDisplacement) { return "ImmuneToAllyDisplacement";  }
   else if (lp_val == c_behaviorCategoryImmuneToEnemyDisplacement) { return "ImmuneToEnemyDisplacement";  }
   else if (lp_val == c_behaviorCategoryStackingComboMarker) { return "StackingComboMarker";  }
-    else if (lp_val == c_behaviorCategoryStackingComboMarker+1) { return "Any"; }
+  else if (lp_val == c_behaviorCategoryPreventsMovement) { return "PreventsMovement"; }
+  else if (lp_val == c_behaviorCategoryPreventsMovement+1) { return "Any"; }
   return null;
 }
 
@@ -13517,7 +13518,7 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroL90ETC")) {
     if ((PlayerHasTalent(lp_casterPlayer, "ETCMasteryGuitarHero") && (UnitHasBehavior2(lp_casterUnit, "L90ETCGuitarSoloHeroHeal") == true) && (CatalogFieldValueGet(c_gameCatalogEffect, lp_damageEffect, "Kind", lp_casterPlayer) == "Basic"))) {
-      lv_primaryScoreString = "TalentOne";
+      lv_primaryScoreString = "Score13";
     }
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroSgtHammer")) {
@@ -14671,8 +14672,23 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroL90ETC")) {
-      if ((lp_behavior == "TalentBucketStormShield")) {
-        lv_primaryScoreString = "TalentTwenty";
+      if ((lp_behavior == "L90ETCPoweroftheHordeShield")) {
+        if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
+          if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
+            lv_primaryScoreString = "Score32";
+          }
+          else {
+            lv_primaryScoreString = "Score33";
+          }
+        }
+        else {
+          if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
+            lv_primaryScoreString = "Score34";
+          }
+          else {
+            lv_primaryScoreString = "Score35";
+          }
+        }
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMonk")) {
@@ -17066,14 +17082,19 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroL90ETC")) {
       // L90ETCGuitarSoloHeroHealDummy
-      if ((lp_healEffect == "L90ETCGuitarSoloAllyHeal")) {
-        lv_primaryScoreString = "TalentOne";
-      }
       if ((lp_healEffect == "L90ETCGuitarSoloHeroHeal")) {
-        lv_primaryScoreString = "BaselineOne";
+        lv_primaryScoreString = "Score12";
+      }
+      if ((lp_healEffect == "L90ETCGuitarSoloAllyHeal")) {
+        lv_primaryScoreString = "Score13";
       }
       if ((lp_healEffect == "L90ETCPowerSlideCrowdSurferCooldownReduction")) {
-        lv_primaryScoreString = "TalentFour";
+        lv_primaryScoreString = "Score16";
+      }
+      if ((lp_healEffect == "L90ETCPoweroftheHordeShieldCreateHealer")) {
+        lv_primaryScoreString = "Score31";
+        lv_secondaryScoreOverride = 1.0;
+        lv_secondaryScoreString = "Score30";
       }
       if ((lp_healEffect == "L90ETCPowerslideCrowdSurferRefundCheck")) {
         lv_primaryScoreString = "Discard";
@@ -20571,7 +20592,7 @@ void libGame_gv_TallyArmorModified (string lp_damageEffect, string lp_attackerTy
 
 void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_damageValue, fixed lp_damageAttempted, unit lp_targetUnit, unit lp_casterUnit, int lp_casterPlayer, int lp_targetPlayer) {
 
-  const int lv_scoreMaxCount = 10;
+  const int lv_scoreMaxCount = 16;
   fixed lv_primaryScoreOverride;
   fixed lv_secondaryScoreOverride;
   fixed lv_tertiaryScoreOverride;
@@ -20666,7 +20687,8 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
   lv_denaryPlayerOverride = lv_casterPlayer;
   lv_onodenaryPlayerOverride = lv_casterPlayer;
 
-  while ((lv_tempInt < (lv_scoreMaxCount + 1))) {
+  lv_tempInt = 0;
+  while ((lv_tempInt < (lv_scoreMaxCount))) {
     lv_tempInt += 1;
     lv_scoreString[lv_tempInt] = "Discard";
     lv_scoreOverride[lv_tempInt] = lp_damageValue;
@@ -26740,67 +26762,180 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroL90ETC")) {
+    lv_usesArray = true;
     if ((lp_damageEffect == "L90ETCWeaponDamage")) {
-      lv_secondaryScoreOverride = 1.0;
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreOne";
-        lv_secondaryScoreString = "AccuracySeven";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score1";
+        if ((PlayerHasTalent(lv_casterPlayer, "ETCMasteryHammeron") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score17";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "L90ETCHammerOnPassive");
+          if ((UnitHasBehavior2(lp_casterUnit, "L90ETCGuitarSoloHeroHeal") == true)) {
+            lv_numScores += 1;
+            lv_scoreString[lv_numScores] = "Score18";
+            lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "L90ETCHammerOnActive");
+          }
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreTwo";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score2";
+        if ((PlayerHasTalent(lv_casterPlayer, "ETCMasteryHammeron") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score19";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "L90ETCHammerOnPassive");
+          if ((UnitHasBehavior2(lp_casterUnit, "L90ETCGuitarSoloHeroHeal") == true)) {
+            lv_scoreOverride[lv_numScores] += libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "L90ETCHammerOnActive");
+          }
+        }
+      }
+      if ((libCore_gf_IsAbilityOnCooldown(lp_casterUnit, "L90ETCGuitarSolo") == true) && (PlayerHasTalent(lv_casterPlayer, "ETCMasteryGuitarSoloAggressiveShredding") == true) && (lp_damageValue != 0.0)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score28";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
     }
     if ((lp_damageEffect == "PowerSlideDamage")) {
-      lv_secondaryScoreOverride = 1.0;
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreThree";
-        lv_secondaryScoreString = "AccuracyEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score4";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score6";
+        lv_scoreOverride[lv_numScores] = 1.0;
+        if ((PlayerHasTalent(lv_casterPlayer, "L90ETCMasteryFaceMeltPinballWizard") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score17";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreFour";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score5";
       }
     }
-    if ((lp_damageEffect == "FaceMeltDamage")) {
-      lv_secondaryScoreOverride = 1.0;
+    if ((lp_damageEffect == "FaceMeltDamage") || (lp_damageEffect == "L90ETCFaceMeltPinballWizardDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
-        lv_secondaryScoreString = "AccuracyNine";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score8";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score10";
+        lv_scoreOverride[lv_numScores] = 1.0;
+        if ((PlayerHasTalent(lv_casterPlayer, "L90ETCMasteryFaceMeltPinballWizard") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score18";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
+        if ((lp_damageEffect == "L90ETCFaceMeltPinballWizardDamage")) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score19";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreSix";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score9";
       }
-    }
-    if ((lp_damageEffect == "L90ETCFaceMeltPinballWizardDamage")) {
-      lv_secondaryScoreOverride = 1.0;
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
-        lv_secondaryScoreString = "AccuracyNine";
-      }
-      else {
-        lv_primaryScoreString = "ScoreSix";
+      if ((PlayerHasTalent(lv_casterPlayer, "ETCMasteryMicCheck") == true)) {
+        if (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] != GameGetMissionTime()) {
+          libGame_gv_HeroSpecificStoredValue4[lv_casterPlayer] = 1.0;
+          UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Target is Fresh"));
+        }
+        else {
+          if (libGame_gv_HeroSpecificStoredValue4[lv_casterPlayer] == 1.0) {
+            lv_numScores += 1;
+            lv_scoreString[lv_numScores] = "Score25";
+            lv_scoreOverride[lv_numScores] = 1.0;
+            libGame_gv_HeroSpecificStoredValue4[lv_casterPlayer] = 2.0;
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Mic Check Proc"));
+          }
+          else {
+            UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Mic already checked"));
+          }
+        }
+        libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = GameGetMissionTime();
       }
     }
     if ((lp_damageEffect == "L90ETCPassiveEchoPedalDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreSeven";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score17";
       }
       else {
-        lv_primaryScoreString = "ScoreEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score18";
       }
     }
     if ((lp_damageEffect == "StageDiveDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreNine";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score21";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score23";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
       else {
-        lv_primaryScoreString = "ScoreTen";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score22";
       }
     }
     if ((lp_damageEffect == "ETCBlockPartyDummyDamageTarget")) {
-      lv_primaryScoreString = "Discard";
+      // lv_primaryScoreString = "Discard";
     }
     if ((lp_damageEffect == "ETCBlockPartyDummyDamage")) {
-      lv_primaryScoreString = "Discard";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score13";
+    }
+    
+    if ((lp_damageEffect == "L90ETCRidetheLightningDamage")) {
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score30";
+        if (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] != GameGetMissionTime()) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score32";
+          lv_scoreOverride[lv_numScores] = 1.0;
+          libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] = 1.0;
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Ride the Lightning hit 1"));
+        }
+        else {
+          if (libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] == 4.0) {
+            lv_numScores += 1;
+            lv_scoreString[lv_numScores] = "Score36";
+            lv_scoreOverride[lv_numScores] = 1.0;
+            libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] = 5.0;
+            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Ride the Lightning hit 5+"));
+          }
+          if (libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] == 3.0) {
+            lv_numScores += 1;
+            lv_scoreString[lv_numScores] = "Score35";
+            lv_scoreOverride[lv_numScores] = 1.0;
+            libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] = 4.0;
+            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Ride the Lightning hit 4+"));
+          }
+          else if (libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] == 2.0) {
+            lv_numScores += 1;
+            lv_scoreString[lv_numScores] = "Score34";
+            lv_scoreOverride[lv_numScores] = 1.0;
+            libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] = 3.0;
+            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Ride the Lightning hit 3"));
+          }
+          else if (libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] == 1.0) {
+            lv_numScores += 1;
+            lv_scoreString[lv_numScores] = "Score33";
+            lv_scoreOverride[lv_numScores] = 1.0;
+            libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] = 2.0;
+            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Ride the Lightning hit 2"));
+          }
+          else {
+          }
+        }
+        libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = GameGetMissionTime();
+      }
+      else {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score31";
+      }
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroFalstad")) {
@@ -35134,6 +35269,13 @@ void libGame_gf_trackHeroCooldowns () {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
     }
+    if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroL90ETC")) {
+      lv_heroAbilCount[lv_playerIterator] += 1;
+      lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "L90ETCTimeTracker";
+      if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
+      }
+    }
     
     lv_heroAbilCount[lv_playerIterator] += 1;
     lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "MedivhPortalDetector";
@@ -35636,6 +35778,10 @@ fixed libGame_gf_FetchAbilityCooldownTime (unit lp_unit, string lp_ability, int 
   if ((lp_ability == "WhitemaneZealDetector")) {
     lv_cooldownTime = GameGetMissionTime();
     lv_method = "ZealDetector";
+  }
+  if ((lp_ability == "L90ETCTimeTracker")) {
+    lv_cooldownTime = GameGetMissionTime();
+    lv_method = "CowDetector";
   }
   if ((lp_ability == "Generic3Template")) {
     lv_cooldownTime = GameGetMissionTime();
@@ -36763,13 +36909,29 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
   }
   else if ((lv_heroUnitType == "HeroL90ETC")) {
     if ((lp_abilityName == "L90ETCPowerslide")) {
-      lv_scoreString = "AccuracyOne";
+      lv_scoreString = "Score3";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ETCCrowdSurfer") == true) || (PlayerHasTalent(lv_casterPlayerOverride, "ETCMasterySpeedMetal") == true)) {
+        lv_secondaryScoreString = "Score15";
+      }
+      if ((UnitHasBehavior2(lp_casterUnit, "L90ETCMoshPitChannel") == true) && (PlayerHasTalent(lv_casterPlayerOverride, "L90ETCMasteryMoshPitTourBus") == true)) {
+        lv_tertiaryScoreString = "Score30";
+      }
     }
     if ((lp_abilityName == "L90ETCFaceMelt")) {
-      lv_scoreString = "AccuracyTwo";
+      lv_scoreString = "Score7";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ETCMasterySpeedMetal") == true)) {
+        lv_secondaryScoreString = "Score15";
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ETCMasteryMicCheck") == true) || (PlayerHasTalent(lv_casterPlayerOverride, "ETCMasteryEncore") == true)) {
+        lv_tertiaryScoreString = "Score24";
+      }
+      // FaceMeltMicCheckLimiter Behavior Check maybe?
     }
     if ((lp_abilityName == "L90ETCGuitarSolo")) {
-      lv_scoreString = "AccuracyThree";
+      lv_scoreString = "Score11";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ETCMasterySpeedMetal") == true)) {
+        lv_secondaryScoreString = "Score15";
+      }
     }
     if ((lp_abilityName == "RockstarDummy")) {
       lv_scoreString = "Discard";
@@ -36779,17 +36941,37 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
         lv_scoreString = "Discard";
       }
       else {
-        lv_scoreString = "AccuracyFour";
+        lv_scoreString = "Score20";
+        if ((PlayerHasTalent(lv_casterPlayerOverride, "ETCMasterySpeedMetal") == true)) {
+          lv_secondaryScoreString = "Score15";
+        }
+        if ((PlayerHasTalent(lv_casterPlayerOverride, "ETCMasterySpeedMetal") == true)) {
+          lv_tertiaryScoreString = "Score29";
+        }
       }
     }
     if ((lp_abilityName == "L90ETCMoshPitCancel")) {
       lv_scoreString = "Discard";
     }
     if ((lp_abilityName == "TalentImposingPresence")) {
-      lv_scoreString = "AccuracyFive";
+      lv_scoreString = "Score28";
     }
-    if ((lp_abilityName == "FlashoftheStorms") || (lp_abilityName == "TalentBucketStormShield")) {
-      lv_scoreString = "AccuracySix";
+    if ((lp_abilityName == "L90ETCRidetheLightning") || (lp_abilityName == "L90ETCPoweroftheHorde")) {
+      lv_scoreString = "Score29";
+    }
+    if ((lp_abilityName == "L90ETCTimeTracker")) {
+      lv_scoreString = "Discard";
+      if ((UnitGetTokenCount(lp_casterUnit, "ETCProgRockTokenCounter") == 20.0) && (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride] != 1.0)) {
+        lv_secondaryScoreValueOverride = FixedToInt(TimerGetElapsed(libGame_gv_gameTimer));
+        lv_secondaryScoreString = "Score14";
+        libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride] = 1.0;
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ETCMasteryGuitarHero") && (UnitHasBehavior2(lp_casterUnit, "L90ETCGuitarSoloHeroHeal") == true))) {
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score14");
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ETCMasterySpeedMetal") && (UnitHasBehavior2(lp_casterUnit, "ETCSpeedMetal") == true))) {
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score16");
+      }
     }
   }
   else if ((lv_heroUnitType == "HeroFalstad")) {
@@ -40090,7 +40272,7 @@ void libGame_gv_initializeOBSUI () {
 
   if ((libGame_gv_heroSpecificDebugString != "Ignore")) {
     UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Initialising Mercenary Tracker"));
-    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.39 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stats Version: v0.40 ") + StringToText("Interface Version: ") + StringExternal("UI/Spazzo/UIVersion"));
     // Well, I tried to add team coloured globes.
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].ModelOwnerHasPlayerId", libCore_gv_cOMPUTER_TeamOrder, "11");
     // CatalogFieldValueSet(c_gameCatalogActor, "ExperienceGlobeAlly", "ModelAspectSets[" + IntToString(0) + "].Aspects[" + IntToString(0) + "].Person", libCore_gv_cOMPUTER_TeamOrder, "Observer");
@@ -41975,6 +42157,25 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
     lv_flatDamageModifier = 0.0;
 
     lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "ImperiusSolarionsFireDamageCenter", "MultiplicativeModifierArray[" + "ConsumingFlame" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
+  }
+
+  
+  if ((lp_inputData == "L90ETCHammerOnPassive")) {
+
+    if ((lp_damageEffect == "L90ETCWeaponDamage")) {
+      lv_flatDamageModifier = 0.0;
+    }
+
+    lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "L90ETCWeaponDamage", "MultiplicativeModifierArray[" + "HasHammeron" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
+  }
+
+  if ((lp_inputData == "L90ETCHammerOnActive")) {
+
+    if ((lp_damageEffect == "L90ETCWeaponDamage")) {
+      lv_flatDamageModifier = 0.0;
+    }
+
+    lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "L90ETCWeaponDamage", "MultiplicativeModifierArray[" + "HasGuitarSoloActive" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
   }
 
 
