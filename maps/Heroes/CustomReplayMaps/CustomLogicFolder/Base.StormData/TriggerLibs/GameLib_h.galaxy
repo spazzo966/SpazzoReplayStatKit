@@ -1885,6 +1885,7 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
 void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed lp_damageValue, fixed lp_leechValueSelf, fixed lp_calculatedActualLeechFraction, fixed lp_healTakenModifier, unit lp_casterUnit, unit lp_targetUnit, int lp_casterPlayer);
 int libGame_gv_FetchOutsiderUnpresentLeechCaster (string lp_expectedHero, string lp_expectedTalent, int lp_casterPlayer);
 fixed libGame_gv_FetchOutsiderUnpresentLeechFraction (string lp_expectedHero, string lp_expectedTalent, int lp_casterPlayer);
+int libGame_gv_GetPlayerAllySlot (int lp_casterPlayer, int lp_targetPlayer);
 fixed libGame_gv_GetLeechFractionFromCasterBehaviors (string lp_damageEffect, unit lp_targetUnit, unit lp_casterUnit, int lp_casterPlayer);
 fixed libGame_gv_LeechFractionSpecialCase (string lp_damageEffect, fixed lp_damageValue, fixed lp_leechValue, fixed lp_calculatedLeechFraction, unit lp_casterUnit, int lp_casterPlayer);
 fixed libGame_gv_LeechFractionSpecialCaseHeatOfBattle (string lp_damageEffect, fixed lp_damageValue, fixed lp_knownLeechFraction, fixed lp_calculatedLeechFraction, fixed lp_healTakenModifier, unit lp_casterUnit, int lp_casterPlayer, fixed lp_leechValue);

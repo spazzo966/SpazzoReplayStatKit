@@ -12913,7 +12913,8 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
         // HeroAna Nano Infusion
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (FixedToText(lv_leechValueOutsider[4], 3) + StringToText(" Leech from ") + StringToText(UnitGetType(libGame_gv_players[lv_leechFractionFromOutsideBehaviorOwner[4]].lv_heroUnit))));
         libGame_gf_HeroSpecificStatTrackerOther(lv_leechValueOutsider[4], lv_leechFractionFromOutsideBehaviorOwner[4], lp_casterPlayer, "HealingToPlayerTrack", null, "");
-        libGame_gf_TallyHeroSpecificStatShared(lv_leechValueOutsider[4], lv_leechFractionFromOutsideBehaviorOwner[4], "TalentTwenty", "NanoBoost");
+        libGame_gf_TallyHeroSpecificStatShared(lv_leechValueOutsider[4], lv_leechFractionFromOutsideBehaviorOwner[4], ("Score" + IntToString(42 + libGame_gv_GetPlayerAllySlot(lv_leechFractionFromOutsideBehaviorOwner[4], lp_casterPlayer))), "NanoBoost");
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Nano Infusion Healed Slot: ") + IntToText(libGame_gv_GetPlayerAllySlot(lv_leechFractionFromOutsideBehaviorOwner[4], lp_casterPlayer))));
       }
     }
     if ((lv_leechFractionFromSelf > 0.0)) {
@@ -13015,7 +13016,8 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
       if ((lv_leechFractionFromOutside[4] > 0.0)) {
         // HeroAna Nano Infusion
         libGame_gf_HeroSpecificStatTrackerOther(lv_leechValueOutsider[4], lv_leechFractionFromOutsideBehaviorOwner[4], lp_casterPlayer, "HealingToPlayerTrack", null, "");
-        libGame_gf_TallyHeroSpecificStatShared(lv_leechValueOutsider[4], lv_leechFractionFromOutsideBehaviorOwner[4], "TalentTwenty", "Nanoboost");
+        libGame_gf_TallyHeroSpecificStatShared(lv_leechValueOutsider[4], lv_leechFractionFromOutsideBehaviorOwner[4], ("Score" + IntToString(42 + libGame_gv_GetPlayerAllySlot(lv_leechFractionFromOutsideBehaviorOwner[4], lp_casterPlayer))), "NanoBoost");
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Alt Nano Infusion Healed Slot: ") + IntToText(libGame_gv_GetPlayerAllySlot(lv_leechFractionFromOutsideBehaviorOwner[4], lp_casterPlayer))));
       }
       if ((lv_leechFractionFromSelf > 0.0)) {
         libGame_gf_HeroSpecificStatTrackerOther(lv_leechValueSelf, lp_casterPlayer, lp_casterPlayer, "HealingToPlayerTrack", null, "");
@@ -14045,6 +14047,34 @@ fixed libGame_gv_FetchOutsiderUnpresentLeechFraction (string lp_expectedHero, st
     lv_leechFraction = CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "TassadarPlasmaShield", "Modification.VitalDamageLeechArray[" + IntToString(c_unitVitalLife) + "].KindArray[" + IntToString(c_unitDamageTypeBasic) + "]", lv_casterPlayer);
   }
   return lv_leechFraction;
+}
+
+int libGame_gv_GetPlayerAllySlot (int lp_casterPlayer, int lp_targetPlayer) {
+  int lv_casterPlayerRosterSlot;
+  int lv_targetPlayerRosterSlot;
+  int lv_returnValue;
+  
+  if ((lp_casterPlayer == lp_targetPlayer) || (libGame_gf_TeamNumberOfPlayer(lp_casterPlayer) != libGame_gf_TeamNumberOfPlayer(lp_targetPlayer))) {
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Attempted to get ally roster slot for same player or enemy player, caster: ") + IntToText(lp_casterPlayer) + StringToText(" target: ") + IntToText(lp_targetPlayer)));
+    return 0;
+  }
+
+  lv_casterPlayerRosterSlot = libGame_gv_players[lp_casterPlayer].lv_rosterSlot;
+  lv_targetPlayerRosterSlot = libGame_gv_players[lp_targetPlayer].lv_rosterSlot;
+
+  if (libGame_gf_TeamNumberOfPlayer(lp_casterPlayer) == libGame_gv_teamChaosIndex_C) {
+    lv_casterPlayerRosterSlot -= 5;
+    lv_targetPlayerRosterSlot -= 5;
+  }
+
+  if ((lv_casterPlayerRosterSlot < lv_targetPlayerRosterSlot)) {
+    lv_returnValue = (lv_targetPlayerRosterSlot - 1);
+  }
+  if ((lv_casterPlayerRosterSlot > lv_targetPlayerRosterSlot)) {
+    lv_returnValue = lv_targetPlayerRosterSlot;
+  }
+
+  return lv_returnValue;
 }
 
 void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string lp_behavior, unit lp_internalUnit, unit lp_externalUnit, int lp_casterPlayer, string lp_damageEffect) {
@@ -15891,15 +15921,16 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
         }
       }
       if ((lp_healEffect == "AnaBioticGrenadeAllyImpactCreateHealer")) {
-        // lv_primaryScoreString = "BaselineThree";
         if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
-          lv_primaryScoreString = "BaselineTwo";
+          lv_primaryScoreString = "Score11";
+          lv_secondaryScoreString = "Score15";
+          lv_secondaryScoreOverride = 1.0;
         }
         else {
-          lv_primaryScoreString = "BaselineThree";
+          lv_primaryScoreString = "Score10";
+          lv_secondaryScoreString = "Score14";
+          lv_secondaryScoreOverride = 1.0;
         }
-        lv_secondaryScoreString = "AccuracyTen";
-        lv_secondaryScoreOverride = 1.0;
       }
       if ((lp_healEffect == "AnaNanoBoostModifyUnit")) {
         lv_primaryScoreString = "Score30";
@@ -15908,9 +15939,10 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
         lv_primaryScoreString = "Score34";
         lv_secondaryScoreString = "Score35";
         lv_secondaryScoreOverride = 1.0;
-      }
-      if ((lp_healEffect == "AnaEyeOfHorusBallisticAdvantageImpactAllyCreateHealer")) {
-        // lv_primaryScoreString = "TalentTwenty";
+        if ((PlayerHasTalent(lv_casterPlayer, "AnaEyeOfHorusDeadeye") == true)) {
+          lv_tertiaryScoreOverride = 1.0;
+          lv_tertiaryScoreString = "Score45";
+        }
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAnduin")) {
@@ -25465,9 +25497,6 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       else {
         lv_numScores += 1;
         lv_scoreString[lv_numScores] = "Score31";
-        lv_numScores += 1;
-        lv_scoreString[lv_numScores] = "Score33";
-        lv_scoreOverride[lv_numScores] = 1.0;
       }
     }
     if ((lp_damageEffect == "AnaEyeOfHorusImpactDummyDamage")) {
@@ -35203,19 +35232,19 @@ void libGame_gf_trackHeroCooldowns () {
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroHogger")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "HoggerHoggWildBounceCounter";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "HoggerMeatDetector";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "HoggerRagePercentageMonitor";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
@@ -35223,7 +35252,7 @@ void libGame_gf_trackHeroCooldowns () {
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroMonk")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "MonkSixthSenseDetector";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
@@ -35231,7 +35260,7 @@ void libGame_gf_trackHeroCooldowns () {
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroDemonHunter")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "DemonHunterHatredDetector";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
@@ -35241,7 +35270,7 @@ void libGame_gf_trackHeroCooldowns () {
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroDryad")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "DryadSwiftnessDetector";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
@@ -35250,7 +35279,7 @@ void libGame_gf_trackHeroCooldowns () {
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroCho")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "ChoLifePercentageMonitor";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
@@ -35260,13 +35289,13 @@ void libGame_gf_trackHeroCooldowns () {
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroRaynor")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "GiddyUp";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "RallyingCry";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
@@ -35274,7 +35303,7 @@ void libGame_gf_trackHeroCooldowns () {
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroFirebat")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "FirebatStimpackPassiveDetector";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
@@ -35282,7 +35311,7 @@ void libGame_gf_trackHeroCooldowns () {
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroFalstad")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "FalstadTailwindDetector";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
@@ -35294,7 +35323,7 @@ void libGame_gf_trackHeroCooldowns () {
       // lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "ZuljinYouWantAxeDetector";
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "ZuljinYouWantAxeProgressDetector";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
@@ -35303,7 +35332,7 @@ void libGame_gf_trackHeroCooldowns () {
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroDehaka")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "DehakaBrushstalkerDetector";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
@@ -35312,7 +35341,7 @@ void libGame_gf_trackHeroCooldowns () {
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroLucio")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "LucioAmpItUpDetector";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
@@ -35320,7 +35349,7 @@ void libGame_gf_trackHeroCooldowns () {
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroWhitemane")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "WhitemaneZealDetector";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
@@ -35328,7 +35357,15 @@ void libGame_gf_trackHeroCooldowns () {
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroL90ETC")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "L90ETCTimeTracker";
-      lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
+      if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
+      }
+    }
+    if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroAna")) {
+      lv_heroAbilCount[lv_playerIterator] += 1;
+      lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "AnaADSDetector";
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
@@ -35336,25 +35373,25 @@ void libGame_gf_trackHeroCooldowns () {
     
     lv_heroAbilCount[lv_playerIterator] += 1;
     lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "MedivhPortalDetector";
-    lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+    lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
     if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
       UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
     }
     lv_heroAbilCount[lv_playerIterator] += 1;
     lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "GarroshIntoTheFrayDetector";
-    lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+    lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
     if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
       UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
     }
     lv_heroAbilCount[lv_playerIterator] += 1;
     lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "HeroVisionDetector";
-    lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+    lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
     if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
       UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
     }
     lv_heroAbilCount[lv_playerIterator] += 1;
     lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "HeroInjuredDetector";
-    lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+    lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
     if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
       UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
     }
@@ -35365,13 +35402,13 @@ void libGame_gf_trackHeroCooldowns () {
     }
     lv_heroAbilCount[lv_playerIterator] += 1;
     lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "Generic3Template";
-    lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+    lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
     if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
       UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
     }
     lv_heroAbilCount[lv_playerIterator] += 1;
     lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "FountainsUsed";
-    lv_notCooldown[lv_playerIterator[lv_heroAbilCount[lv_playerIterator]]] = true;
+    lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
     if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
       UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
     }
@@ -35846,6 +35883,10 @@ fixed libGame_gf_FetchAbilityCooldownTime (unit lp_unit, string lp_ability, int 
     lv_cooldownTime = GameGetMissionTime();
     lv_method = "CowDetector";
   }
+  if ((lp_ability == "AnaADSDetector")) {
+    lv_cooldownTime = GameGetMissionTime();
+    lv_method = "ADSDetector";
+  }
   if ((lp_ability == "Generic3Template")) {
     lv_cooldownTime = GameGetMissionTime();
     lv_method = "Generic3Template";
@@ -36180,6 +36221,28 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     }
     if ((lp_abilityName == "AnaHealingDartDetachableBoxMagazine")) {
       lv_scoreString = "Score39";
+    }
+    if ((lp_abilityName == "AnaADSDetector")) {
+      lv_scoreString = "Discard";
+      if ((UnitHasBehavior2(lp_casterUnit, "AnaAimDownSights") == true)) {
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score23");
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "AnaHealingDartSharpshooter")) && (UnitIsAlive(lp_casterUnit) == true)) {
+        if ((UnitGetTokenCount(lp_casterUnit, "AnaHealingDartSharpshooter") != 0.0) && (UnitGetTokenCount(lp_casterUnit, "AnaHealingDartSharpshooter") != 1.0)) {
+          if (UnitHasBehavior2(lp_casterUnit, "AnaHealingDartSharpshooterMaxStacksCarry") == true) {
+            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score38");
+          }
+          else if ((UnitGetTokenCount(lp_casterUnit, "AnaHealingDartSharpshooter") == 2.0) || (UnitGetTokenCount(lp_casterUnit, "AnaHealingDartSharpshooter") == 3.0) || (UnitGetTokenCount(lp_casterUnit, "AnaHealingDartSharpshooter") == 4.0) || (UnitGetTokenCount(lp_casterUnit, "AnaHealingDartSharpshooter") == 5.0)) {
+            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score39");
+          }
+          else if ((UnitGetTokenCount(lp_casterUnit, "AnaHealingDartSharpshooter") == 6.0) || (UnitGetTokenCount(lp_casterUnit, "AnaHealingDartSharpshooter") == 7.0) || (UnitGetTokenCount(lp_casterUnit, "AnaHealingDartSharpshooter") == 8.0) || (UnitGetTokenCount(lp_casterUnit, "AnaHealingDartSharpshooter") == 9.0)) {
+            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score40");
+          }
+        }
+        else {
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score41");
+        }
+      }
     }
   }
   else if ((lv_heroUnitType == "HeroAnduin")) {
