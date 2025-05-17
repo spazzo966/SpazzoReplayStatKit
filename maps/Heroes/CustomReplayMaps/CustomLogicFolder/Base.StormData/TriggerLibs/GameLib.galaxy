@@ -13144,7 +13144,7 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
             UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Expected Leech is higher than actual leech! Effect: ") + StringToText(lp_damageEffect)));
             UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText(lv_leechState));
             UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Leech Value: ") + FixedToText(lp_leechValue, 2) + StringToText(" Expected Leech Value: ") + FixedToText(lv_expectedLeechValue, 4) + StringToText(" Calculated Leech Fraction: ") + FixedToText(lv_calculatedActualLeechFraction, 2)));
-            }
+          }
         }
         // if ((lv_expectedLeechValue < 0.0)) {
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("More Leech was subtracted than leech was present! Effect: ") + StringToText(lp_damageEffect) + StringToText(" Expected Leech Value: ") + FixedToText(lv_expectedLeechValue, 2)));
@@ -14241,10 +14241,10 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
       if (((lp_behavior == "AurielSacredSweepBlindingFlashBlind") || (lp_behavior == "AurielSacredSweepBlindingFlashBlindNonHeroes")) && (UnitTypeTestAttribute(UnitGetType(lp_externalUnit), c_unitAttributeHeroic) == true)) {
         if (libGame_gf_TeamNumberOfPlayer(lv_externalPlayer) == libGame_gf_TeamNumberOfPlayer(lp_casterPlayer)) {
 					if ((lv_externalPlayer != lp_casterPlayer)) {
-            lv_primaryScoreString = "TalentTen";
+            lv_primaryScoreString = "Score41";
           }
 					else {
-            lv_primaryScoreString = "TalentThirteen";
+            lv_primaryScoreString = "Score41";
           }
         }
         else {
@@ -14252,7 +14252,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
         }
       }
       if (((lp_behavior == "AurielSacredSweepBlindingFlashBlind") || (lp_behavior == "AurielSacredSweepBlindingFlashBlindNonHeroes")) && (UnitTypeTestAttribute(UnitGetType(lp_externalUnit), c_unitAttributeHeroic) == false)) {
-        lv_primaryScoreString = "TalentSeven";
+        lv_primaryScoreString = "Discard";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroDeckard")) {
@@ -15296,7 +15296,12 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAuriel")) {
       if ((lp_behavior == "AurielShieldOfHopeShieldBehavior")) {
-        lv_primaryScoreString = "TalentTwenty";
+        if ((UnitGetOwner(lp_internalUnit) != lp_casterPlayer)) {
+          lv_primaryScoreString = "Score45";
+        }
+        else {
+          lv_primaryScoreString = "Score46";
+        }
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroGarrosh")) {
@@ -16248,17 +16253,21 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAuriel")) {
       if ((lp_healEffect == "AurielRayOfHeavenCreateHealer")) {
         if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
-          lv_primaryScoreString = "BaselineOne";
+          lv_primaryScoreString = "Score9";
+          lv_secondaryScoreOverride = 1.0;
+          lv_secondaryScoreString = "Score11";
         }
         else {
-          lv_primaryScoreString = "BaselineTwo";
+          lv_primaryScoreString = "Score10";
+          lv_secondaryScoreOverride = 1.0;
+          lv_secondaryScoreString = "Score12";
         }
-        if ((PlayerHasTalent(lp_casterPlayer, "AurielReservoirofHopeRayOfHeavenTalent")) && (libGame_gv_HeroSpecificStoredValue1[lp_casterPlayer] > libGame_gv_HeroSpecificStoredValue2[lp_casterPlayer]) && (libGame_gv_HeroSpecificStoredValue3[lp_casterPlayer] != 0.0)) {
-                if ((lv_primaryScoreOverride > ((libGame_gv_HeroSpecificStoredValue2[lp_casterPlayer] * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit)))) {
-            lv_secondaryScoreString = "TalentSixteen";
-            lv_secondaryScoreOverride = (lv_primaryScoreOverride - ((libGame_gv_HeroSpecificStoredValue2[lp_casterPlayer] * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit)));
-          }
-        }
+        // if ((PlayerHasTalent(lp_casterPlayer, "AurielReservoirofHopeRayOfHeavenTalent")) && (libGame_gv_HeroSpecificStoredValue1[lp_casterPlayer] > libGame_gv_HeroSpecificStoredValue2[lp_casterPlayer]) && (libGame_gv_HeroSpecificStoredValue3[lp_casterPlayer] != 0.0)) {
+        //   if ((lv_primaryScoreOverride > ((libGame_gv_HeroSpecificStoredValue2[lp_casterPlayer] * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit)))) {
+        //     lv_tertiaryScoreString = "Score43";
+        //     lv_tertiaryScoreOverride = (lv_primaryScoreOverride - ((libGame_gv_HeroSpecificStoredValue2[lp_casterPlayer] * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit)));
+        //   }
+        // }
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAzmodan")) {
@@ -16343,15 +16352,15 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
         // }
         // }
         if ((PlayerHasTalent(lp_casterPlayer, "BrightwingPhaseShiftHyperShift") == true)) {
-              if (lv_tempBool == false) {
-                  if (lp_healedValue > (((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_healEffect, "RechargeVitalFraction", 0)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit))) {
+          if (lv_tempBool == false) {
+            if (lp_healedValue > (((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_healEffect, "RechargeVitalFraction", 0)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit))) {
               lv_tertiaryScoreOverride = (lp_healedValue - (((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_healEffect, "RechargeVitalFraction", 0)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit)));
               lv_tertiaryScoreString = "TalentOne";
               // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Hyper Shift Bonus: ") + FixedToText(lv_tertiaryScoreOverride, 2)));
             }
           }
-              else {
-                  if (lp_healedValue > (((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_healEffect, "RechargeVitalFraction", 0)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit))) {
+          else {
+            if (lp_healedValue > (((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_healEffect, "RechargeVitalFraction", 0)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit))) {
               lv_tertiaryScoreOverride = ((((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_healEffect, "RechargeVitalFraction", lp_casterPlayer)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit)) - (((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_healEffect, "RechargeVitalFraction", 0)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit)));
               lv_tertiaryScoreString = "TalentOne";
                       if (((((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_healEffect, "RechargeVitalFraction", 0)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit)) + lv_tertiaryScoreOverride) > lp_healedValue) {
@@ -16360,13 +16369,13 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
               // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Hyper Shift Bonus: ") + FixedToText(lv_tertiaryScoreOverride, 2)));
             }
           }
-              if (lv_tertiaryScoreOverride < 0.0) {
+          if (lv_tertiaryScoreOverride < 0.0) {
             lv_tertiaryScoreOverride = 0.0;
             lv_tertiaryScoreString = "Discard";
             // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Set Hyper Shift bonus to 0: "));
           }
-              if ((lv_tempBool == true) && (PlayerHasTalent(lp_casterPlayer, "BrightwingPhaseShiftHyperShift") == true)) {
-                  if (lv_tertiaryScoreOverride < (((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogTalent, "BrightwingPhaseShiftHyperShift", "AbilityModificationArray[" + IntToString(0) + "].Modifications[" + IntToString(0) + "].Value", 0)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit))) {
+          if ((lv_tempBool == true) && (PlayerHasTalent(lp_casterPlayer, "BrightwingPhaseShiftHyperShift") == true)) {
+            if (lv_tertiaryScoreOverride < (((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogTalent, "BrightwingPhaseShiftHyperShift", "AbilityModificationArray[" + IntToString(0) + "].Modifications[" + IntToString(0) + "].Value", 0)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit))) {
               lv_secondaryScoreOverride = 0.0;
               lv_secondaryScoreString = "Discard";
               lv_quaternaryScoreString = "Discard";
@@ -18358,35 +18367,23 @@ void libGame_gf_HeroSpecificStatTrackerOther (fixed lp_scoreValue, int lp_caster
   }
 
   if ((lp_inputData == "AurielEnergyGain")) {
-    if ((libGame_gv_players[lp_targetPlayer].lv_rosterSlot == 1)) {
-      lv_scoreString = "DamageToOne";
+    if ((lp_targetPlayer >= 1) && (lp_targetPlayer > libCore_gv_bALMaxPlayers)) {
+      lv_scoreString = ("DamageTo" + IntToString(libGame_gv_players[lp_targetPlayer].lv_rosterSlot));
     }
-    else if ((libGame_gv_players[lp_targetPlayer].lv_rosterSlot == 2)) {
-      lv_scoreString = "DamageToTwo";
+    if ((lp_extraDataString == "AurielHeroWeaponHeroImpactDamage") || (lp_extraDataString == "AurielHeroWeaponNonHeroImpactDamage")) {
+      lv_secondaryScoreString = "Score20";
     }
-    else if ((libGame_gv_players[lp_targetPlayer].lv_rosterSlot == 3)) {
-      lv_scoreString = "DamageToThree";
+    if ((lp_extraDataString == "AurielSacredSweepHeroCenterDamage") || (lp_extraDataString == "AurielSacredSweepHeroDamage") || (lp_extraDataString == "AurielSacredSweepNonHeroCenterDamage") || (lp_extraDataString == "AurielSacredSweepNonHeroDamage")) {
+      lv_secondaryScoreString = "Score21";
     }
-    else if ((libGame_gv_players[lp_targetPlayer].lv_rosterSlot == 4)) {
-      lv_scoreString = "DamageToFour";
+    if ((lp_extraDataString == "AurielDetainmentStrikeInitialHeroDamage") || (lp_extraDataString == "AurielDetainmentStrikeStunHeroDamage")) {
+      lv_secondaryScoreString = "Score22";
     }
-    else if ((libGame_gv_players[lp_targetPlayer].lv_rosterSlot == 5)) {
-      lv_scoreString = "DamageToFive";
+    if ((lp_extraDataString == "AurielRayOfHeavenSearingLightHeroDamage")) {
+      lv_secondaryScoreString = "Score30";
     }
-    else if ((libGame_gv_players[lp_targetPlayer].lv_rosterSlot == 6)) {
-      lv_scoreString = "DamageToSix";
-    }
-    else if ((libGame_gv_players[lp_targetPlayer].lv_rosterSlot == 7)) {
-      lv_scoreString = "DamageToSeven";
-    }
-    else if ((libGame_gv_players[lp_targetPlayer].lv_rosterSlot == 8)) {
-      lv_scoreString = "DamageToEight";
-    }
-    else if ((libGame_gv_players[lp_targetPlayer].lv_rosterSlot == 9)) {
-      lv_scoreString = "DamageToNine";
-    }
-    else if ((libGame_gv_players[lp_targetPlayer].lv_rosterSlot == 10)) {
-      lv_scoreString = "DamageToTen";
+    if ((lp_extraDataString == "AurielCrystalAegisHeroExplosionDamage") || (lp_extraDataString == "AurielCrystalAegisNonHeroExplosionDamage")) {
+      lv_secondaryScoreString = "Score37";
     }
   }
 
@@ -25786,41 +25783,100 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroAuriel")) {
+    lv_usesArray = true;
     if ((lp_damageEffect == "AurielHeroWeaponHeroImpactDamage")) {
-      lv_primaryScoreString = "ScoreOne";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score1";
     }
     if ((lp_damageEffect == "AurielHeroWeaponNonHeroImpactDamage")) {
-      lv_primaryScoreString = "ScoreTwo";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score2";
     }
     if ((lp_damageEffect == "AurielSacredSweepHeroCenterDamage")) {
-      lv_primaryScoreString = "ScoreThree";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score4";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score6";
+      lv_scoreOverride[lv_numScores] = 1.0;
+      if (libGame_gv_HeroSpecificStoredValue4[lv_casterPlayer] != GameGetMissionTime()) {
+        if (PlayerHasTalent(lv_casterPlayer, "AurielRighteousAssaultSacredSweepTalent") == true) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score28";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
+        libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] = 1.0;
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Moonfire hit 1"));
+      }
+      else {
+        if (libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] == 2.0) {
+          if (PlayerHasTalent(lv_casterPlayer, "AurielRighteousAssaultSacredSweepTalent") == true) {
+            lv_numScores += 1;
+            lv_scoreString[lv_numScores] = "Score30";
+            lv_scoreOverride[lv_numScores] = 1.0;
+          }
+          libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] = 3.0;
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Moonfire hit 3"));
+        }
+        else if (libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] == 1.0) {
+          if (PlayerHasTalent(lv_casterPlayer, "AurielRighteousAssaultSacredSweepTalent") == true) {
+            lv_numScores += 1;
+            lv_scoreString[lv_numScores] = "Score29";
+            lv_scoreOverride[lv_numScores] = 1.0;
+          }
+          libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] = 2.0;
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Moonfire hit 2"));
+        }
+        else {
+        }
+      }
+      libGame_gv_HeroSpecificStoredValue4[lv_casterPlayer] = GameGetMissionTime();
     }
     if ((lp_damageEffect == "AurielSacredSweepHeroDamage")) {
-      lv_primaryScoreString = "ScoreThree";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score4";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score7";
+      lv_scoreOverride[lv_numScores] = 1.0;
     }
     if ((lp_damageEffect == "AurielSacredSweepNonHeroCenterDamage")) {
-      lv_primaryScoreString = "ScoreFour";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score5";
     }
     if ((lp_damageEffect == "AurielSacredSweepNonHeroDamage")) {
-      lv_primaryScoreString = "ScoreFour";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score5";
     }
     if ((lp_damageEffect == "AurielDetainmentStrikeInitialHeroDamage")) {
-      lv_primaryScoreString = "ScoreFive";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score16";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score18";
+      lv_scoreOverride[lv_numScores] = 1.0;
     }
     if ((lp_damageEffect == "AurielDetainmentStrikeStunHeroDamage")) {
-      lv_primaryScoreString = "ScoreSix";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score17";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score19";
+      lv_scoreOverride[lv_numScores] = 1.0;
     }
     if ((lp_damageEffect == "AurielRayOfHeavenSearingLightHeroDamage")) {
-      lv_primaryScoreString = "ScoreSeven";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score28";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score29";
+      lv_scoreOverride[lv_numScores] = 1.0;
     }
     // if ((lp_damageEffect == "AurielRayOfHeavenSearingLightNonHeroDamage")) {
     //   lv_primaryScoreString = "ScoreEight";
     // }
     if ((lp_damageEffect == "AurielCrystalAegisHeroExplosionDamage")) {
-      lv_primaryScoreString = "ScoreEight";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score35";
     }
     if ((lp_damageEffect == "AurielCrystalAegisNonHeroExplosionDamage")) {
-      lv_primaryScoreString = "ScoreNine";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score36";
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroAzmodan")) {
@@ -36443,29 +36499,47 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
   }
   else if ((lv_heroUnitType == "HeroAuriel")) {
     if ((lp_abilityName == "AurielSacredSweep")) {
-      lv_scoreString = "AccuracyOne";
+      lv_scoreString = "Score3";
+      if (PlayerHasTalent(lv_casterPlayerOverride, "AurielBlindingFlashSacredSweepTalent") == true) {
+        lv_secondaryScoreString = "Score39";
+      }
     }
     if ((lp_abilityName == "AurielRayOfHeaven")) {
-      lv_scoreString = "AccuracyTwo";
+      lv_scoreString = "Score8";
+      if (PlayerHasTalent(lv_casterPlayerOverride, "AurielGlimmerofHopeRayOfHeavenTalent") == true) {
+        lv_secondaryScoreString = "Score32";
+      }
+      if (PlayerHasTalent(lv_casterPlayerOverride, "AurielReservoirofHopeRayOfHeavenTalent") == true) {
+        lv_tertiaryScoreString = "Score42";
+      }
     }
     if ((lp_abilityName == "AurielDetainmentStrike")) {
-      lv_scoreString = "AccuracyThree";
+      lv_scoreString = "Score15";
     }
     if ((lp_abilityName == "AurielBestowHope")) {
-      lv_scoreString = "AccuracyFour";
+      lv_scoreString = "Discard";
     }
     if ((lp_abilityName == "AurielCrystalAegis") || (lp_abilityName == "AurielResurrect")) {
-      lv_scoreString = "AccuracyFive";
+      lv_scoreString = "Score34";
+      if (PlayerHasTalent(lv_casterPlayerOverride, "AurielDiamondResolveCrystalAegisTalent") == true) {
+        lv_secondaryScoreString = "Score44";
+      }
       if ((lp_cooldownNewValue < (lp_interruptCost + 0.5)) && (lp_abilityName == "AurielResurrect")) {
         lv_scoreString = "Discard";
+        lv_secondaryScoreString = "Discard";
       }
     }
     if ((lp_abilityName == "AurielAngelicFlight") || (lp_abilityName == "AurielShieldOfHope")) {
-      lv_scoreString = "AccuracySix";
+      lv_scoreString = "Score44";
     }
     if ((lp_abilityName == "AurielResurrectSelf")) {
       lv_scoreString = "Discard";
     }
+    // Stored value 1: Bestow Hope stuff
+    // Stored value 2: Bestow Hope stuff
+    // Stored value 3: Bestow Hope stuff
+    // Stored value 4: Level 1 Monitor 1
+    // Stored value 5: Level 1 Monitor 2
   }
   else if ((lv_heroUnitType == "HeroAzmodan")) {
     if ((lp_abilityName == "AzmodanGlobeOfAnnihilation")) {
@@ -50268,8 +50342,8 @@ bool libGame_gt_HeroDamageTracking_Func (bool testConds, bool runActions) {
     // }
   }
   // Bookmark Auriel's Own Leech Track
-  if ((EventUnitDamageVitalsLeeched(c_unitVitalEnergy) > 0.0) && (UnitGetType(libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_heroUnit) == "HeroAuriel")) {
-    libGame_gf_HeroSpecificStatTrackerOther(EventUnitDamageVitalsLeeched(c_unitVitalEnergy), UnitGetOwner(EventUnitDamageSourceUnit()), UnitGetOwner(EventUnitDamageSourceUnit()), "AurielEnergyGain", null, "");
+  if ((EventUnitDamageVitalsLeeched(c_unitVitalEnergy) > 0.0) && (UnitGetType(libGame_gv_players[EventUnitDamageSourcePlayer()].lv_heroUnit) == "HeroAuriel")) {
+    libGame_gf_HeroSpecificStatTrackerOther(EventUnitDamageVitalsLeeched(c_unitVitalEnergy), EventUnitDamageSourcePlayer(), EventPlayer(), "AurielEnergyGain", null, EventUnitDamageEffect());
   }
 
   if ((EventUnitDamageVitalsLeeched(c_unitVitalShields) > 0.0) && (UnitGetType(libGame_gv_players[UnitGetOwner(EventUnitDamageSourceUnit())].lv_heroUnit) == "HeroKerrigan")) {
