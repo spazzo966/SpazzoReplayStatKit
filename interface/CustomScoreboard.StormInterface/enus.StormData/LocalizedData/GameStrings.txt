@@ -2964,7 +2964,7 @@ UI/Spazzo/Azmodan/Score43=Times Globe of Annihilation hit at least 1 Hero after 
 UI/Spazzo/Azmodan/Score44=Tide of Sin casts after selecting Black Pool
 UI/Spazzo/Azmodan/Score45=Black Pool damage to Heroes
 UI/Spazzo/Azmodan/Score46=Black Pool damage to non-Heroes
-
+UI/Spazzo/Azmodan/BuildKey=gettalenticons Azmodan 2 5 5 4 4 0 0 3 2 4 7 3 4 3
 UI/SpazzoDamage/Azmodan/ScoreEight=Demonic Invasion Damage to Heroes, Tide of Sin Globe of Annihilation Damage to Heroes
 UI/SpazzoDamage/Azmodan/ScoreNine=Demonic Invasion Damage to non-Heroes, Tide of Sin Globe of Annihilation Damage to non-Heroes
 Spazzo/Button/SimpleDisplayText/AzmodanGlobeOfAnnihilationToken=<s val="StandardTooltipHeader">Annihilation</s><n/><img path="@UI/StormTalentInTextQuestIcon" alignment="uppermiddle" color="B48E4C" width="20" height="22"/><c val="#TooltipQuest">Quest:</c> Hitting a Hero or killing a Minion within <c val="#TooltipNumbers"><d ref="Behavior,AzmodanGlobeOfAnnihilationDebuff,Duration"precision="1"/></c> seconds of being hit by Globe Of Annihilation grants <c val="#TooltipNumbers"><d ref="Effect,AzmodanGlobeOfAnnihilationDeathModifyTokenMinion,Value"/></c> stacks of Annihilation.<n/><n/><img path="@UI/StormTalentInTextQuestIcon" alignment="uppermiddle" color="B48E4C" width="20" height="22"/><c val="#TooltipQuest">Reward:</c> Each stack of Annihilation increases the damage of Globe Of Annihilation by <c val="#TooltipNumbers"><d ref="Accumulator,AzmodanGlobeOfAnnihilationDamageAccumulator,Scale"/></c>, to a maximum of <c val="#TooltipNumbers"><d ref="Behavior,AzmodanGlobeOfAnnihilationTokenCounter,Max"player="0"/></c>.
