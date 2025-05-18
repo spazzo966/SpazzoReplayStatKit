@@ -16272,10 +16272,12 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAzmodan")) {
       if ((lp_healEffect == "AzmodanAllShallBurnCydaeasKissTalentHealer")) {
-        lv_primaryScoreString = "TalentThirteen";
+        lv_primaryScoreString = "Score38";
+        lv_secondaryScoreOverride = 1.0;
+        lv_secondaryScoreString = "Score39";
       }
       if ((lp_healEffect == "AzmodanGlobeOfAnnihilationArtOfChaosTalentModifyUnit")) {
-        lv_primaryScoreString = "TalentSeven";
+        lv_primaryScoreString = "Score29";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroFirebat")) {
@@ -25880,111 +25882,145 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroAzmodan")) {
+    lv_usesArray = true;
     if ((lp_damageEffect == "AzmodanHeroWeaponDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "Discard";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score1";
       }
       else {
-        lv_primaryScoreString = "Discard";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score2";
       }
     }
-    if ((lp_damageEffect == "AzmodanGlobeOfAnnihilationDamage")) {
+    if ((lp_damageEffect == "AzmodanGlobeOfAnnihilationDamage") || (lp_damageEffect == "AzmodanGlobeOfAnnihilationTideOfSinTalentDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreOne";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score4";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score6";
+        lv_scoreOverride[lv_numScores] = 1.0;
+        if ((lp_damageEffect == "AzmodanGlobeOfAnnihilationTideOfSinTalentDamage")) {
+
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreTwo";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score5";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score7";
+        lv_scoreOverride[lv_numScores] = 1.0;
+        if ((lp_damageEffect == "AzmodanGlobeOfAnnihilationTideOfSinTalentDamage")) {
+          
+        }
       }
     }
     if ((lp_damageEffect == "AzmodanSummonDemonWarriorWeaponDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreThree";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score9";
       }
       else {
-        lv_primaryScoreString = "ScoreFour";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score10";
       }
     }
     if ((lp_damageEffect == "AzmodanSummonDemonWarriorPeriodicDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreThree";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score11";
       }
       else {
-        lv_primaryScoreString = "ScoreFour";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score12";
       }
     }
     if ((lp_damageEffect == "AzmodanAllShallBurnDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score14";
       }
       else {
-        lv_primaryScoreString = "ScoreSix";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score16";
       }
     }
     if ((lp_damageEffect == "AzmodanAllShallBurnFinalExplosionDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score15";
       }
       else {
-        lv_primaryScoreString = "ScoreSix";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score16";
+      }
+    }
+    if ((lp_damageEffect == "AzmodanDemonLieutenantWeaponDamage")) {
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score18";
+      }
+      else {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score19";
       }
     }
     if ((lp_damageEffect == "AzmodanDemonLieutenantDemonicSmiteDamage")) {
-      lv_primaryScoreString = "ScoreSeven";
-    }
-    if ((lp_damageEffect == "AzmodanDemonLieutenantWeaponDamage")) {
-      lv_primaryScoreString = "ScoreSeven";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score20";
+      lv_scoreOverride[lv_numScores] = 1.0;
     }
     if ((lp_damageEffect == "AzmodanDemonicInvasionImpactDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score31";
       }
       else {
-        lv_primaryScoreString = "ScoreNine";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score32";
       }
     }
     if ((lp_damageEffect == "AzmodanDemonicInvasionDemonGruntWeaponDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score33";
       }
       else {
-        lv_primaryScoreString = "ScoreNine";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score34";
       }
     }
     if ((lp_damageEffect == "AzmodanDemonicInvasionExplodeDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score35";
       }
       else {
-        lv_primaryScoreString = "ScoreNine";
-      }
-    }
-    if ((lp_damageEffect == "AzmodanGlobeOfAnnihilationTideOfSinTalentDamage")) {
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEight";
-        lv_secondaryScoreString = "ScoreOne";
-      }
-      else {
-        lv_primaryScoreString = "ScoreNine";
-        lv_secondaryScoreString = "ScoreTwo";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score36";
       }
     }
     if ((lp_damageEffect == "AzmodanGlobeOfAnnihilationTotalAnnihilationTalentDamage")) {
-      lv_primaryScoreString = "ScoreTen";
-    }
-    if ((lp_damageEffect == "AzmodanTideOfSinBlackPoolTalentDamage")) {
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEleven";
-      }
-      else {
-        lv_primaryScoreString = "ScoreTwelve";
-      }
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score41";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score42";
+      lv_scoreOverride[lv_numScores] = 1.0;
     }
     if ((lp_damageEffect == "AzmodanTrampleDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreTen";
+        lv_primaryScoreString = "Score41";
       }
       else {
-        lv_primaryScoreString = "TalentSixteen";
+        lv_primaryScoreString = "Score42";
+      }
+    }
+    if ((lp_damageEffect == "AzmodanTideOfSinBlackPoolTalentDamage")) {
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_primaryScoreString = "Score45";
+      }
+      else {
+        lv_primaryScoreString = "Score46";
       }
     }
   }
@@ -36019,10 +36055,12 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
   string lv_secondaryScoreString;
   string lv_tertiaryScoreString;
   string lv_quaternaryScoreString;
+  string lv_quinaryScoreString;
   fixed lv_scoreValueOverride;
   fixed lv_secondaryScoreValueOverride;
   fixed lv_tertiaryScoreValueOverride;
   fixed lv_quaternaryScoreValueOverride;
+  fixed lv_quinaryScoreValueOverride;
   int lv_iterator;
   unit lv_tempUnit;
   unit lv_tempUnit2;
@@ -36042,6 +36080,8 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
   lv_tertiaryScoreValueOverride = 1.0;
   lv_quaternaryScoreString = "Discard";
   lv_quaternaryScoreValueOverride = 1.0;
+  lv_quinaryScoreString = "Discard";
+  lv_quinaryScoreValueOverride = 1.0;
   lv_iterator = 0;
   lv_tempUnit = null;
   lv_tempUnit2 = null;
@@ -36542,36 +36582,69 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     // Stored value 5: Level 1 Monitor 2
   }
   else if ((lv_heroUnitType == "HeroAzmodan")) {
+    libGame_gv_HeroQButtonTimestamp[lv_casterPlayerOverride] = GameGetMissionTime();
     if ((lp_abilityName == "AzmodanGlobeOfAnnihilation")) {
-      lv_scoreString = "AccuracyOne";
+      lv_scoreString = "Score3";
       if ((libGame_gf_FetchAbilityCooldownTime(lp_casterUnit, "AzmodanTideOfSin", lv_casterPlayerOverride, false, 0) > 18)) {
-        lv_secondaryScoreString = "AccuracyFive";
+        lv_secondaryScoreString = "Score30";
+        if ((PlayerHasTalent(lv_casterPlayerOverride, "AzmodanTotalAnnihilation") == true)) {
+          lv_quaternaryScoreString = "Score44";
+        }
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "AzmodanArtOfChaos") == true) || (PlayerHasTalent(lv_casterPlayerOverride, "AzmodanBombardment") == true)) {
+        lv_tertiaryScoreString = "Score26";
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "AzmodanTotalAnnihilation") == true)) {
+        lv_quaternaryScoreString = "Score40";
       }
     }
     if ((lp_abilityName == "AzmodanSummonDemonWarrior")) {
-      lv_scoreString = "AccuracyTwo";
+      lv_scoreString = "Score8";
+        if ((PlayerHasTalent(lv_casterPlayerOverride, "AzmodanArmyOfHell") == true)) {
+          lv_secondaryScoreString = "Score24";
+        }
     }
     if ((lp_abilityName == "AzmodanAllShallBurn")) {
       lv_scoreString = "Discard";
-      if ((UnitHasBehavior2(lp_casterUnit, "AzmodanAllShallBurnChannel") == true)) {
-        lv_scoreString = "AccuracyThree";
+      if ((UnitHasBehavior2(lp_casterUnit, "AzmodanAllShallBurnDummy") == true)) {
+        lv_scoreString = "Score13";
+        if ((PlayerHasTalent(lv_casterPlayerOverride, "AzmodanMasterofDestruction") == true)) {
+          lv_secondaryScoreString = "Score26";
+        }
+        if ((PlayerHasTalent(lv_casterPlayerOverride, "AzmodanCydaeasKiss") == true)) {
+          lv_tertiaryScoreString = "Score37";
+        }
       }
     }
     if ((lp_abilityName == "AzmodanAllShallBurnCancel")) {
       lv_scoreString = "Discard";
     }
     if ((lp_abilityName == "AzmodanDemonLieutenant")) {
-      lv_scoreString = "AccuracyFour";
+      lv_scoreString = "Score17";
     }
     if ((lp_abilityName == "AzmodanDemonicInvasion")) {
-      lv_scoreString = "AccuracyFive";
+      lv_scoreString = "Score30";
     }
     if ((lp_abilityName == "AzmodanTideOfSin")) {
       lv_scoreString = "Discard";
     }
     if ((lp_abilityName == "AzmodanTrample")) {
-      lv_scoreString = "AccuracySix";
+      lv_scoreString = "Score40";
     }
+    // Stored value 1: Globe of Annihilation timestamp
+    // Stored value 2 : Globe of Annihilation hit counter
+    // Stored unit 1: All Shall Burn primary target
+    // Stored value 3: All Shall Burn Master of Destruction bool
+    // On All Shall Burn Channel Damage: set stored unit 1 to target unit
+    // On All Shall Burn Expiration damage: if target = same target, then it's same target
+                                        // if target != same target, then set the boolean to 1, and remove the stored unit.
+    // Reset the boolean on each periodic damage effect to 0 
+    // Set the stored unit to null on expiration damage, and if its different for the channel damage, then change it
+    // Stored value 4: Bombardment bool. Set on Globe of Annihilation cast
+    // Stored value 5: Bombardment Basic Attack timestamp
+                      // If the Bombardment bool is true, then Basic Attack will set bool to false, and then we store the timestamp
+                      // If the timestamp is within 0.5 seconds, then we assume the attack is from Bombardment
+                      // Also need to check libGame_gv_HeroQButtonTimestamp for being lt 4
   }
   else if ((lv_heroUnitType == "HeroFirebat")) {
     if ((lp_abilityName == "FirebatFlameStream")) {
