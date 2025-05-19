@@ -23447,77 +23447,131 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
     if ((lp_damageEffect == "GenjiSwiftStrikeDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreSeven";
-        lv_secondaryScoreString = "AccuracyTen";
-        lv_secondaryScoreOverride = 1.0;
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score18";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score20";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
       else {
-        lv_primaryScoreString = "Discard";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score19";
       }
       if ((PlayerHasTalent(lv_casterPlayer, "GenjiSwiftStrikeSteadyBlade") == true)) {
+        lv_numScores += 1;
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GenjiSteadyBlade");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "ScoreTwelve";
+          lv_scoreString[lv_numScores] = "Score42";
         }
         else {
-          lv_secondaryScoreString = "TalentSeven";
+          lv_scoreString[lv_numScores] = "Score43";
         }
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "GenjiSteadyBlade");
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored Value Count(DMGTrack): ") + FixedToText(libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer], 1)));
-        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Steady Blade Token Count(DMGTrack): ") + FixedToText(UnitGetTokenCount(lp_casterUnit, "GenjiSwiftStrikeSteadyBladeTokenCounter"), 1)));
       }
     }
     if ((lp_damageEffect == "GenjiSwiftStrikeStrikeAtTheHeartDamage")) {
-      lv_primaryScoreString = "ScoreEight";
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score25";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score27";
+        lv_scoreOverride[lv_numScores] = 1.0;
+      }
+      else {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score26";
+      }
     }
     if ((lp_damageEffect == "GenjiDeflectDragonClawDamage")) {
-      lv_primaryScoreString = "ScoreEight";
-      lv_secondaryScoreString = "AccuracyEleven";
-      lv_secondaryScoreOverride = 1.0;
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score25";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score27";
+        lv_scoreOverride[lv_numScores] = 1.0;
+      }
+      else {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score26";
+      }
     }
     if ((lp_damageEffect == "GenjiXStrikeLegDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreNine";
-        lv_secondaryScoreString = "AccuracyTwelve";
-        lv_secondaryScoreOverride = 1.0;
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score32";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score34";
+        lv_scoreOverride[lv_numScores] = 1.0;
+        if ((PlayerHasTalent(lv_casterPlayer, "GenjiXStrikeLivingWeapon") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score45";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreTen";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score33";
       }
     }
     if ((lp_damageEffect == "GenjiXStrikeFinalDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreNine";
-        lv_secondaryScoreString = "AccuracyTwelve";
-        lv_secondaryScoreOverride = 1.0;
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score32";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score35";
+        lv_scoreOverride[lv_numScores] = 1.0;
+        if ((PlayerHasTalent(lv_casterPlayer, "GenjiXStrikeLivingWeapon") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score45";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreTen";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score33";
       }
     }
     if ((lp_damageEffect == "GenjiDragonbladeAttackDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreNine";
-        lv_secondaryScoreString = "AccuracyTwelve";
-        lv_secondaryScoreOverride = 1.0;
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score32";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score35";
+        lv_scoreOverride[lv_numScores] = 1.0;
+        if ((PlayerHasTalent(lv_casterPlayer, "GenjiDragonbladeTheDragonBecomesMe") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score46";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreTen";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score33";
       }
     }
     if ((lp_damageEffect == "GenjiShurikenShinganBonusDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEleven";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score37";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score39";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
       else {
-        lv_primaryScoreString = "TalentFour";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score38";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score40";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
     }
     if ((lp_damageEffect == "GenjiSwiftStrikeFinalCutDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreTwelve";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score42";
       }
       else {
-        lv_primaryScoreString = "TalentSeven";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score43";
       }
     }
     if ((lp_damageEffect == "GenjiShurikenMissileSuicide")) {
