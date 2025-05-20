@@ -16726,16 +16726,16 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMalthael")) {
       if ((lp_healEffect == "MalthaelSoulRipCreateHealer")) {
-        lv_primaryScoreString = "BaselineOne";
+        lv_primaryScoreString = "Score7";
       }
       if ((lp_healEffect == "MalthaelSoulRipHeroPercentageCreateHealer")) {
-        lv_primaryScoreString = "BaselineTwo";
+        lv_primaryScoreString = "Score6";
       }
       if ((lp_healEffect == "MalthaelSoulRipSoulSiphonHeroPercentageCreateHealer")) {
-        lv_primaryScoreString = "BaselineThree";
+        lv_primaryScoreString = "Score30";
       }
       if ((lp_healEffect == "MalthaelLastRitesAngelOfDeathCreateHealer")) {
-        lv_primaryScoreString = "TalentOne";
+        lv_primaryScoreString = "Score41";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMalfurion")) {
@@ -29646,62 +29646,132 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroMalthael")) {
+    lv_usesArray = true;
     if ((lp_damageEffect == "MalthaelWeaponDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreOne";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score1";
+        if (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] == GameGetMissionTime()) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score3";
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreTwo";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score2";
+        if (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] == GameGetMissionTime()) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score4";
+        }
       }
+      libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = GameGetMissionTime();
     }
     if ((lp_damageEffect == "MalthaelSoulRipDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreThree";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score8";
       }
       else {
-        lv_primaryScoreString = "ScoreFour";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score9";
       }
     }
     if ((lp_damageEffect == "MalthaelWraithStrikeDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score11";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score13";
+        lv_scoreOverride[lv_numScores] = 1.0;
+        if ((PlayerHasTalent(lv_casterPlayer, "MalthaelMassacre")) && (libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] == GameGetMissionTime())) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score23";
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score25";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreSix";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score12";
+        if ((PlayerHasTalent(lv_casterPlayer, "MalthaelMassacre")) && (libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] == GameGetMissionTime())) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score24";
+        }
       }
+      if (libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] != GameGetMissionTime()) {
+        libGame_gv_HeroSpecificStoredUnit1[lv_casterPlayer] = lp_targetUnit;
+      }
+      libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] = GameGetMissionTime();
     }
     if ((lp_damageEffect == "MalthaelReapersMarkDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreSeven";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score15";
+        if ((PlayerHasTalent(lv_casterPlayer, "MalthaelMassacre") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score36";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score16";
       }
     }
     if ((lp_damageEffect == "MalthaelDeathShroudThrowingShadeDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreSeven";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score19";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score21";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
       else {
-        lv_primaryScoreString = "ScoreEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score20";
       }
     }
     if ((lp_damageEffect == "MalthaelLastRitesDamage")) {
-      lv_primaryScoreString = "ScoreEleven";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score27";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score28";
+      lv_scoreOverride[lv_numScores] = 1.0;
     }
     if ((lp_damageEffect == "MalthaelWraithStrikeMortalityDamage")) {
-      lv_primaryScoreString = "ScoreTwelve";
-    }
-    if ((lp_damageEffect == "MalthaelReapersMarkMementoMoriDamage")) {
-      lv_primaryScoreString = "ScoreTwelve";
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_secondaryScoreString = "ScoreSeven";
+      if ((libGame_gv_HeroSpecificStoredUnit1[lv_casterPlayer] == lp_targetUnit) || (PlayerHasTalent(lv_casterPlayer, "MalthaelMassacre") == false)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score35";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score37";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
       else {
-        lv_secondaryScoreString = "ScoreEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score36";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score38";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
     }
-		
+    if ((lp_damageEffect == "MalthaelReapersMarkMementoMoriDamage")) {
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score15";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score34";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score37";
+        lv_scoreOverride[lv_numScores] = 1.0;
+      }
+      else {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score16";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score35";
+      }
+    }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroMedivh") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroMedivhRaven")) {
     if ((lp_damageEffect == "MedivhWeaponDamage")) {
@@ -35289,6 +35359,13 @@ void libGame_gf_HeroSpecificStatTrackerHealModified (fixed lp_healedValue, strin
     // HeroCrusader
     libGame_gf_HeroSpecificStatTrackerOther(lv_healPrevented, lv_healTakenPlayer, lv_healTakenPlayer, "HealModified", null, "BaselineTwo");
   }
+  if ((UnitHasBehavior2(lp_targetUnit, "MalthaelReapersMarkTouchOfDeathDebuff") == true)) {
+    lv_healTakenPlayer = UnitBehaviorEffectPlayer(lp_targetUnit, "MalthaelReapersMarkTouchOfDeathDebuff", c_effectPlayerCaster, 0);
+    lv_healTakenSpecific = (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "MalthaelReapersMarkTouchOfDeathDebuff", "Modification.HealTakenAdditiveMultiplier[" + IntToString(0) + "]", UnitBehaviorEffectPlayer(lp_targetUnit, "MalthaelReapersMarkTouchOfDeathDebuff", c_effectPlayerCaster, 0)));
+    lv_healPrevented = ((lv_healedValueUmodified * (1.0 / lv_healTakenSpecific)) - lv_healedValueUmodified);
+    // HeroMalthael
+    libGame_gf_HeroSpecificStatTrackerOther(lv_healPrevented, lv_healTakenPlayer, lv_healTakenPlayer, "HealModified", null, "Score23");
+  }
 }
 
 unit libGame_gf_effectGetUnitFromHistory (unit lp_unit, string lp_sourceEffect, int lp_sourcePlayer, int lp_type) {
@@ -38606,31 +38683,58 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
   }
   else if ((lv_heroUnitType == "HeroMalthael")) {
     if ((lp_abilityName == "MalthaelSoulRip")) {
-      lv_scoreString = "AccuracyOne";
+      lv_scoreString = "Score5";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "MalthaelColdHand") == true)) {
+        lv_secondaryScoreString = "Score22";
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "MalthaelSoulSiphon") == true)) {
+        lv_tertiaryScoreString = "Score29";
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "MalthaelSoulCollector") == true)) {
+        lv_quinaryScoreString = "Score34";
+      }
     }
     if ((lp_abilityName == "MalthaelWraithStrike")) {
-      lv_scoreString = "AccuracyTwo";
+      lv_scoreString = "Score10";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "MalthaelMassacre") == true)) {
+        lv_secondaryScoreString = "Score22";
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "MalthaelMortality") == true)) {
+        lv_tertiaryScoreString = "Score34";
+      }
+      if ((UnitHasBehavior2(lp_casterUnit, "MalthaelTormentedSoulsBuff") == true)) {
+        lv_quaternaryScoreString = "Score28";
+        if ((PlayerHasTalent(lv_casterPlayerOverride, "MalthaelReaperOfSouls") == true)) {
+          lv_quinaryScoreString = "Score41";
+        }
+      }
     }
     if ((lp_abilityName == "MalthaelDeathShroud")) {
-      lv_scoreString = "AccuracyThree";
+      lv_scoreString = "Score14";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "MalthaelThrowingShade") == true)) {
+        lv_secondaryScoreString = "Score18";
+      }
     }
     if ((lp_abilityName == "MalthaelFearTheReaper")) {
-      lv_scoreString = "AccuracyFour";
+      lv_scoreString = "Score17";
     }
     if ((lp_abilityName == "MalthaelTouchOfDeath")) {
-      lv_scoreString = "AccuracyFive";
+      lv_scoreString = "Score22";
     }
     if ((lp_abilityName == "MalthaelTormentedSouls") || (lp_abilityName == "MalthaelLastRites")) {
-      lv_scoreString = "AccuracySix";
+      lv_scoreString = "Score26";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "MalthaelReaperOfSouls") == true) || (PlayerHasTalent(lv_casterPlayerOverride, "MalthaelAngelOfDeath") == true)) {
+        lv_secondaryScoreString = "Score39";
+      }
       // if ((lp_cooldownNewValue < (lp_interruptCost + 0.5))) {
       // lv_scoreString = "Discard";
       // }
     }
     if ((lp_abilityName == "MalthaelShroudOfWisdom") || (lp_abilityName == "MalthaelInevitableEnd")) {
-      lv_scoreString = "AccuracySeven";
+      lv_scoreString = "Score29";
     }
     if ((lp_abilityName == "MalthaelNoOneCanStopDeath")) {
-      lv_scoreString = "AccuracyEight";
+      lv_scoreString = "Score39";
     }
   }
   else if ((lv_heroUnitType == "HeroMedivh") || (lv_heroUnitType == "HeroMedivhRaven")) {
