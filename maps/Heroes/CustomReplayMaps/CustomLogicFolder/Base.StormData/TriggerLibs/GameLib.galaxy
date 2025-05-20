@@ -17590,10 +17590,17 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroDryad")) {
       if ((lp_healEffect == "DryadNaturesToxinSiphoningToxinMasteryBonusCreateHealer")) {
-        lv_primaryScoreString = "TalentTwenty";
+        lv_primaryScoreString = "Score24";
+        lv_secondaryScoreString = "Score25";
+        lv_secondaryScoreOverride = 1.0;
       }
       if ((lp_healEffect == "DryadNaturesToxinSiphoningToxinMasteryCreateHealer")) {
-        lv_primaryScoreString = "TalentSixteen";
+        lv_primaryScoreString = "Score24";
+        lv_secondaryScoreString = "Score26";
+        lv_secondaryScoreOverride = 1.0;
+      }
+      if ((lp_healEffect == "DryadEndlessSporesManaRestore")) {
+        lv_primaryScoreString = "Score38";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroMaiev")) {
@@ -29018,80 +29025,196 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroDryad")) {
+    lv_usesArray = true;
     if ((lp_damageEffect == "DryadHeroWeaponDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreOne";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score1";
       }
       else {
-        lv_primaryScoreString = "ScoreTwo";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score2";
+      }
+      if ((PlayerHasTalent(lv_casterPlayer, "DryadWildVigor") == true) && (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] != 0.0) && (lp_damageValue != 0.0)) {
+        libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] -= 1.0;
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score28";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DryadWildVigor");
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score30";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
+        else {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score29";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DryadWildVigor");
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score31";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
     }
     if ((lp_damageEffect == "DryadNoxiousBlossomDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreThree";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score4";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score6";
+        lv_scoreOverride[lv_numScores] = 1.0;
+        if ((PlayerHasTalent(lv_casterPlayer, "DryadBlossomSwell") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score24";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreFour";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score5";
       }
     }
     if ((lp_damageEffect == "DryadNaturesToxinDamage")) {
-      lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DryadUnfairAdvantage");
-      lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DryadIntensifyingToxin");
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
-        if ((PlayerHasTalent(lv_casterPlayer, "DryadUnfairAdvantage") == true) && ((UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategorySlow) == true) || (UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategoryStun) == true) || (UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategoryDebuffRoot) == true))) {
-          lv_secondaryScoreString = "ScoreTwelve";
-          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Unfair Advantage Bonus: ") + FixedToText(lv_secondaryScoreOverride, 2)));
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score9";
+        if ((PlayerHasTalent(lv_casterPlayer, "DryadIntensifyingToxin") == true) && (UnitBehaviorDuration(lp_targetUnit, "DryadNaturesToxin") >= CatalogFieldValueGetAsFixed(c_gameCatalogValidator, "DryadHas3StacksofNaturesToxin", "Value", c_playerAny))) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score41";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DryadIntensifyingToxin");
+        }
+      }
+      else if (((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMinion) == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeCreep) == false)) || ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMerc) == true))) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score10";
+        if ((PlayerHasTalent(lv_casterPlayer, "DryadNaturesCulling") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score23";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "NaturesCulling");
         }
         if ((PlayerHasTalent(lv_casterPlayer, "DryadIntensifyingToxin") == true) && (UnitBehaviorDuration(lp_targetUnit, "DryadNaturesToxin") >= CatalogFieldValueGetAsFixed(c_gameCatalogValidator, "DryadHas3StacksofNaturesToxin", "Value", c_playerAny))) {
-          lv_tertiaryScoreString = "ScoreThirteen";
-          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Intensifying Toxin Bonus: ") + FixedToText(lv_tertiaryScoreOverride, 2)));
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score42";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DryadIntensifyingToxin");
+        }
+      }
+      else if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMapCreature) == true) || (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeCreep) == true)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score11";
+        if ((PlayerHasTalent(lv_casterPlayer, "DryadNaturesCulling") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score24";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "NaturesCulling");
+        }
+        if ((PlayerHasTalent(lv_casterPlayer, "DryadIntensifyingToxin") == true) && (UnitBehaviorDuration(lp_targetUnit, "DryadNaturesToxin") >= CatalogFieldValueGetAsFixed(c_gameCatalogValidator, "DryadHas3StacksofNaturesToxin", "Value", c_playerAny))) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score43";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DryadIntensifyingToxin");
+        }
+      }
+      else if (((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeStructure) == true))) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score12";
+        if ((PlayerHasTalent(lv_casterPlayer, "DryadNaturesCulling") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score25";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "NaturesCulling");
+        }
+        if ((PlayerHasTalent(lv_casterPlayer, "DryadIntensifyingToxin") == true) && (UnitBehaviorDuration(lp_targetUnit, "DryadNaturesToxin") >= CatalogFieldValueGetAsFixed(c_gameCatalogValidator, "DryadHas3StacksofNaturesToxin", "Value", c_playerAny))) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score44";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DryadIntensifyingToxin");
         }
       }
       else {
-        lv_primaryScoreString = "ScoreSix";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score12";
+        if ((PlayerHasTalent(lv_casterPlayer, "DryadNaturesCulling") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score26";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "NaturesCulling");
+        }
         if ((PlayerHasTalent(lv_casterPlayer, "DryadIntensifyingToxin") == true) && (UnitBehaviorDuration(lp_targetUnit, "DryadNaturesToxin") >= CatalogFieldValueGetAsFixed(c_gameCatalogValidator, "DryadHas3StacksofNaturesToxin", "Value", c_playerAny))) {
-          lv_tertiaryScoreString = "ScoreFourteen";
-          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Intensifying Toxin NonHero Bonus: ") + FixedToText(lv_tertiaryScoreOverride, 2)));
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score45";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DryadIntensifyingToxin");
         }
       }
-
+      if ((PlayerHasTalent(lv_casterPlayer, "DryadUnfairAdvantage") == true) && ((UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategorySlow) == true) || (UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategoryStun) == true) || (UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategoryDebuffRoot) == true))) {
+        lv_numScores += 1;
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DryadUnfairAdvantage");
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_scoreString[lv_numScores] = "Score39";
+        }
+        else {
+          lv_scoreString[lv_numScores] = "Score40";
+        }
+      }
+      // lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DryadUnfairAdvantage");
+      // lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DryadIntensifyingToxin");
+        // if ((PlayerHasTalent(lv_casterPlayer, "DryadUnfairAdvantage") == true) && ((UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategorySlow) == true) || (UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategoryStun) == true) || (UnitHasBehaviorWithCategoryFlag(lp_targetUnit, c_behaviorCategoryDebuffRoot) == true))) {
+          // lv_secondaryScoreString = "ScoreTwelve";
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Unfair Advantage Bonus: ") + FixedToText(lv_secondaryScoreOverride, 2)));
+        // }
     }
     if ((lp_damageEffect == "DryadHeroWeaponDamageSplinteredSpearMastery")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreSeven";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score28";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score30";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
       else {
-        lv_primaryScoreString = "ScoreEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score29";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score31";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
     }
     if ((lp_damageEffect == "DryadThornwoodVineDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreNine";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score33";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score35";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
       else {
-        lv_primaryScoreString = "ScoreTen";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score34";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score36";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
     }
     if ((lp_damageEffect == "DryadLeapingStrikeDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreNine";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score33";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score35";
+        lv_scoreOverride[lv_numScores] = 1.0;
+        if ((PlayerHasTalent(lv_casterPlayer, "DryadBoundlessStrideTalent") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score44";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreTen";
-      }
-    }
-    if ((lp_damageEffect == "DryadNoxiousBlossomChokingPollenMasteryDamage")) {
-      lv_primaryScoreString = "ScoreEleven";
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_secondaryScoreString = "ScoreThree";
-      }
-      else {
-        lv_secondaryScoreString = "ScoreFour";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score34";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score36";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
     }
     if ((lp_damageEffect == "DryadPercentMaxHealthDamageInvigoratingSpores")) {
-      lv_primaryScoreString = "ScoreTwelve";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score39";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score40";
+      lv_scoreOverride[lv_numScores] = 1.0;
     }
     if ((lp_damageEffect == "DryadWispKillDividingWispMasteryDamage")) {
       lv_primaryScoreString = "Discard";
@@ -38271,60 +38394,117 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
   }
   else if ((lv_heroUnitType == "HeroDryad")) {
     if ((lp_abilityName == "DryadNoxiousBlossom")) {
-      lv_scoreString = "AccuracyOne";
+      lv_scoreString = "Score3";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "DryadBlossomSwell") == true)) {
+        lv_secondaryScoreString = "Score23";
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "DryadSplinteredSpear") == true)) {
+        lv_tertiaryScoreString = "Score27";
+      }
     }
     if ((lp_abilityName == "DryadCripplingSpores")) {
-      lv_scoreString = "AccuracyTwo";
+      lv_scoreString = "Score7";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "DryadWildVigor") == true)) {
+        lv_secondaryScoreString = "Score27";
+        libGame_gv_HeroSpecificStoredValue1[lv_casterPlayerOverride] = UnitBehaviorCount(lp_casterUnit, "DryadWildVigorActive");
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "DryadEndlessSpores") == true)) {
+        lv_tertiaryScoreString = "Score37";
+      }
     }
     if ((lp_abilityName == "DryadWisp")) {
-      lv_scoreString = "AccuracyThree";
+      lv_scoreString = "Score8";
     }
     if ((lp_abilityName == "DryadWispRedirect")) {
       lv_scoreString = "Discard";
     }
     if ((lp_abilityName == "DryadThornwoodVine") || (lp_abilityName == "DryadLeapingStrike")) {
-      lv_scoreString = "AccuracyFour";
+      lv_scoreString = "Score32";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "DryadForTheWildlands") == true) || (PlayerHasTalent(lv_casterPlayerOverride, "DryadBoundlessStrideTalent") == true) || (PlayerHasTalent(lv_casterPlayerOverride, "DryadForestsWrath") == true)) {
+        lv_secondaryScoreString = "Score41";
+      }
+      if ((UnitHasBehavior2(lp_casterUnit, "DryadLeapingStrikeFriendlyCast") == true) && (lp_abilityName == "DryadLeapingStrike")) {
+        lv_tertiaryScoreString = "Score45";
+      }
     }
     if ((lp_abilityName == "DryadGreaterSpellShield") || (lp_abilityName == "DryadAbolishMagic")) {
-      lv_scoreString = "AccuracyFive";
+      lv_scoreString = "Score37";
       if ((UnitHasBehavior2(lp_casterUnit, "DryadGreaterSpellShieldActive") == false) && (lp_abilityName == "DryadGreaterSpellShield")) {
         lv_scoreString = "Discard";
       }
     }
     if ((lp_abilityName == "DryadGallopingGait")) {
-      lv_scoreString = "AccuracySix";
+      lv_scoreString = "Score41";
     }
     if ((lp_abilityName == "DryadSwiftnessDetector")) {
       lv_scoreString = "Discard";
       if ((UnitGetPropertyFixed(lp_casterUnit, c_unitPropMovementSpeedCurrent, c_unitPropCurrent) != 0.0) && (UnitHasBehaviorWithCategoryFlag(lp_casterUnit, c_behaviorCategoryPushOrPull) == false)) {
         if (UnitBehaviorCount(lp_casterUnit, "DryadDryadsSwiftnessMovementPause") != 0) {
-          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "BaselineOne");
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score14");
+            if ((UnitHasBehavior2(lp_casterUnit, "DryadGallopingGait") == true)) {
+              libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score42");
+            }
         }
         else {
           if (UnitBehaviorCount(lp_casterUnit, "DryadDryadsSwiftnessStack") == 6) {
-            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "TalentThirteen");
+            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score21");
+            if ((UnitHasBehavior2(lp_casterUnit, "DryadGallopingGait") == true)) {
+              libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score46");
+            }
           }
           else if (UnitBehaviorCount(lp_casterUnit, "DryadDryadsSwiftnessStack") == 5) {
-            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "TalentTen");
+            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score20");
+            if ((UnitHasBehavior2(lp_casterUnit, "DryadGallopingGait") == true)) {
+              libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score46");
+            }
           }
           else if (UnitBehaviorCount(lp_casterUnit, "DryadDryadsSwiftnessStack") == 4) {
-            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "TalentSeven");
+            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score19");
+            if ((UnitHasBehavior2(lp_casterUnit, "DryadGallopingGait") == true)) {
+              libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score45");
+            }
           }
           else if (UnitBehaviorCount(lp_casterUnit, "DryadDryadsSwiftnessStack") == 3) {
-            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "TalentFour");
+            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score18");
+            if ((UnitHasBehavior2(lp_casterUnit, "DryadGallopingGait") == true)) {
+              libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score45");
+            }
           }
           else if (UnitBehaviorCount(lp_casterUnit, "DryadDryadsSwiftnessStack") == 2) {
-            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "TalentOne");
+            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score17");
+            if ((UnitHasBehavior2(lp_casterUnit, "DryadGallopingGait") == true)) {
+              libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score44");
+            }
           }
           else if (UnitBehaviorCount(lp_casterUnit, "DryadDryadsSwiftnessStack") == 1) {
-            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "BaselineThree");
+            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score16");
+            if ((UnitHasBehavior2(lp_casterUnit, "DryadGallopingGait") == true)) {
+              libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score44");
+            }
           }
           else {
-            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "BaselineTwo");
+            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score15");
+            if ((UnitHasBehavior2(lp_casterUnit, "DryadGallopingGait") == true)) {
+              libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score43");
+            }
           }
+        }
+        if ((UnitHasBehavior2(lp_casterUnit, "DryadHippityHopCarryBehavior") == true) && (UnitBehaviorEnabled(lp_casterUnit, "DryadHippityHopCarryBehavior") == true) && (UnitBehaviorCount(lp_casterUnit, "DryadHippityHopCarryBehavior") != 0)) {
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score22");
+        }
+      }
+      if ((UnitIsAlive(lp_casterUnit) == true)) {
+        if ((PlayerHasTalent(lv_casterPlayerOverride, "DryadAcceleratedContamination") == true)) {
+          if ((UnitHasBehavior2(lp_casterUnit, "DryadAcceleratedContaminationCooldownCarryBehavior") == true) && (UnitBehaviorEnabled(lp_casterUnit, "DryadAcceleratedContaminationCooldownCarryBehavior") == true) && (UnitBehaviorCount(lp_casterUnit, "DryadAcceleratedContaminationCooldownCarryBehavior") != 0)) {
+            libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score40");
+          }
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score39");
         }
       }
     }
+    // Stored values:
+      // 1 = number of Wild Vigor stacks
+      // 2 = ?
   }
   else if ((lv_heroUnitType == "HeroMaiev")) {
     if ((lp_abilityName == "MaievFanOfKnives")) {
@@ -41223,6 +41403,23 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
     lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "ChenBreathOfFireDoTDamage", "MultiplicativeModifierArray[" + "AccumulatingFlame" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
   }
   
+  if ((lp_inputData == "DryadWildVigor")) {
+    if ((lp_damageEffect == "DryadHeroWeaponDamage")) {
+      lv_flatDamageModifier = 0.0;
+    }
+
+    lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "DryadWildVigorDamageBuff", "Modification.DamageDealtFraction[" + IntToString(c_unitDamageTypeBasic) + "]", lv_casterPlayer))) - lv_damageValuePerCatalog);
+  }
+  
+
+  if ((lp_inputData == "NaturesCulling")) {
+    if ((lp_damageEffect == "DryadNaturesToxinDamage")) {
+      lv_flatDamageModifier = 0.0;
+    }
+
+    lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "DryadNaturesToxinDamage", "MultiplicativeModifierArray[" + "NaturesCullingModifier" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
+  }
+
   if ((lp_inputData == "DryadUnfairAdvantage")) {
     if ((lp_damageEffect == "DryadNaturesToxinDamage")) {
       lv_flatDamageModifier = 0.0;
@@ -41230,6 +41427,7 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
 
     lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "DryadNaturesToxinDamage", "MultiplicativeModifierArray[" + "UnfairAdvantageModifier" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
   }
+
   
   if ((lp_inputData == "DryadIntensifyingToxin")) {
     if ((lp_damageEffect == "DryadNaturesToxinDamage")) {
