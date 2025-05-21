@@ -12705,6 +12705,11 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
         lv_leechFraction = 0.0;
       }
     }
+    else if ((CatalogFieldValueGet(c_gameCatalogEffect, lp_damageEffect, "LeechValidator[" + IntToString(c_unitVitalLife) + "]", lp_casterPlayer) == "GenjiDragonsThirstLeechCombine")) {
+      if (!((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && (PlayerHasTalent(lp_casterPlayer, "GenjiCyberAgilityPathfinder") == true))) {
+        lv_leechFraction = 0.0;
+      }
+    }
     else if ((CatalogFieldValueGet(c_gameCatalogEffect, lp_damageEffect, "LeechValidator[" + IntToString(c_unitVitalLife) + "]", lp_casterPlayer) == "AlwaysReturnsFalse")) {
       lv_leechFraction = 0.0;
     }
@@ -12787,6 +12792,10 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
   if ((lp_damageEffect == "DemonHunterHeroWeaponDamage") && (PlayerHasTalent(lp_casterPlayer, "DemonHunterCombatStyleTemperedByDiscipline") == true)) {
     lv_leechFractionSpecialCase = libGame_gv_LeechFractionSpecialCaseHeatOfBattle(lp_damageEffect, lp_damageValue, lv_leechFraction, lv_calculatedActualLeechFraction, lv_healTakenModifier, lp_casterUnit, lp_casterPlayer, lp_leechValue);
     lv_leechFraction = (lv_leechFraction + libGame_gv_LeechFractionSpecialCaseHeatOfBattle(lp_damageEffect, lp_damageValue, lv_leechFraction, lv_calculatedActualLeechFraction, lv_healTakenModifier, lp_casterUnit, lp_casterPlayer, lp_leechValue));
+  }
+  if (((lp_damageEffect == "GenjiDragonbladeAttackDamage") || (lp_damageEffect == "GenjiXStrikeFinalDamage") || (lp_damageEffect == "GenjiXStrikeLegDamage")) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && (PlayerHasTalent(lp_casterPlayer, "GenjiCyberAgilityPathfinder") == true)) {
+    lv_leechFractionSpecialCase = libGame_gv_LeechFractionSpecialCaseHeatOfBattle(lp_damageEffect, lp_damageValue, lv_leechFraction, lv_calculatedActualLeechFraction, lv_healTakenModifier, lp_casterUnit, lp_casterPlayer, lp_leechValue);
+    lv_leechFraction = (lv_leechFraction + lv_leechFractionSpecialCase);
   }
 
 	
@@ -13628,6 +13637,12 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
     }
     if ((lp_damageEffect == "GazloweHyperfocusCoilsPercentMaxHealthDamage")) {
       lv_primaryScoreString = "TalentThirteen";
+    }
+  }
+  
+  if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "Genji")) {
+    if ((lp_damageEffect == "GenjiDragonbladeAttackDamage") || (lp_damageEffect == "GenjiXStrikeLegDamage") || (lp_damageEffect == "GenjiXStrikeFinalDamage")) {
+      lv_primaryScoreString = "Score23";
     }
   }
 
@@ -17275,6 +17290,10 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroImperius")) {
       if ((lp_healEffect == "ImperiusValorousBrandCreateHealer")) {
         lv_primaryScoreString = "Score25";
+        if (PlayerHasTalent(lp_casterPlayer, "ImperiusValorousBrandBrandOfSolarion") == true) {
+          lv_secondaryScoreString = "Score46";
+        lv_secondaryScoreOverride = 1.0;
+        }
       }
       if ((lp_healEffect == "ImperiusSolarionsFireConsumingFlameCreateManaHealer")) {
         lv_primaryScoreString = "Score27";
@@ -17480,20 +17499,20 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
         }
         if (((PlayerHasTalent(lp_casterPlayer, "StukovTopOff") == true) && ((UnitGetPropertyFixed(lp_targetUnit, c_unitPropLife, c_unitPropCurrent) - lp_healedValue) > (UnitGetPropertyFixed(lp_targetUnit, c_unitPropLifeMax, c_unitPropCurrent) * CatalogFieldValueGetAsFixed(c_gameCatalogValidator, "StukovHealingPathogenTopOffTargetHealthThreshold", "Value", lv_casterPlayer))))) {
           lv_secondaryScoreOverride = (lp_healedValue - (((CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "StukovHealingPathogenHealer", "RechargeVitalRate", lp_casterPlayer)) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit)));
-                if (PlayerHasTalent(lp_casterPlayer, "StukovUniversalCarrier") == false) {
-                    if (!(lp_healedValue > (((CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "StukovHealingPathogenHealer", "RechargeVitalRate", lp_casterPlayer) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit))))) {
+          if (PlayerHasTalent(lp_casterPlayer, "StukovUniversalCarrier") == false) {
+            if (!(lp_healedValue > (((CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "StukovHealingPathogenHealer", "RechargeVitalRate", lp_casterPlayer) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit))))) {
               lv_secondaryScoreOverride = 0.0;
             }
           }
-                else {
-                  if (!(lp_healedValue > ((((CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "StukovHealingPathogenHealer", "RechargeVitalRate", lp_casterPlayer) * (1 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "StukovHealingPathogenHealer", "MultiplicativeModifierArray[" + IntToString(1) + "].Modifier", lp_casterPlayer))) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit))))) {
+          else {
+            if (!(lp_healedValue > ((((CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "StukovHealingPathogenHealer", "RechargeVitalRate", lp_casterPlayer) * (1 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "StukovHealingPathogenHealer", "MultiplicativeModifierArray[" + IntToString(1) + "].Modifier", lp_casterPlayer))) * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit))))) {
               lv_secondaryScoreOverride = 0.0;
             }
           }
-                if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
+          if ((UnitGetOwner(lp_targetUnit) != lp_casterPlayer)) {
             lv_secondaryScoreString = "TalentSixteen";
           }
-                else {
+          else {
             lv_secondaryScoreString = "TalentTwenty";
           }
         }
@@ -23434,26 +23453,27 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         }
       }
     }
-    if ((lp_damageEffect == "GenjiDeflectDamage")) {
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_numScores += 1;
-        lv_scoreString[lv_numScores] = "Score11";
-      }
-      else {
-        lv_numScores += 1;
-        lv_scoreString[lv_numScores] = "Score12";
-      }
-    }
-    if ((lp_damageEffect == "GenjiDeflectDamageTrigger")) {
+    if ((lp_damageEffect == "GenjiDeflectDamage") || (lp_damageEffect == "GenjiDeflectDamageTrigger")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_numScores += 1;
         lv_scoreString[lv_numScores] = "Score11";
         lv_numScores += 1;
         lv_scoreString[lv_numScores] = "Score16";
         lv_scoreOverride[lv_numScores] = 1.0;
+        if ((PlayerHasTalent(lv_casterPlayer, "GenjiShurikenSharpenedStars") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score45";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreSix";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score12";
+        if ((PlayerHasTalent(lv_casterPlayer, "GenjiShurikenSharpenedStars") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score46";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
     }
     if ((lp_damageEffect == "GenjiSwiftStrikeDamage")) {
@@ -25988,7 +26008,9 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_scoreString[lv_numScores] = "Score6";
         lv_scoreOverride[lv_numScores] = 1.0;
         if ((lp_damageEffect == "AzmodanGlobeOfAnnihilationTideOfSinTalentDamage")) {
-
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score35";
+          lv_scoreOverride[lv_numScores] = 1.0;
         }
       }
       else {
@@ -25998,7 +26020,9 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_scoreString[lv_numScores] = "Score7";
         lv_scoreOverride[lv_numScores] = 1.0;
         if ((lp_damageEffect == "AzmodanGlobeOfAnnihilationTideOfSinTalentDamage")) {
-          
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score36";
+          lv_scoreOverride[lv_numScores] = 1.0;
         }
       }
     }
@@ -28076,129 +28100,177 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroImperius")) {
+    lv_usesArray = true;
     if ((lp_damageEffect == "ImperiusWeaponDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "Score1";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score1";
         if (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] == GameGetMissionTime()) {
-          lv_tertiaryScoreString = "Score31";
-          lv_quaternaryScoreOverride = 1.0;
-          lv_quaternaryScoreString = "Score33";
-        }
-        if ((PlayerHasTalent(lv_casterPlayer, "ImperiusCelestialChargeImpalingLight") == true)) {
-          lv_secondaryScoreString = "Score26";
-          lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ImperiusImpalingLight");
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score31";
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score33";
+          lv_scoreOverride[lv_numScores] = 1.0;
         }
       }
       else {
-        lv_primaryScoreString = "Score2";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score2";
         if (libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] == GameGetMissionTime()) {
-          lv_tertiaryScoreString = "Score32";
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score32";
         }
       }
       libGame_gv_HeroSpecificStoredValue1[lv_casterPlayer] = GameGetMissionTime();
     }
     if ((lp_damageEffect == "ImperiusCelestialChargePreImpactDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "Score4";
-        lv_secondaryScoreOverride = 1.0;
-        lv_secondaryScoreString = "Score5";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score4";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score5";
+        lv_scoreOverride[lv_numScores] = 1.0;
+        if ((PlayerHasTalent(lv_casterPlayer, "ImperiusCelestialChargeImpalingLight") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score26";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ImperiusImpalingLight");
+        }
+        if ((PlayerHasTalent(lv_casterPlayer, "ImperiusCelestialChargePatheticMortals") == true) && (UnitHasBehavior2(lp_targetUnit, "ImperiusCelestialChargeChannelStunDebuff") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score40";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
       else {
-        lv_primaryScoreString = "Score7";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score7";
       }
     }
     if ((lp_damageEffect == "ImperiusCelestialChargePostImpactDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "Score4";
-        lv_secondaryScoreOverride = 1.0;
-        lv_secondaryScoreString = "Score6";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score4";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score6";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
       else {
-        lv_primaryScoreString = "Score7";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score7";
       }
     }
     if ((lp_damageEffect == "ImperiusSolarionsFireDamageCenter")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "Score9";
-        lv_secondaryScoreOverride = 1.0;
-        lv_secondaryScoreString = "Score13";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score9";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score13";
+        lv_scoreOverride[lv_numScores] = 1.0;
+        if ((libCore_gf_IsAbilityOnCooldown(lp_casterUnit, "ImperiusImpervious") == true) && (PlayerHasTalent(lv_casterPlayer, "ImperiusImpervious") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score44";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
       else {
-        lv_primaryScoreString = "Score11";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score11";
       }
       if ((PlayerHasTalent(lv_casterPlayer, "ImperiusSolarionsFireConsumingFlame") == true)) {
-        lv_tertiaryScoreString = "Score26";
-        lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ImperiusConsumingFlame");
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score26";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ImperiusConsumingFlame");
       }
     }
     if ((lp_damageEffect == "ImperiusSolarionsFireDamageOuter")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "Score10";
-        lv_secondaryScoreOverride = 1.0;
-        lv_secondaryScoreString = "Score14";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score10";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score14";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
       else {
-        lv_primaryScoreString = "Score12";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score12";
       }
     }
     if ((lp_damageEffect == "ImperiusMoltenArmorDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "Score16";
-        lv_secondaryScoreOverride = 1.0;
-        lv_secondaryScoreString = "Score18";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score16";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score18";
+        lv_scoreOverride[lv_numScores] = 1.0;
         if (libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] == GameGetMissionTime()) {
-          lv_tertiaryScoreString = "Score44";
-          lv_quaternaryScoreOverride = 1.0;
-          lv_quaternaryScoreString = "Score45";
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score44";
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score45";
+          lv_scoreOverride[lv_numScores] = 1.0;
         }
       }
       else {
-        lv_primaryScoreString = "Score17";
-        lv_secondaryScoreOverride = 1.0;
-        lv_secondaryScoreString = "Score19";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score17";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score19";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
       libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] = GameGetMissionTime();
     }
     if ((lp_damageEffect == "ImperiusValorousBrandBurnTheImpureDamage")) {
-      lv_primaryScoreString = "Score26";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score26";
     }
     if ((lp_damageEffect == "ImperiusCelestialChargeFlashOfAngerDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "Score31";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score31";
       }
       else {
-        lv_primaryScoreString = "Score32";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score32";
       }
     }
     if ((lp_damageEffect == "ImperiusSolarionsFireBlazeOfGloryExplosionDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "Score31";
-        lv_secondaryScoreOverride = 1.0;
-        lv_secondaryScoreString = "Score33";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score31";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score33";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
       else {
-        lv_primaryScoreString = "Score32";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score32";
       }
     }
     if ((lp_damageEffect == "ImperiusAngelicArmamentsMissileDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "Score37";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score37";
       }
       else {
-        lv_primaryScoreString = "Score38";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score38";
       }
     }
     if ((lp_damageEffect == "ImperiusWrathOfTheAngirisDamage")) {
-      lv_primaryScoreString = "Score35";
-        lv_secondaryScoreOverride = 1.0;
-        lv_secondaryScoreString = "Score36";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score35";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score36";
+      lv_scoreOverride[lv_numScores] = 1.0;
     }
     if ((lp_damageEffect == "ImperiusAngelicArmamentsHeavenlyHostDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "Score45";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score45";
       }
       else {
-        lv_primaryScoreString = "Score46";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score46";
       }
     }
   }
@@ -29674,10 +29746,20 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_numScores += 1;
         lv_scoreString[lv_numScores] = "Score8";
+        if ((PlayerHasTalent(lv_casterPlayer, "MalthaelColdHand") == true) && (UnitHasBehavior2(lp_targetUnit, "MalthaelSoulRipColdHandSlow") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score23";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
       else {
         lv_numScores += 1;
         lv_scoreString[lv_numScores] = "Score9";
+        if ((PlayerHasTalent(lv_casterPlayer, "MalthaelColdHand") == true) && (UnitHasBehavior2(lp_targetUnit, "MalthaelSoulRipColdHandSlow") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score24";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
     }
     if ((lp_damageEffect == "MalthaelWraithStrikeDamage")) {
@@ -37863,6 +37945,9 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
       lv_scoreString = "Score10";
       if ((PlayerHasTalent(lv_casterPlayerOverride, "GenjiDeflectAugmentedGuard") == true) || (PlayerHasTalent(lv_casterPlayerOverride, "GenjiDeflectPerfectDefense") == true)) {
         lv_secondaryScoreString = "Score28";
+      }
+      if (PlayerHasTalent(lv_casterPlayerOverride, "GenjiDeflectZanshin") == true) {
+        lv_tertiaryScoreString = "Score44";
       }
     }
     if ((lp_abilityName == "GenjiSwiftStrike")) {
