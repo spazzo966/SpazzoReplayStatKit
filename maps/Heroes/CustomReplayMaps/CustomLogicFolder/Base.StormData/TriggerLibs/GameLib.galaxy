@@ -15443,7 +15443,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZagara")) {
       if ((lp_behavior == "DevouringMawTargetBehavior")) {
-        lv_primaryScoreString = "TalentSeven";
+        lv_primaryScoreString = "Discard";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroFenix")) {
@@ -15594,7 +15594,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
     // }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZagara")) {
       if ((lp_behavior == "DevouringMawTargetBehavior")) {
-        lv_primaryScoreString = "TalentTen";
+        lv_primaryScoreString = "Discard";
       }
     }
 
@@ -17838,16 +17838,20 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZagara")) {
       if ((lp_healEffect == "ZagaraHunterKillerHydraliskTransfusionCreateHealer")) {
-        lv_primaryScoreString = "TalentThirteen";
+        lv_primaryScoreString = "Score30";
+        lv_secondaryScoreString = "Score31";
+        lv_secondaryScoreOverride = 1.0;
       }
       if ((lp_healEffect == "ZagaraHunterKillerHydraliskTransfusionGroovedSpinesCreateHealer")) {
-        lv_primaryScoreString = "TalentThirteen";
-      }
-      if ((lp_healEffect == "ZagaraEnterNydusWormModifyEnergy")) {
-        lv_primaryScoreString = "TalentSeven";
+        lv_primaryScoreString = "Score30";
+        lv_secondaryScoreString = "Score31";
+        lv_secondaryScoreOverride = 1.0;
       }
       if ((lp_healEffect == "ZagaraEnterNydusWormCreateHealer")) {
-        lv_primaryScoreString = "TalentTen";
+        lv_primaryScoreString = "Score26";
+      }
+      if ((lp_healEffect == "ZagaraEnterNydusWormModifyEnergy")) {
+        lv_primaryScoreString = "Score27";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroVarian")) {
@@ -29738,6 +29742,11 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       lv_numScores += 1;
       lv_scoreString[lv_numScores] = "Score28";
       lv_scoreOverride[lv_numScores] = 1.0;
+      if ((PlayerHasTalent(lv_casterPlayer, "MalthaelAngelOfDeath") == true)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score40";
+        lv_scoreOverride[lv_numScores] = 1.0;
+      }
     }
     if ((lp_damageEffect == "MalthaelWraithStrikeMortalityDamage")) {
       if ((libGame_gv_HeroSpecificStoredUnit1[lv_casterPlayer] == lp_targetUnit) || (PlayerHasTalent(lv_casterPlayer, "MalthaelMassacre") == false)) {
@@ -31941,141 +31950,256 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroZagara")) {
+    lv_usesArray = true;
     if ((lp_damageEffect == "ZagaraWeaponDamage") || lp_damageEffect == "ZagaraWeaponEnvenomedSpinesDamage") {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreOne";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score1";
       }
       else {
-        lv_primaryScoreString = "ScoreTwo";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score2";
+      }
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score18";
+      lv_scoreOverride[lv_numScores] = 1.0;
+      if ((PlayerHasTalent(lv_casterPlayer, "ZagaraMasterySerratedSpines") == true) && (lp_damageEffect != "ZagaraWeaponEnvenomedSpinesDamage")) {
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score19";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ZagaraSerratedSpines");
+        }
+        else if (((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMinion) == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeCreep) == false)) || ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMerc) == true))) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score20";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ZagaraSerratedSpines");
+        }
+        else if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMapCreature) == true) || (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeCreep) == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score21";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ZagaraSerratedSpines");
+        }
+        else if (((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeStructure) == true))) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score22";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ZagaraSerratedSpines");
+        }
+        else {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score23";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ZagaraSerratedSpines");
+        }
+      }
+      if ((PlayerHasTalent(lv_casterPlayer, "ZagaraJaggedBarbsTalent") == true) && (UnitHasBehavior2(lp_casterUnit, "ZagaraOnCreepSpeedBuff") == true) && (UnitBehaviorEnabled(lp_casterUnit, "ZagaraOnCreepSpeedBuff") == true)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score39";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
     }
     if ((lp_damageEffect == "ZagaraBanelingExplodeDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreThree";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score4";
       }
       else {
-        lv_primaryScoreString = "ScoreFour";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score5";
       }
     }
-    if ((lp_damageEffect == "ZagaraMutaliskWeaponDamage1")) {
+    if ((lp_damageEffect == "ZagaraHydraliskMeleeDamage") || (lp_damageEffect == "ZagaraHydraliskRangedDamage") || (lp_damageEffect == "ZagaraMutaliskWeaponDamage1") || (lp_damageEffect == "ZagaraMutaliskWeaponDamage2") || (lp_damageEffect == "ZagaraMutaliskWeaponDamage3")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score7";
       }
       else {
-        lv_primaryScoreString = "ScoreFive";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score8";
       }
-    }
-    if ((lp_damageEffect == "ZagaraMutaliskWeaponDamage2")) {
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEleven";
+      if ((PlayerHasTalent(lv_casterPlayer, "ZagaraMasteryCorrosiveSaliva") == true) && (lp_damageEffect != "ZagaraMutaliskWeaponDamage2") && (lp_damageEffect != "ZagaraMutaliskWeaponDamage3")) {
+        lv_scoreString[lv_numScores] = "Score37";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
-      else {
-        lv_primaryScoreString = "ScoreEleven";
+      if ((PlayerHasTalent(lv_casterPlayer, "ZagaraMasteryHydraliskTransfusion") == true) && (lp_damageEffect != "ZagaraMutaliskWeaponDamage2") && (lp_damageEffect != "ZagaraMutaliskWeaponDamage3")) {
+        lv_scoreString[lv_numScores] = "Score29";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
-    }
-    if ((lp_damageEffect == "ZagaraMutaliskWeaponDamage3")) {
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEleven";
+      if (lp_damageEffect == "ZagaraMutaliskWeaponDamage2") {
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score33";
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score37";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
+        else {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score35";
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score39";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
-      else {
-        lv_primaryScoreString = "ScoreEleven";
-      }
-    }
-    if ((lp_damageEffect == "ZagaraHydraliskRangedDamage")) {
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
-      }
-      else {
-        lv_primaryScoreString = "ScoreFive";
-      }
-    }
-    if ((lp_damageEffect == "ZagaraHydraliskMeleeDamage")) {
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
-      }
-      else {
-        lv_primaryScoreString = "ScoreFive";
-      }
-    }
-    if ((lp_damageEffect == "ZagaraHydraliskGroovedSpinesMeleeDamage")) {
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
-      }
-      else {
-        lv_primaryScoreString = "ScoreFive";
-      }
-    }
-    if ((lp_damageEffect == "ZagaraHydraliskGroovedSpinesRangedDamage")) {
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
-      }
-      else {
-        lv_primaryScoreString = "ScoreFive";
+      else if (lp_damageEffect == "ZagaraMutaliskWeaponDamage3") {
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score34";
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score38";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
+        else {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score36";
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score39";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
       }
     }
     if ((lp_damageEffect == "ZagaraInfestedDropDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreSix";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score10";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score12";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
       else {
-        lv_primaryScoreString = "ScoreSeven";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score11";
       }
     }
     if ((lp_damageEffect == "ZagaraRoachAttackDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreSix";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score13";
       }
       else {
-        lv_primaryScoreString = "ScoreSeven";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score14";
+      }
+      if ((PlayerHasTalent(lv_casterPlayer, "ZagaraMasteryCorrosiveSaliva") == true)) {
+        lv_scoreString[lv_numScores] = "Score33";
+        lv_scoreOverride[lv_numScores] = 1.0;
       }
     }
     if ((lp_damageEffect == "ZagaraWeaponEnvenomedSpinesPeriodicDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score19";
+      }
+      else if (((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMinion) == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeCreep) == false)) || ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMerc) == true))) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score20";
+      }
+      else if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMapCreature) == true) || (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeCreep) == true)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score21";
+      }
+      else if (((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeStructure) == true))) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score22";
       }
       else {
-        lv_primaryScoreString = "ScoreEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score23";
       }
     }
     if ((lp_damageEffect == "MedusaBladesSideWeaponDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score18";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score23";
+        lv_scoreOverride[lv_numScores] = 1.0;
+      }
+      else if (((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMinion) == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeCreep) == false)) || ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMerc) == true))) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score19";
+      }
+      else if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMapCreature) == true) || (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeCreep) == true)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score20";
+      }
+      else if (((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeStructure) == true))) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score21";
       }
       else {
-        lv_primaryScoreString = "ScoreEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score22";
       }
     }
-    if ((lp_damageEffect == "DevouringMawImpactDamage")) {
+    if ((lp_damageEffect == "DevouringMawSustainedDamage") || (lp_damageEffect == "DevouringMawImpactDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreNine";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score25";
+        if ((PlayerHasTalent(lv_casterPlayer, "ZagaraMasteryTyrantMaw") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score41";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ZagaraTyrantMaw");
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreTen";
-      }
-    }
-    if ((lp_damageEffect == "DevouringMawSustainedDamage")) {
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreNine";
-      }
-      else {
-        lv_primaryScoreString = "ScoreTen";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score26";
+        if ((PlayerHasTalent(lv_casterPlayer, "ZagaraMasteryTyrantMaw") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score42";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ZagaraTyrantMaw");
+        }
       }
     }
     if ((lp_damageEffect == "ZagaraHunterKillerCorrosiveSalivaDamage")) {
       lv_primaryScoreString = "ScoreEleven";
     }
     if ((lp_damageEffect == "ZagaraHunterKillerBileDropCorrosiveSalivaPercentDamage")) {
-      lv_primaryScoreString = "ScoreEleven";
-    }
-    if ((lp_damageEffect == "FuryoftheStormImpactDamage")) {
-      lv_primaryScoreString = "ScoreTwelve";
-    }
-    if ((lp_damageEffect == "FuryoftheStormAoEDamage")) {
-      lv_primaryScoreString = "ScoreTwelve";
+      if ((UnitGetType(lp_casterUnit) == "ZagaraHydralisk") || (UnitGetType(lp_casterUnit) == "ZagaraMutalisk")) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score38";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score39";
+        lv_scoreOverride[lv_numScores] = 1.0;
+      }
+      else if ((UnitGetType(lp_casterUnit) == "ZagaraRoach")) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score34";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score35";
+        lv_scoreOverride[lv_numScores] = 1.0;
+      }
     }
     if ((lp_damageEffect == "ZagaraBanelingMinimumSpeedTimedLifeFate")) {
       lv_primaryScoreString = "Discard";
     }
+    if (((lp_damageEffect == "ZagaraWeaponDamage") || (lp_damageEffect == "ZagaraWeaponEnvenomedSpinesDamage") || (lp_damageEffect == "MedusaBladesSideWeaponDamage")) && ((PlayerHasTalent(lv_casterPlayer, "ZagaraJaggedBarbsTalent") == true) && (UnitHasBehavior2(lp_casterUnit, "ZagaraOnCreepSpeedBuff") == true) && (UnitBehaviorEnabled(lp_casterUnit, "ZagaraOnCreepSpeedBuff") == true))) {
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score33";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ZagaraJaggedBarbs");
+      }
+      else if (((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMinion) == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeCreep) == false)) || ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMerc) == true))) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score34";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ZagaraJaggedBarbs");
+      }
+      else if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeMapCreature) == true) || (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeCreep) == true)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score35";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ZagaraJaggedBarbs");
+      }
+      else if (((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeStructure) == true))) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score36";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ZagaraJaggedBarbs");
+      }
+      else {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score37";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ZagaraJaggedBarbs");
+      }
+    }
+    
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroZeratul")) {
     if ((lp_damageEffect == "ZeratulHeroWeaponDamage")) {
@@ -35738,6 +35862,14 @@ void libGame_gf_trackHeroCooldowns () {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
       }
     }
+    if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroZagara")) {
+      lv_heroAbilCount[lv_playerIterator] += 1;
+      lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "TumorDetector";
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
+      if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
+      }
+    }
     
     lv_heroAbilCount[lv_playerIterator] += 1;
     lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "MedivhPortalDetector";
@@ -36254,6 +36386,10 @@ fixed libGame_gf_FetchAbilityCooldownTime (unit lp_unit, string lp_ability, int 
   if ((lp_ability == "AnaADSDetector")) {
     lv_cooldownTime = GameGetMissionTime();
     lv_method = "ADSDetector";
+  }
+  if ((lp_ability == "TumorDetector")) {
+    lv_cooldownTime = GameGetMissionTime();
+    lv_method = "TumorDetector";
   }
   if ((lp_ability == "Generic3Template")) {
     lv_cooldownTime = GameGetMissionTime();
@@ -38714,6 +38850,9 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
       if ((PlayerHasTalent(lv_casterPlayerOverride, "MalthaelThrowingShade") == true)) {
         lv_secondaryScoreString = "Score18";
       }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "MalthaelFinalCurtain") == true)) {
+        lv_tertiaryScoreString = "Score39";
+      }
     }
     if ((lp_abilityName == "MalthaelFearTheReaper")) {
       lv_scoreString = "Score17";
@@ -39612,34 +39751,84 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
   }
   else if ((lv_heroUnitType == "HeroZagara")) {
     if ((lp_abilityName == "ZagaraBanelingBarrage")) {
-      lv_scoreString = "AccuracyOne";
+      lv_scoreString = "Score3";
     }
     if ((lp_abilityName == "ZagaraSummonHydralisk")) {
-      lv_scoreString = "AccuracyTwo";
+      lv_scoreString = "Score6";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraMasteryHydraliskTransfusion") == true)) {
+        lv_secondaryScoreString = "Score28";
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraMasteryMutalisk") == true)) {
+        lv_tertiaryScoreString = "Score32";
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraMasteryCorrosiveSaliva") == true)) {
+        lv_quaternaryScoreString = "Score36";
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraPackInstinct") == true)) {
+        lv_quinaryScoreString = "Score40";
+      }
+      
     }
     if ((lp_abilityName == "ZagaraInfestedDrop")) {
-      lv_scoreString = "AccuracyThree";
+      lv_scoreString = "Score9";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraMasteryCorrosiveSaliva") == true)) {
+        lv_secondaryScoreString = "Score32";
+      }
     }
     if ((lp_abilityName == "ZagaraSummonCreepTumor")) {
-      lv_scoreString = "AccuracyFour";
+      lv_scoreString = "Score15";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraMasteryProtectiveCoating") == true)) {
+        lv_secondaryScoreString = "Score28";
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraJaggedBarbsTalent") == true)) {
+        lv_tertiaryScoreString = "Score32";
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraMasteryEndlessCreep") == true)) {
+        lv_quaternaryScoreString = "Score40";
+      }
     }
     if ((lp_abilityName == "ZagaraInfestToggle")) {
-      lv_scoreString = "AccuracyFive";
+      lv_scoreString = "Discard";
     }
     if ((lp_abilityName == "ZagaraEnvenomedSpines")) {
-      lv_scoreString = "AccuracySix";
+      lv_scoreString = "Score18";
     }
     if ((lp_abilityName == "ZagaraSummonNydusWorm") || (lp_abilityName == "ZagaraDevouringMaw")) {
-      lv_scoreString = "AccuracySeven";
+      lv_scoreString = "Score24";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraMasteryTyrantMaw") == true) && (lp_abilityName == "ZagaraDevouringMaw")) {
+        lv_secondaryScoreString = "Score40";
+      }
     }
     if ((lp_abilityName == "ZagaraExitNydusWorm")) {
-      lv_scoreString = "AccuracyEight";
+      lv_scoreString = "Discard";
     }
     if ((lp_abilityName == "HeroGenericSpellShield")) {
-      lv_scoreString = "AccuracyNine";
+      lv_scoreString = "Score28";
       if ((UnitHasBehavior2(lp_casterUnit, "SpellShieldCooldown") == false)) {
         lv_scoreString = "Discard";
       }
+    }
+    if ((lp_abilityName == "TumorDetector")) {
+      lv_scoreString = "Discard";
+      if ((UnitHasBehavior2(lp_casterUnit, "ZagaraOnCreepSpeedBuff") == true) && (UnitBehaviorEnabled(lp_casterUnit, "ZagaraOnCreepSpeedBuff") == true)) {
+        libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score16");
+        if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraMasteryProtectiveCoating") == true)) {
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score29");
+        }
+        if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraJaggedBarbsTalent") == true)) {
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score38");
+        }
+        if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraMasteryEndlessCreep") == true)) {
+          libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score41");
+        }
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraMasteryInfest")) && (UnitIsAlive(lp_casterUnit) == true) && (UnitHasBehavior2(lp_casterUnit, "ZagaraInfestDisabled") == false)) {
+        libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score38");
+      }
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "ZagaraHeroicAbilityNydusAssault")) && (UnitIsAlive(lp_casterUnit) == true) && (UnitHasBehavior2(lp_casterUnit, "ZagaraEnterNydusWormHealBehavior") == false)) {
+        libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score25");
+      }
+      
     }
     // ZagaraEnterNydusWorm
     // ZagaraExitNydusWorm
@@ -42854,6 +43043,44 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
     }
 
     lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "L90ETCWeaponDamage", "MultiplicativeModifierArray[" + "HasGuitarSoloActive" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
+  }
+
+  
+  if ((lp_inputData == "ZagaraSerratedSpines")) {
+    
+    if ((lp_damageEffect == "ZagaraWeaponDamage")) {
+      lv_flatDamageModifier = 0.0;
+    }
+
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_damageModifierAmount = ((UnitGetTokenCount(lp_casterUnit, ("ZagaraSerratedSpinesQuestToken")) - 1.0) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "ZagaraSerratedSpinesAccumulator", "Scale", lv_casterPlayer));
+      }
+      else {
+        lv_damageModifierAmount = (UnitGetTokenCount(lp_casterUnit, ("ZagaraSerratedSpinesQuestToken")) * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "ZagaraSerratedSpinesAccumulator", "Scale", lv_casterPlayer));
+      }
+
+    lv_damageResult = ((lv_damageValuePerCatalog + lv_flatDamageModifier) * (1.0 + lv_damageModifierAmount) - (lv_damageValuePerCatalog + lv_flatDamageModifier));
+
+  }
+  
+  if ((lp_inputData == "ZagaraJaggedBarbs")) {
+    
+    if ((lp_damageEffect == "ZagaraWeaponDamage") || (lp_damageEffect == "ZagaraWeaponEnvenomedSpinesDamage") || (lp_damageEffect == "MedusaBladesSideWeaponDamage")) {
+      lv_flatDamageModifier = 0.0;
+    }
+
+    lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_damageEffect, "MultiplicativeModifierArray[" + "JaggedBarbs" + "].Modifier", lv_casterPlayer))) - lv_damageValuePerCatalog);
+
+  }
+  
+  if ((lp_inputData == "ZagaraTyrantMaw")) {
+    
+    if ((lp_damageEffect == "DevouringMawSustainedDamage") || (lp_damageEffect == "DevouringMawImpactDamage")) {
+      lv_flatDamageModifier = 0.0;
+    }
+
+    lv_damageResult = ((lv_damageValuePerCatalog * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_damageEffect, "AttributeFactor[" + IntToString(1) + "]", lv_casterPlayer))) - lv_damageValuePerCatalog);
+
   }
 
 
