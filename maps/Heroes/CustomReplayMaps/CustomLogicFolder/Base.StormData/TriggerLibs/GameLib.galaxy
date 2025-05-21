@@ -13351,7 +13351,7 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroSylvanas")) {
     if (((lp_damageEffect == "SylvanasWitheringFireDamageRemorseless") || (lp_damageEffect == "SylvanasShadowDaggerInitialDamage") || (lp_damageEffect == "SylvanasBlackArrowUnstablePoisonTalentDamage") || (lp_damageEffect == "SylvanasWeaponDamage") || (lp_damageEffect == "SylvanasWitheringFireDamage") || (lp_damageEffect == "SylvanasHauntingWaveDamage") || (lp_damageEffect == "SylvanasWailingArrowDamage") || (lp_damageEffect == "SylvanasWailingArrowDeafeningBlastDamage") || (lp_damageEffect == "SylvanasShadowDaggerDoTDamage"))) {
-      lv_primaryScoreString = "SupportTwelve";
+      lv_primaryScoreString = "Score32";
     }
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZeratul")) {
@@ -18044,7 +18044,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroSylvanas")) {
       if ((lp_healEffect == "SylvanasPossessionFullHeal")) {
-        lv_primaryScoreString = "TalentSixteen";
+        lv_primaryScoreString = "Score22";
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroUther")) {
@@ -31013,190 +31013,200 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroSylvanas")) {
+    lv_usesArray = true;
     if ((lp_damageEffect == "SylvanasWeaponDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreOne";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score1";
       }
       else {
-        lv_primaryScoreString = "ScoreTwo";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score1";
       }
       if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        lv_numScores += 1;
+        lv_scoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "BaselineOne";
+          lv_scoreString[lv_numScores] = "Score14";
         }
         else {
-          lv_secondaryScoreString = "TalentTen";
+          lv_scoreString[lv_numScores] = "Score18";
         }
       }
     }
     if ((lp_damageEffect == "SylvanasWitheringFireDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreThree";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score4";
       }
       else {
-        lv_primaryScoreString = "ScoreFour";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score5";
       }
       if ((PlayerHasTalent(lv_casterPlayer, "SylvanasTalentWitheringFireBarbedShot") == true) && (UnitGetTokenCount(lp_casterUnit, "SylvanasWitheringFireBarbedShotTokenCounter") == 5.0)) {
+        lv_numScores += 1;
+        lv_scoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBarbedShot");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "TalentTwenty";
+          lv_scoreString[lv_numScores] = "Score23";
         }
         else {
-          lv_secondaryScoreString = "SupportEleven";
+          lv_scoreString[lv_numScores] = "Score24";
         }
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBarbedShot");
       }
       if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
-        lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        lv_numScores += 1;
+        lv_scoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_tertiaryScoreString = "BaselineTwo";
+          lv_scoreString[lv_numScores] = "Score15";
         }
         else {
-          lv_tertiaryScoreString = "TalentThirteen";
+          lv_scoreString[lv_numScores] = "Score19";
         }
       }
     }
     if ((lp_damageEffect == "SylvanasShadowDaggerInitialDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score7";
       }
       else {
-        lv_primaryScoreString = "ScoreSix";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score8";
       }
       if (PlayerHasTalent(lv_casterPlayer, "SylvanasTalentLostSoul") == true) {
+        lv_numScores += 1;
+        lv_scoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasLostSoul");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "TalentTwenty";
+          lv_scoreString[lv_numScores] = "Score23";
         }
         else {
-          lv_secondaryScoreString = "SupportEleven";
+          lv_scoreString[lv_numScores] = "Score24";
         }
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasLostSoul");
       }
       if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
-        lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        lv_numScores += 1;
+        lv_scoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_tertiaryScoreString = "BaselineThree";
+          lv_scoreString[lv_numScores] = "Score16";
         }
         else {
-          lv_tertiaryScoreString = "TalentThirteen";
+          lv_scoreString[lv_numScores] = "Score19";
         }
       }
     }
     if ((lp_damageEffect == "SylvanasShadowDaggerDoTDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreFive";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score7";
       }
       else {
-        lv_primaryScoreString = "ScoreSix";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score8";
       }
       if (PlayerHasTalent(lv_casterPlayer, "SylvanasTalentLostSoul") == true) {
+        lv_numScores += 1;
+        lv_scoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasLostSoul");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "TalentTwenty";
+          lv_scoreString[lv_numScores] = "Score23";
         }
         else {
-          lv_secondaryScoreString = "SupportEleven";
+          lv_scoreString[lv_numScores] = "Score24";
         }
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasLostSoul");
       }
       if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
-        lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        lv_numScores += 1;
+        lv_scoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_tertiaryScoreString = "BaselineThree";
+          lv_scoreString[lv_numScores] = "Score16";
         }
         else {
-          lv_tertiaryScoreString = "TalentThirteen";
+          lv_scoreString[lv_numScores] = "Score19";
         }
       }
     }
     if ((lp_damageEffect == "SylvanasHauntingWaveDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreSeven";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score10";
       }
       else {
-        lv_primaryScoreString = "ScoreEight";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score11";
       }
       if (PlayerHasTalent(lv_casterPlayer, "SylvanasTalentFesteringWounds") == true) {
+        lv_numScores += 1;
+        lv_scoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasFesteringWounds");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "TalentTwenty";
+          lv_scoreString[lv_numScores] = "Score23";
         }
         else {
-          lv_secondaryScoreString = "SupportEleven";
+          lv_scoreString[lv_numScores] = "Score24";
         }
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasFesteringWounds");
       }
       if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
-        lv_tertiaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        lv_numScores += 1;
+        lv_scoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_tertiaryScoreString = "TalentOne";
+          lv_scoreString[lv_numScores] = "Score17";
         }
         else {
-          lv_tertiaryScoreString = "TalentThirteen";
+          lv_scoreString[lv_numScores] = "Score19";
         }
       }
     }
     if ((lp_damageEffect == "SylvanasBlackArrowsWeaponDamageOverwhelmingAfflictionPercentBonusDamage")) {
-      lv_primaryScoreString = "ScoreNine";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score20";
     }
     if ((lp_damageEffect == "SylvanasBlackArrowUnstablePoisonTalentDamage")) {
-      lv_primaryScoreString = "ScoreTen";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score21";
       if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        lv_numScores += 1;
+        lv_scoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "BaselineThree";
+          lv_scoreString[lv_numScores] = "Score22";
         }
         else {
-          lv_secondaryScoreString = "TalentThirteen";
+          lv_scoreString[lv_numScores] = "Score19";
         }
       }
     }
-    if ((lp_damageEffect == "SylvanasWailingArrowDamage")) {
+    if ((lp_damageEffect == "SylvanasWailingArrowDamage") || (lp_damageEffect == "SylvanasWailingArrowDeafeningBlastDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEleven";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score26";
       }
       else {
-        lv_primaryScoreString = "Discard";
+        // lv_primaryScoreString = "Discard";
       }
       if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        lv_numScores += 1;
+        lv_scoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "TalentFour";
+          lv_scoreString[lv_numScores] = "Score27";
         }
         else {
-          lv_secondaryScoreString = "TalentThirteen";
-        }
-      }
-    }
-    if ((lp_damageEffect == "SylvanasWailingArrowDeafeningBlastDamage")) {
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreEleven";
-      }
-      else {
-        lv_primaryScoreString = "Discard";
-      }
-      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
-        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "TalentFour";
-        }
-        else {
-          lv_secondaryScoreString = "TalentThirteen";
+          lv_scoreString[lv_numScores] = "Score28";
         }
       }
     }
     if ((lp_damageEffect == "SylvanasWitheringFireDamageRemorseless")) {
-      lv_primaryScoreString = "ScoreTwelve";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score30";
       if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
-        lv_secondaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
+        lv_numScores += 1;
+        lv_scoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_secondaryScoreString = "TalentSeven";
+          lv_scoreString[lv_numScores] = "Score31";
         }
         else {
-          lv_secondaryScoreString = "TalentThirteen";
+          lv_scoreString[lv_numScores] = "Score19";
         }
       }
     }
     if ((lp_damageEffect == "SylvanasShadowDaggerSpreadDummyDamage")) {
-      lv_primaryScoreString = "Discard";
+      // lv_primaryScoreString = "Discard";
     }
   }
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroTassadar")) {
@@ -40373,49 +40383,49 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
   }
   else if ((lv_heroUnitType == "HeroSylvanas")) {
     if ((lp_abilityName == "SylvanasWitheringFire")) {
-      lv_scoreString = "AccuracyOne";
+      lv_scoreString = "Score3";
     }
     if ((lp_abilityName == "SylvanasShadowDagger")) {
-      lv_scoreString = "AccuracyTwo";
+      lv_scoreString = "Score6";
     }
     if ((lp_abilityName == "SylvanasHauntingWave")) {
-      lv_scoreString = "AccuracyThree";
+      lv_scoreString = "Score9";
     }
     if ((lp_abilityName == "SylvanasHauntingWaveActivate")) {
       lv_scoreString = "Discard";
       if ((lp_cooldownNewValue < 0.3125)) {
-        lv_scoreString = "AccuracyFour";
+        lv_scoreString = "Score12";
       }
     }
     if ((lp_abilityName == "SylvanasBlackArrowsActive")) {
-      lv_scoreString = "AccuracyFive";
+      lv_scoreString = "Score13";
     }
     if ((lp_abilityName == "SylvanasPossession")) {
-      lv_scoreString = "AccuracySix";
+      lv_scoreString = "Score21";
     }
     if ((lp_abilityName == "SylvanasWailingArrow") || (lp_abilityName == "SylvanasMindControlMissile")) {
-      lv_scoreString = "AccuracySeven";
+      lv_scoreString = "Score25";
     }
     if ((lp_abilityName == "SylvanasWailingArrowActivate")) {
-      lv_scoreString = "AccuracyEight";
+      lv_scoreString = "Score29";
     }
     if ((lp_abilityName == "SylvanasHauntingWaveWindrunnerTalent")) {
       lv_scoreString = "Discard";
       if ((UnitBehaviorCount(lp_casterUnit, "SylvanasHauntingWaveWindrunnerTalentSlop") > 0)) {
-        lv_scoreString = "AccuracyNine";
+        lv_scoreString = "Score30";
       }
     }
     if ((lp_abilityName == "SylvanasHauntingWaveActivateWindrunnerTalent")) {
       lv_scoreString = "Discard";
       if ((lp_cooldownNewValue < 0.3125)) {
-        lv_scoreString = "AccuracyTen";
+        lv_scoreString = "Score31";
       }
     }
     if ((lp_abilityName == "SylvanasWillOfTheForsaken")) {
-      lv_scoreString = "AccuracyEleven";
+      lv_scoreString = "Score32";
     }
     if ((lp_abilityName == "FlashoftheStorms")) {
-      lv_scoreString = "AccuracyTwelve";
+      lv_scoreString = "Score33";
     }
   }
   else if ((lv_heroUnitType == "HeroStitches")) {
