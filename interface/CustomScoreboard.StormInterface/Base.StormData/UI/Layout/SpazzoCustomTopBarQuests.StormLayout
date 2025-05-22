@@ -3691,7 +3691,7 @@
         <When type="Property" frame="$Talent6MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" texture="Assets\Textures\storm_ui_icon_ana_healing_dart.dds"/>
-        <Action type="SetProperty" frame="$parent" Behavior="AnaHealingDartSharpshooter" /> 
+        <Action type="SetProperty" frame="$parent" Behavior="AnaHealingDartSharpshooterTokenCounter" /> 
         <Action type="SetProperty" frame="$parent/BehaviorIcon/StackLabel" Style="Spazzo_TopPanelQuestLabel_NotQuest" /> 
         <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" AdjustmentColor="255,200,200,200" /> 
         <Action type="SetProperty" frame="$parent/BehaviorIcon/StackProgressBar/FillImageContainer/FillImage" Alpha="130" /> 

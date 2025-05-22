@@ -5791,6 +5791,18 @@
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
       </State>
+      <State name="AnaHeroicAbilityEyeOfHorusDeadeye">
+        <When type="StateGroup" frame="$ancestor[@type=UnitStatusFrame]/QuestAndBuffContainerFrameT4/HeroicActiveValidatorFrame" operator="NotEqual" AnimState="AnaHaveEyeOfHorus" />
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_ana_overwatch.dds"/>
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected" />
+        <When type="Property" frame="$this/T4ControllerFrame" Visible="True" />
+        <Action type="SetProperty" frame="LabelT4" Text="AnaEyeOfHorusActivate" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="AnaEyeOfHorusActivate" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" AbilityLink="AnaEyeOfHorusActivate" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge" ChargeLink="Abil/AnaEyeOfHorusActivate" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/AbilityCharge/ChargesLabel" Visible="True" />
+      </State>
       <State name="AnaHeroicAbilityEyeOfHorus">
         <When type="StateGroup" frame="$ancestor[@type=UnitStatusFrame]/QuestAndBuffContainerFrameT4/HeroicActiveValidatorFrame" operator="NotEqual" AnimState="AnaHaveEyeOfHorus" />
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_ana_overwatch.dds"/>
