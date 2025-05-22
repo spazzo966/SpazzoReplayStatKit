@@ -1072,6 +1072,7 @@
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
+        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame" AbilityLink="AnaHealingDartDetachableBoxMagazine" />
         <Action type="SetProperty" frame="HeroAbil4/BackupAbilFrame" AbilityLink="AnaAimDownSightsDeactivate" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AnaHealingDart" />
@@ -1081,6 +1082,8 @@
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AnaSleepDart" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AnaTraitShrikeSniper" />
+        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="HeroAbil1/BackupAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AnaHealingDart" />
         <Action type="SetProperty" frame="HeroAbil4/BackupAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
         <Action type="SetProperty" frame="HeroAbil4/BackupAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AnaTraitShrikeSniperDeactivate" />
         <Action type="SetProperty" frame="Label" Text="Ana" />

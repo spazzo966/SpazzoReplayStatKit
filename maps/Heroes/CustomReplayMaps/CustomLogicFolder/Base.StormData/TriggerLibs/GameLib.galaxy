@@ -12695,6 +12695,8 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
       if (!(UnitHasBehavior2(lp_targetUnit, "ButchersBrand") == true)) {
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Leech Validator TargetHasButchersBrandTargetBehavior Failed!"));
         lv_leechFraction = 0.0;
+      }
+      else {
         if (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) {
           lv_leechFraction += CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_damageEffect, "LeechFlatModifierArray[" + "BrandedHero" + "].Modifier", lp_casterPlayer);
         }
@@ -12779,7 +12781,7 @@ void libGame_gf_CalculateLeechDamage (string lp_damageEffect, fixed lp_damageVal
   if ((((lp_damageEffect == "SylvanasWitheringFireDamageRemorseless") || (lp_damageEffect == "SylvanasShadowDaggerInitialDamage") || (lp_damageEffect == "SylvanasWeaponDamage") || (lp_damageEffect == "SylvanasWitheringFireDamage") || (lp_damageEffect == "SylvanasHauntingWaveDamage") || (lp_damageEffect == "SylvanasWailingArrowDamage") || (lp_damageEffect == "SylvanasWailingArrowDeafeningBlastDamage") || (lp_damageEffect == "SylvanasShadowDaggerDoTDamage")) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true) && (PlayerHasTalent(lp_casterPlayer, "SylvanasTalentLifeDrain") == true) && (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3))) {
     lv_leechFraction = (lv_leechFraction * (1.0 + CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_damageEffect, "LeechMultiplicativeModifierArray[" + "LifeDrainLifeStealHero" + "].Modifier", lp_casterPlayer)));
   }
-  if (((lp_damageEffect == "TracerHeroWeaponDamageHero") || (lp_damageEffect == "TracerHeroWeaponFocusFireMasteryDamage") || (lp_damageEffect == "TracerHeroWeaponFocusFireMasteryDamageHero") || (lp_damageEffect == "TracerHeroWeaponDamage"))) {
+  if (((lp_damageEffect == "TracerHeroWeaponDamageHero") || (lp_damageEffect == "TracerHeroWeaponFocusFireMasteryDamage") || (lp_damageEffect == "TracerHeroWeaponFocusFireMasteryDamageHero") || (lp_damageEffect == "TracerHeroWeaponDamage") || (lp_damageEffect == "TracerHeroWeaponRicochetDamage") || (lp_damageEffect == "TracerHeroWeaponRicochetDamageHero"))) {
     lv_leechFraction = (lv_leechFraction);
     if ((PlayerHasTalent(lp_casterPlayer, "TracerLeechingRounds") == true)) {
       lv_leechFractionSpecialCase = libGame_gv_LeechFractionSpecialCaseHeatOfBattle(lp_damageEffect, lp_damageValue, lv_leechFraction, lv_calculatedActualLeechFraction, lv_healTakenModifier, lp_casterUnit, lp_casterPlayer, lp_leechValue);
@@ -13488,7 +13490,7 @@ void libGame_gf_HeroSpecificScoreTrackerLeeched (string lp_damageEffect, fixed l
     }
   }
   if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroTracer")) {
-    if ((lp_damageEffect == "TracerHeroWeaponDamageHero") || (lp_damageEffect == "TracerHeroWeaponFocusFireMasteryDamage") || (lp_damageEffect == "TracerHeroWeaponFocusFireMasteryDamageHero") || (lp_damageEffect == "TracerHeroWeaponDamage")) {
+    if ((lp_damageEffect == "TracerHeroWeaponDamageHero") || (lp_damageEffect == "TracerHeroWeaponFocusFireMasteryDamage") || (lp_damageEffect == "TracerHeroWeaponFocusFireMasteryDamageHero") || (lp_damageEffect == "TracerHeroWeaponDamage") || (lp_damageEffect == "TracerHeroWeaponRicochetDamage") || (lp_damageEffect == "TracerHeroWeaponRicochetDamageHero")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_primaryScoreString = "ScoreFour";
       }
@@ -14253,7 +14255,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAuriel")) {
-      if (((lp_behavior == "AurielSacredSweepBlindingFlashBlind") || (lp_behavior == "AurielSacredSweepBlindingFlashBlindNonHeroes")) && (UnitTypeTestAttribute(UnitGetType(lp_externalUnit), c_unitAttributeHeroic) == true)) {
+      if (((lp_behavior == "AurielSacredSweepBlindingFlashBlind") || (lp_behavior == "AurielSacredSweepBlindingFlashNonHeroesBlind")) && (UnitTypeTestAttribute(UnitGetType(lp_externalUnit), c_unitAttributeHeroic) == true)) {
         if (libGame_gf_TeamNumberOfPlayer(lv_externalPlayer) == libGame_gf_TeamNumberOfPlayer(lp_casterPlayer)) {
 					if ((lv_externalPlayer != lp_casterPlayer)) {
             lv_primaryScoreString = "Score41";
@@ -14266,7 +14268,7 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
           lv_primaryScoreString = "Discard";
         }
       }
-      if (((lp_behavior == "AurielSacredSweepBlindingFlashBlind") || (lp_behavior == "AurielSacredSweepBlindingFlashBlindNonHeroes")) && (UnitTypeTestAttribute(UnitGetType(lp_externalUnit), c_unitAttributeHeroic) == false)) {
+      if (((lp_behavior == "AurielSacredSweepBlindingFlashBlind") || (lp_behavior == "AurielSacredSweepBlindingFlashNonHeroesBlind")) && (UnitTypeTestAttribute(UnitGetType(lp_externalUnit), c_unitAttributeHeroic) == false)) {
         lv_primaryScoreString = "Discard";
       }
     }
@@ -17652,7 +17654,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       if ((lp_healEffect == "LucioHighFiveCreateHealer")) {
         lv_primaryScoreString = "ScoreSixteen";
         lv_secondaryScoreOverride = 1.0;
-        if ((UnitGetOwner(lp_targetUnit) >= 1) && (UnitGetOwner(lp_targetUnit) > libCore_gv_bALMaxPlayers)) {
+        if ((UnitGetOwner(lp_targetUnit) >= 1) && (UnitGetOwner(lp_targetUnit) <= libCore_gv_bALMaxPlayers)) {
           lv_secondaryScoreString = ("DamageTo" + IntToString(libGame_gv_players[UnitGetOwner(lp_targetUnit)].lv_rosterSlot));
         }
       }
@@ -18076,6 +18078,9 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
           lv_primaryScoreString = "BaselineThree";
         }
       }
+      if ((lp_healEffect == "RehgarElectricChargeCreateHealer")) {
+        lv_primaryScoreString = "BaselineThree";
+      }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAbathur") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "AbathurSymbiote")) {
       if ((lp_healEffect == "RegenerativeMicrobesCreateHealer")) {
@@ -18400,8 +18405,11 @@ void libGame_gf_HeroSpecificStatTrackerOther (fixed lp_scoreValue, int lp_caster
   }
 
   if ((lp_inputData == "AurielEnergyGain")) {
-    if ((lp_targetPlayer >= 1) && (lp_targetPlayer > libCore_gv_bALMaxPlayers)) {
+    if ((lp_targetPlayer >= 1) && (lp_targetPlayer <= libCore_gv_bALMaxPlayers)) {
       lv_scoreString = ("DamageTo" + IntToString(libGame_gv_players[lp_targetPlayer].lv_rosterSlot));
+    }
+    else {
+      lv_scoreString = "Discard";
     }
     if ((lp_extraDataString == "AurielHeroWeaponHeroImpactDamage") || (lp_extraDataString == "AurielHeroWeaponNonHeroImpactDamage")) {
       lv_secondaryScoreString = "Score20";
@@ -23460,7 +23468,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_numScores += 1;
         lv_scoreString[lv_numScores] = "Score16";
         lv_scoreOverride[lv_numScores] = 1.0;
-        if ((PlayerHasTalent(lv_casterPlayer, "GenjiShurikenSharpenedStars") == true)) {
+        if ((PlayerHasTalent(lv_casterPlayer, "GenjiDeflectZanshin") == true)) {
           lv_numScores += 1;
           lv_scoreString[lv_numScores] = "Score45";
           lv_scoreOverride[lv_numScores] = 1.0;
@@ -23469,7 +23477,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       else {
         lv_numScores += 1;
         lv_scoreString[lv_numScores] = "Score12";
-        if ((PlayerHasTalent(lv_casterPlayer, "GenjiShurikenSharpenedStars") == true)) {
+        if ((PlayerHasTalent(lv_casterPlayer, "GenjiDeflectZanshin") == true)) {
           lv_numScores += 1;
           lv_scoreString[lv_numScores] = "Score46";
           lv_scoreOverride[lv_numScores] = 1.0;
@@ -27111,7 +27119,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       if ((PlayerHasTalent(lv_casterPlayer, "ETCMasteryMicCheck") == true)) {
         if (libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] != GameGetMissionTime()) {
           libGame_gv_HeroSpecificStoredValue4[lv_casterPlayer] = 1.0;
-          UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Target is Fresh"));
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Target is Fresh"));
         }
         else {
           if (libGame_gv_HeroSpecificStoredValue4[lv_casterPlayer] == 1.0) {
@@ -27119,11 +27127,11 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
             lv_scoreString[lv_numScores] = "Score25";
             lv_scoreOverride[lv_numScores] = 1.0;
             libGame_gv_HeroSpecificStoredValue4[lv_casterPlayer] = 2.0;
-            UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Mic Check Proc"));
+            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Mic Check Proc"));
           }
-          else {
-            UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Mic already checked"));
-          }
+          // else {
+            // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Mic already checked"));
+          // }
         }
         libGame_gv_HeroSpecificStoredValue3[lv_casterPlayer] = GameGetMissionTime();
       }
@@ -28153,6 +28161,11 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_numScores += 1;
         lv_scoreString[lv_numScores] = "Score6";
         lv_scoreOverride[lv_numScores] = 1.0;
+        if ((PlayerHasTalent(lv_casterPlayer, "ImperiusCelestialChargeImpalingLight") == true)) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score26";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "ImperiusImpalingLight");
+        }
       }
       else {
         lv_numScores += 1;
@@ -28202,7 +28215,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_numScores += 1;
         lv_scoreString[lv_numScores] = "Score18";
         lv_scoreOverride[lv_numScores] = 1.0;
-        if (libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] == GameGetMissionTime()) {
+        if ((libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] == GameGetMissionTime()) && (PlayerHasTalent(lv_casterPlayer, "ImperiusMoltenWrath") == true)) {
           lv_numScores += 1;
           lv_scoreString[lv_numScores] = "Score44";
           lv_numScores += 1;
@@ -28217,6 +28230,8 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_scoreString[lv_numScores] = "Score19";
         lv_scoreOverride[lv_numScores] = 1.0;
       }
+      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Molten Armor hits ") + StringToText(UnitGetType(lp_targetUnit)) + StringToText(" at game time ") + FixedToText(GameGetMissionTime(), 5)));
+      // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("old timer value: ") + FixedToText(libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer], 5)));
       libGame_gv_HeroSpecificStoredValue2[lv_casterPlayer] = GameGetMissionTime();
     }
     if ((lp_damageEffect == "ImperiusValorousBrandBurnTheImpureDamage")) {
@@ -29794,7 +29809,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
         lv_numScores += 1;
         lv_scoreString[lv_numScores] = "Score15";
-        if ((PlayerHasTalent(lv_casterPlayer, "MalthaelMassacre") == true)) {
+        if ((PlayerHasTalent(lv_casterPlayer, "MalthaelMementoMori") == true)) {
           lv_numScores += 1;
           lv_scoreString[lv_numScores] = "Score36";
           lv_scoreOverride[lv_numScores] = 1.0;
@@ -31021,9 +31036,9 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
       else {
         lv_numScores += 1;
-        lv_scoreString[lv_numScores] = "Score1";
+        lv_scoreString[lv_numScores] = "Score2";
       }
-      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3) && (UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
         lv_numScores += 1;
         lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -31031,6 +31046,36 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         }
         else {
           lv_scoreString[lv_numScores] = "Score18";
+        }
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(lp_damageEffect) + StringToText(" Black Arrows dealt ") + FixedToText(lv_scoreOverride[lv_numScores], 1) + StringToText(" bonus damage to: ") + StringToText(UnitGetType(lp_targetUnit))));
+      }
+      if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") != 0) {
+        if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 1) {
+          UnitGroupAdd(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit);
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit);
+          }
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit);
+          }
+        }
+        if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 2) {
+          UnitGroupAdd(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit);
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit);
+          }
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit);
+          }
+        }
+        if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3) {
+          UnitGroupAdd(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit);
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit);
+          }
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit);
+          }
         }
       }
     }
@@ -31053,7 +31098,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
           lv_scoreString[lv_numScores] = "Score24";
         }
       }
-      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3) && (UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
         lv_numScores += 1;
         lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -31061,6 +31106,36 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         }
         else {
           lv_scoreString[lv_numScores] = "Score19";
+        }
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(lp_damageEffect) + StringToText(" Black Arrows dealt ") + FixedToText(lv_scoreOverride[lv_numScores], 1) + StringToText(" bonus damage to: ") + StringToText(UnitGetType(lp_targetUnit))));
+      }
+      if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") != 0) {
+        if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 1) {
+          UnitGroupAdd(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit);
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit);
+          }
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit);
+          }
+        }
+        if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 2) {
+          UnitGroupAdd(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit);
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit);
+          }
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit);
+          }
+        }
+        if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3) {
+          UnitGroupAdd(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit);
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit);
+          }
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit);
+          }
         }
       }
     }
@@ -31083,7 +31158,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
           lv_scoreString[lv_numScores] = "Score24";
         }
       }
-      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3) && (UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
         lv_numScores += 1;
         lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -31092,6 +31167,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         else {
           lv_scoreString[lv_numScores] = "Score19";
         }
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(lp_damageEffect) + StringToText(" Black Arrows dealt ") + FixedToText(lv_scoreOverride[lv_numScores], 1) + StringToText(" bonus damage to: ") + StringToText(UnitGetType(lp_targetUnit))));
       }
     }
     if ((lp_damageEffect == "SylvanasShadowDaggerDoTDamage")) {
@@ -31113,7 +31189,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
           lv_scoreString[lv_numScores] = "Score24";
         }
       }
-      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3) && (UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
         lv_numScores += 1;
         lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -31122,6 +31198,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         else {
           lv_scoreString[lv_numScores] = "Score19";
         }
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(lp_damageEffect) + StringToText(" Black Arrows dealt ") + FixedToText(lv_scoreOverride[lv_numScores], 1) + StringToText(" bonus damage to: ") + StringToText(UnitGetType(lp_targetUnit))));
       }
     }
     if ((lp_damageEffect == "SylvanasHauntingWaveDamage")) {
@@ -31143,7 +31220,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
           lv_scoreString[lv_numScores] = "Score24";
         }
       }
-      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3) && (UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
         lv_numScores += 1;
         lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -31151,6 +31228,36 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         }
         else {
           lv_scoreString[lv_numScores] = "Score19";
+        }
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(lp_damageEffect) + StringToText(" Black Arrows dealt ") + FixedToText(lv_scoreOverride[lv_numScores], 1) + StringToText(" bonus damage to: ") + StringToText(UnitGetType(lp_targetUnit))));
+      }
+      if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") != 0) {
+        if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 1) {
+          UnitGroupAdd(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit);
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit);
+          }
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit);
+          }
+        }
+        if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 2) {
+          UnitGroupAdd(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit);
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit);
+          }
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit);
+          }
+        }
+        if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3) {
+          UnitGroupAdd(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit);
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit);
+          }
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit);
+          }
         }
       }
     }
@@ -31161,7 +31268,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((lp_damageEffect == "SylvanasBlackArrowUnstablePoisonTalentDamage")) {
       lv_numScores += 1;
       lv_scoreString[lv_numScores] = "Score21";
-      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3) && (UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
         lv_numScores += 1;
         lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -31170,6 +31277,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         else {
           lv_scoreString[lv_numScores] = "Score19";
         }
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(lp_damageEffect) + StringToText(" Black Arrows dealt ") + FixedToText(lv_scoreOverride[lv_numScores], 1) + StringToText(" bonus damage to: ") + StringToText(UnitGetType(lp_targetUnit))));
       }
     }
     if ((lp_damageEffect == "SylvanasWailingArrowDamage") || (lp_damageEffect == "SylvanasWailingArrowDeafeningBlastDamage")) {
@@ -31180,7 +31288,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       else {
         // lv_primaryScoreString = "Discard";
       }
-      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3) && (UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
         lv_numScores += 1;
         lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -31189,12 +31297,13 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         else {
           lv_scoreString[lv_numScores] = "Score28";
         }
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(lp_damageEffect) + StringToText(" Black Arrows dealt ") + FixedToText(lv_scoreOverride[lv_numScores], 1) + StringToText(" bonus damage to: ") + StringToText(UnitGetType(lp_targetUnit))));
       }
     }
     if ((lp_damageEffect == "SylvanasWitheringFireDamageRemorseless")) {
       lv_numScores += 1;
       lv_scoreString[lv_numScores] = "Score30";
-      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3)) {
+      if ((UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3) && (UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
         lv_numScores += 1;
         lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "SylvanasBlackArrows");
         if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
@@ -31202,6 +31311,36 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         }
         else {
           lv_scoreString[lv_numScores] = "Score19";
+        }
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText(lp_damageEffect) + StringToText(" Black Arrows dealt ") + FixedToText(lv_scoreOverride[lv_numScores], 1) + StringToText(" bonus damage to: ") + StringToText(UnitGetType(lp_targetUnit))));
+      }
+      if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") != 0) {
+        if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 1) {
+          UnitGroupAdd(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit);
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit);
+          }
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit);
+          }
+        }
+        if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 2) {
+          UnitGroupAdd(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit);
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit);
+          }
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit);
+          }
+        }
+        if (UnitBehaviorCount(lp_targetUnit, "SylvanasBlackArrowsStackingBehavior") == 3) {
+          UnitGroupAdd(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayer], lp_targetUnit);
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup1[lv_casterPlayer], lp_targetUnit);
+          }
+          if ((UnitGroupHasUnit(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit) == true)) {
+            UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup2[lv_casterPlayer], lp_targetUnit);
+          }
         }
       }
     }
@@ -35652,7 +35791,6 @@ int libGame_gf_unitGroupCountRaynorInspire (unitgroup lp_generatedUnitGroup, str
   const int lv_one = 1;
   unitgroup lv_resultUnitGroup = UnitGroupEmpty();
 
-
   lv_unitGroupIterator = 1;
   
   for ( ; ( (lv_one >= 0 && lv_unitGroupIterator <= lv_unitGroupCount) || (lv_one < 0 && lv_unitGroupIterator >= lv_unitGroupCount) ) ; lv_unitGroupIterator += lv_one ) {
@@ -35957,6 +36095,14 @@ void libGame_gf_trackHeroCooldowns () {
     if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroZagara")) {
       lv_heroAbilCount[lv_playerIterator] += 1;
       lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "TumorDetector";
+      lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
+      if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
+      }
+    }
+    if ((UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroSylvanas")) {
+      lv_heroAbilCount[lv_playerIterator] += 1;
+      lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = "BlackArrowsDetector";
       lv_notCooldown[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]] = true;
       if ((libGame_gv_heroSpecificDebugString == "cdr") && (lv_playerIterator == 1)) {
         UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Stored ") + StringToText(lv_abilityName[lv_playerIterator][lv_heroAbilCount[lv_playerIterator]]) + StringToText(" at ") + IntToText(lv_heroAbilCount[lv_playerIterator]) + StringToText(" for player ") + IntToText(lv_playerIterator)));
@@ -36483,6 +36629,10 @@ fixed libGame_gf_FetchAbilityCooldownTime (unit lp_unit, string lp_ability, int 
     lv_cooldownTime = GameGetMissionTime();
     lv_method = "TumorDetector";
   }
+  if ((lp_ability == "BlackArrowsDetector")) {
+    lv_cooldownTime = GameGetMissionTime();
+    lv_method = "BlackArrowsDetector";
+  }
   if ((lp_ability == "Generic3Template")) {
     lv_cooldownTime = GameGetMissionTime();
     lv_method = "Generic3Template";
@@ -36820,14 +36970,17 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
       }
     }
     if ((lp_abilityName == "AnaHealingDartDetachableBoxMagazine")) {
-      lv_scoreString = "Score39";
+      lv_scoreString = "Discard";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "AnaDetachableBoxMagazine") == true)) {
+        lv_scoreString = "Score39";
+      }
     }
     if ((lp_abilityName == "AnaADSDetector")) {
       lv_scoreString = "Discard";
       if ((UnitHasBehavior2(lp_casterUnit, "AnaAimDownSights") == true)) {
           libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score23");
       }
-      if ((PlayerHasTalent(lv_casterPlayerOverride, "AnaHealingDartSharpshooter")) && (UnitIsAlive(lp_casterUnit) == true)) {
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "AnaHealingDartSharpshooter") == true) && (UnitIsAlive(lp_casterUnit) == true)) {
         if ((UnitGetTokenCount(lp_casterUnit, "AnaHealingDartSharpshooter") != 0.0) && (UnitGetTokenCount(lp_casterUnit, "AnaHealingDartSharpshooter") != 1.0)) {
           if (UnitHasBehavior2(lp_casterUnit, "AnaHealingDartSharpshooterMaxStacksCarry") == true) {
             libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score38");
@@ -37731,7 +37884,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
         if ((PlayerHasTalent(lv_casterPlayerOverride, "ETCMasterySpeedMetal") == true)) {
           lv_secondaryScoreString = "Score15";
         }
-        if ((PlayerHasTalent(lv_casterPlayerOverride, "ETCMasterySpeedMetal") == true)) {
+        if ((PlayerHasTalent(lv_casterPlayerOverride, "L90ETCMasteryMoshPitTourBus") == true) || (PlayerHasTalent(lv_casterPlayerOverride, "L90ETCMasteryStageDiveCrowdPleaser") == true)) {
           lv_tertiaryScoreString = "Score29";
         }
       }
@@ -37983,8 +38136,12 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     }
     if ((lp_abilityName == "GenjiDragonblade") || (lp_abilityName == "GenjiXStrike")) {
       lv_scoreString = "Score31";
+      if ((PlayerHasTalent(lv_casterPlayerOverride, "GenjiXStrikeLivingWeapon") == true) || (PlayerHasTalent(lv_casterPlayerOverride, "GenjiDragonbladeTheDragonBecomesMe") == true)) {
+        lv_secondaryScoreString = "Score44";
+      }
       if ((UnitHasBehavior2(lp_casterUnit, "GenjiDragonbladeActive") == false) && (lp_abilityName == "GenjiDragonblade")) {
         lv_scoreString = "Discard";
+        lv_secondaryScoreString = "Discard";
       }
     }
     if ((lp_abilityName == "GenjiDragonbladeAttack")) {
@@ -38803,7 +38960,7 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
       }
       if ((UnitIsAlive(lp_casterUnit) == true)) {
         if ((PlayerHasTalent(lv_casterPlayerOverride, "DryadAcceleratedContamination") == true)) {
-          if ((UnitHasBehavior2(lp_casterUnit, "DryadAcceleratedContaminationCooldownCarryBehavior") == true) && (UnitBehaviorEnabled(lp_casterUnit, "DryadAcceleratedContaminationCooldownCarryBehavior") == true) && (UnitBehaviorCount(lp_casterUnit, "DryadAcceleratedContaminationCooldownCarryBehavior") != 0)) {
+          if ((libCore_gf_IsAbilityOnCooldown(lp_casterUnit, "DryadNoxiousBlossom") == true) && (UnitHasBehavior2(lp_casterUnit, "DryadAcceleratedContaminationCooldownCarryBehavior") == true) && (UnitBehaviorEnabled(lp_casterUnit, "DryadAcceleratedContaminationCooldownCarryBehavior") == true) && (UnitBehaviorCount(lp_casterUnit, "DryadAcceleratedContaminationCooldownCarryBehavior") != 0)) {
             libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score40");
           }
           libGame_gf_HeroSpecificStatTrackerOther(0.0625, lv_casterPlayerOverride, lv_casterPlayerOverride, "Passthrough", null, "Score39");
@@ -40427,6 +40584,21 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     if ((lp_abilityName == "FlashoftheStorms")) {
       lv_scoreString = "Score33";
     }
+    if ((lp_abilityName == "BlackArrowsDetector")) {
+      lv_scoreString = "Discard";
+
+      lv_tempInt2 = UnitGroupCount(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayerOverride], c_unitCountAll);
+
+      lv_tempInt = 1;
+
+      for ( ; ( (lv_one >= 0 && lv_tempInt <= lv_tempInt2) || (lv_one < 0 && lv_tempInt >= lv_tempInt2) ) ; lv_tempInt += lv_one ) {
+        lv_tempUnit = UnitGroupUnit(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayerOverride], lv_tempInt);
+        if ((UnitBehaviorCount(lv_tempUnit, "SylvanasBlackArrowsStackingBehavior") != 3)) {
+          UnitGroupRemove(libGame_gv_HeroSpecificStoredUnitGroup3[lv_casterPlayerOverride], lv_tempUnit);
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Unit Lost Black Arrows: ") + StringToText(UnitGetType(lv_tempUnit))));
+        }
+      }
+    }
   }
   else if ((lv_heroUnitType == "HeroStitches")) {
     if ((lp_abilityName == "StitchesHook")) {
@@ -41254,6 +41426,9 @@ void libGame_gv_initializeOBSUI () {
     // DialogControlHookupStandard(c_triggerControlTypeLabel, ("UIContainer\\FullscreenUpperContainer\\CustomScoreboardFrame\\CustomFrameCombined\\HeroSpecificDamageContainerFrame\\Player" + IntToString(lv_playerSlot) + "ContainerFrame\\PlayerScoreContainerFrameScoreFifteen\\ScoreValueLabel"));
     // libGame_gv_DamageFifteenLabel[lv_playerSlot] = DialogControlLastCreated();
     libGame_gv_ownedMercenaries[lv_playerIterator] = UnitGroupEmpty();
+    libGame_gv_HeroSpecificStoredUnitGroup1[lv_playerIterator] = UnitGroupEmpty();
+    libGame_gv_HeroSpecificStoredUnitGroup2[lv_playerIterator] = UnitGroupEmpty();
+    libGame_gv_HeroSpecificStoredUnitGroup3[lv_playerIterator] = UnitGroupEmpty();
   }
 }
 
