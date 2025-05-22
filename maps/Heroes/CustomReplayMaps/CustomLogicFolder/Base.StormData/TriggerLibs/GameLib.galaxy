@@ -26856,7 +26856,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
     }
     if ((lp_damageEffect == "DehakaIsolationDamage")) {
-      lv_primaryScoreString = "ScoreTwo";
+      lv_primaryScoreString = "BaselineTwo";
       lv_secondaryScoreOverride = 1.0;
       lv_secondaryScoreString = "AccuracyThree";
       if (PlayerHasTalent(lv_casterPlayer, "DehakaIsolationTalentContagion") == true) {
