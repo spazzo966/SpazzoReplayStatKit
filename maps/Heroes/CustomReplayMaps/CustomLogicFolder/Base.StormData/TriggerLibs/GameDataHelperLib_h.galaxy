@@ -74,7 +74,6 @@ const fixed libGDHL_gv_rexxar_Misha_LeashMoveOffset_C = 2.0;
 const int libGDHL_gv_thrallTraitMaxStacks = 5;
 const fixed libGDHL_gv_heroTychusSuppressiveFireMaxTurnRate = 500.0;
 const fixed libGDHL_gv_illusionistProcPercentageConstant = 0.2;
-const fixed libGDHL_gv_bALHeroUtherBlessedChampionHeal = 0.15;
 
 // Structures
 struct libGDHL_gs_SymbioteHivemind {
@@ -217,6 +216,7 @@ struct libGDHL_gs_ThrallUI {
 };
 
 // Variable Declarations
+unitgroup libGDHL_gv_updateOnAnyVisibilityChangeUnitGroup;
 bool libGDHL_gv_gPU2020EventEnabled;
 bool libGDHL_gv_gPU2020Force01Rando;
 fixed libGDHL_gv_gPU2020TimerDurationMod;
@@ -332,6 +332,7 @@ libGDHL_gs_MurkyUI libGDHL_gv_murkyUI;
 bool[libCore_gv_bALMaxPlayers + 1] libGDHL_gv_murkyDeathOverlayActive;
 int[libCore_gv_bALMaxPlayers + 1] libGDHL_gv_murkyRevealPing;
 timer[libCore_gv_bALMaxPlayers + 1] libGDHL_gv_murkyEggDeathTimer;
+fixed libGDHL_gv_mURKY_BAL_EGG_DEATH_TALENT;
 unitgroup[libCore_gv_bALMaxPlayers + 1] libGDHL_gv_heroMurkyEggHuntUnitGroup;
 int libGDHL_gv_heroNecromancerTriggerRegistrationVariable;
 unitgroup[libCore_gv_bALMaxPlayers + 1] libGDHL_gv_heroNecromancerSkeletonMasteryUnitGroup;
@@ -572,6 +573,8 @@ void libGDHL_gf_HeroZeratulDecrementHeroCountFunction ();
 // Trigger Declarations
 trigger libGDHL_gt_IncludeGameDataHelper;
 trigger libGDHL_gt_SummonedUnitAPApplication;
+trigger libGDHL_gt_SummonedUnitImposingPresenceApplication;
+trigger libGDHL_gt_SummonedUnitDamageDealtEnumTargetCasterHandled;
 trigger libGDHL_gt_HeroGenericCameraShakeLightTarget;
 trigger libGDHL_gt_HeroGenericCameraShakeMediumTarget;
 trigger libGDHL_gt_HeroGenericCameraShakeHeavyTarget;
@@ -584,6 +587,7 @@ trigger libGDHL_gt_HeroGenericSlowFXController;
 trigger libGDHL_gt_HeroGenericRevealCloakedPeriodicDamageSource;
 trigger libGDHL_gt_HeroGenericRevealCloakedOneOffDamageSource;
 trigger libGDHL_gt_HeroGenericSuperStealthActivateDeactivate;
+trigger libGDHL_gt_HeroAllHeroRespec;
 trigger libGDHL_gt_HearthstoneTeleport;
 trigger libGDHL_gt_HearthstoneChannelingBuffOn;
 trigger libGDHL_gt_HearthstoneChannelingBuffOff;
@@ -621,10 +625,14 @@ trigger libGDHL_gt_HeroArtanisSpearofAdunPurifierBeamSetTarget;
 trigger libGDHL_gt_HeroArtanisSpearofAdunPurifierBeamUnitCreated;
 trigger libGDHL_gt_HeroArtanisSpearofAdunPurifierBeamRedirectTarget2ElectricBoogaloo;
 trigger libGDHL_gt_HeroArthasAntiMagicShellHeal;
+trigger libGDHL_gt_HeroArthasArmyoftheDeadLegionofNorthrendTalentSpawn;
+trigger libGDHL_gt_HeroArthasArmyoftheDeadNPCDeathProc;
+trigger libGDHL_gt_HeroArthasArmyoftheDeadTakedownDeathProc;
 trigger libGDHL_gt_HeroArthasArmyoftheDeadMinionAITakeoverDeath;
 trigger libGDHL_gt_HeroArthasArmyoftheDeadMinionAITakeoverTransport;
 trigger libGDHL_gt_HeroArthasArmyoftheDeadPortGhouls;
 trigger libGDHL_gt_HeroArthasArmyoftheDeadGhoulSpawned;
+trigger libGDHL_gt_HeroArthasDeathPactTalentTakedownTokenProc;
 trigger libGDHL_gt_HeroAnubarakBurrowChargeSuppressCollision;
 trigger libGDHL_gt_HeroAnubarakBurrowChargeMaxRange;
 trigger libGDHL_gt_HeroAnubarakBurrowChargeCancel;
@@ -705,11 +713,9 @@ trigger libGDHL_gt_HeroGreymaneTalentWizenedDuelistDeath;
 trigger libGDHL_gt_HeroFaerieDragonPhaseShiftPing;
 trigger libGDHL_gt_HeroFaerieDragonPhaseShiftCamera;
 trigger libGDHL_gt_HeroFaerieDragonPixieCharmChargeCountProc;
+trigger libGDHL_gt_HeroFalstadDishonorableDischargeHeroKillRefreshCooldown;
 trigger libGDHL_gt_HeroFalstadFlightPing;
 trigger libGDHL_gt_HeroFalstadFlightCameraHeightRestore;
-trigger libGDHL_gt_HeroFalstadFrequentFlyerHeroTakedown;
-trigger libGDHL_gt_HeroFalstadFrequentFlyerNPCKill;
-trigger libGDHL_gt_HeroFalstadDishonorableDischargeHeroKillRefreshCooldown;
 trigger libGDHL_gt_HeroFalstadWingmanVariables;
 trigger libGDHL_gt_HeroIllidanApplyFotBCooldownonInventoryUse;
 trigger libGDHL_gt_HeroIllidanMetamorphosisAvatarApplyHealthBuff;
@@ -851,7 +857,6 @@ trigger libGDHL_gt_HeroMurkyEggSpawnsChangeDeathSound;
 trigger libGDHL_gt_HeroMurkyCleanUpEggUIForDebugHeroSwap;
 trigger libGDHL_gt_HeroMurkyAFishyDealVariables;
 trigger libGDHL_gt_HeroMurkyAFishyDealChargeCountProc;
-trigger libGDHL_gt_HeroMurkyEggHuntUnitGroupController;
 trigger libGDHL_gt_HeroMurkyFishEyeDynamicApplication;
 trigger libGDHL_gt_HeroMurkyRespawnEggCreated;
 trigger libGDHL_gt_HeroNecromancerSkeletonMasteryProc;
