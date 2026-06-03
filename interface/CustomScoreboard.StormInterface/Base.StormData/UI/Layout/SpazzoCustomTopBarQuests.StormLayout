@@ -472,13 +472,111 @@
         <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" /> 
         <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" /> 
         <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
-        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AlarakSadism" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AlarakSadism" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="Arthas">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroArthas"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$Talent0MasterSetting/ShowQuests/CheckBoxButton" Toggled="True"/>
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="ArthasFrostmourneHungersTokenCounter" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_Arthas_FrostmourneHungers_Off.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ArthasFrostmourneHungers" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="Deathwing">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroDeathwing"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$Talent0MasterSetting/ShowQuests/CheckBoxButton" Toggled="True"/>
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="DeathwingCataclysmQuestToken" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_deathwing_cataclysm.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DeathwingCataclysm" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="Kerrigan">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroKerrigan"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$Talent0MasterSetting/ShowQuests/CheckBoxButton" Toggled="True"/>
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="KerriganRavageSharpenedBladesTokenCounter" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_kerrigan_ravage.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/KerriganSharpenedBlades" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="Muradin">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMuradin"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$Talent0MasterSetting/ShowQuests/CheckBoxButton" Toggled="True"/>
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="MuradinStormboltPerfectStormQuestToken" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_Muradin_Stormbolt.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/MuradinPerfectStorm" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="Murky">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMurky"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$Talent0MasterSetting/ShowQuests/CheckBoxButton" Toggled="True"/>
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="PuffedUpTokenCounter" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_murky_pufferfish.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/MurkyPuffedUp" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="Sylvanas">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroSylvanas"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$Talent0MasterSetting/ShowQuests/CheckBoxButton" Toggled="True"/>
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="SylvanasBlackArrowsQuestToken" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_sylvanas_blackarrows.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/SylvanasBlackArrows" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="Tyrande">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroTyrande"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <When type="Property" frame="$Talent0MasterSetting/ShowQuests/CheckBoxButton" Toggled="True"/>
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="TyrandeLunarFlareLunarBlazeTokenCounter" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_tyrande_lunarflare.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/TyrandeLunarBlaze" />
         <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
       </State>
       <!-- <State name="Muradin">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMuradin"/>
         <When type="Property" frame="$TopBarSettingsFrame/ShowBaselineTalents" Toggled="True"/>
-        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="MuradinItsHammerTimeTokenCounter" /> 
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="MuradinItsHammerTimeTokenCounter" />
         <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
         <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_muradin_stormbolt.dds" /> 
         <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" /> 
@@ -1238,15 +1336,106 @@
         <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="True" /> 
         <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" /> 
         <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
-        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AlarakSadism" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/AlarakSadism" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="ArthasForceDisplay">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroArthas"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="ArthasFrostmourneHungersTokenCounter" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_Arthas_FrostmourneHungers_Off.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/ArthasFrostmourneHungers" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="DeathwingForceDisplay">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroDeathwing"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="DeathwingCataclysmQuestToken" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_deathwing_cataclysm.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DeathwingCataclysm" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="KerriganForceDisplay">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroKerrigan"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="KerriganRavageSharpenedBladesTokenCounter" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_kerrigan_ravage.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/KerriganSharpenedBlades" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="MuradinForceDisplay">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMuradin"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="MuradinStormboltPerfectStormQuestToken" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_Muradin_Stormbolt.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/MuradinPerfectStorm" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="MurkyForceDisplay">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMurky"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="PuffedUpTokenCounter" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_murky_pufferfish.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/MurkyPuffedUp" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="SylvanasForceDisplay">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroSylvanas"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="SylvanasBlackArrowsQuestToken" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_sylvanas_blackarrows.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/SylvanasBlackArrows" />
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="TyrandeForceDisplay">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroTyrande"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="TyrandeLunarFlareLunarBlazeTokenCounter" />
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_tyrande_lunarflare.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="True" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/TyrandeLunarBlaze" />
         <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
       </State>
       <!-- <State name="MuradinForceDisplay">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMuradin"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="True" />
-        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="MuradinItsHammerTimeTokenCounter" /> 
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="MuradinItsHammerTimeTokenCounter" />
         <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
-        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_muradin_stormbolt.dds" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_muradin_stormbolt.dds" />
         <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" /> 
         <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="True" /> 
         <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" /> 
