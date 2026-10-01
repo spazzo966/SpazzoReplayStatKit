@@ -377,9 +377,13 @@
       <Anchor side="Top" relative="$parent/VarianAttachment" pos="Min" offset="0" />
       <Anchor side="Left" relative="$parent/VarianAttachment" pos="Max" offset="#UnitStatusDistanceBetweenFrameHorizontal" />
     </Frame>
-    <Frame type="Frame" name="NecromancerAttachment" template="SpazzoAttachmentsTemplates/AttachmentCollapsibleTemplate">
+    <Frame type="Frame" name="XalatathAttachment" template="SpazzoAttachmentsTemplates/AttachmentCollapsibleTemplate">
       <Anchor side="Top" relative="$parent/WhitemaneAttachment" pos="Min" offset="0" />
       <Anchor side="Left" relative="$parent/WhitemaneAttachment" pos="Max" offset="#UnitStatusDistanceBetweenFrameHorizontal" />
+    </Frame>
+    <Frame type="Frame" name="NecromancerAttachment" template="SpazzoAttachmentsTemplates/AttachmentCollapsibleTemplate">
+      <Anchor side="Top" relative="$parent/XalatathAttachment" pos="Min" offset="0" />
+      <Anchor side="Left" relative="$parent/XalatathAttachment" pos="Max" offset="#UnitStatusDistanceBetweenFrameHorizontal" />
     </Frame>
     <Frame type="Frame" name="YrelAttachment" template="SpazzoAttachmentsTemplates/AttachmentCollapsibleTemplate">
       <Anchor side="Top" relative="$parent/NecromancerAttachment" pos="Min" offset="0" />
@@ -12671,7 +12675,7 @@
     </Frame>
   </Frame>
 
-  <Frame type="Frame" name="SylvanasAttachmentOption1" template="SpazzoTemplates/HeroAttachment8Template">
+  <Frame type="Frame" name="SylvanasAttachmentOption1" template="SpazzoTemplates/HeroAttachment7Template">
     <Handle val="SylvanasCooldownSetting"/>
     <Frame type="Image" name="Attachment1HeroIcon">
       <Anchor relative="$parent"/>
@@ -12778,33 +12782,6 @@
         </Frame>
       </Frame>
       <Frame type="Button" name="PulldownSubButton5">
-        <Text val="@Button/Name/SylvanasBlackArrows" />
-        <Frame type="Image" name="AbilIcon">
-          <Texture val="Assets\Textures\storm_ui_icon_sylvanas_blackarrows.dds"/>
-          <Visible val="True"/>
-        </Frame>
-        <Frame type="Label" name="TypeLabel">
-          <Text val="Abil" />
-        </Frame>
-        <Frame type="Label" name="AbilName">
-          <Text val="SylvanasBlackArrowsActive"/>
-        </Frame>
-      </Frame>
-      <Frame type="Button" name="PulldownSubButton6">
-        <Text val="@UI/Spazzo/Sylvanas/BlackArrowsBehavior" />
-        <Frame type="Image" name="AbilIcon">
-          <Texture val="Assets\Textures\storm_ui_icon_sylvanas_blackarrows_b.dds"/>
-          <Visible val="True"/>
-        </Frame>
-        <Frame type="Label" name="TypeLabel">
-          <Text val="Behavior" />
-        </Frame>
-        <Frame type="Label" name="AbilName">
-          <Text val="NULL"/>
-          <!-- SylvanasBlackArrowsActiveSelfDurationBuff -->
-        </Frame>
-      </Frame>
-      <Frame type="Button" name="PulldownSubButton7">
         <Text val="@Button/Name/SylvanasPossession" />
         <Frame type="Image" name="AbilIcon">
           <Texture val="Assets\Textures\storm_ui_icon_sylvanas_possession.dds"/>
@@ -12824,7 +12801,20 @@
           <Text val="Abil/SylvanasPossession"/>
         </Frame>
       </Frame>
-      <Frame type="Button" name="PulldownSubButton8">
+      <Frame type="Button" name="PulldownSubButton6">
+        <Text val="@Button/Name/SylvanasBlackArrowsHauntingArrowsTalent" />
+        <Frame type="Image" name="AbilIcon">
+          <Texture val="Assets\Textures\storm_ui_icon_sylvanas_blackarrows_b.dds"/>
+          <Visible val="True"/>
+        </Frame>
+        <Frame type="Label" name="TypeLabel">
+          <Text val="Abil" />
+        </Frame>
+        <Frame type="Label" name="AbilName">
+          <Text val="SylvanasBlackArrowsActive"/>
+        </Frame>
+      </Frame>
+      <Frame type="Button" name="PulldownSubButton7">
         <Text val="@Button/Name/LockedHeroicAbility" />
         <Frame type="Image" name="AbilIcon">
           <Texture val="Assets\Textures\hud_btn_bg_ability_locked.dds"/>
@@ -12839,7 +12829,7 @@
           <!-- SylvanasMindControlMissile Assets\Textures\storm_ui_icon_sylvanas_mindcontrol.dds -->
         </Frame>
       </Frame>
-      <Frame type="Button" name="PulldownSubButton9">
+      <Frame type="Button" name="PulldownSubButton8">
         <Text val="@Button/Name/SylvanasWitheringFireEvasiveFireTalent" />
         <Frame type="Image" name="AbilIcon">
           <Texture val="Assets\Textures\storm_ui_icon_sylvanas_witheringfire_var1.dds"/>
@@ -14866,6 +14856,151 @@
         <Frame type="Label" name="AbilName">
           <Text val="WhitemaneGuidingLight"/>
           <!-- WhitemaneDesperatePleaGuidingLightHasTalent -->
+        </Frame>
+      </Frame>
+    </Frame>
+  </Frame>
+
+  <Frame type="Frame" name="XalatathAttachmentOption1" template="SpazzoTemplates/HeroAttachment6Template">
+    <Handle val="XalatathCooldownSetting"/>
+    <Frame type="Image" name="Attachment1HeroIcon">
+      <Anchor relative="$parent"/>
+      <Texture val="Assets\Textures\UI_targetportrait_Hero_Xalatath.dds"/>
+      <Height val="18"/>
+      <Width val="18"/>
+      <Visible val="False"/>
+    </Frame>
+    <Frame type="Button" name="TogglePulldown1">
+      <Animation name="AttachmentOn">
+        <Event event="OnShown" action="Reset,Play" frame="$HeroAttachmentOnShortcut" />
+        <Event event="OnHidden" action="Reset,Play" frame="$HeroAttachmentOnShortcut" />
+        <Event event="Activate" action="Reset,Play" frame="$HeroAttachmentOnShortcut" />
+        <Controller type="State" stateGroup="SelectedAttachmentStategroup" end="Pause" frame="$this">
+          <Key type="Identifier" time="0" value="#XalatathCooldownDisplay" />
+        </Controller>
+      </Animation>
+      <StateGroup name="SelectedAttachmentStategroup">
+        <DefaultState val="#XalatathCooldownDisplay"/>
+      </StateGroup>
+    </Frame>
+    <StateGroup name="PlayerGroup">
+      <DefaultState val="PlayerNotFound"/>
+      <State name="Player1IsHero">
+        <When type="StateGroup" frame="$parent/PlayerOneHeroIconFrame/HeroIconImage" HeroState="Xalatath" />
+      </State>
+      <State name="Player2IsHero">
+        <When type="StateGroup" frame="$parent/PlayerTwoHeroIconFrame/HeroIconImage" HeroState="Xalatath" />
+      </State>
+      <State name="Player3IsHero">
+        <When type="StateGroup" frame="$parent/PlayerThreeHeroIconFrame/HeroIconImage" HeroState="Xalatath" />
+      </State>
+      <State name="Player4IsHero">
+        <When type="StateGroup" frame="$parent/PlayerFourHeroIconFrame/HeroIconImage" HeroState="Xalatath" />
+      </State>
+      <State name="Player5IsHero">
+        <When type="StateGroup" frame="$parent/PlayerFiveHeroIconFrame/HeroIconImage" HeroState="Xalatath" />
+      </State>
+      <State name="Player6IsHero">
+        <When type="StateGroup" frame="$parent/PlayerSixHeroIconFrame/HeroIconImage" HeroState="Xalatath" />
+      </State>
+      <State name="Player7IsHero">
+        <When type="StateGroup" frame="$parent/PlayerSevenHeroIconFrame/HeroIconImage" HeroState="Xalatath" />
+      </State>
+      <State name="Player8IsHero">
+        <When type="StateGroup" frame="$parent/PlayerEightHeroIconFrame/HeroIconImage" HeroState="Xalatath" />
+      </State>
+      <State name="Player9IsHero">
+        <When type="StateGroup" frame="$parent/PlayerNineHeroIconFrame/HeroIconImage" HeroState="Xalatath" />
+      </State>
+      <State name="Player10IsHero">
+        <When type="StateGroup" frame="$parent/PlayerTenHeroIconFrame/HeroIconImage" HeroState="Xalatath" />
+      </State>
+      <State name="PlayerNotFound">
+        <Action type="SetProperty" frame="$this" Visible="{$AttachmentMToZFrame/@Visible}" />
+        <Action type="SetProperty" frame="$sibling+1" Visible="{$AttachmentMToZFrame/@Visible}" />
+        <Action type="SetProperty" frame="$AttachmentMToZFrame/XalatathAttachment" Visible="True" />
+        <Action type="SetAnchor" side="Top" frame="$this" relative="$AttachmentMToZFrame/XalatathAttachment" pos="Min" offset="0" />
+        <Action type="SetAnchor" side="Left" frame="$this" relative="$AttachmentMToZFrame/XalatathAttachment" pos="Min" offset="0" />
+        <Action type="SetAnchor" side="Right" frame="$this" relative="$AttachmentMToZFrame/XalatathAttachment" pos="Max" offset="0" />
+        <Action type="SetAnchor" side="Bottom" frame="$this" relative="$AttachmentMToZFrame/XalatathAttachment" pos="Max" offset="0" />
+      </State>
+    </StateGroup>
+  </Frame>
+  <Frame type="ScrollableFrame" name="XalatathAttachmentOption3" template="SpazzoTemplates/HeroAttachment5PulldownTemplate">
+    <Frame type="Frame" name="ContainerFrame">
+      <Frame type="Button" name="PulldownSubButton2">
+        <Text val="@Button/Name/XalatathShadowMark" />
+        <Frame type="Image" name="AbilIcon">
+          <Texture val="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds"/>
+          <Visible val="True"/>
+        </Frame>
+        <Frame type="Label" name="TypeLabel">
+          <Text val="Abil" />
+        </Frame>
+        <Frame type="Label" name="AbilName">
+          <Text val="XalatathShadowMark"/>
+        </Frame>
+        <Frame type="Label" name="AbilChargeAbilName">
+          <Text val="XalatathShadowMark"/>
+          <!-- TychusHasRunAndGunBobAndWeaveTalent -->
+        </Frame>
+        <Frame type="Label" name="AbilChargeName">
+          <Text val="Abil/XalatathShadowMark"/>
+        </Frame>
+      </Frame>
+      <Frame type="Button" name="PulldownSubButton3">
+        <Text val="@Button/Name/XalatathDarkHeartRitual" />
+        <Frame type="Image" name="AbilIcon">
+          <Texture val="Assets\Textures\storm_ui_icon_xalatath_e_darkheartritual.dds"/>
+          <Visible val="True"/>
+        </Frame>
+        <Frame type="Label" name="TypeLabel">
+          <Text val="Abil" />
+        </Frame>
+        <Frame type="Label" name="AbilName">
+          <Text val="XalatathDarkHeartRitual"/>
+        </Frame>
+      </Frame>
+      <Frame type="Button" name="PulldownSubButton4">
+        <Text val="@Button/Name/XalatathVoidStep" />
+        <Frame type="Image" name="AbilIcon">
+          <Texture val="Assets\Textures\storm_ui_icon_xalatath_w_voidstep.dds"/>
+          <Visible val="True"/>
+        </Frame>
+        <Frame type="Label" name="TypeLabel">
+          <Text val="Abil" />
+        </Frame>
+        <Frame type="Label" name="AbilName">
+          <Text val="XalatathVoidStep"/>
+        </Frame>
+      </Frame>
+      <Frame type="Button" name="PulldownSubButton5">
+        <Text val="@Button/Name/XalatathVoidVolley" />
+        <Frame type="Image" name="AbilIcon">
+          <Texture val="Assets\Textures\storm_ui_icon_xalatath_trait.dds"/>
+          <Visible val="True"/>
+        </Frame>
+        <Frame type="Label" name="TypeLabel">
+          <Text val="Behavior" />
+        </Frame>
+        <Frame type="Label" name="AbilName">
+          <Text val="NULL"/>
+          <!-- XalatathVoidVolleyChargeTokenCounter -->
+        </Frame>
+      </Frame>
+      <Frame type="Button" name="PulldownSubButton6">
+        <Text val="@Button/Name/LockedHeroicAbility" />
+        <Frame type="Image" name="AbilIcon">
+          <Texture val="Assets\Textures\hud_btn_bg_ability_locked.dds"/>
+          <Visible val="True"/>
+        </Frame>
+        <Frame type="Label" name="TypeLabel">
+          <Text val="Abil" />
+        </Frame>
+        <Frame type="Label" name="AbilName">
+          <Text val="NULL"/>
+          <!-- XalatathVoidEruption Assets\Textures\storm_ui_icon_xalatath_r1_voideruption.dds -->
+          <!-- XalatathVoidConvergence Assets\Textures\storm_ui_icon_xalatath_r2_voidconvergence.dds -->
         </Frame>
       </Frame>
     </Frame>

@@ -1834,7 +1834,7 @@
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame" AbilityLink="JainaFrostbolt" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame" AbilityLink="JainaBlizzard" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame" AbilityLink="JainaConeOfCold" />
-        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame" AbilityLink="ImprovedIceBlock" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame" AbilityLink="JainaIceBlockActivate" />
         <Action type="SetState" frame="HeroAbil1" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
@@ -2698,7 +2698,7 @@
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame" AbilityLink="SylvanasWitheringFire" />
         <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame" AbilityLink="SylvanasShadowDagger" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame" AbilityLink="SylvanasHauntingWave" />
-        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame" AbilityLink="SylvanasBlackArrowsActive" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame" AbilityLink="SylvanasPossession" />
         <Action type="SetState" frame="HeroAbil1" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
         <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
@@ -2712,15 +2712,12 @@
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
         <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/SylvanasHauntingWave" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
-        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/SylvanasBlackArrows" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/SylvanasPossession" />
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/SylvanasHauntingWave" />
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame2/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
         <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame2/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/SylvanasHauntingWave" />
         <Action type="SetProperty" frame="Label" Text="Sylvanas" />
-        <Action type="SetProperty" frame="HeroBehavior/BehaviorDuration" Behavior="SylvanasBlackArrowsActiveSelfDurationBuff" />
-        <Action type="SetProperty" frame="HeroBehavior" Visible="{$Talent0MasterSetting/ShowNonQuests/CheckBoxButton/@Toggled}" />
-        <Action type="SetState" frame="HeroBehavior" Group="Anchor" State="Abil4"/>
       </State>
       <State name="Tassadar">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroTassadar"/>
@@ -3198,6 +3195,33 @@
         <Action type="SetProperty" frame="HeroBehavior" Visible="{$Talent0MasterSetting/ShowNonQuests/CheckBoxButton/@Toggled}" />
         <Action type="SetState" frame="HeroBehavior" Group="Anchor" State="Abil3"/>
       </State>
+      <State name="Xalatath">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroXalatath"/>
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame" AbilityLink="XalatathShadowMark" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame" AbilityLink="XalatathDarkHeartRitual" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame" AbilityLink="XalatathVoidStep" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame" AbilityLink="XalatathVoidVolley" />
+        <Action type="SetState" frame="HeroAbil1" Group="AbilControllerGroup" State="PresentAbil"/>
+        <Action type="SetState" frame="HeroAbil2" Group="AbilControllerGroup" State="PresentAbil"/>
+        <Action type="SetState" frame="HeroAbil3" Group="AbilControllerGroup" State="PresentAbil"/>
+        <Action type="SetState" frame="HeroAbil4" Group="AbilControllerGroup" State="PresentAbil"/>
+        <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame" AbilityLink="XalatathVoidStepCancel"/>
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/XalatathShadowMark" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/XalatathDarkHeartRitual" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/XalatathVoidStep" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/XalatathVoidVolley" />
+        <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame/AbilIcon/IconImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="HeroAbil3/BackupAbilFrame/AbilIcon/IconImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/XalatathVoidStep" />
+        <Action type="SetProperty" frame="Label" Text="Hogger" />
+        <Action type="SetProperty" frame="HeroBehavior/BehaviorDuration" Behavior="XalatathVoidVolleyChargeTokenCounter" />
+        <Action type="SetProperty" frame="HeroBehavior" Visible="{$Talent0MasterSetting/ShowNonQuests/CheckBoxButton/@Toggled}" />
+        <Action type="SetState" frame="HeroBehavior" Group="Anchor" State="Abil4"/>
+        <Action type="SetState" frame="HeroBehavior" Group="Type" State="StackLabelDuration"/>
+      </State>
       <State name="DragonKnight">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="VehicleDragon"/>
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilFrame" AbilityLink="VehicleDragonFireBreath" />
@@ -3461,6 +3485,13 @@
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" AbilityLink="ZaryaParticleGrenade" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge" ChargeLink="Abil/ZaryaParticleGrenade" />
         <Action type="SetProperty" frame="HeroAbil1/UnitAbilCharge/ChargeFillProgress" Visible="False" />
+      </State>
+      <State name="HeroSylvanas">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroSylvanas"/>
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" Visible="True" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" AbilityLink="SylvanasPossession" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" ChargeLink="Abil/SylvanasPossession" />
+        <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
       <State name="HeroChenStormEarthFire">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroChen"/>
@@ -3753,6 +3784,27 @@
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" AbilityLink="MaievVaultOfTheWardens" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge" ChargeLink="Abil/MaievVaultOfTheWardens" />
         <Action type="SetProperty" frame="HeroAbil4/UnitAbilCharge/ChargeFillProgress" Visible="False" />
+      </State>
+      <State name="HeroMuradinMountainKing">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMuradin"/>
+        <When type="Property" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_muradin_thunderclap_b.dds"/>
+        <When type="StateGroup" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" Visible="True" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" AbilityLink="MuradinThunderclap" />
+        <Action type="SetProperty" frame="HeroAbil2/UnitAbilCharge" ChargeLink="Abil/MuradinThunderclap" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="True" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="MuradinDwarfToss" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/MuradinDwarfToss" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
+      </State>
+      <State name="HeroXalatathDuelingOrbs">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroXalatath"/>
+        <When type="Property" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds"/>
+        <When type="StateGroup" frame="$ancestor[@name=SelectionUnitStatusPanel]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" Visible="True" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" AbilityLink="XalatathShadowMark" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge" ChargeLink="Abil/XalatathShadowMark" />
+        <Action type="SetProperty" frame="HeroAbil3/UnitAbilCharge/ChargeFillProgress" Visible="False" />
       </State>
     </StateGroup>
     <StateGroup name="AbilCount">
@@ -4164,13 +4216,29 @@
         <State name="Duration">
           <Action type="SetProperty" frame="$this/BehaviorDuration/BehaviorIcon/CooldownBar" Visible="True" />
           <Action type="SetProperty" frame="$this/BehaviorDuration/BehaviorIcon/StackProgressBar" Visible="False" />
+          <Action type="SetProperty" frame="$this/BehaviorDuration/BehaviorIcon/StackLabel" Visible="False" />
+          <Action type="SetProperty" frame="$this/StackLabelBackdrop" Visible="False" />
         </State>
         <State name="Stacks">
           <Action type="SetProperty" frame="$this/BehaviorDuration/BehaviorIcon/CooldownBar" Visible="False" />
           <Action type="SetProperty" frame="$this/BehaviorDuration/BehaviorIcon/StackProgressBar" Visible="True" />
+          <Action type="SetProperty" frame="$this/BehaviorDuration/BehaviorIcon/StackLabel" Visible="False" />
+          <Action type="SetProperty" frame="$this/StackLabelBackdrop" Visible="False" />
+        </State>
+        <State name="StackLabelDuration">
+          <Action type="SetProperty" frame="$this/BehaviorDuration/BehaviorIcon/CooldownBar" Visible="True" />
+          <Action type="SetProperty" frame="$this/BehaviorDuration/BehaviorIcon/StackProgressBar" Visible="False" />
+          <Action type="SetProperty" frame="$this/BehaviorDuration/BehaviorIcon/StackLabel" Visible="True" />
+          <Action type="SetProperty" frame="$this/StackLabelBackdrop" Visible="{$parent/BehaviorDuration/BehaviorIcon/StackLabel/@inheritedVisible}" />
         </State>
       </StateGroup>
       <Visible val="False"/>
+      <Frame type="Image" name="StackLabelBackdrop">
+        <Anchor relative="$parent" offset="0"/>
+        <AcceptsMouse val="false" />
+        <Color val="109,109,109"/>
+        <Alpha val="110"/>
+      </Frame>
       <Frame type="UnitStatusBehaviorIcon" name="BehaviorDuration">
         <Anchor relative="$parent" offset="0"/>
         <Behavior val="NULL" />
@@ -4228,6 +4296,55 @@
               </Frame>
             </Frame>
           </Frame>
+          <Frame type="Label" name="StackLabel">
+            <Anchor relative="$parent" />
+            <Style val="Spazzo_TopPanelAbilCooldownLabel" />
+            <RenderPriority val="560" />
+            <Options val="ScaleToPreventTruncation" />
+            <Unclipped val="false"/>
+            <AcceptsMouse val="False"/>
+            <AcceptsMouseTooltip val="False"/>
+            <SnapToDevicePixels val="true"/>
+            <MinStackCountDisplayed val="0"/>
+            <StateGroup name="LabelStateGroup">
+              <DefaultState val="DefaultLabel" />
+              <State name="DefaultLabel"/>
+              <State name="AlignToTop"/>
+              <State name="Tiny"/>
+              <State name="Heroic"/>
+            </StateGroup>
+            <StateGroup name="TrueLabelStateGroup">
+              <State name="CompactOverwriteHeroic">
+                <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="2"/>
+                <When type="StateGroup" frame="$this" operator="Equal" LabelStateGroup="Heroic"/>
+                <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+                <Action type="SetProperty" frame="$this" style="Spazzo_TopPanelAbilCooldownLabel" />
+              </State>
+              <State name="DefaultOverwriteHeroic">
+                <When type="StateGroup" frame="$TopBarSettingsFrame/LayoutPulldown1" operator="Equal" SelectedValue="0"/>
+                <When type="StateGroup" frame="$this" operator="Equal" LabelStateGroup="Heroic"/>
+                <When type="Property" frame="$Talent4MasterSetting/HeroicIngress/CheckBoxButton" Toggled="True"/>
+                <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+                <Action type="SetProperty" frame="$this" style="Spazzo_TopPanelAbilCooldownLabel" />
+              </State>
+              <State name="DefaultLabel">
+                <When type="StateGroup" frame="$this" LabelStateGroup="DefaultLabel"/>
+                <Action type="SetProperty" frame="$this" style="Spazzo_TopPanelAbilCooldownLabel" />
+              </State>
+              <State name="AlignToTop">
+                <When type="StateGroup" frame="$this" LabelStateGroup="AlignToTop"/>
+                <Action type="SetProperty" frame="$this" style="Spazzo_TopPanelAbilCooldownLabel_TopAlign" />
+              </State>
+              <State name="Tiny">
+                <When type="StateGroup" frame="$this" LabelStateGroup="Tiny"/>
+                <Action type="SetProperty" frame="$this" style="Spazzo_TopPanelAbilCooldownLabel_Tiny" />
+              </State>
+              <State name="Heroic">
+                <When type="StateGroup" frame="$this" LabelStateGroup="Heroic"/>
+                <Action type="SetProperty" frame="$this" style="Spazzo_TopPanelTalentLabelHeroic" />
+              </State>
+            </StateGroup>
+          </Frame>
         </Frame>
       </Frame>
     </Frame>
@@ -4264,6 +4381,13 @@
         <Action type="SetProperty" frame="LabelT1" Text="Shade" />
         <Action type="SetProperty" frame="HeroActiveAbilT1/UnitAbilFrame" AbilityLink="NecromancerBoneArmor" />
       </State> -->
+      <State name="AbathurLocustSwarm">
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" texture="Assets\Textures\storm_ui_icon_abathur_spawnlocust.dds"/>
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierSelected" />
+        <When type="Property" frame="$this/T1ControllerFrame" Visible="True" />
+        <Action type="SetProperty" frame="LabelT1" Text="AbathurLocustSwarm" />
+        <Action type="SetProperty" frame="HeroActiveAbilT1/UnitAbilFrame" AbilityLink="AbathurLocustSwarm" />
+      </State>
       <State name="LegionOfBeetles">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" texture="Assets\Textures\storm_ui_icon_Anubarak_ScarabHost.dds"/>
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" TextureState="TierSelected" />
@@ -4676,17 +4800,6 @@
         <Action type="SetProperty" frame="LabelT2" Text="HealingTotem" />
         <Action type="SetProperty" frame="HeroActiveAbilT2/UnitAbilFrame" AbilityLink="RehgarHealingTotem" />
       </State>
-      <State name="SylvanasPossession">
-        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" texture="Assets\Textures\storm_ui_icon_sylvanas_possession.dds"/>
-        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" TextureState="TierSelected" />
-        <When type="Property" frame="$this/T2ControllerFrame" Visible="True"/>
-        <Action type="SetProperty" frame="LabelT2" Text="Possession" />
-        <Action type="SetProperty" frame="HeroActiveAbilT2/UnitAbilFrame" AbilityLink="SylvanasPossession" />
-        <Action type="SetProperty" frame="HeroActiveAbilT2/AbilityCharge" AbilityLink="SylvanasPossession" />
-        <Action type="SetProperty" frame="HeroActiveAbilT2/AbilityCharge" ChargeLink="Abil/SylvanasPossession" />
-        <Action type="SetProperty" frame="HeroActiveAbilT2/AbilityCharge/ChargeFillProgress" Visible="False" />
-        <Action type="SetProperty" frame="HeroActiveAbilT2/AbilityCharge/ChargesLabel" Visible="True" />
-      </State>
       <State name="ValeeraWoundPoison">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" texture="Assets\Textures\storm_ui_icon_valeera_woundpoison.dds"/>
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" TextureState="TierSelected" />
@@ -4708,6 +4821,14 @@
         <When type="Property" frame="$this/T2ControllerFrame" Visible="True"/>
         <Action type="SetProperty" frame="LabelT2" Text="EnvenomedSpines" />
         <Action type="SetProperty" frame="HeroActiveAbilT2/UnitAbilFrame" AbilityLink="ZagaraEnvenomedSpines" />
+      </State>
+      <State name="SylvanasHauntingArrows">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroSylvanas"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" texture="Assets\Textures\storm_ui_icon_sylvanas_blackarrows_b.dds"/>
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" TextureState="TierSelected" />
+        <When type="Property" frame="$this/T2ControllerFrame" Visible="True"/>
+        <Action type="SetProperty" frame="LabelT2" Text="SylvanasBlackArrowsActive" />
+        <Action type="SetProperty" frame="HeroActiveAbilT2/UnitAbilFrame" AbilityLink="SylvanasBlackArrowsActive" />
       </State>
       <State name="VarianTaunt">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" texture="Assets\Textures\storm_ui_icon_varian_taunt.dds"/>
@@ -6404,6 +6525,20 @@
         <Action type="SetProperty" frame="LabelT4" Text="ZuljinGuillotine" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="ZuljinGuillotine" />
       </State>
+      <State name="XalatathVoidEruption">
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_xalatath_r1_voideruption.dds"/>
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected" />
+        <When type="Property" frame="$this/T4ControllerFrame" Visible="True" />
+        <Action type="SetProperty" frame="LabelT4" Text="XalatathVoidEruption" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="XalatathVoidEruption" />
+      </State>
+      <State name="XalatathVoidConvergence">
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" texture="Assets\Textures\storm_ui_icon_xalatath_r2_voidconvergence.dds"/>
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" TextureState="TierSelected" />
+        <When type="Property" frame="$this/T4ControllerFrame" Visible="True" />
+        <Action type="SetProperty" frame="LabelT4" Text="NexusHunterFinalStrikeActivate" />
+        <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="NexusHunterFinalStrikeActivate" />
+      </State>
       <State name="NoState">
         <Action type="SetProperty" frame="LabelT4" Text="NoState" />
         <Action type="SetProperty" frame="HeroActiveAbilT4/UnitAbilFrame" AbilityLink="NULL" />
@@ -6689,13 +6824,6 @@
     </StateGroup>
     <StateGroup name="T6TalentState">
       <DefaultState val="NoState" />
-      <State name="AbathurLocustSwarm">
-        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" texture="Assets\Textures\storm_ui_icon_abathur_spawnlocust.dds"/>
-        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" TextureState="TierSelected" />
-        <When type="Property" frame="$this/T6ControllerFrame" Visible="True" />
-        <Action type="SetProperty" frame="LabelT6" Text="AbathurLocustSwarm" />
-        <Action type="SetProperty" frame="HeroActiveAbilT6/UnitAbilFrame" AbilityLink="AbathurLocustSwarm" />
-      </State>
       <State name="AnaDetachableBoxMagazine">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" texture="Assets\Textures\storm_ui_icon_ana_healing_dart_b.dds"/>
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" TextureState="TierSelected" />
@@ -6937,6 +7065,13 @@
         <Action type="SetProperty" frame="HeroActiveAbilT6/UnitAbilFrame" AbilityLink="NULL" />
         <Action type="SetProperty" frame="HeroActiveAbilT6/UnitBehaviorFrame" Behavior="DeckardHoradricStaffCooldown" />
       </State>
+      <State name="ArthasAntiMagicShell">
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" texture="Assets\Textures\storm_temp_war3_btnantimagicshell.dds"/>
+        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" TextureState="TierSelected" />
+        <When type="Property" frame="$this/T6ControllerFrame" Visible="True" />
+        <Action type="SetProperty" frame="LabelT6" Text="ArthasAntiMagicShell" />
+        <Action type="SetProperty" frame="HeroActiveAbilT6/UnitAbilFrame" AbilityLink="ArthasAntiMagicShell" />
+      </State>
       <State name="NoState">
         <Action type="SetProperty" frame="LabelT6" Text="NoState" />
         <Action type="SetProperty" frame="HeroActiveAbilT6/UnitAbilFrame" AbilityLink="NULL" />
@@ -6980,14 +7115,6 @@
         <Action type="SetProperty" frame="LabelT7" Text="TalentRewind" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/UnitAbilFrame" AbilityLink="TalentRewind" />
       </State>
-      <State name="MuradinRewind">
-        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMuradin"/>
-        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_Talent_Rewind.dds"/>
-        <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected" />
-        <When type="Property" frame="$this/T7ControllerFrame" Visible="True" />
-        <Action type="SetProperty" frame="LabelT7" Text="TalentRewind" />
-        <Action type="SetProperty" frame="HeroActiveAbilT7/UnitAbilFrame" AbilityLink="TalentRewind" />
-      </State>
       <State name="NovaRewind">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroNova"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_Talent_Rewind.dds"/>
@@ -7020,19 +7147,13 @@
         <Action type="SetProperty" frame="LabelT7" Text="TalentHardenedShield" />
         <Action type="SetProperty" frame="HeroActiveAbilT7/UnitAbilFrame" AbilityLink="TalentHardenedShield" />
       </State>
-      <State name="ArthasAntiMagicShell">
-        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_temp_war3_btnantimagicshell.dds"/>
+      <State name="ArthasPathofFrost">
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_malthael_onpalehorse.dds"/>
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected" />
         <When type="Property" frame="$this/T7ControllerFrame" Visible="True" />
-        <Action type="SetProperty" frame="LabelT7" Text="ArthasAntiMagicShell" />
-        <Action type="SetProperty" frame="HeroActiveAbilT7/UnitAbilFrame" AbilityLink="ArthasAntiMagicShell" />
+        <Action type="SetProperty" frame="LabelT6" Text="ArthasPathofFrost" />
+        <Action type="SetProperty" frame="HeroActiveAbilT6/UnitAbilFrame" AbilityLink="ArthasPathofFrost" />
       </State>
-      <!-- <State name="ArthasDeathsAdvance"> -->
-      <!-- <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_talent_deaths_advance.dds"/> -->
-        <When type="Property" frame="$this/T7ControllerFrame" Visible="True" />
-      <!-- <Action type="SetProperty" frame="LabelT7" Text="ArthasDeathsAdvance" /> -->
-      <!-- <Action type="SetProperty" frame="HeroActiveAbilT7/UnitAbilFrame" AbilityLink="ArthasDeathsAdvance" /> -->
-      <!-- </State> -->
       <State name="AurielAngelicFlight">
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" texture="Assets\Textures\storm_ui_icon_auriel_angelicflight.dds"/>
         <When type="StateGroup" frame="$ancestor[@name=DummyAncestorRelationFrame]/$parent/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" TextureState="TierSelected" />

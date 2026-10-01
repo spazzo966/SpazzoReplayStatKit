@@ -486,7 +486,9 @@ const int libGame_gv_townMaxTownCount = 30;
 const int libGame_gv_townMaxStructureCount = 63;
 const fixed libGame_gv_hallOfStormsKnockbackLaunchDistance = 12.0;
 const fixed libGame_gv_hallOfStormsKnockbackCutoffDistance = -1.0;
-const int libGame_gv_watchTowersMaxCount = 10;
+const int libGame_gv_watchTowersMaxCount = 15;
+const int libGame_gv_TimeToStartDecay_C = 15;
+const int libGame_gv_TimeToDecay_C2 = 30;
 
 // Structures
 struct libGame_gs_Team {
@@ -896,6 +898,9 @@ struct libGame_gs_WatchTowers {
     int lv_captureCounter;
     bool lv_enabled;
     int lv_capturePointIndex;
+    int lv_decayDelayTicks;
+    int lv_neutralDecayTicks;
+    bool lv_startedDecaying;
 };
 
 struct libGame_gs_HeroSpecificScoreValues {
@@ -1019,7 +1024,12 @@ struct libGame_gs_HeroSpecificScoreValues {
 struct libGame_gs_timeTravelValues {
   fixed[4] lv_damageDealtAbility;
   fixed[4] lv_damageDealtPhysical;
-  fixed[4][7][3] lv_armor;
+  fixed[4][7][3][3] lv_armor;
+  int[4][7][3][3] lv_armorOwner;
+  string[4][7][3][3] lv_armorBehavior;
+  unit[4] lv_heroUnit;
+  unitgroup lv_heroUnitGroup;
+  fixed[4] lv_armorBase;
   bool[4] lv_slowed;
   bool[4] lv_stunned;
   bool[4] lv_silenced;
@@ -1120,8 +1130,10 @@ bool libGame_gv_gameOver_DetermineWinningTeamHasRun;
 bool libGame_gv_dEBUG_PercentScalingEnabled;
 int libGame_gv_heroDeathRespawnSetting;
 unit[libCore_gv_bALMaxPlayers + 1] libGame_gv_heroDeathMurkyRespawnEggs;
+unit[libCore_gv_bALMaxPlayers + 1] libGame_gv_heroDeathMurkyRespawnEgg2FromTalent;
 fixed[libCore_gv_bALMaxPlayers + 1] libGame_gv_heroDeathMurkyRespawnEggDeathTimeStamp;
 point[libCore_gv_bALMaxPlayers + 1] libGame_gv_heroDeathMurkyRespawnEggPoint;
+point[libCore_gv_bALMaxPlayers + 1] libGame_gv_heroDeathMurkyRespawnEggPoint2;
 bool libGame_gv_heroDeath_UpdateStats;
 bool libGame_gv_heroDeath_RespawnMounted;
 bool libGame_gv_heroDeath_RunDeathUIUpdates;
@@ -2078,6 +2090,7 @@ trigger libGame_gt_TalentsChoiceSelected;
 trigger libGame_gt_TowerTowerDeadStateGateCheck;
 trigger libGame_gt_TowerTowerMorphToDeadStateStructureDies;
 trigger libGame_gt_InitializeTownSystem;
+trigger libGame_gt_KillStandaloneTowers;
 trigger libGame_gt_InitializeMoonwellIconsonTowns;
 trigger libGame_gt_TownMidLateGamePowerTransitionOn;
 trigger libGame_gt_HallOfStormsKnockbackLaunchMissile;

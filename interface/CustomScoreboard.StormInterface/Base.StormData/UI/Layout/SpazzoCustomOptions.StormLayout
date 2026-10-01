@@ -76,6 +76,7 @@
   <Constant name="NovaCooldownDisplay" val="0" />
   <Constant name="AzmodanCooldownDisplay" val="0" />
   <Constant name="AzmodanDemonLeiutentantSmite" val="False" />
+  <Constant name="XalatathCooldownDisplay" val="0" />
   <Constant name="NecromancerCooldownDisplay" val="0" />
   <Constant name="GreymaneHumanCooldownDisplay" val="0" />
   <Constant name="GreymaneWorgenCooldownDisplay" val="0" />

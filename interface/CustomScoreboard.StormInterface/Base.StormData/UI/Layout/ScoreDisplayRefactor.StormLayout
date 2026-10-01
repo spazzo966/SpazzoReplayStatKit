@@ -2872,6 +2872,7 @@
         <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Zagara/Score1" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore2" />
         <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Zagara/Score2" />
+        <Action type="SetProperty" frame="$this/ToggleButton1" AcceptsMouse="False" />
       </State>
       <State name="AbilitySet2">
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore3" />
@@ -2880,6 +2881,7 @@
         <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Zagara/Score4" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score3/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore5" />
         <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Zagara/Score5" />
+        <Action type="SetProperty" frame="$this/ToggleButton2" AcceptsMouse="False" />
       </State>
       <State name="AbilitySet3">
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore6" />
@@ -2888,6 +2890,7 @@
         <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Zagara/Score7" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score3/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore8" />
         <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Zagara/Score8" />
+        <Action type="SetProperty" frame="$this/ToggleButton3" AcceptsMouse="False" />
       </State>
       <State name="AbilitySet4">
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore9" />
@@ -2902,6 +2905,7 @@
         <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score5/LabelDisplayFrame" Text="@UI/Spazzo/Zagara/Score13" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score6/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore14" />
         <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score6/LabelDisplayFrame" Text="@UI/Spazzo/Zagara/Score14" />
+        <Action type="SetProperty" frame="$this/ToggleButton4" AcceptsMouse="False" />
       </State>
       <State name="AbilitySet5">
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore15" />
@@ -2909,13 +2913,17 @@
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore16" />
         <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Zagara/Score16" />
         <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/TimeDisplayLabel" Enabled="True" />
+        <Action type="SetProperty" frame="$this/ToggleButton5" AcceptsMouse="False" />
       </State>
       <State name="AbilitySet6">
+        <Action type="SetProperty" frame="$this/ToggleButton6" AcceptsMouse="False" />
       </State>
       <State name="AbilitySet7">
+        <Action type="SetProperty" frame="$this/ToggleButton7" AcceptsMouse="False" />
       </State>
       <State name="AbilitySet8">
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore17" />
+        <Action type="SetProperty" frame="$this/ToggleButton8" AcceptsMouse="False" />
       </State>
       <State name="AbilitySet9">
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore18" />
@@ -2924,20 +2932,24 @@
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score4/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore21" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score5/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore22" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score6/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore23" />
+        <Action type="SetProperty" frame="$this/ToggleButton9" AcceptsMouse="False" />
       </State>
       <State name="AbilitySet10">
+        <Action type="SetProperty" frame="$this/ToggleButton10" AcceptsMouse="False" />
       </State>
       <State name="AbilitySet11">
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore24" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore25" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score3/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore26" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score4/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore27" />
+        <Action type="SetProperty" frame="$this/ToggleButton11" AcceptsMouse="False" />
       </State>
       <State name="AbilitySet12">
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore28" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore29" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score3/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore30" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score4/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore31" />
+        <Action type="SetProperty" frame="$this/ToggleButton12" AcceptsMouse="False" />
       </State>
       <State name="AbilitySet13">
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore32" />
@@ -2948,11 +2960,13 @@
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score6/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore37" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score7/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore38" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score8/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore39" />
+        <Action type="SetProperty" frame="$this/ToggleButton13" AcceptsMouse="False" />
       </State>
       <State name="AbilitySet14">
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore40" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore41" />
         <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score3/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore42" />
+        <Action type="SetProperty" frame="$this/ToggleButton14" AcceptsMouse="False" />
       </State>
     </StateGroup>
     <StateGroup name="TalentTierState">
@@ -3198,6 +3212,48 @@
         <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Zagara/Score42/4" />
       </State>
     </StateGroup>
+    <Frame type="Button" name="ToggleButton1">
+      <Enabled val="true"/>
+    </Frame>
+    <Frame type="Button" name="ToggleButton2">
+      <Enabled val="true"/>
+    </Frame>
+    <Frame type="Button" name="ToggleButton3">
+      <Enabled val="true"/>
+    </Frame>
+    <Frame type="Button" name="ToggleButton4">
+      <Enabled val="true"/>
+    </Frame>
+    <Frame type="Button" name="ToggleButton5">
+      <Enabled val="true"/>
+    </Frame>
+    <Frame type="Button" name="ToggleButton6">
+      <Enabled val="false"/>
+    </Frame>
+    <Frame type="Button" name="ToggleButton7">
+      <Enabled val="false"/>
+    </Frame>
+    <Frame type="Button" name="ToggleButton8">
+      <Enabled val="true"/>
+    </Frame>
+    <Frame type="Button" name="ToggleButton9">
+      <Enabled val="true"/>
+    </Frame>
+    <Frame type="Button" name="ToggleButton10">
+      <Enabled val="false"/>
+    </Frame>
+    <Frame type="Button" name="ToggleButton11">
+      <Enabled val="true"/>
+    </Frame>
+    <Frame type="Button" name="ToggleButton12">
+      <Enabled val="true"/>
+    </Frame>
+    <Frame type="Button" name="ToggleButton13">
+      <Enabled val="true"/>
+    </Frame>
+    <Frame type="Button" name="ToggleButton14">
+      <Enabled val="true"/>
+    </Frame>
     <Frame type="Frame" name="AbilityDisplay2">
       <Frame type="Image" name="DisplayIcon">
         <Texture val="Assets\Textures\storm_ui_icon_zagara_banelingbarrage.dds"/>
@@ -4669,6 +4725,362 @@
     </Frame>
   </Frame>
 
+  <!-- gettalenticons Xalatath 3 5 7 3 7 0 0 2 3 5 6 2 2 1 -->
+  <Frame type="Frame" name="XalatathScoreContainerFrameTemplate">
+    <StateGroup name="ToggledSet">
+      <State name="AbilitySet0">
+      </State>
+      <State name="AbilitySet1">
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score1" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score2" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score3/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore3" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score3" />
+      </State>
+      <State name="AbilitySet2">
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore4" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score4" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore5" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score5" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score3/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore6" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score6" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score4/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore7" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score4/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score7" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score5/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore8" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score5/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score8" />
+      </State>
+      <State name="AbilitySet3">
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore9" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score9" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore10" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score10" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score3/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore11" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score11" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score4/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore12" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score4/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score12" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score5/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore13" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score5/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score13" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score6/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore14" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score6/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score14" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score7/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore15" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score7/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score15" />
+      </State>
+      <State name="AbilitySet4">
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore16" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score16" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore17" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score17" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score3/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore18" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score18" />
+      </State>
+      <State name="AbilitySet5">
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore19" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score19" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore20" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score20" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score3/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore21" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score21" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score4/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore22" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score4/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score22" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score5/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore23" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score5/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score23" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score6/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore24" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score6/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score24" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score7/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore25" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score7/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score25" />
+      </State>
+      <State name="AbilitySet6">
+      </State>
+      <State name="AbilitySet7">
+      </State>
+      <State name="AbilitySet8">
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore26" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore27" />
+      </State>
+      <State name="AbilitySet9">
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore28" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore29" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score3/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore30" />
+      </State>
+      <State name="AbilitySet10">
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore31" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore32" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score3/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore33" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score4/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore34" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score5/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore35" />
+      </State>
+      <State name="AbilitySet11">
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore36" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore37" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score3/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore38" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score4/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore39" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score5/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore40" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score6/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore41" />
+      </State>
+      <State name="AbilitySet12">
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore42" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore43" />
+      </State>
+      <State name="AbilitySet13">
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore44" />
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score2/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore45" />
+      </State>
+      <State name="AbilitySet14">
+        <Action type="ApplyTemplate" frame="$PlayerDragControllerParent1/Score1/ScoreValueDataReference" template="ScoreDisplayRefactor/ScoreValueDataReferenceScore46" />
+      </State>
+    </StateGroup>
+    <StateGroup name="TalentTierState">
+      <State name="Tier1ActiveChosenNone">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet8"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" operator="NotEqual" TextureState="TierSelected" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score26" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score27" />
+      </State>
+      <State name="Tier1ActiveChosen1">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet8"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score26/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score27/1" />
+      </State>
+      <State name="Tier1ActiveChosen2">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet8"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_e_darkheartritual.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score26/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score27/2" />
+      </State>
+      <State name="Tier1ActiveChosen3">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet8"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon1/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_w_voidstep.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score26/3" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score27/3" />
+      </State>
+      <State name="Tier2ActiveChosenNone">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet9"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" operator="NotEqual" TextureState="TierSelected" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score28" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score29" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score30" />
+      </State>
+      <State name="Tier2ActiveChosen1">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet9"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score28/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score29/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score30/1" />
+      </State>
+      <State name="Tier2ActiveChosen2">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet9"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_e_darkheartritual.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score28/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score29/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score30/2" />
+      </State>
+      <State name="Tier2ActiveChosen3">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet9"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon2/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_w_voidstep.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score28/3" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score29/3" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score30/3" />
+      </State>
+      <State name="Tier3ActiveChosenNone">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet10"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" operator="NotEqual" TextureState="TierSelected" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score31" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score32" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score33" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score4/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score34" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score5/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score35" />
+      </State>
+      <State name="Tier3ActiveChosen1">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet10"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score31/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score32/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score33/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score4/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score34/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score5/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score35/1" />
+      </State>
+      <State name="Tier3ActiveChosen2">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet10"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_w_voidstep_c.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score31/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score32/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score33/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score4/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score34/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score5/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score35/2" />
+      </State>
+      <State name="Tier3ActiveChosen3">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet10"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon3/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_w_voidstep_b.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score31/3" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score32/3" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score33/3" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score4/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score34/3" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score5/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score35/3" />
+      </State>
+      <State name="Tier4ActiveChosenNone">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet11"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" operator="NotEqual" TextureState="TierSelected" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score36" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score37" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score38" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score4/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score39" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score5/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score40" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score6/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score41" />
+      </State>
+      <State name="Tier4ActiveChosen1">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet11"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_r1_voideruption.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score36/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score37/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score38/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score4/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score39/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score5/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score40/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score6/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score41/1" />
+      </State>
+      <State name="Tier4ActiveChosen2">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet11"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon4/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_r2_voidconvergence.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score36/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score37/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score3/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score38/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score4/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score39/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score5/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score40/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score6/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score41/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score4/TimeDisplayLabel" Enabled="True" />
+      </State>
+      <State name="Tier5ActiveChosenNone">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet12"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" operator="NotEqual" TextureState="TierSelected" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score42" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score43" />
+      </State>
+      <State name="Tier5ActiveChosen1">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet12"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_e_darkheartritual.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score42/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score43/1" />
+      </State>
+      <State name="Tier5ActiveChosen2">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet12"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_e_darkheartritual_b.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score42/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score43/2" />
+      </State>
+      <State name="Tier5ActiveChosen3">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet12"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon5/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_trait.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score42/3" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score43/3" />
+      </State>
+      <State name="Tier6ActiveChosenNone">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet13"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" operator="NotEqual" TextureState="TierSelected" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score44" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score45" />
+      </State>
+      <State name="Tier6ActiveChosen1">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet13"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score44/1" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score45/1" />
+      </State>
+      <State name="Tier6ActiveChosen2">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet13"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_w_voidstep.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score44/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score45/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/TimeDisplayLabel" Enabled="True" />
+      </State>
+      <State name="Tier6ActiveChosen3">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet13"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon6/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_trait.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score44/3" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score2/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score45/3" />
+      </State>
+      <State name="Tier7ActiveChosenNone">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet14"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" operator="NotEqual" TextureState="TierSelected" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score46" />
+      </State>
+      <State name="Tier7ActiveChosen1">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet14"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_r1_voideruption_b.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score46/1" />
+      </State>
+      <State name="Tier7ActiveChosen2">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet14"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_r2_voidconvergence.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score46/2" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/TimeDisplayLabel" Enabled="True" />
+      </State>
+      <State name="Tier7ActiveChosen3">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet14"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score46/3" />
+      </State>
+      <State name="Tier7ActiveChosen4">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet14"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_e_darkheartritual.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score46/4" />
+      </State>
+      <State name="Tier7ActiveChosen5">
+        <When type="StateGroup" frame="$this" operator="Equal" ToggledSet="AbilitySet14"/>
+        <When type="StateGroup" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" operator="Equal" TextureState="TierSelected" />
+        <When type="Property" frame="$this/HeroSelectedTalentTreeFrame/TalentTreeIcon7/IconImage" operator="Equal" Texture="Assets\Textures\storm_ui_icon_xalatath_w_voidstep.dds" />
+        <Action type="SetProperty" frame="$PlayerDragControllerParent1/Score1/LabelDisplayFrame" Text="@UI/Spazzo/Xalatath/Score46/5" />
+      </State>
+    </StateGroup>
+    <Frame type="Frame" name="AbilityDisplay2">
+      <Frame type="Image" name="DisplayIcon">
+        <Texture val="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds"/>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="AbilityDisplay3">
+      <Frame type="Image" name="DisplayIcon">
+        <Texture val="Assets\Textures\storm_ui_icon_xalatath_e_darkheartritual.dds"/>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="AbilityDisplay4">
+      <Frame type="Image" name="DisplayIcon">
+        <Texture val="Assets\Textures\storm_ui_icon_xalatath_w_voidstep.dds"/>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="AbilityDisplay5">
+      <Frame type="Image" name="DisplayIcon">
+        <Texture val="Assets\Textures\storm_ui_icon_xalatath_trait.dds"/>
+      </Frame>
+    </Frame>
+    <Frame type="Frame" name="AbilityDisplay6">
+      <Visible val="False"/>
+    </Frame>
+    <Frame type="Frame" name="AbilityDisplay7">
+      <Visible val="False"/>
+    </Frame>
+  </Frame>
+
   <Frame type="UnitStatusTalentIcon" name="TalentTreeIconTemplate">
     <Anchor side="Top" relative="$parent" pos="Min" offset="#RefactorScoreContainerButtonGap" />
     <Anchor side="Left" relative="$sibling-1" pos="Max" offset="#RefactorScoreContainerButtonGapDisplays" />
@@ -5115,7 +5527,8 @@
       <Anchor side="Left" relative="$parent" pos="Min" offset="0" />
       <Anchor side="Right" relative="$parent" pos="Max" offset="0" />
       <Anchor side="Bottom" relative="$this" pos="Min" offset="0" />
-      <Height val="1"/>
+      <Visible val="{$parent/$sibling+1/@Visible}"/>
+      <Height val="2"/>
       <RenderPriority val="511" />
       <BlendMode val="Normal" />
       <Color val="8493ff" />
@@ -5497,6 +5910,11 @@
           <State name="Whitemane">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_whitemane.dds"/>
             <Action type="ApplyTemplate" frame="$parent/$parent/HeroAbilityList" template="ScoreDisplayRefactor/WhitemaneScoreContainerFrameTemplate" />
+            <!-- <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="Assets/Textures/storm_ui_ingame_hero_loadingscreen_whitemane.dds" /> -->
+          </State>
+          <State name="Xalatath">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_xalatath.dds"/>
+            <Action type="ApplyTemplate" frame="$parent/$parent/HeroAbilityList" template="ScoreDisplayRefactor/XalatathScoreContainerFrameTemplate" />
             <!-- <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="Assets/Textures/storm_ui_ingame_hero_loadingscreen_whitemane.dds" /> -->
           </State>
           <State name="Necromancer">
@@ -6647,7 +7065,11 @@
             <Frame type="Frame" name="Score14" template="ScoreDisplayRefactor/ScoreTemplateFrameVerticalDisplay"/>
             <Frame type="Frame" name="Score14" template="ScoreDisplayRefactor/ScoreTemplateFrameVerticalDisplay"/>
             <Frame type="Frame" name="Score15" template="ScoreDisplayRefactor/ScoreTemplateFrameVerticalDisplay"/>
-            <Frame type="Frame" name="Score16" template="ScoreDisplayRefactor/ScoreTemplateFrameVerticalDisplay"/>
+            <Frame type="Frame" name="Score16" template="ScoreDisplayRefactor/ScoreTemplateFrameVerticalDisplay">
+              <Frame type="Image" name="ColumnSeparator">
+                <Visible val="False"/>
+              </Frame>
+            </Frame>
           </Frame>
         </Frame>
       </Frame>

@@ -929,6 +929,13 @@
             <Action type="SetProperty" frame="$parent/$parent/PlayerIconRef" Texture="Assets/Textures/storm_ui_glues_draft_portrait_whitemane.dds" />
             <Action type="SetProperty" frame="$this" Alpha="0" />
           </State>
+          <State name="Xalatath">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_xalatath.dds"/>
+            <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="Assets/Textures/storm_ui_ingame_hero_loadingscreen_xalatath.dds" />
+            <Action type="SetProperty" frame="$parent/$parent/PlayerIconRef" Texture="Assets/Textures/storm_ui_glues_draft_portrait_xalatath.dds" />
+            <Action type="SetProperty" frame="$this" Alpha="0" />
+            <Action type="SetAnchor" frame="$parent/$parent/CompactHeroLoadingContainerFrame/PlayerHeroLoadingScreenImageCompact" side="Top" relative="$parent" pos="Min" offset="-5" />
+          </State>
           <State name="Necromancer">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_necromancer.dds"/>
             <Action type="SetProperty" frame="$parent/$parent/PlayerHeroLoadingScreenImage" Texture="Assets/Textures/storm_ui_ingame_hero_loadingscreen_necromancer.dds" />

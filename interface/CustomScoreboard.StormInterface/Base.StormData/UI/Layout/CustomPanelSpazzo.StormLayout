@@ -10393,97 +10393,97 @@
     <StateGroup name="T1TalentStateGroup">
       <State name="C1">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_banelingbarrage.dds" />
-        <Action type="SetProperty" Frame="Support1Tooltip" Text="@UI/Spazzo/Zagara/Score1/1"/>
+        <Action type="SetProperty" Frame="Support1Tooltip" Text="@UI/Spazzo/Zagara/Score17/1"/>
       </State>
       <State name="C2">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_infesteddrop.dds" />
-        <Action type="SetProperty" Frame="Support1Tooltip" Text="@UI/Spazzo/Zagara/Score1/2"/>
+        <Action type="SetProperty" Frame="Support1Tooltip" Text="@UI/Spazzo/Zagara/Score17/2"/>
       </State>
       <State name="C3">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_infest.dds" />
-        <Action type="SetProperty" Frame="Support1Tooltip" Text="@UI/Spazzo/Zagara/Score1/3"/>
+        <Action type="SetProperty" Frame="Support1Tooltip" Text="@UI/Spazzo/Zagara/Score17/3"/>
       </State>
     </StateGroup>
     <StateGroup name="T2TalentStateGroup">
       <State name="C1">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="Assets\Textures\storm_ui_icon_talent_autoattack_range.dds" />
-        <Action type="SetProperty" Frame="Support2Tooltip" Text="@UI/Spazzo/Zagara/Score2/1"/>
-        <Action type="SetProperty" Frame="Support3Tooltip" Text="@UI/Spazzo/Zagara/Score3/1"/>
-        <Action type="SetProperty" Frame="Support4Tooltip" Text="@UI/Spazzo/Zagara/Score4/1"/>
-        <Action type="SetProperty" Frame="Support5Tooltip" Text="@UI/Spazzo/Zagara/Score5/1"/>
-        <Action type="SetProperty" Frame="Support6Tooltip" Text="@UI/Spazzo/Zagara/Score6/1"/>
-        <Action type="SetProperty" Frame="Support7Tooltip" Text="@UI/Spazzo/Zagara/Score7/1"/>
+        <Action type="SetProperty" Frame="Support2Tooltip" Text="@UI/Spazzo/Zagara/Score18/1"/>
+        <Action type="SetProperty" Frame="Support3Tooltip" Text="@UI/Spazzo/Zagara/Score19/1"/>
+        <Action type="SetProperty" Frame="Support4Tooltip" Text="@UI/Spazzo/Zagara/Score20/1"/>
+        <Action type="SetProperty" Frame="Support5Tooltip" Text="@UI/Spazzo/Zagara/Score21/1"/>
+        <Action type="SetProperty" Frame="Support6Tooltip" Text="@UI/Spazzo/Zagara/Score22/1"/>
+        <Action type="SetProperty" Frame="Support7Tooltip" Text="@UI/Spazzo/Zagara/Score23/1"/>
       </State>
       <State name="C2">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="Assets\Textures\storm_ui_icon_talent_autoattack_aoe.dds" />
-        <Action type="SetProperty" Frame="Support2Tooltip" Text="@UI/Spazzo/Zagara/Score2/2"/>
-        <Action type="SetProperty" Frame="Support3Tooltip" Text="@UI/Spazzo/Zagara/Score3/2"/>
-        <Action type="SetProperty" Frame="Support4Tooltip" Text="@UI/Spazzo/Zagara/Score4/2"/>
-        <Action type="SetProperty" Frame="Support5Tooltip" Text="@UI/Spazzo/Zagara/Score5/2"/>
-        <Action type="SetProperty" Frame="Support6Tooltip" Text="@UI/Spazzo/Zagara/Score6/2"/>
-        <Action type="SetProperty" Frame="Support7Tooltip" Text="@UI/Spazzo/Zagara/Score7/2"/>
+        <Action type="SetProperty" Frame="Support2Tooltip" Text="@UI/Spazzo/Zagara/Score18/2"/>
+        <Action type="SetProperty" Frame="Support3Tooltip" Text="@UI/Spazzo/Zagara/Score19/2"/>
+        <Action type="SetProperty" Frame="Support4Tooltip" Text="@UI/Spazzo/Zagara/Score20/2"/>
+        <Action type="SetProperty" Frame="Support5Tooltip" Text="@UI/Spazzo/Zagara/Score21/2"/>
+        <Action type="SetProperty" Frame="Support6Tooltip" Text="@UI/Spazzo/Zagara/Score22/2"/>
+        <Action type="SetProperty" Frame="Support7Tooltip" Text="@UI/Spazzo/Zagara/Score23/2"/>
       </State>
       <State name="C3">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="Assets\Textures\storm_ui_icon_talent_autoattack_damage.dds" />
-        <Action type="SetProperty" Frame="Support2Tooltip" Text="@UI/Spazzo/Zagara/Score2/3"/>
-        <Action type="SetProperty" Frame="Support3Tooltip" Text="@UI/Spazzo/Zagara/Score3/3"/>
-        <Action type="SetProperty" Frame="Support4Tooltip" Text="@UI/Spazzo/Zagara/Score4/3"/>
-        <Action type="SetProperty" Frame="Support5Tooltip" Text="@UI/Spazzo/Zagara/Score5/3"/>
-        <Action type="SetProperty" Frame="Support6Tooltip" Text="@UI/Spazzo/Zagara/Score6/3"/>
-        <Action type="SetProperty" Frame="Support7Tooltip" Text="@UI/Spazzo/Zagara/Score7/3"/>
+        <Action type="SetProperty" Frame="Support2Tooltip" Text="@UI/Spazzo/Zagara/Score18/3"/>
+        <Action type="SetProperty" Frame="Support3Tooltip" Text="@UI/Spazzo/Zagara/Score19/3"/>
+        <Action type="SetProperty" Frame="Support4Tooltip" Text="@UI/Spazzo/Zagara/Score20/3"/>
+        <Action type="SetProperty" Frame="Support5Tooltip" Text="@UI/Spazzo/Zagara/Score21/3"/>
+        <Action type="SetProperty" Frame="Support6Tooltip" Text="@UI/Spazzo/Zagara/Score22/3"/>
+        <Action type="SetProperty" Frame="Support7Tooltip" Text="@UI/Spazzo/Zagara/Score23/3"/>
       </State>
     </StateGroup>
     <StateGroup name="T4TalentStateGroup">
       <State name="C1">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon4/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_devouringmaw.dds" />
-        <Action type="SetProperty" Frame="Support8Tooltip" Text="@UI/Spazzo/Zagara/Score8/1"/>
-        <Action type="SetProperty" Frame="Support9Tooltip" Text="@UI/Spazzo/Zagara/Score9/1"/>
-        <Action type="SetProperty" Frame="Support10Tooltip" Text="@UI/Spazzo/Zagara/Score10/1"/>
-        <Action type="SetProperty" Frame="Support11Tooltip" Text="@UI/Spazzo/Zagara/Score11/1"/>
+        <Action type="SetProperty" Frame="Support8Tooltip" Text="@UI/Spazzo/Zagara/Score24/1"/>
+        <Action type="SetProperty" Frame="Support9Tooltip" Text="@UI/Spazzo/Zagara/Score25/1"/>
+        <Action type="SetProperty" Frame="Support10Tooltip" Text="@UI/Spazzo/Zagara/Score26/1"/>
+        <Action type="SetProperty" Frame="Support11Tooltip" Text="@UI/Spazzo/Zagara/Score27/1"/>
       </State>
       <State name="C2">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon4/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_nydusworm.dds" />
-        <Action type="SetProperty" Frame="Support8Tooltip" Text="@UI/Spazzo/Zagara/Score8/2"/>
-        <Action type="SetProperty" Frame="Support9Tooltip" Text="@UI/Spazzo/Zagara/Score9/2"/>
-        <Action type="SetProperty" Frame="Support10Tooltip" Text="@UI/Spazzo/Zagara/Score10/2"/>
-        <Action type="SetProperty" Frame="Support11Tooltip" Text="@UI/Spazzo/Zagara/Score11/2"/>
+        <Action type="SetProperty" Frame="Support8Tooltip" Text="@UI/Spazzo/Zagara/Score24/2"/>
+        <Action type="SetProperty" Frame="Support9Tooltip" Text="@UI/Spazzo/Zagara/Score25/2"/>
+        <Action type="SetProperty" Frame="Support10Tooltip" Text="@UI/Spazzo/Zagara/Score26/2"/>
+        <Action type="SetProperty" Frame="Support11Tooltip" Text="@UI/Spazzo/Zagara/Score27/2"/>
       </State>
     </StateGroup>
     <StateGroup name="T5TalentStateGroup">
       <State name="C1">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon5/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_hunterkiller.dds" />
-        <Action type="SetProperty" Frame="Support12Tooltip" Text="@UI/Spazzo/Zagara/Score12/1"/>
-        <Action type="SetProperty" Frame="Support13Tooltip" Text="@UI/Spazzo/Zagara/Score13/1"/>
-        <Action type="SetProperty" Frame="Support14Tooltip" Text="@UI/Spazzo/Zagara/Score14/1"/>
-        <Action type="SetProperty" Frame="Support15Tooltip" Text="@UI/Spazzo/Zagara/Score15/1"/>
+        <Action type="SetProperty" Frame="Support12Tooltip" Text="@UI/Spazzo/Zagara/Score28/1"/>
+        <Action type="SetProperty" Frame="Support13Tooltip" Text="@UI/Spazzo/Zagara/Score29/1"/>
+        <Action type="SetProperty" Frame="Support14Tooltip" Text="@UI/Spazzo/Zagara/Score30/1"/>
+        <Action type="SetProperty" Frame="Support15Tooltip" Text="@UI/Spazzo/Zagara/Score31/1"/>
       </State>
       <State name="C2">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon5/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_creep.dds" />
-        <Action type="SetProperty" Frame="Support12Tooltip" Text="@UI/Spazzo/Zagara/Score12/2"/>
-        <Action type="SetProperty" Frame="Support13Tooltip" Text="@UI/Spazzo/Zagara/Score13/2"/>
-        <Action type="SetProperty" Frame="Support14Tooltip" Text="@UI/Spazzo/Zagara/Score14/2"/>
-        <Action type="SetProperty" Frame="Support15Tooltip" Text="@UI/Spazzo/Zagara/Score15/2"/>
+        <Action type="SetProperty" Frame="Support12Tooltip" Text="@UI/Spazzo/Zagara/Score28/2"/>
+        <Action type="SetProperty" Frame="Support13Tooltip" Text="@UI/Spazzo/Zagara/Score29/2"/>
+        <Action type="SetProperty" Frame="Support14Tooltip" Text="@UI/Spazzo/Zagara/Score30/2"/>
+        <Action type="SetProperty" Frame="Support15Tooltip" Text="@UI/Spazzo/Zagara/Score31/2"/>
       </State>
       <State name="C3">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon5/IconImage/Label" Text="Assets\Textures\storm_ui_icon_talent_spellshield.dds" />
-        <Action type="SetProperty" Frame="Support12Tooltip" Text="@UI/Spazzo/Zagara/Score12/3"/>
-        <Action type="SetProperty" Frame="Support13Tooltip" Text="@UI/Spazzo/Zagara/Score13/3"/>
-        <Action type="SetProperty" Frame="Support14Tooltip" Text="@UI/Spazzo/Zagara/Score14/3"/>
-        <Action type="SetProperty" Frame="Support15Tooltip" Text="@UI/Spazzo/Zagara/Score15/3"/>
+        <Action type="SetProperty" Frame="Support12Tooltip" Text="@UI/Spazzo/Zagara/Score28/3"/>
+        <Action type="SetProperty" Frame="Support13Tooltip" Text="@UI/Spazzo/Zagara/Score29/3"/>
+        <Action type="SetProperty" Frame="Support14Tooltip" Text="@UI/Spazzo/Zagara/Score30/3"/>
+        <Action type="SetProperty" Frame="Support15Tooltip" Text="@UI/Spazzo/Zagara/Score31/3"/>
       </State>
     </StateGroup>
     <StateGroup name="T6TalentStateGroup">
       <State name="C1">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_hunterkiller.dds" />
-        <Action type="SetProperty" Frame="Support16Tooltip" Text="@UI/Spazzo/Zagara/Score16/1"/>
+        <Action type="SetProperty" Frame="Support16Tooltip" Text="@UI/Spazzo/Zagara/Score32/1"/>
       </State>
       <State name="C2">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_hunterkillermuta.dds" />
-        <Action type="SetProperty" Frame="Support16Tooltip" Text="@UI/Spazzo/Zagara/Score16/2"/>
+        <Action type="SetProperty" Frame="Support16Tooltip" Text="@UI/Spazzo/Zagara/Score32/2"/>
       </State>
       <State name="C3">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_creep.dds" />
-        <Action type="SetProperty" Frame="Support16Tooltip" Text="@UI/Spazzo/Zagara/Score16/3"/>
+        <Action type="SetProperty" Frame="Support16Tooltip" Text="@UI/Spazzo/Zagara/Score32/3"/>
       </State>
     </StateGroup>
     <Frame type="Label" name="Support1Tooltip">
@@ -10539,59 +10539,59 @@
     <StateGroup name="T6TalentStateGroup">
       <State name="C1">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_hunterkiller.dds" />
-        <Action type="SetProperty" Frame="Accuracy5Tooltip" Text="@UI/Spazzo/Zagara/Score5/1"/>
-        <Action type="SetProperty" Frame="Accuracy6Tooltip" Text="@UI/Spazzo/Zagara/Score6/1"/>
-        <Action type="SetProperty" Frame="Accuracy7Tooltip" Text="@UI/Spazzo/Zagara/Score7/1"/>
-        <Action type="SetProperty" Frame="Accuracy8Tooltip" Text="@UI/Spazzo/Zagara/Score8/1"/>
-        <Action type="SetProperty" Frame="Accuracy9Tooltip" Text="@UI/Spazzo/Zagara/Score9/1"/>
-        <Action type="SetProperty" Frame="Accuracy10Tooltip" Text="@UI/Spazzo/Zagara/Score10/1"/>
-        <Action type="SetProperty" Frame="Accuracy11Tooltip" Text="@UI/Spazzo/Zagara/Score11/1"/>
+        <Action type="SetProperty" Frame="Accuracy5Tooltip" Text="@UI/Spazzo/Zagara/Score37/1"/>
+        <Action type="SetProperty" Frame="Accuracy6Tooltip" Text="@UI/Spazzo/Zagara/Score38/1"/>
+        <Action type="SetProperty" Frame="Accuracy7Tooltip" Text="@UI/Spazzo/Zagara/Score39/1"/>
+        <Action type="SetProperty" Frame="Accuracy8Tooltip" Text="@UI/Spazzo/Zagara/Score40/1"/>
+        <Action type="SetProperty" Frame="Accuracy9Tooltip" Text="@UI/Spazzo/Zagara/Score41/1"/>
+        <Action type="SetProperty" Frame="Accuracy10Tooltip" Text="@UI/Spazzo/Zagara/Score42/1"/>
+        <Action type="SetProperty" Frame="Accuracy11Tooltip" Text="@UI/Spazzo/Zagara/Score43/1"/>
       </State>
       <State name="C2">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_hunterkillermuta.dds" />
-        <Action type="SetProperty" Frame="Accuracy5Tooltip" Text="@UI/Spazzo/Zagara/Score5/2"/>
-        <Action type="SetProperty" Frame="Accuracy6Tooltip" Text="@UI/Spazzo/Zagara/Score6/2"/>
-        <Action type="SetProperty" Frame="Accuracy7Tooltip" Text="@UI/Spazzo/Zagara/Score7/2"/>
-        <Action type="SetProperty" Frame="Accuracy8Tooltip" Text="@UI/Spazzo/Zagara/Score8/2"/>
-        <Action type="SetProperty" Frame="Accuracy9Tooltip" Text="@UI/Spazzo/Zagara/Score9/2"/>
-        <Action type="SetProperty" Frame="Accuracy10Tooltip" Text="@UI/Spazzo/Zagara/Score10/2"/>
-        <Action type="SetProperty" Frame="Accuracy11Tooltip" Text="@UI/Spazzo/Zagara/Score11/2"/>
+        <Action type="SetProperty" Frame="Accuracy5Tooltip" Text="@UI/Spazzo/Zagara/Score37/2"/>
+        <Action type="SetProperty" Frame="Accuracy6Tooltip" Text="@UI/Spazzo/Zagara/Score38/2"/>
+        <Action type="SetProperty" Frame="Accuracy7Tooltip" Text="@UI/Spazzo/Zagara/Score39/2"/>
+        <Action type="SetProperty" Frame="Accuracy8Tooltip" Text="@UI/Spazzo/Zagara/Score40/2"/>
+        <Action type="SetProperty" Frame="Accuracy9Tooltip" Text="@UI/Spazzo/Zagara/Score41/2"/>
+        <Action type="SetProperty" Frame="Accuracy10Tooltip" Text="@UI/Spazzo/Zagara/Score42/2"/>
+        <Action type="SetProperty" Frame="Accuracy11Tooltip" Text="@UI/Spazzo/Zagara/Score43/2"/>
       </State>
       <State name="C3">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_creep.dds" />
-        <Action type="SetProperty" Frame="Accuracy5Tooltip" Text="@UI/Spazzo/Zagara/Score5/3"/>
-        <Action type="SetProperty" Frame="Accuracy6Tooltip" Text="@UI/Spazzo/Zagara/Score6/3"/>
-        <Action type="SetProperty" Frame="Accuracy7Tooltip" Text="@UI/Spazzo/Zagara/Score7/3"/>
-        <Action type="SetProperty" Frame="Accuracy8Tooltip" Text="@UI/Spazzo/Zagara/Score8/3"/>
-        <Action type="SetProperty" Frame="Accuracy9Tooltip" Text="@UI/Spazzo/Zagara/Score9/3"/>
-        <Action type="SetProperty" Frame="Accuracy10Tooltip" Text="@UI/Spazzo/Zagara/Score10/3"/>
-        <Action type="SetProperty" Frame="Accuracy11Tooltip" Text="@UI/Spazzo/Zagara/Score11/3"/>
+        <Action type="SetProperty" Frame="Accuracy5Tooltip" Text="@UI/Spazzo/Zagara/Score37/3"/>
+        <Action type="SetProperty" Frame="Accuracy6Tooltip" Text="@UI/Spazzo/Zagara/Score38/3"/>
+        <Action type="SetProperty" Frame="Accuracy7Tooltip" Text="@UI/Spazzo/Zagara/Score39/3"/>
+        <Action type="SetProperty" Frame="Accuracy8Tooltip" Text="@UI/Spazzo/Zagara/Score40/3"/>
+        <Action type="SetProperty" Frame="Accuracy9Tooltip" Text="@UI/Spazzo/Zagara/Score41/3"/>
+        <Action type="SetProperty" Frame="Accuracy10Tooltip" Text="@UI/Spazzo/Zagara/Score42/3"/>
+        <Action type="SetProperty" Frame="Accuracy11Tooltip" Text="@UI/Spazzo/Zagara/Score43/3"/>
       </State>
     </StateGroup>
     <StateGroup name="T7TalentStateGroup">
       <State name="C1">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_devouringmaw.dds" />
-        <Action type="SetProperty" Frame="Accuracy12Tooltip" Text="@UI/Spazzo/Zagara/Score12/1"/>
-        <Action type="SetProperty" Frame="Accuracy13Tooltip" Text="@UI/Spazzo/Zagara/Score13/1"/>
-        <Action type="SetProperty" Frame="Accuracy14Tooltip" Text="@UI/Spazzo/Zagara/Score14/1"/>
+        <Action type="SetProperty" Frame="Accuracy12Tooltip" Text="@UI/Spazzo/Zagara/Score44/1"/>
+        <Action type="SetProperty" Frame="Accuracy13Tooltip" Text="@UI/Spazzo/Zagara/Score45/1"/>
+        <Action type="SetProperty" Frame="Accuracy14Tooltip" Text="@UI/Spazzo/Zagara/Score46/1"/>
       </State>
       <State name="C2">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_nydusworm.dds" />
-        <Action type="SetProperty" Frame="Accuracy12Tooltip" Text="@UI/Spazzo/Zagara/Score12/2"/>
-        <Action type="SetProperty" Frame="Accuracy13Tooltip" Text="@UI/Spazzo/Zagara/Score13/2"/>
-        <Action type="SetProperty" Frame="Accuracy14Tooltip" Text="@UI/Spazzo/Zagara/Score14/2"/>
+        <Action type="SetProperty" Frame="Accuracy12Tooltip" Text="@UI/Spazzo/Zagara/Score44/2"/>
+        <Action type="SetProperty" Frame="Accuracy13Tooltip" Text="@UI/Spazzo/Zagara/Score45/2"/>
+        <Action type="SetProperty" Frame="Accuracy14Tooltip" Text="@UI/Spazzo/Zagara/Score46/2"/>
       </State>
       <State name="C3">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_banelingbarrage.dds" />
-        <Action type="SetProperty" Frame="Accuracy12Tooltip" Text="@UI/Spazzo/Zagara/Score12/3"/>
-        <Action type="SetProperty" Frame="Accuracy13Tooltip" Text="@UI/Spazzo/Zagara/Score13/3"/>
-        <Action type="SetProperty" Frame="Accuracy14Tooltip" Text="@UI/Spazzo/Zagara/Score14/3"/>
+        <Action type="SetProperty" Frame="Accuracy12Tooltip" Text="@UI/Spazzo/Zagara/Score44/3"/>
+        <Action type="SetProperty" Frame="Accuracy13Tooltip" Text="@UI/Spazzo/Zagara/Score45/3"/>
+        <Action type="SetProperty" Frame="Accuracy14Tooltip" Text="@UI/Spazzo/Zagara/Score46/3"/>
       </State>
       <State name="C4">
         <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="Assets\Textures\storm_ui_icon_zagara_hunterkiller.dds" />
-        <Action type="SetProperty" Frame="Accuracy12Tooltip" Text="@UI/Spazzo/Zagara/Score12/4"/>
-        <Action type="SetProperty" Frame="Accuracy13Tooltip" Text="@UI/Spazzo/Zagara/Score13/4"/>
-        <Action type="SetProperty" Frame="Accuracy14Tooltip" Text="@UI/Spazzo/Zagara/Score14/4"/>
+        <Action type="SetProperty" Frame="Accuracy12Tooltip" Text="@UI/Spazzo/Zagara/Score44/4"/>
+        <Action type="SetProperty" Frame="Accuracy13Tooltip" Text="@UI/Spazzo/Zagara/Score45/4"/>
+        <Action type="SetProperty" Frame="Accuracy14Tooltip" Text="@UI/Spazzo/Zagara/Score46/4"/>
       </State>
     </StateGroup>
     <Frame type="Label" name="Accuracy1Tooltip">
@@ -10635,6 +10635,303 @@
     </Frame>
     <Frame type="Label" name="Accuracy14Tooltip">
       <Text val="@UI/Spazzo/Zagara/Score46"/>
+    </Frame>
+  </Frame>
+  <Frame type="Frame" name="XalatathDamageStateGroupTalentController" template="CustomPanelSpazzo/PlayerTalentFrameDamage">
+    <Frame type="Label" name="Damage1Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score1"/>
+    </Frame>
+    <Frame type="Label" name="Damage2Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score2"/>
+    </Frame>
+    <Frame type="Label" name="Damage3Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score3"/>
+    </Frame>
+    <Frame type="Label" name="Damage4Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score4"/>
+    </Frame>
+    <Frame type="Label" name="Damage5Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score5"/>
+    </Frame>
+    <Frame type="Label" name="Damage6Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score6"/>
+    </Frame>
+    <Frame type="Label" name="Damage7Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score7"/>
+    </Frame>
+    <Frame type="Label" name="Damage8Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score8"/>
+    </Frame>
+    <Frame type="Label" name="Damage9Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score9"/>
+    </Frame>
+    <Frame type="Label" name="Damage10Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score10"/>
+    </Frame>
+    <Frame type="Label" name="Damage11Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score11"/>
+    </Frame>
+    <Frame type="Label" name="Damage12Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score12"/>
+    </Frame>
+    <Frame type="Label" name="Damage13Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score13"/>
+    </Frame>
+    <Frame type="Label" name="Damage14Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score14"/>
+    </Frame>
+    <Frame type="Label" name="Damage15Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score15"/>
+    </Frame>
+    <Frame type="Label" name="Damage16Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score16"/>
+    </Frame>
+  </Frame>
+  <Frame type="Frame" name="XalatathSupportStateGroupTalentController" template="CustomPanelSpazzo/PlayerTalentFrameSupport">
+    <StateGroup name="T1TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds" />
+        <Action type="SetProperty" Frame="Support1Tooltip" Text="@UI/Spazzo/Xalatath/Score17/1"/>
+        <Action type="SetProperty" Frame="Support2Tooltip" Text="@UI/Spazzo/Xalatath/Score18/1"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_e_darkheartritual.dds" />
+        <Action type="SetProperty" Frame="Support1Tooltip" Text="@UI/Spazzo/Xalatath/Score17/2"/>
+        <Action type="SetProperty" Frame="Support2Tooltip" Text="@UI/Spazzo/Xalatath/Score18/2"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon1/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_w_voidstep.dds" />
+        <Action type="SetProperty" Frame="Support1Tooltip" Text="@UI/Spazzo/Xalatath/Score17/3"/>
+        <Action type="SetProperty" Frame="Support2Tooltip" Text="@UI/Spazzo/Xalatath/Score18/3"/>
+      </State>
+    </StateGroup>
+    <StateGroup name="T2TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds" />
+        <Action type="SetProperty" Frame="Support3Tooltip" Text="@UI/Spazzo/Xalatath/Score19/1"/>
+        <Action type="SetProperty" Frame="Support4Tooltip" Text="@UI/Spazzo/Xalatath/Score20/1"/>
+        <Action type="SetProperty" Frame="Support5Tooltip" Text="@UI/Spazzo/Xalatath/Score21/1"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_e_darkheartritual.dds" />
+        <Action type="SetProperty" Frame="Support3Tooltip" Text="@UI/Spazzo/Xalatath/Score19/2"/>
+        <Action type="SetProperty" Frame="Support4Tooltip" Text="@UI/Spazzo/Xalatath/Score20/2"/>
+        <Action type="SetProperty" Frame="Support5Tooltip" Text="@UI/Spazzo/Xalatath/Score21/2"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon2/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_w_voidstep.dds" />
+        <Action type="SetProperty" Frame="Support3Tooltip" Text="@UI/Spazzo/Xalatath/Score19/3"/>
+        <Action type="SetProperty" Frame="Support4Tooltip" Text="@UI/Spazzo/Xalatath/Score20/3"/>
+        <Action type="SetProperty" Frame="Support5Tooltip" Text="@UI/Spazzo/Xalatath/Score21/3"/>
+      </State>
+    </StateGroup>
+    <StateGroup name="T3TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon3/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds" />
+        <Action type="SetProperty" Frame="Support6Tooltip" Text="@UI/Spazzo/Xalatath/Score22/1"/>
+        <Action type="SetProperty" Frame="Support7Tooltip" Text="@UI/Spazzo/Xalatath/Score23/1"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon3/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_w_voidstep_c.dds" />
+        <Action type="SetProperty" Frame="Support6Tooltip" Text="@UI/Spazzo/Xalatath/Score22/2"/>
+        <Action type="SetProperty" Frame="Support7Tooltip" Text="@UI/Spazzo/Xalatath/Score23/2"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon3/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_w_voidstep_b.dds" />
+        <Action type="SetProperty" Frame="Support6Tooltip" Text="@UI/Spazzo/Xalatath/Score22/3"/>
+        <Action type="SetProperty" Frame="Support7Tooltip" Text="@UI/Spazzo/Xalatath/Score23/3"/>
+      </State>
+    </StateGroup>
+    <Frame type="Label" name="Support1Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score17"/>
+    </Frame>
+    <Frame type="Label" name="Support2Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score18"/>
+    </Frame>
+    <Frame type="Label" name="Support3Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score19"/>
+    </Frame>
+    <Frame type="Label" name="Support4Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score20"/>
+    </Frame>
+    <Frame type="Label" name="Support5Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score21"/>
+    </Frame>
+    <Frame type="Label" name="Support6Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score22"/>
+    </Frame>
+    <Frame type="Label" name="Support7Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score23"/>
+    </Frame>
+    <Frame type="Label" name="Support8Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score24"/>
+    </Frame>
+    <Frame type="Label" name="Support9Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score25"/>
+    </Frame>
+    <Frame type="Label" name="Support10Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score26"/>
+    </Frame>
+    <Frame type="Label" name="Support11Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score27"/>
+    </Frame>
+    <Frame type="Label" name="Support12Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score28"/>
+    </Frame>
+    <Frame type="Label" name="Support13Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score29"/>
+    </Frame>
+    <Frame type="Label" name="Support14Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score30"/>
+    </Frame>
+    <Frame type="Label" name="Support15Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score31"/>
+    </Frame>
+    <Frame type="Label" name="Support16Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score32"/>
+    </Frame>
+  </Frame>
+  <Frame type="Frame" name="XalatathAccuracyStateGroupTalentController" template="CustomPanelSpazzo/PlayerTalentFrameAccuracy">
+    <StateGroup name="T3TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon3/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds" />
+        <Action type="SetProperty" Frame="Accuracy1Tooltip" Text="@UI/Spazzo/Xalatath/Score33/1"/>
+        <Action type="SetProperty" Frame="Accuracy2Tooltip" Text="@UI/Spazzo/Xalatath/Score34/1"/>
+        <Action type="SetProperty" Frame="Accuracy3Tooltip" Text="@UI/Spazzo/Xalatath/Score35/1"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon3/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_w_voidstep_c.dds" />
+        <Action type="SetProperty" Frame="Accuracy1Tooltip" Text="@UI/Spazzo/Xalatath/Score33/2"/>
+        <Action type="SetProperty" Frame="Accuracy2Tooltip" Text="@UI/Spazzo/Xalatath/Score34/2"/>
+        <Action type="SetProperty" Frame="Accuracy3Tooltip" Text="@UI/Spazzo/Xalatath/Score35/2"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon3/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_w_voidstep_b.dds" />
+        <Action type="SetProperty" Frame="Accuracy1Tooltip" Text="@UI/Spazzo/Xalatath/Score33/3"/>
+        <Action type="SetProperty" Frame="Accuracy2Tooltip" Text="@UI/Spazzo/Xalatath/Score34/3"/>
+        <Action type="SetProperty" Frame="Accuracy3Tooltip" Text="@UI/Spazzo/Xalatath/Score35/3"/>
+      </State>
+    </StateGroup>
+    <StateGroup name="T4TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon4/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_r1_voideruption.dds" />
+        <Action type="SetProperty" Frame="Accuracy4Tooltip" Text="@UI/Spazzo/Xalatath/Score36/1"/>
+        <Action type="SetProperty" Frame="Accuracy5Tooltip" Text="@UI/Spazzo/Xalatath/Score37/1"/>
+        <Action type="SetProperty" Frame="Accuracy6Tooltip" Text="@UI/Spazzo/Xalatath/Score38/1"/>
+        <Action type="SetProperty" Frame="Accuracy7Tooltip" Text="@UI/Spazzo/Xalatath/Score39/1"/>
+        <Action type="SetProperty" Frame="Accuracy8Tooltip" Text="@UI/Spazzo/Xalatath/Score40/1"/>
+        <Action type="SetProperty" Frame="Accuracy9Tooltip" Text="@UI/Spazzo/Xalatath/Score41/1"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon4/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_r2_voidconvergence.dds" />
+        <Action type="SetProperty" Frame="Accuracy4Tooltip" Text="@UI/Spazzo/Xalatath/Score36/2"/>
+        <Action type="SetProperty" Frame="Accuracy5Tooltip" Text="@UI/Spazzo/Xalatath/Score37/2"/>
+        <Action type="SetProperty" Frame="Accuracy6Tooltip" Text="@UI/Spazzo/Xalatath/Score38/2"/>
+        <Action type="SetProperty" Frame="Accuracy7Tooltip" Text="@UI/Spazzo/Xalatath/Score39/2"/>
+        <Action type="SetProperty" Frame="Accuracy8Tooltip" Text="@UI/Spazzo/Xalatath/Score40/2"/>
+        <Action type="SetProperty" Frame="Accuracy9Tooltip" Text="@UI/Spazzo/Xalatath/Score41/2"/>
+        <Action type="SetProperty" Frame="$parent/PlayerScoreContainerFrameAccuracySeven/ScoreValueLabel" Text="{$parent/TimerLabel/@Text}"/>
+      </State>
+    </StateGroup>
+    <StateGroup name="T5TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon5/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_e_darkheartritual.dds" />
+        <Action type="SetProperty" Frame="Accuracy10Tooltip" Text="@UI/Spazzo/Xalatath/Score42/1"/>
+        <Action type="SetProperty" Frame="Accuracy11Tooltip" Text="@UI/Spazzo/Xalatath/Score43/1"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon5/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_e_darkheartritual_b.dds" />
+        <Action type="SetProperty" Frame="Accuracy10Tooltip" Text="@UI/Spazzo/Xalatath/Score42/2"/>
+        <Action type="SetProperty" Frame="Accuracy11Tooltip" Text="@UI/Spazzo/Xalatath/Score43/2"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon5/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_trait.dds" />
+        <Action type="SetProperty" Frame="Accuracy10Tooltip" Text="@UI/Spazzo/Xalatath/Score42/3"/>
+        <Action type="SetProperty" Frame="Accuracy11Tooltip" Text="@UI/Spazzo/Xalatath/Score43/3"/>
+      </State>
+    </StateGroup>
+    <StateGroup name="T6TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds" />
+        <Action type="SetProperty" Frame="Accuracy12Tooltip" Text="@UI/Spazzo/Xalatath/Score44/1"/>
+        <Action type="SetProperty" Frame="Accuracy13Tooltip" Text="@UI/Spazzo/Xalatath/Score45/1"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_w_voidstep.dds" />
+        <Action type="SetProperty" Frame="Accuracy12Tooltip" Text="@UI/Spazzo/Xalatath/Score44/2"/>
+        <Action type="SetProperty" Frame="Accuracy13Tooltip" Text="@UI/Spazzo/Xalatath/Score45/2"/>
+        <Action type="SetProperty" Frame="$parent/PlayerScoreContainerFrameAccuracyTwelve/ScoreValueLabel" Text="{$parent/TimerLabel/@Text}"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon6/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_trait.dds" />
+        <Action type="SetProperty" Frame="Accuracy12Tooltip" Text="@UI/Spazzo/Xalatath/Score44/3"/>
+        <Action type="SetProperty" Frame="Accuracy13Tooltip" Text="@UI/Spazzo/Xalatath/Score45/3"/>
+      </State>
+    </StateGroup>
+    <StateGroup name="T7TalentStateGroup">
+      <State name="C1">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_r1_voideruption_b.dds" />
+        <Action type="SetProperty" Frame="Accuracy14Tooltip" Text="@UI/Spazzo/Xalatath/Score46/1"/>
+      </State>
+      <State name="C2">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_r2_voidconvergence.dds" />
+        <Action type="SetProperty" Frame="Accuracy14Tooltip" Text="@UI/Spazzo/Xalatath/Score46/2"/>
+        <Action type="SetProperty" Frame="$parent/PlayerScoreContainerFrameAccuracyFourteen/ScoreValueLabel" Text="{$parent/TimerLabel/@Text}"/>
+      </State>
+      <State name="C3">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_q_shadowmark.dds" />
+        <Action type="SetProperty" Frame="Accuracy14Tooltip" Text="@UI/Spazzo/Xalatath/Score46/3"/>
+      </State>
+      <State name="C4">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_e_darkheartritual.dds" />
+        <Action type="SetProperty" Frame="Accuracy14Tooltip" Text="@UI/Spazzo/Xalatath/Score46/4"/>
+      </State>
+      <State name="C5">
+        <When type="Property" frame="$parent/PlayerTalentContainer/TalentTreeIcon7/IconImage/Label" Text="Assets\Textures\storm_ui_icon_xalatath_w_voidstep.dds" />
+        <Action type="SetProperty" Frame="Accuracy14Tooltip" Text="@UI/Spazzo/Xalatath/Score46/5"/>
+      </State>
+    </StateGroup>
+    <Frame type="Label" name="Accuracy1Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score33"/>
+    </Frame>
+    <Frame type="Label" name="Accuracy2Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score34"/>
+    </Frame>
+    <Frame type="Label" name="Accuracy3Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score35"/>
+    </Frame>
+    <Frame type="Label" name="Accuracy4Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score36"/>
+    </Frame>
+    <Frame type="Label" name="Accuracy5Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score37"/>
+    </Frame>
+    <Frame type="Label" name="Accuracy6Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score38"/>
+    </Frame>
+    <Frame type="Label" name="Accuracy7Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score39"/>
+    </Frame>
+    <Frame type="Label" name="Accuracy8Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score40"/>
+    </Frame>
+    <Frame type="Label" name="Accuracy9Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score41"/>
+    </Frame>
+    <Frame type="Label" name="Accuracy10Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score42"/>
+    </Frame>
+    <Frame type="Label" name="Accuracy11Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score43"/>
+    </Frame>
+    <Frame type="Label" name="Accuracy12Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score44"/>
+    </Frame>
+    <Frame type="Label" name="Accuracy13Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score45"/>
+    </Frame>
+    <Frame type="Label" name="Accuracy14Tooltip">
+      <Text val="@UI/Spazzo/Xalatath/Score46"/>
     </Frame>
   </Frame>
   <Frame type="Frame" name="PlayerCustomScoreboardTemplateHealingToEachPlayer">
@@ -12365,6 +12662,10 @@
             <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportEleven/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Varian/SupportEleven"/>
             <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportTwelve/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Varian/SupportTwelve"/>
           </State>
+          <State name="Xalatath">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_xalatath.dds"/>
+            <Action type="ApplyTemplate" frame="$parent/$parent/PlayerTalentFrame" template="CustomPanelSpazzo/XalatathSupportStateGroupTalentController"/>
+          </State>
           <State name="Necromancer">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_necromancer.dds"/>
             <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameSupportOne/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/Spazzo/Necromancer/BaselineOne"/>
@@ -13872,6 +14173,10 @@
             <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreTen/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Varian/ScoreTen"/>
             <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreEleven/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Varian/ScoreEleven"/>
             <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameScoreTwelve/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoDamage/Varian/ScoreTwelve"/>
+          </State>
+          <State name="Xalatath">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_xalatath.dds"/>
+            <Action type="ApplyTemplate" frame="$parent/$parent/PlayerTalentFrame" template="CustomPanelSpazzo/XalatathDamageStateGroupTalentController"/>
           </State>
           <State name="Necromancer">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_necromancer.dds"/>
@@ -15391,6 +15696,10 @@
             <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracyTen/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Varian/ScoreTen"/>
             <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracyEleven/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Varian/ScoreEleven"/>
             <Action type="SetProperty" frame="$parent/$parent/PlayerScoreContainerFrameAccuracyTwelve/ScoreValueLabel/TooltipAnchorFrame" Tooltip="@UI/SpazzoAccuracy/Varian/ScoreTwelve"/>
+          </State>
+          <State name="Xalatath">
+            <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_xalatath.dds"/>
+            <Action type="ApplyTemplate" frame="$parent/$parent/PlayerTalentFrame" template="CustomPanelSpazzo/XalatathAccuracyStateGroupTalentController"/>
           </State>
           <State name="Necromancer">
             <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_necromancer.dds"/>
@@ -18388,6 +18697,9 @@
         <State name="Whitemane">
           <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_whitemane.dds"/>
         </State>
+        <State name="Xalatath">
+          <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_xalatath.dds"/>
+        </State>
         <State name="Necromancer">
           <When type="Property" frame="$this" texture="Assets\Textures\storm_ui_ingame_hero_leaderboard_necromancer.dds"/>
         </State>
@@ -18877,6 +19189,9 @@
             <!-- libMLCP_gt_MMSkyTempleBlessWarningTimerExpires = future timer trigger -->
             <!-- 120 - 30 (90) for future timer -->
           </Frame>
+          <Frame type="DataRefFrame" name="ObjGalaxyRefHauntedMines">
+            <Argument name="GalaxyVar" val="libMHtM_gv_mMHM_EventCooldownTimer"/>
+          </Frame>
           <Frame type="DataRefFrame" name="BattlegroundVarRef">
             <Handle val="BattlegroundVariableHandle"/>
             <Argument name="GalaxyVar" val="libCore_gv_mAPMapStringID"/>
@@ -19002,6 +19317,12 @@
               <Action type="SetProperty" frame="Reduceby30" Text="False" undo="False" />
               <!-- first obj uses diff timer, does factor in 30s warm up  -->
               <!-- first objective is 60s, afterwards is 90s -->
+            </State>
+            <State name="HauntedMines">
+              <When type="Property" frame="BattlegroundVarRef" StringValue="HauntedMines" />
+              <Action type="SetProperty" frame="ObjTimerLabelRef" Text="{$parent/ObjGalaxyRefHauntedMines/@StringValue}" undo="False" />
+              <Action type="SetProperty" frame="Reduceby30" Text="False" undo="False" />
+              <!-- needs testing -->
             </State>
           </StateGroup>
           <Frame type="Label" name="ObjTimerLabelRef">
@@ -20043,6 +20364,10 @@
             <State name="DragonShire">
               <When type="Property" frame="$this/BattlegroundVarRefFrame" StringValue="DragonShire" />
               <Action type="SetProperty" frame="$this" Text="6" />
+            </State>
+            <State name="HauntedMines">
+              <When type="Property" frame="$this/BattlegroundVarRefFrame" StringValue="HauntedMines" />
+              <Action type="SetProperty" frame="$this" Text="4" />
             </State>
             <State name="LostCavern">
               <When type="Property" frame="$this/BattlegroundVarRefFrame" StringValue="LostCavern" />
@@ -30550,6 +30875,71 @@
                 <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/Dragon/Boss2" />
                 <Action type="SetProperty" frame="$this" Visible="True" />
               </State>
+              <State name="HauntedMines">
+                <When type="Property" frame="BattlegroundVarRef" StringValue="HauntedMines" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
+                <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege1" />
+                <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege1" />
+                <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege1" />
+                <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame5To10MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege1" />
+                <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame10To15MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege1" />
+                <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame10To15MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege1" />
+                <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame15To20MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege1" />
+                <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege1" />
+                <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege1" />
+                <Action type="SetProperty" frame="Player1ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege1" />
+                <Action type="SetProperty" frame="Player2ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege2" />
+                <Action type="SetProperty" frame="Player2ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege2" />
+                <Action type="SetProperty" frame="Player2ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege2" />
+                <Action type="SetProperty" frame="Player2ContainerFrame/PlayerScoreContainerFrame5To10MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege2" />
+                <Action type="SetProperty" frame="Player2ContainerFrame/PlayerScoreContainerFrame10To15MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege2" />
+                <Action type="SetProperty" frame="Player2ContainerFrame/PlayerScoreContainerFrame10To15MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege2" />
+                <Action type="SetProperty" frame="Player2ContainerFrame/PlayerScoreContainerFrame15To20MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege2" />
+                <Action type="SetProperty" frame="Player2ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege2" />
+                <Action type="SetProperty" frame="Player2ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege2" />
+                <Action type="SetProperty" frame="Player2ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Siege2" />
+                <Action type="SetProperty" frame="Player3ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight1" />
+                <Action type="SetProperty" frame="Player3ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight1" />
+                <Action type="SetProperty" frame="Player3ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight1" />
+                <Action type="SetProperty" frame="Player3ContainerFrame/PlayerScoreContainerFrame5To10MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight1" />
+                <Action type="SetProperty" frame="Player3ContainerFrame/PlayerScoreContainerFrame10To15MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight1" />
+                <Action type="SetProperty" frame="Player3ContainerFrame/PlayerScoreContainerFrame10To15MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight1" />
+                <Action type="SetProperty" frame="Player3ContainerFrame/PlayerScoreContainerFrame15To20MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight1" />
+                <Action type="SetProperty" frame="Player3ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight1" />
+                <Action type="SetProperty" frame="Player3ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight1" />
+                <Action type="SetProperty" frame="Player3ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight1" />
+                <Action type="SetProperty" frame="Player4ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight2" />
+                <Action type="SetProperty" frame="Player4ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight2" />
+                <Action type="SetProperty" frame="Player4ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight2" />
+                <Action type="SetProperty" frame="Player4ContainerFrame/PlayerScoreContainerFrame5To10MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight2" />
+                <Action type="SetProperty" frame="Player4ContainerFrame/PlayerScoreContainerFrame10To15MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight2" />
+                <Action type="SetProperty" frame="Player4ContainerFrame/PlayerScoreContainerFrame10To15MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight2" />
+                <Action type="SetProperty" frame="Player4ContainerFrame/PlayerScoreContainerFrame15To20MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight2" />
+                <Action type="SetProperty" frame="Player4ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight2" />
+                <Action type="SetProperty" frame="Player4ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight2" />
+                <Action type="SetProperty" frame="Player4ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Knight2" />
+                <Action type="SetProperty" frame="Player5ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss1" />
+                <Action type="SetProperty" frame="Player5ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss1" />
+                <Action type="SetProperty" frame="Player5ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss1" />
+                <Action type="SetProperty" frame="Player5ContainerFrame/PlayerScoreContainerFrame5To10MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss1" />
+                <Action type="SetProperty" frame="Player5ContainerFrame/PlayerScoreContainerFrame10To15MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss1" />
+                <Action type="SetProperty" frame="Player5ContainerFrame/PlayerScoreContainerFrame10To15MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss1" />
+                <Action type="SetProperty" frame="Player5ContainerFrame/PlayerScoreContainerFrame15To20MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss1" />
+                <Action type="SetProperty" frame="Player5ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss1" />
+                <Action type="SetProperty" frame="Player5ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss1" />
+                <Action type="SetProperty" frame="Player5ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss1" />
+                <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrameSub5MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss2" />
+                <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrameSub5MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss2" />
+                <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame5To10MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss2" />
+                <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame5To10MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss2" />
+                <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame10To15MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss2" />
+                <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame10To15MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss2" />
+                <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss2" />
+                <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame15To20MinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss2" />
+                <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinSoak/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss2" />
+                <Action type="SetProperty" frame="Player6ContainerFrame/PlayerScoreContainerFrame20AndOverMinPotential/ScoreValueLabel/TooltipAnchorFrame/TFFrame" FormatText="@UI/Spazzo/Map/HauntedMines/Boss2" />
+                <Action type="SetProperty" frame="$this" Visible="True" />
+              </State>
               <State name="IndustrialDistrict">
                 <When type="Property" frame="BattlegroundVarRef" StringValue="IndustrialDistrict" />
                 <Action type="SetProperty" frame="$this" Visible="false" />
@@ -36998,6 +37388,9 @@
           <Frame type="Frame" name="WhitemaneAttachmentOption1" template="SpazzoAttachmentsTemplates/WhitemaneAttachmentOption1"/>
           <Frame type="Image" name="WhitemaneAttachmentOption2" template="SpazzoAttachmentsTemplates/HeroAttachmentBackgroundTemplate"/>
           <Frame type="ScrollableFrame" name="WhitemaneAttachmentOption3" template="SpazzoAttachmentsTemplates/WhitemaneAttachmentOption3"/>
+          <Frame type="Frame" name="XalatathAttachmentOption1" template="SpazzoAttachmentsTemplates/XalatathAttachmentOption1"/>
+          <Frame type="Image" name="XalatathAttachmentOption2" template="SpazzoAttachmentsTemplates/HeroAttachmentBackgroundTemplate"/>
+          <Frame type="ScrollableFrame" name="XalatathAttachmentOption3" template="SpazzoAttachmentsTemplates/XalatathAttachmentOption3"/>
           <Frame type="Frame" name="NecromancerAttachmentOption1" template="SpazzoAttachmentsTemplates/NecromancerAttachmentOption1"/>
           <Frame type="Image" name="NecromancerAttachmentOption2" template="SpazzoAttachmentsTemplates/HeroAttachmentBackgroundTemplate"/>
           <Frame type="ScrollableFrame" name="NecromancerAttachmentOption3" template="SpazzoAttachmentsTemplates/NecromancerAttachmentOption3"/>

@@ -10798,6 +10798,9 @@ void libGame_gf_ShareUnshareVisionOfAlliesForPlayer (bool lp_onOff, int lp_playe
 
   // Automatic Variable Declarations
   playergroup auto198D0B9F_g;
+  unitgroup autoB2B49E2C_g;
+  int autoB2B49E2C_u;
+  unit autoB2B49E2C_var;
 
   // Variable Initialization
   lv_allyPlayerGroup = PlayerGroupEmpty();
@@ -10812,6 +10815,16 @@ void libGame_gf_ShareUnshareVisionOfAlliesForPlayer (bool lp_onOff, int lp_playe
     if ((lv_i != lp_player)) {
       PlayerSetAlliance(lv_i, c_allianceIdVision, lp_player, lp_onOff);
     }
+
+  }
+  if ((UnitGroupCount(libGDHL_gv_updateOnAnyVisibilityChangeUnitGroup, c_unitCountAlive) >= 1)) {
+      autoB2B49E2C_g = libGDHL_gv_updateOnAnyVisibilityChangeUnitGroup;
+      autoB2B49E2C_u = UnitGroupCount(autoB2B49E2C_g, c_unitCountAll);
+      for (;; autoB2B49E2C_u -= 1) {
+          autoB2B49E2C_var = UnitGroupUnitFromEnd(autoB2B49E2C_g, autoB2B49E2C_u);
+          if (autoB2B49E2C_var == null) { break; }
+          libNtve_gf_SendActorMessageToUnit(autoB2B49E2C_var, "Signal VisUpdate");
+      }
   }
 }
 
@@ -15547,6 +15560,24 @@ void libGame_gf_HeroSpecificStatTrackerAbsorbed (fixed lp_preventedValue, string
       }
 			
     }
+    if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroXalatath")) {
+      if ((lp_behavior == "XalatathDarkBarrier")) {
+        if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
+          lv_primaryScoreString = "Score11";
+        }
+        else {
+          lv_primaryScoreString = "Score12";
+        }
+      }
+      if ((lp_behavior == "XalatathMarkedResilienceShield")) {
+        if ((lv_externalPlayer >= 1) && (lv_externalPlayer <= libCore_gv_bALMaxPlayers)) {
+          lv_primaryScoreString = "Score21";
+        }
+        else {
+          lv_primaryScoreString = "Score22";
+        }
+      }
+    }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroZenyatta") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroIsendra") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroPaladin") || (UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroDoomfist")) {
       lv_primaryScoreString = "Discard";
     }
@@ -16280,12 +16311,6 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
           lv_secondaryScoreOverride = 1.0;
           lv_secondaryScoreString = "Score12";
         }
-        // if ((PlayerHasTalent(lp_casterPlayer, "AurielReservoirofHopeRayOfHeavenTalent")) && (libGame_gv_HeroSpecificStoredValue1[lp_casterPlayer] > libGame_gv_HeroSpecificStoredValue2[lp_casterPlayer]) && (libGame_gv_HeroSpecificStoredValue3[lp_casterPlayer] != 0.0)) {
-        //   if ((lv_primaryScoreOverride > ((libGame_gv_HeroSpecificStoredValue2[lp_casterPlayer] * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit)))) {
-        //     lv_tertiaryScoreString = "Score43";
-        //     lv_tertiaryScoreOverride = (lv_primaryScoreOverride - ((libGame_gv_HeroSpecificStoredValue2[lp_casterPlayer] * libGame_gv_GetHealDealtAsFixed(lp_casterUnit)) * libGame_gv_GetHealTakenAsFixed(lp_targetUnit)));
-        //   }
-        // }
       }
     }
     if ((UnitGetType(libGame_gv_players[lp_casterPlayer].lv_heroUnit) == "HeroAzmodan")) {
@@ -17436,7 +17461,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
         lv_secondaryScoreString = "ScoreEight";
         lv_secondaryScoreOverride = 1.0;
       }
-      if ((lp_healEffect == "RaynorGiveEmSomePepperUnstableCompoundTalentModifyUnit")) {
+      if ((lp_healEffect == "RaynorGiveEmSomePepperUnstableCompoundRestoreMana")) {
         lv_primaryScoreString = "BaselineOne";
         // lv_secondaryScoreString = "ScoreEight";
         // lv_secondaryScoreOverride = 1.0;
@@ -17562,7 +17587,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
         lv_secondaryScoreOverride = 1.0;
         lv_secondaryScoreString = "TalentThirteen";
       }
-      if ((lp_healEffect == "StitchesSlamPlaytimeTalentDelayModifyUnit") || (lp_healEffect == "StitchesSlamPlaytimeTalentModifyUnit")) {
+      if ((lp_healEffect == "StitchesSlamPlaytimeTalentModifyUnit") || (lp_healEffect == "StitchesSlamPlaytimeManaRestoration")) {
         lv_primaryScoreString = "ScoreSixteen";
       }
       if ((lp_healEffect == "StitchesHookSerratedEdgeTalentModifyUnit")) {
@@ -17853,7 +17878,7 @@ void libGame_gf_HeroSpecificStatTrackerHealed (fixed lp_healedValue, string lp_h
       if ((lp_healEffect == "RagnarosEmpowerSulfurasHandofRagnarosRestoreMana")) {
         lv_primaryScoreString = "TalentSeven";
       }
-      if ((lp_healEffect == "RagnarosLivingMeteorMoltenPowerTalentProcModifyUnit")) {
+      if ((lp_healEffect == "RagnarosMoltenPowerManaRestore")) {
         lv_primaryScoreString = "TalentSeven";
       }
     }
@@ -18444,12 +18469,6 @@ void libGame_gf_HeroSpecificStatTrackerOther (fixed lp_scoreValue, int lp_caster
   }
   if ((lp_inputData == "MedivhPortalCasts")) {
     lv_scoreString = "SupportTwelve";
-  }
-
-  if ((lp_inputData == "TracerTotalRecallHeal")) {
-    lv_scoreString = "SupportEleven";
-    // Till this causes desync, we're keeping it using LibTrac. It probably will cause desyncs at some point, though
-    // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Tracer Total Recall Heal Amount: ") + FixedToText(lp_scoreValue, 3) + StringToText(" Cause: ") + StringToText(lp_extraDataString)));
   }
 
   if ((lp_inputData == "DVaSelfDestructDamageTakenTally")) {
@@ -20571,8 +20590,13 @@ void libGame_gv_TallyDamageDealtFraction (string lp_damageEffect, fixed lp_damag
 }
 
 void libGame_gv_TallyArmorModified (string lp_damageEffect, string lp_attackerType, fixed lp_damageValue, fixed lp_damageMitigated, fixed lp_damageAttempted, int lp_attackedPlayer, int lp_attackingPlayer, unit lp_attackedUnit) {
-  fixed lv_previousArmor;
-  fixed lv_currentArmor;
+  const int lv_posNeg = 2;
+  const int lv_positiveArmor = 0;
+  const int lv_negativeArmor = 1;
+  fixed[lv_posNeg + 1] lv_previousArmor;
+  fixed lv_resultingPreviousArmor;
+  fixed[lv_posNeg + 1] lv_currentArmor;
+  fixed lv_resultingCurrentArmor;
   fixed lv_actualArmor;
   fixed lv_previousNegativeArmorAccuracy;
   fixed lv_previousPositiveArmorAccuracy;
@@ -20580,9 +20604,23 @@ void libGame_gv_TallyArmorModified (string lp_damageEffect, string lp_attackerTy
   fixed lv_currentPositiveArmorAccuracy;
   fixed lv_actualNegativeArmorAccuracy;
   fixed lv_actualPositiveArmorAccuracy;
+  fixed lv_resultingPreviousArmorAccuracy;
+  fixed lv_resultingCurrentArmorAccuracy;
+  fixed lv_calculatedArmorPositive;
+  fixed lv_calculatedArmorNegative;
+  fixed lv_calculatedArmorPositiveAccuracy;
+  fixed lv_calculatedArmorNegativeAccuracy;
   int lv_damageType;
   int lv_attackerType;
+  unitgroup lv_iteratorUnitGroup;
+  unit lv_unitGroupIteratorUnit;
+  int lv_unitIterator;
+  int lv_currentActiveUnitValue;
+  int lv_previousActiveUnitValue;
+  bool lv_inCurrentLoop;
+  bool lv_inPreviousLoop;
 
+  lv_iteratorUnitGroup = UnitGroupEmpty();
 
   if ((CatalogFieldValueGet(c_gameCatalogEffect, lp_damageEffect, "Kind", EventUnitDamageSourcePlayer()) == "Basic")) {
     lv_damageType = c_unitDamageTypeBasic;
@@ -20610,23 +20648,89 @@ void libGame_gv_TallyArmorModified (string lp_damageEffect, string lp_attackerTy
     lv_attackerType = c_unitDamageTypeMinion;
   }
 
-  lv_previousArmor = libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelPreviousLoop].lv_armor[libGame_gv_timeTravelActiveUnit[lp_attackedPlayer]][lv_attackerType][lv_damageType];
-  lv_currentArmor = libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelActiveLoop].lv_armor[libGame_gv_timeTravelActiveUnit[lp_attackedPlayer]][lv_attackerType][lv_damageType];
+  
+  lv_iteratorUnitGroup = UnitGroupCopy(libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelActiveLoop].lv_heroUnitGroup);
+  lv_currentActiveUnitValue = 0;
+  lv_unitIterator = UnitGroupCount(lv_iteratorUnitGroup, c_unitCountAll);
+  for (;; lv_unitIterator -= 1) {
+    lv_unitGroupIteratorUnit = UnitGroupUnitFromEnd(lv_iteratorUnitGroup, lv_unitIterator);
+    if (lv_unitGroupIteratorUnit == null) {
+      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Armored Unit not in current group"));
+      lv_inCurrentLoop = false;
+      break;
+    }
+    if (lp_attackedUnit == lv_unitGroupIteratorUnit) {
+      lv_inCurrentLoop = true;
+      break;
+    }
+    lv_currentActiveUnitValue += 1;
+  }
+  
+  lv_iteratorUnitGroup = UnitGroupCopy(libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelPreviousLoop].lv_heroUnitGroup);
+  lv_previousActiveUnitValue = 0;
+  lv_unitIterator = UnitGroupCount(lv_iteratorUnitGroup, c_unitCountAll);
+  for (;; lv_unitIterator -= 1) {
+    lv_unitGroupIteratorUnit = UnitGroupUnitFromEnd(lv_iteratorUnitGroup, lv_unitIterator);
+    if (lv_unitGroupIteratorUnit == null) {
+      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Armored Unit not in previous group"));
+      lv_inPreviousLoop = false;
+      break;
+    }
+    if (lp_attackedUnit == lv_unitGroupIteratorUnit) {
+      lv_inPreviousLoop = true;
+      break;
+    }
+    lv_previousActiveUnitValue += 1;
+  }
+
+  if ((lv_inPreviousLoop == false) && (lv_inCurrentLoop == false)) {
+    UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Armored Unit not in either loop"));
+    return;
+  }
+  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Armored Unit in current loop: ") + IntToText(lv_currentActiveUnitValue) + StringToText(" Armored Unit in previous loop: ") + IntToText(lv_previousActiveUnitValue)));
+
+  lv_previousArmor[lv_positiveArmor] = libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelPreviousLoop].lv_armor[lv_previousActiveUnitValue][lv_attackerType][lv_damageType][lv_positiveArmor];
+  lv_previousArmor[lv_negativeArmor] = libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelPreviousLoop].lv_armor[lv_previousActiveUnitValue][lv_attackerType][lv_damageType][lv_negativeArmor];
+  lv_resultingPreviousArmor = (lv_previousArmor[lv_positiveArmor] + lv_previousArmor[lv_negativeArmor]);
+  lv_currentArmor[lv_positiveArmor] = libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelActiveLoop].lv_armor[lv_currentActiveUnitValue][lv_attackerType][lv_damageType][lv_positiveArmor];
+  lv_currentArmor[lv_negativeArmor] = libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelActiveLoop].lv_armor[lv_currentActiveUnitValue][lv_attackerType][lv_damageType][lv_negativeArmor];
+  lv_resultingCurrentArmor = (lv_currentArmor[lv_positiveArmor] + lv_currentArmor[lv_negativeArmor]);
   lv_actualArmor = UnitGetArmorValue(lp_attackedUnit, lv_attackerType, lv_damageType);
   
-  lv_previousNegativeArmorAccuracy = (lv_previousArmor / (0 - (100 * (1.0 - ((lp_damageAttempted) / (lp_damageAttempted - lp_damageMitigated))))));
+  lv_calculatedArmorPositive = (100 * (1 - (lp_damageAttempted / (lp_damageAttempted + lp_damageMitigated))));
+  lv_calculatedArmorNegative = (100 * (lp_damageMitigated / (lp_damageAttempted - lp_damageMitigated)));
+
+  UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Attempted: ") + FixedToText(lp_damageAttempted, 2) + StringToText(" Mitigated: ") + FixedToText(lp_damageMitigated, 2)));
+  UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Calc Pos Armor: ") + FixedToText(lv_calculatedArmorPositive, 2) + StringToText(" Calc Neg Armor: ") + FixedToText(lv_calculatedArmorNegative, 2)));
+  UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Previous Armor: ") + FixedToText(lv_resultingPreviousArmor, 2) + StringToText(" Current Armor: ") + FixedToText(lv_resultingCurrentArmor, 2)));
+
+  if (lv_resultingPreviousArmor < 0.0) {
+    lv_resultingPreviousArmorAccuracy = (lv_resultingPreviousArmor / (0 - (100 * (1.0 - (lp_damageAttempted / (lp_damageAttempted - lp_damageMitigated))))));
+  }
+  else {
+    lv_resultingPreviousArmorAccuracy = (lv_resultingPreviousArmor / (100.0 * (lp_damageMitigated / (lp_damageAttempted + lp_damageMitigated))));
+  }
+
+  if (lv_resultingCurrentArmor < 0.0) {
+    lv_resultingCurrentArmorAccuracy = (lv_resultingCurrentArmor / (0 - (100 * (1.0 - ((lp_damageAttempted) / (lp_damageAttempted - lp_damageMitigated))))));
+  }
+  else {
+    lv_resultingCurrentArmorAccuracy = (lv_resultingCurrentArmor / (100.0 * (lp_damageMitigated / (lp_damageAttempted + lp_damageMitigated))));
+  }
+
+  lv_previousNegativeArmorAccuracy = (lv_previousArmor[lv_negativeArmor] / (0 - (100 * (1.0 - ((lp_damageAttempted) / (lp_damageAttempted - lp_damageMitigated))))));
   if (lv_previousNegativeArmorAccuracy < 0.0) {
     lv_previousNegativeArmorAccuracy = AbsF(lv_previousNegativeArmorAccuracy);
   }
-  lv_previousPositiveArmorAccuracy = (lv_previousArmor / (100.0 * (lp_damageMitigated / (lp_damageAttempted + lp_damageMitigated))));
+  lv_previousPositiveArmorAccuracy = (lv_previousArmor[lv_positiveArmor] / (100.0 * (lp_damageMitigated / (lp_damageAttempted + lp_damageMitigated))));
   if (lv_previousPositiveArmorAccuracy < 0.0) {
     lv_previousPositiveArmorAccuracy = AbsF(lv_previousPositiveArmorAccuracy);
   }
-  lv_currentNegativeArmorAccuracy = (lv_currentArmor / (0 - (100 * (1.0 - ((lp_damageAttempted) / (lp_damageAttempted - lp_damageMitigated))))));
+  lv_currentNegativeArmorAccuracy = (lv_currentArmor[lv_negativeArmor] / (0 - (100 * (1.0 - ((lp_damageAttempted) / (lp_damageAttempted - lp_damageMitigated))))));
   if (lv_currentNegativeArmorAccuracy < 0.0) {
     lv_currentNegativeArmorAccuracy = AbsF(lv_currentNegativeArmorAccuracy);
   }
-  lv_currentPositiveArmorAccuracy = (lv_currentArmor / (100.0 * (lp_damageMitigated / (lp_damageAttempted + lp_damageMitigated))));
+  lv_currentPositiveArmorAccuracy = (lv_currentArmor[lv_positiveArmor] / (100.0 * (lp_damageMitigated / (lp_damageAttempted + lp_damageMitigated))));
   if (lv_currentPositiveArmorAccuracy < 0.0) {
     lv_currentPositiveArmorAccuracy = AbsF(lv_currentPositiveArmorAccuracy);
   }
@@ -20638,18 +20742,33 @@ void libGame_gv_TallyArmorModified (string lp_damageEffect, string lp_attackerTy
   if (lv_actualPositiveArmorAccuracy < 0.0) {
     lv_actualPositiveArmorAccuracy = AbsF(lv_actualPositiveArmorAccuracy);
   }
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Damage Tried: ") + FixedToText(lp_damageAttempted, 2) + StringToText(" Damage Mitigated: ") + FixedToText(lp_damageMitigated, 2)));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Last Loop Armor: ") + FixedToText(lv_previousArmor, 2) + StringToText(" This Loop Armor: ") + FixedToText(lv_currentArmor, 2)));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Unit Armor: ") + FixedToText(lv_actualArmor, 2)));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Last Loop Accuracy(Neg): ") + FixedToText(lv_previousNegativeArmorAccuracy, 5)));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Last Loop Accuracy(Pos): ") + FixedToText(lv_previousPositiveArmorAccuracy, 5)));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("This Loop Accuracy(Neg): ") + FixedToText(lv_currentNegativeArmorAccuracy, 5)));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("This Loop Accuracy(Pos): ") + FixedToText(lv_currentPositiveArmorAccuracy, 5)));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Unit Loop Accuracy(Neg): ") + FixedToText(lv_actualNegativeArmorAccuracy, 5)));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Unit Loop Accuracy(Pos): ") + FixedToText(lv_actualPositiveArmorAccuracy, 5)));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Last Loop Time: ") + FixedToText(libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelPreviousLoop].lv_timeStored, 5)));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("This Loop Time: ") + FixedToText(libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelActiveLoop].lv_timeStored, 5)));
-  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Actual Time: ") + FixedToText(GameGetMissionTime(), 5)));
+
+  if (FixedToInt(lv_resultingPreviousArmorAccuracy * 100) == 100) {
+
+  }
+  else if (FixedToInt(lv_resultingPreviousArmorAccuracy * 100) == -100) {
+
+  }
+  if (FixedToInt(lv_resultingCurrentArmorAccuracy * 100) == 100) {
+
+  }
+  else if (FixedToInt(lv_resultingCurrentArmorAccuracy * 100) == -100) {
+
+  }
+
+  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Damage Tried: ") + FixedToText(lp_damageAttempted, 2) + StringToText(" Damage Miti: ") + FixedToText(lp_damageMitigated, 2)));
+  UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Last Pos Armor: ") + FixedToText(lv_previousArmor[lv_positiveArmor], 2) + StringToText(" This Pos Armor: ") + FixedToText(lv_currentArmor[lv_positiveArmor], 2)));
+  UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Last Neg Armor: ") + FixedToText(lv_previousArmor[lv_negativeArmor], 2) + StringToText(" This Neg Armor: ") + FixedToText(lv_currentArmor[lv_negativeArmor], 2)));
+  UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Unit Armor: ") + FixedToText(lv_actualArmor, 2)));
+  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Last Acc(Neg): ") + FixedToText(lv_previousNegativeArmorAccuracy, 5) + StringToText(" from: ") + StringToText(libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelPreviousLoop].lv_armorBehavior[lv_previousActiveUnitValue][lv_attackerType][lv_damageType][lv_negativeArmor])));
+  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Last Acc(Pos): ") + FixedToText(lv_previousPositiveArmorAccuracy, 5) + StringToText(" from: ") + StringToText(libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelPreviousLoop].lv_armorBehavior[lv_previousActiveUnitValue][lv_attackerType][lv_damageType][lv_positiveArmor])));
+  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("This Acc(Neg): ") + FixedToText(lv_currentNegativeArmorAccuracy, 5) + StringToText(" from: ") + StringToText(libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelActiveLoop].lv_armorBehavior[lv_currentActiveUnitValue][lv_attackerType][lv_damageType][lv_negativeArmor])));
+  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("This Acc(Pos): ") + FixedToText(lv_currentPositiveArmorAccuracy, 5) + StringToText(" from: ") + StringToText(libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelActiveLoop].lv_armorBehavior[lv_currentActiveUnitValue][lv_attackerType][lv_damageType][lv_positiveArmor])));
+  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Previous: ") + FixedToText(lv_resultingPreviousArmorAccuracy, 5)));
+  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Current: ") + FixedToText(lv_resultingCurrentArmorAccuracy, 5)));
+  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Unit Acc(Neg): ") + FixedToText(lv_actualNegativeArmorAccuracy, 5) + StringToText(" Unit Acc(Pos): ") + FixedToText(lv_actualPositiveArmorAccuracy, 5)));
+  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Last Time: ") + FixedToText(libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelPreviousLoop].lv_timeStored, 5) + StringToText(" This Time: ") + FixedToText(libGame_gv_timeTravelValues[lp_attackedPlayer][libGame_gv_timeTravelActiveLoop].lv_timeStored, 5)));
+  // UIDisplayMessage(PlayerGroupAll(), c_messageAreaChat, (StringToText("Actual Time: ") + FixedToText(GameGetMissionTime(), 5)));
 
 }
 
@@ -20667,7 +20786,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
   fixed lv_nonaryScoreOverride;
   fixed lv_denaryScoreOverride;
   fixed lv_onodenaryScoreOverride;
-  fixed[lv_scoreMaxCount + 1] lv_scoreOverride;
+  fixed[lv_scoreMaxCount + 2] lv_scoreOverride;
 
   bool lv_tempBool;
   unit lv_tempUnit;
@@ -20686,7 +20805,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
   string lv_nonaryScoreString;
   string lv_denaryScoreString;
   string lv_onodenaryScoreString;
-  string[lv_scoreMaxCount + 1] lv_scoreString;
+  string[lv_scoreMaxCount + 2] lv_scoreString;
 
   int lv_primaryPlayerOverride;
   int lv_secondaryPlayerOverride;
@@ -20699,7 +20818,7 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
   int lv_nonaryPlayerOverride;
   int lv_denaryPlayerOverride;
   int lv_onodenaryPlayerOverride;
-  int[lv_scoreMaxCount + 1] lv_scorePlayer;
+  int[lv_scoreMaxCount + 2] lv_scorePlayer;
 
   int lv_casterPlayer;
   int lv_targetPlayer;
@@ -20751,11 +20870,11 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
   lv_onodenaryPlayerOverride = lv_casterPlayer;
 
   lv_tempInt = 0;
-  while ((lv_tempInt < (lv_scoreMaxCount))) {
-    lv_tempInt += 1;
+  while ((lv_tempInt < ((lv_scoreMaxCount + 1)))) {
     lv_scoreString[lv_tempInt] = "Discard";
     lv_scoreOverride[lv_tempInt] = lp_damageValue;
     lv_scorePlayer[lv_tempInt] = lv_casterPlayer;
+    lv_tempInt += 1;
   }
 
   if ((lp_damageEffect == "BlockDummyDamage")) {
@@ -21067,6 +21186,8 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
   // lv_denaryPlayerOverride = UnitBehaviorEffectPlayer(lp_casterUnit, "ProbiusWarpInPylonAggressiveMatrixAttackDamageBuff", c_effectPlayerCaster, 0);
   // lv_denaryScoreOverride = libGame_gv_DamageCalculateMMDDFAF(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "AggressiveMatrix");
   // }
+
+  
 
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroDVaPilot") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroDVaMech")) {
     if ((lp_damageEffect == "DVaMechWeaponDamage")) {
@@ -23951,24 +24072,24 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_secondaryScoreString = "AccuracyEleven";
       }
       if (libGame_gv_HeroSpecificStoredValue5[lv_casterPlayer] == 1.0) {
-        lv_tertiaryScoreOverride = libGame_gv_DamageCalculateDifferentEntryOrAccumulator(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DemonHunterVault");
-        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-          lv_tertiaryScoreString = "ScoreEight";
-          lv_septenaryScoreOverride = 1.0;
-          lv_septenaryScoreString = "AccuracyNine";
-        }
-        else {
-          lv_tertiaryScoreString = "ScoreNine";
-        }
+        // lv_tertiaryScoreOverride = libGame_gv_DamageCalculateDifferentEntryOrAccumulator(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DemonHunterVault");
+        // if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        //   lv_tertiaryScoreString = "ScoreEight";
+        //   lv_septenaryScoreOverride = 1.0;
+        //   lv_septenaryScoreString = "AccuracyNine";
+        // }
+        // else {
+        //   lv_tertiaryScoreString = "ScoreNine";
+        // }
         // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Vault Bonus: ") + FixedToText(lv_tertiaryScoreOverride, 3)));
         if (PlayerHasTalent(lv_casterPlayer, "DemonHunterDeathDealer") == true) {
-          lv_quaternaryScoreOverride = libGame_gv_DamageCalculateDifferentEntryOrAccumulator(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DemonHunterDeathDealer");
-          if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-            lv_quaternaryScoreString = "ScoreSixteen";
-          }
-          else {
-            lv_quaternaryScoreString = "BaselineOne";
-          }
+          // lv_quaternaryScoreOverride = libGame_gv_DamageCalculateDifferentEntryOrAccumulator(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "DemonHunterDeathDealer");
+          // if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          //   lv_quaternaryScoreString = "ScoreSixteen";
+          // }
+          // else {
+          //   lv_quaternaryScoreString = "BaselineOne";
+          // }
           // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Death Dealer Bonus: ") + FixedToText(lv_quaternaryScoreOverride, 3)));
         }
       }
@@ -25947,6 +26068,21 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         }
       }
       libGame_gv_HeroSpecificStoredValue4[lv_casterPlayer] = GameGetMissionTime();
+      if (PlayerHasTalent(lv_casterPlayer, "AurielIncreasingClaritySacredSweepTalent") == true) {
+        if (libGame_gv_HeroSpecificStoredValue6[lv_casterPlayer] != 0.0) {
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score28";
+          lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateDifferentEntryOrAccumulator(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "AurielIncreasingClarity");
+          UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Increasing Clarity damage(Heroes): ") + FixedToText(lv_scoreOverride[lv_numScores], 3));
+        }
+        libGame_gv_HeroSpecificStoredValue6[lv_casterPlayer] += 1.0;
+        if ((libGame_gv_HeroSpecificStoredValue6[lv_casterPlayer] == CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "AurielSacredSweepIncreasingClarityQuestToken", "ConditionalEvents[0].CompareValue", lv_casterPlayer)) && (libGame_gv_HeroSpecificStoredValue7[lv_casterPlayer] != 0.0)) {
+          libGame_gv_HeroSpecificStoredValue7[lv_casterPlayer] = 1.0;
+          lv_numScores += 1;
+          lv_scoreString[lv_numScores] = "Score30";
+          lv_scoreOverride[lv_numScores] = FixedToInt(TimerGetElapsed(libGame_gv_gameTimer));
+        }
+      }
     }
     if ((lp_damageEffect == "AurielSacredSweepHeroDamage")) {
       lv_numScores += 1;
@@ -25958,6 +26094,12 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
     if ((lp_damageEffect == "AurielSacredSweepNonHeroCenterDamage")) {
       lv_numScores += 1;
       lv_scoreString[lv_numScores] = "Score5";
+      if ((PlayerHasTalent(lv_casterPlayer, "AurielIncreasingClaritySacredSweepTalent") == true) && (libGame_gv_HeroSpecificStoredValue6[lv_casterPlayer] != 0.0)) {
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score29";
+        lv_scoreOverride[lv_numScores] = libGame_gv_DamageCalculateDifferentEntryOrAccumulator(lp_damageEffect, lp_damageValue, lp_damageAttempted, lp_casterUnit, lp_targetUnit, "AurielIncreasingClarity");
+        UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Increasing Clarity damage(non-Heroes): ") + FixedToText(lv_scoreOverride[lv_numScores], 3));
+      }
     }
     if ((lp_damageEffect == "AurielSacredSweepNonHeroDamage")) {
       lv_numScores += 1;
@@ -27153,6 +27295,12 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
         lv_numScores += 1;
         lv_scoreString[lv_numScores] = "Score23";
         lv_scoreOverride[lv_numScores] = 1.0;
+        if ((PlayerHasTalent(lv_casterPlayer, "L90ETCMasteryStageDiveCrowdPleaser") == true) && (DistanceBetweenPoints(UnitGetPosition(lp_casterUnit), libNtve_gf_PointOffsetTowardsPoint(UnitGetPosition(lp_targetUnit), CatalogFieldValueGetAsFixed(c_gameCatalogUnit, UnitGetType(lp_targetUnit), "Radius", lp_targetPlayer), UnitGetPosition(lp_casterUnit)))) > (CatalogFieldValueGetAsFixed(c_gameCatalogEffect, "StageDiveSearch", "AreaArray[0].Radius", c_playerAny) + 0.1)) {
+          // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Target is hit by Crowd Pleaser"));
+          lv_scoreString[lv_numScores] = "Score30";
+          lv_scoreOverride[lv_numScores] = 1.0;
+        }
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Stage Dive Distance: ") + FixedToText(DistanceBetweenPoints(UnitGetPosition(lp_casterUnit), libNtve_gf_PointOffsetTowardsPoint(UnitGetPosition(lp_targetUnit), CatalogFieldValueGetAsFixed(c_gameCatalogUnit, UnitGetType(lp_targetUnit), "Radius", lp_targetPlayer), UnitGetPosition(lp_casterUnit))), 5));
       }
       else {
         lv_numScores += 1;
@@ -31833,21 +31981,33 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
     }
     if ((lp_damageEffect == "ArchangelsWrathDamage")) {
-      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreSeven";
-        lv_secondaryScoreString = "AccuracyNine";
-        lv_secondaryScoreOverride = 1.0;
+      if ((PlayerHasTalent(lv_casterPlayer, "TyraelAspectofJustice") == true) && (UnitIsAlive(lp_casterUnit) == true)) {
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_primaryScoreString = "ScoreTwelve";
+          lv_secondaryScoreString = "AccuracyTen";
+          lv_secondaryScoreOverride = 1.0;
+        }
+        else {
+          lv_primaryScoreString = "Discard";
+        }
       }
       else {
-        lv_primaryScoreString = "ScoreEight";
+        if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+          lv_primaryScoreString = "ScoreSeven";
+          lv_secondaryScoreString = "AccuracyNine";
+          lv_secondaryScoreOverride = 1.0;
+        }
+        else {
+          lv_primaryScoreString = "ScoreEight";
+        }
       }
     }
     if ((lp_damageEffect == "RighteousnessExpirationDamage")) {
       if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
-        lv_primaryScoreString = "ScoreNine";
+        lv_primaryScoreString = "SupportEleven";
       }
       else {
-        lv_primaryScoreString = "ScoreTen";
+        lv_primaryScoreString = "SupportTwelve";
       }
     }
     if ((lp_damageEffect == "JudgementDamage")) {
@@ -31867,7 +32027,12 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       }
     }
     if ((lp_damageEffect == "TyraelBurningHaloDamage")) {
-      lv_primaryScoreString = "ScoreTwelve";
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_primaryScoreString = "ScoreNine";
+      }
+      else {
+        lv_primaryScoreString = "ScoreTen";
+      }
     }
     if ((lp_damageEffect == "TyraelElDruinsMightEldruinsFlashSwordDamage")) {
       lv_primaryScoreString = "Discard";
@@ -33281,17 +33446,161 @@ void libGame_gf_HeroSpecificStatTrackerDamage (string lp_damageEffect, fixed lp_
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Else Data: Target: ") + StringToText(UnitGetType(lp_targetUnit)) + StringToText(" Caster: ") + StringToText(UnitGetType(lp_casterUnit)) + StringToText(" Effect: ") + StringToText(lp_damageEffect)));
     }
   }
+  if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroXalatath")) {
+    lv_usesArray = true;
+    if ((lp_damageEffect == "XalatathHeroWeaponDamage")) {
+      lv_numScores += 1;
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_scoreString[lv_numScores] = "Score1";
+      }
+      else {
+        lv_scoreString[lv_numScores] = "Score2";
+      }
+      // Basic Attack damage
+    }
+    // if ((lp_damageEffect == "XalatathWeaponMissileSuicide")) {
+      
+    // }
+    if ((lp_damageEffect == "XalatathVoidVolleyDamage")) {
+      lv_numScores += 1;
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_scoreString[lv_numScores] = "Score3";
+      }
+      else {
+        lv_scoreString[lv_numScores] = "Score4";
+      }
+    }
+    // if ((lp_damageEffect == "XalatathVolleyMissileImpactDummy")) {
+      
+    // }
+    // if ((lp_damageEffect == "XalatathVoidVolleyMissileSuicide")) {
+      
+    // }
+    if ((lp_damageEffect == "XalatathShadowMarkInnerDamage")) {
+      lv_numScores += 1;
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_scoreString[lv_numScores] = "Score3";
+      }
+      else {
+        lv_scoreString[lv_numScores] = "Score4";
+      }
+    }
+    if ((lp_damageEffect == "XalatathShadowMarkOuterDamage")) {
+      lv_numScores += 1;
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_scoreString[lv_numScores] = "Score5";
+      }
+      else {
+        lv_scoreString[lv_numScores] = "Score6";
+      }
+    }
+    if ((lp_damageEffect == "XalatathDarkHeartRitualChainDamage")) {
+      lv_numScores += 1;
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_scoreString[lv_numScores] = "Score7";
+      }
+      else {
+        lv_scoreString[lv_numScores] = "Score8";
+      }
+    }
+    
+    if ((lp_damageEffect == "XalatathShadowMarkToxicMark")) {
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score9";
+      lv_numScores += 1;
+      lv_scoreString[lv_numScores] = "Score10";
+      lv_scoreOverride[lv_numScores] = 1.0;
+    }
+    
+    if ((lp_damageEffect == "XalatathDarkHeartRitualDamageLinkChainTargetDamage")) {
+      lv_numScores += 1;
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_scoreString[lv_numScores] = "Score9";
+      }
+      else {
+        lv_scoreString[lv_numScores] = "Score10";
+      }
+    }
+    
+    if ((lp_damageEffect == "XalatathSilenceOfTheLambDamage")) {
+      lv_numScores += 1;
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_scoreString[lv_numScores] = "Score13";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score14";
+        lv_scoreOverride[lv_numScores] = 1.0;
+      }
+      else {
+        lv_scoreString[lv_numScores] = "Score15";
+      }
+    }
+    
+    if ((lp_damageEffect == "XalatathVoidMinionWeapon")) {
+      lv_numScores += 1;
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_scoreString[lv_numScores] = "Score13";
+      }
+      else {
+        lv_scoreString[lv_numScores] = "Score15";
+      }
+    }
+
+    if ((lp_damageEffect == "XalatathVoidEruptionFlightDamageTier1") || (lp_damageEffect == "XalatathVoidEruptionFlightDamageTier2") || (lp_damageEffect == "XalatathVoidEruptionFlightDamageTier3") || (lp_damageEffect == "XalatathVoidEruptionFlightDamageTier4") || (lp_damageEffect == "XalatathOrbitalEruptionFlightDamageTier1") || (lp_damageEffect == "XalatathOrbitalEruptionFlightDamageTier2") || (lp_damageEffect == "XalatathOrbitalEruptionFlightDamageTier3") || (lp_damageEffect == "XalatathOrbitalEruptionFlightDamageTier4")) {
+      lv_numScores += 1;
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_scoreString[lv_numScores] = "Score16";
+      }
+      else {
+        lv_scoreString[lv_numScores] = "Score17";
+      }
+    }
+
+    if ((lp_damageEffect == "XalatathVoidEruptionFinalDamageTier1") || (lp_damageEffect == "XalatathVoidEruptionFinalDamageTier2") || (lp_damageEffect == "XalatathVoidEruptionFinalDamageTier3") || (lp_damageEffect == "XalatathVoidEruptionFinalDamageTier4") || (lp_damageEffect == "XalatathOrbitalEruptionFinalDamageTier1") || (lp_damageEffect == "XalatathOrbitalEruptionFinalDamageTier2") || (lp_damageEffect == "XalatathOrbitalEruptionFinalDamageTier3") || (lp_damageEffect == "XalatathOrbitalEruptionFinalDamageTier4")) {
+      lv_numScores += 1;
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_scoreString[lv_numScores] = "Score18";
+        lv_numScores += 1;
+        lv_scoreString[lv_numScores] = "Score19";
+        lv_scoreOverride[lv_numScores] = 1.0;
+      }
+      else {
+        lv_scoreString[lv_numScores] = "Score20";
+      }
+    }
+
+    if ((lp_damageEffect == "XalatathFracturedRealityFireDamage")) {
+      lv_numScores += 1;
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_scoreString[lv_numScores] = "Score21";
+      }
+      else {
+        lv_scoreString[lv_numScores] = "Score22";
+      }
+    }
+
+    if ((lp_damageEffect == "XalatathUnstableCoreFireDamage")) {
+      lv_numScores += 1;
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        lv_scoreString[lv_numScores] = "Score23";
+      }
+      else {
+        lv_scoreString[lv_numScores] = "Score24";
+      }
+    }
+
+  }
   // Hi! This has nothing to do with Blizzard, I'm making a zenyatta hero and the stuff failing annoyed me.
   if ((UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroZenyatta") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroIsendra") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroPaladin") || (UnitGetType(libGame_gv_players[lv_casterPlayer].lv_heroUnit) == "HeroDoomfist")) {
     lv_primaryScoreString = "Discard";
   }
+  
   if (lv_usesArray == true) {
     lv_tempInt = 0;
     while ((lv_tempInt < (lv_scoreMaxCount + 1))) {
-      lv_tempInt += 1;
       if (lv_scoreString[lv_tempInt] != "Discard") {
       libGame_gf_TallyHeroSpecificStatShared(lv_scoreOverride[lv_tempInt], lv_scorePlayer[lv_tempInt], lv_scoreString[lv_tempInt], ("HeroCombinedDamageTracker" + IntToString(lv_tempInt) + " casterplayer: " + IntToString(lv_casterPlayer) + (" effect: " + lp_damageEffect)));
       }
+      lv_tempInt += 1;
     }
   }
   else {
@@ -35404,6 +35713,115 @@ void libGame_gf_MercCampAddToScoreForTeamPlayer (string lp_damageEffect, unit lp
       }
     }
   }
+  
+  else if (lp_battleground == "HauntedMines") {
+    if ((lp_damageEffect == "MercLanerGoblinSapperDamage") || (lp_damageEffect == "MercLanerGoblinSapperNonStructureSuicideDamage")) {
+      if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == true)) {
+        if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+          lv_score = "WinsSupport";
+        }
+        else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+          lv_score = "PlaysWarCraft";
+        }
+        else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+          lv_score = "WinsWarcraft";
+        }
+        else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+          lv_score = "PlaysStarCraft";
+        }
+        else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+          lv_score = "WinsStarCraft";
+        }
+      }
+      else if ((UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeStructure) == true)) {
+        if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+          lv_score = "DragonTeamNumberOfDragonCaptures";
+        }
+        else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+          lv_score = "MinesTeamSkullsCollected";
+        }
+        else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+          lv_score = "LessThan4Deaths";
+        }
+        else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+          lv_score = "LessThan3TownStructuresLost";
+        }
+        else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+          lv_score = "LunarNewYearSuccesfulArtifactTurnIns";
+        }
+      }
+      else {
+        if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+          lv_score = "PlaysDiablo";
+        }
+        else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+          lv_score = "WinsDiablo";
+        }
+        else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+          lv_score = "PlaysOverwatch";
+        }
+        else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+          lv_score = "WinsMale";
+        }
+        else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+          lv_score = "EndOfMatchAwardMostVengeancesPerformedBoolean";
+        }
+      }
+    }
+    if ((lp_damageEffect == "MercLanerSiegeGiantDamage")) {
+      if ((libGame_gf_UnitIsGateUnit(lp_targetUnit) == true) || (UnitGetType(lp_targetUnit) == "TownCannonTower") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL2Standalone") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3") || (UnitGetType(lp_targetUnit) == "TownCannonTowerL3Standalone")) {
+        if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+          lv_score = "PachimariMania";
+        }
+        else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+          lv_score = "GenericHeroTalentStackCounter";
+        }
+        else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+          lv_score = "PlaysNexus";
+        }
+        else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+          lv_score = "PlaysOverwatchOrNexus";
+        }
+        else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+          lv_score = "RegenGlobes";
+        }
+      }
+      else if ((UnitGetType(lp_targetUnit) == "TownTownHallL2") || (UnitGetType(lp_targetUnit) == "TownTownHallL3")) {
+        if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+          lv_score = "EndOfMatchAwardMostDaredevilEscapesBoolean";
+        }
+        else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+          lv_score = "ExperienceFromTownsDestroyed";
+        }
+        else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+          lv_score = "ExperienceFromTakedowns";
+        }
+        else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+          lv_score = "TeamWinsMale";
+        }
+        else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+          lv_score = "EndOfMatchAwardClutchHealerBoolean";
+        }
+      }
+      else {
+        if ((lv_playerRosterSlot == 1) || (lv_playerRosterSlot == 6)) {
+          lv_score = "EndOfMatchAwardMostEscapesBoolean";
+        }
+        else if ((lv_playerRosterSlot == 2) || (lv_playerRosterSlot == 7)) {
+          lv_score = "EndOfMatchAwardMostXPContributionBoolean";
+        }
+        else if ((lv_playerRosterSlot == 3) || (lv_playerRosterSlot == 8)) {
+          lv_score = "EndOfMatchAwardMostHeroDamageDoneBoolean";
+        }
+        else if ((lv_playerRosterSlot == 4) || (lv_playerRosterSlot == 9)) {
+          lv_score = "EndOfMatchAwardMostKillsBoolean";
+        }
+        else if ((lv_playerRosterSlot == 5) || (lv_playerRosterSlot == 10)) {
+          lv_score = "EndOfMatchAwardHatTrickBoolean";
+        }
+      }
+    }
+  }
   // else {
   // }
 
@@ -37205,9 +37623,13 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
       lv_scoreString = "Score8";
       if (PlayerHasTalent(lv_casterPlayerOverride, "AurielGlimmerofHopeRayOfHeavenTalent") == true) {
         lv_secondaryScoreString = "Score32";
+        if (UnitHasBehavior2(lp_casterUnit, "AurielRayOfHeavenGlimmerofHopePrimed") == true) {
+          lv_tertiaryScoreString = "Score33";
+          UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Glimmer of Hope empowered"));
+        }
       }
       if (PlayerHasTalent(lv_casterPlayerOverride, "AurielReservoirofHopeRayOfHeavenTalent") == true) {
-        lv_tertiaryScoreString = "Score42";
+        lv_quaternaryScoreString = "Score42";
       }
     }
     if ((lp_abilityName == "AurielDetainmentStrike")) {
@@ -37235,8 +37657,10 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
     // Stored value 1: Bestow Hope stuff
     // Stored value 2: Bestow Hope stuff
     // Stored value 3: Bestow Hope stuff
-    // Stored value 4: Level 1 Monitor 1
-    // Stored value 5: Level 1 Monitor 2
+    // Stored value 4: Sacred Sweep Time Monitor
+    // Stored value 5: Sacred Sweep Hit Counter
+    // Stored value 6: Level 1 Hit Counter
+    // Stored value 7: Level 1 Register Bool
   }
   else if ((lv_heroUnitType == "HeroAzmodan")) {
     libGame_gv_HeroQButtonTimestamp[lv_casterPlayerOverride] = GameGetMissionTime();
@@ -39543,8 +39967,11 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
         lv_scoreString = "Discard";
       }
     }
-    if ((lp_abilityName == "TyraelDefenseOfTheAngels")) {
+    if ((lp_abilityName == "TyraelDefenseOfTheAngels") || (lp_abilityName == "TyraelAspectofJustice")) {
       lv_scoreString = "AccuracySix";
+      if ((lp_cooldownNewValue < (lp_interruptCost + 0.5)) && (lp_abilityName == "TyraelAspectofJustice")) {
+        lv_scoreString = "Discard";
+      }
     }
     // CancelSanctification
     // TyraelArchangelsWrathDummy
@@ -41023,6 +41450,23 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
       // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, (StringToText("Cho old life: ") + FixedToText(libGame_gv_HeroSpecificStoredValue2[lv_casterPlayerOverride], 3)));
     }
   }
+  else if ((lv_heroUnitType == "HeroXalatath")) {
+    if ((lp_abilityName == "XalatathShadowMark")) {
+      lv_scoreString = "TODO";
+    }
+    if ((lp_abilityName == "XalatathVoidStep")) {
+      lv_scoreString = "TODO";
+    }
+    if ((lp_abilityName == "XalatathVoidStepCancel")) {
+      lv_scoreString = "TODO";
+    }
+    if ((lp_abilityName == "XalatathDarkHeartRitual")) {
+      lv_scoreString = "TODO";
+    }
+    if ((lp_abilityName == "XalatathVoidEruption")) {
+      lv_scoreString = "TODO";
+    }
+  }
   // Hi! This has nothing to do with Blizzard, I'm making a zenyatta hero and the stuff failing annoyed me.
   else if ((lv_heroUnitType == "HeroZenyatta") || (lv_heroUnitType == "HeroIsendra") || (lv_heroUnitType == "HeroPaladin") || (lv_heroUnitType == "HeroDoomfist")) {
     lv_scoreString = "Discard";
@@ -41223,6 +41667,9 @@ void libGame_gv_trackHeroCooldowns (unit lp_casterUnit, string lp_abilityName, f
           lv_scoreString = "TalentTwenty";
         }
         else if ((lv_heroUnitType == "HeroDiablo")) {
+        }
+        else if ((lv_heroUnitType == "HeroL90ETC") && (PlayerHasTalent(lv_casterPlayerOverride, "L90ETCMasteryDeathMetal") == true)) {
+          lv_scoreString = "Score29";
         }
         else {
           lv_scoreString = "Discard";
@@ -41674,6 +42121,7 @@ fixed libGame_gv_DamageCalculateDifferentEntryOrAccumulator(string lp_damageEffe
       lv_heroSpecificDamageDealtFraction += CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "DemonHunterHatredSeethingHatredTalentCarry", "Modification.DamageDealtFraction[" + IntToString(c_unitDamageTypeBasic) + "]", lv_casterPlayer);
     }
   }
+
   if ((lp_inputData == "DemonHunterDeathDealer")) {
     lv_tempFixed = CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "DemonHunterVaultDamageBoost", "Modification.UnifiedDamageDealtFraction[" + IntToString(c_unitDamageTypeBasic) + "]", lv_casterPlayer);
     lv_tempFixed2 = (lv_tempFixed / 2.33333);
@@ -41694,6 +42142,7 @@ fixed libGame_gv_DamageCalculateDifferentEntryOrAccumulator(string lp_damageEffe
       lv_heroSpecificDamageDealtFraction += CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, "DemonHunterHatredSeethingHatredTalentCarry", "Modification.DamageDealtFraction[" + IntToString(c_unitDamageTypeBasic) + "]", lv_casterPlayer);
     }
   }
+
   if ((lp_inputData == "MuradinPerfectStorm")) {
     lv_originalDamageEffect = lp_damageEffect;
     lv_originalDamageAmount = CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lv_originalDamageEffect, "Amount", lv_casterPlayer);
@@ -41703,6 +42152,21 @@ fixed libGame_gv_DamageCalculateDifferentEntryOrAccumulator(string lp_damageEffe
     if ((PlayerHasTalent(lv_casterPlayer, "MuradinMasteryStormhammerSledgehammer") == true) && (UnitTypeTestAttribute(UnitGetType(lp_targetUnit), c_unitAttributeHeroic) == false)) {
       lv_heroSpecificDamageDealtFraction += CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_damageEffect, "MultiplicativeModifierArray[" + "MuradinStormboltSledgehammer" + "].Modifier", lv_casterPlayer);
     }
+  }
+  
+  if ((lp_inputData == "AurielIncreasingClarity")) {
+    lv_originalDamageEffect = "AurielSacredSweepHeroCenterDamage";
+    lv_originalDamageAmount = CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lv_originalDamageEffect, "Amount", lv_casterPlayer);
+    lv_damageValuePerCatalog = lv_originalDamageAmount;
+    if (libGame_gv_HeroSpecificStoredValue7[lv_casterPlayer] != 1.0) {
+      lv_damageValuePerCatalog += (libGame_gv_HeroSpecificStoredValue6[lv_casterPlayer] * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "AurielSacredSweepIncreasingClarityAccumulator", "Scale", lv_casterPlayer));
+      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Bonus Added Raw(Incomplete): ") + FixedToText((libGame_gv_HeroSpecificStoredValue6[lv_casterPlayer] * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "AurielSacredSweepIncreasingClarityAccumulator", "Scale", lv_casterPlayer)), 4));
+    }
+    else {
+      lv_damageValuePerCatalog += (UnitGetTokenCount(lp_casterUnit, "AurielSacredSweepIncreasingClarityQuestToken") * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "AurielSacredSweepIncreasingClarityAccumulator", "Scale", lv_casterPlayer));
+      UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Bonus Added Raw(Complete): ") + FixedToText((UnitGetTokenCount(lp_casterUnit, "AurielSacredSweepIncreasingClarityQuestToken") * CatalogFieldValueGetAsFixed(c_gameCatalogAccumulator, "AurielSacredSweepIncreasingClarityAccumulator", "Scale", lv_casterPlayer)), 4));
+    }
+    lv_damageResult = (lv_damageValuePerCatalog - lv_originalDamageAmount);
   }
 
   if ((CatalogFieldValueGetAsFixed(c_gameCatalogEffect, lp_damageEffect, "Flags[" + "NoFractionDealtBonus" + "]", lv_casterPlayer) == 0.0)) {
@@ -43392,17 +43856,41 @@ fixed libGame_gv_DamageCalculateMMDDFAF(string lp_damageEffect, fixed lp_damageV
 }
 
 void libGame_gf_travelThroughTime () {
+  int init_i;
+
   // Variable Declarations
+  const int lv_unitDamageTypes = 5;
+  const int lv_damageTypes = 2;
+  const int lv_positiveArmor = 0;
+  const int lv_negativeArmor = 1;
+  const int lv_numMaxUnits = 4;
+  const int lv_posNeg = 2;
   int lv_playerIterator;
+  int lv_unitIterator;
   int lv_activeLoop;
   int lv_activeUnit;
   int[libCore_gv_bALMaxPlayers + 1] lv_activeUnits;
-  unit[libCore_gv_bALMaxPlayers + 1][4] lv_contextUnit;
+  unit[libCore_gv_bALMaxPlayers + 1][lv_numMaxUnits] lv_contextUnit;
+  unitgroup[libCore_gv_bALMaxPlayers + 1] lv_unitGroup;
+  unit lv_unitGroupIteratorUnit;
+  string lv_contextBehavior;
+  int lv_contextBehaviorOwner;
+  int lv_behaviorIterator;
+  int lv_behaviorCount;
+  int lv_unitDamageTypeIterator;
+  int lv_damageTypeIterator;
+  int lv_posNegIterator;
+  fixed[lv_numMaxUnits][lv_unitDamageTypes + 1][lv_damageTypes + 1][lv_posNeg + 1] lv_highestArmorValue;
+  fixed lv_currentArmorValue;
+  int lv_currentArmorStackCount;
 
   // Automatic Variable Declarations
   int autoAAAAAF_ae;
 
   // Variable Initialization
+  for (init_i = 0; init_i <= 10; init_i += 1) {
+      lv_unitGroup[init_i] = UnitGroupEmpty();
+  }
 
   // Implementation
   // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Tracking Hero Cooldowns in 6.5 Seconds"));
@@ -43424,32 +43912,6 @@ void libGame_gf_travelThroughTime () {
   }
   autoAAAAAF_ae = libCore_gv_bALMaxPlayers;
   lv_playerIterator = 1;
-  for ( ; lv_playerIterator <= autoAAAAAF_ae ; lv_playerIterator += 1 ) {
-    if (UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroDVaPilot") {
-      lv_activeUnits[lv_playerIterator] = 2;
-      if ((libNtve_gf_UnitIsInsideTransport(libGame_gv_players[lv_playerIterator].lv_heroUnit) == true) && (UnitGetType(UnitTransport(libGame_gv_players[lv_playerIterator].lv_heroUnit)) == "HeroDVaMech")) {
-        lv_activeUnit = 2;
-        lv_contextUnit[lv_playerIterator][lv_activeUnit] = UnitTransport(libGame_gv_players[lv_playerIterator].lv_heroUnit);
-      }
-      else {
-        lv_activeUnit = 1;
-        lv_contextUnit[lv_playerIterator][lv_activeUnit] = libGame_gv_players[lv_playerIterator].lv_heroUnit;
-      }
-    }
-    else if (UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroLostVikingsController") {
-      lv_activeUnit = 1;
-      lv_activeUnits[lv_playerIterator] = 3;
-    }
-    else {
-      lv_activeUnit = 1;
-      lv_activeUnits[lv_playerIterator] = 1;
-      libGame_gv_timeTravelActiveUnit[lv_playerIterator] = lv_activeUnit;
-      lv_contextUnit[lv_playerIterator][lv_activeUnit] = libGame_gv_players[lv_playerIterator].lv_heroUnit;
-    }
-  }
-
-  autoAAAAAF_ae = libCore_gv_bALMaxPlayers;
-  lv_playerIterator = 1;
   while ((libGame_gv_timeTravelling == true)) {
     if (lv_activeLoop == 1) {
       libGame_gv_timeTravelPreviousLoop = lv_activeLoop;
@@ -43463,20 +43925,200 @@ void libGame_gf_travelThroughTime () {
     }
     lv_playerIterator = 1;
     for ( ; lv_playerIterator <= autoAAAAAF_ae ; lv_playerIterator += 1 ) {
-          // iterate here
-          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeHero][c_unitDamageTypeAbility] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeHero, c_unitDamageTypeAbility);
-          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeHero][c_unitDamageTypeBasic] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeHero, c_unitDamageTypeBasic);
-          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeMerc][c_unitDamageTypeAbility] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeMerc, c_unitDamageTypeAbility);
-          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeMerc][c_unitDamageTypeBasic] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeMerc, c_unitDamageTypeBasic);
-          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeMonster][c_unitDamageTypeAbility] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeMonster, c_unitDamageTypeAbility);
-          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeMonster][c_unitDamageTypeBasic] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeMonster, c_unitDamageTypeBasic);
-          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeStructure][c_unitDamageTypeAbility] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeStructure, c_unitDamageTypeAbility);
-          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeStructure][c_unitDamageTypeBasic] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeStructure, c_unitDamageTypeBasic);
-          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeMinion][c_unitDamageTypeAbility] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeMinion, c_unitDamageTypeAbility);
-          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeMinion][c_unitDamageTypeBasic] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeMinion, c_unitDamageTypeBasic);
-          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeSummon][c_unitDamageTypeAbility] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeSummon, c_unitDamageTypeAbility);
-          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeSummon][c_unitDamageTypeBasic] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeSummon, c_unitDamageTypeBasic);
-          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_timeStored = GameGetMissionTime();
+      lv_unitGroup[lv_playerIterator] = UnitGroupCopy(libGame_gv_players[lv_playerIterator].lv_heroUnitGroup);
+      // if (UnitGetType(libGame_gv_players[lv_playerIterator].lv_heroUnit) == "HeroDVaPilot") {
+      //   if ((libNtve_gf_UnitIsInsideTransport(libGame_gv_players[lv_playerIterator].lv_heroUnit) == true) && (UnitGetType(UnitTransport(libGame_gv_players[lv_playerIterator].lv_heroUnit)) == "HeroDVaMech")) {
+      //     lv_contextUnit[lv_playerIterator][lv_activeUnit] = UnitTransport(libGame_gv_players[lv_playerIterator].lv_heroUnit);
+      //   }
+      //   else {
+      //     lv_contextUnit[lv_playerIterator][lv_activeUnit] = libGame_gv_players[lv_playerIterator].lv_heroUnit;
+      //   }
+      // }
+      libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnitGroup = UnitGroupEmpty();
+      lv_activeUnit = 0;
+      lv_unitIterator = UnitGroupCount(lv_unitGroup[lv_playerIterator], c_unitCountAll);
+      for (;; lv_unitIterator -= 1) {
+        lv_unitGroupIteratorUnit = UnitGroupUnitFromEnd(lv_unitGroup[lv_playerIterator], lv_unitIterator);
+        if (lv_unitGroupIteratorUnit == null) { break; }
+        libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[lv_activeUnit] = lv_unitGroupIteratorUnit;
+        UnitGroupAdd(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnitGroup, lv_unitGroupIteratorUnit);
+        // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+        //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Set Unit " + IntToString(lv_activeUnit) + " to " + UnitGetType(lv_unitGroupIteratorUnit)));
+        // }
+        lv_activeUnit += 1;
+      }
+      
+      if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+        // UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Finished setting units for player " + IntToString(lv_playerIterator)));
+        // if (libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[0] != null) {
+        //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Unit Type 0: " + UnitGetType(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[0])));
+        // }
+        // if (libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[1] != null) {
+        //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Unit Type 1: " + UnitGetType(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[1])));
+        // }
+        // if (libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[2] != null) {
+        //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Unit Type 2: " + UnitGetType(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[2])));
+        // }
+        // if (libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[3] != null) {
+        //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Unit Type 3: " + UnitGetType(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[3])));
+        // }
+      }
+      lv_unitIterator = 0;
+      for ( ; lv_unitIterator <= lv_activeUnits[lv_playerIterator] ; lv_unitIterator += 1 ) {
+        lv_activeUnit = lv_unitIterator;
+        // iterate here
+        
+        // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+        //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Iterating at unit " + IntToString(lv_activeUnit) + " for player " + IntToString(lv_playerIterator)));
+        // }
+
+        lv_unitDamageTypeIterator = 0;
+        for ( ; lv_unitDamageTypeIterator <= lv_unitDamageTypes ; lv_unitDamageTypeIterator += 1 ) {
+          lv_damageTypeIterator = 0;
+          for ( ; lv_damageTypeIterator <= lv_damageTypes ; lv_damageTypeIterator += 1 ) {
+            lv_posNegIterator = 0;
+            for ( ; lv_posNegIterator <= lv_posNeg ; lv_posNegIterator += 1 ) {
+              // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+              //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("clearing armor at unit " + IntToString(lv_activeUnit) + " for player " + IntToString(lv_playerIterator) + " with unitDamageTypeIterator " + IntToString(lv_unitDamageTypeIterator) + " and damageTypeIterator " + IntToString(lv_damageTypeIterator) + " and posNegIterator " + IntToString(lv_posNegIterator)));
+              // }
+              libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_posNegIterator] = 0;
+              libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armorBehavior[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_posNegIterator] = null;
+              libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armorOwner[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_posNegIterator] = 0;
+              lv_highestArmorValue[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_posNegIterator] = 0;
+              // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+              //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("cleared armor at unit " + IntToString(lv_activeUnit) + " for player " + IntToString(lv_playerIterator) + " with unitDamageTypeIterator " + IntToString(lv_unitDamageTypeIterator) + " and damageTypeIterator " + IntToString(lv_damageTypeIterator) + " and posNegIterator " + IntToString(lv_posNegIterator)));
+              // }
+            }
+          }
+        }
+
+        // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+        //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("parsing armors at unit " + IntToString(lv_activeUnit) + " for player " + IntToString(lv_playerIterator)));
+        // }
+
+        lv_behaviorCount = UnitBehaviorCountAll(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[lv_activeUnit]);
+        lv_behaviorIterator = 1;
+        for ( ; lv_behaviorIterator <= lv_behaviorCount ; lv_behaviorIterator += 1 ) {
+          lv_currentArmorValue = 0.0;
+          lv_contextBehavior = UnitBehaviorGet(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[lv_activeUnit], lv_behaviorIterator);
+          lv_contextBehaviorOwner = UnitBehaviorEffectPlayer(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[lv_activeUnit], lv_contextBehavior, c_effectPlayerCaster, 0);
+          lv_currentArmorStackCount = UnitBehaviorCount(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[lv_activeUnit], lv_contextBehavior);
+          if ((CatalogFieldValueGet(c_gameCatalogBehavior, lv_contextBehavior, "ArmorModification.StackCount", lv_contextBehaviorOwner) != "-1") && (CatalogFieldValueGet(c_gameCatalogBehavior, lv_contextBehavior, "ArmorModification.StackCount", lv_contextBehaviorOwner) != "")) {
+            lv_currentArmorStackCount = MinI(lv_currentArmorStackCount, CatalogFieldValueGetAsInt(c_gameCatalogBehavior, lv_contextBehavior, "ArmorModification.StackCount", lv_contextBehaviorOwner));
+            if ((CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, lv_contextBehavior, "ArmorModification.AllArmorBonus", lv_contextBehaviorOwner) != 0)) {
+              lv_unitDamageTypeIterator = 0;
+              for ( ; lv_unitDamageTypeIterator <= lv_unitDamageTypes ; lv_unitDamageTypeIterator += 1 ) {
+                lv_damageTypeIterator = 0;
+                for ( ; lv_damageTypeIterator <= lv_damageTypes ; lv_damageTypeIterator += 1 ) {
+                  // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+                  //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("parsing whole armor at unit " + IntToString(lv_activeUnit) + " for player " + IntToString(lv_playerIterator) + " with unitDamageTypeIterator " + IntToString(lv_unitDamageTypeIterator) + " and damageTypeIterator " + IntToString(lv_damageTypeIterator) + " with " + (lv_contextBehavior) + " at " + IntToString(lv_behaviorIterator)));
+                  // }
+                  lv_currentArmorValue = (CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, lv_contextBehavior, "ArmorModification.AllArmorBonus", lv_contextBehaviorOwner) * lv_currentArmorStackCount);
+                  if (lv_currentArmorValue > lv_highestArmorValue[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_positiveArmor]) {
+                    // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+                    //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("setting highest local armor at unit at " + IntToString(lv_behaviorIterator)));
+                    // }
+                    lv_highestArmorValue[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_positiveArmor] = lv_currentArmorValue;
+                    // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+                    //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("storing positive armor at loop " + IntToString(lv_activeLoop) + " in unit " + IntToString(lv_activeUnit) + " with unitDamageTypeIterator " + IntToString(lv_unitDamageTypeIterator) + " and damageTypeIterator " + IntToString(lv_damageTypeIterator) + " at position " + IntToString(lv_positiveArmor) + " at " + IntToString(lv_behaviorIterator)));
+                    // }
+                    libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_positiveArmor] = lv_highestArmorValue[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_positiveArmor];
+                    // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+                    //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("storing positive armor behavior at unit at " + IntToString(lv_behaviorIterator)));
+                    // }
+                    libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armorBehavior[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_positiveArmor] = lv_contextBehavior;
+                    // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+                    //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("storing positive armor owner at unit at " + IntToString(lv_behaviorIterator)));
+                    // }
+                    libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armorOwner[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_positiveArmor] = lv_contextBehaviorOwner;
+                  }
+                  lv_currentArmorValue = (CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, lv_contextBehavior, "ArmorModification.AllArmorBonus", lv_contextBehaviorOwner) * lv_currentArmorStackCount);
+                  if (lv_currentArmorValue < lv_highestArmorValue[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_negativeArmor]) {
+                    // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+                    //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("setting lowest local armor at unit at " + IntToString(lv_behaviorIterator)));
+                    // }
+                    lv_highestArmorValue[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_negativeArmor] = lv_currentArmorValue;
+                    // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+                    //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("storing negative armor at unit at " + IntToString(lv_behaviorIterator)));
+                    // }
+                    libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_negativeArmor] = lv_highestArmorValue[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_negativeArmor];
+                    // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+                    //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("storing negative armor behavior at unit at " + IntToString(lv_behaviorIterator)));
+                    // }
+                    libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armorBehavior[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_negativeArmor] = lv_contextBehavior;
+                    // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+                    //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("storing negative armor owner at unit at " + IntToString(lv_behaviorIterator)));
+                    // }
+                    libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armorOwner[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_negativeArmor] = lv_contextBehaviorOwner;
+                  }
+                  // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+                  //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("parsed whole armor at unit " + IntToString(lv_activeUnit) + " for player " + IntToString(lv_playerIterator) + " with unitDamageTypeIterator " + IntToString(lv_unitDamageTypeIterator) + " and damageTypeIterator " + IntToString(lv_damageTypeIterator) + " with " + (lv_contextBehavior) + " at " + IntToString(lv_behaviorIterator)));
+                  // }
+                }
+              }
+            }
+            else {
+              lv_unitDamageTypeIterator = 0;
+              for ( ; lv_unitDamageTypeIterator <= lv_unitDamageTypes ; lv_unitDamageTypeIterator += 1 ) {
+                lv_damageTypeIterator = 0;
+                for ( ; lv_damageTypeIterator <= lv_damageTypes ; lv_damageTypeIterator += 1 ) {
+                  // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+                  //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("parsing partial armor at unit " + IntToString(lv_activeUnit) + " for player " + IntToString(lv_playerIterator) + " with unitDamageTypeIterator " + IntToString(lv_unitDamageTypeIterator) + " and damageTypeIterator " + IntToString(lv_damageTypeIterator) + " with " + (lv_contextBehavior) + " at " + IntToString(lv_behaviorIterator)));
+                  // }
+                  if ((CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, lv_contextBehavior, ("ArmorModification.ArmorSet[" + IntToString(lv_unitDamageTypeIterator) + "].ArmorMitigationTable[" + IntToString(lv_damageTypeIterator) + "]"), lv_contextBehaviorOwner) != 0)) {
+                    if (CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, lv_contextBehavior, ("ArmorModification.ArmorSet[" + IntToString(lv_unitDamageTypeIterator) + "].ArmorMitigationTable[" + IntToString(lv_damageTypeIterator) + "]"), lv_contextBehaviorOwner) > lv_highestArmorValue[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_positiveArmor]) {
+                      lv_highestArmorValue[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_positiveArmor] = CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, lv_contextBehavior, ("ArmorModification.ArmorSet[" + IntToString(lv_unitDamageTypeIterator) + "].ArmorMitigationTable[" + IntToString(lv_damageTypeIterator) + "]"), lv_contextBehaviorOwner);
+                      libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_positiveArmor] = lv_highestArmorValue[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_positiveArmor];
+                      libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armorBehavior[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_positiveArmor] = lv_contextBehavior;
+                      libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armorOwner[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_positiveArmor] = lv_contextBehaviorOwner;
+                    }
+                    if (CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, lv_contextBehavior, ("ArmorModification.ArmorSet[" + IntToString(lv_unitDamageTypeIterator) + "].ArmorMitigationTable[" + IntToString(lv_damageTypeIterator) + "]"), lv_contextBehaviorOwner) < lv_highestArmorValue[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_negativeArmor]) {
+                      lv_highestArmorValue[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_negativeArmor] = CatalogFieldValueGetAsFixed(c_gameCatalogBehavior, lv_contextBehavior, ("ArmorModification.ArmorSet[" + IntToString(lv_unitDamageTypeIterator) + "].ArmorMitigationTable[" + IntToString(lv_damageTypeIterator) + "]"), lv_contextBehaviorOwner);
+                      libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_positiveArmor] = lv_highestArmorValue[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_negativeArmor];
+                      libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armorBehavior[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_negativeArmor] = lv_contextBehavior;
+                      libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armorOwner[lv_activeUnit][lv_unitDamageTypeIterator][lv_damageTypeIterator][lv_negativeArmor] = lv_contextBehaviorOwner;
+                    }
+                  }
+                  // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+                  //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("parsed partial armor at unit " + IntToString(lv_activeUnit) + " for player " + IntToString(lv_playerIterator) + " with unitDamageTypeIterator " + IntToString(lv_unitDamageTypeIterator) + " and damageTypeIterator " + IntToString(lv_damageTypeIterator) + " with " + (lv_contextBehavior) + " at " + IntToString(lv_behaviorIterator)));
+                  // }
+                }
+              }
+            }
+          }
+        }
+        
+        // if ((lv_playerIterator == 1) || (lv_playerIterator == 6)) {
+        //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("parsed all armor at unit " + IntToString(lv_activeUnit) + " " + UnitGetType(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[lv_activeUnit]) + " for player " + IntToString(lv_playerIterator)));
+        // }
+
+        // libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeHero][c_unitDamageTypeAbility] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeHero, c_unitDamageTypeAbility);
+        // libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeHero][c_unitDamageTypeBasic] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeHero, c_unitDamageTypeBasic);
+        // libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeMerc][c_unitDamageTypeAbility] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeMerc, c_unitDamageTypeAbility);
+        // libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeMerc][c_unitDamageTypeBasic] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeMerc, c_unitDamageTypeBasic);
+        // libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeMonster][c_unitDamageTypeAbility] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeMonster, c_unitDamageTypeAbility);
+        // libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeMonster][c_unitDamageTypeBasic] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeMonster, c_unitDamageTypeBasic);
+        // libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeStructure][c_unitDamageTypeAbility] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeStructure, c_unitDamageTypeAbility);
+        // libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeStructure][c_unitDamageTypeBasic] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeStructure, c_unitDamageTypeBasic);
+        // libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeMinion][c_unitDamageTypeAbility] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeMinion, c_unitDamageTypeAbility);
+        // libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeMinion][c_unitDamageTypeBasic] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeMinion, c_unitDamageTypeBasic);
+        // libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeSummon][c_unitDamageTypeAbility] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeSummon, c_unitDamageTypeAbility);
+        // libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armor[lv_activeUnit][c_unitDamageTypeSummon][c_unitDamageTypeBasic] = UnitGetArmorValue(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_unitDamageTypeSummon, c_unitDamageTypeBasic);
+        if (UnitGetType(lv_contextUnit[lv_playerIterator][lv_activeUnit]) == "HeroGarrosh") {
+          libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_armorBase[lv_activeUnit] = CatalogFieldValueGetAsFixed(c_gameCatalogArmor, "GarroshArmor", "AllArmorBonus", lv_playerIterator);
+        }
+        libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_slowed[lv_activeUnit] = UnitHasBehaviorWithCategoryFlag(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_behaviorCategorySlow);
+        libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_stunned[lv_activeUnit] = UnitHasBehaviorWithCategoryFlag(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_behaviorCategoryStun);
+        libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_silenced[lv_activeUnit] = UnitHasBehaviorWithCategoryFlag(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_behaviorCategoryDebuffSilence);
+        libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_rooted[lv_activeUnit] = UnitHasBehaviorWithCategoryFlag(lv_contextUnit[lv_playerIterator][lv_activeUnit], c_behaviorCategoryDebuffRoot);
+        libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_timeStored = GameGetMissionTime();
+      }
+      // if (lv_playerIterator == 1) {
+      //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Unit Type 0: " + UnitGetType(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[0])));
+      //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Unit Type 1: " + UnitGetType(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[1])));
+      //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Unit Type 2: " + UnitGetType(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[2])));
+      //   UIDisplayMessage(PlayerGroupAll(), c_messageAreaDebug, StringToText("Unit Type 3: " + UnitGetType(libGame_gv_timeTravelValues[lv_playerIterator][lv_activeLoop].lv_heroUnit[3])));
+      // }
     }
     Wait(0.0625, c_timeGame);
   }
@@ -44506,6 +45148,7 @@ bool libGame_gt_CapturePointLogic_Func (bool testConds, bool runActions) {
         }
         PlayerGroupAdd(lv_capturingPlayers, UnitGetOwner(lv_itUnit));
       }
+
     }
     if ((PlayerGroupCount(lv_capturingPlayers) > 0)) {
       libGame_gf_UpdateTimers(lv_capturePointIndex, lv_capturingPlayers);
@@ -44516,72 +45159,104 @@ bool libGame_gt_CapturePointLogic_Func (bool testConds, bool runActions) {
       if (auto416AF879_val == libGame_ge_CapturePointDecay_DoNotDecay) {
       }
       else if (auto416AF879_val == libGame_ge_CapturePointDecay_Neutral) {
+      if ((libGame_gv_watchTowers[lv_capturePointIndex].lv_decayDelayTicks <= (libGame_gv_TimeToStartDecay_C * 16)) && (UnitGetOwner(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) != libCore_gv_cOMPUTER_Neutral) && (UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+          libGame_gv_watchTowers[lv_capturePointIndex].lv_decayDelayTicks += 1;
+          if ((libGame_gv_watchTowers[lv_capturePointIndex].lv_decayDelayTicks == (libGame_gv_TimeToStartDecay_C * 16))) {
+              libGame_gv_watchTowers[lv_capturePointIndex].lv_decayDelayTicks += 1;
+              libGame_gv_watchTowers[lv_capturePointIndex].lv_neutralDecayTicks = ((libGame_gv_TimeToDecay_C2 * 16) / libGame_gv_capturePoints[lv_capturePointIndex].lv_pointsNeededToCapture);
+          }
+
+      }
+      else {
         if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter != 0)) {
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_RevertingtoNeutral)) {
+            if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_RevertingtoNeutral)) {
             libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_RevertingtoNeutral;
             libCore_gf_SendActorMessageToDoodadsInRegion("Signal RevertingCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
-                        if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+            if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
               libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "AnimBracketStop Capture");
               libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointEmpty");
+              libGame_gv_watchTowers[lv_capturePointIndex].lv_startedDecaying = true;
             }
+
           }
+
         }
 
-        if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter < 0)) {
-          libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter += lv_captureIncrement;
+        if ((libGame_gv_watchTowers[lv_capturePointIndex].lv_neutralDecayTicks < ((libGame_gv_TimeToDecay_C2 * 16) / libGame_gv_capturePoints[lv_capturePointIndex].lv_pointsNeededToCapture)) && (UnitGetOwner(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) != libCore_gv_cOMPUTER_Neutral) && (UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+            libGame_gv_watchTowers[lv_capturePointIndex].lv_neutralDecayTicks += 1;
         }
+        else {
+          if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+              libGame_gv_watchTowers[lv_capturePointIndex].lv_neutralDecayTicks = 0;
+          }
 
-        if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter > 0)) {
-          libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter -= lv_captureIncrement;
+          if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter < 0)) {
+            libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter += lv_captureIncrement;
+          }
+
+          if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter > 0)) {
+            libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter -= lv_captureIncrement;
+          }
+
         }
+      }
       }
       else if (auto416AF879_val == libGame_ge_CapturePointDecay_Owner) {
         autoAF8EF2F0_val = UnitGetOwner(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit);
         if (autoAF8EF2F0_val == libCore_gv_cOMPUTER_Neutral) {
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter != 0)) {
-                        if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_RevertingtoNeutral)) {
+          if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter != 0)) {
+              if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_RevertingtoNeutral)) {
               libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_RevertingtoNeutral;
               libCore_gf_SendActorMessageToDoodadsInRegion("Signal RevertingCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
                             if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
                 libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "AnimBracketStop Capture");
                 libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointEmpty");
               }
+
             }
+
           }
 
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter < 0)) {
+          if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter < 0)) {
             libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter += lv_captureIncrement;
           }
 
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter > 0)) {
+          if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter > 0)) {
             libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter -= lv_captureIncrement;
           }
+
         }
         else if (autoAF8EF2F0_val == libCore_gv_cOMPUTER_TeamOrder) {
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter < libGame_gv_capturePoints[lv_capturePointIndex].lv_pointsNeededToCapture)) {
+          if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter < libGame_gv_capturePoints[lv_capturePointIndex].lv_pointsNeededToCapture)) {
             libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter += lv_captureIncrement;
-                        if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_Capturing)) {
+            if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_Capturing)) {
               libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_Capturing;
               libCore_gf_SendActorMessageToDoodadsInRegion("Signal CapturingCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
-                            if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+              if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
                 libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "AnimBracketResume Capture");
                 libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointEmpty");
               }
+
             }
+
           }
+
         }
         else if (autoAF8EF2F0_val == libCore_gv_cOMPUTER_TeamChaos) {
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter > (libGame_gv_capturePoints[lv_capturePointIndex].lv_pointsNeededToCapture * -1))) {
+            if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter > (libGame_gv_capturePoints[lv_capturePointIndex].lv_pointsNeededToCapture * -1))) {
             libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter -= lv_captureIncrement;
-                        if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_Capturing)) {
+              if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_Capturing)) {
               libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_Capturing;
               libCore_gf_SendActorMessageToDoodadsInRegion("Signal CapturingCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
-                            if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+                if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
                 libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "AnimBracketResume Capture");
                 libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointEmpty");
               }
+
             }
+
           }
+
         }
         else {
         }
@@ -44589,7 +45264,13 @@ bool libGame_gt_CapturePointLogic_Func (bool testConds, bool runActions) {
       else {
       }
     }
+    else {
+        if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+            libGame_gv_watchTowers[lv_capturePointIndex].lv_decayDelayTicks = 0;
+            libGame_gv_watchTowers[lv_capturePointIndex].lv_neutralDecayTicks = 0;
+        }
 
+    }
     if ((lv_orderTeamHeroes > 0) && (lv_chaosTeamHeroes > 0)) {
       DialogControlSetAnimationState(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureProgressBar, PlayerGroupAll(), "IsContested", "Contested");
       autoB759D9BE_val = libGame_gv_capturePoints[lv_capturePointIndex].lv_contestedPointDecay;
@@ -44597,21 +45278,25 @@ bool libGame_gt_CapturePointLogic_Func (bool testConds, bool runActions) {
         if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_Contested)) {
           libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_Contested;
           libCore_gf_SendActorMessageToDoodadsInRegion("Signal ContestedCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
-                    if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+            if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
             libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointEmpty");
           }
+
         }
+
       }
       else if (autoB759D9BE_val == libGame_ge_CapturePointDecay_Neutral) {
         if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter != 0)) {
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_RevertingtoNeutral)) {
+            if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_RevertingtoNeutral)) {
             libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_RevertingtoNeutral;
             libCore_gf_SendActorMessageToDoodadsInRegion("Signal RevertingCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
-                        if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+            if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
               libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "AnimBracketStop Capture");
               libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointEmpty");
             }
+
           }
+
         }
 
         if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter < 0)) {
@@ -44621,40 +45306,45 @@ bool libGame_gt_CapturePointLogic_Func (bool testConds, bool runActions) {
         if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter > 0)) {
           libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter -= lv_captureIncrement;
         }
+
       }
       else if (autoB759D9BE_val == libGame_ge_CapturePointDecay_Owner) {
         autoE7E61F37_val = UnitGetOwner(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit);
         if (autoE7E61F37_val == libCore_gv_cOMPUTER_Neutral) {
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter != 0)) {
-                        if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_RevertingtoNeutral)) {
+            if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter != 0)) {
+              if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_RevertingtoNeutral)) {
               libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_RevertingtoNeutral;
               libCore_gf_SendActorMessageToDoodadsInRegion("Signal RevertingCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
-                            if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+                if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
                 libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "AnimBracketStop Capture");
                 libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointEmpty");
               }
+
             }
+
           }
 
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter < 0)) {
+            if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter < 0)) {
             libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter += lv_captureIncrement;
           }
 
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter > 0)) {
+                if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter > 0)) {
             libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter -= lv_captureIncrement;
           }
         }
         else if (autoE7E61F37_val == libCore_gv_cOMPUTER_TeamOrder) {
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter < libGame_gv_capturePoints[lv_capturePointIndex].lv_pointsNeededToCapture)) {
+            if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter < libGame_gv_capturePoints[lv_capturePointIndex].lv_pointsNeededToCapture)) {
             libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter += lv_captureIncrement;
-                        if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_Capturing)) {
+              if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_Capturing)) {
               libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_Capturing;
               libCore_gf_SendActorMessageToDoodadsInRegion("Signal CapturingCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
-                            if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+                if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
                 libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "AnimBracketResume Capture");
                 libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointEmpty");
               }
+
             }
+
           }
         }
         else if (autoE7E61F37_val == libCore_gv_cOMPUTER_TeamChaos) {
@@ -44686,36 +45376,46 @@ bool libGame_gt_CapturePointLogic_Func (bool testConds, bool runActions) {
         if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_Captured)) {
           libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_Captured;
           libCore_gf_SendActorMessageToDoodadsInRegion("Signal CapturingCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
-                    if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+          if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
             libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointEmpty");
             libNtve_gf_SendActorMessageToUnit(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit, "Signal WatchTowerOwnerOrder");
+            if ((libGame_gv_watchTowers[lv_capturePointIndex].lv_startedDecaying == true)) {
+              libGame_gv_watchTowers[lv_capturePointIndex].lv_startedDecaying = false;
+              libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "AnimBracketStart Capture Stand,Work,Start Stand,Work Stand,Work,End");
+            }
+
           }
-                    else {
+          else {
             libNtve_gf_SendActorMessageToUnit(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit, "Signal CapturePointOwnerOrder");
           }
         }
+
       }
       else {
         libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter += lv_captureIncrement;
         if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter < 0)) {
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_RevertingtoNeutral)) {
+              if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_RevertingtoNeutral)) {
             libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_RevertingtoNeutral;
             libCore_gf_SendActorMessageToDoodadsInRegion("Signal RevertingCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
-                        if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+              if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
               libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "AnimBracketStop Capture");
               libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointOccupied");
             }
+
           }
+
         }
         else {
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_Capturing)) {
+            if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_Capturing)) {
             libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_Capturing;
             libCore_gf_SendActorMessageToDoodadsInRegion("Signal TeamOrderCapturing", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
             libCore_gf_SendActorMessageToDoodadsInRegion("Signal CapturingCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
-                        if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+              if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
               libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointOccupied");
             }
+
           }
+
         }
       }
     }
@@ -44727,36 +45427,46 @@ bool libGame_gt_CapturePointLogic_Func (bool testConds, bool runActions) {
         if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_Captured)) {
           libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_Captured;
           libCore_gf_SendActorMessageToDoodadsInRegion("Signal CapturingCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
-                    if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+          if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
             libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointEmpty");
             libNtve_gf_SendActorMessageToUnit(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit, "Signal WatchTowerOwnerChaos");
+            if ((libGame_gv_watchTowers[lv_capturePointIndex].lv_startedDecaying == true)) {
+              libGame_gv_watchTowers[lv_capturePointIndex].lv_startedDecaying = false;
+              libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "AnimBracketStart Capture Stand,Work,Start Stand,Work Stand,Work,End");
+            }
+
           }
-                    else {
+          else {
             libNtve_gf_SendActorMessageToUnit(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit, "Signal CapturePointOwnerChaos");
           }
         }
+
       }
       else {
         libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter -= lv_captureIncrement;
         if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_captureCounter > 0)) {
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_RevertingtoNeutral)) {
+            if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_RevertingtoNeutral)) {
             libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_RevertingtoNeutral;
             libCore_gf_SendActorMessageToDoodadsInRegion("Signal RevertingCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
-                        if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+            if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
               libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "AnimBracketStop Capture");
               libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointOccupied");
             }
+
           }
+
         }
         else {
-                    if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_Capturing)) {
+            if ((libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState != libGame_ge_CapturePointState_Capturing)) {
             libGame_gv_capturePoints[lv_capturePointIndex].lv_capturePointState = libGame_ge_CapturePointState_Capturing;
             libCore_gf_SendActorMessageToDoodadsInRegion("Signal TeamChaosCapturing", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
             libCore_gf_SendActorMessageToDoodadsInRegion("Signal CapturingCapturePoint", RegionCircle(UnitGetPosition(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit), 12.0), null);
-                        if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
+              if ((UnitGetType(libGame_gv_capturePoints[lv_capturePointIndex].lv_captureBeaconUnit) == "WatchTowerCaptureBeacon")) {
               libNtve_gf_SendActorMessageToUnit(libGame_gv_watchTowers[lv_capturePointIndex].lv_watchTowerUnit, "Signal CapturePointOccupied");
             }
+
           }
+
         }
       }
     }
@@ -49355,65 +50065,57 @@ void libGame_gt_LootSpray_Init () {
 // Trigger: Minion - Spawn Cycle
 //--------------------------------------------------------------------------------------------------
 bool libGame_gt_MinionSpawnCycle_Func (bool testConds, bool runActions) {
-  // Variable Declarations
-  int lv_lane;
-  int lv_waveComposition;
-  timer lv_waveTimer;
-  bool lv_paused;
+    // Variable Declarations
+    int lv_lane;
+    int lv_waveComposition;
+    timer lv_waveTimer;
+    bool lv_paused;
 
-  // Automatic Variable Declarations
-  int auto2740E61A_ae;
-  const int auto2740E61A_ai = 1;
+    // Automatic Variable Declarations
+    int auto2740E61A_ae;
+    const int auto2740E61A_ai = 1;
 
-  // Variable Initialization
-  lv_waveTimer = TimerCreate();
+    // Variable Initialization
+    lv_waveTimer = TimerCreate();
 
-  // Actions
+    // Actions
     if (!runActions) {
         return true;
-  }
-
-  while (true) {
-    if (((libGame_gv_gameOver == true) || (libCore_gv_sYSMinionAI == false))) {
-      return true;
     }
 
-    TimerStart(lv_waveTimer, libCore_gv_bALMinionWaveInterval, false, c_timeGame);
-    libGame_gv_minionWaveSpawnCounter += 1;
-    auto2740E61A_ae = libGame_gv_laneCount;
-    lv_lane = 1;
-        for ( ; ( (auto2740E61A_ai >= 0 && lv_lane <= auto2740E61A_ae) || (auto2740E61A_ai < 0 && lv_lane >= auto2740E61A_ae) ) ; lv_lane += auto2740E61A_ai ) {
-      if ((libGame_gv_laneData[lv_lane].lv_minionSpawningEnabled == true)) {
-        if ((libGame_gv_minionSystemPausedAdvanced[libGame_gv_teamOrderIndex_C][lv_lane] == false)) {
-          lv_waveComposition = libGame_gf_MinionDetermineWaveComposition(lv_lane, libGame_gv_teamOrderIndex_C);
-          libGame_gf_MinionSpawnWave(lv_lane, libCore_gv_cOMPUTER_TeamOrder, lv_waveComposition);
+    while (true) {
+        if (((libGame_gv_gameOver == true) || (libCore_gv_sYSMinionAI == false))) {
+            return true;
         }
 
-        if ((libGame_gv_minionSystemPausedAdvanced[libGame_gv_teamChaosIndex_C][lv_lane] == false)) {
-          lv_waveComposition = libGame_gf_MinionDetermineWaveComposition(lv_lane, libGame_gv_teamChaosIndex_C);
-          libGame_gf_MinionSpawnWave(lv_lane, libCore_gv_cOMPUTER_TeamChaos, lv_waveComposition);
-        }
+        TimerStart(lv_waveTimer, libCore_gv_bALMinionWaveInterval, false, c_timeGame);
+        if ((libGame_gv_minionSpawningEnabled == true)) {
+            libGame_gv_minionWaveSpawnCounter += 1;
+            auto2740E61A_ae = libGame_gv_laneCount;
+            lv_lane = 1;
+            for ( ; ( (auto2740E61A_ai >= 0 && lv_lane <= auto2740E61A_ae) || (auto2740E61A_ai < 0 && lv_lane >= auto2740E61A_ae) ) ; lv_lane += auto2740E61A_ai ) {
+                if ((libGame_gv_laneData[lv_lane].lv_minionSpawningEnabled == true)) {
+                    if ((libGame_gv_minionSystemPausedAdvanced[libGame_gv_teamOrderIndex_C][lv_lane] == false)) {
+                        lv_waveComposition = libGame_gf_MinionDetermineWaveComposition(lv_lane, libGame_gv_teamOrderIndex_C);
+                        libGame_gf_MinionSpawnWave(lv_lane, libCore_gv_cOMPUTER_TeamOrder, lv_waveComposition);
+                    }
 
-        Wait(0.1875, c_timeGame);
-      }
-    }
-    while ((TimerGetRemaining(lv_waveTimer) > 0.0)) {
-      if ((libGame_gv_minionSpawningEnabled == false)) {
-        if ((lv_paused == false)) {
-          TimerPause(lv_waveTimer, true);
-          lv_paused = true;
+                    if ((libGame_gv_minionSystemPausedAdvanced[libGame_gv_teamChaosIndex_C][lv_lane] == false)) {
+                        lv_waveComposition = libGame_gf_MinionDetermineWaveComposition(lv_lane, libGame_gv_teamChaosIndex_C);
+                        libGame_gf_MinionSpawnWave(lv_lane, libCore_gv_cOMPUTER_TeamChaos, lv_waveComposition);
+                    }
+
+                    Wait(0.1875, c_timeGame);
+                }
+
+            }
+            Wait((TimerGetRemaining(lv_waveTimer) - 0.0625), c_timeGame);
         }
-      }
-      else {
-        if ((lv_paused == true)) {
-          TimerPause(lv_waveTimer, false);
-          lv_paused = false;
+        else {
+            Wait(TimerGetRemaining(lv_waveTimer), c_timeGame);
         }
-      }
-      Wait(0.25, c_timeGame);
     }
-  }
-  return true;
+    return true;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -49635,7 +50337,7 @@ bool libGame_gt_TownTownHallKilledMoonwellSearch_Func (bool testConds, bool runA
     lv_structureIndex = 1;
     for ( ; ( (autoF80B0BD0_ai >= 0 && lv_structureIndex <= autoF80B0BD0_ae) || (autoF80B0BD0_ai < 0 && lv_structureIndex >= autoF80B0BD0_ae) ) ; lv_structureIndex += autoF80B0BD0_ai ) {
         lv_structure = libGame_gv_townTownData[lv_townIndex].lv_structureUnits[lv_structureIndex];
-        if ((UnitIsAlive(lv_structure) == true) && (libGame_gf_TownGetTownStructurePresetFromUnit(lv_structure) == libGame_ge_TownStructureTypes_Moonwell) && (UnitBehaviorCount(lv_structure, "HealingFountainIgnoreLinkedMinimapIcons") == 0)) {
+        if ((UnitIsAlive(lv_structure) == true) && ((libGame_gf_TownGetTownStructurePresetFromUnit(lv_structure) == libGame_ge_TownStructureTypes_Moonwell) || (libGame_gf_TownGetTownStructurePresetFromUnit(lv_structure) == libGame_ge_TownStructureTypes_Moonwell)) && (UnitBehaviorCount(lv_structure, "HealingFountainIgnoreLinkedMinimapIcons") == 0)) {
             UnitKill(lv_structure);
         }
 
@@ -51267,6 +51969,7 @@ bool libGame_gt_HeroDamageTracking_Func (bool testConds, bool runActions) {
     libGame_gv_loot_TownHallAttackers[libGame_gf_TownGetTownForUnit(EventUnit())] = lv_eventUnitDamageSourcePlayer;
   }
 
+
   // Samuro Mirror Image stat tracking
   if ((UnitGetType(EventUnit()) == "SamuroMirrorImage") && (EventUnitDamageEffect() != "HeroGenericFakeHeroDuplicationDamage") && (UnitGetType(libGame_gv_players[UnitGetOwner(EventUnit())].lv_heroUnit) == "HeroSamuro")) {
     if ((UnitTypeTestAttribute(lv_damagingUnitType, c_unitAttributeHeroic) == true) && (CatalogFieldValueGet(c_gameCatalogEffect, EventUnitDamageEffect(), "Kind", UnitGetOwner(EventUnitDamageSourceUnit())) == "Basic")) {
@@ -51325,6 +52028,7 @@ bool libGame_gt_HeroDamageTracking_Func (bool testConds, bool runActions) {
 	if ((lv_eventUnitDamageSourcePlayer >= 1) && (lv_eventUnitDamageSourcePlayer <= libCore_gv_bALMaxPlayers)) {
     libGame_gf_HeroSpecificStatTrackerDamage(EventUnitDamageEffect(), (EventUnitDamageAmount() + EventUnitDamageBehaviorShield()), (EventUnitDamageAttemptedVitals() + EventUnitDamageBehaviorShield()), EventUnit(), EventUnitDamageSourceUnit(), lv_eventUnitDamageSourcePlayer, lv_eventPlayer);
   }
+
 
   if ((UnitTypeTestAttribute(lv_triggeringUnitType, c_unitAttributeHeroic) == true) && (UnitTestState(EventUnit(), c_unitStateHallucination) == false) && (UnitHasBehavior(EventUnit(), "GenericVehicleBehaviorEmpty") == false) && (UnitHasBehavior(EventUnit(), "GenericVehicleBehaviorOccupied") == false)) {
     if ((lv_eventUnitDamageSourcePlayer >= 1) && (lv_eventUnitDamageSourcePlayer <= libCore_gv_bALMaxPlayers) && (lv_eventPlayer >= 1) && (lv_eventPlayer <= libCore_gv_bALMaxPlayers)) {
@@ -51387,7 +52091,7 @@ bool libGame_gt_HeroDamageTracking_Func (bool testConds, bool runActions) {
     }
   }
 
-  if (libGame_gv_HeroSpecificStoredDamageMitigated[UnitGetOwner(EventUnit())] != 0.0) {
+  if ((libGame_gv_HeroSpecificStoredDamageMitigated[UnitGetOwner(EventUnit())] != 0.0) && ((EventUnitDamageAttemptedVitals() + EventUnitDamageBehaviorShield()) != 0.0) && (UnitTypeTestAttribute(UnitGetType(EventUnit()), c_unitAttributeHeroic) == true) && (UnitTestState(EventUnit(), c_unitStateHallucination) == false) && (UnitGetOwner(EventUnit()) >= 1) && (UnitGetOwner(EventUnit()) <= libCore_gv_bALMaxPlayers) && (UnitHasBehavior2(EventUnit(), "GenericVehicleBehaviorEmpty") == false) && (UnitHasBehavior2(EventUnit(), "GenericVehicleBehaviorOccupied") == false))  {
     libGame_gv_TallyArmorModified(EventUnitDamageEffect(), UnitGetType(EventUnit()), (EventUnitDamageAmount() + EventUnitDamageBehaviorShield()), libGame_gv_HeroSpecificStoredDamageMitigated[UnitGetOwner(EventUnit())], (EventUnitDamageAttemptedVitals() + EventUnitDamageBehaviorShield()), EventPlayer(), lv_eventUnitDamageSourcePlayer, EventUnit());
   }
 
@@ -52585,6 +53289,43 @@ void libGame_gt_InitializeTownSystem_Init () {
 }
 
 //--------------------------------------------------------------------------------------------------
+// Trigger: Kill Standalone Towers
+//--------------------------------------------------------------------------------------------------
+bool libGame_gt_KillStandaloneTowers_Func (bool testConds, bool runActions) {
+    // Automatic Variable Declarations
+    unitgroup auto61769700_g;
+    int auto61769700_u;
+    unit auto61769700_var;
+
+    // Actions
+    if (!runActions) {
+        return true;
+    }
+
+    if ((UnitGetType(EventUnit()) == "TownTownHallL2")) {
+        auto61769700_g = UnitGroupSearch(null, c_playerAny, UnitGetPosition(EventUnit()), 15.0, UnitFilter((1 << c_targetFilterStructure), 0, (1 << c_targetFilterMissile), (1 << (c_targetFilterDead - 32)) | (1 << (c_targetFilterHidden - 32))), 0);
+        auto61769700_u = UnitGroupCount(auto61769700_g, c_unitCountAll);
+        for (;; auto61769700_u -= 1) {
+            auto61769700_var = UnitGroupUnitFromEnd(auto61769700_g, auto61769700_u);
+            if (auto61769700_var == null) { break; }
+            if ((UnitGetType(auto61769700_var) == "TownCannonTowerL3Standalone")) {
+                UnitDamage(auto61769700_var, "TowerDeathDamage", auto61769700_var, 20000.0);
+                break;
+            }
+
+        }
+    }
+
+    return true;
+}
+
+//--------------------------------------------------------------------------------------------------
+void libGame_gt_KillStandaloneTowers_Init () {
+    libGame_gt_KillStandaloneTowers = TriggerCreate("libGame_gt_KillStandaloneTowers_Func");
+    TriggerAddEventUnitDied(libGame_gt_KillStandaloneTowers, null);
+}
+
+//--------------------------------------------------------------------------------------------------
 // Trigger: Initialize Moonwell Minimap Icons on Towns
 //--------------------------------------------------------------------------------------------------
 bool libGame_gt_InitializeMoonwellIconsonTowns_Func (bool testConds, bool runActions) {
@@ -53401,7 +54142,7 @@ bool libGame_gt_InitializeWatchTowers_Func (bool testConds, bool runActions) {
     libGame_gv_watchTowers[libGame_gv_watchTowersCurrentCount].lv_watchTowerUnit = lv_u;
     UnitSetCustomValue(lv_u, libCore_gf_CustomValueIndex(libCore_ge_CustomValueIndexes_WatchTowerIndex), libGame_gv_watchTowersCurrentCount);
     libNtve_gf_CreateUnitsWithDefaultFacing(1, "WatchTowerCaptureBeacon", c_unitCreateIgnorePlacement, UnitGetOwner(lv_u), UnitGetPosition(lv_u), null);
-    libGame_gf_CapturePointCreate(UnitLastCreated(), libCore_gv_data_WatchTower_CaptureRadius_C, libCore_gv_data_WatchTower_CaptureTime_C, 0.0, libGame_ge_CapturePointDecay_DoNotDecay, libGame_ge_CapturePointDecay_Owner, true);
+    libGame_gf_CapturePointCreate(UnitLastCreated(), libCore_gv_data_WatchTower_CaptureRadius_C, libCore_gv_data_WatchTower_CaptureTime_C, 0.0, libGame_ge_CapturePointDecay_DoNotDecay, libGame_ge_CapturePointDecay_Neutral, true);
     libGame_gv_watchTowers[libGame_gv_watchTowersCurrentCount].lv_capturePointIndex = libGame_gf_LastCreatedCapturePoint();
     AddUnitOfInterest(libGame_gv_watchTowers[libGame_gv_watchTowersCurrentCount].lv_watchTowerUnit, 3.5, 0.0, "VisionBeacon", libNtve_ge_GoalTeam_Both, libGame_gv_watchTowers[libGame_gv_watchTowersCurrentCount].lv_capturePointIndex);
   }
@@ -53655,6 +54396,7 @@ void libGame_InitTriggers () {
   libGame_gt_TowerTowerDeadStateGateCheck_Init();
   libGame_gt_TowerTowerMorphToDeadStateStructureDies_Init();
   libGame_gt_InitializeTownSystem_Init();
+  libGame_gt_KillStandaloneTowers_Init();
   libGame_gt_InitializeMoonwellIconsonTowns_Init();
   libGame_gt_TownMidLateGamePowerTransitionOn_Init();
   libGame_gt_HallOfStormsKnockbackLaunchMissile_Init();

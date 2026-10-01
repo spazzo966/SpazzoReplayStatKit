@@ -152,6 +152,7 @@
   <Constant name="VarianCooldownDisplay" val="0" />
   <Constant name="WhitemaneCooldownDisplay" val="0" />
   <Constant name="WhitemaneDesperationPreviewSetting" val="true" />
+  <Constant name="XalatathCooldownDisplay" val="0" />
   <Constant name="NecromancerCooldownDisplay" val="0" />
   <Constant name="YrelCooldownDisplay" val="0" />
   <Constant name="ZagaraCooldownDisplay" val="0" />
@@ -1040,6 +1041,12 @@
     description = "Which Hero Attachment to display on Whitemane's Healthplate",
     values = "0"/"1"/"2"/"3"/"4"/"5"/"6"/"7",
     valuesDisplayNames = "Disabled"/"Desperate Plea"/"Inquisition"/"Searing Lash"/"Fanatical Power"/"Intercession"/"Heroic Ability"/"Guiding Light"
+  ) -->
+  <!-- @Setting (	constant = "XalatathCooldownDisplay",
+    default = "0",
+    description = "Which Hero Attachment to display on Xalatath's Healthplate",
+    values = "0"/"1"/"2"/"3"/"4"/"5",
+    valuesDisplayNames = "Disabled"/"Shadow Mark"/"Dark Heart Ritual"/"Void Step"/"Void Volley"/"Heroic Ability"
   ) -->
   <!-- @Setting (	constant = "NecromancerCooldownDisplay",
     default = "0",

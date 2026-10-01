@@ -353,6 +353,8 @@ bool auto_libHDVA_gf_RespawnHeroDVa_TriggerFunc (bool testConds, bool runActions
     libHDVA_gf_DVaUpdatethePartyFrametoActiveUnit(lp_player);
     libAIAI_gf_AITeamDelegateModifyHeroStatusTokensforTeam(libAIAI_ge_AITeamDelegateAddRemoveLaneValue_Add, libGame_gv_players[lp_player].lv_aIHeroDelegateTokenValue, libGame_gf_TeamNumberOfPlayer(lp_player), libAIAI_ge_AITeamDelegateLivingDeadHeroStatusUpdates_HeroAlive);
     libAIAI_gf_AITeamDelegateModifyHeroStatusTokensforTeam(libAIAI_ge_AITeamDelegateAddRemoveLaneValue_Remove, libGame_gv_players[lp_player].lv_aIHeroDelegateTokenValue, libGame_gf_TeamNumberOfPlayer(lp_player), libAIAI_ge_AITeamDelegateLivingDeadHeroStatusUpdates_HeroDead);
+    Wait(0.0625, c_timeGame);
+    UnitCreateEffectUnit(lv_dVaPilotUnit, "DVaTransferMapMechanicStacksBlackhearts", lv_dVaMechUnit);
     return true;
 }
 
@@ -956,12 +958,17 @@ void libHDVA_gt_DVaBoostersEnemyHallofStorms_Init () {
 //--------------------------------------------------------------------------------------------------
 bool libHDVA_gt_DVaDefenseMatrixTracker_Func (bool testConds, bool runActions) {
     // Variable Declarations
+    unit lv_damagedUnit;
+    unit lv_dVaUnit;
     int lv_dVaPlayer;
     fixed lv_damageAmount;
 
     // Automatic Variable Declarations
     // Variable Initialization
-    lv_dVaPlayer = UnitGetOwner(EventUnitBehaviorChangeCasterUnit());
+    lv_damagedUnit = EventUnitDamageSourceUnit();
+    lv_dVaUnit = EventUnitBehaviorCasterUnit();
+    lv_dVaPlayer = UnitGetOwner(lv_dVaUnit);
+    lv_damageAmount = EventUnitDamageAbsorbed();
 
     // Conditions
     if (testConds) {
@@ -979,19 +986,13 @@ bool libHDVA_gt_DVaDefenseMatrixTracker_Func (bool testConds, bool runActions) {
         return true;
     }
 
-    lv_damageAmount = EventUnitBehaviorCumulativeDamageModification();
-    libHDVA_gv_dVaDefenseMatrixTrackedValue[lv_dVaPlayer] += lv_damageAmount;
-    libNtve_gf_SetDialogItemText(libHDVA_gv_dVaUI.lv_defenseMatrixLabel, IntToText(FixedToInt(libHDVA_gv_dVaDefenseMatrixTrackedValue[lv_dVaPlayer])), libCore_gv_playerGroupFromPlayer[lv_dVaPlayer]);
-    if ((libHDVA_gv_dVaDefenseMatrixTrackedValue[lv_dVaPlayer] < 500.0)) {
-        DialogControlSendAnimationEvent(libHDVA_gv_dVaUI.lv_defenseMatrixLabel, libCore_gv_playerGroupFromPlayer[lv_dVaPlayer], "StyleDefaultAnim");
+    PlayerScoreValueSetFromFixed(lv_dVaPlayer, "DVaDefenseMatrixTotalDamagePrevented", (PlayerScoreValueGetAsFixed(lv_dVaPlayer, "DVaDefenseMatrixTotalDamagePrevented") + lv_damageAmount));
+    if ((UnitFilterMatch(lv_damagedUnit, lv_dVaPlayer, libCore_gv_filtersHeroic) == true)) {
+        PlayerScoreValueSetFromFixed(lv_dVaPlayer, "DVaDefenseMatrixTotalDamagePreventedToHeroes", (PlayerScoreValueGetAsFixed(lv_dVaPlayer, "DVaDefenseMatrixTotalDamagePreventedToHeroes") + lv_damageAmount));
     }
 
-    if ((libHDVA_gv_dVaDefenseMatrixTrackedValue[lv_dVaPlayer] >= 501.0)) {
-        DialogControlSendAnimationEvent(libHDVA_gv_dVaUI.lv_defenseMatrixLabel, libCore_gv_playerGroupFromPlayer[lv_dVaPlayer], "StyleIncreaseAnim");
-    }
-
-    if ((libHDVA_gv_dVaDefenseMatrixTrackedValue[lv_dVaPlayer] >= 1001.0)) {
-        DialogControlSendAnimationEvent(libHDVA_gv_dVaUI.lv_defenseMatrixLabel, libCore_gv_playerGroupFromPlayer[lv_dVaPlayer], "StyleGiantIncreaseAnim");
+    if (((UnitHasBehavior2(lv_dVaUnit, "DVaMechDefenseMatrixChannelling") == true) || (UnitHasBehavior2(lv_dVaUnit, "DVaDefenseMatrixDummyContinuation") == true))) {
+        PlayerScoreValueSetFromFixed(lv_dVaPlayer, "DVaDefenseMatrixDamagePreventedCurrentMatrix", (PlayerScoreValueGetAsFixed(lv_dVaPlayer, "DVaDefenseMatrixDamagePreventedCurrentMatrix") + lv_damageAmount));
     }
 
     return true;
@@ -1001,8 +1002,7 @@ bool libHDVA_gt_DVaDefenseMatrixTracker_Func (bool testConds, bool runActions) {
 void libHDVA_gt_DVaDefenseMatrixTracker_Init () {
     libHDVA_gt_DVaDefenseMatrixTracker = TriggerCreate("libHDVA_gt_DVaDefenseMatrixTracker_Func");
     TriggerEnable(libHDVA_gt_DVaDefenseMatrixTracker, false);
-    TriggerAddEventUnitBehaviorChange(libHDVA_gt_DVaDefenseMatrixTracker, null, "DVaMechDefenseMatrixDebuff", c_unitBehaviorChangeIncrease);
-    TriggerAddEventUnitBehaviorChange(libHDVA_gt_DVaDefenseMatrixTracker, null, "DVaMechDefenseMatrixDebuff", c_unitBehaviorChangeRefresh);
+    TriggerAddEventUnitDamageAbsorbed(libHDVA_gt_DVaDefenseMatrixTracker, null, "DVaMechDefenseMatrixDebuff");
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1036,15 +1036,14 @@ bool libHDVA_gt_DVaDefenseMatrixTrackerReportandReset_Func (bool testConds, bool
     }
 
     if ((EventUnitBehaviorChange() == c_unitBehaviorChangeIncrease)) {
-        if ((libHDVA_gv_dVaDefenseMatrixTrackedValue[lv_dVaPlayer] > 0)) {
-            TextExpressionSetToken("Param/Expression/lib_HDVA_B9A3D392", "A", FixedToText(libHDVA_gv_dVaDefenseMatrixTrackedValue[lv_dVaPlayer], 0));
+        if ((PlayerScoreValueGetAsFixed(lv_dVaPlayer, "DVaDefenseMatrixDamagePreventedCurrentMatrix") > 0)) {
+            TextExpressionSetToken("Param/Expression/lib_HDVA_B9A3D392", "A", FixedToText(PlayerScoreValueGetAsFixed(lv_dVaPlayer, "DVaDefenseMatrixDamagePreventedCurrentMatrix"), 0));
             FloatingCombatElementCreateTextAtUnit(PlayerGroupSingle(lv_dVaPlayer), "FloatingCombatElements/FloatingCombatAmountReadable", "", lv_dVaUnit, TextExpressionAssemble("Param/Expression/lib_HDVA_B9A3D392"), libNtve_gv_FloatingCombatTextAutoRandomSeed);
         }
-	
+
     }
     else {
-        libHDVA_gv_dVaDefenseMatrixTrackedValue[lv_dVaPlayer] = 0.0;
-        libNtve_gf_SetDialogItemText(libHDVA_gv_dVaUI.lv_defenseMatrixLabel, IntToText(FixedToInt(libHDVA_gv_dVaDefenseMatrixTrackedValue[lv_dVaPlayer])), libCore_gv_playerGroupFromPlayer[lv_dVaPlayer]);
+        PlayerScoreValueSetFromFixed(lv_dVaPlayer, "DVaDefenseMatrixDamagePreventedCurrentMatrix", 0.0);
     }
     return true;
 }

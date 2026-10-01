@@ -157,6 +157,7 @@ encoding=%1%utf-8%1% standalone=%1%yes%1%?%16% %15%Desc%16%
 %15%Constant name=%1%VarianCooldownDisplay%1% val=%1%%73%%1% /%16%
 %15%Constant name=%1%WhitemaneCooldownDisplay%1% val=%1%%43%%1% /%16%
 %15%Constant name=%1%WhitemaneDesperationPreviewSetting%1% val=%1%%60%%1% /%16%
+%15%Constant name=%1%XalatathCooldownDisplay%1% val=%1%%220%%1% /%16%
 %15%Constant name=%1%NecromancerCooldownDisplay%1% val=%1%%95%%1% /%16%
 %15%Constant name=%1%YrelCooldownDisplay%1% val=%1%%139%%1% /%16%
 %15%Constant name=%1%ZagaraCooldownDisplay%1% val=%1%%140%%1% /%16%
@@ -428,5 +429,6 @@ encoding=%1%utf-8%1% standalone=%1%yes%1%?%16% %15%Desc%16%
     <Replacement val="{$parent/StitchesAttachmentOption1/StitchesGorgeDisplay/@Checked}" index="217" />
     <Replacement val="{$parent/ZagaraAttachmentOption1/ZagaraMawDisplay/@Checked}" index="218" />
     <Replacement val="{$parent/ImperiusAttachmentOption1/ImperiusWrathDisplay/@Checked}" index="219" />
+    <Replacement val="{$parent/XalatathAttachmentOption1/TogglePulldown1/ChosenNumber/@Text}" index="220" />
   </Frame>
 </Desc>

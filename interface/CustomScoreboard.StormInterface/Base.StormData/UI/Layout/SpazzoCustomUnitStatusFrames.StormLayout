@@ -4688,7 +4688,6 @@
         <When type="StateGroup" frame="$SylvanasCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="5"/>
         <When type="StateGroup" frame="$SylvanasCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="6"/>
         <When type="StateGroup" frame="$SylvanasCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="7"/>
-        <When type="StateGroup" frame="$SylvanasCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="8"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$SylvanasCooldownSetting/TogglePulldown1/AbilName/@Text}" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
@@ -4701,14 +4700,15 @@
         <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
         <Action type="SetProperty" frame="TypeLabel" Text="{$SylvanasCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
       </State>
-      <State name="HeroSylvanasTraitDuration">
+      <State name="HeroSylvanasHauntingArrows">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroSylvanas"/>
         <When type="StateGroup" frame="$SylvanasCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="5"/>
-        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="NULL" />
+        <When type="StateGroup" frame="UnitStatusTalentValidator4" AnimState="SylvanasHasHauntingArrows"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$SylvanasCooldownSetting/TogglePulldown1/AbilName/@Text}" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
-        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="SylvanasBlackArrowsActiveSelfDurationBuff" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
         <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
         <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
         <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
@@ -4716,15 +4716,13 @@
         <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
         <Action type="SetProperty" frame="TypeLabel" Text="{$SylvanasCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
       </State>
-      <State name="HeroSylvanasTalentPossession">
+      <State name="HeroSylvanasTrait">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroSylvanas"/>
-        <When type="StateGroup" frame="$SylvanasCooldownSetting/TogglePulldown1" SelectedAttachmentStategroup="6"/>
-        <When type="Property" frame="ActiveAbilityReference/BehaviorIcon" InheritedVisible="True"/>
+        <When type="StateGroup" frame="$SylvanasCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="5"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$SylvanasCooldownSetting/TogglePulldown1/AbilName/@Text}" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="{$SylvanasCooldownSetting/TogglePulldown1/AbilChargeAbilName/@Text}" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="{$SylvanasCooldownSetting/TogglePulldown1/AbilChargeName/@Text}" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargeFillProgress" Visible="False" />
-        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="True" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
         <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
         <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
         <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
@@ -4735,7 +4733,7 @@
       </State>
       <State name="HeroSylvanasHeroicWailingArrow">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroSylvanas"/>
-        <When type="StateGroup" frame="$SylvanasCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="7"/>
+        <When type="StateGroup" frame="$SylvanasCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="6"/>
         <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate1Unlocked"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="SylvanasWailingArrow" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
@@ -4751,7 +4749,7 @@
       </State>
       <State name="HeroSylvanasHeroicMindControl">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroSylvanas"/>
-        <When type="StateGroup" frame="$SylvanasCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="7"/>
+        <When type="StateGroup" frame="$SylvanasCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="6"/>
         <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate2Unlocked"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="SylvanasMindControlMissile" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
@@ -4767,7 +4765,7 @@
       </State>
       <State name="HeroSylvanasTalentEvasiveFire">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroSylvanas"/>
-        <When type="StateGroup" frame="$SylvanasCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="8"/>
+        <When type="StateGroup" frame="$SylvanasCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="7"/>
         <When type="StateGroup" frame="UnitStatusTalentValidator" AnimState="HasSylvanasWitheringFireEvasiveFire"/>
         <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
@@ -7297,6 +7295,87 @@
         <Action type="SetProperty" frame="MechanicTexture" Texture="{$NovaCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
         <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
         <Action type="SetProperty" frame="TypeLabel" Text="{$NovaCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+      </State>
+      <State name="HeroXalatathShowCharges">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroXalatath"/>
+        <When type="StateGroup" frame="$XalatathCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="1"/>
+        <When type="StateGroup" frame="UnitStatusTalentValidator" AnimState="XalatathHasXalatathDuelingOrbsTalent"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$XalatathCooldownSetting/TogglePulldown1/AbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="{$XalatathCooldownSetting/TogglePulldown1/AbilChargeAbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="{$XalatathCooldownSetting/TogglePulldown1/AbilChargeName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargeFillProgress" Visible="False" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="True" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$XalatathCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$XalatathCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+      </State>
+      <State name="HeroXalatath">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroXalatath"/>
+        <When type="StateGroup" frame="$XalatathCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="0"/>
+        <When type="StateGroup" frame="$XalatathCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="4"/>
+        <When type="StateGroup" frame="$XalatathCooldownSetting/TogglePulldown1" operator="NotEqual" SelectedAttachmentStategroup="5"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="{$XalatathCooldownSetting/TogglePulldown1/AbilName/@Text}" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$XalatathCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$XalatathCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+      </State>
+      <State name="HeroXalatathVoidVolley">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroXalatath"/>
+        <When type="StateGroup" frame="$XalatathCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="4"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="XalatathVoidVolleyChargeTokenCounter" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="XalatathVoidVolleyChargeTokenCounter" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="True" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="True" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="{$XalatathCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$XalatathCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+      </State>
+      <State name="HeroXalatathHeroicVoidConvergence">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroXalatath"/>
+        <When type="StateGroup" frame="$XalatathCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="5"/>
+        <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate1Unlocked"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="XalatathVoidConvergence" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="Assets\Textures\storm_ui_icon_xalatath_r2_voidconvergence.dds" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$XalatathCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
+      </State>
+      <State name="HeroXalatathHeroicVoidEruption">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroXalatath"/>
+        <When type="StateGroup" frame="$XalatathCooldownSetting/TogglePulldown1" operator="Equal" SelectedAttachmentStategroup="5"/>
+        <When type="StateGroup" frame="UnitStatusHeroicTalentValidator" AnimState="CasterHasUltimate2Unlocked"/>
+        <Action type="SetProperty" frame="CircularAbilCountdownBar" AbilityLink="XalatathVoidEruption" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
+        <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NULL" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
+        <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="False" />
+        <Action type="SetProperty" frame="MechanicTexture" Texture="Assets\Textures\storm_ui_icon_xalatath_r1_voideruption.dds" />
+        <Action type="SetProperty" frame="MechanicTexture" Visible="True" />
+        <Action type="SetProperty" frame="TypeLabel" Text="{$XalatathCooldownSetting/TogglePulldown1/TypeLabel/@Text}" />
       </State>
       <State name="HeroNecromancer">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroNecromancer"/>
@@ -10069,6 +10148,7 @@
       <Validator val="VarianParryShieldWallHasTalent" />
       <Validator val="HasNecromancerTalentBoneSpear" />
       <Validator val="ZuljinHasForestMedicine" />
+      <Validator val="XalatathHasXalatathDuelingOrbsTalent" />
       <Validator val="CasterIsSpecialDeathState" />
       <StateGroup name="AnimState">
         <DefaultState val="NoState" />
@@ -10380,6 +10460,10 @@
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroZuljin"/>
           <When type="AnimationState" UnitStatusValidatorState="ZuljinHasForestMedicine" />
         </State>
+        <State name="XalatathHasXalatathDuelingOrbsTalent">
+          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroXalatath"/>
+          <When type="AnimationState" UnitStatusValidatorState="XalatathHasXalatathDuelingOrbsTalent" />
+        </State>
         <State name="CasterIsSpecialDeathState">
           <When type="AnimationState" UnitStatusValidatorState="CasterIsSpecialDeathState" />
         </State>
@@ -10437,6 +10521,7 @@
       <Validator val="ZuljinHasVoodooShuffle" />
       <Validator val="TyrandeHasElunesChosen" />
       <Validator val="MaievFanOfKnivesNaishasMementoChargeIsMax" />
+      <Validator val="SylvanasHasHauntingArrows" />
       <StateGroup name="AnimState">
         <DefaultState val="NoState" />
         <State name="GarroshHasArmorUpBodyCheckTalent">
@@ -10626,6 +10711,10 @@
         <State name="MaievFanOfKnivesNaishasMementoChargeIsMax">
           <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroMaiev"/>
           <When type="AnimationState" UnitStatusValidatorState="MaievFanOfKnivesNaishasMementoChargeIsMax" />
+        </State>
+        <State name="SylvanasHasHauntingArrows">
+          <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" Unit="HeroSylvanas"/>
+          <When type="AnimationState" UnitStatusValidatorState="SylvanasHasHauntingArrows" />
         </State>
         <State name="NoState">
           <When type="AnimationState" UnitStatusValidatorState="NoState" />
