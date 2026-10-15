@@ -1467,8 +1467,8 @@
         <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" /> 
         <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="True" /> 
         <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" /> 
-        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
-        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/KerriganRavageQuest" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" />
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/WhitemaneSearingLashQuest" /> 
         <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
       </State>
       <State name="MurkyForceDisplay">
