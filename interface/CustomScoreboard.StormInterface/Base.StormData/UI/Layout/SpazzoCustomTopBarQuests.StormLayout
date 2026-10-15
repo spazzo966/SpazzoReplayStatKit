@@ -1190,6 +1190,20 @@
         <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/WhitemaneSearingLashQuest" /> 
         <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
       </State>
+      <State name="Murky">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMurky"/>
+        <When type="Property" frame="$Talent0MasterSetting/ShowQuests/CheckBoxButton" Toggled="True"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="PuffedUpTokenCounter" /> 
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_murky_pufferfish.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="{$Talent0MasterSetting/ShowAbilBackings/CheckBoxButton/@Toggled}" />
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/MurkyPuffedUpQuest" /> 
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
       <State name="DeathwingForceDisplay">
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroDeathwing"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="True" />
@@ -1455,6 +1469,19 @@
         <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" /> 
         <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/KerriganRavageQuest" /> 
+        <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
+      </State>
+      <State name="MurkyForceDisplay">
+        <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroMurky"/>
+        <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="True" />
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="PuffedUpTokenCounter" /> 
+        <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="QuestLabel" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Texture="Assets\Textures\storm_ui_icon_murky_pufferfish.dds" />
+        <Action type="SetProperty" frame="$this/BehaviorImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
+        <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/MurkyPuffedUpQuest" /> 
         <Action type="SetState" frame="$this" Group="BaselineType" State="HasTokenDoesNotHaveDurationDoesNotHaveAbilityDoesNotHaveCharge"/>
       </State>
       <!-- <State name="Necromancer">
