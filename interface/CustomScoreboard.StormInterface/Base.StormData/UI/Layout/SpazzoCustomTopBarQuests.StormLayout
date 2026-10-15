@@ -529,7 +529,7 @@
         <When type="Property" frame="$ancestor[@type=UnitStatusFrame]" unit="HeroDemonHunter"/>
         <When type="Property" frame="$Talent0MasterSetting/ShowNonQuests/CheckBoxButton" Toggled="True"/>
         <When type="Property" frame="$ancestor[@name=DummyAncestorRelationFrame]/BottomPanelDetector" Text="False" />
-        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="NewHatredStack" /> 
+        <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest" Behavior="DemonHunterHatredTokenCounter" /> 
         <Action type="SetState" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/StackLabel" Group="LabelStateGroup" State="NonQuest" />
         <Action type="SetProperty" frame="$this/UnitStatusBehaviorIconBaselineQuest/BehaviorIcon/DummyStackProgressBar" Visible="False" /> 
         <Action type="ApplyTemplate" frame="$this/UnitStatusBehaviorIconBaselineQuest/VisiblityControllerFrame" template="SpazzoCustomTopBarQuests/VisibityControllerFrameDontHideAtCompletion"/>
@@ -539,7 +539,7 @@
         <Action type="SetProperty" frame="$this/TalentTreeBorder/IconBorderImage" Visible="True" /> 
         <Action type="SetProperty" frame="$this/BehaviorImage" Tooltip="{$this/TFFrame/@Text}" /> 
         <Action type="SetProperty" frame="$this/BehaviorImage/TFFrame" FormatText="@Spazzo/Button/Tooltip/DemonHunterHatred" /> 
-        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar" Behavior="NewHatredDurationController" />
+        <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar" Behavior="DemonHunterHatredTokenCounter" />
         <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" AdjustmentColor="255,200,200,200" /> 
         <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" Alpha="130" /> 
         <Action type="SetProperty" frame="$this/CircularBehaviorCountdownBar/BehaviorIcon/CooldownBar/FillImageContainer/FillImage" ColorAdjustMode="Fill" />
