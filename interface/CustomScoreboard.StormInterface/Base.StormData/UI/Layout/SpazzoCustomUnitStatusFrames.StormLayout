@@ -3934,8 +3934,8 @@
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" AbilityLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar" ChargeLink="NULL" />
         <Action type="SetProperty" frame="CircularAbilChargeCountdownBar/ChargesLabel" Visible="False" />
-        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="NewHatredDurationController" />
-        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="NewHatredStack" />
+        <Action type="SetProperty" frame="CircularBehaviorCountdownBar" Behavior="DemonHunterHatredTokenCounter" />
+        <Action type="SetProperty" frame="BehaviorTokenCount" Behavior="DemonHunterHatredTokenCounter" />
         <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackProgressBar" Visible="False" />
         <Action type="SetProperty" frame="BehaviorTokenCount/BehaviorIcon/StackLabel" Visible="True" />
         <Action type="SetProperty" frame="MechanicTexture" Texture="{$DemonHunterCooldownSetting/TogglePulldown1/AbilIcon/@Texture}" />
